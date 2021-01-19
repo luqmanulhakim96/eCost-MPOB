@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pie>
+  <!-- <message bg_color="#CCBB00" text_color="#FFFFFF"><![CDATA[You can broadcast any message to chart from data XML file]]></message> -->
+  <slice title="Non-Recurrent Costs" pull_out="true">3339.03</slice>
+  <slice title="Upkeep and Cultivation">1087.92</slice>
+  <slice title="Fertilisation">721.62</slice>
+</pie>

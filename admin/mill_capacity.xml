@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pie>
+  <!-- <message bg_color="#CCBB00" text_color="#FFFFFF"><![CDATA[You can broadcast any message to chart from data XML file]]></message> -->
+  <slice title="Under 20" pull_out="true">11.3</slice>
+  <slice title="20 - under 30">5.0</slice>
+  <slice title="30 - under 40">18.8</slice>
+  <slice title="40 - under 50">28.7</slice>
+  <slice title="50 and above">36.2</slice>
+<!--  <slice title="Des" description="Click on the slice to find more information" alpha="50">114</slice>-->
+</pie>

@@ -1,0 +1,50 @@
+html, body {height:100%; padding: 0; }
+
+html>body {
+
+} /* Reset Base Font Size */
+
+body {
+	
+}
+
+h1, h2 {padding: 10px; margin: 0 }
+h1 { font-size: large }
+
+#banner { padding: 15px; background-color: #06b; color: white; font-size: large; border-bottom: 1px solid #ccc;
+   /* background: url(bg.gif) repeat-x; text-align: center*/ }
+#banner a { color: white; }
+
+#main { padding: 1em; }
+
+a img { border: none; }
+
+
+/*---------------------------------------------------------------------------------------------table style start*/
+#box-table-a
+{
+	font-size: 12px;
+	height:auto;
+	text-align: left;
+	border-collapse: collapse;
+}
+#box-table-a th
+{
+	font-weight: normal;
+	padding: 5px;
+	background:#480000;
+	color:#FFFFFF;
+	border-top: 1px solid #aabcfe;
+	border-bottom: 1px solid #aabcfe;
+}
+#box-table-a td
+{
+	padding: 5px;
+	background: #e8edff; 
+	border-bottom: 1px solid #fff;
+	border-top: 1px solid transparent;
+}
+#box-table-a tr:hover td
+{
+	background: #d0dafd;
+}

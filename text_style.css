@@ -1,0 +1,65 @@
+.field_edited {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	border-top-style: none;
+	border-right-style: none;
+	border-bottom-style: none;
+	border-left-style: none;
+	text-align: center;
+}
+.field_outliers {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	font-weight: bold;
+	color: #9966FF;
+	text-decoration: blink;
+	border: 2px;
+	text-align: center;
+	border-style: solid;
+	border-color: #FF0000;
+	background-color: #CCCCCC;
+}
+.field_active {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+	border: 1px solid #FF6600;
+	font-weight: bold;
+	background-position: center;
+	text-align: center;
+}
+.field_total {
+	font-family: Arial, Helvetica, sans-serif;
+	color: #CCCCCC;
+	border: 1px solid #FF6600;
+	font-weight: bold;
+	background-position: center;
+	text-align: center;
+}
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+}.static_txt {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #0000FF;
+}
+.static_txt_error {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	font-weight: bold;
+	color: #FF3300;
+	text-decoration: blink;
+}
+.select_active {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	border: 1px solid #FF3300;
+}.thinborderfloat {
+  float:center;
+  border:solid 1px silver;
+  padding:5px;
+  margin-right:10px;
+  } 

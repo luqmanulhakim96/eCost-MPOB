@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chart>
+  <!-- <message bg_color="#BBBB00" text_color="#FFFFFF"><![CDATA[You can broadcast any message to chart from data XML file]]></message> -->
+	<series>
+		<value xid="100">TSEN ESTET SDN BHD</value>
+		<value xid="101">ROMPIN</value>
+		<value xid="102">PAHANG</value>
+		<value xid="103">SEMENANJUNG</value>
+		<value xid="104">MALAYSIA</value>
+	</series>
+	<graphs>
+	<graph gid="0">
+			<value xid="100" color="#318DBD">700</value>
+			<value xid="101" color="#318DBD">800</value>
+			<value xid="102" color="#318DBD">750</value>
+			<value xid="103" color="#318DBD">1200</value>
+			<value xid="104" color="#318DBD">1100</value>
+		</graph>
+		<graph gid="1">
+			<value xid="100" color="#318DBD">700</value>
+			<value xid="101" color="#318DBD">800</value>
+			<value xid="102" color="#318DBD">750</value>
+			<value xid="103" color="#318DBD">1200</value>
+			<value xid="104" color="#318DBD">1100</value>
+		</graph>
+	</graphs>
+</chart>

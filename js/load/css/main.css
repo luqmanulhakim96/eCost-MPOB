@@ -1,0 +1,29 @@
+
+/******* /REUSE *******/
+/******* CONTAINER *******/
+#container{
+	width: 960px;
+	margin: 0pt auto;
+	color: #fff;
+}
+/******* /CONTAINER *******/
+
+/******* /MENU *******/
+/******* LOADING *******/
+#loading{
+	text-align: center;
+	visibility: hidden;
+}
+/******* /LOADING *******/
+
+/******* /CONTENT *******/
+/******* FOOTER *******/
+#footer{
+	background: #efefef;
+	border: 1px solid #d0ccc9;
+	padding: 10px;
+	color: #7e7e7e;
+	font-size: 11px;
+	text-align: right;
+}
+/******* /FOOTER *******/

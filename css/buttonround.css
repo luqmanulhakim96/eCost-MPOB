@@ -1,0 +1,29 @@
+/* just for the example */
+#links {border:1px solid #ccc; padding:10px;}
+* { text-decoration:none; 
+ }
+
+/* rounded buttons */
+.round {
+	cursor:pointer; 
+	cursor:hand; 
+	line-height:27px;
+	height:27px;
+	background:url(../images/button.gif) no-repeat right top; 
+	padding-right:30px; 
+	display:inline-block;
+	list-style-type:none; color:#534010; font-size:11px; font-weight:bold;
+}
+.round ins { 
+	background:url(../images/button.gif) no-repeat left top; 
+	height:27px;
+	line-height:27px;
+	display:inline-block;
+	padding-left:30px;
+}
+
+	a.round:hover {background-position:right -155px;}
+	a.round:hover ins {background-position:left -155px;}
+	
+
+/* end rounded buttons */

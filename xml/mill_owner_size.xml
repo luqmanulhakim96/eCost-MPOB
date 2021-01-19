@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pie>
+  <!-- <message bg_color="#CCBB00" text_color="#FFFFFF"><![CDATA[You can broadcast any message to chart from data XML file]]></message> -->
+  <slice title="Private limited compannies" pull_out="true">75.2</slice>
+  <slice title="Public limited companies">20.5</slice>
+  <slice title="Public agencies">2.8</slice>
+  <slice title="Co-operatives">0.5</slice>
+  <slice title="Partnership">0.5</slice>
+  <slice title="Others">0.5</slice>
+<!--  <slice title="Des" description="Click on the slice to find more information" alpha="50">114</slice>-->
+</pie>

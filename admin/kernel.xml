@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pie>
+  <!-- <message bg_color="#CCBB00" text_color="#FFFFFF"><![CDATA[You can broadcast any message to chart from data XML file]]></message> -->
+  <slice title="Peninsular Malaysia" pull_out="true">911.13</slice>
+  <slice title="Sabah">867.71</slice>
+  <slice title="Sarawak">851.78</slice>
+<!--  <slice title="Des" description="Click on the slice to find more information" alpha="50">114</slice>-->
+</pie>

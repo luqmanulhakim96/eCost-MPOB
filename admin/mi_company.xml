@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pie>
+  <slice title="Mean 2008">2741.44</slice>
+  <slice title="Mean 2009">100078.28</slice>
+  <slice title="Median 2009" pull_out="true" color="#FCD202">35000</slice>
+</pie>

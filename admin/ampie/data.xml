@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pie>
+  <slice title="Tanah Lanar">3400</slice>
+  <slice title="Tanah Pendalaman" pull_out="true">5290</slice>
+  <slice title="Tanah Gambut">2400</slice>
+  <slice title="Lain-lain">500</slice>
+</pie>

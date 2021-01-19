@@ -1,0 +1,36 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+background-image:url(../images/tb_BG.gif);
+background-repeat:repeat-x;
+background-color:#D3E2F8;
+margin-top:0;
+margin-left:0;
+margin-right:0;
+font-family:Arial, Helvetica, sans-serif;
+font-size:12px;
+}
+a:link {
+	text-decoration: none;
+}
+a:visited {
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+a:active {
+	text-decoration: none;
+}
+.nav{
+background-image: linear-gradient(#0740d1, #0e0882);
+background-repeat:repeat-x;
+}
+.table{
+border: 1px solid #CCCCCC;
+}
+.tableinside{
+border: 1px solid #006600;
+background-color:#FFFFFF;
+margin-top:10px;
+}

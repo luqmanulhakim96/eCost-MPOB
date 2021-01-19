@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<chart>
+	<series>
+		<value xid="0">Malaysia</value>
+		<value xid="51">Peninsular Malaysia</value>
+		<value xid="52">Sabah</value>
+		<value xid="53">Sarawak</value>
+	</series>
+	<graphs>
+		<graph gid="1">
+			<value xid="0">15.9</value>
+			<value xid="51">33.9</value>
+			<value xid="52">13.2</value>
+			<value xid="53">9.2</value>
+		</graph>
+		<graph gid="2">
+			<value xid="0">15.9</value>
+			<value xid="51">33.9</value>
+			<value xid="52">13.2</value>
+			<value xid="53">9.2</value>
+		</graph>
+	</graphs>
+	<guides>	                                   
+	 <guide>                                     
+	   <start_value></start_value>               
+	   <title></title>                           
+	   <color>#00CC00</color>                             
+	   <inside>true</inside>                         
+	 </guide>  
+	</guides>	
+</chart>

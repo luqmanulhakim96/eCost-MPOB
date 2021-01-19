@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pie>
+  <!-- <message bg_color="#CCBB00" text_color="#FFFFFF"><![CDATA[You can broadcast any message to chart from data XML file]]></message> -->
+  <slice title="Jan" pull_out="true" description="Click on the slice to find more information" alpha="50">358</slice>
+  <slice title="Feb">258</slice>
+  <slice title="Mac">154</slice>
+  <slice title="Apr">154</slice>
+  <slice title="Mei">154</slice>
+  <slice title="Jun">154</slice>
+  <slice title="Jul">154</slice>
+</pie>
