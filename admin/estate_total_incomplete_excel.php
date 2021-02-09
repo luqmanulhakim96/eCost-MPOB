@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../Connections/connection.class.php');
 include '../class/admin.estate.class.php';
 header("Content-Disposition: attachment; filename=Estate_Response_Incomplete_Survey_in_Malaysia.xls");
@@ -6,9 +6,9 @@ header("Content-Disposition: attachment; filename=Estate_Response_Incomplete_Sur
 <?php
 $con=connect();
 $qp="select * from login_estate where success like '0000-00-00 00:00:00' and lesen not like '123456789012'";
-$rp =mysql_query($qp,$con);
+$rp =mysqli_query($con, $qp);
 ?>
-        
+
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="display" id="example">
 	<thead>
 		<tr bgcolor="#8A1602" height="30">
@@ -22,12 +22,12 @@ $rp =mysql_query($qp,$con);
 		</tr>
 	</thead>
 	<tbody>
-	<?php while($row=mysql_fetch_array($rp)) {
-	
+	<?php while($row=mysqli_fetch_array($rp)) {
+
 	$con =connect();
 	$qs ="select * from esub where no_lesen_baru = '".$row['lesen']."'";
-	$rs = mysql_query($qs,$con);
-	$rowrs = mysql_fetch_array($rs);
+	$rs = mysqli_query($con, $qs);
+	$rowrs = mysqli_fetch_array($rs);
 	 ?>
 		<tr valign="top">
 			<td><?php echo $list++; ?></td>
@@ -39,6 +39,6 @@ $rp =mysql_query($qp,$con);
 		  <td><?php echo $rowrs['No_Telepon'];?></td>
 		  <td><?php echo $rowrs['Negeri'];?></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>

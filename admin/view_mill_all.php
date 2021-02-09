@@ -15,7 +15,7 @@ extract($_REQUEST);
 if ($type == 'delete') {
     $con = connect();
     $qall = "update ekilang  set ffb_proses='0' where no_lesen ='$nolesen' and tahun='$tahun' and bulan ='$bulan' ";
-    $rall = mysql_query($qall, $con);
+    $rall = mysqli_query($con, $qall);
     $tahun = $tahun + 1;
     echo "<script>location.href='view_mill_all.php?nolesen=$nolesen&tahun=$tahun';</script>";
 }
@@ -133,13 +133,13 @@ $tahun = $tahun - 1;
          if (a != null) {
          document.getElementById("tanaman_semula").value = "";
          }
-         
+
          var b = document.getElementById("tanaman_baru").value;
          if (b != null) {
          document.getElementById("tanaman_baru").value = "";
          }
-         
-         
+
+
          var c = document.getElementById("tanaman_tukar").value;
          if (c != null) {
          document.getElementById("tanaman_tukar").value = "";
@@ -181,17 +181,17 @@ $tahun = $tahun - 1;
             $con = connect();
 
             $qfbb = "select * FROM ekilang where no_lesen ='$nolesen' and tahun='$tahun'";
-            $rfbb = mysql_query($qfbb, $con);
-            $rowfbb = mysql_fetch_array($rfbb);
-            $totalfbb = mysql_num_rows($rfbb);
+            $rfbb = mysqli_query($con, $qfbb);
+            $rowfbb = mysqli_fetch_array($rfbb);
+            $totalfbb = mysqli_num_rows($rfbb);
 
             $qd = "select * FROM alamat_ekilang where lesen ='$nolesen'";
-            $rd = mysql_query($qd, $con);
-            $rowd = mysql_fetch_array($rd);
-            $total = mysql_num_rows($rd);
+            $rd = mysqli_query($con, $qd);
+            $rowd = mysqli_fetch_array($rd);
+            $total = mysqli_num_rows($rd);
             if ($total == 0) {
                 $qaddress = "INSERT INTO alamat_ekilang (lesen, nama) VALUES ('$no_lesen', '" . $rowfbb['NAMA_KILANG'] . "')";
-                $raddress = mysql_query($qaddress, $con);
+                $raddress = mysqli_query($con, $qaddress);
                 if ($raddress) {
                     echo "<script>location.href='view_mill_all.php?nolesen=$no_lesen&tahun=$tahunaddkilang';</script>";
                 }
@@ -273,7 +273,7 @@ $tahun = $tahun - 1;
 
                 <tr>
                     <td width="15%">LESEN</td>
-                    <td width="1%">:</td> 
+                    <td width="1%">:</td>
                     <td width="84%"><?php echo $rowd['lesen']; ?>       <label>
                             <input type="hidden" name="add_lesen" id="add_lesen" value="<?php echo $rowd['lesen']; ?>" />
                         </label></td>
@@ -384,7 +384,7 @@ $tahun = $tahun - 1;
             <?php
             $con = connect();
             $q = "SHOW COLUMNS FROM ekilang WHERE Field in  ('NO_LESEN', 'NAMA_KILANG', 'TAHUN','NEGERI','SYARIKAT_INDUK');";
-            $r = mysql_query($q, $con);
+            $r = mysqli_query($con, $q);
 
             $nolesenffb = substr($nolesen, 0, -1);
             ?>
@@ -392,11 +392,11 @@ $tahun = $tahun - 1;
                 </tr>
                 <tr>
                     <?php
-                    while ($row = mysql_fetch_array($r)) {
+                    while ($row = mysqli_fetch_array($r)) {
                         $qd = "select " . $row['Field'] . " as jenis FROM ekilang where no_lesen ='$nolesen' and tahun='$tahun'";
                         //echo $qd."<br>";
-                        $rd = mysql_query($qd, $con);
-                        $rowd = mysql_fetch_array($rd);
+                        $rd = mysqli_query($con, $qd);
+                        $rowd = mysqli_fetch_array($rd);
                         ?>
                     <tr>
 
@@ -462,8 +462,8 @@ $tahun = $tahun - 1;
             <?php
             $con = connect();
             $q = "select * FROM login_mill where lesen ='$nolesen'";
-            $r = mysql_query($q, $con);
-            $row = mysql_fetch_array($r)
+            $r = mysqli_query($con, $q);
+            $row = mysqli_fetch_array($r)
             ?>
             <table width="100%" class="esub">
                 <tr>
@@ -474,7 +474,7 @@ $tahun = $tahun - 1;
 
                     </td>
                 </tr>
-            
+
                 <tr>
                     <td width="11%">FIRSTTIME</td>
                     <td width="1%">:</td>
@@ -497,12 +497,12 @@ $tahun = $tahun - 1;
             <?php
             $con = connect();
             $qdlogin = "select * FROM login_mill where lesen ='$nolesen'";
-            $rdlogin = mysql_query($qdlogin, $con);
-            $rowdlogin = mysql_fetch_array($rdlogin);
-            $totallogin = mysql_num_rows($rdlogin);
+            $rdlogin = mysqli_query($con, $qdlogin);
+            $rowdlogin = mysqli_fetch_array($rdlogin);
+            $totallogin = mysqli_num_rows($rdlogin);
             if ($totallogin === 0) {
                 $qdloginmil = "INSERT INTO login_mill (lesen, password, firsttime) VALUES ('" . $nolesen . "', 'kilang', '0')";
-                $rdloginmill = mysql_query($qdloginmil, $con);
+                $rdloginmill = mysqli_query($con, $qdloginmil);
                 if ($rdloginmill) {
                     echo "<script>location.href='view_mill_all.php?nolesen=$nolesen&tahun=$tahun';</script>";
                 }
@@ -515,7 +515,7 @@ $tahun = $tahun - 1;
                     <td width="88%"><?php echo $rowdlogin['lesen']; ?>
                     </td>
                 </tr>
-               
+
                 <tr>
                     <td width="11%">FIRSTTIME</td>
                     <td width="1%">:</td>
@@ -547,21 +547,21 @@ $tahun = $tahun - 1;
 
                 <?php
                 $qa = "select * from ekilang where no_lesen ='$no_lesen' and tahun='$tahun' order by cast(bulan as signed) ";
-                $ra = mysql_query($qa, $con);
-                $totala = mysql_num_rows($ra);
+                $ra = mysqli_query($con, $qa);
+                $totala = mysqli_num_rows($ra);
                 $all = 0;
-                $row = mysql_fetch_array($ra);
+                $row = mysqli_fetch_array($ra);
                 /*                 * ********initial 12 bulan********** */
                 for ($m = 1; $m < 13; $m++) {
                     $qadd = "INSERT INTO ekilang (NO_LESEN, NAMA_KILANG, NEGERI, BULAN, TAHUN) VALUES ('" . $row['NO_LESEN'] . "', '" . $row['NAMA_KILANG'] . "', '" . $row['NEGERI'] . "', '" . $m . "', '" . $row['TAHUN'] . "')";
-                    mysql_query($qadd, $con);
+                    mysqli_query($con, $qadd);
                 }
 
                 $qa = "select * from ekilang where no_lesen ='$no_lesen' and tahun='$tahun' order by cast(bulan as signed) ";
-                $ra = mysql_query($qa, $con);
-                $totala = mysql_num_rows($ra);
+                $ra = mysqli_query($con, $qa);
+                $totala = mysqli_num_rows($ra);
                 $all = 0;
-                while ($row = mysql_fetch_array($ra)) {
+                while ($row = mysqli_fetch_array($ra)) {
                     ?>
                     <tr>
                         <td><?php echo $row['TAHUN']; ?></td>
@@ -576,7 +576,7 @@ $tahun = $tahun - 1;
                      <!--   <td><div align="center">[<a href="view_mill_all.php?nolesen=<?php echo $row['NO_LESEN']; ?>&amp;tahun=<?php echo $row['TAHUN']; ?>&amp;bulan=<?php echo $row['BULAN']; ?>&amp;type=delete" onclick="return alert('Buang data ini?');">Buang</a>]</div></td>-->
                     </tr>
                     <?php
-                } //while ada data 
+                } //while ada data
                 if ($totala == 0) {
                     $bulansemasa = 1;
                     for ($r = 0; $r < 12; ++$r) {
@@ -595,7 +595,7 @@ $tahun = $tahun - 1;
                         </tr>
                         <?php
                         $bulansemasa = $bulansemasa + 1;
-                    }//for 12 bulan 
+                    }//for 12 bulan
                 }
                 ?>
                 <tr>
@@ -627,7 +627,7 @@ if (isset($kemaskini)) {
         $negeri = strtoupper($negeri);
 
         $q_address = "UPDATE alamat_ekilang SET alamat1='$add_alamat1', alamat2='$add_alamat2', alamat3='$add_alamat3', alamatsurat1='$add_surat1', alamatsurat2='$add_surat2', alamatsurat3='$add_surat3', notel='$add_telefon', nofax='$add_fax', email='$add_email', pegawai='$add_pegawai' WHERE (lesen='$nolesen')";
-        $r_address = mysql_query($q_address, $con);
+        $r_address = mysqli_query($con, $q_address);
 
 
         $q_fbb = "update ekilang "
@@ -637,7 +637,7 @@ if (isset($kemaskini)) {
                 . " where "
                 . " no_lesen = '$nolesen' "
                 . " and tahun ='$tahunkilang' ";
-        $r_fbb = mysql_query($q_fbb, $con);
+        $r_fbb = mysqli_query($con, $q_fbb);
 
 
         $q_login = "update "
@@ -648,7 +648,7 @@ if (isset($kemaskini)) {
                 . " success='$success', "
                 . " fail='$fail' "
                 . " where lesen ='$nolesen'	";
-        $r_login = mysql_query($q_login, $con);
+        $r_login = mysqli_query($con, $q_login);
 
 
         $qall = "select "
@@ -657,8 +657,8 @@ if (isset($kemaskini)) {
                 . "where "
                 . "no_lesen ='$nolesen' "
                 . "and tahun='$tahunkilang' ";
-        $rall = mysql_query($qall, $con);
-        $totalall = mysql_num_rows($rall);
+        $rall = mysqli_query($con, $qall);
+        $totalall = mysqli_num_rows($rall);
 
         foreach ($jumlah as $id => $value) {
             $var = explode(":", $id);
@@ -697,7 +697,7 @@ if (isset($kemaskini)) {
                         . "'')";
             }//if total 0
             //echo $q."<br>";
-            $a = mysql_query($q, $con);
+            $a = mysqli_query($con, $q);
         }
 
         $tahun = $tahun + 2;
@@ -705,6 +705,6 @@ if (isset($kemaskini)) {
 
         echo "<script>window.location.href='view_mill_all.php?nolesen=$nolesen&tahun=$tahun'</script>";
     }
-}//isset kemaskini 
+}//isset kemaskini
 ?>
-<?php mysql_close($con); ?>
+<?php mysqli_close($con); ?>

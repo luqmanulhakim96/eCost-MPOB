@@ -9,7 +9,7 @@ $con = connect();
 <style>
 body {
 	font-family:Tahoma ;
-	font-size: 12px; 
+	font-size: 12px;
 
 }td,th {
 	font-size: 12px;
@@ -22,9 +22,9 @@ body {
 function esub($lesen){
 		$con=connect();
  		$q="select * from esub where NO_LESEN_BARU = '$lesen' limit 1 ";
-  		$r=mysql_query($q,$con);
-		$row=mysql_fetch_array($r);
-		
+  		$r=mysqli_query($con, $q);
+		$row=mysqli_fetch_array($r);
+
 		$sub[0]=$row['Nama_Estet'];
 		$sub[1]=$row['Negeri_Premis'];
 		$sub[2]=$row['Daerah_Premis'];
@@ -33,29 +33,29 @@ function esub($lesen){
 		$sub[5]=$row['Belum_Berhasil'];
 		$sub[6]=$row['Jumlah'];
 		$sub[7]=$row['Keluasan_Yang_Dituai'];
-		
-		return $sub;	
+
+		return $sub;
 	}
 
 //----------------------------------------------------
 function luas($lesen,$table,$field){
  		$con=connect();
 		$q="select sum($field) as jumlah from $table where lesen = '$lesen' group by lesen limit 1 ";
-  		$r=mysql_query($q,$con);
-		$row=mysql_fetch_array($r);
-		
+  		$r=mysqli_query($con, $q);
+		$row=mysqli_fetch_array($r);
+
 		$sub[0] = round($row['jumlah'],2);
 		return $sub;
-		
+
 	}
 //---------------------------------------------------
 function kos_belum_matang($lesen,$tahun,$type,$tahun_tanam,$keluasan){
 		$con=connect();
-	
+
 		$q="select * from kos_belum_matang where lesen = '$lesen' and pb_thisyear='$tahun' and pb_tahun='$tahun_tanam' and pb_type='$type' limit 1 ";
-  		$r=mysql_query($q,$con);
-		$row=mysql_fetch_array($r);
-		
+  		$r=mysqli_query($con, $q);
+		$row=mysqli_fetch_array($r);
+
 		$sub[0]=round($row['a_1']/$keluasan,2);
 		$sub[1]=round($row['a_2']/$keluasan,2);
 		$sub[2]=round($row['a_3']/$keluasan,2);
@@ -89,9 +89,9 @@ function kos_belum_matang($lesen,$tahun,$type,$tahun_tanam,$keluasan){
 		$sub[30]=round($row['total_b_12']/$keluasan,2);
 		$sub[31]=round($row['total_b_13']/$keluasan,2);
 		$sub[32]=round($row['total_b_14']/$keluasan,2);
-		$sub[33]=round($row['total_b']/$keluasan,2);	
-		
-		return $sub;	
+		$sub[33]=round($row['total_b']/$keluasan,2);
+
+		return $sub;
 	}
 //-----------------------------------------
 function bts($var)
@@ -99,8 +99,8 @@ function bts($var)
 		$con = connect();
 		$vari = substr($var,0,-1);
 	  	$q ="select * from fbb_production where lesen ='".$vari."'";
-		$r = mysql_query($q,$con);
-		$row = mysql_fetch_array($r);
+		$r = mysqli_query($con, $q);
+		$row = mysqli_fetch_array($r);
 		//$sub[0]=$row['jumlah_pengeluaran'];
 		$sub[0]=round($row['purata_hasil_buah'],2);
 		return $sub;
@@ -110,9 +110,9 @@ function kos_matang_penjagaan($lesen,$tahun,$jum_tanam,$jum_bts){
 		$con=connect();
 //	echo $jum_bts;
 		$q="select * from kos_matang_penjagaan where lesen = '$lesen' and pb_thisyear='$tahun' limit 1 ";
-  		$r=mysql_query($q,$con);
-		$row=mysql_fetch_array($r);
-		
+  		$r=mysqli_query($con, $q);
+		$row=mysqli_fetch_array($r);
+
 		$sub[0]=round($row['b_1a']/$jum_tanam,2);
 		$sub[1]=round($row['b_1b']/$jum_tanam,2);
 		$sub[2]=round($row['b_1c']/$jum_tanam,2);
@@ -133,7 +133,7 @@ function kos_matang_penjagaan($lesen,$tahun,$jum_tanam,$jum_bts){
 		$sub[17]=round($row['total_b_11']/$jum_tanam,2);
 		$sub[18]=round($row['total_b_12']/$jum_tanam,2);
 		$sub[19]=round($row['total_b']/$jum_tanam,2);
-		
+
 		$sub[20]=round($sub[0]/$jum_bts,2);
 		$sub[21]=round($sub[1]/$jum_bts,2);
 		$sub[22]=round($sub[2]/$jum_bts,2);
@@ -154,39 +154,39 @@ function kos_matang_penjagaan($lesen,$tahun,$jum_tanam,$jum_bts){
 		$sub[37]=round($sub[17]/$jum_bts,2);
 		$sub[38]=round($sub[18]/$jum_bts,2);
 		$sub[39]=round($sub[19]/$jum_bts,2);
-	
-		
-		return $sub;	
+
+
+		return $sub;
 	}
 //----------------------------------------------------------------
 function kos_matang_penuaian($lesen,$tahun,$jum_tanam,$jum_bts){
 		$con=connect();
 		$q="select * from kos_matang_penuaian where lesen = '$lesen' and pb_thisyear='$tahun' limit 1 ";
-  		$r=mysql_query($q,$con);
-		$row=mysql_fetch_array($r);
-		
+  		$r=mysqli_query($con, $q);
+		$row=mysqli_fetch_array($r);
+
 		$sub[0]=round($row['a_1']/$jum_tanam,2);
 		$sub[1]=round($row['a_2']/$jum_tanam,2);
 		$sub[2]=round($row['a_3']/$jum_tanam,2);
 		$sub[3]=round($row['a_4']/$jum_tanam,2);
 		$sub[4]=round($row['total_b']/$jum_tanam,2);
-		
+
 		$sub[5]=round($sub[0]/$jum_bts,2);
 		$sub[6]=round($sub[1]/$jum_bts,2);
 		$sub[7]=round($sub[2]/$jum_bts,2);
 		$sub[8]=round($sub[3]/$jum_bts,2);
 		$sub[9]=round($sub[4]/$jum_bts,2);
-		
-		return $sub;	
+
+		return $sub;
 	}
 //----------------------------------------------------------------
 function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
 		$con=connect();
 //	echo $jum_bts;
 		$q="select * from kos_matang_pengangkutan where lesen = '$lesen' and pb_thisyear='$tahun' limit 1 ";
-  		$r=mysql_query($q,$con);
-		$row=mysql_fetch_array($r);
-		
+  		$r=mysqli_query($con, $q);
+		$row=mysqli_fetch_array($r);
+
 		$sub[0]=round($row['a_1']/$jum_tanam,2);
 		$sub[1]=round($row['a_2']/$jum_tanam,2);
 		$sub[2]=round($row['a_3']/$jum_tanam,2);
@@ -197,7 +197,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
 		$sub[7]=round($row['total_b_1']/$jum_tanam,2);
 		$sub[8]=round($row['total_b_2']/$jum_tanam,2);
 		$sub[9]=round($row['total_b']/$jum_tanam,2);
-		
+
 		$sub[10]=round($sub[0]/$jum_bts,2);
 		$sub[11]=round($sub[1]/$jum_bts,2);
 		$sub[12]=round($sub[2]/$jum_bts,2);
@@ -208,9 +208,9 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
 		$sub[17]=round($sub[7]/$jum_bts,2);
 		$sub[18]=round($sub[8]/$jum_bts,2);
 		$sub[19]=round($sub[9]/$jum_bts,2);
-		
-		
-		return $sub;	
+
+
+		return $sub;
 	}
 ?>
 
@@ -225,7 +225,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <th width="22%">Negeri</th>
     <th width="12%">Daerah </th>
     <th width="10%">Syarikat Induk</th>
-    
+
     <th width="2%">PB1_Luas</th>
     <th width="2%">PB1_a_1</th>
     <th width="2%">PB1_a_2</th>
@@ -283,7 +283,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <th width="3%">PB1_total_b_13</th>
     <th width="3%">PB1_total_b_14</th>
     <th width="3%">PB1_total_a</th>
-    
+
     <th width="2%">PB2_Luas</th>
     <th width="2%">PB2_b_1a</th>
     <th width="2%">PB2_b_1b</th>
@@ -307,8 +307,8 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <th width="3%">PB2_total_b_13</th>
     <th width="3%">PB2_total_b_14</th>
     <th width="3%">PB2_total_a</th>
-    
-    
+
+
     <th width="2%">PB3_Luas</th>
     <th width="2%">PB3_b_1a</th>
     <th width="2%">PB3_b_1b</th>
@@ -332,7 +332,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <th width="3%">PB3_total_b_13</th>
     <th width="3%">PB3_total_b_14</th>
     <th width="3%">PB3_total_a</th>
-    
+
     <th width="2%">PS1_Luas</th>
     <th width="2%">PS1_a_1</th>
     <th width="2%">PS1_a_2</th>
@@ -346,7 +346,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <th width="3%">PS1_a_10</th>
     <th width="3%">PS1_a_11</th>
     <th width="3%">PS1_total_a</th>
-    
+
     <th width="2%">PS2_Luas</th>
     <th width="2%">PS2_b_1a</th>
     <th width="2%">PS2_b_1b</th>
@@ -370,8 +370,8 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <th width="3%">PS2_total_b_13</th>
     <th width="3%">PS2_total_b_14</th>
     <th width="3%">PS2_total_a</th>
-    
-    
+
+
     <th width="2%">PS3_Luas</th>
     <th width="2%">PS3_b_1a</th>
     <th width="2%">PS3_b_1b</th>
@@ -395,7 +395,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <th width="3%">PS3_total_b_13</th>
     <th width="3%">PS3_total_b_14</th>
     <th width="3%">PS3_total_a</th>
-    
+
     <th width="2%">PT1_Luas</th>
     <th width="2%">PT1_a_1</th>
     <th width="2%">PT1_a_2</th>
@@ -409,7 +409,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <th width="3%">PT1_a_10</th>
     <th width="3%">PT1_a_11</th>
     <th width="3%">PT1_total_a</th>
-    
+
     <th width="2%">PT2_Luas</th>
     <th width="2%">PT2_b_1a</th>
     <th width="2%">PT2_b_1b</th>
@@ -433,8 +433,8 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <th width="3%">PT2_total_b_13</th>
     <th width="3%">PT2_total_b_14</th>
     <th width="3%">PT2_total_a</th>
-    
-    
+
+
     <th width="2%">PT3_Luas</th>
     <th width="2%">PT3_b_1a</th>
     <th width="2%">PT3_b_1b</th>
@@ -458,7 +458,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <th width="3%">PT3_total_b_13</th>
     <th width="3%">PT3_total_b_14</th>
     <th width="3%">PT3_total_a</th>
-    
+
     <th width="3%">KJ_Berhasil</th>
     <th width="3%">KJ_BTS</th>
     <th width="3%">KJ_b_1a</th>
@@ -481,7 +481,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <th width="3%">KJ_total_b_11</th>
     <th width="3%">KJ_total_b_12</th>
     <th width="3%">KJ_total_b</th>
-    
+
     <th width="3%">KJB_b_1a</th>
     <th width="3%">KJB_b_1b</th>
     <th width="3%">KJB_b_1c</th>
@@ -512,7 +512,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <th width="3%">KPB_a_3</th>
     <th width="3%">KPB_a_4</th>
     <th width="3%">KPB_total_b</th>
-    
+
     <th width="3%">KA_a_1</th>
     <th width="3%">KA_a_2</th>
     <th width="3%">KA_a_3</th>
@@ -523,7 +523,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <th width="3%">KA_total_b_1</th>
     <th width="3%">KA_total_b_2</th>
     <th width="3%">KA_total_b</th>
-    
+
     <th width="3%">KAB_a_1</th>
     <th width="3%">KAB_a_2</th>
     <th width="3%">KAB_a_3</th>
@@ -538,9 +538,9 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
   <?php
   $con=connect();
   $q="select * from login_estate where success!='0000-00-00 00:00:00'  group by lesen order by lesen  ";
-  $r=mysql_query($q,$con);
+  $r=mysqli_query($con, $q);
   $bil=0;
-  while($row=mysql_fetch_array($r)){
+  while($row=mysqli_fetch_array($r)){
   ?>
   <tr <?php if($bil%2==0){?>class="alt"<?php } ?>>
     <td><?php echo ++$bil; ?>. </td>
@@ -584,8 +584,8 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-    
-    
+
+
     <td><?php  echo $kbm[12];?></td>
     <td><?php echo $kbm[13];?></td>
     <td><?php echo $kbm[14];?></td>
@@ -608,9 +608,9 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-    
+
 <!---------------------------------------------------------------------->
-    
+
     <td><?php $luas = luas($row['lesen'],'tanam_baru08','tanaman_baru'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Baru','2',$luas[0]); echo $kbm[12];?></td>
     <td><?php echo $kbm[13];?></td>
@@ -634,8 +634,8 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-    
-    
+
+
     <td><?php $luas = luas($row['lesen'],'tanam_baru07','tanaman_baru'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Baru','3',$luas[0]); echo $kbm[12];?></td>
     <td><?php echo $kbm[13];?></td>
@@ -659,7 +659,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-    
+
     <td><?php $luas = luas($row['lesen'],'tanam_semula09','tanaman_semula'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Semula','1',$luas[0]); echo $kbm[0];?></td>
     <td><?php echo $kbm[1];?></td>
@@ -673,7 +673,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $kbm[9];?></td>
     <td><?php echo $kbm[10];?></td>
     <td><?php echo $kbm[11];?></td>
-    
+
     <td><?php $luas = luas($row['lesen'],'tanam_semula08','tanaman_semula'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Semula','2',$luas[0]); echo $kbm[12];?></td>
     <td><?php echo $kbm[13];?></td>
@@ -697,8 +697,8 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-    
-    
+
+
     <td><?php $luas = luas($row['lesen'],'tanam_semula07','tanaman_semula'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Semula','3',$luas[0]); echo $kbm[12];?></td>
     <td><?php echo $kbm[13];?></td>
@@ -722,7 +722,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-    
+
     <!-- --- ------ ------ --- - - -- - - -- - -   -- -- - --->
     <td><?php $luas = luas($row['lesen'],'tanam_tukar09','tanaman_tukar'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penukaran','1',$luas[0]); echo $kbm[0];?></td>
@@ -737,7 +737,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $kbm[9];?></td>
     <td><?php echo $kbm[10];?></td>
     <td><?php echo $kbm[11];?></td>
-    
+
     <td><?php $luas = luas($row['lesen'],'tanam_tukar08','tanaman_tukar'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penukaran','2',$luas[0]); echo $kbm[12];?></td>
     <td><?php echo $kbm[13];?></td>
@@ -761,8 +761,8 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-    
-    
+
+
     <td><?php $luas = luas($row['lesen'],'tanam_tukar07','tanaman_tukar'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penukaran','3',$luas[0]); echo $kbm[12];?></td>
     <td><?php echo $kbm[13];?></td>
@@ -786,7 +786,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-    
+
     <td><?php echo $nl[4];?></td>
     <td><?php $bts=bts($row['lesen']); echo $bts[0];?></td>
     <td><?php $jaga = kos_matang_penjagaan($row['lesen'],$tahun,$nl[4],$bts[0]); echo $jaga[0];?></td>
@@ -809,7 +809,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $jaga[17];?></td>
     <td><?php echo $jaga[18];?></td>
     <td><?php echo $jaga[19];?></td>
-    
+
     <td><?php echo $jaga[20];?></td>
     <td><?php echo $jaga[21];?></td>
     <td><?php echo $jaga[22];?></td>
@@ -830,7 +830,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $jaga[37];?></td>
     <td><?php echo $jaga[38];?></td>
     <td><?php echo $jaga[39];?></td>
-    
+
     <td><?php $kt = kos_matang_penuaian($row['lesen'],$tahun,$nl[4],$bts[0]); echo $kt[0];?></td>
     <td><?php echo $kt[1];?></td>
     <td><?php echo $kt[2];?></td>
@@ -841,7 +841,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $kt[7];?></td>
     <td><?php echo $kt[8];?></td>
     <td><?php echo $kt[9];?></td>
-    
+
     <td><?php $ka = kos_matang_pengangkutan($row['lesen'],$tahun,$nl[4],$bts[0]); echo $ka[0];?></td>
     <td><?php echo $ka[1];?></td>
     <td><?php echo $ka[2];?></td>
@@ -862,7 +862,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts){
     <td><?php echo $ka[17];?></td>
     <td><?php echo $ka[18];?></td>
     <td><?php echo $ka[19];?></td>
-    
+
   </tr>
   <?php } ?>
 </table>

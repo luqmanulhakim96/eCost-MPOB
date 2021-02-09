@@ -1,33 +1,33 @@
 <?php
- include('../Connections/connection.class.php'); 
+ include('../Connections/connection.class.php');
  extract($_REQUEST);
  $con=connect();
  if(isset($simpan)){
- 	
+
 	if($total==0){
  	$q="insert into ekilang_state (lesen, daerah, negeri) values ('$lesen', ucase('$daerah'), ucase('$negeri'))";
 	}
 	if($total!=0){
  echo	 $q="update ekilang_state set daerah =ucase('$daerah'), negeri=ucase('$negeri') where lesen='$lesen'";
 	}
-	$r=mysql_query($q,$con);
-	
+	$r=mysqli_query($con, $q);
+
 	echo "<script>window.location.href='edit_kilang.php'</script>";
 
  }
- 
- 
+
+
  $con=connect();
   $q="select * from ekilang_state where lesen ='$nolesen'";
- $r=mysql_query($q,$con);
- $row = mysql_fetch_array($r);
- 
+ $r=mysqli_query($con, $q);
+ $row = mysqli_fetch_array($r);
+
 ?>
 <form id="form1" name="form1" method="post" action="save_state_kilang.php">
   <table width="100%">
     <tr>
       <td width="9%">No Lesen</td>
-      <td width="91%">: 
+      <td width="91%">:
       <input name="lesen" type="text" id="lesen" value="<?php echo $nolesen; ?>" readonly="true" /></td>
     </tr>
     <tr>
@@ -47,7 +47,7 @@
       <td>&nbsp;</td>
       <td><input type="submit" name="simpan" id="simpan" value="Simpan" /></td>
     </tr>
-    
+
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>

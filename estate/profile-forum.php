@@ -8,7 +8,7 @@
 	echo  $qforum ="select * from phpbb_sessions where  session_user_id ='53' order by session_id desc";
 	  $rforum = mysql_query($qforum,$con);
 	  $rowforum = mysql_fetch_array($rforum);
-	  
+
 	echo  $session_id = $row['session_id'];
 	  */
 	  	if(isset($_GET['forum'])) {
@@ -20,7 +20,7 @@
       </tr>
       <?php
 	  	}
-		
+
 		else {
 			$link = "";
 			if(isset($_GET['read']))

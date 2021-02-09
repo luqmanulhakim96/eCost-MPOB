@@ -1,19 +1,19 @@
-<?php include('../Connections/connection.class.php'); 
+<?php include('../Connections/connection.class.php');
 include('../css/baju.php');
 set_time_limit(0);
 $con =connect();
 
 $q="select * from alamat_ekilang group by lesen";
-$r=mysql_query($q,$con);
+$r=mysqli_query($con, $q);
 
 function semak($no){
-	
+
 	$con=connect();
 	 $q="select * from ekilang_state where lesen='$no' group by lesen";
-	$r=mysql_query($q,$con);
-	$row=mysql_fetch_array($r);
-	$total = mysql_num_rows($r);
-	
+	$r=mysqli_query($con, $q);
+	$row=mysqli_fetch_array($r);
+	$total = mysqli_num_rows($r);
+
 	$data[0]=$row['daerah'];
 	$data[1]=$row['negeri'];
 	$data[2]=$total;
@@ -44,9 +44,9 @@ function semak($no){
     <th>Daerah</th>
     <th>Negeri</th>
   </tr>
-  <?php 
+  <?php
   $i=0;
-  while($row=mysql_fetch_array($r)){
+  while($row=mysqli_fetch_array($r)){
 
   ?>
   <tr <?php if($i%2==0){?>class="alt"<?php } ?>>
@@ -54,13 +54,13 @@ function semak($no){
     <td>
     <a href="save_state_kilang.php?nolesen=<?php echo $row['lesen'];?>&total=<?php echo $kilang[2];?>" class="klik"><?php echo $row['lesen'];?></a>
 
-    
+
     </td>
     <td><?php echo $row['nama'];?></td>
     <td><?php echo $row['alamat1'];?></td>
     <td><?php echo $row['alamat2'];?></td>
     <td><?php echo $row['alamat3'];?></td>
-    
+
     <td><?php  echo $kilang[0];?>&nbsp;</td>
     <td><?php echo $kilang[1];?></td>
   </tr>

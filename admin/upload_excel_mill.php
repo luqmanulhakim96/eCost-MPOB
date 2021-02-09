@@ -46,7 +46,7 @@ $_SESSION['captcha'] = simple_php_captcha();
             <td><b>Please enter CAPTCHA code below.</b>
                 <i>(case sensitive)</i><br><input name="captcha" type="text" id="captcha" size="20" />
                 <input name="captchasession" type="hidden" id="captchasession" size="20" value="<?php echo  $_SESSION['captcha']['code']; ?>" />
-               
+
                 <script language="javascript">
                     var f2 = new LiveValidation('captcha');
                     f2.add(Validate.Presence);
@@ -68,7 +68,7 @@ if ($deletemill === "yes") {
     $qa_delete = "delete FROM ekilang "
             . " WHERE tahun ='$yeardelete' or tahun =''; ";
     //echo $qa_delete;
-    $rqa_delete = mysql_query($qa_delete, $con);
+    $rqa_delete = mysqli_query($con, $qa_delete);
     if ($rqa_delete) {
         echo "Your data has successfully deleted.";
     } else {
@@ -78,15 +78,15 @@ if ($deletemill === "yes") {
 }
 
 if (isset($_POST["submit"])) {
-    
+
         /* start of captcha validation */
-//echo $_SESSION['captcha']['code']; 
+//echo $_SESSION['captcha']['code'];
     if ($captcha != $captchasession) {
         echo "<html><script language='javascript'>alert('Invalid CAPTCHA Code! You have entered :".$captcha." instead of ".$captchasession." '); location.href='home.php?id=config&sub=upload_excel_mill';</script></html>";
     }
     /* end of captcha validation */
 
-    
+
     $file = $_FILES['file']['tmp_name'];
     $handle = fopen($file, "r");
     $c = 0;
@@ -96,25 +96,25 @@ if (isset($_POST["submit"])) {
             . " SELECT * FROM ekilang "
             . " WHERE tahun ='$tahun_ekilang'; ";
     //echo $qa . "<br><br>";
-    $rqa = mysql_query($qa, $con);
+    $rqa = mysqli_query($con, $qa);
 
 
     $qa_delete = "delete FROM ekilang "
             . " WHERE tahun ='$tahun_ekilang'";
-    $rqa_delete = mysql_query($qa_delete, $con); //echo $qa_delete;
+    $rqa_delete = mysqli_query($con, $qa_delete); //echo $qa_delete;
 
     while (($filesop = fgetcsv($handle, 1000, ",")) !== false) {
-        $nolesen = mysql_real_escape_string($filesop[0]);
-        $namakilang = mysql_real_escape_string($filesop[1]);
-        $negeri = mysql_real_escape_string($filesop[2]);
-		$bulan = mysql_real_escape_string($filesop[3]);
+        $nolesen = mysqli_real_escape_string($filesop[0]);
+        $namakilang = mysqli_real_escape_string($filesop[1]);
+        $negeri = mysqli_real_escape_string($filesop[2]);
+		$bulan = mysqli_real_escape_string($filesop[3]);
 		$bulan = ltrim($bulan, '0');
-        $tahun = mysql_real_escape_string($filesop[4]);
-        $ffb_process = mysql_real_escape_string($filesop[5]);
-        $estatesendiri = mysql_real_escape_string($filesop[6]);
-        $lain = mysql_real_escape_string($filesop[7]);
-        $cpo = mysql_real_escape_string($filesop[8]);
-        $pk = mysql_real_escape_string($filesop[9]);
+        $tahun = mysqli_real_escape_string($filesop[4]);
+        $ffb_process = mysqli_real_escape_string($filesop[5]);
+        $estatesendiri = mysqli_real_escape_string($filesop[6]);
+        $lain = mysqli_real_escape_string($filesop[7]);
+        $cpo = mysqli_real_escape_string($filesop[8]);
+        $pk = mysqli_real_escape_string($filesop[9]);
 
         $sql = "INSERT INTO ekilang "
                 . "(NO_LESEN, "
@@ -142,8 +142,8 @@ if (isset($_POST["submit"])) {
         //echo $sql . "<br><br>";
         //echo $sql . "<br>";
 
-        $rsql = mysql_query($sql, $con);
-		
+        $rsql = mysqli_query($con, $sql);
+
 		$defaultpassword = 'kilang';
 		 $sql2 = "INSERT INTO login_mill "
                 . "(lesen, "
@@ -155,8 +155,8 @@ if (isset($_POST["submit"])) {
                 . "'1'"
                 . ")";
         //echo $sql . "<br><br>";
-        $rsql2 = mysql_query($sql2, $con);
-		
+        $rsql2 = mysqli_query($con, $sql2);
+
 
         $c = $c + 1;
         if ($sql) {
@@ -165,15 +165,14 @@ if (isset($_POST["submit"])) {
             echo "Sorry! There is some problem.";
         } echo "<br>";
     }// while reading excel
-	
+
 	    /* clean header after migrate */
     $sqldelete = "delete from ekilang where NO_LESEN='NO_LESEN';  ";
-    $rsqldelete = mysql_query($sqldelete, $con);
+    $rsqldelete = mysqli_query($con, $sqldelete);
     /* end of clean header after migrate */
-	
-	
-	
-	
+
+
+
+
 }
 ?>
-    

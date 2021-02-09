@@ -2,11 +2,11 @@
       <tr>
         <td height="37">
         <?=setstring ('mal', 'Pengutipan buah relai', 'en', 'Loose fruit collection')?>
-          <?php 
+          <?php
 		$varjentera[2]='pengutipan';
 		$jkutip = new user('jentera_estate',$varjentera);
 		?>
-		
+
 		 <input name="kutip1[0]" type="hidden" id="kutip1[0]" value="<?= $jkutip->id_jentera[0];?>" />
           <input name="kutip2[0]" type="hidden" id="kutip2[0]" value="<?= $jkutip->lesen[0];?>" />
           <input name="kutip3[0]" type="hidden" id="kutip3[0]" value="<?= $jkutip->tahun[0];?>" />
@@ -19,18 +19,18 @@
           <div align="left">
             <select name="jentera_pengutipan[0]" id="jentera_pengutipan[0]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'pengutipan_lain');">
               <option>-Pilih-</option>
-              <?php 
+              <?php
 			  $con = connect();
 			  $q ="select * from jentera where kategori_jentera ='Pemungutan' order by id_jentera";
-			  $r = mysql_query($q,$con);
-			  $total_pengutipan = mysql_num_rows($r);
-			  while($row=mysql_fetch_array($r)){?>
+			  $r = mysqli_query($con, $q);
+			  $total_pengutipan = mysqli_num_rows($r);
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jkutip->id_jentera[0]){?>selected="selected"<?php } ?>>
                 <?= $row['nama_jentera'];?>
                 </option>
               <?php } ?>
             </select>
-			
+
 			<div id="pengutipan_lain" class="<?php if($jkutip->nama_jentera[0]!=""){echo "show";} else{echo "hide";}?>">
             <input type="text" name="lain_pengutipan[0]" id="lain_pengutipan[0]" size="25" value="<?= ucwords($jkutip->nama_jentera[0]);?>" />
            </div>
@@ -40,13 +40,13 @@
           <input type="text" class="field_active" name="bil_pengutipan[0]" onKeypress="keypress(event)" size="11" id="bil_pengutipan[0]" value="<?= number_format($jkutip->value[0]);?>" onchange="tukar_format2(this)" autocomplete="off" />
         </div></td>
       </tr>
-      
+
 	  	  <?php $totkutip= $jkutip->total; for ($b=1; $b<$total_pengutipan; $b++){?>
 
 	  <tr bgcolor="#99FF99" class="<?php if($totkutip>$b){ echo "show";} else{echo "hide";}?>" id="b<?= $b; ?>">
         <td height="37"><label></label>
         <?=setstring ('mal', 'Pengutipan buah relai', 'en', 'Loose fruit collection')?>
-		
+
 		 <input name="kutip1[<?= $b; ?>]" type="hidden" id="kutip1[<?= $b; ?>]" value="<?= $jkutip->id_jentera[$b];?>" />
           <input name="kutip2[<?= $b; ?>]" type="hidden" id="kutip2[<?= $b; ?>]" value="<?= $jkutip->lesen[$b];?>" />
           <input name="kutip3[<?= $b; ?>]" type="hidden" id="kutip3[<?= $b; ?>]" value="<?= $jkutip->tahun[$b];?>" />
@@ -59,17 +59,17 @@
           <div align="left">
             <select name="jentera_pengutipan[<?= $b; ?>]" id="jentera_pengutipan[<?= $b; ?>]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'pengutipan_lain<?= $b; ?>');">
               <option>-Pilih-</option>
-              <?php 
+              <?php
 			  $con = connect();
 			  $q ="select * from jentera where kategori_jentera ='Pemungutan' order by id_jentera";
-			  $r = mysql_query($q,$con);
-			  while($row=mysql_fetch_array($r)){?>
+			  $r = mysqli_query($con, $q);
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jkutip->id_jentera[$b]){?>selected="selected"<?php } ?>>
                 <?= $row['nama_jentera'];?>
                 </option>
               <?php } ?>
             </select>
-			
+
 			<div id="pengutipan_lain<?= $b; ?>" class="<?php if($jkutip->nama_jentera[$b]!=""){echo "show";} else{echo "hide";}?>">
             <input type="text" name="lain_pengutipan[<?= $b; ?>]" id="lain_pengutipan[<?= $b; ?>]" size="25" value="<?= ucwords($jkutip->nama_jentera[$b]);?>" />
            </div>

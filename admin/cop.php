@@ -28,7 +28,7 @@ function median($numbers=array())
 {
 	if (!is_array($numbers))
 		$numbers = func_get_args();
-	
+
 	rsort($numbers);
 	$mid = (count($numbers) / 2);
 	return ($mid % 2 != 0) ? $numbers{$mid-1} : (($numbers{$mid-1}) + $numbers{$mid}) / 2;
@@ -40,49 +40,49 @@ $con=connect();
 		if($negeri!="" & $negeri!="pm")
 		{
 			$sql.=" and negeri = '$negeri'";
-		} 
+		}
 		if($negeri!="" && $daerah!="")
 		{
 			$sql.=" and daerah = '$daerah'";
-		} 
+		}
 		if($negeri=="pm")
 		{
 			$sql.=" and (negeri not like 'SARAWAK' and negeri not like 'SABAH')";
-		} 
-		
+		}
+
 		//echo $sql."<br>";
-		$sql_result = mysql_query($sql,$con); 
-		$i=0; 
-				while ($row = mysql_fetch_array($sql_result)) 
-				{ 
+		$sql_result = mysqli_query($con, $sql);
+		$i=0;
+				while ($row = mysqli_fetch_array($sql_result))
+				{
 				$test_data[] = $row["y"];
-				$i = $i + 1; 
-				} 
-			
+				$i = $i + 1;
+				}
+
 		$qavg = "SELECT AVG(y) as purata FROM graf_kbm where sessionid='$nama' and tahun ='$tahun' and status='$status' and pb_type='$type'";
 		if($negeri!="" & $negeri!="pm")
 		{
 			$qavg.=" and negeri = '$negeri'";
-		} 
+		}
 		if($negeri!="" && $daerah!="")
 		{
 			$qavg.=" and daerah = '$daerah'";
-		} 
+		}
 		if($negeri=="pm")
 		{
 			$qavg.=" and (negeri not like 'SARAWAK' and negeri not like 'SABAH')";
-		} 
-		
-		
-		$ravg = mysql_query($qavg,$con);
-		$rrow = mysql_fetch_array($ravg);
-		
-		
+		}
+
+
+		$ravg = mysqli_query($con, $qavg);
+		$rrow = mysqli_fetch_array($ravg);
+
+
 			$var[0] = median($test_data);
-			$var[1] = $rrow['purata'];		
-				return $var; 
-				
-		}	
+			$var[1] = $rrow['purata'];
+				return $var;
+
+		}
 ?>
 </p>
 <link rel="stylesheet" href="../text_style.css" type="text/css" />
@@ -101,7 +101,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 </script>
 
 
-    
+
 <script type="text/javascript">
 			$(document).ready(function(){
 				$(".cop").colorbox({width:"60%", height:"80%", iframe:true});
@@ -126,13 +126,13 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <?php if($state=="" || $state=="pm"){?>
     <img name="" src="../images/state/bendera_malaysia.jpg" width="91" height="45" alt="" class="thinborderfloat" />
     <?php } ?>
-	<?php 
+	<?php
 	if($state!=""){
-	
+
 	$qstate ="select * from negeri where id like '$state'";
-	$rstate = mysql_query($qstate,$con);
-	$rowstate = mysql_fetch_array($rstate);
-	$totalstate = mysql_num_rows($rstate);
+	$rstate = mysqli_query($con, $qstate);
+	$rowstate = mysqli_fetch_array($rstate);
+	$totalstate = mysqli_num_rows($rstate);
 	if($state=="pm"){$state="pm";}
 	else{$state = $rowstate['nama'];
 	}
@@ -140,7 +140,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	<?php if($totalstate>0){?>
 	<img src="../images/<?= $rowstate['negeri_path']; ?>" alt="" name="state" width="91" height="45" class="thinborderfloat" id="state" title="<?= $rowstate['nama'];?>" />
 	<?php }}?>
-    
+
     </td>
   </tr>
   <tr>
@@ -163,35 +163,35 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <td bgcolor="#8A1602"><div align="right"><span class="style5">Mean</span></div></td>
     <td bgcolor="#8A1602"><div align="right"><span class="style5">Median</span></div></td>
   </tr>
-  
-  
-  <?php 
+
+
+  <?php
   $satu = $_COOKIE['tahun_report']-0;
   $dua = $_COOKIE['tahun_report']-1;
-  
-  
+
+
   ?>
   <tr class="alt">
     <td colspan="3"><strong>Non-Recurrent Costs</strong></td>
   </tr>
-  
+
   <?php
   $qs="select * from q_kbm";
   if($year=="" || $year=='1'){
-  $qs.=" where tahun ='0'"; 
-  } 
-  $rs = mysql_query($qs,$con);
-  
+  $qs.=" where tahun ='0'";
+  }
+  $rs = mysqli_query($con, $qs);
+
   $jl=0;
   $js=0;
   $ms=0;
-  
-   while($rows=mysql_fetch_array($rs)){
+
+   while($rows=mysqli_fetch_array($rs)){
   ?>
-  
+
   <tr <?php if(++$gg%2==0){?>class="alt"<?php } ?>>
     <td><a href="add_cop.php?name=<?php echo $rows['name'];?>" class="cop"><?php echo $rows['name'];?></a></td>
-	
+
     <td><div align="right"><?php $a= pertama ($satu,  $rows['name'], '0',$state, $district, "Penanaman Semula"); echo number_format($a[1],2); $js = $js+$a[1]; ?></div></td>
     <td><div align="right"><?php echo number_format($a[0],2); $ms = $ms+$a[0]; ?></div></td>
   </tr>
@@ -205,4 +205,3 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 <br />
 <br />
 <br />
-

@@ -30,7 +30,7 @@ $buruh = new user('buruh',$variable);
 
 <body>
 	<table width="82%" border="0" align="center" cellpadding="1" cellspacing="1" id="box-table-a">
-       
+
           <tr>
             <td height="27" colspan="4"><h2><strong><?=setstring ( 'mal', 'Maklumat Am', 'en', 'General Information'); ?>
 </strong></h2></td>
@@ -53,8 +53,8 @@ $buruh = new user('buruh',$variable);
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->lesenlama; ?></td>
           </tr>
-          
-       
+
+
           <tr>
             <td height="31" colspan="4"><h2><strong><?=setstring ( 'mal', 'Alamat Hubungan', 'en', 'Contact Address'); ?>
 </strong></h2></td>
@@ -65,14 +65,14 @@ $buruh = new user('buruh',$variable);
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->alamatsurat1; ?></td>
           </tr>
-          
+
           <tr>
             <td><strong><?=setstring ( 'mal', 'Poskod', 'en', 'Postcode'); ?>
 </strong></td>
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->alamatsurat2; ?></td>
           </tr>
-          
+
           <tr>
             <td><strong><?=setstring ( 'mal', 'Negeri', 'en', 'State'); ?>
 </strong></td>
@@ -97,21 +97,21 @@ $buruh = new user('buruh',$variable);
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->email; ?></td>
           </tr>
-          
+
           <tr>
             <td><strong><?=setstring ( 'mal', 'Pegawai Melapor', 'en', 'Reporting Officer'); ?>
 </strong></td>
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->pegawai; ?></td>
           </tr>
-          
+
           <tr valign="top">
             <td><strong><?=setstring ( 'mal', 'Syarikat Induk', 'en', 'Headquarters'); ?>
 </strong></td>
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->syarikatinduk; ?></td>
           </tr>
-          
+
           <tr>
             <td><strong><?=setstring ( 'mal', 'Daerah Premis ', 'en', 'Premist District'); ?>
 </strong></td>
@@ -148,13 +148,13 @@ $buruh = new user('buruh',$variable);
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->teknologi; ?></td>
           </tr>
-          
+
           <tr>
             <td><strong><?=setstring ( 'mal', 'Integrasi dengan Estet', 'en', 'Integration with Estate'); ?>
 </strong></td>
             <td><strong>:</strong></td>
             <td colspan="2"><?php if($pengguna->integrasi=='Y'){?>
-			
+
 			<? echo "YA"; }else{?>
 			<? echo "TIDAK";
 			?>
@@ -165,11 +165,11 @@ $buruh = new user('buruh',$variable);
             <td><strong><?=setstring ( 'mal', 'Tahun Kilang Mula Beroperasi', 'en', 'Years of Mill Starts Operate'); ?>
 </strong></td>
             <td><strong>:</strong></td>
-            <td colspan="2"><?= $pengguna->tahun_operasi; ?> 
+            <td colspan="2"><?= $pengguna->tahun_operasi; ?>
             (<?php $ts = $_SESSION['tahun']; $to = $ts-$pengguna->tahun_operasi; echo $to; ?> Tahun)</td>
           </tr>
         </table>
-        
+
 	<table width="90%" align="center" cellspacing="0" class="tableCss" style="-moz-border-radius:5px;">
     <tr>
       <td height="34" colspan="4">&nbsp;</td>
@@ -185,8 +185,8 @@ $buruh = new user('buruh',$variable);
       <td width="426" height="26" bgcolor="#FFCCFF"><strong><?=setstring ( 'mal', 'Jumlah BTS diproses pada tahun lepas ', 'en', 'Total of Processed FFB on Last Year'); ?>
 </strong></td>
       <td colspan="3" bgcolor="#FFCCFF"><label><strong>
-<?php $d =$bts->fbb_proses; echo number_format($d,2); 
-?>      
+<?php $d =$bts->fbb_proses; echo number_format($d,2);
+?>
 <?=setstring ( 'mal', 'Tan', 'en', 'Tonne'); ?>
 </strong></label></td>
     </tr>
@@ -422,8 +422,8 @@ $buruh = new user('buruh',$variable);
           </tr>
       </table>
       </table>
-      
-      
+
+
       <table width="90%" align="center" class="tableCss">
     <tr>
       <td height="31" colspan="4">&nbsp;</td>
@@ -504,8 +504,8 @@ $buruh = new user('buruh',$variable);
             <td height="37" align="center" valign="middle" style="border-top:solid #333333 1px;">&nbsp;</td>
             <td align="left" valign="middle" style="border-top:solid #333333 1px;"><span class="style2"><?=setstring ( 'mal', 'Harga purata isirong yang didapati pada tahun lepas', 'en', 'Mean of kernel price obtained last year'); ?> (RM)</span></td>
             <td align="center" valign="middle" style="border-top:solid #333333 1px;">
-            
-            
+
+
             <script language="javascript">
             function tukarnombor(obj){
 						if(number_only(obj)){
@@ -515,30 +515,30 @@ $buruh = new user('buruh',$variable);
 						}
 			}
             </script>
-            
-            <?php 
-			
+
+            <?php
+
 					$con =connect();
 					$qisi="select * from mill_isirung where lesen = '".$_SESSION['lesen']."' and tahun ='".$_SESSION['tahun']."' limit 1";
-					$risi=mysql_query($qisi,$con);
-					$rowisi=mysql_fetch_array($risi);
-					$totalisi = mysql_num_rows($risi);
-					
+					$risi=mysqli_query($con, $qisi);
+					$rowisi=mysqli_fetch_array($risi);
+					$totalisi = mysqli_num_rows($risi);
+
 					if($totalisi==0){
 							$con =connect();
 							$q="insert into mill_isirung (lesen,tahun) values ('".$_SESSION['lesen']."','".$_SESSION['tahun']."')";
-							$r=mysql_query($q,$con);
-							
+							$r=mysqli_query($con, $q);
+
 				}
-					
-					
+
+
 			?>
             <?php echo number_format($rowisi['isirung'],2); ?>
-            
-            
-            
-            
-            
+
+
+
+
+
             </td>
             <td align="center" valign="middle" style="border-top:solid #333333 1px;">&nbsp;</td>
             <td align="center" valign="middle" style="border-top:solid #333333 1px;">&nbsp;</td>
@@ -564,8 +564,8 @@ $koslain = new user('koslain',$variable);
 function mill_proses($var){
 		$con = connect();
 		$q ="select * from mill_pemprosesan where lesen = '".$var[0]."' and tahun = '".$var[1]."'";
-		$r = mysql_query($q,$con);
-		$row =  mysql_fetch_array($r);
+		$r = mysqli_query($con, $q);
+		$row =  mysqli_fetch_array($r);
 		$stat[0]=$row['status'];
 		return $stat;
 }
@@ -573,8 +573,8 @@ function mill_proses($var){
 function mill_kos_lain($var){
 		$con =connect();
 		$q ="select * from mill_kos_lain where lesen = '".$var[0]."' and tahun = '".$var[1]."'";
-		$r = mysql_query($q,$con);
-		$row =  mysql_fetch_array($r);
+		$r = mysqli_query($con, $q);
+		$row =  mysqli_fetch_array($r);
 		$stat[0]=$row['status'];
 		return $stat;
 }
@@ -591,18 +591,18 @@ $mll = mill_kos_lain ($variable);
       <tr>
         <td width="25" height="38" align="right" bgcolor="#99FF99">1.</td>
         <td width="439" bgcolor="#99FF99">
-       <!-- <?php 
+       <!-- <?php
 		//echo $mp[0];
-		
+
 		if($mp[0]=="2"){ ?>
         <img src="images/001_11.gif" width="24" height="24" border="0" />
         <?php } ?>-->
-        
+
           <?=setstring ( 'mal', 'Kos Pemprosesan BTS', 'en', 'FFB Processing Cost'); ?></td>
         <td width="255" bgcolor="#99FF99"><div align="right">
-          <?php 
-		//  echo $proses->total_kp."<br>".$bts->fbb_proses; 
-		  
+          <?php
+		//  echo $proses->total_kp."<br>".$bts->fbb_proses;
+
 		  $d=($proses->total_kp/$bts->fbb_proses); echo number_format($d,2);?>
         </div></td>
         <td width="13" bgcolor="#99FF99">&nbsp;</td>
@@ -610,16 +610,16 @@ $mll = mill_kos_lain ($variable);
       <tr>
         <td height="35" align="right">2.</td>
         <td>
-        
-      <!--  <?php 
-		//echo $mll[0]; 
+
+      <!--  <?php
+		//echo $mll[0];
 		if($mll[0]=="2"){ ?>
         <img src="images/001_11.gif" width="24" height="24" border="0" />
          <?php } ?>-->
-		  
+
 		  <?=setstring ( 'mal', 'Kos Lain-lain', 'en', 'Other Expenditure'); ?></td>
         <td>
-          <div align="right"><?php 
+          <div align="right"><?php
 		  $d2=($koslain->total_kl/$bts->fbb_proses); echo number_format($d2,2);?></div></td>
         <td>&nbsp;</td>
       </tr>
@@ -632,7 +632,7 @@ $mll = mill_kos_lain ($variable);
           </span></div></td>
         <td bgcolor="#99FF99">&nbsp;</td>
       </tr>
-      
+
     </table>
   <!--
   <table width="90%" border="0" align="center">
@@ -692,14 +692,14 @@ $mll = mill_kos_lain ($variable);
           </tr>
           <tr bgcolor="#FFFFCC">
             <td height="36" align="left" bgcolor="#FFFFCC"><span ><b><?=setstring ( 'mal', 'Jumlah keseluruhan', 'en', 'Total'); ?></b> </span></td>
-            <td align="center"><?php 
+            <td align="center"><?php
 			$total_mb = $buruh->mb_1+$buruh->mb_2+$buruh->mb_3+$buruh->mb_4+$buruh->mb_5;
 			echo $total_mb; ?></td>
-            <td align="center"><?php 
-			$total_mb_b = $buruh->mb_1b+$buruh->mb_2b+$buruh->mb_3b+$buruh->mb_4b+$buruh->mb_5b; 
+            <td align="center"><?php
+			$total_mb_b = $buruh->mb_1b+$buruh->mb_2b+$buruh->mb_3b+$buruh->mb_4b+$buruh->mb_5b;
 			echo $total_mb_b; ?></td>
-            <td align="center"><?php 
-			$total_mb_c=$buruh->mb_1c+$buruh->mb_2c+$buruh->mb_3c+$buruh->mb_4c+$buruh->mb_5c; 
+            <td align="center"><?php
+			$total_mb_c=$buruh->mb_1c+$buruh->mb_2c+$buruh->mb_3c+$buruh->mb_4c+$buruh->mb_5c;
 			echo $total_mb_c; ?></td>
           </tr>
           <tr>

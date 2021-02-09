@@ -1,15 +1,24 @@
 <?php
 session_start();
 
+
 include ('../Connections/connection.class.php');
 extract($_POST);
 extract($_GET);
+error_reporting(0);
 
+// $con = mysqli_connect();
+// $con=mysqli_connect($host, $user, $pass);
+// mysqli_select_db($con, $db_n);
 $con = connect();
-$q ="select * from login_admin where email = '$username' and password = '$password'";
-$r = mysql_query($q,$con);
-$row = mysql_fetch_array($r);
-$total = mysql_num_rows($r);
+
+$q ="select * from login_admin where email = '$username' and password = '$password' ";
+// $r = mysqli_query($q,$con);
+$r = mysqli_query($con,$q) or die( mysqli_error($con));
+
+
+$row = mysqli_fetch_array($r);
+$total = mysqli_num_rows($r);
 
 
 $firsttime = $row['firsttime'];
@@ -22,9 +31,11 @@ if($total!=0)
 {
 	$con = connect();
 	$q1 ="update login_admin set success= now() where email = '$username'";
-	$r1 = mysql_query($q1,$con);
-	
-	
+	// $r1 = mysqli_query($q1,$con);
+	$r = mysqli_query($con, $q1);
+
+
+
 							if(isset($set)){
 					  		setcookie("cookname", $username, time()+60*60*24*100, "/");
 					 		setcookie("cookpass", $password, time()+60*60*24*100, "/");
@@ -40,10 +51,14 @@ if($total!=0)
 
 else if ($total==0)
 {
-	
-	$con = connect();
+
+	// $con = mysqli_connect();
+	$con=connect($host,$user,$pass);
+
 	$q ="update login_admin set fail= NOW() where email = '$username'";
-	$r = mysql_query($q,$con);
+	// $r = mysqli_query($q,$con);
+	$r = mysqli_query($con, $q);
+	// printf($r);
 	echo "<script>window.location.href='../index1.php?fail=true';</script>";
 }
 

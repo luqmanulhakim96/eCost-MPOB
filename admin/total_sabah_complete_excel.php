@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../Connections/connection.class.php');
 include '../class/test.class.php';
 header("Content-Disposition: attachment; filename=List_of_Completed_Response_Survey_in_Sabah.xls");
@@ -10,7 +10,7 @@ header("Content-Disposition: attachment; filename=List_of_Completed_Response_Sur
 </style>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="display" id="example">
 	<thead>
-	
+
 	  <tr bgcolor="#8A1602" height="30">
 		  <th width="5%" class="style1 style1">No.</th>
 			<th width="26%" class="style1">Mill Name</th>
@@ -21,7 +21,7 @@ header("Content-Disposition: attachment; filename=List_of_Completed_Response_Sur
 	  </tr>
 	</thead>
 	<tbody>
-	<?php while($row = mysql_fetch_array($result_sabah_complete)) { ?>
+	<?php while($row = mysqli_fetch_array($result_sabah_complete)) { ?>
 		<tr valign="top">
 			<td><?php echo $list++; ?></td>
 			<td><?php echo $row['nama'];?></td>
@@ -31,6 +31,6 @@ header("Content-Disposition: attachment; filename=List_of_Completed_Response_Sur
 		  <div align="center"></div></td>
 			<td><?php echo $row['access'];?></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>

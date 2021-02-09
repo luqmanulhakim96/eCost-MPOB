@@ -32,11 +32,11 @@ body {
 -->
     </style>
 <link href="facebox/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
-<script src="facebox/facebox.js" type="text/javascript"></script> 
+<script src="facebox/facebox.js" type="text/javascript"></script>
 <script>
 jQuery(document).ready(function($) {
   $('a[rel*=facebox]').facebox()
-}) 
+})
 </script>
 	<style type="text/css">
 <!--
@@ -51,11 +51,11 @@ jQuery(document).ready(function($) {
 <table width="95%" border="0" align="center">
 	<tr>
     	<td><table width="100%" border="0" align="center" cellpadding="1" cellspacing="1" style="border:1px #333333 solid">
-          
+
           <tr>
             <td colspan="4" bgcolor="#999999"><span class="style1"><?=setstring ( 'mal', 'PROFIL ESTET', 'en', 'ESTATE PROFILE'); ?></span></td>
           </tr>
-          
+
           <tr>
             <td width="23%"><strong><?=setstring ( 'mal', 'Estet', 'en', 'Estate'); ?></strong></td>
             <td width="1%"><strong>:</strong></td>
@@ -73,7 +73,7 @@ jQuery(document).ready(function($) {
             <td>
             <?= $pengguna->nolesen; ?></td>
           </tr>
-          
+
           <tr>
             <td><strong> <?=setstring ( 'mal', 'Alamat Surat Menyurat', 'en', 'Mailing Address'); ?></strong></td>
             <td><strong>:</strong></td>
@@ -144,7 +144,7 @@ jQuery(document).ready(function($) {
             <?php if($_SESSION['view']!="true"){ ?>
             <a href="profil.php" rel="facebox"><?=setstring ( 'mal', '[Ubah Profil Estate] ', 'en', '[Change Estate Profile]'); ?></a>  <a href="password.php" rel="facebox"><?=setstring ( 'mal', '[Tukar kata laluan]', 'en', '[Change Password]'); ?></a>
             <?php } ?>
-            
+
             </td>
             <td> </td>
           </tr>
@@ -163,7 +163,7 @@ jQuery(document).ready(function($) {
       <tr>
         <td colspan="3" align="left" valign="top" bgcolor="#999999"><span class="style1"> <?=setstring ( 'mal', 'MAKLUMAT AM', 'en', 'GENERAL INFORMATION'); ?></span></td>
         </tr>
-      
+
       <tr>
         <td width="201" align="left" valign="top"><b><?=setstring ( 'mal', 'Jenis Syarikat', 'en', 'Company Type'); ?></b></td>
         <td width="7"><div align="center"><strong>:</strong></div></td>
@@ -178,10 +178,10 @@ jQuery(document).ready(function($) {
         <td width="201" align="left" valign="top"><strong><?=setstring ( 'mal', 'Integrasi dengan Kilang Buah Sawit', 'en', 'Integration with Palm Factory'); ?></strong></td>
         <td><div align="center"><strong>:</strong></div></td>
         <td>
-		<?php $ig = $pengguna->integrasi; 
+		<?php $ig = $pengguna->integrasi;
 		if ($ig=='Y'){?>
 		 <?=setstring ( 'mal', 'Ya', 'en', 'Yes'); ?>
-		<?php } 
+		<?php }
 		if ($ig=='N'){?>
 		 <?=setstring ( 'mal', 'Tidak', 'en', 'No'); ?>
 		<?php } ?>		</td>
@@ -196,10 +196,10 @@ jQuery(document).ready(function($) {
       </tr>
       <tr>
         <td colspan="3" align="left" valign="top">
-       
+
         </td>
       </tr>
-      
+
       <tr>
         <td colspan="3" align="left" valign="top"><table width="100%">
           <tr>
@@ -209,7 +209,7 @@ jQuery(document).ready(function($) {
                     </strong>
                 <script type="text/javascript" src="ampie/swfobject.js"></script>
                             <script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("ampie/ampie.swf", "ampie", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "ampie/");
 		so.addVariable("settings_file", encodeURIComponent("ampie/settings.xml"));
@@ -224,14 +224,14 @@ jQuery(document).ready(function($) {
 		// ]]>
 	            </script>
               </div></td>
-            <td>  
-            
+            <td>
+
              <div id="percent_mukabumi"></div>
              <div align="center"><br />
                  <strong><?=setstring ( 'mal', 'Peratusan Jenis Mukabumi', 'en', 'Percentage of Terrain Type'); ?>
-                   </strong>        
+                   </strong>
                           <script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("ampie/ampie.swf", "ampie", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "ampie/");
 		so.addVariable("settings_file", encodeURIComponent("ampie/settingsmukabumi.xml"));
@@ -253,16 +253,16 @@ jQuery(document).ready(function($) {
         <td colspan="3" align="left" valign="top"> </td>
       </tr>
 </table>
-    	
+
     	</div><table width="100%">
           <tr>
             <td colspan="3" align="left" valign="top">
                 <?php if($_SESSION['view']!="true"){ ?>
-               
+
                 <div align="left">
                   <input type="submit" name="sw-sunting" id="sw-simpan" value=<?=setstring ( 'mal', '"Kembali"', 'en', '"Back"'); ?> />
                   <input type="submit" name="button" id="sw-sunting" value=<?=setstring ( 'mal', '"Edit Maklumat Am"', 'en', 'Edit General Information'); ?> />
-                  
+
                 </div>
                 <?php } ?>
                 </td>
@@ -273,7 +273,7 @@ jQuery(document).ready(function($) {
 <br />
 <div align="center">
 
-    
+
 
 	</div>
 	<br />

@@ -8,7 +8,7 @@
 -->
 </style>
 <link href="facebox/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
-<script src="facebox/facebox.js" type="text/javascript"></script> 
+<script src="facebox/facebox.js" type="text/javascript"></script>
 <script>
 jQuery(document).ready(function($) {
   $('a[rel*=facebox]').facebox()
@@ -28,7 +28,7 @@ jQuery(document).ready(function($) {
   </tr>
 </thead>
 <tbody>
-<?php 
+<?php
 	$con = connect();
 	$year = date('Y');
 		if($region=='pm')
@@ -53,10 +53,10 @@ jQuery(document).ready(function($) {
 			$region_full = "Malaysia";
 			$q="SELECT * FROM buruh b, esub e WHERE b.lesen = e.no_lesen_baru AND b.tahun = $year GROUP BY b.lesen";
 		}
-		$r=mysql_query($q,$con);
+		$r=mysqli_query($con, $q);
 		$j =0;
 		echo $q;
-	while($row=mysql_fetch_array($r)){
+	while($row=mysqli_fetch_array($r)){
 ?>
   <tr valign="top">
     <td><?php echo ++$j; ?></td>
@@ -65,6 +65,6 @@ jQuery(document).ready(function($) {
     <td><a href="emailnonresponde.php?bil=<?php echo $row['Bil'];?>" rel="facebox" ><?php echo $row['Emel'];?></a>
     <div align="center"></div></td>
   </tr>
-  <?php } mysql_close($con);?>
+  <?php } mysqli_close($con);?>
 </tbody>
 </table>

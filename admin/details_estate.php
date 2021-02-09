@@ -1,6 +1,6 @@
-<?php 
-	include('../Connections/connection.class.php'); 
-	session_start(); 
+<?php
+	include('../Connections/connection.class.php');
+	session_start();
 	extract($_REQUEST);
 ?>
 <style type="text/css">
@@ -13,7 +13,7 @@ body,td,th {
 </style>
 <script src="../js/live/livevalidation_standalone.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="../js/live/consolidated_common.css">
-  
+
 <link rel="stylesheet" href="../js/tabber/example.css" TYPE="text/css" MEDIA="screen">
 <script type="text/javascript" src="../jquery-1.3.2.js"></script>
 
@@ -102,35 +102,35 @@ function deleteCookie(name, path, domain) {
 </script>
 <script language="javascript">
 	$(document).ready(function() {
-	
+
 	$(".esub_edit").hide();
 	$(".kemaskini").hide();
-	
-	
+
+
 	var a = document.getElementById("tanaman_semula").value;
 	if(a !=null){
 	document.getElementById("tanaman_semula").value="";
 	}
-	
+
 	var b = document.getElementById("tanaman_baru").value;
 	if(b !=null){
 	document.getElementById("tanaman_baru").value="";
 	}
 
-	
+
 	var c = document.getElementById("tanaman_tukar").value;
 	if(c !=null){
 	document.getElementById("tanaman_tukar").value="";
 	}
 
-	
-	
-	
+
+
+
 		});
 
 function buka(x,y,z,a){
-	
-	
+
+
 	$("."+x).hide();
 	$("."+y).show();
 	$("."+z).hide();
@@ -157,16 +157,16 @@ function pergi(x)
 
      <div class="tabbertab">
 	  <h2>E-Sub</h2>
-   <?php 
+   <?php
 		$con =connect();
 		$qd="select * FROM esub where no_lesen_baru ='$nolesen'";
-		$rd=mysql_query($qd,$con);
-		$rowd=mysql_fetch_array($rd);
-		$total=mysql_num_rows($rd);
+		$rd=mysqli_query($con, $qd);
+		$rowd=mysqli_fetch_array($rd);
+		$total=mysqli_num_rows($rd);
   ?>
-    
+
 <table width="100%" class="esub">
-  
+
   <tr>
     <td width="15%">NAMA_ESTET</td>
     <td width="1%">:</td>
@@ -264,17 +264,17 @@ function pergi(x)
 	        <?php
       		$con = connect();
 			$q="SHOW COLUMNS FROM fbb_production";
-			$r=mysql_query($q,$con);
-			
+			$r=mysqli_query($con, $q);
+
 			$nolesenffb = substr($nolesen,0,-1);
 	  ?>
  <p><table width="100%" class="esub">    <td colspan="3"><strong>MAKLUMAT FBB PRODUCTION E-COST</strong></td>
     </tr>
   <tr>
-  <?php while($row = mysql_fetch_array($r)){
+  <?php while($row = mysqli_fetch_array($r)){
   				$qd="select ".$row['Field']." as jenis FROM fbb_production where lesen ='$nolesenffb'";
-				$rd=mysql_query($qd,$con);
-				$rowd=mysql_fetch_array($rd);
+				$rd=mysqli_query($con, $qd);
+				$rowd=mysqli_fetch_array($rd);
   ?>
   <tr>
 
@@ -286,17 +286,17 @@ function pergi(x)
 </table>
 
 
-   <?php 
+   <?php
   				$con =connect();
 				$lesen_singkat = substr($nolesen, 0,-1);
 				$qfbb="select * FROM fbb_production where lesen ='$lesen_singkat'";
-				$rfbb=mysql_query($qfbb,$con);
-				$rowfbb=mysql_fetch_array($rfbb);
-				$totalfbb=mysql_num_rows($rfbb);
-				
+				$rfbb=mysqli_query($con, $qfbb);
+				$rowfbb=mysqli_fetch_array($rfbb);
+				$totalfbb=mysqli_num_rows($rfbb);
+
 				if($totalfbb==0){
 					$qaddfbb="insert into fbb_production (lesen) values ('$lesen_singkat')";
-					$raddfbb=mysql_query($qaddfbb,$con);
+					$raddfbb=mysqli_query($con, $qaddfbb);
 					echo "<script>window.location.href='view_estate_all.php'</script>";
 				}
   ?>
@@ -307,13 +307,13 @@ function pergi(x)
 	        <?php
       		$con = connect();
 			$q="SHOW COLUMNS FROM login_estate";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
 	        <p><table width="100%" class="esub">
-  <?php while($row = mysql_fetch_array($r)){
+  <?php while($row = mysqli_fetch_array($r)){
   				$qd="select ".$row['Field']." as jenis FROM login_estate where lesen ='$nolesen'";
-				$rd=mysql_query($qd,$con);
-				$rowd=mysql_fetch_array($rd);
+				$rd=mysqli_query($con, $qd);
+				$rowd=mysqli_fetch_array($rd);
   ?>
   <tr>
     <td width="31%"><?php echo strtoupper($row['Field']);?></td>
@@ -325,16 +325,16 @@ function pergi(x)
 </p>
 
 
-   <?php 
+   <?php
   				$con =connect();
 				$qdlogin="select * FROM login_estate where lesen ='$nolesen'";
-				$rdlogin=mysql_query($qdlogin,$con);
-				$rowdlogin=mysql_fetch_array($rdlogin);
-				$totallogin=mysql_num_rows($rdlogin);
-				
+				$rdlogin=mysqli_query($con, $qdlogin);
+				$rowdlogin=mysqli_fetch_array($rdlogin);
+				$totallogin=mysqli_num_rows($rdlogin);
+
 				if($totallogin==0){
 					$qaddlogin="insert into login_estate (lesen) values ('$nolesen')";
-					$raddlogin=mysql_query($qaddlogin,$con);
+					$raddlogin=mysqli_query($con, $qaddlogin);
 					echo "<script>window.location.href='view_estate_all.php'</script>";
 				}
   ?>
@@ -344,11 +344,11 @@ function pergi(x)
 	  <h2>Tanam Baru</h2>
       <?php
 		  	$tahun = $_SESSION['tahun'];
-			
+
 			$pertama = $tahun-3;
 			$kedua = $tahun-2;
-			$ketiga = $tahun-1; 
-			
+			$ketiga = $tahun-1;
+
 			$pertama = substr($pertama,-2);
 			$kedua = substr($kedua,-2);
 			$ketiga = substr($ketiga,-2);
@@ -356,18 +356,18 @@ function pergi(x)
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_baru$pertama where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
-			$total=mysql_num_rows($r);
-				
-			
+			$r=mysqli_query($con, $q);
+			$total=mysqli_num_rows($r);
+
+
 	  ?>
  <p>
  <b>TANAMAN BARU PADA <?php echo $pertama;?></b>
  <table width="100%" >
-  <?php 
+  <?php
   $jumlah1=0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?>
   <tr>
     <td width="31%">Bulan</td>
@@ -395,15 +395,15 @@ function pergi(x)
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_baru$kedua where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN BARU PADA <?php echo $kedua;?></b>
  <table width="100%">
-  <?php 
-  $jumlah2 =0; 
-  while($row = mysql_fetch_array($r)){
-  				
+  <?php
+  $jumlah2 =0;
+  while($row = mysqli_fetch_array($r)){
+
   ?>
   <tr>
     <td width="31%">Bulan</td>
@@ -431,15 +431,15 @@ function pergi(x)
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_baru$ketiga where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN BARU PADA <?php echo $ketiga;?></b>
  <table width="100%">
-  <?php 
-  $jumlah3 = 0; 
-  while($row = mysql_fetch_array($r)){
-  				
+  <?php
+  $jumlah3 = 0;
+  while($row = mysqli_fetch_array($r)){
+
   ?>
   <tr>
     <td width="31%">Bulan</td>
@@ -463,25 +463,25 @@ function pergi(x)
 </p>
 </div>
      </div>
-     
-     
-     
+
+
+
      <div class="tabbertab">
 	  <h2>Tanam Semula</h2>
-	
+
       <div class="esub">
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_semula$pertama where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN SEMULA PADA <?php echo $pertama;?></b>
  <table width="100%">
-  <?php 
+  <?php
   $jumlaha1=0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?>
   <tr>
     <td width="31%">Bulan</td>
@@ -508,16 +508,16 @@ function pergi(x)
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_semula$kedua where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN SEMULA PADA <?php echo $kedua;?></b>
  <table width="100%">
-  <?php 
-  
-  $jumlaha2 =0; 
-  while($row = mysql_fetch_array($r)){
-  				
+  <?php
+
+  $jumlaha2 =0;
+  while($row = mysqli_fetch_array($r)){
+
   ?>
   <tr>
     <td width="31%">Bulan</td>
@@ -544,15 +544,15 @@ function pergi(x)
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_semula$ketiga where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN SEMULA PADA <?php echo $ketiga;?></b>
  <table width="100%">
-  <?php 
+  <?php
   $jumlaha3=0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?>
   <tr>
     <td width="31%">Bulan</td>
@@ -576,25 +576,25 @@ function pergi(x)
 </p>
 
      </div></div>
-     
-     
-     
+
+
+
      <div class="tabbertab">
 	  <h2>Tanam Tukar</h2>
-      
+
       <div class="esub">
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_tukar$pertama where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN TUKAR PADA <?php echo $pertama;?></b>
  <table width="100%">
-  <?php 
+  <?php
   $jumlahb1=0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?>
   <tr>
     <td width="31%">Bulan</td>
@@ -615,20 +615,20 @@ function pergi(x)
 </table>
 <b><em>JUMLAH KESELURUHAN : <?php echo $jumlahb1; ?></em></b>
 
-</p>     
+</p>
 
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_tukar$kedua where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN TUKAR PADA <?php echo $kedua;?></b>
  <table width="100%">
-  <?php 
+  <?php
   $jumlahb2 =0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?>
   <tr>
     <td width="31%">Bulan</td>
@@ -654,15 +654,15 @@ function pergi(x)
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_tukar$ketiga where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN TUKAR PADA <?php echo $ketiga;?></b>
  <table width="100%">
-  <?php 
+  <?php
   $jumlahb3=0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?>
   <tr>
     <td width="31%">Bulan</td>
@@ -692,9 +692,9 @@ function pergi(x)
 			<table width="100%" class="esub">
 				<?php
 					$qd="SELECT * FROM age_profile WHERE lesen ='$nolesen'";
-					$rd=mysql_query($qd,$con);
-					
-					while($rowd = mysql_fetch_assoc($rd)) { ?>
+					$rd=mysqli_query($con, $qd);
+
+					while($rowd = mysqli_fetch_assoc($rd)) { ?>
 					<tr>
 						<td width="31%">Umur Pokok</td>
 						<td width="1%">:</td>
@@ -720,15 +720,15 @@ function pergi(x)
 	    <?php
       		$con = connect();
 			$q="SHOW COLUMNS FROM belanja_am_kos";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 			$year = date('Y');
 		?>
 		<p>
 			<table width="100%" class="esub">
-				<?php while($row = mysql_fetch_array($r)){
+				<?php while($row = mysqli_fetch_array($r)){
 					$qd="select ".$row['Field']." as jenis FROM belanja_am_kos WHERE lesen ='$nolesen' and thisyear = '$year'";
-					$rd=mysql_query($qd,$con);
-					$rowd=mysql_fetch_array($rd);
+					$rd=mysqli_query($con, $qd);
+					$rowd=mysqli_fetch_array($rd);
 				?>
 				<tr>
 					<td width="31%"><?php echo strtoupper($row['Field']);?></td>
@@ -745,15 +745,15 @@ function pergi(x)
 	    <?php
       		$con = connect();
 			$q="SHOW COLUMNS FROM buruh";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 			$year = date('Y');
 		?>
 		<p>
 			<table width="100%" class="esub">
-				<?php while($row = mysql_fetch_array($r)){
+				<?php while($row = mysqli_fetch_array($r)){
 					$qd="select ".$row['Field']." as jenis FROM buruh WHERE lesen ='$nolesen' and tahun = '$year'";
-					$rd=mysql_query($qd,$con);
-					$rowd=mysql_fetch_array($rd);
+					$rd=mysqli_query($con, $qd);
+					$rowd=mysqli_fetch_array($rd);
 				?>
 				<tr>
 					<td width="31%"><?php echo strtoupper($row['Field']);?></td>
@@ -771,9 +771,9 @@ function pergi(x)
 			<table width="100%" class="esub">
 				<?php
 					$qd="SELECT * FROM estate_jentera WHERE lesen ='$nolesen' and tahun = '$year'";
-					$rd=mysql_query($qd,$con);
-					
-					while($rowd = mysql_fetch_assoc($rd)) { ?>
+					$rd=mysqli_query($con, $qd);
+
+					while($rowd = mysqli_fetch_assoc($rd)) { ?>
 					<tr>
 						<td width="31%">Jentera</td>
 						<td width="1%">:</td>
@@ -804,14 +804,14 @@ function pergi(x)
 	  <p><strong>TAHUN PERTAMA</strong></p><hr />
 		<?php
 			$qd="SELECT * FROM kos_belum_matang WHERE lesen ='$nolesen' AND pb_thisyear = '$year' AND pb_type = 'Penanaman Baru' AND pb_tahun = '1' LIMIT 1";
-			$rd=mysql_query($qd,$con);
-			$rowd = mysql_fetch_assoc($rd);
-			
+			$rd=mysqli_query($con, $qd);
+			$rowd = mysqli_fetch_assoc($rd);
+
 			if($rowd > 0) {
 		?>
 		<p>(a) Perbelanjaan tidak berulang</p>
 			<table width="100%" class="esub">
-				
+
 				<tr>
 					<td width="31%">Menebang dan membersih kawasan</td>
 					<td width="1%">:</td>
@@ -939,7 +939,7 @@ function pergi(x)
 					<td width="31%"><strong>6.Penjagaan parit	</strong></td>
 					<td width="1%">:</td>
 					<td width="68%"><strong><?php echo number_format($rowd['total_b_6'],2);?></strong></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td width="31%"><strong>7.Penjagaan ban dan pintu air</strong></td>
 					<td width="1%">:</td>
@@ -949,7 +949,7 @@ function pergi(x)
 					<td width="31%"><strong>8.Persempadanan dan survei	</strong></td>
 					<td width="1%">:</td>
 					<td width="68%"><strong><?php echo number_format($rowd['total_b_8'],2);?></strong></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td width="31%"><strong>9.Tanaman penutup bumi	</strong></td>
 					<td width="1%">:</td>
@@ -964,7 +964,7 @@ function pergi(x)
 					<td width="31%"><strong>11.Memangkas dan membersihkan pokok	</strong></td>
 					<td width="1%">:</td>
 					<td width="68%"><strong><?php echo number_format($rowd['total_b_11'],2);?></strong></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td width="31%"><strong>12.Banci / sulaman</strong></td>
 					<td width="1%">:</td>
@@ -974,7 +974,7 @@ function pergi(x)
 					<td width="31%"><strong>13.Pengkasian</strong></td>
 					<td width="1%">:</td>
 					<td width="68%"><strong><?php echo number_format($rowd['total_b_13'],2);?></strong></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td width="31%"><strong>14.	Perbelanjaan pelbagai</strong></td>
 					<td width="1%">:</td>
@@ -989,13 +989,13 @@ function pergi(x)
 			<?php } else { ?>
 			<p>Tiada</p>
 			<?php } ?>
-			
+
 			<p><strong>TAHUN KEDUA</strong></p><hr />
 			<?php
 				$qd="SELECT * FROM kos_belum_matang WHERE lesen ='$nolesen' AND pb_thisyear = '$year' AND pb_type = 'Penanaman Baru' AND pb_tahun = '2' LIMIT 1";
-				$rd=mysql_query($qd,$con);
-				$rowd = mysql_fetch_assoc($rd);
-				
+				$rd=mysqli_query($con, $qd);
+				$rowd = mysqli_fetch_assoc($rd);
+
 				if($rowd > 0) {
 			?>
 			<p>(a) Perbelanjaan tidak berulang</p>
@@ -1127,7 +1127,7 @@ function pergi(x)
 					<td width="31%"><strong>6.Penjagaan parit	</strong></td>
 					<td width="1%">:</td>
 					<td width="68%"><strong><?php echo number_format($rowd['total_b_6'],2);?></strong></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td width="31%"><strong>7.Penjagaan ban dan pintu air</strong></td>
 					<td width="1%">:</td>
@@ -1137,7 +1137,7 @@ function pergi(x)
 					<td width="31%"><strong>8.Persempadanan dan survei	</strong></td>
 					<td width="1%">:</td>
 					<td width="68%"><strong><?php echo number_format($rowd['total_b_8'],2);?></strong></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td width="31%"><strong>9.Tanaman penutup bumi	</strong></td>
 					<td width="1%">:</td>
@@ -1152,7 +1152,7 @@ function pergi(x)
 					<td width="31%"><strong>11.Memangkas dan membersihkan pokok	</strong></td>
 					<td width="1%">:</td>
 					<td width="68%"><strong><?php echo number_format($rowd['total_b_11'],2);?></strong></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td width="31%"><strong>12.Banci / sulaman</strong></td>
 					<td width="1%">:</td>
@@ -1162,7 +1162,7 @@ function pergi(x)
 					<td width="31%"><strong>13.Pengkasian</strong></td>
 					<td width="1%">:</td>
 					<td width="68%"><strong><?php echo number_format($rowd['total_b_13'],2);?></strong></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td width="31%"><strong>14.	Perbelanjaan pelbagai</strong></td>
 					<td width="1%">:</td>
@@ -1177,13 +1177,13 @@ function pergi(x)
 			<?php } else { ?>
 			<p>Tiada</p>
 			<?php } ?>
-			
+
 			<p><strong>TAHUN KETIGA</strong></p><hr />
 			<?php
 				$qd="SELECT * FROM kos_belum_matang WHERE lesen ='$nolesen' AND pb_thisyear = '$year' AND pb_type = 'Penanaman Baru' AND pb_tahun = '3' LIMIT 1";
-				$rd=mysql_query($qd,$con);
-				$rowd = mysql_fetch_assoc($rd);
-				
+				$rd=mysqli_query($con, $qd);
+				$rowd = mysqli_fetch_assoc($rd);
+
 				if($rowd > 0) {
 			?>
 			<p>(a) Perbelanjaan tidak berulang</p>
@@ -1315,7 +1315,7 @@ function pergi(x)
 					<td width="31%"><strong>6.Penjagaan parit	</strong></td>
 					<td width="1%">:</td>
 					<td width="68%"><strong><?php echo number_format($rowd['total_b_6'],2);?></strong></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td width="31%"><strong>7.Penjagaan ban dan pintu air</strong></td>
 					<td width="1%">:</td>
@@ -1325,7 +1325,7 @@ function pergi(x)
 					<td width="31%"><strong>8.Persempadanan dan survei	</strong></td>
 					<td width="1%">:</td>
 					<td width="68%"><strong><?php echo number_format($rowd['total_b_8'],2);?></strong></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td width="31%"><strong>9.Tanaman penutup bumi	</strong></td>
 					<td width="1%">:</td>
@@ -1340,7 +1340,7 @@ function pergi(x)
 					<td width="31%"><strong>11.Memangkas dan membersihkan pokok	</strong></td>
 					<td width="1%">:</td>
 					<td width="68%"><strong><?php echo number_format($rowd['total_b_11'],2);?></strong></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td width="31%"><strong>12.Banci / sulaman</strong></td>
 					<td width="1%">:</td>
@@ -1350,7 +1350,7 @@ function pergi(x)
 					<td width="31%"><strong>13.Pengkasian</strong></td>
 					<td width="1%">:</td>
 					<td width="68%"><strong><?php echo number_format($rowd['total_b_13'],2);?></strong></td>
-				</tr>	
+				</tr>
 				<tr>
 					<td width="31%"><strong>14.	Perbelanjaan pelbagai</strong></td>
 					<td width="1%">:</td>
@@ -1368,4 +1368,4 @@ function pergi(x)
 </div>
 <input name="nolesen" type="hidden" id="nolesen" value="<?php echo $nolesen; ?>" />
 </form>
-<?php mysql_close($con);?>
+<?php mysqli_close($con);?>

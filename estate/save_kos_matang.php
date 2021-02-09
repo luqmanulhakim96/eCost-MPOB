@@ -15,8 +15,8 @@ if ($type == "penjagaan") {
 }
 
 $q = "select * from $table where pb_thisyear='$thisyear' and lesen ='" . $_SESSION['lesen'] . "'";
-$r = mysql_query($q, $con);
-$total = mysql_num_rows($r);
+$r = mysqli_query($con, $q);
+$total = mysqli_num_rows($r);
 
 
 $a_1 = str_replace(",", '', $a_1);
@@ -58,105 +58,105 @@ $total_b = str_replace(",", '', $total_b);
 
 $total_a = str_replace(",", '', $total_a);
 
-//------------------------------ kos matang (penjagaan) -----------------------------------	
+//------------------------------ kos matang (penjagaan) -----------------------------------
 if ($total == 0 and $type == "penjagaan") {
-    $q = "insert into kos_matang_penjagaan values ('$thisyear', '" . $_SESSION['lesen'] . "', 
-	'$b_1a', 
-	'$b_1b', 
-	'$b_1c', 
-	'$total_b_1', 
-	'$total_b_2', 
-	'$b_3a', 
-	'$b_3b', 
-	'$b_3c', 
-	'$b_3d', 
-	'$total_b_3', 
-	'$total_b_4', 
-	'$total_b_5', 
-	'$total_b_6', 
-	'$total_b_7', 
-	'$total_b_8', 
-	'$total_b_9', 
-	'$total_b_10', 
-	'$total_b_11', 
-	'$total_b_12', 
+    $q = "insert into kos_matang_penjagaan values ('$thisyear', '" . $_SESSION['lesen'] . "',
+	'$b_1a',
+	'$b_1b',
+	'$b_1c',
+	'$total_b_1',
+	'$total_b_2',
+	'$b_3a',
+	'$b_3b',
+	'$b_3c',
+	'$b_3d',
+	'$total_b_3',
+	'$total_b_4',
+	'$total_b_5',
+	'$total_b_6',
+	'$total_b_7',
+	'$total_b_8',
+	'$total_b_9',
+	'$total_b_10',
+	'$total_b_11',
+	'$total_b_12',
 	'$total_a',
 	'$status'
 )";
 
-    $r = mysql_query($q, $con) or die(mysql_error());
+    $r = mysqli_query($con, $q) or die(mysqli_error());
 }
 if ($total == 1 and $type == "penjagaan") {
-    $q = "update kos_matang_penjagaan set 
-	b_1a='$b_1a', 
-	b_1b='$b_1b', 
-	b_1c='$b_1c', 
-	total_b_1='$total_b_1', 
-	total_b_2='$total_b_2', 
-	b_3a='$b_3a', 
-	b_3b='$b_3b', 
-	b_3c='$b_3c', 
-	b_3d='$b_3d', 
-	total_b_3= '$total_b_3', 
-	total_b_4='$total_b_4', 
-	total_b_5='$total_b_5', 
-	total_b_6='$total_b_6', 
-	total_b_7='$total_b_7', 
-	total_b_8='$total_b_8', 
-	total_b_9='$total_b_9', 
-	total_b_10='$total_b_10', 
-	total_b_11='$total_b_11', 
-	total_b_12='$total_b_12', 
+    $q = "update kos_matang_penjagaan set
+	b_1a='$b_1a',
+	b_1b='$b_1b',
+	b_1c='$b_1c',
+	total_b_1='$total_b_1',
+	total_b_2='$total_b_2',
+	b_3a='$b_3a',
+	b_3b='$b_3b',
+	b_3c='$b_3c',
+	b_3d='$b_3d',
+	total_b_3= '$total_b_3',
+	total_b_4='$total_b_4',
+	total_b_5='$total_b_5',
+	total_b_6='$total_b_6',
+	total_b_7='$total_b_7',
+	total_b_8='$total_b_8',
+	total_b_9='$total_b_9',
+	total_b_10='$total_b_10',
+	total_b_11='$total_b_11',
+	total_b_12='$total_b_12',
 	total_b='$total_a',
 	status = '$status'
 	where pb_thisyear='$thisyear' and lesen ='" . $_SESSION['lesen'] . "'";
-    $r = mysql_query($q, $con) or die(mysql_error());
+    $r = mysqli_query($con, $q) or die(mysqli_error());
 }
-//------------------------------ kos matang (penuaian) -----------------------------------	
+//------------------------------ kos matang (penuaian) -----------------------------------
 if ($total == 0 and $type == "penuaian") {
     $total_b = str_replace(",", '', $total_b);
-    $q = "insert into kos_matang_penuaian values ('$thisyear', '" . $_SESSION['lesen'] . "', 
-	'$a_1', 
-	'$a_2', 
+    $q = "insert into kos_matang_penuaian values ('$thisyear', '" . $_SESSION['lesen'] . "',
+	'$a_1',
+	'$a_2',
 	'$a_3',
-	'$a_4', 
+	'$a_4',
 	'$total_b',
 	'$status'
 )";
-    $r = mysql_query($q, $con);
+    $r = mysqli_query($con, $q);
 }
 if ($total == 1 and $type == "penuaian") {
     $total_b = str_replace(",", '', $total_b);
-    $q = "update kos_matang_penuaian set 
-	a_1='$a_1', 
-	a_2='$a_2', 
-	a_3='$a_3', 
-	a_4='$a_4',  
+    $q = "update kos_matang_penuaian set
+	a_1='$a_1',
+	a_2='$a_2',
+	a_3='$a_3',
+	a_4='$a_4',
 	total_b='$total_b',
 	status = '$status'
 	where pb_thisyear='$thisyear' and lesen ='" . $_SESSION['lesen'] . "'";
-    $r = mysql_query($q, $con);
+    $r = mysqli_query($con, $q);
 }
-//------------------------------ kos matang (pengangkutan) -----------------------------------	
+//------------------------------ kos matang (pengangkutan) -----------------------------------
 if ($total == 0 and $type == "pengangkutan") {
     $total_racun = str_replace(",", '', $total_b_1);
     $total_b_1 = str_replace(",", '', $total_b_2);
     $total_b = str_replace(",", '', $total_a);
 
-    $q = "insert into kos_matang_pengangkutan values ('$thisyear', '" . $_SESSION['lesen'] . "', 
-	'$a_1', 
-	'$a_2', 
-	'$a_3', 
+    $q = "insert into kos_matang_pengangkutan values ('$thisyear', '" . $_SESSION['lesen'] . "',
+	'$a_1',
+	'$a_2',
+	'$a_3',
 	'$total_racun',
-	'$b_1a', 
-	'$b_1b', 
-	'$b_1c', 
-	'$total_b_1', 
-	'$total_b_3', 
+	'$b_1a',
+	'$b_1b',
+	'$b_1c',
+	'$total_b_1',
+	'$total_b_3',
 	'$total_b',
 	'$status'
 )";
-    $r = mysql_query($q, $con);
+    $r = mysqli_query($con, $q);
 }
 if ($total == 1 and $type == "pengangkutan") {
 
@@ -173,20 +173,20 @@ if ($total == 1 and $type == "pengangkutan") {
     $total_a = str_replace(",", '', $total_a);
 
 
-    $q = "update kos_matang_pengangkutan set 
-	a_1='$a_1', 
-	a_2='$a_2', 
+    $q = "update kos_matang_pengangkutan set
+	a_1='$a_1',
+	a_2='$a_2',
 	a_3='$a_3',
 	total_a = '$total_b_1',
-	b_1a='$b_1a', 
-	b_1b='$b_1b', 
-	b_1c='$b_1c', 
-	total_b_1='$total_b_2', 
-	total_b_2='$total_b_3', 
+	b_1a='$b_1a',
+	b_1b='$b_1b',
+	b_1c='$b_1c',
+	total_b_1='$total_b_2',
+	total_b_2='$total_b_3',
 	total_b='$total_a',
 	status = '$status'
 	where pb_thisyear='$thisyear' and lesen ='" . $_SESSION['lesen'] . "'";
-    $r = mysql_query($q, $con);
+    $r = mysqli_query($con, $q);
 }
 
 if ($type == "penjagaan") {

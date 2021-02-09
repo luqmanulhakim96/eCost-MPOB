@@ -14,7 +14,7 @@ extract($_REQUEST);
 <style>
     body {
         font-family:Tahoma ;
-        font-size: 12px; 
+        font-size: 12px;
 
     }td,th {
         font-size: 12px;
@@ -26,15 +26,15 @@ extract($_REQUEST);
 <?php
 $type = explode("_", $sub);
 $qt1 = "select * from analysis where type='" . $type[1] . "' and year = '$tahun'";
-$rt1 = mysql_query($qt1, $con);
-$total = mysql_num_rows($rt1);
+$rt1 = mysqli_query($con, $qt1);
+$total = mysqli_num_rows($rt1);
 
 if ($total == 0) {
     $qa = "INSERT INTO `analysis` "
             . "(`type` ,`year` ,`modifiedby` ,`modified`) "
             . "VALUES "
             . "('" . $type[1] . "', '$tahun', '" . $_SESSION['email'] . "',NOW()) ";
-    $ra = mysql_query($qa, $con);
+    $ra = mysqli_query($con, $qa);
 }
 if ($total > 0) {
     $qa = "update  analysis "
@@ -43,15 +43,15 @@ if ($total > 0) {
             . "where "
             . "type='" . $type[1] . "' "
             . "and year = '$tahun'";
-    $ra = mysql_query($qa, $con);
+    $ra = mysqli_query($con, $qa);
 }
 
 
 $qdeletedata = "delete from analysis_mill_kos_lain where pb_thisyear = '$tahun' ";
-$rdeletedata = mysql_query($qdeletedata, $con);
+$rdeletedata = mysqli_query($con, $qdeletedata);
 
 $qdeletedata = "delete from analysis_mill_pemprosesan where pb_thisyear = '$tahun' ";
-$rdeletedata = mysql_query($qdeletedata, $con);
+$rdeletedata = mysqli_query($con, $qdeletedata);
 
 function ekilang($lesen, $tahun) {
     $con = connect();
@@ -65,8 +65,8 @@ function ekilang($lesen, $tahun) {
             . "group by NO_LESEN "
             . "limit 1 ";
     //echo $q;
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
 
     $sub[0] = $row['NAMA_KILANG'];
     $sub[1] = $row['NEGERI'];
@@ -81,8 +81,8 @@ function mill_pemprosesan($lesen, $tahun, $ffb, $negeri, $daerah) {
     $con = connect();
      $q = "select * from mill_pemprosesan where lesen ='$lesen' and tahun='$tahun' ";
     //echo "<br>";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
     //echo $row['kp_1'].'<br/>'.$ffb;
     $sub[0] = round($row['kp_1'] / $ffb, 2);
     add_mill_pemprosesan($lesen, $tahun, $negeri, $daerah, $sub[0], "Water, chemical and power");
@@ -129,18 +129,18 @@ function add_mill_pemprosesan($lesen, $tahun, $negeri, $daerah, $nilai, $km_nama
             . "VALUES "
             . "('$tahun', '$lesen', '$km_nama', '$nilai', '$negeri', '$daerah');";
     //echo $q . "<br>";
-    $r = mysql_query($q, $con);
+    $r = mysqli_query($con, $q);
 
     $qdelete = "delete from analysis_mill_pemprosesan where nilai=0";
-    $rdelete = mysql_query($qdelete, $con);
+    $rdelete = mysqli_query($con, $qdelete);
 }
 
 //------------------------------------
 function mill_koslain($lesen, $tahun, $ffb, $negeri, $daerah) {
     $con = connect();
     $q = "select * from mill_kos_lain where lesen ='$lesen' and tahun='$tahun' ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
 
     $sub[0] = round($row['kl_1'] / $ffb, 2);
     add_mill_kos_lain($lesen, $tahun, $negeri, $daerah, $sub[0], "Forwarding Expenses");
@@ -157,7 +157,7 @@ function mill_koslain($lesen, $tahun, $ffb, $negeri, $daerah) {
     return $sub;
 }
 
-//------------------------------------------------- 
+//-------------------------------------------------
 function add_mill_kos_lain($lesen, $tahun, $negeri, $daerah, $nilai, $km_nama) {
     $con = connect();
 
@@ -166,20 +166,20 @@ function add_mill_kos_lain($lesen, $tahun, $negeri, $daerah, $nilai, $km_nama) {
             . "(pb_thisyear ,lesen ,bkm_nama ,nilai ,negeri ,daerah) "
             . "VALUES "
             . "('$tahun', '$lesen', '$km_nama', '$nilai', '$negeri', '$daerah');";
-    $r = mysql_query($q, $con);
+    $r = mysqli_query($con, $q);
 
     $qdelete = "delete from analysis_mill_kos_lain where nilai=0";
-    $rdelete = mysql_query($qdelete, $con);
+    $rdelete = mysqli_query($con, $qdelete);
 }
 
-//-------------------------------------------------- 
+//--------------------------------------------------
 
 
 function mill_buruh($lesen, $tahun) {
     $con = connect();
     $q = "select * from mill_buruh where lesen ='$lesen' and tahun='$tahun' ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
 
     $sub[0] = $row['mb_1'];
     $sub[1] = $row['mb_2'];
@@ -203,7 +203,7 @@ function mill_buruh($lesen, $tahun) {
     return $sub;
 }
 
-//-------------------------------------------------	
+//-------------------------------------------------
 ?>
 <link rel="stylesheet" href="styles/progressbar.css">
 <div class="progress"> <span class="blue" style="width:0%;"><span>0%</span></span> </div>
@@ -216,7 +216,7 @@ function mill_buruh($lesen, $tahun) {
             }
         })
     }
-</script> 
+</script>
 
 
 
@@ -230,8 +230,8 @@ $con = connect();
         . " and lesen like '500%' "
         . " and lesen not like '123456%'  "
         . " group by lesen order by lesen  ";*/
-		
- $tahunsebelum = $tahun-1;		
+
+ $tahunsebelum = $tahun-1;
 $q = "SELECT ekilang.no_lesen as lesen FROM ekilang
       LEFT JOIN mill_info ON ekilang.no_lesen = mill_info.lesen
       LEFT JOIN mill_kos_lain ON ekilang.no_lesen = mill_kos_lain.lesen AND mill_kos_lain.tahun = '$tahun'
@@ -242,12 +242,12 @@ $q = "SELECT ekilang.no_lesen as lesen FROM ekilang
 	  ekilang.tahun = '$tahunsebelum'
 	 AND (mill_kos_lain.total_kl > 0 or mill_pemprosesan.total_kp > 0)
 	 GROUP BY ekilang.no_lesen";
-	 
-$r = mysql_query($q, $con);
-$total_data_proses = mysql_num_rows($r);
+
+$r = mysqli_query($con, $q);
+$total_data_proses = mysqli_num_rows($r);
 //echo "total_data_proses ". $total_data_proses."<br>";
 $kiraan = 1;
-while ($row = mysql_fetch_array($r)) {
+while ($row = mysqli_fetch_array($r)) {
     $percentage = round($kiraan / $total_data_proses, 2) * 100;
     //echo "percentage:".$percentage."<br>";
     //$pbar->set_percent_adv($bil, $total_data_proses);

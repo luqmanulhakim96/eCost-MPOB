@@ -23,31 +23,31 @@ function openScript(url, width, height) {
 function fbb ($tahun1,$negeri){
 	$con =connect();
 	$tahun_semasa = date('Y');
-	
+
 	if($tahun_semasa!=$tahun1){
 		$table = "fbb_production".$tahun1;
 	}
 	else{
-		$table ="fbb_production"; 
+		$table ="fbb_production";
 	}
-	
+
 	$sql = "SELECT avg(purata_hasil_buah) as jumlah FROM $table ";
 		if($negeri!="" & $negeri!="pm")
 		{
 			$sql.="where negeri = '$negeri'";
-		} 
-		
+		}
+
 		if($negeri=="pm")
 		{
 			$sql.=" where (negeri not like '%SARAWAK%' and negeri not like '%SABAH%')";
-		} 
-	//echo $sql; 
-		
-		$r = mysql_query($sql,$con);
-		$row = mysql_fetch_array($r);
-		
+		}
+	//echo $sql;
+
+		$r = mysqli_query($con, $sql);
+		$row = mysqli_fetch_array($r);
+
 		$n[0]=$row['jumlah'];
-		return $n; 
+		return $n;
 
 }
 
@@ -60,20 +60,20 @@ $t1=$_COOKIE['tahun_report']-1;
 				$con =connect();
 				$q_cop = "select  * from cop where
 				NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT='$tahun_r'";
-				$r_cop = mysql_query($q_cop, $con);
-				$row_cop = mysql_fetch_array($r_cop);
-				
+				$r_cop = mysqli_query($con, $q_cop);
+				$row_cop = mysqli_fetch_array($r_cop);
+
 				$var[1] = $row_cop['VALUE_MEDIAN'];
 				$var[0] = $row_cop['VALUE_MEAN'];
 				return $var;
 		}
-		
+
 
 ?>
 
 
 <table width="80%" align="center" class="baju">
-  
+
   <tr>
     <td colspan="4"><div align="center"><strong style="font-size:16px">Yield of FFB by Region and Sources of Data, <?php echo $_COOKIE['tahun_report']-2;?> - <?php echo $_COOKIE['tahun_report']-1;?> </strong></div></td>
   </tr>
@@ -117,7 +117,7 @@ $t1=$_COOKIE['tahun_report']-1;
     <td style="border-bottom:solid 1px #000;"><div align="right"><?php $d2 = fbb($t2,'sarawak'); echo number_format($d2[0],2);?></div></td>
     <td style="border-bottom:solid 1px #000;"><div align="right"><?php $d3 = (($d2[0]-$d1[0])/$d1[0])*100; echo number_format($d3,2);?></div></td>
   </tr>
-  
+
 </table>
 <br />
 <br />

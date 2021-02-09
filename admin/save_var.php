@@ -57,6 +57,6 @@ else if($jenis=="deletelokasi")
 	$q="delete from lokasi where lokasi_id ='$var'";
 }
 
-$r = mysql_query($q,$con);
+$r = mysqli_query($con, $q);
 echo "<script>window.location.href='home.php?id=po1_1'</script>";
 ?>

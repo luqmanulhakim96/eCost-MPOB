@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../Connections/connection.class.php');
 include '../class/admin.estate.class.php';
 header("Content-Disposition: attachment; filename=Completed_Response_Survey_in_Sabah.xls");
@@ -22,7 +22,7 @@ header("Content-Disposition: attachment; filename=Completed_Response_Survey_in_S
 		</tr>
 	</thead>
 	<tbody>
-	<?php while($row=mysql_fetch_array($result_sabah_complete)) { ?>
+	<?php while($row=mysqli_fetch_array($result_sabah_complete)) { ?>
 		<tr valign="top">
 			<td><?php echo $list++; ?></td>
 			<td><?php echo $row['nama'];?></td>
@@ -32,6 +32,6 @@ header("Content-Disposition: attachment; filename=Completed_Response_Survey_in_S
 		  <div align="center"></div></td>
 			<td><?php echo $row['access'];?></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>

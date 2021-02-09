@@ -1,10 +1,10 @@
-<?php 
+<?php
 	// done 12/10/2010 by apad
 	// edit by Hafez Hamid fezcodeworks@gmail.com 25jan2011
 	$con = connect();
 	$q ="SELECT * FROM alamat_ekilang LEFT JOIN mill_info ON alamat_ekilang.lesen = mill_info.lesen WHERE alamat_ekilang.lesen = '$lesen'";
-	$r = mysql_query($q,$con);
-	$row=mysql_fetch_array($r);
+	$r = mysqli_query($con, $q);
+	$row=mysqli_fetch_array($r);
 ?>
 <link rel="stylesheet" type="text/css" href="../text_style.css" />
 <h2><strong>MILL PROFILE</strong><br>

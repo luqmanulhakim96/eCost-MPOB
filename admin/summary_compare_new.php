@@ -1,4 +1,4 @@
-<?php 
+<?php
 	include('baju_merah.php');
 
 //------------- check if table exist --------------------------------
@@ -6,18 +6,18 @@
 function table_exists($tablename, $database = false) {
 
     if(!$database) {
-        $res = mysql_query("SELECT DATABASE()");
-        $database = mysql_result($res, 0);
+        $res = mysqli_query("SELECT DATABASE()");
+        $database = mysqli_result($res, 0);
     }
 
-    $res = mysql_query("
-        SELECT COUNT(*) AS count 
-        FROM information_schema.tables 
-        WHERE table_schema = '$database' 
+    $res = mysqli_query("
+        SELECT COUNT(*) AS count
+        FROM information_schema.tables
+        WHERE table_schema = '$database'
         AND table_name = '$tablename'
     ");
 
-    return mysql_result($res, 0) == 1;
+    return mysqli_result($res, 0) == 1;
 
 }
 if(table_exists($table)) {
@@ -51,98 +51,98 @@ function ffb_average($location)
 		{
 			$query ="SELECT AVG(purata_hasil_buah) as purata FROM $table WHERE $table.negeri LIKE '%SARAWAK%'";
 		}
-		
-		$result = mysql_query($query) or die(mysql_error());
-		$row 	= mysql_fetch_array($result);
-		$total = mysql_num_rows($result);
+
+		$result = mysqli_query($query) or die(mysqli_error());
+		$row 	= mysqli_fetch_array($result);
+		$total = mysqli_num_rows($result);
 		$var[0] = round($row['purata'],2);
-		return $var; 
+		return $var;
 	}
 //-----------------------------------------------------------------------------
 function summary($table ,$tahun, $negeri ){
 	$con=connect();
-	 $q="select AVG(y) as nilai from $table where 
-	tahun= '$tahun' and status='0'	
+	 $q="select AVG(y) as nilai from $table where
+	tahun= '$tahun' and status='0'
 	";
 	if($negeri=='peninsular'){
 	$q.="and (negeri not like 'SABAH' and negeri not like 'SARAWAK')";
 	}
-	
+
 	if($negeri=='sabah'){
 	$q.="and negeri like 'SABAH' ";
 	}
-	
+
 	if($negeri=='sarawak'){
 	$q.="and negeri like 'SARAWAK' ";
 	}
-	
-	//echo $q; 
-	$r=mysql_query($q,$con);
-	$row= mysql_fetch_array($r);
-	
+
+	//echo $q;
+	$r=mysqli_query($con, $q);
+	$row= mysqli_fetch_array($r);
+
 	$variable[0] = $row['nilai'];
-	
-	
+
+
 	return $variable;
-	
+
 }
 //-----------------------------------------------------------------------------
 function oer($tahun , $negeri ){
 	$con=connect();
-	 $q="select sum(ffb_proses) as ffb, sum(pengeluaran_cpo) as cpo from ekilang where 
-	tahun= '$tahun' 
+	 $q="select sum(ffb_proses) as ffb, sum(pengeluaran_cpo) as cpo from ekilang where
+	tahun= '$tahun'
 	";
 	if($negeri=='peninsular'){
 	$q.="and (negeri not like 'SABAH' and negeri not like 'SARAWAK')";
 	}
-	
+
 	if($negeri=='sabah'){
 	$q.="and negeri like 'SABAH' ";
 	}
-	
+
 	if($negeri=='sarawak'){
 	$q.="and negeri like 'SARAWAK' ";
 	}
-	
-	//echo $q; 
-	$r=mysql_query($q,$con);
-	$row= mysql_fetch_array($r);
-	
+
+	//echo $q;
+	$r=mysqli_query($con, $q);
+	$row= mysqli_fetch_array($r);
+
 	$variable[0] = $row['cpo']/$row['ffb']*100;
-	
-	
+
+
 	return $variable;
-	
+
 }
 //-----------------------------------------------------------------------------
 function summary_mill($table ,$tahun, $negeri, $oil ){
 	$con=connect();
-	 $q="select AVG(y) as nilai from $table where 
-	tahun= '$tahun' and status='0'	
+	 $q="select AVG(y) as nilai from $table where
+	tahun= '$tahun' and status='0'
 	";
 	if($negeri=='peninsular'){
 	$q.="and (negeri not like 'SABAH' and negeri not like 'SARAWAK')";
 	}
-	
+
 	if($negeri=='sabah'){
 	$q.="and negeri like 'SABAH' ";
 	}
-	
+
 	if($negeri=='sarawak'){
 	$q.="and negeri like 'SARAWAK' ";
 	}
-	
-	//echo $q; 
-	$r=mysql_query($q,$con);
-	$row= mysql_fetch_array($r);
-	
+
+	//echo $q;
+	$r=mysqli_query($con, $q);
+	$row= mysqli_fetch_array($r);
+
 	$variable[0] = $row['nilai'];
 	$variable[1] = $row['nilai']*100/$oil;
 	$variable[2] = $variable[0]+$variable[1];
-	
-	
+
+
 	return $variable;
-	
+
 }
 $tahun = $_COOKIE['tahun_report']-1;
 ?>
@@ -191,7 +191,7 @@ $tahun = $_COOKIE['tahun_report']-1;
   <tr class="alt">
     <td><strong><em>Average FFB Yield </em></strong></td>
     <td>
-    
+
     <div align="right"><?php $peninsular = ffb_average('peninsular');echo $peninsular[0]; ?></div></td>
     <td><div align="right"><?php $sabah = ffb_average('sabah');echo $sabah[0]; ?></div></td>
     <td><div align="right"><?php $sarawak = ffb_average('sarawak');echo $sarawak[0]; ?></div></td>
@@ -205,7 +205,7 @@ $tahun = $_COOKIE['tahun_report']-1;
     <td><div align="right"><?php $sarawak_ha= summary('graf_kbm',$_COOKIE['tahun_report'],'sarawak'); echo number_format($sarawak_ha[0],2);?></div></td>
     <td><div align="right"><?php $malaysia_ha= summary('graf_kbm',$_COOKIE['tahun_report'],''); echo number_format($malaysia_ha[0],2);?></div></td>
   </tr>
- 
+
   <tr class="alt">
     <td style="border-bottom:#000000 1px solid;"><strong>Immature Cost (RM/T FFB) </strong></td>
     <td style="border-bottom:#000000 1px solid;"><div align="right"><?php $ffb_peninsular = $peninsular_ha[0]/$peninsular[0]/22*3; echo number_format($ffb_peninsular,2);?></div></td>

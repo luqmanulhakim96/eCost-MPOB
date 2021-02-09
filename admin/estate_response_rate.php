@@ -10,13 +10,13 @@
 </style>
 <link rel="stylesheet" href="../js/colorbox/colorbox.css" type="text/css" />
 <script type="text/javascript" src="../js/colorbox/colorbox/jquery.colorbox.js"></script>
-        
+
 <script type="text/javascript">
 $(document).ready(function(){
 $(".boxcolor").colorbox({width:"40%", height:"100%"});
 });
 </script>
-        
+
 <p align="center"><img src="images/region.png" width="404" height="179" border="0" usemap="#Map" />
 	  <map name="Map" id="Map">
         <area shape="poly" coords="147,164,146,161" href="#" />
@@ -92,12 +92,12 @@ $(".boxcolor").colorbox({width:"40%", height:"100%"});
 		  <td bgcolor="#99FF99"><div align="center"><?php echo $percent_peninsular;?></div></td>
 		  <td bgcolor="#99FF99"><div align="center"><a href="home.php?id=estate&amp;sub=nonresponse_all&amp;type=peninsular"><strong><?php echo $nonresponse_peninsular; ?></strong></a></div></td>
 	    </tr>
-		
-        <?php  
+
+        <?php
 		$con = connect();
 		$query_negeri = "select * from negeri where nama !='SABAH' and nama !='SARAWAK'";
-		$res_negeri = mysql_query($query_negeri,$con);
-		while($row_negeri = mysql_fetch_array($res_negeri)){ 
+		$res_negeri = mysqli_query($con, $query_negeri);
+		while($row_negeri = mysqli_fetch_array($res_negeri)){
 		?>
         <tr <?php if(++$op%2!=0){echo "bgcolor=\"#FFCC66\""; }
 		else{echo "bgcolor=\"#99FF99\"";}
@@ -105,7 +105,7 @@ $(".boxcolor").colorbox({width:"40%", height:"100%"});
 		  <td><strong>&nbsp;<a href="negeri_response.php?id=<?php echo $row_negeri['nama']; ?>" class="boxcolor"><?php echo $row_negeri['nama']; ?></a></strong></td>
 		  <td><div align="center">
           <?php $neg = negeri($row_negeri['nama'],'', $_COOKIE['tahun_report']);
-		  echo number_format($neg[0]); 
+		  echo number_format($neg[0]);
 		  ?>
           </div></td>
 		  <td><div align="center"><a href="home.php?id=estate&amp;sub=total_peninsular&negeri=<?php echo $row_negeri['nama']; ?>"><?php echo number_format($neg[1]);?></a></div></td>
@@ -151,7 +151,7 @@ $(".boxcolor").colorbox({width:"40%", height:"100%"});
 		  <td bgcolor="#99FF99"><div align="center"><a href="home.php?id=estate&amp;sub=nonresponse_all&amp;type=sarawak"><strong><?php echo $nonresponse_sarawak; ?></strong></a></div></td>
 	    </tr>
     </table>
-<p>&nbsp; </p>	  
+<p>&nbsp; </p>
 	<?php } ?>
 	<?php if($region=='pm' and $state!="" and $view=="off"){?>
     <table width="100%" border="0" cellspacing="0" style="padding:3px;">
@@ -170,7 +170,7 @@ $(".boxcolor").colorbox({width:"40%", height:"100%"});
 		  ?>          </a></strong></td>
 		  <td bgcolor="#99FF99"><div align="center"><?php  echo number_format($neg_state[0]); ?></div></td>
 		  <td bgcolor="#99FF99"><div align="center">
-          <?php 
+          <?php
 		  if($state == "SARAWAK" || $state == "sarawak"){
 			  ?>
              <a href="home.php?id=estate&amp;sub=total_sarawak"><?php echo number_format($neg_state[1]);?></a>
@@ -188,7 +188,7 @@ $(".boxcolor").colorbox({width:"40%", height:"100%"});
           </div></td>
 		  <td bgcolor="#99FF99"><div align="center"><?php echo $neg_state[4];?></div></td>
 		  <td bgcolor="#99FF99"><div align="center">
-          <?php 
+          <?php
 		  if($state == "SARAWAK" || $state == "sarawak"){
 			  ?>
              <a href="home.php?id=estate&amp;sub=nonresponse_all&amp;type=sarawak"><?php echo $neg_state[5];?></a>
@@ -205,7 +205,7 @@ $(".boxcolor").colorbox({width:"40%", height:"100%"});
 		  ?>
           </div></td>
 	    </tr>
- 
+
         <?php
 		$con = connect();
 		if($district==""){
@@ -214,9 +214,9 @@ $(".boxcolor").colorbox({width:"40%", height:"100%"});
 		else if($district!=""){
 		$query_negeri_daerah = "select district_name from district where state_id='$state_id' and district_name = '$district'";
 		}
-		//echo $query_negeri_daerah; 
-		$res_negeri_daerah = mysql_query($query_negeri_daerah,$con);
-		while($row_negeri_daerah = mysql_fetch_array($res_negeri_daerah)){ 
+		//echo $query_negeri_daerah;
+		$res_negeri_daerah = mysqli_query($con, $query_negeri_daerah);
+		while($row_negeri_daerah = mysqli_fetch_array($res_negeri_daerah)){
 		?>
         <tr height="29" <?php if(++$op%2!=0){echo "bgcolor=\"#FFCC66\""; }
 		else{echo "bgcolor=\"#99FF99\"";}
@@ -226,7 +226,7 @@ $(".boxcolor").colorbox({width:"40%", height:"100%"});
 		  ?></strong></td>
 		  <td ><div align="center"><?php  echo number_format($neg_state_district[0]); ?></div></td>
 		  <td ><div align="center">
-           <?php 
+           <?php
 		  if($state == "SARAWAK" || $state == "sarawak"){
 			  ?>
              <a href="home.php?id=estate&amp;sub=total_sarawak&amp;district=<?php echo $row_negeri_daerah['district_name'];?>"><?php echo number_format($neg_state_district[1]);?></a>
@@ -241,11 +241,11 @@ $(".boxcolor").colorbox({width:"40%", height:"100%"});
             <?php
 		  }
 		  ?>
-          
+
           </div></td>
 		  <td><div align="center"><?php echo $neg_state_district[4];?></div></td>
 		  <td><div align="center">
-          <?php 
+          <?php
 		  if($state == "SARAWAK" || $state == "sarawak"){
 			  ?>
              <a href="home.php?id=estate&amp;sub=nonresponse_all&amp;type=sarawak&amp;district=<?php echo $row_negeri_daerah['district_name'];?>"><?php echo $neg_state_district[5];?></a>
@@ -264,16 +264,16 @@ $(".boxcolor").colorbox({width:"40%", height:"100%"});
 	    </tr>
         <?php } ?>
     </table>
-<p>&nbsp; </p>	  
+<p>&nbsp; </p>
 	<?php } ?>
-	
+
 	<p>&nbsp; </p></td>
   </tr>
 </table>
 
 <script type="text/javascript" src="amcolumn/swfobject.js"></script>
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mie_region_setting.xml"));
@@ -282,9 +282,9 @@ $(".boxcolor").colorbox({width:"40%", height:"100%"});
 		so.write("mi_region1");
 		// ]]>
 	</script>
-	
+
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mie_region_setting2.xml"));
@@ -293,9 +293,9 @@ $(".boxcolor").colorbox({width:"40%", height:"100%"});
 		so.write("mi_region2");
 		// ]]>
 	</script>
-	
+
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mie_region_setting3.xml"));

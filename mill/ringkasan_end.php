@@ -4,13 +4,13 @@ extract($_GET);
 extract($_POST);
 $con =connect();
 $q ="update mill_pemprosesan set status='1' where lesen = '".$_SESSION['lesen']."'";
-$r =mysql_query($q,$con);
+$r =mysqli_query($con, $q);
 
 $q ="update mill_kos_lain set status='1' where lesen = '".$_SESSION['lesen']."'";
-$r =mysql_query($q,$con);
+$r =mysqli_query($con, $q);
 
 $q ="update mill_buruh set status='1' where lesen = '".$_SESSION['lesen']."'";
-$r =mysql_query($q,$con);
+$r =mysqli_query($con, $q);
 ?>
 <style type="text/css">
 <!--
@@ -32,7 +32,7 @@ function waiting()
 	{
 		window.location.href='home.php?id=home';
 	}
-	//document.getElementById("time").innerHTML=t; 
+	//document.getElementById("time").innerHTML=t;
 	var a=setTimeout("waiting()",1000);
 }
 </script>

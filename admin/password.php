@@ -1,10 +1,10 @@
-<?php 
+<?php
 
 session_start();
 
 if ($_SESSION['type']<>"admin")
        header("location:../logout.php");
-	   
+
 $pengguna = new admin('user', $_SESSION['email']); ?><form id="form1" name="form1" method="post" action="home.php?id=config&amp;sub=password">
   <h2><u>Change My Password </u></h2>
   <?php include('baju_merah.php');?>
@@ -38,15 +38,15 @@ $pengguna = new admin('user', $_SESSION['email']); ?><form id="form1" name="form
     <input type="reset" name="Submit2" value="Reset" />
   </div>
 </form>
-<?php 
+<?php
 if(isset($save))
 {
 $con =connect();
 $q ="update login_admin set password = '$password' where email = '$email'";
-$r =mysql_query($q,$con);
+$r =mysqli_query($con, $q);
 
 $q2 ="update user set u_fullname = '$username' where u_email = '$email'";
-$r2 =mysql_query($q2,$con);
+$r2 =mysqli_query($con, $q2);
 echo "<script>window.location.href='home.php?id=config&sub=password'</script>";
 }
 ?>

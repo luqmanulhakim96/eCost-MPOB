@@ -36,7 +36,7 @@ extract($_REQUEST);
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="display" id="example">
 	<thead>
-	
+
 	  <tr bgcolor="#8A1602" height="30">
 		  <th width="4%" class="style2">No.</th>
 			<th class="style2">Mill Name</th>
@@ -50,7 +50,7 @@ extract($_REQUEST);
 	  </tr>
 	</thead>
 	<tbody>
-	<?php while($row=mysql_fetch_array($result_t)) { ?>
+	<?php while($row=mysqli_fetch_array($result_t)) { ?>
 		<tr valign="top">
 			<td><?php echo $list++; ?></td>
 			<td><?php echo $row['nama'];?></td>
@@ -62,6 +62,6 @@ extract($_REQUEST);
               <td><?php echo $row['nofax'];?></td>
 			<td><?php echo $row['access'];?></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>

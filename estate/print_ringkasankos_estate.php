@@ -20,8 +20,8 @@ function luas_data($table, $data, $tahunsebelum) {
 
     $con = connect();
     $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
-    $rblm = mysql_query($qblm, $con);
-    $rowblm = mysql_fetch_array($rblm);
+    $rblm = mysqli_query($con, $qblm);
+    $rowblm = mysqli_fetch_array($rblm);
     return $rowblm[$data];
 }
 
@@ -180,7 +180,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     </strong></td>
                 <td><strong>:</strong></td>
                 <td colspan="2"><?= $pengguna->negeripremis; ?></td>
-            </tr>       
+            </tr>
         </table>
         <!--Kawasan Belum Matang-->
         <?php
@@ -207,45 +207,45 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
 
         $con = connect();
         $qblm1 = "SELECT * FROM tanam_baru$satu tb1 WHERE tb1.lesen = '$lesen' LIMIT 1";
-        $rblm1 = mysql_query($qblm1, $con);
-        $totalblm1 = mysql_num_rows($rblm1);
+        $rblm1 = mysqli_query($con, $qblm1);
+        $totalblm1 = mysqli_num_rows($rblm1);
 
         $qblm11 = "SELECT * FROM tanam_baru$dua tb2 WHERE tb2.lesen = '$lesen' LIMIT 1";
-        $rblm11 = mysql_query($qblm11, $con);
-        $totalblm11 = mysql_num_rows($rblm11);
+        $rblm11 = mysqli_query($con, $qblm11);
+        $totalblm11 = mysqli_num_rows($rblm11);
 
         $qblm111 = "SELECT * FROM tanam_baru$tiga tb3 WHERE tb3.lesen = '$lesen' LIMIT 1";
-        $rblm111 = mysql_query($qblm111, $con);
-        $totalblm111 = mysql_num_rows($rblm111);
+        $rblm111 = mysqli_query($con, $qblm111);
+        $totalblm111 = mysqli_num_rows($rblm111);
 
         $qblm2 = "SELECT * FROM tanam_semula$satu ts1 WHERE ts1.lesen = '$lesen' LIMIT 1";
-        $rblm2 = mysql_query($qblm2, $con);
-        $totalblm2 = mysql_num_rows($rblm2);
+        $rblm2 = mysqli_query($con, $qblm2);
+        $totalblm2 = mysqli_num_rows($rblm2);
 
         $qblm22 = "SELECT * FROM tanam_semula$dua ts2 WHERE ts2.lesen = '$lesen' LIMIT 1";
-        $rblm22 = mysql_query($qblm22, $con);
-        $totalblm22 = mysql_num_rows($rblm22);
+        $rblm22 = mysqli_query($con, $qblm22);
+        $totalblm22 = mysqli_num_rows($rblm22);
 
         $qblm222 = "SELECT * FROM tanam_semula$tiga ts3 WHERE ts3.lesen = '$lesen' LIMIT 1";
-        $rblm222 = mysql_query($qblm222, $con);
-        $totalblm222 = mysql_num_rows($rblm222);
+        $rblm222 = mysqli_query($con, $qblm222);
+        $totalblm222 = mysqli_num_rows($rblm222);
 
         $qblm3 = "SELECT * FROM tanam_tukar$satu tt1 WHERE tt1.lesen = '$lesen' LIMIT 1";
-        $rblm3 = mysql_query($qblm3, $con);
-        $totalblm3 = mysql_num_rows($rblm3);
+        $rblm3 = mysqli_query($con, $qblm3);
+        $totalblm3 = mysqli_num_rows($rblm3);
 
         $qblm33 = "SELECT * FROM tanam_tukar$dua tt2 WHERE tt2.lesen = '$lesen' LIMIT 1";
-        $rblm33 = mysql_query($qblm33, $con);
-        $totalblm33 = mysql_num_rows($rblm33);
+        $rblm33 = mysqli_query($con, $qblm33);
+        $totalblm33 = mysqli_num_rows($rblm33);
 
         $qblm333 = "SELECT * FROM tanam_tukar$tiga tt3 WHERE tt3.lesen = '$lesen' LIMIT 1";
-        $rblm333 = mysql_query($qblm333, $con);
-        $totalblm333 = mysql_num_rows($rblm333);
+        $rblm333 = mysqli_query($con, $qblm333);
+        $totalblm333 = mysqli_num_rows($rblm333);
 
         $baru = $totalblm1 + $totalblm11 + $totalblm111;
         $semula = $totalblm2 + $totalblm22 + $totalblm222;
         $tukar = $totalblm3 + $totalblm33 + $totalblm333;
-        ?>        
+        ?>
         <?php
         if ($baru > 0 || $semula > 0 || $tukar > 0) {
             ?>
@@ -280,10 +280,10 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
             }
 
             $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
-            $rblm = mysql_query($qblm, $con);
-            $rowblm = mysql_fetch_array($rblm);
+            $rblm = mysqli_query($con, $qblm);
+            $rowblm = mysqli_fetch_array($rblm);
 
-            $totalblm = mysql_num_rows($rblm);
+            $totalblm = mysqli_num_rows($rblm);
             $data = $rowblm[$data];
             ?>
             <table align="center" aria-describedby="ringkasan3" width="90%" cellpadding="0" cellspacing="0" bgcolor="#999999" class="tableCss" style="background-color:#FFFFFF;">
@@ -291,7 +291,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td colspan="4">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="4"><span class="style7"> 
+                    <td colspan="4"><span class="style7">
     <?= setstring('mal', 'MAKLUMAT KAWASAN BELUM MATANG BAGI', 'en', 'INFORMATION OF IMMATURE AREA FOR'); ?>
                             <span style="text-transform:uppercase; color:#FF3300;">
 
@@ -313,7 +313,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td width="456">&nbsp;</td>
                     <td colspan="3">&nbsp;</td>
                 </tr>
-           
+
                 <tr>
                     <td height="31" colspan="4"><strong><?= setstring('mal', 'Keluasan ', 'en', 'Area'); ?></strong></td>
                 </tr>
@@ -344,7 +344,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td height="40" align="right" background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="right" class="style1 style2 style11">a.  </div></td>
                                 <td height="34" align="right" background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="left" class="style12"><?= setstring('mal', 'Perbelanjaan Tidak Berulang', 'en', 'Non-Recurrent Expenditures'); ?></div></td>
                                 <td background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="center" class="style12"><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style12">(RM)</div></td>
-                                <td background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="center" class="style12"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per hectare'); ?></div>          
+                                <td background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="center" class="style12"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per hectare'); ?></div>
                                     <div align="center" class="style12"> (RM)</div></td>
                             </tr>
 
@@ -459,7 +459,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="right" class="style3">b. </div></td>
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="left" class="style3"><?= setstring('mal', 'Penjagaan', 'en', 'Upkeep'); ?></div></td>
                                 <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style3"> (RM)</div></td>
-                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>          
+                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>
                                     <div align="center" class="style3"> (RM)</div></td>
                             </tr>
 
@@ -659,8 +659,8 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                 </tr>
                 <tr>
                     <td height="44" colspan="2"><div align="right"><strong><?= setstring('mal', 'Jumlah kos', 'en', 'Total cost'); ?>
-                                <span style="text-transform:lowercase;">	   
-            <?php echo setstring('mal', 'Penanaman Baru', 'en', 'New Planting'); ?></span> 
+                                <span style="text-transform:lowercase;">
+            <?php echo setstring('mal', 'Penanaman Baru', 'en', 'New Planting'); ?></span>
 
             <?php echo setstring('mal', 'pada tahun pertama', 'en', 'on first year'); ?>
                                 : </strong></div></td>
@@ -699,9 +699,9 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
     $table = $table . $tahunsebelum;
 
     $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
-    $rblm = mysql_query($qblm, $con);
-    $rowblm = mysql_fetch_array($rblm);
-    $totalblm = mysql_num_rows($rblm);
+    $rblm = mysqli_query($con, $qblm);
+    $rowblm = mysqli_fetch_array($rblm);
+    $totalblm = mysqli_num_rows($rblm);
 
     $data = $rowblm[$data];
     ?>
@@ -710,11 +710,11 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td colspan="4">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="4"><span class="style7"><?= setstring('mal', 'MAKLUMAT KAWASAN BELUM MATANG BAGI', 'en', 'INFORMATION OF IMMATURE AREA FOR'); ?> 
+                    <td colspan="4"><span class="style7"><?= setstring('mal', 'MAKLUMAT KAWASAN BELUM MATANG BAGI', 'en', 'INFORMATION OF IMMATURE AREA FOR'); ?>
                             <span style="text-transform:uppercase; color:#FF3300;">
     <?php echo setstring('mal', 'penanaman baru', 'en', 'new planting'); ?>
                             </span>
-    <?= setstring('mal', 'TAHUN', 'en', 'YEAR'); ?> 
+    <?= setstring('mal', 'TAHUN', 'en', 'YEAR'); ?>
     <?php echo setstring('mal', 'KEDUA', 'en', '2');
     $x = 2; ?>
                         </span></td>
@@ -728,7 +728,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td width="456">&nbsp;</td>
                     <td colspan="3">&nbsp;</td>
                 </tr>
-              
+
                 <tr>
                     <td height="31" colspan="4"><strong><?= setstring('mal', 'Keluasan', 'en', 'Area'); ?></strong></td>
                 </tr>
@@ -758,7 +758,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="right" class="style3"></div></td>
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="left" class="style3"><?= setstring('mal', 'Penjagaan', 'en', 'Upkeep'); ?></div></td>
                                 <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style3"> (RM)</div></td>
-                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>          
+                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>
                                     <div align="center" class="style3"> (RM)</div></td>
                             </tr>
 
@@ -951,7 +951,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
     <?php
     echo setstring('mal', 'penanaman baru', 'en', 'new planting');
     ?>
-                                </span> <?= setstring('mal', 'tahun', 'en', 'year') ?> 
+                                </span> <?= setstring('mal', 'tahun', 'en', 'year') ?>
                                 <?php
                                 echo setstring('mal', 'kedua', 'en', '2')
                                 ?> : </strong></div></td>
@@ -989,9 +989,9 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
     $table = $table . $tahunsebelum;
 
     $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
-    $rblm = mysql_query($qblm, $con);
-    $rowblm = mysql_fetch_array($rblm);
-    $totalblm = mysql_num_rows($rblm);
+    $rblm = mysqli_query($con, $qblm);
+    $rowblm = mysqli_fetch_array($rblm);
+    $totalblm = mysqli_num_rows($rblm);
 
     $data = $rowblm[$data];
     ?>
@@ -1022,7 +1022,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td width="456">&nbsp;</td>
                     <td colspan="3">&nbsp;</td>
                 </tr>
-                
+
                 <tr>
                     <td height="31" colspan="4"><strong><?= setstring('mal', 'Keluasan', 'en', 'Area'); ?></strong></td>
                 </tr>
@@ -1052,7 +1052,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="right" class="style3"></div></td>
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="left" class="style3"><?= setstring('mal', 'Penjagaan', 'en', 'Upkeep') ?></div></td>
                                 <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style3"> (RM)</div></td>
-                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>          
+                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>
                                     <div align="center" class="style3"> (RM)</div></td>
                             </tr>
 
@@ -1246,7 +1246,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
     <?php
     echo setstring('mal', 'penanaman baru', 'en', 'new planting');
     ?>
-                                </span> <?= setstring('mal', 'tahun', 'en', 'year'); ?> 
+                                </span> <?= setstring('mal', 'tahun', 'en', 'year'); ?>
     <?php echo setstring('mal', 'ketiga', 'en', '3'); ?> : </strong></div></td>
                     <td bgcolor="#CC6699"><div align="center"><strong><span id="total_all"><?php $total_all = $nilai->total_b; ?></span></strong><strong><span class="style6">
                 <?= number_format($nilai->total_b, 2); ?></span></strong></div></td>
@@ -1282,10 +1282,10 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
     }
 
     $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
-    $rblm = mysql_query($qblm, $con);
-    $rowblm = mysql_fetch_array($rblm);
+    $rblm = mysqli_query($con, $qblm);
+    $rowblm = mysqli_fetch_array($rblm);
 
-    $totalblm = mysql_num_rows($rblm);
+    $totalblm = mysqli_num_rows($rblm);
     $data = $rowblm[$data];
     ?>
             <table align="center" width="90%" cellpadding="0" cellspacing="0" bgcolor="#999999" class="tableCss" style="background-color:#FFFFFF;" aria-describedby="ringkasan10">
@@ -1293,7 +1293,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td colspan="4">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="4"><span class="style7"> 
+                    <td colspan="4"><span class="style7">
     <?= setstring('mal', 'MAKLUMAT KAWASAN BELUM MATANG BAGI', 'en', 'INFORMATION OF IMMATURE AREA FOR'); ?>
                             <span style="text-transform:uppercase; color:#FF3300;">
 
@@ -1315,7 +1315,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td width="456">&nbsp;</td>
                     <td colspan="3">&nbsp;</td>
                 </tr>
-              
+
                 <tr>
                     <td height="31" colspan="4"><strong><?= setstring('mal', 'Keluasan ', 'en', 'Area'); ?></strong></td>
                 </tr>
@@ -1346,7 +1346,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td height="40" align="right" background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="right" class="style1 style2 style11">a.  </div></td>
                                 <td height="34" align="right" background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="left" class="style12"><?= setstring('mal', 'Perbelanjaan Tidak Berulang', 'en', 'Non-Recurrent Expenditures'); ?></div></td>
                                 <td background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="center" class="style12"><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style12">(RM)</div></td>
-                                <td background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="center" class="style12"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per hectare'); ?></div>          
+                                <td background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="center" class="style12"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per hectare'); ?></div>
                                     <div align="center" class="style12"> (RM)</div></td>
                             </tr>
 
@@ -1461,7 +1461,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="right" class="style3">b. </div></td>
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="left" class="style3"><?= setstring('mal', 'Penjagaan', 'en', 'Upkeep'); ?></div></td>
                                 <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style3"> (RM)</div></td>
-                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>          
+                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>
                                     <div align="center" class="style3"> (RM)</div></td>
                             </tr>
 
@@ -1661,8 +1661,8 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                 </tr>
                 <tr>
                     <td height="44" colspan="2"><div align="right"><strong><?= setstring('mal', 'Jumlah kos', 'en', 'Total cost'); ?>
-                                <span style="text-transform:lowercase;">	   
-    <?php echo setstring('mal', 'Penanaman Semula', 'en', 'Replanting'); ?></span> 
+                                <span style="text-transform:lowercase;">
+    <?php echo setstring('mal', 'Penanaman Semula', 'en', 'Replanting'); ?></span>
 
     <?php echo setstring('mal', 'pada tahun pertama', 'en', 'on first year'); ?>
                                 : </strong></div></td>
@@ -1701,9 +1701,9 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                         $table = $table . $tahunsebelum;
 
                                         $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
-                                        $rblm = mysql_query($qblm, $con);
-                                        $rowblm = mysql_fetch_array($rblm);
-                                        $totalblm = mysql_num_rows($rblm);
+                                        $rblm = mysqli_query($con, $qblm);
+                                        $rowblm = mysqli_fetch_array($rblm);
+                                        $totalblm = mysqli_num_rows($rblm);
 
                                         $data = $rowblm[$data];
                                         ?>
@@ -1712,11 +1712,11 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td colspan="4">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="4"><span class="style7"><?= setstring('mal', 'MAKLUMAT KAWASAN BELUM MATANG BAGI', 'en', 'INFORMATION OF IMMATURE AREA FOR'); ?> 
+                    <td colspan="4"><span class="style7"><?= setstring('mal', 'MAKLUMAT KAWASAN BELUM MATANG BAGI', 'en', 'INFORMATION OF IMMATURE AREA FOR'); ?>
                             <span style="text-transform:uppercase; color:#FF3300;">
                                             <?php echo setstring('mal', 'penanaman semula', 'en', 'replanting'); ?>
                             </span>
-                                            <?= setstring('mal', 'TAHUN', 'en', 'YEAR'); ?> 
+                                            <?= setstring('mal', 'TAHUN', 'en', 'YEAR'); ?>
                                             <?php echo setstring('mal', 'KEDUA', 'en', '2');
                                             $x = 2; ?>
                         </span></td>
@@ -1730,7 +1730,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td width="456">&nbsp;</td>
                     <td colspan="3">&nbsp;</td>
                 </tr>
-             
+
                 <tr>
                     <td height="31" colspan="4"><strong><?= setstring('mal', 'Keluasan', 'en', 'Area'); ?></strong></td>
                 </tr>
@@ -1760,7 +1760,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="right" class="style3"></div></td>
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="left" class="style3"><?= setstring('mal', 'Penjagaan', 'en', 'Upkeep'); ?></div></td>
                                 <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style3"> (RM)</div></td>
-                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>          
+                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>
                                     <div align="center" class="style3"> (RM)</div></td>
                             </tr>
 
@@ -1953,7 +1953,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                         <?php
                                         echo setstring('mal', 'penanaman semula', 'en', 'replanting');
                                         ?>
-                                </span> <?= setstring('mal', 'tahun', 'en', 'year') ?> 
+                                </span> <?= setstring('mal', 'tahun', 'en', 'year') ?>
                                         <?php
                                         echo setstring('mal', 'kedua', 'en', '2')
                                         ?> : </strong></div></td>
@@ -1991,9 +1991,9 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
     $table = $table . $tahunsebelum;
 
     $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
-    $rblm = mysql_query($qblm, $con);
-    $rowblm = mysql_fetch_array($rblm);
-    $totalblm = mysql_num_rows($rblm);
+    $rblm = mysqli_query($con, $qblm);
+    $rowblm = mysqli_fetch_array($rblm);
+    $totalblm = mysqli_num_rows($rblm);
 
     $data = $rowblm[$data];
     ?>
@@ -2024,7 +2024,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td width="456">&nbsp;</td>
                     <td colspan="3">&nbsp;</td>
                 </tr>
-                
+
                 <tr>
                     <td height="31" colspan="4"><strong><?= setstring('mal', 'Keluasan', 'en', 'Area'); ?></strong></td>
                 </tr>
@@ -2054,7 +2054,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="right" class="style3"></div></td>
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="left" class="style3"><?= setstring('mal', 'Penjagaan', 'en', 'Upkeep') ?></div></td>
                                 <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style3"> (RM)</div></td>
-                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>          
+                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>
                                     <div align="center" class="style3"> (RM)</div></td>
                             </tr>
 
@@ -2248,7 +2248,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
     <?php
     echo setstring('mal', 'penanaman semula', 'en', 'replanting');
     ?>
-                                </span> <?= setstring('mal', 'tahun', 'en', 'year'); ?> 
+                                </span> <?= setstring('mal', 'tahun', 'en', 'year'); ?>
     <?php echo setstring('mal', 'ketiga', 'en', '3'); ?> : </strong></div></td>
                     <td bgcolor="#CC6699"><div align="center"><strong><span id="total_all"><?php $total_all = $nilai->total_b; ?></span></strong><strong><span class="style6">
     <?= number_format($nilai->total_b, 2); ?></span></strong></div></td>
@@ -2284,10 +2284,10 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
     }
 
     $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
-    $rblm = mysql_query($qblm, $con);
-    $rowblm = mysql_fetch_array($rblm);
+    $rblm = mysqli_query($con, $qblm);
+    $rowblm = mysqli_fetch_array($rblm);
 
-    $totalblm = mysql_num_rows($rblm);
+    $totalblm = mysqli_num_rows($rblm);
     $data = $rowblm[$data];
     ?>
             <table align="center" width="90%" cellpadding="0" cellspacing="0" bgcolor="#999999" class="tableCss" style="background-color:#FFFFFF;" aria-describedby="ringkasan18">
@@ -2295,7 +2295,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td colspan="4">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="4"><span class="style7"> 
+                    <td colspan="4"><span class="style7">
     <?= setstring('mal', 'MAKLUMAT KAWASAN BELUM MATANG BAGI', 'en', 'INFORMATION OF IMMATURE AREA FOR'); ?>
                             <span style="text-transform:uppercase; color:#FF3300;">
 
@@ -2317,7 +2317,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td width="456">&nbsp;</td>
                     <td colspan="3">&nbsp;</td>
                 </tr>
-              
+
                 <tr>
                     <td height="31" colspan="4"><strong><?= setstring('mal', 'Keluasan ', 'en', 'Area'); ?></strong></td>
                 </tr>
@@ -2348,7 +2348,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td height="40" align="right" background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="right" class="style1 style2 style11">a.  </div></td>
                                 <td height="34" align="right" background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="left" class="style12"><?= setstring('mal', 'Perbelanjaan Tidak Berulang', 'en', 'Non-Recurrent Expenditures'); ?></div></td>
                                 <td background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="center" class="style12"><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style12">(RM)</div></td>
-                                <td background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="center" class="style12"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per hectare'); ?></div>          
+                                <td background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="center" class="style12"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per hectare'); ?></div>
                                     <div align="center" class="style12"> (RM)</div></td>
                             </tr>
 
@@ -2463,7 +2463,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="right" class="style3">b. </div></td>
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="left" class="style3"><?= setstring('mal', 'Penjagaan', 'en', 'Upkeep'); ?></div></td>
                                 <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style3"> (RM)</div></td>
-                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>          
+                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>
                                     <div align="center" class="style3"> (RM)</div></td>
                             </tr>
 
@@ -2663,8 +2663,8 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                 </tr>
                 <tr>
                     <td height="44" colspan="2"><div align="right"><strong><?= setstring('mal', 'Jumlah kos', 'en', 'Total cost'); ?>
-                                <span style="text-transform:lowercase;">	   
-    <?php echo setstring('mal', 'Penukaran', 'en', 'Conversion'); ?></span> 
+                                <span style="text-transform:lowercase;">
+    <?php echo setstring('mal', 'Penukaran', 'en', 'Conversion'); ?></span>
 
     <?php echo setstring('mal', 'pada tahun pertama', 'en', 'on first year'); ?>
                                 : </strong></div></td>
@@ -2703,9 +2703,9 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
     $table = $table . $tahunsebelum;
 
     $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
-    $rblm = mysql_query($qblm, $con);
-    $rowblm = mysql_fetch_array($rblm);
-    $totalblm = mysql_num_rows($rblm);
+    $rblm = mysqli_query($con, $qblm);
+    $rowblm = mysqli_fetch_array($rblm);
+    $totalblm = mysqli_num_rows($rblm);
 
     $data = $rowblm[$data];
     ?>
@@ -2714,11 +2714,11 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td colspan="4">&nbsp;</td>
                 </tr>
                 <tr>
-                    <td colspan="4"><span class="style7"><?= setstring('mal', 'MAKLUMAT KAWASAN BELUM MATANG BAGI', 'en', 'INFORMATION OF IMMATURE AREA FOR'); ?> 
+                    <td colspan="4"><span class="style7"><?= setstring('mal', 'MAKLUMAT KAWASAN BELUM MATANG BAGI', 'en', 'INFORMATION OF IMMATURE AREA FOR'); ?>
                             <span style="text-transform:uppercase; color:#FF3300;">
     <?php echo setstring('mal', 'penukaran', 'en', 'conversion'); ?>
                             </span>
-    <?= setstring('mal', 'TAHUN', 'en', 'YEAR'); ?> 
+    <?= setstring('mal', 'TAHUN', 'en', 'YEAR'); ?>
     <?php echo setstring('mal', 'KEDUA', 'en', '2');
     $x = 2; ?>
                         </span></td>
@@ -2732,7 +2732,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td width="456">&nbsp;</td>
                     <td colspan="3">&nbsp;</td>
                 </tr>
-              
+
                 <tr>
                     <td height="31" colspan="4"><strong><?= setstring('mal', 'Keluasan', 'en', 'Area'); ?></strong></td>
                 </tr>
@@ -2762,7 +2762,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="right" class="style3"></div></td>
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="left" class="style3"><?= setstring('mal', 'Penjagaan', 'en', 'Upkeep'); ?></div></td>
                                 <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style3"> (RM)</div></td>
-                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>          
+                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>
                                     <div align="center" class="style3"> (RM)</div></td>
                             </tr>
 
@@ -2955,7 +2955,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
     <?php
     echo setstring('mal', 'penukaran', 'en', 'conversion');
     ?>
-                                </span> <?= setstring('mal', 'tahun', 'en', 'year') ?> 
+                                </span> <?= setstring('mal', 'tahun', 'en', 'year') ?>
     <?php
     echo setstring('mal', 'kedua', 'en', '2')
     ?> : </strong></div></td>
@@ -2993,9 +2993,9 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
     $table = $table . $tahunsebelum;
 
     $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
-    $rblm = mysql_query($qblm, $con);
-    $rowblm = mysql_fetch_array($rblm);
-    $totalblm = mysql_num_rows($rblm);
+    $rblm = mysqli_query($con, $qblm);
+    $rowblm = mysqli_fetch_array($rblm);
+    $totalblm = mysqli_num_rows($rblm);
 
     $data = $rowblm[$data];
     ?>
@@ -3026,7 +3026,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td width="456">&nbsp;</td>
                     <td colspan="3">&nbsp;</td>
                 </tr>
-                
+
                 <tr>
                     <td height="31" colspan="4"><strong><?= setstring('mal', 'Keluasan', 'en', 'Area'); ?></strong></td>
                 </tr>
@@ -3056,7 +3056,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="right" class="style3"></div></td>
                                 <td height="41" align="right" background="../images/tb_BG.gif"><div align="left" class="style3"><?= setstring('mal', 'Penjagaan', 'en', 'Upkeep') ?></div></td>
                                 <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style3"> (RM)</div></td>
-                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>          
+                                <td background="../images/tb_BG.gif"><div align="center" class="style3"><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>
                                     <div align="center" class="style3"> (RM)</div></td>
                             </tr>
 
@@ -3250,7 +3250,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
     <?php
     echo setstring('mal', 'penukaran', 'en', 'conversion');
     ?>
-                                </span> <?= setstring('mal', 'tahun', 'en', 'year'); ?> 
+                                </span> <?= setstring('mal', 'tahun', 'en', 'year'); ?>
     <?php echo setstring('mal', 'ketiga', 'en', '3'); ?> : </strong></div></td>
                     <td bgcolor="#CC6699"><div align="center"><strong><span id="total_all"><?php $total_all = $nilai->total_b; ?></span></strong><strong><span class="style6">
                                             <?= number_format($nilai->total_b, 2); ?></span></strong></div></td>
@@ -3332,17 +3332,17 @@ echo number_format($a, 2);
 
                                         </select></td>
                                     <td><?= $up; ?>
-                                </tr>  
+                                </tr>
     <?php } ?>
 <?php } ?>
                         <tr valign="top">
                             <td><div align="right"><strong><?= setstring('mal', 'Jumlah', 'en', 'Total'); ?></strong></div></td>
                             <td><?= $total_umur; ?>
                                     <?php
-                                    $total_umur = (int) $total_umur; 
+                                    $total_umur = (int) $total_umur;
                                     $a_semua = (int) $pengguna->luastuai;
 
-                                    $pjl = (int) $pengguna->jumlahluas; 
+                                    $pjl = (int) $pengguna->jumlahluas;
 
                                     if ($a_semua != $total_umur) {
                                         echo "<br>";
@@ -3404,11 +3404,11 @@ if ($c == 0) {
                             <td height="52" background="../images/tb_BG.gif"><div align="center"><strong>a.</strong></div></td>
                             <td background="../images/tb_BG.gif"><strong><?= setstring('mal', 'Penjagaan', 'en', 'Upkeep'); ?></strong></td>
                             <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></strong></div>          <div align="center"><strong>(RM)</strong></div></td>
-                            <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></strong></div>          
+                            <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></strong></div>
                                 <div align="center"><strong>(RM)</strong></div></td>
-                            <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos Per Tan BTS', 'en', 'Cost Per Tonne FFB'); ?></strong> <strong></strong></div>          
+                            <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos Per Tan BTS', 'en', 'Cost Per Tonne FFB'); ?></strong> <strong></strong></div>
                                 <div align="center"><strong>(RM)</strong></div></td>
-                            <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?></strong></div>          
+                            <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?></strong></div>
                                 <div align="center"><strong>(%)</strong></div></td>
                         </tr>
                         <tr bgcolor="#AEFFAE">
@@ -3719,7 +3719,7 @@ echo number_format($x1a, 2);
                                         <span id="total_a_beza">0</span>
                                     </strong></div></td>
                         </tr>
-                    </table>                
+                    </table>
                 </td>
             </tr>
             <tr>
@@ -3809,7 +3809,7 @@ echo number_format($y1, 2);
                             <td height="38" align="center">&nbsp;</td>
                             <td><div align="right"><strong><?= setstring('mal', 'Jumlah kos penuaian', 'en', 'Total of harvesting cost'); ?>
                                         (b) :</strong></div></td>
-                <td bgcolor="#FFCC66"><div align="center"><strong> 
+                <td bgcolor="#FFCC66"><div align="center"><strong>
                                 <?= number_format($tuai->total_b, 2); ?>
                                     </strong></div></td>
                             <td bgcolor="#FFCC66"><div align="center"><strong> <span id="total_b_perha"><?php $x1b = ($tuai->total_b / $b);
@@ -3919,7 +3919,7 @@ echo number_format($y1, 2);
                                 }
 
                                 echo number_format($angkut->total_b_1, 2);
-                                ?> 
+                                ?>
                                     </strong></div></td>
                             <td valign="middle"><div align="center" id="jaga2"><?php $x1 = ($angkut->total_b_1 / $b);
                                 echo number_format($x1, 2);
@@ -4061,7 +4061,7 @@ echo number_format($y1, 2);
                 <td colspan="2"> </td>
                 <td> </td>
             </tr>
-         
+
             <td colspan="3"><table width="100%" cellspacing="0"  frame="box" class="subTable" aria-describedby="ringkasan31">
                     <tr>
                         <td height="41" align="center" background="../images/tb_BG.gif"> </td>
@@ -4071,7 +4071,7 @@ echo number_format($y1, 2);
                             <div align="center"><strong>(RM)</strong></div></td>
                         <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos Per Tan BTS', 'en', 'Cost Per Tonne FFB'); ?></strong></div>
                             <div align="center"><strong>(RM)</strong></div></td>
-                        <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?></strong></div>          
+                        <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?></strong></div>
                             <div align="center"><strong> (%)</strong></div></td>
                     </tr>
 
@@ -4082,23 +4082,23 @@ echo number_format($y1, 2);
                             </span>          <br />
                             <span class="kecil">(
 <?= setstring('mal', 'Gaji dan elaun', 'en', 'Emoluments and allowances'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Kerja lebih masa', 'en', 'Overtime'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Perubatan', 'en', 'Medical'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Perjalanan', 'en', 'Travelling'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Bonus', 'en', 'Bonuses'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Insuran peribadi', 'en', 'Personal Insurance'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Insentif', 'en', 'Incentive'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'KWSP', 'en', 'EPF'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'PERKESO', 'en', 'SOCSO'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                                 )        </span></td>
                         <td width="158" bgcolor="#AEFFAE"><div align="center">
@@ -4127,9 +4127,9 @@ echo number_format($y1, 2);
                             <br />
                             <span class="kecil">(
                                 <?= setstring('mal', 'Yuran/bayaran pentadbiran', 'en', 'Administration fees'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Yuran/bayaran lesen', 'en', 'Licensing fees'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                                 )        </span></td>
                         <td><div align="center">
@@ -4157,15 +4157,15 @@ echo number_format($y1, 2);
                                 <?= setstring('mal', 'Perbelanjaan lawatan agen', 'en', 'Visiting agent fees'); ?>
                                 ,
                                 <?= setstring('mal', 'Perbelanjaan perundangan dan lain-lain profesional', 'en', 'Legal and others professional fees'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Yuran/bayaran khidmat nasihat lawatan/penanaman', 'en', 'Visiting/planting consultation fees'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Yuran/bayaran ahli agromoni', 'en', 'Agronomist fees'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Yuran/bayaran audit', 'en', 'Audit fees'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Yuran/bayaran sokongan sistem komputer estet', 'en', 'Estate\'s computer system support'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                                 )        </span></td>
                         <td bgcolor="#AEFFAE"><div align="center">
@@ -4189,13 +4189,13 @@ echo number_format($y1, 2);
                             </span> <br />
                             <span class="kecil">(
 <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Ganjaran persaraan', 'en', 'Retirement rewards'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Pampasan kepada pekerja', 'en', 'Compensation'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Subsidi', 'en', 'Subsidies'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                                 )</span></td>
                         <td><div align="center">
@@ -4220,13 +4220,13 @@ echo number_format($per_bts4, 2);
                             <br />
                             <span class="kecil">(
                                 <?= setstring('mal', 'Cukai tanah', 'en', 'Quit rent'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Yuran/bayaran TOL', 'en', 'TOL fees'); ?>
                                 ,
                                 <?= setstring('mal', 'Insurans kebakaran/kecurian', 'en', 'Fire Insurance'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Insuran', 'en', 'Insurances'); ?>
-                                , 
+                                ,
                                 <?= setstring('mal', 'Penghantaran', 'en', 'Delivery'); ?>
                                 ,
                                 <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
@@ -4278,11 +4278,11 @@ echo number_format($per_ha6, 2);
                             <br />
                             <span class="kecil">(
 <?= setstring('mal', 'Bayaran lawatan pegawai perubatan (VMO)', 'en', 'Visiting Medical Officer fees'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Pelbagai ubat dan peralatan', 'en', 'Medicine and Instrument'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Peralatan sukan/permainan', 'en', 'Sports/recreations equipment'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                                 )        </span></td>
                         <td><div align="center">
@@ -4307,9 +4307,9 @@ echo number_format($per_ha6, 2);
                             </span><br />
                             <span class="kecil">(
         <?= setstring('mal', 'Pembaikan dan pengecatan', 'en', 'Painting and repair'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Perabut dan <em>fitting</em> untuk banglow/kuaters/rumah kedai/bengkel', 'en', 'Fitting for bungalow/quarters/shophouse/workshop'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                                 )        </span></td>
                         <td><div align="center">
@@ -4358,17 +4358,17 @@ echo number_format($per_ha6, 2);
                             </span><br />
                             <span class="kecil">(
         <?= setstring('mal', 'Anti-vektor', 'en', 'Anti-vector'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Pembersihan part-parit monsun', 'en', 'Drain repair and cleaning'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Pengorekan lubang sampah', 'en', 'Pits and upkeep'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Parit dan bentung', 'en', 'Drainage and culvert'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Pemotongan rumput', 'en', 'Grass cutting expenses'); ?>
                                 ,
         <?= setstring('mal', 'Penjagaan pejabat/banglow/kuaters/taman', 'en', 'Upkeep of office/buanglow/quarters/park'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                                 )</span></td>
                         <td><div align="center">
@@ -4394,15 +4394,15 @@ echo number_format($per_ha6, 2);
                             </span><br />
                             <span class="kecil">(
         <?= setstring('mal', 'Gaji pegawai keselamatan', 'en', 'Auxillary police/watchman salary'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Penjagaan pos keselamatan dan pagar ', 'en', 'Routine upkeep of security post and fences'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Yuran/bayaran lesen senjata', 'en', 'Guns license fees'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Pembaikan senjata dan peluru', 'en', 'Guns and repair'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Yuran/bayaran penghantaran wang gaji', 'en', 'Securicor/payroll collect fees'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Tiket jambatan timbang dan <em>seals</em>', 'en', 'Seals and Weighbrigde Ticket'); ?>
                                 )</span></td>
                         <td><div align="center">
@@ -4428,17 +4428,17 @@ echo number_format($per_ha6, 2);
 
                             <span class="kecil">(
         <?= setstring('mal', 'Perbelanjaan elektrik/air', 'en', 'Water and power bills'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Wayar kabel', 'en', 'Cabling'); ?>
                                 ,
         <?= setstring('mal', 'Mentol lampu', 'en', 'Replace bulbs'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Bahan kimia', 'en', 'Chemicals'); ?>
-                                , 
+                                ,
         <?= setstring('mal', 'Penyelenggaraan dan servis pam air ', 'en', 'Maintenance and services of water pump'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Penyelenggaraan kawasan tadahan', 'en', 'Maintenance of water reservoir'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                                 )</span></td>
                         <td><div align="center">
@@ -4460,25 +4460,25 @@ echo number_format($per_ha12, 2);
                             </span> <br />
                             <span class="kecil">(
 <?= setstring('mal', 'Telefon/fax/telegram', 'en', 'Telephone/fax/telegram fees'); ?>
-                                , 
+                                ,
                             <?= setstring('mal', 'Yuran/bayaran post/kurier', 'en', 'Postage and parcel freight fees'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Alatan pelbagai', 'en', 'Miscellanous'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Alatan komputer', 'en', 'Computer stationaries and supplies'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Majalah dan suratkhabar', 'en', 'Magazine and newspaper'); ?>
-                                , 
+                                ,
                             <?= setstring('mal', 'Buku cek', 'en', 'Cheque book'); ?>
-                                , 
+                                ,
                             <?= setstring('mal', 'Caj bank', 'en', 'Bank charges'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Servis komputer/peralatan pejabat', 'en', 'Computer/office equipment services'); ?>
-                                , 
+                                ,
                             <?= setstring('mal', 'Pembersih pejabat ', 'en', 'Office cleaners'); ?>
-                                , 
+                                ,
             <?= setstring('mal', 'Pelbagai barang pejabat', 'en', 'Misc. office equipments'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                                 )</span></td>
                         <td><div align="center">
@@ -4500,7 +4500,7 @@ echo number_format($per_ha12, 2);
                             </span><br />
                             <span class="kecil">(
                         <?= setstring('mal', 'Pelunasan tanah pajakan', 'en', 'Statutory Payment cess'); ?>
-                                , 
+                                ,
                         <?= setstring('mal', 'Susutnilai bangunan/mesin/kenderaan/ peralatan pejabat', 'en', 'Depreciation of building/machine/transport/office equipment'); ?>
                                 )</span></td>
                         <td><div align="center">
@@ -4523,15 +4523,15 @@ echo number_format($per_ha12, 2);
                             </span><br />
                             <span class="kecil">(
                         <?= setstring('mal', 'Keraian pelawat', 'en', 'Entertain visitors'); ?>
-                                , 
+                                ,
                         <?= setstring('mal', 'Penerbitan pertanian', 'en', 'Agricultural publication'); ?>
-                                , 
+                                ,
 <?= setstring('mal', 'Yuran/bayaran seminar/persidangan', 'en', 'Seminar/conference fees'); ?>
-                                , 
+                                ,
                         <?= setstring('mal', 'Pembaikan notis/papan tanda', 'en', 'Repairs to Notices/signboard'); ?>
-                                , 
+                                ,
                         <?= setstring('mal', 'Derma/sumbangan', 'en', 'Sundry charitable donation'); ?>
-                                , 
+                                ,
                         <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                                 )        </span></td>
                         <td><div align="center">
@@ -4593,7 +4593,7 @@ echo number_format($per_bts15, 2);
             </tr>
             <tr>
                 <td colspan="5">&nbsp;</td>
-            </tr>            
+            </tr>
         </table>
 
                         <?php
@@ -4603,7 +4603,7 @@ echo number_format($per_bts15, 2);
                         $umur2 = new user('esub', $session_lesen);
                         $jumlah_luas_2 = $pengguna->jumlahluas;
 
-                        /** 
+                        /**
                           * function luas_data($table,$data, $tahunsebelum){
                           * if(strlen($tahunsebelum)==1)
                           * {
@@ -4614,8 +4614,8 @@ echo number_format($per_bts15, 2);
                           * }
                           * $con = connect();
                           * $qblm="SELECT sum($data) as $data FROM $table WHERE lesen = '".$_SESSION['lesen']."' group by lesen";
-                          * $rblm=mysql_query($qblm,$con);
-                          * $rowblm= mysql_fetch_array($rblm);
+                          * $rblm=mysqli_query($qblm,$con);
+                          * $rowblm= mysqli_fetch_array($rblm);
                           * //echo "<br>";
                           * $data1 = $rowblm[$data];
                           * $jum_data = $data1;
@@ -4641,7 +4641,7 @@ echo number_format($per_bts15, 2);
 
                         $jumlah_luas = $jumlah_semua;
 /** $luas = $pengguna->jumlahluas;
-* $jumlah_luas = $luas; 
+* $jumlah_luas = $luas;
 */
                         $jumlah_belum_hasil = $keluasan->jumlah_belum_berhasil;
 
@@ -4649,7 +4649,7 @@ echo number_format($per_bts15, 2);
                         $jumlah_bts = $bts_sum->purata_hasil_buah;
 
                         $var[0] = $_SESSION['lesen'];
-                        $var[1] = $_SESSION['tahun']; 
+                        $var[1] = $_SESSION['tahun'];
 
                         $matang[0] = $var[0];
                         $matang[1] = $var[1];
@@ -4657,8 +4657,8 @@ echo number_format($per_bts15, 2);
                         function kbm($pembolehubah) {
                             $con = connect();
                             $q = "select * from kos_belum_matang where lesen ='" . $_SESSION['lesen'] . "' and pb_thisyear ='" . $_SESSION['tahun'] . "'  and status=1 and pb_tahun='$pembolehubah' ";
-                            $r = mysql_query($q, $con);
-                            $res_total = mysql_num_rows($r);
+                            $r = mysqli_query($con, $q);
+                            $res_total = mysqli_num_rows($r);
                             $survey [0] = $res_total;
                             return $survey;
                         }
@@ -4666,8 +4666,8 @@ echo number_format($per_bts15, 2);
                         function mtg($pembolehubah) {
                             $con = connect();
                             $qbaja = "select * from $pembolehubah where lesen ='" . $_SESSION['lesen'] . "' and pb_thisyear ='" . $_SESSION['tahun'] . "'  and status!=1 ";
-                            $rbaja = mysql_query($qbaja, $con);
-                            $res_total_baja = mysql_num_rows($rbaja);
+                            $rbaja = mysqli_query($con, $qbaja);
+                            $res_total_baja = mysqli_num_rows($rbaja);
                             $matured[0] = $res_total_baja;
                             return $matured;
                         }
@@ -4686,16 +4686,16 @@ echo number_format($per_bts15, 2);
                         function tanaman_tahun($tahuntanaman) {
                             $con = connect();
                             $q1 = "select sum(tanaman_baru) as jumlah from tanam_baru$tahuntanaman where lesen ='" . $_SESSION['lesen'] . "' ";
-                            $r1 = mysql_query($q1, $con);
-                            $row1 = mysql_fetch_array($r1);
+                            $r1 = mysqli_query($con, $q1);
+                            $row1 = mysqli_fetch_array($r1);
 
                             $q2 = "select sum(tanaman_semula) as jumlah from tanam_semula$tahuntanaman where lesen ='" . $_SESSION['lesen'] . "' ";
-                            $r2 = mysql_query($q2, $con);
-                            $row2 = mysql_fetch_array($r2);
+                            $r2 = mysqli_query($con, $q2);
+                            $row2 = mysqli_fetch_array($r2);
 
                             $q3 = "select sum(tanaman_tukar) as jumlah from tanam_tukar$tahuntanaman  where lesen ='" . $_SESSION['lesen'] . "' ";
-                            $r3 = mysql_query($q3, $con);
-                            $row3 = mysql_fetch_array($r3);
+                            $r3 = mysqli_query($con, $q3);
+                            $row3 = mysqli_fetch_array($r3);
 
 
                             $js[0] = $row1['jumlah'] + $row2['jumlah'] + $row3['jumlah'];
@@ -4726,12 +4726,12 @@ echo number_format($per_bts15, 2);
                             if ($pu[5] <= 0) {
                                 $con = connect();
                                 $q = "delete from kos_belum_matang where lesen ='" . $pu[0] . "' and pb_thisyear = '" . $pu[1] . "' and pb_tahun='" . $pu[2] . "' and pb_type='" . $pu[3] . "'";
-                                 mysql_query($q, $con);
+                                 mysqli_query($con, $q);
                             }
 
                             $qe = "select sum(total_a) as jumlah_a, sum(total_b) as jumlah_b from kos_belum_matang where lesen ='" . $pu[0] . "' and pb_thisyear = '" . $pu[1] . "' and pb_tahun='" . $pu[2] . "' and pb_type='" . $pu[3] . "'";
-                            $re = mysql_query($qe, $con);
-                            $rowe = mysql_fetch_array($re);
+                            $re = mysqli_query($con, $qe);
+                            $rowe = mysqli_fetch_array($re);
 
                             $t[0] = $rowe['lesen'];
                             $t[1] = $rowe['jumlah_a'] / $pu[4];
@@ -4877,7 +4877,7 @@ echo number_format($per_bts15, 2);
         $pembolehubah[5] = $dua[1];
         $ps1 = viewkos_semasa($pembolehubah);
         echo number_format($ps1[4], 2);
-        ?>          
+        ?>
                             </div></td>
                         <td><div align="right">
         <?php
@@ -4895,7 +4895,7 @@ echo number_format($per_bts15, 2);
                                         $pembolehubah[5] = $dua[3];
                                         $ps3 = viewkos_semasa($pembolehubah);
                                         echo number_format($ps3[4], 2);
-                                        ?>          
+                                        ?>
                             </div></td>
                         <td><div align="right">
         <?php
@@ -5040,9 +5040,9 @@ $ringkasan = new user('range_kos', $rk);
                 <td bgcolor="#CCFFCC" ><div align="right"><?php
 $con = connect();
 $qjaga = "select total_b_3, b_3a, b_3b, b_3c, b_3d from kos_matang_penjagaan where pb_thisyear ='" . $_SESSION['tahun'] . "' and lesen ='" . $_SESSION['lesen'] . "' ";
-$rjaga = mysql_query($qjaga, $con);
-$rowjaga = mysql_fetch_array($rjaga);
-$totaljaga = mysql_num_rows($rjaga);
+$rjaga = mysqli_query($con, $qjaga);
+$rowjaga = mysqli_fetch_array($rjaga);
+$totaljaga = mysqli_num_rows($rjaga);
 
 if ($rowjaga['total_b_3'] == 0) {
     $ftotal = $rowjaga['b_3a'] + $rowjaga['b_3b'] + $rowjaga['b_3c'] + $rowjaga['b_3d'];

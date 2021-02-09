@@ -3,8 +3,8 @@
 	$id = $_GET['lesen'];
 	$con = connect();
 	$q ="SELECT * FROM alamat_ekilang LEFT JOIN mill_info ON alamat_ekilang.lesen = mill_info.lesen WHERE alamat_ekilang.lesen = $id";
-	$r = mysql_query($q,$con);
-	$row=mysql_fetch_array($r);
+	$r = mysqli_query($con, $q);
+	$row=mysqli_fetch_array($r);
 	//print_r($row);
 ?>
 <link rel="stylesheet" type="text/css" href="../text_style.css" />

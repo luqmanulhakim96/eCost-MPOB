@@ -34,9 +34,9 @@ function pertama($tahun, $nama, $status, $negeri, $daerah, $type, $tahuntanam) {
     }
 
     //echo $sql."<br>";
-    $sql_result = mysql_query($sql, $con);
+    $sql_result = mysqli_query($con, $sql);
     $i = 0;
-    while ($row = mysql_fetch_array($sql_result)) {
+    while ($row = mysqli_fetch_array($sql_result)) {
         $test_data[] = $row["y"];
         $i = $i + 1;
     }
@@ -55,8 +55,8 @@ function pertama($tahun, $nama, $status, $negeri, $daerah, $type, $tahuntanam) {
     }
 
 
-    $ravg = mysql_query($qavg, $con);
-    $rrow = mysql_fetch_array($ravg);
+    $ravg = mysqli_query($con, $qavg);
+    $rrow = mysqli_fetch_array($ravg);
 
 
     $var[0] = median($test_data);
@@ -72,8 +72,8 @@ function cop($name, $type, $year, $state, $district, $tahun_r) {
             . "and STATE= '$state' "
             . "and DISTRICT= '$district' "
             . "and YEAR_REPORT='$tahun_r'";
-    $r_cop = mysql_query($q_cop, $con);
-    $row_cop = mysql_fetch_array($r_cop);
+    $r_cop = mysqli_query($con, $q_cop);
+    $row_cop = mysqli_fetch_array($r_cop);
 
     $var[0] = $row_cop['VALUE_MEDIAN'];
     $var[1] = $row_cop['VALUE_MEAN'];
@@ -165,13 +165,13 @@ if ($year == "" || $year == '1') {
 } else {
     $qs = " select * from q_kbm where tahun!='0'";
 }
-$rs = mysql_query($qs, $con);
+$rs = mysqli_query($con, $qs);
 
 $jl = 0;
 $js = 0;
 $ms = 0;
 
-while ($rows = mysql_fetch_array($rs)) {
+while ($rows = mysqli_fetch_array($rs)) {
     ?>
     <tr <?php if (++$gg % 2 == 0) { ?>class="alt"<?php } ?>>
         <td <?php if ($_COOKIE['tahun_report'] == 2010) { ?> ondblclick="javascript:openScript('add_cop.php?name=<?php echo $rows['name']; ?>&type=<?php echo "Penanaman Semula"; ?>&tahun=<?php echo $_COOKIE['tahun_report']; ?>&year=<?php echo $year; ?>&state=<?php echo $state; ?>', '700', '200')"<?php } ?>><?php echo $rows['name']; ?></td>
@@ -193,7 +193,7 @@ while ($rows = mysql_fetch_array($rs)) {
                 $total4 = pertama($satu, "Purchase of weedicides", '0', $state, $district, "Penanaman Semula", $year);
                 $total5 = pertama($satu, "Labour cost for weeding", '0', $state, $district, "Penanaman Semula", $year);
                 $total6 = pertama($satu, "Machinery use and maintenance", '0', $state, $district, "Penanaman Semula", $year);
-                ?>    
+                ?>
                 <td width="68"><div align="right"><?php
                         $totalAll1 = $total1[1] + $total2[1] + $total3[1];
                         echo number_format($totalAll1, 2);
@@ -206,7 +206,7 @@ while ($rows = mysql_fetch_array($rs)) {
                         $totalAll3 = $total4[0] + $total5[0] + $total6[0];
                         echo number_format($totalAll3, 2);
                         ?></div></td>
-                <td width="68"><div align="right"><?php 
+                <td width="68"><div align="right"><?php
 				$sumtotalall=0;
 				if($totalAll1>0){
 				$sumtotalall=($totalAll2 - $totalAll1) / $totalAll1;
@@ -240,7 +240,7 @@ while ($rows = mysql_fetch_array($rs)) {
                         $totalAll3 = $total11[0] + $total12[0] + $total13[0] + $total14[0];
                         echo number_format($totalAll3, 2);
                         ?></div></td>
-                <td width="68"><div align="right"><?php 
+                <td width="68"><div align="right"><?php
 				if($sumtotalall2>0){
 				$sumtotalall2=($totalAll2 - $totalAll1) / $totalAll1;
 				}
@@ -297,7 +297,7 @@ while ($rows = mysql_fetch_array($rs)) {
     <td bgcolor="#FF9966"><div align="right"><?php echo number_format($jl, 2); ?></div></td>
     <td bgcolor="#FF9966"><div align="right"><?php echo number_format($js, 2); ?></div></td>
     <td bgcolor="#FF9966"><div align="right"><?php echo number_format($ms, 2); ?></div></td>
-    <td bgcolor="#FF9966"><div align="right"><?php 
+    <td bgcolor="#FF9966"><div align="right"><?php
 	$all2=0;
 	if($jl>0){
 	$all2=($js - $jl) / $jl;
@@ -305,5 +305,3 @@ while ($rows = mysql_fetch_array($rs)) {
 	echo number_format(($all2) * 100, 2); ?></div></td>
 </tr>
 </table>
-
-

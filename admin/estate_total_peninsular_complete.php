@@ -1,4 +1,4 @@
-<?php 
+<?php
 if($negeri==''){
 include '../class/admin.estate.class.php';
 }
@@ -7,16 +7,16 @@ include('pages.php'); ?>
 
 <link rel="stylesheet" href="../js/colorbox/colorbox.css" type="text/css" />
 <script type="text/javascript" src="../js/colorbox/colorbox/jquery.colorbox.js"></script>
-        
+
 <script type="text/javascript">
 			$(document).ready(function(){
 				$(".boxcolor").colorbox({width:"60%", height:"100%", iframe:true});
 			});
 		</script>
-    
-    
+
+
       <style>
-      	
+
       .style1 {color: #FFFFFF}
       </style>
 <div align="center"><h2>List of Completed Response Survey in Peninsular</h2></div>
@@ -33,8 +33,8 @@ include('pages.php'); ?>
 	  </tr>
 	</thead>
 	<tbody>
-	<?php 
-	
+	<?php
+
 	if($negeri!=''){
 	$year = $_COOKIE['tahun_report'];
 	$all_peninsular = "SELECT esub.no_lesen_baru lesen, esub.nama_estet nama, login_estate.success access,esub.syarikat_induk syarikat_induk, esub.emel email FROM esub";
@@ -60,16 +60,16 @@ include('pages.php'); ?>
 	$all_peninsular .= " AND esub.negeri LIKE '%$negeri%'";
 	$all_peninsular .= " GROUP BY esub.no_lesen_baru";
 	$all_peninsular .= " ORDER BY login_estate.success DESC";
-	
-	//echo $all_peninsular; 
-	
-	$result_peninsular_complete = mysql_query($all_peninsular,$con);
-	$total_peninsular_complete 	= mysql_num_rows($result_peninsular_complete);
-	
+
+	//echo $all_peninsular;
+
+	$result_peninsular_complete = mysqli_query($con, $all_peninsular);
+	$total_peninsular_complete 	= mysqli_num_rows($result_peninsular_complete);
+
 	}
-	
-	
-	while($row=mysql_fetch_array($result_peninsular_complete)) { ?>
+
+
+	while($row=mysqli_fetch_array($result_peninsular_complete)) { ?>
 		<tr valign="top" <?php if(++$list%2==0){?>class="alt"<?php } ?>>
 			<td><?php echo $list++; ?></td>
 			<td><a href="estate_details.php?id=<?php echo $row['lesen'];?>&year=<?php echo $_COOKIE['tahun_report'];?>" class="boxcolor"><?php echo $row['nama'];?></a></td>
@@ -79,17 +79,17 @@ include('pages.php'); ?>
 			<td><?php echo $row['access'];?></td>
 		    <td><div align="center">
               <?php  $qa ="select success,password,lesen from login_estate where lesen ='".$row['lesen']."'";
-	$ra = mysql_query($qa,$con);
-	$rowa = mysql_fetch_array($ra);?>
+	$ra = mysqli_query($con, $qa);
+	$rowa = mysqli_fetch_array($ra);?>
             <a href="auto_login.php?username=<?php echo $rowa['lesen'];?>&amp;password=<?php echo $rowa['password'];?>&amp;tahun=<?php echo $_COOKIE['tahun_report'];?>" target="_blank" title="View Survey"><img src="../estate/images/001_43.gif" alt="View Survey" width="20" height="20" border="0" title="View Survey" /></a>
-            
-            
+
+
                <a href="auto_login.php?username=<?php echo $rowa['lesen'];?>&amp;password=<?php echo $rowa['password'];?>&amp;tahun=<?php echo $_COOKIE['tahun_report'];?>&view=true" target="_blank" > <img src="../images/001_36.png" width="20" height="20" border="0" title="View Only" /></a>
-               
-               
+
+
             </div></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>
 <br />

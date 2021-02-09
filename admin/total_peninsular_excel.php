@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../Connections/connection.class.php');
 include '../class/test.class.php';
 
@@ -32,7 +32,7 @@ if(isset($negeri)){
     </tr>
   </thead>
   <tbody>
-    <?php while($row = mysql_fetch_array($result_peninsular)) { ?>
+    <?php while($row = mysqli_fetch_array($result_peninsular)) { ?>
     <tr valign="top">
       <td><?php echo $list++; ?></td>
       <td><?php echo $row['nama'];?></td>

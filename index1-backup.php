@@ -276,7 +276,7 @@ if ($_COOKIE["lang"] == "mal") {
 // html for error
     $error = "<div class=\"error\" id=\"error\"><strong>Alert:</strong> It appears that you are using an out dated web browser Internet Explorer 6.  While you may still visit this website we encourage you to upgrade your web browser so you can enjoy all the rich features this website offers as well as other websites. Follow this link to <a href=\"http://www.microsoft.com/windows/downloads/ie/getitnow.mspx\"><strong>Upgrade your Internet Explorer</strong></a><br /></div>";
 
-// if IE6 set the $alert 
+// if IE6 set the $alert
     if ($browser == $ie6) {
         $alert = TRUE;
     }
@@ -364,22 +364,22 @@ if ($_COOKIE["lang"] == "mal") {
             <?php
             $con = connect();
             $query = "select * from setting where st_name ='Annoucement' and st_value ='1'";
-            $res = mysql_query($query, $con);
-            $row = mysql_fetch_array($res);
-            $res_total = mysql_num_rows($res);
+            $res = mysqli_query($con, $query);
+            $row = mysqli_fetch_array($res);
+            $res_total = mysqli_num_rows($res);
             if ($res_total == 0) {
 
                 $qupdate = "update pengumuman set status=0";
-                mysql_query($qupdate, $con);
+                mysqli_query($con, $qupdate);
             } else if ($res_total > 0) {
 
                 $qupdate = "update pengumuman set status=1";
-                mysql_query($qupdate, $con);
+                mysqli_query($con, $qupdate);
 
                 $qumum = "select * from  pengumuman where status=1";
-                $rumum = mysql_query($qumum, $con);
-                $rowumum = mysql_fetch_array($rumum);
-                $totalumum = mysql_num_rows($rumum);
+                $rumum = mysqli_query($con, $qumum);
+                $rowumum = mysqli_fetch_array($rumum);
+                $totalumum = mysqli_num_rows($rumum);
                 if ($totalumum > 0) {
                     ?>
                     <tr>

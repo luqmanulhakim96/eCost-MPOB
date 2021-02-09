@@ -11,7 +11,7 @@ function median($numbers=array())
 {
 	if (!is_array($numbers))
 		$numbers = func_get_args();
-	
+
 	rsort($numbers);
 	$mid = (count($numbers) / 2);
 	return ($mid % 2 != 0) ? $numbers{$mid-1} : (($numbers{$mid-1}) + $numbers{$mid}) / 2;
@@ -19,7 +19,7 @@ function median($numbers=array())
 
 function pertama($tahun, $nama, $status,$negeri,$daerah ){
 $con=connect();
-		
+
 		$Company = array('publicagencies' => array("Agensi", "Public agencies"),
 						 'cooperatives' => array("Koperasi", "Co-operatives"),
 						 'publiclimitedcompany' => array("Syarikat Berhad", "Public limited company"),
@@ -35,24 +35,24 @@ $con=connect();
 			if($negeri!="" & $negeri!="pm")
 			{
 				$qavg.=" and negeri = '$negeri'";
-			} 
+			}
 			if($negeri!="" && $daerah!="")
 			{
 				$qavg.=" and daerah = '$daerah'";
-			} 
+			}
 			if($negeri=="pm")
 			{
 				$qavg.=" and negeri not like 'SARAWAK' and negeri not like 'SABAH'";
 			}
 		}
-		//echo $qavg; 
-		
-		$ravg = mysql_query($qavg,$con);
-		$rrow = mysql_fetch_array($ravg);
-		
-		
-	
-			
+		//echo $qavg;
+
+		$ravg = mysqli_query($con, $qavg);
+		$rrow = mysqli_fetch_array($ravg);
+
+
+
+
 		$qavg2 = "SELECT avg(y) as purata FROM graf_km_tan where sessionid='$nama' and tahun ='$tahun' and (status='$status' or status='9')  ";
 		if ($negeri == "publicagencies" || $negeri == "cooperatives" || $negeri == "publiclimitedcompany" ||
 			$negeri == "partnership" || $negeri == "solepropriertorship" || $negeri == "privatelimitedcompany") {
@@ -61,28 +61,28 @@ $con=connect();
 			if($negeri!="" & $negeri!="pm")
 			{
 				$qavg2.=" and negeri = '$negeri'";
-			} 
+			}
 			if($negeri!="" && $daerah!="")
 			{
 				$qavg2.=" and daerah = '$daerah'";
-			} 
+			}
 			if($negeri=="pm")
 			{
 				$qavg2.=" and negeri not like 'SARAWAK' and negeri not like 'SABAH'";
 			}
 		}
 	//echo $qavg2;
-		
-		$ravg2 = mysql_query($qavg2,$con);
-		$rrow2= mysql_fetch_array($ravg2);
-		
-		
-			$var[0] = $rrow['purata'];	
-			$var[1] = $rrow2['purata'];	
-				
-				return $var; 
-				
-		}	
+
+		$ravg2 = mysqli_query($con, $qavg2);
+		$rrow2= mysqli_fetch_array($ravg2);
+
+
+			$var[0] = $rrow['purata'];
+			$var[1] = $rrow2['purata'];
+
+				return $var;
+
+		}
 
 
 	//-------------------cop --------------
@@ -90,14 +90,14 @@ $con=connect();
 				$con =connect();
 				$q_cop = "select  * from cop where
 				NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT='$tahun_r'";
-				$r_cop = mysql_query($q_cop, $con);
-				$row_cop = mysql_fetch_array($r_cop);
-				
+				$r_cop = mysqli_query($con, $q_cop);
+				$row_cop = mysqli_fetch_array($r_cop);
+
 				$var[1] = $row_cop['VALUE_MEDIAN'];
 				$var[0] = $row_cop['VALUE_MEAN'];
 				return $var;
 		}
-		
+
 
 
 
@@ -135,12 +135,12 @@ function openScript(url, width, height) {
 
 
 <div>
-<?php 
+<?php
 if ($state != "" && $state != "publicagencies" && $state != "cooperatives" && $state != "publiclimitedcompany" && $state != "partnership" && $state != "solepropriertorship" && $state != "privatelimitedcompany") {
 $qstate ="select * from negeri where id like '$state'";
-	$rstate = mysql_query($qstate,$con);
-	$rowstate = mysql_fetch_array($rstate);
-	$totalstate = mysql_num_rows($rstate);
+	$rstate = mysqli_query($con, $qstate);
+	$rowstate = mysqli_fetch_array($rstate);
+	$totalstate = mysqli_num_rows($rstate);
 	if($state=="pm"){$state="pm";}
 	else{$state = $rowstate['nama'];
 	}
@@ -195,39 +195,39 @@ $qstate ="select * from negeri where id like '$state'";
     <td width="84" bgcolor="#8A1602"><div align="center"><span class="style5"><?php echo $_COOKIE['tahun_report']-1;?></span></div></td>
     <td width="69" bgcolor="#8A1602"><div align="center"><span class="style5">% Change</span></div></td>
   </tr>
-   <?php 
+   <?php
   $satu = $_COOKIE['tahun_report']-0;
   $dua = $_COOKIE['tahun_report']-1;
-  
-  
+
+
   ?>
  <?php
   $qs="select * from q_km where type='$sub'";
-  $rs = mysql_query($qs,$con);
-  
+  $rs = mysqli_query($con, $qs);
+
   $jl=0;
   $js=0;
   $ml=0;
   $ms=0;
-  
-  $perubahan =0; 
+
+  $perubahan =0;
   $perubahan_baru=0;
-  
-   while($rows=mysql_fetch_array($rs)){
-  ?> 
+
+   while($rows=mysqli_fetch_array($rs)){
+  ?>
   <tr height="17" <?php if(++$gg%2==0){?>class="alt"<?php } ?>>
   	<td <?php if($_COOKIE['tahun_report']==2010){?> ondblclick="javascript:openScript('add_cop_upk.php?name=<?php echo $rows['name'];?>&type=<?php echo "Transportation"; ?>&tahun=<?php echo $_COOKIE['tahun_report'];?>&year=<?php echo $year;?>&state=<?php echo $state; ?>','700','200')"<?php } ?>><?php echo $rows['name'];?></td>
     <?php
 	if($year==""){
 		$year=1;
 	}
-	
+
 	if($rows['isChild'] == 'N' && strlen($rows['sub_type']) > 0){
 		if($rows['sub_type'] == "internal"){
 			$total1 = pertama($satu, "i. Loading of FFB (Platform)", '0', $state, $district);
 			$total2 = pertama($satu, "i. Loading of FFB (Ramp)", '0', $state, $district);
 			$total3 = pertama($satu, "ii. Ramp upkeep", '0', $state, $district);
-			
+
 			$total4 = pertama($dua, "a) Platform", '0', $state, $district);
 			$total5 = pertama($dua, "b) Ramp", '0', $state, $district);
 			$total6 = pertama($dua, "ii. Ramp upkeep", '0', $state, $district);
@@ -235,7 +235,7 @@ $qstate ="select * from negeri where id like '$state'";
 			$total1 = pertama($satu, "i. Meanline transportation cost from platform to loading centre or mill", '0', $state, $district);
 			$total2 = pertama($satu, "ii. Upkeep of tractor and trailer, lorry, etc", '0', $state, $district);
 			$total3 = pertama($satu, "iii. River transport", '0', $state, $district);
-			
+
 			$total4 = pertama($dua, "i. Meanline transportation cost from platform to loading centre or mill", '0', $state, $district);
 			$total5 = pertama($dua, "ii. Upkeep of tractor and trailer, lorry, etc", '0', $state, $district);
 			$total6 = pertama($dua, "iii. River transport", '0', $state, $district);
@@ -243,16 +243,16 @@ $qstate ="select * from negeri where id like '$state'";
 	?>
     <td width="68"><div align="right"><?php $totalAll1 = $total4[0]+$total5[0]+$total6[0]; echo number_format($totalAll1,2);?></div></td>
     <td width="68"><div align="right"><?php $totalAll2 = $total1[0]+$total2[0]+$total3[0]; echo number_format($totalAll2,2);?></div></td>
-    <td width="68"><div align="right"><?php 
+    <td width="68"><div align="right"><?php
 	$sumtotalall1=0;
 	if($totalAll1>0){
-	$sumtotalall1=($totalAll2 - $totalAll1)/$totalAll1; 
+	$sumtotalall1=($totalAll2 - $totalAll1)/$totalAll1;
 	}
 	echo number_format(($sumtotalall1)*100,2)?></div></td>
     <td width="68"><div align="right"><?php $totalAll3 = $total4[1]+$total5[1]+$total6[1]; echo number_format($totalAll3,2);?></div></td>
     <td width="68"><div align="right"><?php $totalAll4 = $total1[1]+$total2[1]+$total3[1]; echo number_format($totalAll4,2);?></div></td>
-    <td width="68"><div align="right"><?php 
-	
+    <td width="68"><div align="right"><?php
+
 	$sumtotalall3=0;
 	if($totalAll3>0){
 	$sumtotalall3=($totalAll4 - $totalAll3)/$totalAll3;
@@ -266,14 +266,14 @@ $qstate ="select * from negeri where id like '$state'";
 		if($_COOKIE['tahun_report']==2010){
 			$a1 = cop ( $rows['name'],  "Transportation", $year, $state, $district, $_COOKIE['tahun_report']);
 		}else{
-			$a1 = pertama ($dua, $rows['name'], '0',$state, $district); 
+			$a1 = pertama ($dua, $rows['name'], '0',$state, $district);
 		}
-	
+
 		$b1 = pertama ($satu, $rows['name'], '0',$state, $district);
 	?>
     <td width="68"><div align="right">
     <?php
-	$jl = $jl+$a1[0]; 
+	$jl = $jl+$a1[0];
 	echo number_format($a1[0],2);
 	?>
     </div></td>
@@ -313,21 +313,21 @@ $qstate ="select * from negeri where id like '$state'";
 	?>
   </tr>
   <?php } ?>
-  
+
   <tr height="17" class="kaki">
     <td width="258" height="17" ><strong>Total</strong></td>
     <td align="right" ><div align="right"><?php echo number_format($jl,2);?></div></td>
     <td align="right" ><div align="right"><?php echo number_format($js,2);?></div></td>
-    <td align="right" ><div align="right"><?php 
-	$sumtotaljl=0; 
+    <td align="right" ><div align="right"><?php
+	$sumtotaljl=0;
 	if($jl>0){
 	$sumtotaljl=($js-$jl)/$jl;
 	}
 	echo number_format(($sumtotaljl)*100,2);?></div></td>
     <td align="right" ><div align="right"><?php echo number_format($ml,2);?></div></td>
     <td align="right" ><div align="right"><?php echo number_format($ms,2);?></div></td>
-    <td align="right" ><div align="right"><?php 
-	$sumtotalml=0; 
+    <td align="right" ><div align="right"><?php
+	$sumtotalml=0;
 	if($ml>0){
 	$sumtotalml=($ms-$ml)/$ml;
 	}
@@ -339,15 +339,15 @@ $qstate ="select * from negeri where id like '$state'";
 <table width="80%" border="0" align="center">
   <tr>
     <td>
-    
+
    <!-- <span id="mi_all"></span>-->
-    
+
    <!-- <span id="normal"></span>--></td>
   </tr>
 </table>
 <script type="text/javascript" src="amcolumn/swfobject.js"></script>
 <script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "380", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mc_all_setting.xml"));
@@ -358,7 +358,7 @@ $qstate ="select * from negeri where id like '$state'";
 	</script>
 <script type="text/javascript" src="../amline/swfobject.js"></script>
 <script type="text/javascript">
-// <![CDATA[		
+// <![CDATA[
 		var so1 = new SWFObject("../amline/amline.swf", "amline", "520", "380", "8", "#FFFFFF");
 		so1.addVariable("path", "../amline/");
 		so1.addVariable("settings_file", encodeURIComponent("amline_settings.xml"));

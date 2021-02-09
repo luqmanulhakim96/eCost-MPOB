@@ -14,7 +14,7 @@ extract($_REQUEST);
 <style>
 body {
 	font-family:Tahoma ;
-	font-size: 12px; 
+	font-size: 12px;
 
 }td,th {
 	font-size: 12px;
@@ -27,13 +27,13 @@ body {
 
 			$type = explode("_", $sub);
 			$qt1="select * from analysis where type='".$type[1]."' and year = '$tahun'";
-			$rt1=mysql_query($qt1,$con);
-			$total = mysql_num_rows($rt1);
-			
+			$rt1=mysqli_query($con, $qt1);
+			$total = mysqli_num_rows($rt1);
+
 			if($total ==0)
 			{
 					$qa="INSERT INTO `analysis` (`type` ,`year` ,`modifiedby` ,`modified`)VALUES ('".$type[1]."', '$tahun', '".$_SESSION['email']."',NOW() ";
-					$ra=mysql_query($qa,$con);
+					$ra=mysqli_query($con, $qa);
 			}
 			if($total>0)
 			{
@@ -41,37 +41,37 @@ body {
 						set modifiedby = '". $_SESSION['email']."',
 						modified=NOW()
 						where type='".$type[1]."' and year = '$tahun'";
-					$ra=mysql_query($qa,$con);
+					$ra=mysqli_query($con, $qa);
 			}
 
 
 			$qdeletedata ="delete from analysis_mill_kos_lain where pb_thisyear = '$tahun' ";
-			$rdeletedata = mysql_query($qdeletedata,$con);
-			
+			$rdeletedata = mysqli_query($con, $qdeletedata);
+
 			$qdeletedata ="delete from analysis_mill_pemprosesan where pb_thisyear = '$tahun' ";
-			$rdeletedata = mysql_query($qdeletedata,$con);
+			$rdeletedata = mysqli_query($con, $qdeletedata);
 
 function ekilang($lesen, $tahun){
 		$con=connect();
  		$q="select NAMA_KILANG, NEGERI, SYARIKAT_INDUK, SUM(FFB_PROSES) as FFB_PROSES from ekilang where NO_LESEN = '$lesen' AND tahun='$tahun' group by NO_LESEN limit 1 ";
-  		$r=mysql_query($q,$con);
-		$row=mysql_fetch_array($r);
-		
+  		$r=mysqli_query($con, $q);
+		$row=mysqli_fetch_array($r);
+
 		$sub[0]=$row['NAMA_KILANG'];
 		$sub[1]=$row['NEGERI'];
 		$sub[2]=$row['SYARIKAT_INDUK'];
 		$sub[3]=$row['FFB_PROSES'];
-	
-		return $sub;	
+
+		return $sub;
 	}
-	
+
 //--------------------------
 function mill_pemprosesan($lesen,$tahun,$ffb, $negeri, $daerah){
 		$con=connect();
  		$q="select * from mill_pemprosesan where lesen ='$lesen' and tahun='$tahun' ";
-  		$r=mysql_query($q,$con);
-		$row=mysql_fetch_array($r);
-		
+  		$r=mysqli_query($con, $q);
+		$row=mysqli_fetch_array($r);
+
 		$sub[0]=round($row['kp_1']/$ffb,2);add_mill_pemprosesan ($lesen,$tahun, $negeri, $daerah, $sub[0], "Water, chemical and power");
 		$sub[1]=round($row['kp_2']/$ffb,2);add_mill_pemprosesan ($lesen,$tahun, $negeri, $daerah, $sub[1], "Fuel and Lubricant");
 		$sub[2]=round($row['kp_3']/$ffb,2);add_mill_pemprosesan ($lesen,$tahun, $negeri, $daerah, $sub[2], "Mill Worker");
@@ -88,61 +88,61 @@ function mill_pemprosesan($lesen,$tahun,$ffb, $negeri, $daerah){
 		$sub[13]=round($row['kp_14']/$ffb,2);add_mill_pemprosesan ($lesen,$tahun, $negeri, $daerah, $sub[13], "Depreciation of palm oil mill");
 		$sub[14]=round($row['kp_15']/$ffb,2);add_mill_pemprosesan ($lesen,$tahun, $negeri, $daerah, $sub[14], "Headquaters management charges");
 		$sub[15]=round($row['total_kp']/$ffb,2);//add_mill_pemprosesan ($lesen,$tahun, $negeri, $daerah, $sub[15], "Total Pemprosesan");
-		
-		return $sub;	
+
+		return $sub;
 	}
-	
+
 //-----------------------------------------------------
 function add_mill_pemprosesan ($lesen,$tahun, $negeri,$daerah, $nilai, $km_nama){
 							$con=connect();
-							
-							
+
+
 							$q="INSERT INTO analysis_mill_pemprosesan (pb_thisyear ,lesen ,bkm_nama ,nilai ,negeri ,daerah)
 							VALUES ('$tahun', '$lesen', '$km_nama', '$nilai', '$negeri', '$daerah');";
-							$r = mysql_query($q,$con);
-						
+							$r = mysqli_query($con, $q);
+
 							$qdelete ="delete from analysis_mill_pemprosesan where nilai=0";
-							$rdelete = mysql_query($qdelete,$con);
+							$rdelete = mysqli_query($con, $qdelete);
 }
-		
-	
+
+
 //------------------------------------
 function mill_koslain($lesen,$tahun,$ffb,$negeri,$daerah){
 		$con=connect();
  		$q="select * from mill_kos_lain where lesen ='$lesen' and tahun='$tahun' ";
-  		$r=mysql_query($q,$con);
-		$row=mysql_fetch_array($r);
-		
+  		$r=mysqli_query($con, $q);
+		$row=mysqli_fetch_array($r);
+
 		$sub[0]=round($row['kl_1']/$ffb,2);add_mill_kos_lain($lesen,$tahun, $negeri, $daerah, $sub[0], "Forwarding Expenses");
 		$sub[1]=round($row['kl_2']/$ffb,2);add_mill_kos_lain($lesen,$tahun, $negeri, $daerah, $sub[1], "Sales tax (for mills in Sabah and Sarawak)");
 		$sub[2]=round($row['kl_3']/$ffb,2);add_mill_kos_lain($lesen,$tahun, $negeri, $daerah, $sub[2], "Selling expenses (including commission)");
 		$sub[3]=round($row['kl_4']/$ffb,2);add_mill_kos_lain($lesen,$tahun, $negeri, $daerah, $sub[3], "Cess MPOB");
 		$sub[4]=round($row['kl_5']/$ffb,2);add_mill_kos_lain($lesen,$tahun, $negeri, $daerah, $sub[4], "Other Expenditure");
 		$sub[5]=round($row['total_kl']/$ffb,2);//add_mill_kos_lain($lesen,$tahun, $negeri, $daerah, $sub[5], "Total Kos Lain");
-		
-		return $sub;	
+
+		return $sub;
 	}
-//------------------------------------------------- 
+//-------------------------------------------------
 function add_mill_kos_lain ($lesen,$tahun, $negeri,$daerah, $nilai, $km_nama){
 							$con=connect();
-							
-							
+
+
 							$q="INSERT INTO analysis_mill_kos_lain (pb_thisyear ,lesen ,bkm_nama ,nilai ,negeri ,daerah)
 							VALUES ('$tahun', '$lesen', '$km_nama', '$nilai', '$negeri', '$daerah');";
-							$r = mysql_query($q,$con);
-						
+							$r = mysqli_query($con, $q);
+
 							$qdelete ="delete from analysis_mill_kos_lain where nilai=0";
-							$rdelete = mysql_query($qdelete,$con);
+							$rdelete = mysqli_query($con, $qdelete);
 }
-//-------------------------------------------------- 
-	
+//--------------------------------------------------
+
 
 function mill_buruh($lesen,$tahun){
 		$con=connect();
  		$q="select * from mill_buruh where lesen ='$lesen' and tahun='$tahun' ";
-  		$r=mysql_query($q,$con);
-		$row=mysql_fetch_array($r);
-		
+  		$r=mysqli_query($con, $q);
+		$row=mysqli_fetch_array($r);
+
 		$sub[0]=$row['mb_1'];
 		$sub[1]=$row['mb_2'];
 		$sub[2]=$row['mb_3'];
@@ -162,9 +162,9 @@ function mill_buruh($lesen,$tahun){
 		$sub[16]=$row['mb_5c'];
 		$sub[17]=$row['total_mb_c'];
 
-		return $sub;	
+		return $sub;
 	}
-//-------------------------------------------------	
+//-------------------------------------------------
 
 ?>
 
@@ -218,7 +218,7 @@ function mill_buruh($lesen,$tahun){
     <th width="3%">mb_4c</th>
     <th width="3%">mb_5c</th>
     <th width="3%">total_mb_c</th>
-    
+
   </tr>
   <?php
   $con=connect();
@@ -234,13 +234,13 @@ function mill_buruh($lesen,$tahun){
 	  ekilang.tahun = '$tahunsebelum'
 	 AND (mill_kos_lain.total_kl > 0 or mill_pemprosesan.total_kp > 0)
 	 GROUP BY ekilang.no_lesen";
-		
-	 
-  $r=mysql_query($q,$con);
-  $total_data_proses = mysql_num_rows($r);
+
+
+  $r=mysqli_query($con, $q);
+  $total_data_proses = mysqli_num_rows($r);
   $bil=0;
-  while($row=mysql_fetch_array($r)){
-  
+  while($row=mysqli_fetch_array($r)){
+
   ?>
   <tr>
     <td><?php echo ++$bil; ?>. </td>
@@ -307,5 +307,5 @@ function mill_buruh($lesen,$tahun){
     <td>MB</td>
     <td>MILL BURUH </td>
   </tr>
-  
+
 </table>

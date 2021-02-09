@@ -10,13 +10,13 @@ $tableesub2 = "esub_" . $tahunsub2;
 $qacreate = "SELECT count(*) as total
 FROM information_schema.TABLES
 WHERE  (TABLE_NAME = '$tableesub2');";
-$rqa = mysql_query($qacreate, $con);
-$rowsub = mysql_fetch_array($rqa);
+$rqa = mysqli_query($con, $qacreate);
+$rowsub = mysqli_fetch_array($rqa);
 //echo "tbale".$rowsub['total'];
 $warning = "";
 if ($rowsub['total'] === 0) {
 }
-echo $warning; 
+echo $warning;
 ?>
 <form name="import" method="post" enctype="multipart/form-data"><br />
     <h2>Duplicate Data File eSub for new year</h2>
@@ -26,7 +26,7 @@ echo $warning;
         <br />  1. Select year below then click duplicate.<br />
     </div>
     <br />
-    <table width="80%" align="center" >        
+    <table width="80%" align="center" >
         <tr>
             <td><strong>Select Year</strong></td>
             <td><strong>:</strong></td>
@@ -38,10 +38,10 @@ echo $warning;
             <td width="13%"><strong> </strong></td>
             <td width="1%"><strong>:</strong></td>
             <td width="86%">
-                <?php  
-                //echo $rowsub['total']; 
+                <?php
+                //echo $rowsub['total'];
                 if($rowsub['total']==0){
-                       
+
                     ?>
                 <input type="submit" name="submit" value="Duplicate" onclick="return confirm('Are you sure to proceed?');" />
                 <input type="reset" name="reset" id="reset" value="Reset" onclick="location.href = 'home.php?id=config&sub=admin_upload_esub_new_year'" />
@@ -62,7 +62,7 @@ if (isset($_POST["submit"])) {
     $tableesub = "esub_" . $tahun_esub;
 
     $qacreate = "DROP TABLE IF EXISTS $tableesub ; ";
-    $rqa = mysql_query($qacreate, $con);
+    $rqa = mysqli_query($con, $qacreate);
     // echo $qacreate."<br>";
 
     $qacreate = "
@@ -93,12 +93,12 @@ CREATE TABLE $tableesub (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;";
     //echo $qacreate."<br>";
 
-    $rqa = mysql_query($qacreate, $con);
+    $rqa = mysqli_query($con, $qacreate);
 
 
     $qa = "INSERT INTO $tableesub "
             . " SELECT * FROM esub ";
-    $rqa = mysql_query($qa, $con); 
+    $rqa = mysqli_query($con, $qa);
 
 
     if ($rqa) {
@@ -109,4 +109,3 @@ CREATE TABLE $tableesub (
     echo "<br>";
 }
 ?>
-    

@@ -11,8 +11,8 @@ if ($_SESSION['type']<>"admin")
 
         $con = connect();
         $query_report = "select * from taxonomy_all where id = '$reportid'";
-        $res_report = mysql_query($query_report,$con);
-        $row_report = mysql_fetch_array($res_report);
+        $res_report = mysqli_query($con, $query_report);
+        $row_report = mysqli_fetch_array($res_report);
 
 ?>
 <!-- Load jQuery -->
@@ -58,9 +58,9 @@ if ($_SESSION['type']<>"admin")
             }
         });
     });
-    
+
     function pergi(x){
-        
+
         <!--window.open('generate_book.php?reportid=<?php echo $reportid; ?>&type='+x);-->
             if(x=="view")
             {
@@ -71,7 +71,7 @@ if ($_SESSION['type']<>"admin")
                 window.open('html_to_doc_example.php?reportid=<?php echo $reportid; ?>&name=<?php echo $row_report['name'];?>&type='+x);
             }
     }
-    
+
 </script>
 <!-- /TinyMCE -->
 
@@ -105,8 +105,8 @@ if ($_SESSION['type']<>"admin")
 if(isset($simpan)){
         $con = connect();
         $query = "update taxonomy_all set contents = '$elm1' where id='$reportid'";
-        $result = mysql_query($query,$con);
-echo "<script>window.location.href='home.php?id=config&sub=generate&reportid=$reportid';</script>";     
+        $result = mysqli_query($con, $query);
+echo "<script>window.location.href='home.php?id=config&sub=generate&reportid=$reportid';</script>";
 }
 
 ?>

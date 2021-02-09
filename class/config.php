@@ -1,6 +1,6 @@
 <?php
 $host = "localhost";
 $user = "root";
-$pass = "mysqlecop";
-$db_n = "ecost_db";
+$pass = "";
+$db_n = "mpob";
 ?>

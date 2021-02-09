@@ -5,10 +5,10 @@ ini_set('memory_limit', '2048M');
 date_default_timezone_set('Asia/Kuala_Lumpur');
 require_once ("xlsxwriter.class.php");
 require_once ("../Connections/connection.class.php");
-$Conn = connect();
+$con = connect();
 
 $writer = new XLSXWriter();
-	
+
 if (get_magic_quotes_gpc()) {
 	$process = array(&$_GET, &$_POST, &$_COOKIE, &$_REQUEST);
 	while (list($key, $val) = each($process)) {
@@ -37,7 +37,7 @@ $writer->setCompany('ASM');
 $writer->setKeywords($keywords);
 $writer->setDescription('List of Estate with Soil Type');
 $writer->setTempDir(sys_get_temp_dir());
-	
+
 $colStyle = array('string', 'string', 'string', 'string', 'string', 'string',
 				  'string', 'string', 'string', 'string', 'string', 'string',
 				  'string', 'string', 'string', 'string', 'string', 'string',
@@ -68,13 +68,13 @@ $Header = array("No", "Estate Name", "Company Name", "New License No.", "E-mail"
 $writer->writeSheetRow($sheet, $Header, $formatHeader);
 
 $aQuery = "SELECT * FROM estate_info WHERE $field > 0";
-$aRows = mysql_query($aQuery, $Conn);
+$aRows = mysqli_query($con, $aQuery);
 
 $sNo = 1;
-while ($aRow = mysql_fetch_array($aRows)) {
+while ($aRow = mysqli_fetch_array($aRows)) {
 	$bQuery = "SELECT * FROM $table WHERE no_lesen_baru ='".$aRow['lesen']."'";
-	$bRows = mysql_query($bQuery, $Conn);
-	$bRow = mysql_fetch_array($bRows);
+	$bRows = mysqli_query($con, $bQuery);
+	$bRow = mysqli_fetch_array($bRows);
 	$Data = array($sNo, $bRow['Nama_Estet'], $bRow['Syarikat_Induk'], $bRow['No_Lesen_Baru'], $bRow['Emel'], $bRow['Alamat1'],
 				  $bRow['Poskod'], $bRow['Bandar'], $bRow['Negeri'], $bRow['No_Telepon'], $bRow['No_Fax'], $aRow['lanar'],
 				  $aRow['pedalaman'], $aRow['gambutcetek'], $aRow['gambutdalam'], $aRow['laterit'], $aRow['asidsulfat'], $aRow['tanahpasir'],
@@ -82,7 +82,7 @@ while ($aRow = mysql_fetch_array($aRows)) {
 	$writer->writeSheetRow($sheet, $Data, $formatData);
 	$sNo++;
 }
-mysql_close($Conn);
+mysqli_close($con);
 $Filename = XLSXWriter::sanitize_filename("List of Estate with Soil Type.xlsx");
 $writer->writeToFile($Filename);
 header('Content-disposition: attachment; filename="'.$Filename.'"');

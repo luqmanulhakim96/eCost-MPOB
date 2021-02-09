@@ -10,7 +10,7 @@ $buruh2 = new user('buruh',$variable);
 if($buruh2->total==0)
 {
 	$con =connect();
-	$q="INSERT INTO mill_buruh 
+	$q="INSERT INTO mill_buruh
 VALUES (
 '".$_SESSION['lesen']."', '".$_SESSION['tahun']."', '', '', '', '', '', ''
 ,'','','','','','',
@@ -18,7 +18,7 @@ VALUES (
 ,'0'
 )
 ";
-	$r=mysql_query($q,$con);
+	$r=mysqli_query($con, $q);
 }
 
 $pu[0] = $_SESSION['lesen'];
@@ -78,8 +78,8 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 					jumlah_all = Number(jumlah_all)+Number(jumlah);
 					}
 					document.getElementById("total_mb").value=jumlah_all;
-					
-					
+
+
 					jumlah_allb =0;
 					for(b=1; b<=5; b++ ){
 					jumlahb= document.getElementById("mb_"+b+"b").value;
@@ -87,8 +87,8 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 					jumlah_allb = Number(jumlah_allb)+Number(jumlahb);
 					}
 					document.getElementById("total_mb_b").value=jumlah_allb;
-					
-					
+
+
 					jumlah_allc =0;
 					for(c=1; c<=5; c++ ){
 					jumlahc = document.getElementById("mb_"+c+"c").value;
@@ -96,8 +96,8 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 					jumlah_allc = Number(jumlah_allc)+Number(jumlahc);
 					}
 					document.getElementById("total_mb_c").value=jumlah_allc;
-			
-	
+
+
 	/*total_asal=document.getElementById(field_total).value;
 	total_asal = total_asal.replace(",","");
 	if(total_asal >0){
@@ -109,9 +109,9 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 	nilai_baru=bulatkan(nilai_baru);
 
 	document.getElementById(field_total).value=new_value;*/
-			
+
 	//alert(nilai_baru);alert(nilai_asal);alert(new_value);	alert(total_asal);
-	
+
 }
 
 </script>
@@ -153,9 +153,9 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
           <tr>
             <td height="37" align="left" bgcolor="#99FF99">1. <?=setstring ( 'mal', 'Penyelia', 'en', 'Supervisor'); ?></td>
             <td align="center" bgcolor="#99FF99"><input name="mb_1" type="text" class="field_active" id="mb_1" onchange="kiraan_baru(this.value, '<?php echo $buruh->mb_1;?>','total_mb')" value="<?php echo $buruh->mb_1; ?>" size="10" readonly="true" autocomplete="off"  />
-            
+
                <a href="warga.php?type=FOREIGN&amp;field=mb_1" class='warga' ><img id="no-print" src="../images/add_48.png" alt="sss" width="16" height="16" border="0" /></a>
-            
+
             </td>
             <td align="center" bgcolor="#99FF99"><input name="mb_1b" type="text" class="field_active" id="mb_1b" onchange="kiraan_baru(this.value, '<?php echo $buruh->mb_1b;?>','total_mb_b')" value="<?php echo $buruh->mb_1b; ?>" size="10" readonly="true" autocomplete="off"  />
             <a href="warga.php?type=LOCAL&amp;field=mb_1b" class='warga' ><img id="no-print" src="../images/add_48.png" alt="sss" width="16" height="16" border="0" /></a></td>
@@ -195,14 +195,14 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
           </tr>
           <tr bgcolor="#FFFFCC">
             <td height="36" align="left" bgcolor="#FFFFCC"><span ><b><?=setstring ( 'mal', 'Jumlah keseluruhan', 'en', 'Total'); ?></b> </span></td>
-            <td align="center"><input name="total_mb" type="text" class="field_total" id="total_mb" value="<?php 
+            <td align="center"><input name="total_mb" type="text" class="field_total" id="total_mb" value="<?php
 			$total_mb = $buruh->mb_1+$buruh->mb_2+$buruh->mb_3+$buruh->mb_4+$buruh->mb_5;
 			echo $total_mb; ?>" size="10" readonly="true" autocomplete="off" /></td>
-            <td align="center"><input name="total_mb_b" type="text" class="field_total" id="total_mb_b" value="<?php 
-			$total_mb_b = $buruh->mb_1b+$buruh->mb_2b+$buruh->mb_3b+$buruh->mb_4b+$buruh->mb_5b; 
+            <td align="center"><input name="total_mb_b" type="text" class="field_total" id="total_mb_b" value="<?php
+			$total_mb_b = $buruh->mb_1b+$buruh->mb_2b+$buruh->mb_3b+$buruh->mb_4b+$buruh->mb_5b;
 			echo $total_mb_b; ?>" size="10" readonly="true" autocomplete="off" /></td>
-            <td align="center"><input name="total_mb_c" type="text" class="field_total" id="total_mb_c" value="<?php 
-			$total_mb_c=$buruh->mb_1c+$buruh->mb_2c+$buruh->mb_3c+$buruh->mb_4c+$buruh->mb_5c; 
+            <td align="center"><input name="total_mb_c" type="text" class="field_total" id="total_mb_c" value="<?php
+			$total_mb_c=$buruh->mb_1c+$buruh->mb_2c+$buruh->mb_3c+$buruh->mb_4c+$buruh->mb_5c;
 			echo $total_mb_c; ?>" size="10" readonly="true" autocomplete="off" /></td>
           </tr>
           <tr>

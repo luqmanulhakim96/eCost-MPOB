@@ -16,7 +16,7 @@ if ($_SESSION['type']<>"admin")
 -->
 </style>
 <link href="facebox/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
-<script src="facebox/facebox.js" type="text/javascript"></script> 
+<script src="facebox/facebox.js" type="text/javascript"></script>
 <script>
 jQuery(document).ready(function($) {
   $('a[rel*=facebox]').facebox()
@@ -36,7 +36,7 @@ jQuery(document).ready(function($) {
   </tr>
 </thead>
 <tbody>
-<?php 
+<?php
     $con = connect();
         if($region=='pm')
         {
@@ -56,12 +56,12 @@ jQuery(document).ready(function($) {
         else if($region=='my')
         {
             $q="SELECT alamat_ekilang.lesen lesen, alamat_ekilang.nama nama, alamat_ekilang.email email,alamat_ekilang.notel FROM alamat_ekilang LEFT JOIN mill_info ON alamat_ekilang.lesen = mill_info.lesen LEFT JOIN mill_buruh ON mill_buruh.lesen = alamat_ekilang.lesen WHERE mill_buruh.tahun = '".date('Y')."' AND mill_buruh.status = '1'";
-            
+
         }
-        $r=mysql_query($q,$con);
+        $r=mysqli_query($con, $q);
         $j =0;
         //echo $q;
-    while($row=mysql_fetch_array($r)){
+    while($row=mysqli_fetch_array($r)){
 ?>
   <tr valign="top">
     <td><?php echo ++$j; ?></td>
@@ -69,7 +69,7 @@ jQuery(document).ready(function($) {
     <td><?php echo $row['email'];?></td>
     <td><?php echo $row['notel'];?></td>
   </tr>
-  <?php } mysql_close($con);?>
+  <?php } mysqli_close($con);?>
 </tbody>
 </table>
 <br />

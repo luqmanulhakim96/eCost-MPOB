@@ -41,7 +41,7 @@ total_kp = '$total_kp' ,
 status='$status'
 WHERE lesen = '$lesen' AND tahun =$tahun
 ";
-$r = mysql_query($q,$con);
+$r = mysqli_query($con, $q);
 
 if ($status==2){
 	$id = "kos_proses";

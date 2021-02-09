@@ -4,14 +4,26 @@
   extract($_REQUEST);
   error_reporting(0); */
 
+
+
 include('Connections/connection.class.php');
 include('setstring.inc');
 include('class/user.class.php');
+
+$host = "localhost";
+$user = "root";
+$pass = "";
+$db_n = "mpob";
+
+
+
 if ($_COOKIE['lang'] == '') {
     $value = 'mal';
     setcookie("lang", $value);
     echo "<script>window.location.href='index1.php'</script>";
 }
+
+
 
 $tarikhestet[0] = "estate";
 $tarikhestet[1] = date('Y-m-d');
@@ -362,24 +374,32 @@ if ($_COOKIE["lang"] == "mal") {
             </tr>
 
             <?php
+
+
+            // $con=mysqli_connect($host,$user,$pass);
             $con = connect();
+
             $query = "select * from setting where st_name ='Annoucement' and st_value ='1'";
-            $res = mysql_query($query, $con);
-            $row = mysql_fetch_array($res);
-            $res_total = mysql_num_rows($res);
+            // $res = mysqli_query($query, $con);
+            $res = mysqli_query($con, $query);
+            // printf($res);
+            $row = mysqli_fetch_array($res);
+            $res_total = mysqli_num_rows($res);
             if ($res_total == 0) {
 
                 $qupdate = "update pengumuman set status=0";
-                mysql_query($qupdate, $con);
+                // mysqli_query($qupdate, $con);
+                mysqli_query($con, $qupdate);
+
             } else if ($res_total > 0) {
 
                 $qupdate = "update pengumuman set status=1";
-                mysql_query($qupdate, $con);
+                mysqli_query( $con,$qupdate);
 
                 $qumum = "select * from  pengumuman where status=1";
-                $rumum = mysql_query($qumum, $con);
-                $rowumum = mysql_fetch_array($rumum);
-                $totalumum = mysql_num_rows($rumum);
+                $rumum = mysqli_query($con, $qumum);
+                $rowumum = mysqli_fetch_array($rumum);
+                $totalumum = mysqli_num_rows($rumum);
                 if ($totalumum > 0) {
                     ?>
                     <tr>

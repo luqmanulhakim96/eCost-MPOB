@@ -8,7 +8,7 @@ function median($numbers=array())
 {
 	if (!is_array($numbers))
 		$numbers = func_get_args();
-	
+
 	rsort($numbers);
 	$mid = (count($numbers) / 2);
 	return ($mid % 2 != 0) ? $numbers{$mid-1} : (($numbers{$mid-1}) + $numbers{$mid}) / 2;
@@ -16,69 +16,69 @@ function median($numbers=array())
 
 function pertama($tahun, $nama, $status,$negeri,$daerah ){
 $con=connect();
-		
+
 		$qavg = "SELECT AVG(y) as purata FROM graf_km where sessionid='$nama' and tahun ='$tahun' and (status='$status' or status='9')  ";
 		if($negeri!="" & $negeri!="pm")
 		{
 			$qavg.=" and negeri = '$negeri'";
-		} 
+		}
 		if($negeri!="" && $daerah!="")
 		{
 			$qavg.=" and daerah = '$daerah'";
-		} 
+		}
 		if($negeri=="pm")
 		{
 			$qavg.=" and negeri not like 'SARAWAK' and negeri not like 'SABAH'";
-		} 
-		
-		$ravg = mysql_query($qavg,$con);
-		$rrow = mysql_fetch_array($ravg);
-		$totalrow = mysql_num_rows($ravg);
-		
-	
-			
+		}
+
+		$ravg = mysqli_query($con, $qavg);
+		$rrow = mysqli_fetch_array($ravg);
+		$totalrow = mysqli_num_rows($ravg);
+
+
+
 		$qavg2 = "SELECT AVG(y) as purata FROM graf_km_tan where sessionid='$nama' and tahun ='$tahun' and (status='$status' or status='9')  ";
 		if($negeri!="" & $negeri!="pm")
 		{
 			$qavg2.=" and negeri = '$negeri'";
-		} 
+		}
 		if($negeri!="" && $daerah!="")
 		{
 			$qavg2.=" and daerah = '$daerah'";
-		} 
+		}
 		if($negeri=="pm")
 		{
 			$qavg2.=" and negeri not like 'SARAWAK' and negeri not like 'SABAH'";
-		} 
-		
-		$ravg2 = mysql_query($qavg2,$con);
-		$rrow2= mysql_fetch_array($ravg2);
-		$totalrow2 = mysql_num_rows($ravg2);
-		
-		
-			$var[0] = $rrow['purata'];	
-			$var[1] = $rrow2['purata'];	
-			
+		}
+
+		$ravg2 = mysqli_query($con, $qavg2);
+		$rrow2= mysqli_fetch_array($ravg2);
+		$totalrow2 = mysqli_num_rows($ravg2);
+
+
+			$var[0] = $rrow['purata'];
+			$var[1] = $rrow2['purata'];
+
 			//$var[2] = $totalrow ;
-			//$var[3] = $totalrow2; 
-				
-				return $var; 
-				
-		}	
+			//$var[3] = $totalrow2;
+
+				return $var;
+
+		}
 
 	//-------------------cop --------------
 		function cop ($name, $type, $year, $state, $district, $tahun_r){
 				$con =connect();
 				$q_cop = "select  * from cop where
 				NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT='$tahun_r'";
-				$r_cop = mysql_query($q_cop, $con);
-				$row_cop = mysql_fetch_array($r_cop);
-				
+				$r_cop = mysqli_query($con, $q_cop);
+				$row_cop = mysqli_fetch_array($r_cop);
+
 				$var[1] = $row_cop['VALUE_MEDIAN'];
 				$var[0] = $row_cop['VALUE_MEAN'];
 				return $var;
 		}
-		
+
 
 ?>
 <link rel="stylesheet" href="../text_style.css" type="text/css" />
@@ -107,7 +107,7 @@ function openScript(url, width, height) {
 </script>
 <link rel="stylesheet" href="../js/colorbox/colorbox.css" type="text/css" />
 <script type="text/javascript" src="../js/colorbox/colorbox/jquery.colorbox.js"></script>
-        
+
 <script type="text/javascript">
 			$(document).ready(function(){
 								$(".boxcolor").colorbox({width:"40%", height:"100%"});
@@ -119,13 +119,13 @@ function openScript(url, width, height) {
   <?php if($state=="" || $state=="pm"){?>
   <img name="" src="../images/state/bendera_malaysia.jpg" width="91" height="45" alt="" class="thinborderfloat" />
   <?php } ?>
-  <?php 
+  <?php
 	if($state!=""){
-	
+
 	$qstate ="select * from negeri where id like '$state'";
-	$rstate = mysql_query($qstate,$con);
-	$rowstate = mysql_fetch_array($rstate);
-	$totalstate = mysql_num_rows($rstate);
+	$rstate = mysqli_query($con, $qstate);
+	$rowstate = mysqli_fetch_array($rstate);
+	$totalstate = mysqli_num_rows($rstate);
 	if($state=="pm"){$state="pm";}
 	else{$state = $rowstate['nama'];
 	}
@@ -172,25 +172,25 @@ function openScript(url, width, height) {
     <td width="84" bgcolor="#8A1602"><div align="right"><span class="style5"><?php echo $_COOKIE['tahun_report']-1;?></span></div></td>
     <td width="69" bgcolor="#8A1602"><div align="right"><span class="style5">% Change</span></div></td>
   </tr>
-  <?php 
+  <?php
   $satu = $_COOKIE['tahun_report']-0;
   $dua = $_COOKIE['tahun_report']-1;
-  
-  
+
+
   ?>
   <?php
   $qs="select * from q_km where type='$sub'";
-  $rs = mysql_query($qs,$con);
-  
+  $rs = mysqli_query($con, $qs);
+
   $jl=0;
   $js=0;
   $ml=0;
   $ms=0;
-  
-  $perubahan =0; 
+
+  $perubahan =0;
   $perubahan_baru=0;
-  
-  while($rows=mysql_fetch_array($rs)){
+
+  while($rows=mysqli_fetch_array($rs)){
   ?>
   <tr height="17" <?php if(++$gg%2==0){?>class="alt"<?php } ?>>
   	<td <?php if($_COOKIE['tahun_report']==2010){?> ondblclick="javascript:openScript('add_cop_upk.php?name=<?php echo $rows['name'];?>&type=<?php echo "Upkeep"; ?>&tahun=<?php echo $_COOKIE['tahun_report'];?>&year=<?php echo $year;?>&state=<?php echo $state; ?>','700','200')"<?php } ?>><?php echo $rows['name'];?></td>
@@ -198,17 +198,17 @@ function openScript(url, width, height) {
 	if($year == ""){
 		$year = 1;
 	}
-	
+
 	if($rows['isChild'] == 'N' && strlen($rows['sub_type']) > 0){
 		if($rows['sub_type'] == "weeding"){
 			$total1 = pertama($satu, "i. Purchase of weedicide", '0', $state, $district);
 			$total2 = pertama($satu, "ii. Labour cost for weeding", '0', $state, $district);
 			$total3 = pertama($satu, "iii. Machinery use and maintenances", '0', $state, $district);
-			
+
 			$total4 = pertama($dua, "i. Purchase of weedicide", '0', $state, $district);
 			$total5 = pertama($dua, "ii. Labour cost for weeding", '0', $state, $district);
 			$total6 = pertama($dua, "iii. Machinery use and maintenances", '0', $state, $district);
-	?>    
+	?>
     <td width="68"><div align="right"><?php $totalAll1 = $total4[0]+$total5[0]+$total6[0]; echo number_format($totalAll1,2);?></div></td>
     <td width="68"><div align="right"><?php $totalAll2 = $total1[0]+$total2[0]+$total3[0]; echo number_format($totalAll2,2);?></div></td>
     <td width="68"><div align="right"><?=number_format((($totalAll2 - $totalAll1)/$totalAll1)*100,2)?></div></td>
@@ -221,7 +221,7 @@ function openScript(url, width, height) {
 			$total2 = pertama($satu, "ii.Labour cost to apply fertilizers", '0', $state, $district);
 			$total3 = pertama($satu, "iii. Machinery use and maintenance", '0', $state, $district);
 			$total4 = pertama($satu, "iv. Soil and foliar analysis", '0', $state, $district);
-			
+
 			$total5 = pertama($dua, "i. Purchase of fertilizer", '0', $state, $district);
 			$total6 = pertama($dua, "ii.Labour cost to apply fertilizers", '0', $state, $district);
 			$total7 = pertama($dua, "iii. Machinery use and maintenance", '0', $state, $district);
@@ -243,8 +243,8 @@ function openScript(url, width, height) {
 			$a1 = cop ( $rows['name'],  "Upkeep", $year, $state, $district, $_COOKIE['tahun_report']);
 		}else{
 			$a1 = pertama ($dua, $rows['name'], '0',$state, $district);
-		}	
-		
+		}
+
 		$b1 = pertama ($satu, $rows['name'], '0',$state, $district);
 	?>
     <td width="68"><div align="right">
@@ -281,12 +281,12 @@ function openScript(url, width, height) {
 	echo number_format((($b1[1]-$a1[1])/$a1[1])*100,2);
 	?>
     </div></td>
-    <?php	
+    <?php
 	}
 	?>
   </tr>
-  <?php 
-  } 
+  <?php
+  }
   ?>
   <tr height="17" class="kaki">
     <td width="258" height="17" ><strong>Total</strong></td>
@@ -310,7 +310,7 @@ function openScript(url, width, height) {
 </table>
 <script type="text/javascript" src="amcolumn/swfobject.js"></script>
 <script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "380", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mc_all_setting.xml"));
@@ -321,7 +321,7 @@ function openScript(url, width, height) {
 	</script>
 <script type="text/javascript" src="../amline/swfobject.js"></script>
 <script type="text/javascript">
-// <![CDATA[		
+// <![CDATA[
 		var so1 = new SWFObject("../amline/amline.swf", "amline", "520", "380", "8", "#FFFFFF");
 		so1.addVariable("path", "../amline/");
 		so1.addVariable("settings_file", encodeURIComponent("amline_settings.xml"));

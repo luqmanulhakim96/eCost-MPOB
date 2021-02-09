@@ -1,16 +1,19 @@
 <?php
 /*
- *  Updated by Hafez Hamid <fezcodework@gmail.my>  at Apr 18, 2020 10:23:33 AM 
+ *  Updated by Hafez Hamid <fezcodework@gmail.my>  at Apr 18, 2020 10:23:33 AM
  *  Copyright (c) 2020 Gates IT Solution Sdn Bhd
- * 
+ *
  */
 include ('../class/user.class.php');
 $pengguna = new user('estate', $_SESSION['lesen']);
 $session_lesen = $_SESSION['lesen'];
+// print_r($pengguna);
 /*if (($_SESSION['lesen'] == NULL)) {
     echo "<script>window.location.href='../index1.php?session=false';</script>";
 } else */
-if (($_SESSION['lesen'] <> NULL)) 
+
+
+if (($_SESSION['lesen'] <> NULL))
 {
     if (!isset($_GET['welcome'])) {
         ?>
@@ -59,7 +62,7 @@ if (($_SESSION['lesen'] <> NULL))
         <div id="no-print">
             <table width="100%" border="0" cellpadding="0" cellspacing="0" aria-describedby="sessionEstate">
                 <tr>
-                    <td width="99%"><div align="right" style="margin-right:20px"> 
+                    <td width="99%"><div align="right" style="margin-right:20px">
                             <table width="61%" border="0" cellpadding="0" cellspacing="0" aria-describedby="sessionEstate2">
                                 <tr style="border-bottom:#333333 solid 1px;">
                                     <td width="28%" align="center" valign="middle" style="border-bottom:#333333 solid 1px;"><a href="#" onclick="tukarbahasa('mal');"><img src="../images/ms.gif" width="73" height="19" border="0" alt="malay"/></a> <a href="#" onclick="tukarbahasa('en');"><img src="../images/en.gif" width="73" height="19" border="0" alt="english"/></a>&nbsp;</td>
@@ -76,7 +79,7 @@ if (($_SESSION['lesen'] <> NULL))
                                                 }
                                                 ?>
                                                 <?php echo $_SESSION['tahun']; ?>
-                                                <img src="../images/Client.png" alt="Orang" width="16" height="16" /> <?= $pengguna->namaestet; ?> 
+                                                <img src="../images/Client.png" alt="Orang" width="16" height="16" /> <?= $pengguna->namaestet; ?>
 
 
                                             </strong></div></td>
@@ -90,4 +93,3 @@ if (($_SESSION['lesen'] <> NULL))
     }
 }
 ?>
-

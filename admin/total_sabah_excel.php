@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../Connections/connection.class.php');
 include '../class/test.class.php';
 header("Content-Disposition: attachment; filename=List_of_Completed_Mill_Response_Survey_in_Sabah.xls");
@@ -12,7 +12,7 @@ header("Content-Disposition: attachment; filename=List_of_Completed_Mill_Respons
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="display" id="example">
 	<thead>
-	
+
 	  <tr bgcolor="#8A1602" height="30">
 		  <th width="4%" class="style2">No.</th>
 			<th class="style2">Mill Name</th>
@@ -21,12 +21,12 @@ header("Content-Disposition: attachment; filename=List_of_Completed_Mill_Respons
 			<th class="style2">E-mail</th>
             <th class="style2">Address</th>
       		<th class="style2">Phone No.</th>
-      		<th class="style2">Fax No.</th>	
+      		<th class="style2">Fax No.</th>
 			<th class="style2">Last access</th>
 	  </tr>
 	</thead>
 	<tbody>
-	<?php while($row=mysql_fetch_array($result_sabah)) { ?>
+	<?php while($row=mysqli_fetch_array($result_sabah)) { ?>
 		<tr valign="top">
 			<td><?php echo $list++; ?></td>
 			<td><?php echo $row['nama'];?></td>
@@ -38,6 +38,6 @@ header("Content-Disposition: attachment; filename=List_of_Completed_Mill_Respons
               <td><?php echo $row['nofax'];?></td>
 			<td><?php echo $row['access'];?></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>

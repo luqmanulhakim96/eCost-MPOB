@@ -6,7 +6,7 @@ function MM_CheckFlashVersion(reqVerStr,msg){
   with(navigator){
     var isIE  = (appVersion.indexOf("MSIE") != -1 && userAgent.indexOf("Opera") == -1);
     var isWin = (appVersion.toLowerCase().indexOf("win") != -1);
-    if (!isIE || !isWin){  
+    if (!isIE || !isWin){
       var flashVer = -1;
       if (plugins && plugins.length > 0){
         var desc = plugins["Shockwave Flash"] ? plugins["Shockwave Flash"].description : "";
@@ -26,13 +26,13 @@ function MM_CheckFlashVersion(reqVerStr,msg){
 
       var verArr = reqVerStr.split(",");
       var reqVer = parseFloat(verArr[0] + "." + verArr[2]);
-  
+
       if (flashVer < reqVer){
         if (confirm(msg))
           window.location = "http://www.macromedia.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash";
       }
     }
-  } 
+  }
 }
 </script>
 
@@ -51,8 +51,8 @@ function MM_CheckFlashVersion(reqVerStr,msg){
       <?php
 		  $con =connect();
           $qfile = "select * from file_upload order by title";
-		  $rfile = mysql_query($qfile,$con);
-		  while($rowfile = mysql_fetch_array($rfile)){
+		  $rfile = mysqli_query($con, $qfile);
+		  while($rowfile = mysqli_fetch_array($rfile)){
 		  ?>
       <tr>
         <td width="12%"><div align="center"><a href="<?= $rowfile['path'];?>"><img src="../images/Autoship-icon.png" width="20" height="20" border="0" title="View File" /></a></div></td>
@@ -79,7 +79,7 @@ function MM_CheckFlashVersion(reqVerStr,msg){
         <param name="scale" value="noscale" />
         <param name="wmode" value="transparent" />
         <param name="FlashVars" value="&MM_ComponentVersion=1&skinName=Clear_Skin_1&streamName=../ecost&autoPlay=false&autoRewind=false" />
-        <embed src="FLVPlayer_Progressive.swf" flashvars="&MM_ComponentVersion=1&skinName=Clear_Skin_1&streamName=<?= $video->path; ?>&autoPlay=false&autoRewind=false" quality="high" scale="noscale" wmode="transparent" width="600" height="450" name="FLVPlayer" salign="LT" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />    
+        <embed src="FLVPlayer_Progressive.swf" flashvars="&MM_ComponentVersion=1&skinName=Clear_Skin_1&streamName=<?= $video->path; ?>&autoPlay=false&autoRewind=false" quality="high" scale="noscale" wmode="transparent" width="600" height="450" name="FLVPlayer" salign="LT" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
       </object>
     </div></td>
   </tr>
@@ -122,7 +122,7 @@ function MM_CheckFlashVersion(reqVerStr,msg){
         <td><u><strong>Cost Component </strong></u></td>
         <td width="66%"><strong><u>Description</u></strong></td>
       </tr>
-      
+
 		<?php for($i=0; $i<$komponen->total; $i++){ ?>
       <tr valign="top">
         <td width="32%">         <strong> <?= $komponen->title[$i]; ?></strong>        </td>
@@ -136,4 +136,3 @@ function MM_CheckFlashVersion(reqVerStr,msg){
     </table></td>
   </tr>
 </table>
-			

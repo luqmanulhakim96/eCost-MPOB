@@ -10,12 +10,12 @@
 <?php include ('paging.php');
 include ('baju_merah.php'); ?>
 
-<div align="center"><strong>Search Result in 
+<div align="center"><strong>Search Result in
 	<?php if ($sub == 'view_estate')
-{ ?>Estate<?php } ?> 
+{ ?>Estate<?php } ?>
 	<?php if ($sub == 'view_mill')
 { ?>Mill<?php } ?>
-	
+
 </strong></div>
 
 
@@ -38,27 +38,27 @@ include ('baju_merah.php'); ?>
   <tbody>
   <?php $con = connect();
    $q_lesen = "select lesen, lanar as size from estate_info where syarikat = '$comp_name'";
-	$r_lesen = mysql_query($q_lesen);
-	while ($row_lesen = mysql_fetch_array($r_lesen)){
+	$r_lesen = mysqli_query($q_lesen);
+	while ($row_lesen = mysqli_fetch_array($r_lesen)){
 
 
 $nlb = $row_lesen['lesen'];
 $q = "select * from esub  where No_Lesen_Baru = '$nlb'";
 $q .= "group by No_Lesen_Baru";
-$r = mysql_query($q, $con);
+$r = mysqli_query($con, $q);
 $j = 0;
 
-$row = mysql_fetch_array($r); ?>
+$row = mysqli_fetch_array($r); ?>
   <tr valign="top">
     <td><?php echo ++$j; ?></td>
     <td>
 	<?php if ($sub == 'view_estate')
 { ?><a href="home.php?id=estate&sub=profile_estate&bil=<?= $row['Bil']; ?>&lesen=<?= $row['No_Lesen_Baru']; ?>"><?= $row['Nama_Estet']; ?></a><?php } ?>
-    
-    
+
+
     <?php if ($sub == 'size_estate_detail')
 { ?><a href="home.php?id=estate&sub=profile_estate&bil=<?= $row['Bil']; ?>&lesen=<?= $row['No_Lesen_Baru']; ?>"><?= $row['Nama_Estet']; ?></a><?php } ?>
-    
+
 	<?php if ($sub == 'view_mill')
 { ?><a href="home.php?id=estate&sub=profile_mill&bil=<?= $row['Bil']; ?>&lesen=<?= $row['No_Lesen_Baru']; ?>"><?= $row['Nama_Estet']; ?></a><?php } ?>	</td>
     <td><div align="right"><?php echo number_format($row_lesen['size'],2);?></div></td>
@@ -72,8 +72,8 @@ $row = mysql_fetch_array($r); ?>
     <td><?= $row['No_Telepon']; ?></td>
     <td><?php $qm = "select * from login_estate where lesen ='" . $row['No_Lesen_Baru'] .
   "'";
-$rm = mysql_query($qm, $con);
-$rowm = mysql_fetch_array($rm);
+$rm = mysqli_query($con, $qm);
+$rowm = mysqli_fetch_array($rm);
 
 $rc = explode(" ", $rowm['success']);
 echo $rc[0]; ?></td>

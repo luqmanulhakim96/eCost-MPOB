@@ -21,31 +21,31 @@ function openScript(url, width, height) {
   <tr>
     <td colspan="3" bgcolor="#8A1602"><h3 class="style1">Processing Cost</h3></td>
   </tr>
-  
+
   <?php
-  
+
   $con=connect();
     $qs="select * from q_mill where type='other_cost'";
-  $rs = mysql_query($qs,$con);
-  
+  $rs = mysqli_query($con, $qs);
+
   $jl=0;
   $js=0;
   $ml=0;
   $ms=0;
-  
-  $perubahan =0; 
+
+  $perubahan =0;
   $perubahan_baru=0;
   $countColumn = 0;
-   while($rows=mysql_fetch_array($rs)){
+   while($rows=mysqli_fetch_array($rs)){
 	   if($countColumn == 0){
 ?>
 	<tr>
 <?php
 	   }
 ?>
-  
+
     	<td><div id="grey-button"><a class="grey-button pcb" href="javascript:openScript('linear_mill_process_graph_view.php?table=analysis_mill_kos_lain&tahun=<?php echo $_COOKIE['tahun_report']; ?>&amp;field=<?php echo $rows['name'];?>&type=<?php echo $type; ?>','','')"><span><?php echo $rows['name'];?></span></a></div>
-    	<iframe src="linear_mill_process_graph.php?table=analysis_mill_kos_lain&tahun=<?php echo $_COOKIE['tahun_report']; ?>&amp;field=<?php echo $rows['name'];?>&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe>      
+    	<iframe src="linear_mill_process_graph.php?table=analysis_mill_kos_lain&tahun=<?php echo $_COOKIE['tahun_report']; ?>&amp;field=<?php echo $rows['name'];?>&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe>
       	</td>
 <?php
 	if($countColumn == 2){
@@ -54,17 +54,15 @@ function openScript(url, width, height) {
 <?php
 	}
 	$countColumn++;
-	
+
 	if($countColumn > 2){
 		$countColumn = 0;
 	}
 ?>
-  	
+
 <?php
    }
 ?>
- 
+
 
 </table>
-
-

@@ -4,7 +4,7 @@
 <script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
 
-			
+
 	$('#example').dataTable( {"sPaginationType": "full_numbers","iDisplayLength": 25,
 		"fnDrawCallback": function ( oSettings ) {
 			/* Need to redo the counters if filtered or sorted */
@@ -23,17 +23,17 @@
 	} );
 } );
 			</script>
-           
+
 <link rel="stylesheet" href="../js/colorbox/colorbox.css" type="text/css" />
 <script type="text/javascript" src="../js/colorbox/colorbox/jquery.colorbox.js"></script>
-        
+
 <script type="text/javascript">
 			$(document).ready(function(){
 				$(".boxcolor").colorbox({width:"60%", height:"100%", iframe:true});
 			});
 		</script>
-    
-    
+
+
       <style>
       		@import "../js/datatable/css/demo_page.css";
 			@import "../js/datatable/css/demo_table.css";
@@ -53,7 +53,7 @@
 		</tr>
 	</thead>
 	<tbody>
-	<?php while($row=mysql_fetch_array($result_sabah_complete)) { ?>
+	<?php while($row=mysqli_fetch_array($result_sabah_complete)) { ?>
 		<tr valign="top">
 			<td><?php echo $list++; ?></td>
 			<td><a href="estate_details.php?id=<?php echo $row['lesen'];?>&year=<?php echo $_COOKIE['tahun_report'];?>" class="boxcolor"><?php echo $row['nama'];?></a></td>
@@ -63,11 +63,11 @@
 			<td><?php echo $row['access'];?></td>
 		    <td><div align="center">
               <?php  $qa ="select success,password,lesen from login_estate where lesen ='".$row['lesen']."'";
-	$ra = mysql_query($qa,$con);
-	$rowa = mysql_fetch_array($ra);?>
+	$ra = mysqli_query($con,$qa);
+	$rowa = mysqli_fetch_array($ra);?>
             <a href="auto_login.php?username=<?php echo $rowa['lesen'];?>&amp;password=<?php echo $rowa['password'];?>&amp;tahun=<?php echo $_COOKIE['tahun_report'];?>" target="_blank" title="View Survey"><img src="../estate/images/001_43.gif" alt="View Survey" width="20" height="20" border="0" title="View Survey" /></a></div></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>
 

@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 include('../Connections/connection.class.php');
 include '../class/test.class.php';
 header("Content-Disposition: attachment; filename=List_of_Completed_Survey_in_Peninsular.xls");
@@ -24,7 +24,7 @@ header("Content-Disposition: attachment; filename=List_of_Completed_Survey_in_Pe
     </tr>
   </thead>
   <tbody>
-    <?php while($row = mysql_fetch_array($result_peninsular_complete)) { ?>
+    <?php while($row = mysqli_fetch_array($result_peninsular_complete)) { ?>
     <tr valign="top">
       <td><?php echo $list++; ?></td>
       <td><?php echo $row['nama'];?></td>
@@ -34,6 +34,6 @@ header("Content-Disposition: attachment; filename=List_of_Completed_Survey_in_Pe
           <div align="center"></div></td>
       <td><?php echo $row['access'];?></td>
     </tr>
-    <?php } mysql_close($con);?>
+    <?php } mysqli_close($con);?>
   </tbody>
 </table>

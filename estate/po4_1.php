@@ -12,8 +12,8 @@ function kiraPerubahan($valueBaru, $valueLama) {
 }
 
 $q = "select * from belanja_am_kos where lesen = '" . $_SESSION['lesen'] . "' and thisyear = '" . $_SESSION['tahun'] . "'";
-$r = mysql_query($q, $con);
-$totalr = mysql_num_rows($r);
+$r = mysqli_query($con, $q);
+$totalr = mysqli_num_rows($r);
 if ($totalr == 0) {
     $q = "INSERT INTO belanja_am_kos (
 thisyear ,
@@ -39,7 +39,7 @@ VALUES (
 '" . $_SESSION['tahun'] . "', '" . $_SESSION['lesen'] . "', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0'
 );
 ";
-    $r = mysql_query($q, $con);
+    $r = mysqli_query($con, $q);
 }
 
 $var_nilai[0] = $_SESSION['lesen'];
@@ -59,8 +59,8 @@ function luas_data($table, $data, $tahunsebelum) {
     $con = connect();
     $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
 
-    $rblm = mysql_query($qblm, $con);
-    $rowblm = mysql_fetch_array($rblm);
+    $rblm = mysqli_query($con, $qblm);
+    $rowblm = mysqli_fetch_array($rblm);
     //echo "<br>";
     $data1 = $rowblm[$data];
     $jum_data = $data1;
@@ -152,7 +152,7 @@ if (($bts * 1) == 0) {
 
 
         //alert("kos_hektar"+kos_hektar);
-        //alert("kos_tan"+kos_tan); 
+        //alert("kos_tan"+kos_tan);
 
 
 
@@ -302,7 +302,7 @@ if (($bts * 1) == 0) {
 </script>
 
 <link href="facebox/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
-<script src="facebox/facebox.js" type="text/javascript"></script> 
+<script src="facebox/facebox.js" type="text/javascript"></script>
 <script>
     jQuery(document).ready(function ($) {
         $('a[rel*=facebox]').facebox()
@@ -468,7 +468,7 @@ if (($bts * 1) == 0) {
                         <div align="center"><strong>(RM)</strong></div></td>
                     <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos Per Tan BTS', 'en', 'Cost Per Tonne FFB'); ?></strong></div>
                         <div align="center"><strong>(RM)</strong></div></td>
-                    <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?></strong></div>          
+                    <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?></strong></div>
                         <div align="center"><strong> (%)</strong></div></td>
                 </tr>
 
@@ -479,23 +479,23 @@ if (($bts * 1) == 0) {
                         </span>          <br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Gaji dan elaun', 'en', 'Emoluments and allowances'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Kerja lebih masa', 'en', 'Overtime'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Perubatan', 'en', 'Medical'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Perjalanan', 'en', 'Travelling'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Bonus', 'en', 'Bonuses'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Insuran peribadi', 'en', 'Personal Insurance'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Insentif', 'en', 'Incentive'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'KWSP', 'en', 'EPF'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'PERKESO', 'en', 'SOCSO'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )        </span></td>
                     <td width="158" bgcolor="#AEFFAE"><div align="center">
@@ -527,9 +527,9 @@ if (($bts * 1) == 0) {
                         <br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Yuran/bayaran pentadbiran', 'en', 'Administration fees'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Yuran/bayaran lesen', 'en', 'Licensing fees'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )        </span></td>
                     <td><div align="center">
@@ -560,15 +560,15 @@ if (($bts * 1) == 0) {
                             <?= setstring('mal', 'Perbelanjaan lawatan agen', 'en', 'Visiting agent fees'); ?>
                             ,
                             <?= setstring('mal', 'Perbelanjaan perundangan dan lain-lain profesional', 'en', 'Legal and others professional fees'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Yuran/bayaran khidmat nasihat lawatan/penanaman', 'en', 'Visiting/planting consultation fees'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Yuran/bayaran ahli agromoni', 'en', 'Agronomist fees'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Yuran/bayaran audit', 'en', 'Audit fees'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Yuran/bayaran sokongan sistem komputer estet', 'en', 'Estate\'s computer system support'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )        </span></td>
                     <td bgcolor="#AEFFAE"><div align="center">
@@ -596,13 +596,13 @@ if (($bts * 1) == 0) {
                         </span> <br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Ganjaran persaraan', 'en', 'Retirement rewards'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Pampasan kepada pekerja', 'en', 'Compensation'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Subsidi', 'en', 'Subsidies'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )</span></td>
                     <td><div align="center">
@@ -630,13 +630,13 @@ if (($bts * 1) == 0) {
                         <br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Cukai tanah', 'en', 'Quit rent'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Yuran/bayaran TOL', 'en', 'TOL fees'); ?>
                             ,
                             <?= setstring('mal', 'Insurans kebakaran/kecurian', 'en', 'Fire Insurance'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Insuran', 'en', 'Insurances'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Penghantaran', 'en', 'Delivery'); ?>
                             ,
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
@@ -694,11 +694,11 @@ if (($bts * 1) == 0) {
                         <br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Bayaran lawatan pegawai perubatan (VMO)', 'en', 'Visiting Medical Officer fees'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Pelbagai ubat dan peralatan', 'en', 'Medicine and Instrument'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Peralatan sukan/permainan', 'en', 'Sports/recreations equipment'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )        </span></td>
                     <td><div align="center">
@@ -726,9 +726,9 @@ if (($bts * 1) == 0) {
                         </span><br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Pembaikan dan pengecatan', 'en', 'Painting and repair'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Perabut dan <em>fitting</em> untuk banglow/kuaters/rumah kedai/bengkel', 'en', 'Fitting for bungalow/quarters/shophouse/workshop'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )        </span></td>
                     <td><div align="center">
@@ -783,17 +783,17 @@ if (($bts * 1) == 0) {
                         </span><br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Anti-vektor', 'en', 'Anti-vector'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Pembersihan part-parit monsun', 'en', 'Drain repair and cleaning'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Pengorekan lubang sampah', 'en', 'Pits and upkeep'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Parit dan bentung', 'en', 'Drainage and culvert'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Pemotongan rumput', 'en', 'Grass cutting expenses'); ?>
                             ,
                             <?= setstring('mal', 'Penjagaan pejabat/banglow/kuaters/taman', 'en', 'Upkeep of office/buanglow/quarters/park'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )</span></td>
                     <td><div align="center">
@@ -823,15 +823,15 @@ if (($bts * 1) == 0) {
                         </span><br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Gaji pegawai keselamatan', 'en', 'Auxillary police/watchman salary'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Penjagaan pos keselamatan dan pagar ', 'en', 'Routine upkeep of security post and fences'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Yuran/bayaran lesen senjata', 'en', 'Guns license fees'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Pembaikan senjata dan peluru', 'en', 'Guns and repair'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Yuran/bayaran penghantaran wang gaji', 'en', 'Securicor/payroll collect fees'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Tiket jambatan timbang dan <em>seals</em>', 'en', 'Seals and Weighbrigde Ticket'); ?>
                             )</span></td>
                     <td><div align="center">
@@ -861,17 +861,17 @@ if (($bts * 1) == 0) {
 
                         <span class="kecil">(
                             <?= setstring('mal', 'Perbelanjaan elektrik/air', 'en', 'Water and power bills'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Wayar kabel', 'en', 'Cabling'); ?>
                             ,
                             <?= setstring('mal', 'Mentol lampu', 'en', 'Replace bulbs'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Bahan kimia', 'en', 'Chemicals'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Penyelenggaraan dan servis pam air ', 'en', 'Maintenance and services of water pump'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Penyelenggaraan kawasan tadahan', 'en', 'Maintenance of water reservoir'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )</span></td>
                     <td><div align="center">
@@ -897,25 +897,25 @@ if (($bts * 1) == 0) {
                         </span> <br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Telefon/fax/telegram', 'en', 'Telephone/fax/telegram fees'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Yuran/bayaran post/kurier', 'en', 'Postage and parcel freight fees'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Alatan pelbagai', 'en', 'Miscellanous'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Alatan komputer', 'en', 'Computer stationaries and supplies'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Majalah dan suratkhabar', 'en', 'Magazine and newspaper'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Buku cek', 'en', 'Cheque book'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Caj bank', 'en', 'Bank charges'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Servis komputer/peralatan pejabat', 'en', 'Computer/office equipment services'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Pembersih pejabat ', 'en', 'Office cleaners'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Pelbagai barang pejabat', 'en', 'Misc. office equipments'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )</span></td>
                     <td><div align="center">
@@ -941,7 +941,7 @@ if (($bts * 1) == 0) {
                         </span><br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Pelunasan tanah pajakan', 'en', 'Statutory Payment cess'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Susutnilai bangunan/mesin/kenderaan/ peralatan pejabat', 'en', 'Depreciation of building/machine/transport/office equipment'); ?>
                             )</span></td>
                     <td><div align="center">
@@ -968,15 +968,15 @@ if (($bts * 1) == 0) {
                         </span><br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Keraian pelawat', 'en', 'Entertain visitors'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Penerbitan pertanian', 'en', 'Agricultural publication'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Yuran/bayaran seminar/persidangan', 'en', 'Seminar/conference fees'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Pembaikan notis/papan tanda', 'en', 'Repairs to Notices/signboard'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Derma/sumbangan', 'en', 'Sundry charitable donation'); ?>
-                            , 
+                            ,
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )        </span></td>
                     <td><div align="center">
@@ -1072,4 +1072,4 @@ if (($bts * 1) == 0) {
             <td colspan="3"> </td>
         </tr>
     </table>
-</form> 
+</form>

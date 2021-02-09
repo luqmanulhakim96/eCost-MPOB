@@ -11,7 +11,7 @@ extract($_GET);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>e-COST</title>
 <script type="text/javascript" src="../jquery-1.3.2.js"></script>
-<script type="text/javascript"> 
+<script type="text/javascript">
 function keypress(e)
 {
 	if ([e.keyCode||e.which]==8 || [e.keyCode||e.which]==46 || [e.keyCode||e.which]==44) //alow backspace and dot and comma
@@ -111,9 +111,9 @@ function keypress(e)
       <td valign="top"><strong>:</strong></td>
       <td valign="top"><input name="textfield2" type="password" id="textfield2" value="1234567890" /></td>
       </tr>
-    
-    
-    
+
+
+
     <tr>
       <td colspan="3"><label>
         <input type="submit" name="button" id="button" value="<?=setstring ( 'mal', 'Masuk', 'en', 'Enter'); ?>" />
@@ -140,22 +140,22 @@ function keypress(e)
     <td height="71" colspan="2" align="right"><?php include('session.php'); ?>&nbsp;</td>
   </tr>
   <tr>
-    <td height="15" colspan="3" class="nav"><?php include('menu_user.php'); ?></td>
+    <td height="15" colspan="3" class="nav"><?php include('../menu_user.php'); ?></td>
   </tr>
   <tr>
     <td height="100%" colspan="3" valign="top"><table width="99%" align="center" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC" class="table" style="margin-top:5px">
       <tr>
-        <td height="100" valign="top" bgcolor="#F4FFF4"><?php 
+        <td height="100" valign="top" bgcolor="#F4FFF4"><?php
 			include($open);
 		?></td>
       </tr>
     </table>
-    
+
     <div align="center" style="font-size:11px; "><br />
 	Techno Economic Unit, Economics and Industry Development Division<br />
     Malaysian Palm Oil Board
 	</div>
-    
+
     </td>
   </tr>
 </table>

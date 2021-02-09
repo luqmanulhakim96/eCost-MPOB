@@ -12,9 +12,9 @@ extract($_REQUEST);
 
 $con = connect();
 $q = "select * from login_estate where lesen = '$username' and password = '$password'";
-$r = mysql_query($q, $con);
-$row = mysql_fetch_array($r);
-$total = mysql_num_rows($r);
+$r = mysqli_query($con, $q);
+$row = mysqli_fetch_array($r);
+$total = mysqli_num_rows($r);
 
 if ($total > 0) {
     $_SESSION['lesen'] = $row['lesen'];

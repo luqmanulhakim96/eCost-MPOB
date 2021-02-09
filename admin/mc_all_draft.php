@@ -20,7 +20,7 @@ function median($numbers = array()) {
 
 function pertama($tahun, $nama, $status, $negeri, $daerah) {
     $con = connect();
-	
+
 	$Company = array('publicagencies' => array("Agensi", "Public agencies"),
 						 'cooperatives' => array("Koperasi", "Co-operatives"),
 						 'publiclimitedcompany' => array("Syarikat Berhad", "Public limited company"),
@@ -44,9 +44,9 @@ function pertama($tahun, $nama, $status, $negeri, $daerah) {
 		}
 	}
 
-    $ravg = mysql_query($qavg, $con);
-    $rrow = mysql_fetch_array($ravg);
-    $totalrow = mysql_num_rows($ravg);
+    $ravg = mysqli_query($con, $qavg);
+    $rrow = mysqli_fetch_array($ravg);
+    $totalrow = mysqli_num_rows($ravg);
 
     $qavg2 = "SELECT AVG(y) as purata FROM graf_km_tan where sessionid='$nama' and tahun ='$tahun' and (status='$status' or status='9')  ";
     if ($negeri == "publicagencies" || $negeri == "cooperatives" || $negeri == "publiclimitedcompany" ||
@@ -64,16 +64,16 @@ function pertama($tahun, $nama, $status, $negeri, $daerah) {
 		}
 	}
 
-    $ravg2 = mysql_query($qavg2, $con);
-    $rrow2 = mysql_fetch_array($ravg2);
-    $totalrow2 = mysql_num_rows($ravg2);
+    $ravg2 = mysqli_query($con, $qavg2);
+    $rrow2 = mysqli_fetch_array($ravg2);
+    $totalrow2 = mysqli_num_rows($ravg2);
 
 
     $var[0] = $rrow['purata'];
     $var[1] = $rrow2['purata'];
 
     //$var[2] = $totalrow ;
-    //$var[3] = $totalrow2; 
+    //$var[3] = $totalrow2;
 
     return $var;
 }
@@ -83,8 +83,8 @@ function cop($name, $type, $year, $state, $district, $tahun_r) {
     $con = connect();
     $q_cop = "select  * from cop where
 				NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT='$tahun_r'";
-    $r_cop = mysql_query($q_cop, $con);
-    $row_cop = mysql_fetch_array($r_cop);
+    $r_cop = mysqli_query($con, $q_cop);
+    $row_cop = mysqli_fetch_array($r_cop);
 
     $var[1] = $row_cop['VALUE_MEDIAN'];
     $var[0] = $row_cop['VALUE_MEAN'];
@@ -131,9 +131,9 @@ function cop($name, $type, $year, $state, $district, $tahun_r) {
 <?php
 if ($state != "" && $state != "publicagencies" && $state != "cooperatives" && $state != "publiclimitedcompany" && $state != "partnership" && $state != "solepropriertorship" && $state != "privatelimitedcompany") {
 	$qstate = "select * from negeri where id like '$state'";
-	$rstate = mysql_query($qstate, $con);
-	$rowstate = mysql_fetch_array($rstate);
-	$totalstate = mysql_num_rows($rstate);
+	$rstate = mysqli_query($con, $qstate);
+	$rowstate = mysqli_fetch_array($rstate);
+	$totalstate = mysqli_num_rows($rstate);
 	if ($state == "pm") {
 		$state = "pm";
 	} else {
@@ -196,7 +196,7 @@ $dua = $_COOKIE['tahun_report'] - 1;
 ?>
 <?php
 $qs = "select * from q_km where type='$sub'";
-$rs = mysql_query($qs, $con);
+$rs = mysqli_query($con, $qs);
 
 $jl = 0;
 $js = 0;
@@ -206,7 +206,7 @@ $ms = 0;
 $perubahan = 0;
 $perubahan_baru = 0;
 
-while ($rows = mysql_fetch_array($rs)) {
+while ($rows = mysqli_fetch_array($rs)) {
     ?>
         <tr height="17" <?php if (++$gg % 2 == 0) { ?>class="alt"<?php } ?>>
             <td <?php if ($_COOKIE['tahun_report'] == 2010) { ?> ondblclick="javascript:openScript('add_cop_upk.php?name=<?php echo $rows['name']; ?>&type=<?php echo "Upkeep"; ?>&tahun=<?php echo $_COOKIE['tahun_report']; ?>&year=<?php echo $year; ?>&state=<?php echo $state; ?>', '700', '200')"<?php } ?>><?php echo $rows['name']; ?></td>
@@ -224,7 +224,7 @@ while ($rows = mysql_fetch_array($rs)) {
                 $total4 = pertama($dua, "i. Purchase of weedicide", '0', $state, $district);
                 $total5 = pertama($dua, "ii. Labour cost for weeding", '0', $state, $district);
                 $total6 = pertama($dua, "iii. Machinery use and maintenances", '0', $state, $district);
-                ?>    
+                ?>
                     <td width="68"><div align="right"><?php $totalAll1 = $total4[0] + $total5[0] + $total6[0];
             echo number_format($totalAll1, 2); ?></div></td>
                     <td width="68"><div align="right"><?php $totalAll2 = $total1[0] + $total2[0] + $total3[0];
@@ -352,7 +352,7 @@ while ($rows = mysql_fetch_array($rs)) {
 </table>
 <script type="text/javascript" src="amcolumn/swfobject.js"></script>
 <script type="text/javascript">
-                // <![CDATA[		
+                // <![CDATA[
                 var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "380", "8", "#FFFFFF");
                 so.addVariable("path", "amcolumn/");
                 so.addVariable("settings_file", encodeURIComponent("mc_all_setting.xml"));
@@ -363,7 +363,7 @@ while ($rows = mysql_fetch_array($rs)) {
         </script>
 <script type="text/javascript" src="../amline/swfobject.js"></script>
 <script type="text/javascript">
-// <![CDATA[		
+// <![CDATA[
                 var so1 = new SWFObject("../amline/amline.swf", "amline", "520", "380", "8", "#FFFFFF");
                 so1.addVariable("path", "../amline/");
                 so1.addVariable("settings_file", encodeURIComponent("amline_settings.xml"));

@@ -1,10 +1,10 @@
-<?php 
+<?php
 //include('Connections/connection.class.php');
 session_start();
 
 if ($_SESSION['type']<>"admin")
        header("location:../logout.php");
-	
+
 
 include('baju_merah.php');
 ?>
@@ -16,13 +16,13 @@ include('baju_merah.php');
       <th width="34%" height="25"><div align="left"><strong>Type of survey</strong></div></th>
       <th width="19%"><div align="left"><strong>Status</strong></div></th>
     </tr>
-  
-    
+
+
     <?php
     	$con=connect();
 		$q="select * from setting ";
-  		$r=mysql_query($q,$con);
-		while($row=mysql_fetch_array($r)){
+  		$r=mysqli_query($con, $q);
+		while($row=mysqli_fetch_array($r)){
 	?>
     <tr <?php if($p++%2==0){?>class="alt"<?php } ?>>
       <td height="34"><strong><?php echo $row['ST_NAME'];?>
@@ -34,7 +34,7 @@ include('baju_merah.php');
         Closed</td>
     </tr>
     <?php } ?>
-    
+
   </table>
   <div align="center"><br />
   &nbsp;&nbsp;

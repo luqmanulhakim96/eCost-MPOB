@@ -1,4 +1,4 @@
-<?php 
+<?php
 extract($_REQUEST);
 include('../Connections/connection.class.php');
 include '../class/admin.estate.class.php';
@@ -40,8 +40,8 @@ body,td,th {
     </tr>
   </thead>
   <tbody>
-	<?php 	
-		while($row=mysql_fetch_array($result_peninsular)) { ?>
+	<?php
+		while($row=mysqli_fetch_array($result_peninsular)) { ?>
 		<tr valign="top" <?php if($list%2==0){?>class="alt"<?php } ?>>
 			<td><?php echo $list++; ?></td>
 			<td><?php echo $row['nama_estet'];?></td>
@@ -56,7 +56,7 @@ body,td,th {
             <td><?php echo $row['no_telepon'];?></td>
             <td><?php echo $row['no_fax'];?></td>
 		  	<td><?php echo $row['success'];?></td>
-		    
+
 		</tr>
 	<?php }?>
   </tbody>

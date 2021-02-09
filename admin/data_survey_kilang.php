@@ -15,7 +15,7 @@ $con = connect();
 <style>
     body {
         font-family:Tahoma ;
-        font-size: 12px; 
+        font-size: 12px;
 
     }td,th {
         font-size: 12px;
@@ -29,8 +29,8 @@ $con = connect();
 function ekilang($lesen) {
     $con = connect();
     $q = "select NAMA_KILANG, NEGERI, SYARIKAT_INDUK, SUM(FFB_PROSES) as FFB_PROSES from ekilang where NO_LESEN = '$lesen' group by NO_LESEN limit 1 ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
 
     $sub[0] = $row['NAMA_KILANG'];
     $sub[1] = $row['NEGERI'];
@@ -44,8 +44,8 @@ function ekilang($lesen) {
 function mill_pemprosesan($lesen, $tahun, $ffb) {
     $con = connect();
     $q = "select * from mill_pemprosesan where lesen ='$lesen' and tahun='$tahun' ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
 
     /* $sub[0] = round($row['kp_1'] / $ffb, 2);
       $sub[1] = round($row['kp_2'] / $ffb, 2);
@@ -89,8 +89,8 @@ function mill_pemprosesan($lesen, $tahun, $ffb) {
 function mill_info($lesen) {
     $con = connect();
     $q = "select * from mill_info where lesen ='$lesen'  ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
 
     $sub[0] = $row['syarikat'];
     $sub[1] = $row['integrasi'];
@@ -111,8 +111,8 @@ function mill_info($lesen) {
 function mill_koslain($lesen, $tahun, $ffb) {
     $con = connect();
     $q = "select * from mill_kos_lain where lesen ='$lesen' and tahun='$tahun' ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
 
     $sub[0] = $row['kl_1'];
     $sub[1] = $row['kl_2'];
@@ -137,8 +137,8 @@ function mill_koslain($lesen, $tahun, $ffb) {
 function mill_buruh($lesen, $tahun) {
     $con = connect();
     $q = "select * from mill_buruh where lesen ='$lesen' and tahun='$tahun' ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
 
     $sub[0] = $row['mb_1'];
     $sub[1] = $row['mb_2'];
@@ -162,7 +162,7 @@ function mill_buruh($lesen, $tahun) {
     return $sub;
 }
 
-//------------------------------------------------- 
+//-------------------------------------------------
 ?>
 
 
@@ -231,7 +231,7 @@ function mill_buruh($lesen, $tahun) {
     <?php
     $con = connect();
     /*$q = "select * from login_mill where success!='0000-00-00 00:00:00' and lesen like '500%'   group by lesen order by lesen ";*/
-	
+
 	$q ="SELECT ekilang.no_lesen as lesen FROM ekilang
       LEFT JOIN mill_info ON ekilang.no_lesen = mill_info.lesen
       LEFT JOIN mill_kos_lain ON ekilang.no_lesen = mill_kos_lain.lesen AND mill_kos_lain.tahun = '$tahun'
@@ -242,11 +242,11 @@ function mill_buruh($lesen, $tahun) {
 	  ekilang.tahun = '$tahun'
 	 AND (mill_kos_lain.total_kl > 0 or mill_pemprosesan.total_kp > 0)
 	 GROUP BY ekilang.no_lesen";
-	
-	
-    $r = mysql_query($q, $con);
+
+
+    $r = mysqli_query($con, $q);
     $bil = 0;
-    while ($row = mysql_fetch_array($r)) {
+    while ($row = mysqli_fetch_array($r)) {
         ?>
         <tr <?php if ($bil % 2 == 0) { ?>class="alt"<?php } ?>>
             <td><?php echo ++$bil; ?>. </td>

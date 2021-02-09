@@ -20,7 +20,7 @@ VALUES (
 '".$_SESSION['lesen']."', '".$_SESSION['tahun']."', '', '', '', '', '', '','0'
 )
 ";
-	$r=mysql_query($q,$con);
+	$r=mysqli_query($con, $q);
 }
 
 $pu[0] = $_SESSION['lesen'];
@@ -52,12 +52,12 @@ var pitmid = false;
 <script type="text/javascript">
  <?php //echo $bts->bts;?>
 var bts_lepas = 0;
-var tan_lepas = <?php echo $bts->fbb_proses; ?>; 
+var tan_lepas = <?php echo $bts->fbb_proses; ?>;
 
 	function field_blur(obj, bts_tan, bts_beza, nilai,nilai_asal, total_nilai,total_bts_tan, total_bts_beza) {
 		if(number_only(obj)) {
-			
-				
+
+
 					jumlah_all =0;
 					for(e=1; e<=5; e++ ){
 					jumlah= document.getElementById("kl_"+e).value;
@@ -66,37 +66,37 @@ var tan_lepas = <?php echo $bts->fbb_proses; ?>;
 					$("#kl_"+e).format({format:"#,###.00", locale:"us"});
 					}
 					document.getElementById("total_kl").value=jumlah_all;
-					$("#total_kl").format({format:"#,###.00", locale:"us"}); 
-			
-			
+					$("#total_kl").format({format:"#,###.00", locale:"us"});
+
+
 					jumlahbts_all =0;
 					for(b=1; b<=5; b++ ){
-					
+
 					kos= document.getElementById("kl_"+b).value;
 					kos = kos.replace(/,/g,"");
-					
+
 					bts = Number(kos)/Number(tan_lepas);
 					bts = bulatkan(bts);
-					
+
 					$("#bts_tan_"+b).html(bts);
-					$("#bts_tan_"+b).format({format:"#,###.00", locale:"us"}); 
-					
+					$("#bts_tan_"+b).format({format:"#,###.00", locale:"us"});
+
 					jumlahbts_all = Number(jumlahbts_all)+Number(bts);
 					}
 					$("#total_bts_tan").html(jumlahbts_all);
-					$("#total_bts_tan").format({format:"#,###.00", locale:"us"}); 
-				
+					$("#total_bts_tan").format({format:"#,###.00", locale:"us"});
+
 				/*total_all=document.getElementById(total_nilai).value;
 				total_all = total_all.replace(",","");
 				total_btstan=document.getElementById(total_bts_tan).innerHTML;
 				total_btstan = total_btstan.replace(",","");				//total_btsbeza=Number(document.getElementById("total_bts_beza").innerHTML);
-				
+
 				//alert(nilai);
-				//alert(nilai_asal); 
-				
+				//alert(nilai_asal);
+
 				//alert(bts_tan);
 				//alert(total_btstan);alert(total_btsbeza);
-				
+
  				total_bersih=Number(total_all)-Number(nilai_asal);
 				//alert(total_bersih);
 				total_bersih = bulatkan(total_bersih);
@@ -105,34 +105,34 @@ var tan_lepas = <?php echo $bts->fbb_proses; ?>;
 				//alert(new_value);
 				document.getElementById(total_nilai).value=new_value;
 				//nilai total
-				
+
 				nilai_bts_tan = Number(nilai)/tan_lepas;
 				nilai_bts_tan = bulatkan(nilai_bts_tan);
 				//alert(nilai_bts_tan);
 				nilai_total_bts_tan = total_btstan-Number(document.getElementById(bts_tan).innerHTML)+nilai_bts_tan;
 				$("#"+total_bts_tan).html(nilai_total_bts_tan);
 				$("#"+bts_tan).html(nilai_bts_tan);
-				//bts_tan 
-				
+				//bts_tan
+
 				//nilai_bts_beza = Number(nilai_bts_tan)-bts_lepas;
 				//nilai_bts_beza = bulatkan(nilai_bts_beza);
 				//alert(nilai_bts_beza);
 				//$("#"+bts_beza).html(nilai_bts_beza);
 				//bts_beza
-				
+
 				$(obj).format({format:"#,###.00", locale:"us"});
-				$("#"+total_nilai).format({format:"#,###.00", locale:"us"}); 
-				$("#"+total_bts_tan).format({format:"#,###.00", locale:"us"}); 
-				
-				$("#"+bts_tan).format({format:"#,###.00", locale:"us"}); 
+				$("#"+total_nilai).format({format:"#,###.00", locale:"us"});
+				$("#"+total_bts_tan).format({format:"#,###.00", locale:"us"});
+
+				$("#"+bts_tan).format({format:"#,###.00", locale:"us"});
 				$("#"+bts_beza).format({format:"#,###.00", locale:"us"}); */
 
-			
+
 		}
 		else {
 			$("#" + obj_id).html("0.00");
 		}
-		$(obj).format({format:"#,###.00", locale:"us"}); 
+		$(obj).format({format:"#,###.00", locale:"us"});
 	}
 	function field_click(obj) {
 		$(obj).format({format:"#,###.00", locale:"us"});
@@ -246,8 +246,8 @@ function hantar(x)
             <td height="37" align="center" valign="middle" style="border-top:solid #333333 1px;">&nbsp;</td>
             <td align="left" valign="middle" style="border-top:solid #333333 1px;"><span class="style2"><?=setstring ( 'mal', 'Harga purata isirong yang didapati pada tahun lepas', 'en', 'Mean of kernel price obtained last year'); ?> (RM)</span></td>
             <td align="center" valign="middle" style="border-top:solid #333333 1px;">
-            
-            
+
+
             <script language="javascript">
             function tukarnombor(obj){
 						if(number_only(obj)){
@@ -257,30 +257,30 @@ function hantar(x)
 						}
 			}
             </script>
-            
-            <?php 
-			
+
+            <?php
+
 					$con =connect();
 					$qisi="select * from mill_isirung where lesen = '".$_SESSION['lesen']."' and tahun ='".$_SESSION['tahun']."' limit 1";
-					$risi=mysql_query($qisi,$con);
-					$rowisi=mysql_fetch_array($risi);
-					$totalisi = mysql_num_rows($risi);
-					
+					$risi=mysqli_query($con, $qisi);
+					$rowisi=mysqli_fetch_array($risi);
+					$totalisi = mysqli_num_rows($risi);
+
 					if($totalisi==0){
 							$con =connect();
 							$q="insert into mill_isirung (lesen,tahun) values ('".$_SESSION['lesen']."','".$_SESSION['tahun']."')";
-							$r=mysql_query($q,$con);
-							
+							$r=mysqli_query($con, $q);
+
 				}
-					
-					
+
+
 			?>
             <input name="isirung" type="text" class="field_active" id="isirung" onchange="tukarnombor(this)"  onkeypress="keypress(event)" value="<?php echo number_format($rowisi['isirung'],2); ?>"  autocomplete="off"/>
+
+
             
-            
-            
-            
-            
+
+
             </td>
             <td align="center" valign="middle" style="border-top:solid #333333 1px;">&nbsp;</td>
             <td align="center" valign="middle" style="border-top:solid #333333 1px;">&nbsp;</td>

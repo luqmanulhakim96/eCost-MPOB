@@ -20,7 +20,7 @@ if ($type != "delete") {
             . "jumlah_pengeluaran =upper('$fbb_jumlah_pengeluaran'), "
             . "purata_hasil_buah =upper('$purata_hasil_buah') "
             . "where lesen = '$lesen_singkat'";
-    $r_fbb = mysql_query($q_fbb, $con);
+    $r_fbb = mysqli_query($con, $q_fbb);
 
 
     $q_login = "update login_estate "
@@ -28,7 +28,7 @@ if ($type != "delete") {
             . " firsttime='$firsttime', "
             . " success='$success', fail='$fail'"
             . " where lesen ='$nolesen'	";
-    $r_login = mysql_query($q_login, $con);
+    $r_login = mysqli_query($con, $q_login);
 
 
     $q_baru = "insert into tanam_baru$tahun_baru "
@@ -45,10 +45,10 @@ if ($type != "delete") {
             . "'$daerah_premis',"
             . " '$bulan_baru',"
             . " '$tanaman_baru')";
-    $r_baru = mysql_query($q_baru, $con);
+    $r_baru = mysqli_query($con, $q_baru);
     $qdelete_all = "delete from tanam_baru$tahun_baru "
             . "where tanaman_baru='' ";
-    $rdelete_all = mysql_query($qdelete_all, $con);
+    $rdelete_all = mysqli_query($con, $qdelete_all);
 
     //echo "<br>";
 
@@ -66,27 +66,27 @@ if ($type != "delete") {
             . "'$daerah_premis', "
             . "'$bulan_tukar', "
             . "'$tanaman_tukar')";
-    $r_tukar = mysql_query($q_tukar, $con); 
+    $r_tukar = mysqli_query($con, $q_tukar);
     $qdelete_all = "delete from tanam_tukar$tahun_tukar "
             . "where tanaman_tukar='' ";
-    $rdelete_all = mysql_query($qdelete_all, $con);
+    $rdelete_all = mysqli_query($con, $qdelete_all);
 
 
     //echo "<br>";
     $q_semula = "insert into tanam_semula$tahun_semula (nama_estet, lesen, negeri, daerah, bulan, tanaman_semula) values ('$nama_estet','$nolesen','$negeri_premis','$daerah_premis', '$bulan_semula', '$tanaman_semula')";
-    $r_semula = mysql_query($q_semula, $con);
+    $r_semula = mysqli_query($con, $q_semula);
     $qdelete_all = "delete from tanam_semula$tahun_semula where tanaman_semula='' ";
-    $rdelete_all = mysql_query($qdelete_all, $con);
+    $rdelete_all = mysqli_query($con, $qdelete_all);
 
 
     $q_estateinfo = "update  $table set alamat1 = '$alamat1', alamat2 = '$alamat2', poskod ='$poskod', bandar =upper('$daerah'), negeri='$negeri', 		                    no_telepon = '$notelefon', no_fax ='$nofax', emel = '$email' where no_lesen_baru= '$nolesen'";
-    $r_estateinfo = mysql_query($q_estateinfo, $con);
+    $r_estateinfo = mysqli_query($con, $q_estateinfo);
 
 
 
     $q_estatedetail = "update  estate_info set pegawai='$pegawai', syarikat ='$syarikat',integrasi = '$integrasi', keahlian='$keahlian'"
             . " where lesen = '$nolesen'";
-    $r_estatedetail = mysql_query($q_estatedetail, $con);
+    $r_estatedetail = mysqli_query($con, $q_estatedetail);
 
     $qUpdateImmature = "select CONVERT(SUM(qr.val), DECIMAL(18,9)) as totalImmature from(
 								select qry1.lesen, qry1.tanaman_baru as val from(
@@ -96,9 +96,9 @@ if ($type != "delete") {
 									union
 									select lesen, tanaman_baru from tanam_baru$tahun3
 								) qry1
-								
+
 								UNION
-								
+
 								select qry2.lesen, qry2.tanaman_semula as val from(
 									select lesen, tanaman_semula from tanam_semula$tahun1
 									union
@@ -106,9 +106,9 @@ if ($type != "delete") {
 									union
 									select lesen, tanaman_semula from tanam_semula$tahun3
 								) qry2
-								
+
 								UNION
-								
+
 								select qry3.lesen, qry3.tanaman_tukar as val from(
 									select lesen, tanaman_tukar from tanam_tukar$tahun1
 									union
@@ -118,13 +118,13 @@ if ($type != "delete") {
 								) qry3
 							) qr
 							where qr.lesen='$nolesen'";
-    $imm_update = mysql_query($qUpdateImmature, $con);
-    $imm_update_row = mysql_fetch_array($imm_update);
+    $imm_update = mysqli_query($con, $qUpdateImmature);
+    $imm_update_row = mysqli_fetch_array($imm_update);
 
     $belum_berhasil = $imm_update_row['totalImmature'];
     $jumlah = $belum_berhasil + $keluasan;
 
-    $q_esub = "update $table set 
+    $q_esub = "update $table set
 										Nama_Estet ='$nama_estet',
 										No_Lesen= '$no_lesen',
 										Alamat1 = '$alamat1',
@@ -144,7 +144,7 @@ if ($type != "delete") {
 										Keluasan_Yang_Dituai ='$keluasan'
 										where no_lesen_baru='$nolesen'
 										";
-    $r_esub = mysql_query($q_esub, $con);
+    $r_esub = mysqli_query($con, $q_esub);
 
     echo "<script>window.location.href='view_estate_all.php?nolesen=$nolesen'</script>";
 }
@@ -161,10 +161,10 @@ if ($type == "delete") {
 
     $con = connect();
     $qdelete = "delete from $table where lesen ='$lesen' and bulan='$bulan' and $field='$luas' limit 1 ";
-    $rdelete = mysql_query($qdelete, $con);
+    $rdelete = mysqli_query($con, $qdelete);
 
     $qdelete_all = "delete from $table where $field='' ";
-    $rdelete_all = mysql_query($qdelete_all, $con);
+    $rdelete_all = mysqli_query($con, $qdelete_all);
 
     $qUpdateImmature = "select CONVERT(SUM(qr.val), DECIMAL(18,9)) as totalImmature from(
 								select qry1.lesen, qry1.tanaman_baru as val from(
@@ -174,9 +174,9 @@ if ($type == "delete") {
 									union
 									select lesen, tanaman_baru from tanam_baru$tahun3
 								) qry1
-								
+
 								UNION
-								
+
 								select qry2.lesen, qry2.tanaman_semula as val from(
 									select lesen, tanaman_semula from tanam_semula$tahun1
 									union
@@ -184,9 +184,9 @@ if ($type == "delete") {
 									union
 									select lesen, tanaman_semula from tanam_semula$tahun3
 								) qry2
-								
+
 								UNION
-								
+
 								select qry3.lesen, qry3.tanaman_tukar as val from(
 									select lesen, tanaman_tukar from tanam_tukar$tahun1
 									union
@@ -196,18 +196,18 @@ if ($type == "delete") {
 								) qry3
 							) qr
 							where qr.lesen='$lesen'";
-    $imm_update = mysql_query($qUpdateImmature, $con);
-    $imm_update_row = mysql_fetch_array($imm_update);
+    $imm_update = mysqli_query($con, $qUpdateImmature);
+    $imm_update_row = mysqli_fetch_array($imm_update);
 
     $sql = "select keluasan_yang_dituai as luas from esub where no_lesen_baru='$lesen'";
-    $sqlresult = mysql_query($sql, $con);
-    $keluasan = mysql_fetch_array($sqlresult);
+    $sqlresult = mysqli_query($con, $sql);
+    $keluasan = mysqli_fetch_array($sqlresult);
 
     $belum_berhasil = $imm_update_row['totalImmature'];
     $jumlah = $belum_berhasil + $keluasan['luas'];
 
     $q_esub = "update $tableesub set Belum_Berhasil ='$belum_berhasil', Jumlah ='$jumlah' where no_lesen_baru='$lesen'";
-    $r_esub = mysql_query($q_esub, $con);
+    $r_esub = mysqli_query($con, $q_esub);
 
     echo "<script>window.location.href='view_estate_all.php?nolesen=$lesen'</script>";
 }

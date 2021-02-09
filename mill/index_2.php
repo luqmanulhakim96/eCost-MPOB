@@ -51,7 +51,7 @@ body {
 <script type="text/javascript" src="../external/bgiframe/jquery.bgiframe.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#progress").progressbar({ 
+		$("#progress").progressbar({
 			value:<?php echo number_format($totalmill,2);?>
 		});
 	});
@@ -69,7 +69,7 @@ padding: 10px;">
 <table><tr><td><strong><img src="../folder.png" alt="aaa" width="100" height="100" /></strong></td>
 <td>
         <ul>
-          <li><?=setstring ( 'mal', 'Login berjaya terakhir anda pada', 'en', 'Last success login on'); ?> 
+          <li><?=setstring ( 'mal', 'Login berjaya terakhir anda pada', 'en', 'Last success login on'); ?>
             <?= $pengguna->success; ?>
           </li>
         <br />
@@ -82,7 +82,7 @@ padding: 10px;">
       </table>
       </div></td>
   </tr>
-  
+
 <!--  <tr>
     <td style="border-bottom:#000000 solid 1px;"> </td>
   </tr>
@@ -90,19 +90,20 @@ padding: 10px;">
     <td> </td>
   </tr>
   <?php
-  	$con = connect();
+
 	$tahun_lepas = $_SESSION['tahun']-1;
+		$con = connect();
 		$query = "select * from graf_mill where lesen ='".$_SESSION['lesen']."' and tahun ='$tahun_lepas' ";
-		$res = mysql_query($query,$con);
-		$row = mysql_fetch_array($res); 
-		$res_total = mysql_num_rows($res);
-		
-		
+		$res = mysqli_query($con, $query);
+		$row = mysqli_fetch_array($res);
+		$res_total = mysqli_num_rows($res);
+
+
 		function median($numbers=array())
 {
 	if (!is_array($numbers))
 		$numbers = func_get_args();
-	
+
 	rsort($numbers);
 	$mid = (count($numbers) / 2);
 	return ($mid % 2 != 0) ? $numbers{$mid-1} : (($numbers{$mid-1}) + $numbers{$mid}) / 2;
@@ -114,109 +115,110 @@ $con=connect();
 		if($negeri!="" & $negeri!="pm")
 		{
 			$sql.=" and negeri = '$negeri'";
-		} 
+		}
 		if($negeri!="" && $daerah!="")
 		{
 			$sql.=" and daerah = '$daerah'";
-		} 
+		}
 		if($negeri=="pm")
 		{
 			$sql.=" and (negeri not like 'SARAWAK' and negeri not like 'SABAH')";
-		} 
+		}
 		if($lesen!="")
 		{
 			$sql.=" and lesen = '$type' ";
 		}
-		
-		
+
+
 	//echo $sql."<br>";
-		$sql_result = mysql_query($sql,$con); 
-		$i=0; 
-				while ($row = mysql_fetch_array($sql_result)) 
-				{ 
+		$con = connect();
+		$sql_result = mysqli_query($con, $sql);
+		$i=0;
+				while ($row = mysqli_fetch_array($sql_result))
+				{
 				$test_data[] = $row["y"];
-				
-				$i = $i + 1; 
-				} 
+
+				$i = $i + 1;
+				}
 	//-----------------------------------------------------------------------------------------
-	$tahun_lepas = $tahun-1; 
+	$tahun_lepas = $tahun-1;
 	$qoer = "SELECT SUM(FFB_PROSES) as FFB_PROSES, SUM(PENGELUARAN_CPO) as PENGELUARAN_CPO FROM graf_mill gm, ekilang ek where  gm.tahun ='$tahun' and gm.status='$status' ";
 		if($negeri!="" & $negeri!="pm")
 		{
 			$qoer.=" and gm.negeri = '$negeri'";
-		} 
+		}
 		if($negeri!="" && $daerah!="")
 		{
 			$qoer.=" and gm.daerah = '$daerah'";
-		} 
+		}
 		if($negeri=="pm")
 		{
 			$qoer.=" and (gm.negeri not like 'SARAWAK' and gm.negeri not like 'SABAH')";
-		} 
-		
+		}
+
 		if($lesen!="")
 		{
 			$qoer.=" and no_lesen = '$no_lesen' ";
 		}
-		
-		
+
+
 		$qoer .= " and gm.lesen = ek.no_lesen and ek.tahun='".$tahun_lepas."'";
-		
+
 	//echo $qoer;
-		
-	$roer = mysql_query($qoer,$con);
-	$rowoer = mysql_fetch_array($roer);
-	
+
+	$roer = mysqli_query($con, $qoer);
+	$rowoer = mysqli_fetch_array($roer);
+
 	$oer = round($rowoer['PENGELUARAN_CPO']/$rowoer['FFB_PROSES'] *100,2);
-	
+
 	//-----------------------------------------------------------------------------------------
-			
-			
-			
+
+
+
 		$qavg = "SELECT AVG(y) as purata FROM graf_mill where tahun ='$tahun' and status='$status' ";
 		if($negeri!="" & $negeri!="pm")
 		{
 			$qavg.=" and negeri = '$negeri'";
-		} 
+		}
 		if($negeri!="" && $daerah!="")
 		{
 			$qavg.=" and daerah = '$daerah'";
-		} 
+		}
 		if($negeri=="pm")
 		{
 			$qavg.=" and (negeri not like 'SARAWAK' and negeri not like 'SABAH')";
-		} 
-		
+		}
+
 		if($lesen!="")
 		{
 			$qavg.=" and lesen = '$lesen' ";
 		}
-		
-		
+
+
 	//echo $qavg."<br>";
-		$ravg = mysql_query($qavg,$con);
-		$rrow = mysql_fetch_array($ravg);
-		
-		
+		$ravg = mysqli_query($con, $qavg);
+		$rrow = mysqli_fetch_array($ravg);
+
+
 			$var[0] = median($test_data);
-			$var[1] = $rrow['purata'];		
-			
+			$var[1] = $rrow['purata'];
+
 			$var[2]= $oer;
-			
-			
-			
-			return $var; 
-				
+
+
+
+			return $var;
+
 		}
-		
-		
-  
-  
+
+
+
+
    if($res_total==0){?>
   <!--<tr>
     <td valign="top"><div align="center">
      <p style="font-weight:bold; font-size:14px;"><?=setstring ( 'mal', 'Tiada Prestasi Kos Pemprosesan pada Tahun Lepas', 'en', 'The Processing Cost Performance for Previous Years in Unavailable'); ?>
-</p> 
+</p>
 
     </div></td>
   </tr>-->
@@ -235,13 +237,13 @@ $con=connect();
         <td width="32%" bgcolor="#62DFFF"><div align="center"><strong><?=setstring ( 'mal', 'Kadar Perahan Minyak', 'en', 'Oil Extraction Rate'); ?>
 </strong></div>          <div align="center"></div>          <div align="center"><strong>(%)</strong></div></td>
         </tr>
-      
+
       <tr>
         <td width="2%" height="44" bgcolor="#FFCCFF"> </td>
         <td width="33%" bgcolor="#FFCCFF"><div align="left"><strong><?= strtoupper($pengguna->nama);?></strong></div></td>
         <td bgcolor="#FFCCFF"><div align="center">
 		<?php $a= pertama ($tahun_lepas,  '0',$pengguna->negeripremis, $_SESSION['lesen']); echo number_format($a[1],2); ?>
-        
+
         </div></td>
         <td bgcolor="#FFCCFF"><div align="center"><?php echo number_format($a[2],2);?></div></td>
         </tr>
@@ -279,6 +281,6 @@ $con=connect();
   <tr>
     <td height="32" >&nbsp;</td>
   </tr>
-  
+
   <?php }?>-->
 </table>

@@ -4,7 +4,7 @@
 <script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
 
-			
+
 	$('#example').dataTable( {"sPaginationType": "full_numbers","iDisplayLength": 25,
 		"fnDrawCallback": function ( oSettings ) {
 			/* Need to redo the counters if filtered or sorted */
@@ -23,17 +23,17 @@
 	} );
 } );
 			</script>
-           
+
 <link rel="stylesheet" href="../js/colorbox/colorbox.css" type="text/css" />
 <script type="text/javascript" src="../js/colorbox/colorbox/jquery.colorbox.js"></script>
-        
+
 <script type="text/javascript">
 			$(document).ready(function(){
 				$(".boxcolor").colorbox({width:"60%", height:"100%", iframe:true});
 			});
 		</script>
-    
-    
+
+
       <style>
       		@import "../js/datatable/css/demo_page.css";
 			@import "../js/datatable/css/demo_table.css";
@@ -42,7 +42,7 @@
 <div align="center"><h2>List of Completed Survey in Sabah</h2></div>
         <table width="100%" border="0" cellpadding="0" cellspacing="0" class="display" id="example">
 	<thead>
-	
+
 	  <tr bgcolor="#8A1602" height="30">
 		  <th width="5%" class="style1">No.</th>
 			<th width="26%" class="style1">Mill Name</th>
@@ -53,7 +53,7 @@
 	  </tr>
 	</thead>
 	<tbody>
-	<?php while($row = mysql_fetch_array($result_sabah_complete)) { ?>
+	<?php while($row = mysqli_fetch_array($result_sabah_complete)) { ?>
 		<tr valign="top">
 			<td><?php echo $list++; ?></td>
 			<td><a href="details.php?id=<?php echo $row['lesen'];?>&year=<?php echo $_COOKIE['tahun_report'];?>" class="boxcolor"><?php echo $row['nama'];?></a></td>
@@ -62,7 +62,7 @@
 			<td><a href="emailnonresponde.php?lesen=<?php echo $row['lesen'];?>" class="boxcolor"><?php echo $row['email'];?></a><div align="center"></div></td>
 			<td><?php echo $row['access'];?></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>
 <br />

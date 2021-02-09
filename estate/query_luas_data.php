@@ -9,8 +9,8 @@ function luas_data($table, $data, $tahunsebelum) {
     }
     $con = connect();
     $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
-    $rblm = mysql_query($qblm, $con);
-    $rowblm = mysql_fetch_array($rblm);
+    $rblm = mysqli_query($con, $qblm);
+    $rowblm = mysqli_fetch_array($rblm);
     return $rowblm[$data];
 }
 

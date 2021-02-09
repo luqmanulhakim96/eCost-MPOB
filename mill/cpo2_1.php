@@ -1,4 +1,4 @@
-<?php 
+<?php
 $variable[0]=$_SESSION['lesen'];
 $variable[1]=$_SESSION['tahun'];
 $valueTahunSebelum[0]=$session_lesen;
@@ -33,7 +33,7 @@ VALUES (
 '".$_SESSION['lesen']."', '".$_SESSION['tahun']."', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',''
 )
 ";
-	$r=mysql_query($q,$con);
+	$r=mysqli_query($con, $q);
 }
 
 $pu[0] = $_SESSION['lesen'];
@@ -61,11 +61,11 @@ function kiraPerubahan($valueBaru, $valueLama){
 <script type="text/javascript">
  <?php //echo $bts->bts;?>
 var bts_lepas = 0;
-var tan_lepas = <?php echo $bts->fbb_proses; ?>; 
+var tan_lepas = <?php echo $bts->fbb_proses; ?>;
 
 	function field_blur(obj, bts_tan, bts_beza, nilai,nilai_asal, total_nilai,total_bts_tan, total_bts_beza) {
 		if(number_only(obj)) {
-			
+
 			jumlah_all =0;
 			for(e=1; e<=15; e++ ){
 			jumlah= document.getElementById("kp_"+e).value;
@@ -75,61 +75,61 @@ var tan_lepas = <?php echo $bts->fbb_proses; ?>;
 			}
 			document.getElementById("total_kp").value=jumlah_all;
 			$("#total_kp").format({format:"#,###.00", locale:"us"});
-			
+
 			jumlahbts_all =0;
-			
-			all_kiraan =0; 
+
+			all_kiraan =0;
 			for(b=1; b<=15; b++ ){
-			
+
 			kos= document.getElementById("kp_"+b).value;
 			kos = kos.replace(/,/g,"");
 			//alert(kos);
-			
+
 			all_kiraan = Number(all_kiraan)+Number(kos);
-			
+
 			bts = Number(kos)/Number(tan_lepas);
 			bts = bts;
 			//alert(bts);
 			$("#bts_tan_"+b).html(bts);
 			$("#bts_tan_"+b).format({format:"#,###.00", locale:"us"});
-			
+
 			jumlahbts_all = Number(jumlahbts_all)+Number(bts);
 			}
-			
-			//alert(all_kiraan); 
+
+			//alert(all_kiraan);
 			$("#total_bts_tan").html(jumlahbts_all);
-			$("#total_bts_tan").format({format:"#,###.00", locale:"us"}); 
-			
+			$("#total_bts_tan").format({format:"#,###.00", locale:"us"});
+
 			total_all=document.getElementById(total_nilai).value;
 				total_all = total_all.replace(",","");
 				total_btstan=document.getElementById(total_bts_tan).innerHTML;
 				total_btstan = total_btstan.replace(",","");
-				
+
  				total_bersih=Number(total_all)-Number(nilai_asal);
 				total_bersih = bulatkan(total_bersih);
 				new_value=Number(total_bersih)+Number(nilai);
 				new_value=bulatkan(new_value);
 				document.getElementById(total_nilai).value=all_kiraan;
 				//nilai total
-				
+
 				nilai_bts_tan = Number(nilai)/tan_lepas;
 				nilai_bts_tan = bulatkan(nilai_bts_tan);
 				nilai_total_bts_tan = total_btstan-Number(document.getElementById(bts_tan).innerHTML)+nilai_bts_tan;
 				$("#"+total_bts_tan).html(nilai_total_bts_tan);
 				$("#"+bts_tan).html(nilai_bts_tan);
-			
+
 				$(obj).format({format:"#,###.00", locale:"us"});
-				$("#"+total_nilai).format({format:"#,###.00", locale:"us"}); 
-				$("#"+total_bts_tan).format({format:"#,###.00", locale:"us"}); 
-				
-				$("#"+bts_tan).format({format:"#,###.00", locale:"us"}); 
+				$("#"+total_nilai).format({format:"#,###.00", locale:"us"});
+				$("#"+total_bts_tan).format({format:"#,###.00", locale:"us"});
+
+				$("#"+bts_tan).format({format:"#,###.00", locale:"us"});
 				$("#"+bts_beza).format({format:"#,###.00", locale:"us"});
-			
+
 		}
 		else {
 			$("#" + obj_id).html("0.00");
 		}
-		$(obj).format({format:"#,###.00", locale:"us"}); 
+		$(obj).format({format:"#,###.00", locale:"us"});
 	}
 	function field_click(obj) {
 		$(obj).format({format:"#,###.00", locale:"us"});
@@ -195,8 +195,8 @@ var pitmid = false;
       <td width="426" height="26" bgcolor="#FFCCFF"><strong><?=setstring ( 'mal', 'Jumlah BTS diproses pada tahun lepas ', 'en', 'Total of Processed FFB on Last Year'); ?>
 </strong></td>
       <td colspan="3" bgcolor="#FFCCFF"><label><strong>
-<?php $d =$bts->fbb_proses; echo number_format($d,2); 
-?>      
+<?php $d =$bts->fbb_proses; echo number_format($d,2);
+?>
 <?=setstring ( 'mal', 'Tan', 'en', 'Tonne'); ?>
 </strong></label></td>
     </tr>
@@ -459,5 +459,5 @@ var pitmid = false;
     <tr>
       <td colspan="4">&nbsp;</td>
     </tr>
-  </table>  
+  </table>
 </form>

@@ -15,12 +15,12 @@ $backlist = array('php', 'php3', 'php4', 'phtml', 'exe', 'jpg', 'png', 'gif', 'j
 
 $con = connect();
 $qfile = "select * from file_upload where id ='$id'";
-$rfile = mysql_query($qfile, $con);
-$rowfile = mysql_fetch_array($rfile);
+$rfile = mysqli_query($con, $qfile);
+$rowfile = mysqli_fetch_array($rfile);
 $pathfile = $rowfile['path'];
 
 /* start of captcha validation */
-//echo $_SESSION['captcha']['code']; 
+//echo $_SESSION['captcha']['code'];
 if($captcha!=$_SESSION['captcha']['code']){
 echo "<html><script language='javascript'>alert('Invalid CAPTCHA Code!'); location.href='home.php?id=config&sub=upfile';</script></html>";
 }
@@ -52,7 +52,7 @@ if ($jenis == 'file') {
     $addfrom = $_SERVER['REMOTE_ADDR'];
     if (move_uploaded_file($_FILES['ufile']['tmp_name'], $target)) {
         $q = "insert into file_upload values ('','$target','$title','1', '$addby', now(), '$addfrom');  ";
-        $r = mysql_query($q, $con);
+        $r = mysqli_query($con, $q);
     } else {
         echo "<html><script language='javascript'>alert('Upload File Failed!'),history.go(-1)</script></html>";
     }
@@ -61,7 +61,7 @@ if ($jenis == 'file') {
 
 if ($jenis == 'delete') {
     $q = "delete from file_upload where id= '$id' ";
-    $r = mysql_query($q, $con);
+    $r = mysqli_query($con, $q);
 //echo $pathfile;
     unlink($pathfile);
 }

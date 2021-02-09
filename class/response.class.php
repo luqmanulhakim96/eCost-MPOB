@@ -1,8 +1,8 @@
-<?php 
+<?php
 class response
 {
 	//total semua response estate survey yang complete (submitted to mpob) 0=not complete, 1=sah
-	function totalresponse($var)
+	function  __construct($var)
 	{
 		$con = connect();
 		$q = "SELECT COUNT(estate_info.lesen) AS jumlah FROM estate_info";
@@ -14,12 +14,12 @@ class response
 		$q .= " AND kos_matang_pengangkutan.status = 1";
 		$q .= " AND kos_matang_penjagaan.status = 1";
 		$q .= " AND kos_matang_penuaian.status = 1";
-		$r=mysql_query($q,$con);
-		$row = mysql_fetch_assoc($r);
+		$r=mysqli_query($con,$q);
+		$row = mysqli_fetch_assoc($r);
 		$jumlah = $row['jumlah'];
 		return $jumlah;
 	}
-	
+
 	//total non response estate survey
 	function totalnonresponse($var)
 	{
@@ -37,12 +37,12 @@ class response
 			$sqladd = "(e.negeri LIKE '%SARAWAK%')";
 		}
 		$q="SELECT b.lesen FROM buruh b, esub e WHERE b.lesen = e.no_lesen_baru AND b.tahun = '$var' AND $sqladd GROUP BY b.lesen";
-		$r=mysql_query($q,$con);
-		$row = mysql_fetch_assoc($r);
+		$r=mysqli_query($con, $q);
+		$row = mysqli_fetch_assoc($r);
 		$jumlah = $row['jumlah'];
 		return $jumlah;
 	}
-	
+
 	function totalall($var)
 	{
 		//total all estate by all, peninsular, sabah or sarawak
@@ -87,11 +87,11 @@ class response
 			$q .= " WHERE esub.Negeri = 'SARAWAK'";
 			$q .= " GROUP BY esub.No_Lesen_Baru";
 		}
-		$r=mysql_query($q,$con);
-		$row = mysql_fetch_assoc($r);
+		$r=mysqli_query($con,$q);
+		$row = mysqli_fetch_assoc($r);
 		$jumlah = $row['jumlah'];
 		return $jumlah;
-		
+
 	}
 	function totalresponsekawasan($var,$tahun)
 	{
@@ -109,7 +109,7 @@ class response
 		{
 			$sqladd = "(esub.Negeri LIKE '%SARAWAK%')";
 		}
-		
+
 		$q = "SELECT COUNT(esub.No_Lesen_Baru) AS lesen FROM esub";
 		$q .= " INNER JOIN kos_belum_matang ON estate_info.lesen = kos_belum_matang.lesen";
 		$q .= " INNER JOIN kos_matang_pengangkutan ON estate_info.lesen = kos_matang_pengangkutan.lesen";
@@ -122,23 +122,23 @@ class response
 		$q .= " AND $sqladd";
 		$q .= " GROUP BY esub.No_Lesen_Baru";
 
-		$r=mysql_query($q,$con);
-		$row = mysql_fetch_assoc($r);
+		$r=mysqli_query($con,$q);
+		$row = mysqli_fetch_assoc($r);
 		$jumlah = $row['jumlah'];
 		return $jumlah;
-		
+
 	}
-	
+
 	function outliers($var)
 	{
 		$con = connect();
 		$q="SELECT COUNT(lesen) AS jumlah FROM buruh WHERE tahun = '$var'";
-		$r=mysql_query($q,$con);
-		$row = mysql_fetch_array($r);
+		$r=mysqli_query($con,$q);
+		$row = mysqli_fetch_array($r);
 		$jumlah = $row['jumlah'];
 		return $jumlah;
 	}
-	
+
 	function tanambaru($tahun,$type,$jenis,$location)
 	{
 		$con = connect();
@@ -158,12 +158,12 @@ class response
 		{
 		$q="SELECT * FROM $type t, esub e WHERE t.pb_type='$jenis' AND t.pb_thisyear='$tahun' AND e.no_lesen_baru = t.lesen AND (e.negeri LIKE '%SARAWAK%') GROUP BY t.lesen";
 		}
-		
-		$r=mysql_query($q,$con);
-		$row = mysql_fetch_array($r);
-		$total = mysql_num_rows($r);
+
+		$r=mysqli_query($con,$q);
+		$row = mysqli_fetch_array($r);
+		$total = mysqli_num_rows($r);
 		return $total;
 	}
-	
+
 }
 ?>

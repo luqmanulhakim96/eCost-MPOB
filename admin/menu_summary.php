@@ -19,8 +19,8 @@
     <strong><img src="../images/Bcase.png" width="16" height="16" /> Raw data</strong>
     <ul id="browser" class="filetree">
 <!--	  <li><img src="../nav/file.gif" /> <strong><a href="home.php?id=summary">View Summary</a><a href="#"></a></strong></li>
-        -->        
-        <?php /* ?><li><img src="../nav/folder.gif" /> <strong>FFB &amp; Cost of Production</strong>        
+        -->
+        <?php /* ?><li><img src="../nav/folder.gif" /> <strong>FFB &amp; Cost of Production</strong>
           <ul>
           <li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=summary&amp;sub=summary_map">Map View</a></li>
           <li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=summary&amp;sub=summary_all">Cost per Tan FFB</a></li>
@@ -30,26 +30,26 @@
           </ul>
           </li><?php */ ?>
 
-        <li><img src="../nav/folder.gif" /> <strong>Data Survey</strong>        
+        <li><img src="../nav/folder.gif" /> <strong>Data Survey</strong>
             <ul>
 
                 <?php
-                $con = connect();
+                $con =connect();
 
                 $qtDelete = "delete from kos_belum_matang where pb_thisyear='0' ";
-                $rtDelete = mysql_query($qtDelete, $con);
+                $rtDelete = mysqli_query($con, $qtDelete);
 
 
                 $qt = "select pb_thisyear from kos_belum_matang group by pb_thisyear ";
-                $rt = mysql_query($qt, $con);
-                while ($rowt = mysql_fetch_array($rt)) {
+                $rt = mysqli_query($con, $qt);
+                while ($rowt = mysqli_fetch_array($rt)) {
                     ?>
                     <li><img src="../nav/file.gif" alt="d" /><a href="data_survey_estate.php?tahun=<?php echo $rowt['pb_thisyear']; ?>">Estate <?php echo $rowt['pb_thisyear']; ?></a></li>
                     <li><img src="../nav/file.gif" alt="d" /><a href="data_survey_kilang.php?tahun=<?php echo $rowt['pb_thisyear']; ?>">Kilang <?php echo $rowt['pb_thisyear']; ?></a></li>
-<?php } ?> 
+<?php } ?>
 
             </ul>
-        </li>   
+        </li>
     </ul>
 
 </div>

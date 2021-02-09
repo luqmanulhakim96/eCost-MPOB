@@ -1,10 +1,10 @@
-<?php include '../class/admin.estate.class.php'; 
+<?php include '../class/admin.estate.class.php';
 
 $con =connect();
 $qa ="truncate estate_complete ";
-$ra = mysql_query($qa,$con);
+$ra = mysqli_query($con, $qa);
 
-	
+
 	$all_complete_survey = "SELECT esub.no_lesen_baru lesen,  esub.nama_estet nama,esub.syarikat_induk syarikat_induk, login_estate.success access, esub.emel email FROM esub";
 	$all_complete_survey .= " LEFT JOIN buruh ON esub.no_lesen_baru = buruh.lesen";
 	$all_complete_survey .= " LEFT JOIN kos_belum_matang ON esub.no_lesen_baru = kos_belum_matang.lesen";
@@ -27,30 +27,30 @@ $ra = mysql_query($qa,$con);
 	$all_complete_survey .= " AND kos_matang_penuaian.status = 1 ";
 	$all_complete_survey .= " GROUP BY esub.no_lesen_baru";
 	$all_complete_survey .= " ORDER BY login_estate.success DESC";
-	
-	//echo $all_complete_survey; 
-	$racs = mysql_query($all_complete_survey,$con);
-	while($rowracs = mysql_fetch_array($racs)){
+
+	//echo $all_complete_survey;
+	$racs = mysqli_query($con, $all_complete_survey);
+	while($rowracs = mysqli_fetch_array($racs)){
 		$qadd="insert into estate_complete (lesen,tahun) values ('".$rowracs['lesen']."','".$year."')";
-		$radd = mysql_query($qadd,$con);
+		$radd = mysqli_query($con, $qadd);
 	}
-	
+
 include("baju.php");
 include("pages.php");
 ?>
 
-        
-        
-        
-        
+
+
+
+
 <style>
 .filtering { background-color:light-gray}
 #jqtf_filters {
 	list-style:none;
 	}
 #jqtf_filters li {
-	display:inline-block; 
-	position:relative; 
+	display:inline-block;
+	position:relative;
 	float:left;
 	margin-bottom:20px
 }
@@ -72,32 +72,32 @@ include("pages.php");
     </tr>
 	</thead>
 	<tbody>
-	<?php 
+	<?php
 	$con = connect();
-	$qr = "SELECT count(le.lesen) as kira,es.no_lesen_baru, es.nama_estet , le.success , es.negeri, es.syarikat_induk, es.emel FROM login_estate le, esub  es WHERE 
+	$qr = "SELECT count(le.lesen) as kira,es.no_lesen_baru, es.nama_estet , le.success , es.negeri, es.syarikat_induk, es.emel FROM login_estate le, esub  es WHERE
 le.lesen = es.no_lesen_baru  ";
 	if($year=="2010"){
 		$qr .= " and le.success != '0000-00-00 00:00:00'";
 	}
-	if($year!="2010"){	
+	if($year!="2010"){
 		$qr .= " and le.success like '%$year%'";
 	}
 	$qr.=" AND es.negeri LIKE '%SARAWAK%' group by le.lesen";
-	
+
 	//echo $qr;
-	$rr = mysql_query($qr,$con);
-	while($rowrr=mysql_fetch_array($rr)) { 
-	
+	$rr = mysqli_query($con, $qr);
+	while($rowrr=mysqli_fetch_array($rr)) {
+
 			  $con =connect();
 		 	  $qt="select lesen,tahun from estate_complete where lesen = '".$rowrr['lesen']."'";
-			  $rt=mysql_query($qt,$con);
-			  $totalrt = mysql_num_rows($rt);
-			  $rowrt = mysql_fetch_array($rt);
-			  
+			  $rt=mysqli_query($con, $qt);
+			  $totalrt = mysqli_num_rows($rt);
+			  $rowrt = mysqli_fetch_array($rt);
+
 			  $q="select * from esub where no_lesen_baru ='".$rowrr['lesen']."' ";
-			  $r=mysql_query($q,$con);
-			  $row= mysql_fetch_array($r);
-			  
+			  $r=mysqli_query($con, $q);
+			  $row= mysqli_fetch_array($r);
+
 	if($totalrt==0){
 	?>
 		<tr valign="top" <?php if($list%2==0){?>class="alt"<?php } ?>>
@@ -114,17 +114,17 @@ le.lesen = es.no_lesen_baru  ";
 		    <td><div align="center">
             <?php
              $qa ="select success,password,lesen from login_estate where lesen ='".$row['lesen']."'";
-	$ra = mysql_query($qa,$con);
-	$rowa = mysql_fetch_array($ra);
+	$ra = mysqli_query($con, $qa);
+	$rowa = mysqli_fetch_array($ra);
 			?>
-            
+
           <a href="auto_login.php?username=<?php echo $rowrr['lesen'];?>&amp;password=<?php echo $rowrr['password'];?>&amp;tahun=<?php echo $_COOKIE['tahun_report'];?>" target="_blank" title="View Survey"><img src="../estate/images/001_43.gif" alt="View Survey" width="20" height="20" border="0" title="View Survey" /></a>
-          
+
         <a href="auto_login.php?username=<?php echo $rowrr['lesen'];?>&amp;password=<?php echo $rowrr['password'];?>&amp;tahun=<?php echo $_COOKIE['tahun_report'];?>&view=true" target="_blank" > <img src="../images/001_36.png" width="20" height="20" border="0" title="View Only" /></a></div></td>
 		</tr>
-	<?php 
-		} 
-	} mysql_close($con);?>
+	<?php
+		}
+	} mysqli_close($con);?>
 	</tbody>
 </table>
 
@@ -136,4 +136,3 @@ le.lesen = es.no_lesen_baru  ";
 <a href="estate_total_complete_excel.php" target="_blank"><img src="../images/Excel-icon.png" width="48" height="48" border="0" title="Pindah ke Excel" /></a><br/>
 <br />
 <br />
-

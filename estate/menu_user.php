@@ -32,19 +32,19 @@
 <!-- Menu -->
 <script type="text/javascript">
 	$(document).ready(function() {
-	
+
 		<?php
 			if(isset($_GET['finished'])) {
 		?>
 		$.fn.colorbox({
 			<?php if(isset($_GET['ringkasan'])) {?>
-			href:'ringkasan_end.php?page=mill', 
+			href:'ringkasan_end.php?page=mill',
 			<?php } else {?>
 			href:'po_end.php?page=mill',
 			<?php } ?>
 			open:true,
-			width:"50%", 
-			height:"35%", 
+			width:"50%",
+			height:"35%",
 			iframe:false
 		});
 		<?php
@@ -52,10 +52,10 @@
 			if(isset($_GET['logging'])) {
 		?>
 		$.fn.colorbox({
-			href:'welcome.php?page=mill', 
+			href:'welcome.php?page=mill',
 			open:true,
-			width:"50%", 
-			height:"50%", 
+			width:"50%",
+			height:"50%",
 			iframe:false
 		});
 		<?php
@@ -63,15 +63,17 @@
 			if(isset($_GET['mill'])) {
 		?>
 		$.fn.colorbox({
-			href:'welcome.php?mill=true', 
+			href:'welcome.php?mill=true',
 			open:true,
-			width:"50%", 
-			height:"50%", 
+			width:"50%",
+			height:"50%",
 			iframe:false
 		});
 		<?php
 			}
-			if(($_GET['id'] == 'home')or(eregi("^po",$_GET['id']))) {
+			// if(($_GET['id'] == 'home')or(eregi("^po",$_GET['id']))) {
+			if(($_GET['id'] == 'home')or(preg_match("^po",$_GET['id']))) {
+
 		?>
 		$("#home_hover").show();
 		$("#home_normal").hide();
@@ -97,7 +99,7 @@
 		});
 		<?php
 			}
-			if(eregi("^print",$_GET['id'])) {
+			if(preg_match("^print",$_GET['id'])) {
 		?>
 		$("#print_hover").show();
 		$("#print_normal").hide();
@@ -123,7 +125,7 @@
 		});
 		<?php
 			}
-			if(eregi("^profile",$_GET['id']) or eregi("^view_message",$_GET['id']) or eregi("^compose",$_GET['id']) or eregi("^read",$_GET['id'])) {
+			if(preg_match("^profile",$_GET['id']) or preg_match("^view_message",$_GET['id']) or preg_match("^compose",$_GET['id']) or preg_match("^read",$_GET['id'])) {
 		?>
 		$("#profile_hover").show();
 		$("#profile_normal").hide();
@@ -359,14 +361,15 @@
 		?>
 	});
 </script>
-<?php 
-$Conn = connect();
+<?php
+$con = connect();
 $License = $_SESSION['lesen'];
 $Year = $_SESSION['tahun'];
+// print_r($con);
 ?>
 
 <?php if($_COOKIE['lang']=="mal"){?>
-<div id="menu-other"> 
+<div id="menu-other">
 <img src="../nav/hm2.png" name="home_normal" width="140" height="24" border="0" id="home_normal" />
 <img src="../nav/hm1.png" name="home_hover" width="140" height="24" border="0" id="home_hover" />
 
@@ -381,10 +384,11 @@ $License = $_SESSION['lesen'];
 $aQuery = "SELECT Integration, AreaEstimation ".
 					  "FROM tblasmintegrationestate ".
 					  "WHERE License = '$License' AND `Year` = '$Year'";
-$Rows = mysql_query($aQuery,$Conn);
-$res_total = mysql_num_rows($Rows);
-	
-if($res_total != 0){	  
+$con = connect();
+$Rows = mysqli_query($con, $aQuery);
+$res_total = mysqli_num_rows($Rows);
+
+if($res_total != 0){
 ?>
 
 <img src="../nav/belum_matang_normal.png" name="belum_matang_normal" width="140" height="24" id="belum_matang_normal" />
@@ -404,14 +408,14 @@ if($res_total != 0){
 <img src="../nav/ringkasan_normal.png" name="ringkasan_normal" width="140" height="24" id="ringkasan_normal" />
 <img src="../nav/ringkasan_hover.png" alt="" name="ringkasan_hover" width="140" height="24" id="ringkasan_hover" /> </div>
 
-<?php 
+<?php
 } //close if check menu selepas integrasi.
-else { 
+else {
 ?>
-<img src="../nav/belum_matang_xactive.png" onClick="myFunctionBM()"/> 
-<img src="../nav/matang_xactive.png" onClick="myFunctionBM()"/> 
-<img src="../nav/umum_xactive.png" onClick="myFunctionBM()"/> 
-<img src="../nav/ringkasan_xactive.png" onClick="myFunctionBM()"/> 
+<img src="../nav/belum_matang_xactive.png" onClick="myFunctionBM()"/>
+<img src="../nav/matang_xactive.png" onClick="myFunctionBM()"/>
+<img src="../nav/umum_xactive.png" onClick="myFunctionBM()"/>
+<img src="../nav/ringkasan_xactive.png" onClick="myFunctionBM()"/>
 <?php
 } //close for else
 } //close for cookies language
@@ -419,11 +423,11 @@ else {
 
 
 <?php if($_COOKIE['lang']=="en"){?>
-<div id="menu-other"> 
-<img src="../nav/en/hm2.png" name="home_normal" width="140" height="24" border="0" id="home_normal" /> 
-<img src="../nav/en/hm1.png" name="home_hover" width="140" height="24" border="0" id="home_hover" /> 
+<div id="menu-other">
+<img src="../nav/en/hm2.png" name="home_normal" width="140" height="24" border="0" id="home_normal" />
+<img src="../nav/en/hm1.png" name="home_hover" width="140" height="24" border="0" id="home_hover" />
 
-<img src="../nav/en/profil1.png" name="profile_normal" width="140" height="24" border="0" id="profile_normal" /> 
+<img src="../nav/en/profil1.png" name="profile_normal" width="140" height="24" border="0" id="profile_normal" />
 <img src="../nav/en/profil2.png" name="profile_hover" width="140" height="24" border="0" id="profile_hover" />
 
 <img src="../nav/en/integration_normal.png" name="integration_normal" width="140" height="24" border="0" id="integration_normal" />
@@ -435,37 +439,39 @@ $License = $_SESSION['lesen'];
 $aQuery = "SELECT Integration, AreaEstimation ".
 					  "FROM tblasmintegrationestate ".
 					  "WHERE License = '$License' AND `Year` = '$Year'";
-$Rows = mysql_query($aQuery,$Conn);
-$res_total = mysql_num_rows($Rows);
-	
-if($res_total != 0){		  
+$con = connect();
+$Rows = mysqli_query($con, $aQuery);
+$res_total = mysqli_num_rows($Rows);
+
+if($res_total != 0){
 ?>
 
 
-<img src="../nav/en/belum_matang_normal.png" name="belum_matang_normal" width="140" height="24" id="belum_matang_normal" /> 
-<img src="../nav/en/belum_matang_hover.png" name="belum_matang_hover" width="140" height="24" id="belum_matang_hover" /> 
+<img src="../nav/en/belum_matang_normal.png" name="belum_matang_normal" width="140" height="24" id="belum_matang_normal" />
+<img src="../nav/en/belum_matang_hover.png" name="belum_matang_hover" width="140" height="24" id="belum_matang_hover" />
 
-<img src="../nav/en/matang_normal.png" name="matang_normal" width="140" height="24" id="matang_normal" /> 
-<img src="../nav/en/matang_hover.png" name="matang_hover" width="140" height="24" id="matang_hover" /> 
+<img src="../nav/en/matang_normal.png" name="matang_normal" width="140" height="24" id="matang_normal" />
+<img src="../nav/en/matang_hover.png" name="matang_hover" width="140" height="24" id="matang_hover" />
 
-<img src="../nav/en/umum_normal.png" name="umum_normal" width="140" height="24" id="umum_normal" /> 
-<img src="../nav/en/umum_hover.png" name="umum_hover" width="140" height="24" id="umum_hover" /> 
+<img src="../nav/en/umum_normal.png" name="umum_normal" width="140" height="24" id="umum_normal" />
+<img src="../nav/en/umum_hover.png" name="umum_hover" width="140" height="24" id="umum_hover" />
 
 
 <!--<img src="../nav/en/labour_normal.png" name="buruh_normal"  height="24" id="buruh_normal" />
 <img src="../nav/en/labour_hover.png" name="buruh_hover"  height="24" id="buruh_hover" /> -->
 
 
-<img src="../nav/en/summary_normal.png" name="ringkasan_normal" width="140" height="24" id="ringkasan_normal" /> <img src="../nav/en/summary_hover.png" alt="" name="ringkasan_hover" width="140" height="24" id="ringkasan_hover" /> 
+<img src="../nav/en/summary_normal.png" name="ringkasan_normal" width="140" height="24" id="ringkasan_normal" /> <img src="../nav/en/summary_hover.png" alt="" name="ringkasan_hover" width="140" height="24" id="ringkasan_hover" />
+
 
 </div>
 <?php
 } else {
 ?>
-<img src="../nav/en/belum_matang_xactive.png" onClick="myFunctionEN()"/> 
-<img src="../nav/en/matang_xactive.png" onClick="myFunctionEN()"/> 
-<img src="../nav/en/umum_xactive.png" onClick="myFunctionEN()"/> 
-<img src="../nav/en/summary_xactive.png" onClick="myFunctionEN()"/> 
+<img src="../nav/en/belum_matang_xactive.png" onClick="myFunctionEN()"/>
+<img src="../nav/en/matang_xactive.png" onClick="myFunctionEN()"/>
+<img src="../nav/en/umum_xactive.png" onClick="myFunctionEN()"/>
+<img src="../nav/en/summary_xactive.png" onClick="myFunctionEN()"/>
 <?php
 }
 } // tutup main body
@@ -481,5 +487,3 @@ function myFunctionEN() {
 
 
 </script>
-
-

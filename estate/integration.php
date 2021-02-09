@@ -1,5 +1,5 @@
 <?php
-$Conn = connect();
+$con = connect();
 $License = $_SESSION['lesen'];
 $Year = $_SESSION['tahun'];
 $Lang = $_SESSION['lang'] == "mal" ? "My" : "En";
@@ -16,8 +16,8 @@ function luas_data($table, $data, $tahunsebelum) {
     }
     $con = connect();
     $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
-    $rblm = mysql_query($qblm, $con);
-    $rowblm = mysql_fetch_array($rblm);
+    $rblm = mysqli_query($con, $qblm);
+    $rowblm = mysqli_fetch_array($rblm);
     return $rowblm[$data];
 }
 
@@ -30,8 +30,8 @@ if (date('Y') == $_SESSION['tahun']) {
 $aQuery = "SELECT SUM(es.Keluasan_Yang_Dituai) AS Keluasan_Yang_Dituai " .
         "FROM $table es " .
         "WHERE es.no_lesen_baru = '" . $_SESSION['lesen'] . "'";
-$aRows = mysql_query($aQuery, $Conn);
-if ($aRow = mysql_fetch_object($aRows)) {
+$aRows = mysqli_query($con, $aQuery);
+if ($aRow = mysqli_fetch_object($aRows)) {
     $Luastuai = $aRow->Keluasan_Yang_Dituai;
 }
 
@@ -145,67 +145,71 @@ if (isset($_POST['Integration'])) {
             $aQuery = "SELECT Integration, AreaEstimation " .
                     "FROM tblasmintegrationestate " .
                     "WHERE License = '$License' AND `Year` = '$Year'";
-            $aRows = mysql_query($aQuery, $Conn);
-            if (mysql_num_rows($aRows) == 0) {
+            $aRows = mysqli_query($con, $aQuery);
+            if (mysqli_num_rows($aRows) == 0) {
                 $aQuery = "INSERT INTO tblasmintegrationestate (License, `Year`, Integration, AreaEstimation) " .
                         "VALUES ('$License', '$Year', $Integration, " . (strcmp($AreaEstimation, "") == 0 ? "NULL" : $AreaEstimation) . ")";
-                mysql_query($aQuery, $Conn);
+                mysqli_query($con, $aQuery);
                 $FromEdit = 1;
             } else {
                 $aQuery = "UPDATE tblasmintegrationestate " .
                         "SET Integration = $Integration, AreaEstimation = " . (strcmp($AreaEstimation, "") == 0 ? "NULL" : $AreaEstimation) . " " .
                         "WHERE License = '$License' AND `Year` = '$Year'";
-                mysql_query($aQuery, $Conn);
+                mysqli_query($con, $aQuery);
             }
             if ($Integration == 2 || $Integration == 4) {
                 for ($i = 1; $i <= $Item1; $i++) {
                     $aQuery = "SELECT Ordering " .
                             "FROM tblasmintegrationdetail " .
                             "WHERE License = '$License' AND `Year` = '$Year' AND Category = 1 AND Ordering = $i";
-                    $aRows = mysql_query($aQuery, $Conn);
-                    if (mysql_num_rows($aRows) == 0) {
+                    $aRows = mysqli_query($con, $aQuery);
+                    if (mysqli_num_rows($aRows) == 0) {
                         $aQuery = "INSERT INTO tblasmintegrationdetail (License, `Year`, Item, Category, ItemManual, Total, Percentage, Ordering) " .
-                                "VALUES ('$License', '$Year', " . (strcmp($CropItem[$i - 1], "") == 0 ? "NULL" : $CropItem[$i - 1]) . ", 1, " . (strcmp($CropItem[$i - 1], "") == 0 ? "'" . mysql_real_escape_string($CropItemTxt[$i - 1], $Conn) . "'" : "NULL") . ", " . (strcmp($CropTotal[$i - 1], "") == 0 ? "NULL" : $CropTotal[$i - 1]) . ", " . (strcmp($CropPercentage[$i - 1], "") == 0 ? "NULL" : $CropPercentage[$i - 1]) . ", $i)";
-                        mysql_query($aQuery, $Conn);
+                                "VALUES ('$License', '$Year', " . (strcmp($CropItem[$i - 1], "") == 0 ? "NULL" : $CropItem[$i - 1]) . ", 1, " . (strcmp($CropItem[$i - 1], "") == 0 ? "'" .
+                                mysqli_real_escape_string($con, $CropItemTxt[$i - 1]) . "'" : "NULL") . ", " .
+                                (strcmp($CropTotal[$i - 1], "") == 0 ? "NULL" : $CropTotal[$i - 1]) . ", " . (strcmp($CropPercentage[$i - 1], "") == 0 ? "NULL" : $CropPercentage[$i - 1]) . ", $i)";
+                        mysqli_query($con, $aQuery);
                     } else {
                         $aQuery = "UPDATE tblasmintegrationdetail " .
                                 "SET Item = " . (strcmp($CropItem[$i - 1], "") == 0 ? "NULL" : $CropItem[$i - 1]) . ", " .
-                                "ItemManual = " . (strcmp($CropItem[$i - 1], "") == 0 ? "'" . mysql_real_escape_string($CropItemTxt[$i - 1], $Conn) . "'" : "NULL") . ", " .
+                                "ItemManual = " . (strcmp($CropItem[$i - 1], "") == 0 ? "'" . mysqli_real_escape_string($con, $CropItemTxt[$i - 1]) . "'" : "NULL") . ", " .
                                 "Total = " . (strcmp($CropTotal[$i - 1], "") == 0 ? "NULL" : $CropTotal[$i - 1]) . ", " .
                                 "Percentage = " . (strcmp($CropPercentage[$i - 1], "") == 0 ? "NULL" : $CropPercentage[$i - 1]) . " " .
                                 "WHERE License = '$License' AND `Year` = '$Year' AND Category = 1 AND Ordering = $i";
-                        mysql_query($aQuery, $Conn);
+                        mysqli_query($con, $aQuery);
                     }
                 }
                 $aQuery = "DELETE FROM tblasmintegrationdetail WHERE License = '$License' AND `Year` = '$Year' AND Category = 1 AND Ordering > $Item1";
-                mysql_query($aQuery, $Conn);
+                mysqli_query($con, $aQuery);
             }
             if ($Integration == 3 || $Integration == 4) {
                 for ($i = 1; $i <= $Item2; $i++) {
                     $aQuery = "SELECT Ordering " .
                             "FROM tblasmintegrationdetail " .
                             "WHERE License = '$License' AND `Year` = '$Year' AND Category = 2 AND Ordering = $i";
-                    $aRows = mysql_query($aQuery, $Conn);
-                    if (mysql_num_rows($aRows) == 0) {
+                    $aRows = mysqli_query($con, $aQuery);
+                    if (mysqli_num_rows($aRows) == 0) {
                         $aQuery = "INSERT INTO tblasmintegrationdetail (License, `Year`, Item, Category, ItemManual, Total, Percentage, Ordering) " .
-                                "VALUES ('$License', '$Year', " . (strcmp($LivestockItem[$i - 1], "") == 0 ? "NULL" : $LivestockItem[$i - 1]) . ", 2, " . (strcmp($LivestockItem[$i - 1], "") == 0 ? "'" . mysql_real_escape_string($LivestockItemTxt[$i - 1], $Conn) . "'" : "NULL") . ", " . (strcmp($LivestockTotal[$i - 1], "") == 0 ? "NULL" : $LivestockTotal[$i - 1]) . ", NULL, $i)";
-                        mysql_query($aQuery, $Conn);
+                                "VALUES ('$License', '$Year', " . (strcmp($LivestockItem[$i - 1], "") == 0 ? "NULL" : $LivestockItem[$i - 1]) . ", 2, " . (strcmp($LivestockItem[$i - 1], "") == 0 ? "'" .
+                                mysqli_real_escape_string($con, $LivestockItemTxt[$i - 1]) . "'" : "NULL") . ", " .
+                                (strcmp($LivestockTotal[$i - 1], "") == 0 ? "NULL" : $LivestockTotal[$i - 1]) . ", NULL, $i)";
+                        mysqli_query($con, $aQuery);
                     } else {
                         $aQuery = "UPDATE tblasmintegrationdetail " .
                                 "SET Item = " . (strcmp($LivestockItem[$i - 1], "") == 0 ? "NULL" : $LivestockItem[$i - 1]) . ", " .
-                                "ItemManual = " . (strcmp($LivestockItem[$i - 1], "") == 0 ? "'" . mysql_real_escape_string($LivestockItemTxt[$i - 1], $Conn) . "'" : "NULL") . ", " .
+                                "ItemManual = " . (strcmp($LivestockItem[$i - 1], "") == 0 ? "'" . mysqli_real_escape_string($con, $LivestockItemTxt[$i - 1]) . "'" : "NULL") . ", " .
                                 "Total = " . (strcmp($LivestockTotal[$i - 1], "") == 0 ? "NULL" : $LivestockTotal[$i - 1]) . ", " .
                                 "Percentage = NULL " .
                                 "WHERE License = '$License' AND `Year` = '$Year' AND Category = 2 AND Ordering = $i";
-                        mysql_query($aQuery, $Conn);
+                        mysqli_query($con, $aQuery);
                     }
                 }
                 $aQuery = "DELETE FROM tblasmintegrationdetail WHERE License = '$License' AND `Year` = '$Year' AND Category = 2 AND Ordering > $Item2";
-                mysql_query($aQuery, $Conn);
+                mysqli_query($con, $aQuery);
             }
             if ($Integration == 1) {
                 $aQuery = "DELETE FROM tblasmintegrationdetail WHERE License = '$License' AND `Year` = '$Year'";
-                mysql_query($aQuery, $Conn);
+                mysqli_query($con, $aQuery);
 
                 $Item1 = 6;
                 $Item2 = 6;
@@ -238,8 +242,8 @@ if (isset($_POST['Integration'])) {
                 foreach ($Table as $t) {
                     for ($i = 0; $i < 3; $i++) {
                         $aQuery = "SELECT * FROM " . $t['Table'][$i] . " WHERE lesen = '$License'";
-                        $aRows = mysql_query($aQuery, $Conn);
-                        if (mysql_num_rows($aRows) != 0) {
+                        $aRows = mysqli_query($con, $aQuery);
+                        if (mysqli_num_rows($aRows) != 0) {
                             echo "<script language=\"javascript\">window.location.href=\"?id=belum_matang&year=" . ($i + 1) . "&t=" . $t['GET'] . "\";</script>\n";
                             $isExists = true;
                             break;
@@ -279,17 +283,17 @@ if (isset($_POST['Integration'])) {
     $aQuery = "SELECT Integration, AreaEstimation " .
             "FROM tblasmintegrationestate " .
             "WHERE License = '$License' AND `Year` = '$Year'";
-    $aRows = mysql_query($aQuery, $Conn);
-    if (mysql_num_rows($aRows) == 0) {
+    $aRows = mysqli_query($con, $aQuery);
+    if (mysqli_num_rows($aRows) == 0) {
         $Integration = 1;
         $aQuery = "SELECT ID, Item$Lang AS ItemTxt FROM tblasmintegrationitems WHERE Category = 1 ORDER BY ID ASC";
-        $aRows = mysql_query($aQuery, $Conn);
+        $aRows = mysqli_query($con, $aQuery);
         $Item1 = 1;
         $CropItem = array();
         $CropItemTxt = array();
         $CropTotal = array();
         $CropPercentage = array();
-        while ($aRow = mysql_fetch_object($aRows)) {
+        while ($aRow = mysqli_fetch_object($aRows)) {
             array_push($CropItem, $aRow->ID);
             array_push($CropItemTxt, $aRow->ItemTxt);
             array_push($CropTotal, "");
@@ -298,19 +302,19 @@ if (isset($_POST['Integration'])) {
         }
 
         $aQuery = "SELECT ID, Item$Lang AS ItemTxt FROM tblasmintegrationitems WHERE Category = 2 ORDER BY ID ASC";
-        $aRows = mysql_query($aQuery, $Conn);
+        $aRows = mysqli_query($con, $aQuery);
         $Item2 = 1;
         $LivestockItem = array();
         $LivestockItemTxt = array();
         $LivestockTotal = array();
-        while ($aRow = mysql_fetch_object($aRows)) {
+        while ($aRow = mysqli_fetch_object($aRows)) {
             array_push($LivestockItem, $aRow->ID);
             array_push($LivestockItemTxt, $aRow->ItemTxt);
             array_push($LivestockTotal, "");
             $Item2++;
         }
     } else {
-        $aRow = mysql_fetch_object($aRows);
+        $aRow = mysqli_fetch_object($aRows);
         $Integration = $aRow->Integration;
         $AreaEstimation = $aRow->AreaEstimation;
 
@@ -319,13 +323,13 @@ if (isset($_POST['Integration'])) {
                 "LEFT JOIN tblasmintegrationitems AS t2 ON t2.ID = t1.Item " .
                 "WHERE t1.License = '$License' AND t1.`Year` = '$Year' AND t1.Category = 1 " .
                 "ORDER BY t1.Ordering ASC";
-        $aRows = mysql_query($aQuery, $Conn);
+        $aRows = mysqli_query($con, $aQuery);
         $Item1 = 0;
         $CropItem = array();
         $CropItemTxt = array();
         $CropTotal = array();
         $CropPercentage = array();
-        while ($aRow = mysql_fetch_object($aRows)) {
+        while ($aRow = mysqli_fetch_object($aRows)) {
             array_push($CropItem, $aRow->Item);
             array_push($CropItemTxt, $aRow->ItemTxt);
             array_push($CropTotal, $aRow->Total);
@@ -334,8 +338,8 @@ if (isset($_POST['Integration'])) {
         }
         if ($Item1 == 0) {
             $aQuery = "SELECT ID, Item$Lang AS ItemTxt FROM tblasmintegrationitems WHERE Category = 1 ORDER BY ID ASC";
-            $aRows = mysql_query($aQuery, $Conn);
-            while ($aRow = mysql_fetch_object($aRows)) {
+            $aRows = mysqli_query($con, $aQuery);
+            while ($aRow = mysqli_fetch_object($aRows)) {
                 array_push($CropItem, $aRow->ID);
                 array_push($CropItemTxt, $aRow->ItemTxt);
                 array_push($CropTotal, "");
@@ -353,12 +357,12 @@ if (isset($_POST['Integration'])) {
                 "LEFT JOIN tblasmintegrationitems AS t2 ON t2.ID = t1.Item " .
                 "WHERE t1.License = '$License' AND t1.`Year` = '$Year' AND t1.Category = 2 " .
                 "ORDER BY t1.Ordering ASC";
-        $aRows = mysql_query($aQuery, $Conn);
+        $aRows = mysqli_query($con, $aQuery);
         $Item2 = 0;
         $LivestockItem = array();
         $LivestockItemTxt = array();
         $LivestockTotal = array();
-        while ($aRow = mysql_fetch_object($aRows)) {
+        while ($aRow = mysqli_fetch_object($aRows)) {
             array_push($LivestockItem, $aRow->Item);
             array_push($LivestockItemTxt, $aRow->ItemTxt);
             array_push($LivestockTotal, $aRow->Total);
@@ -366,8 +370,8 @@ if (isset($_POST['Integration'])) {
         }
         if ($Item2 == 0) {
             $aQuery = "SELECT ID, Item$Lang AS ItemTxt FROM tblasmintegrationitems WHERE Category = 2 ORDER BY ID ASC";
-            $aRows = mysql_query($aQuery, $Conn);
-            while ($aRow = mysql_fetch_object($aRows)) {
+            $aRows = mysqli_query($con, $aQuery);
+            while ($aRow = mysqli_fetch_object($aRows)) {
                 array_push($LivestockItem, $aRow->ID);
                 array_push($LivestockItemTxt, $aRow->ItemTxt);
                 array_push($LivestockTotal, "");
@@ -392,8 +396,8 @@ if (isset($_POST['Integration'])) {
                 <table width="100%" border="0" aria-describedby="integration2">
                     <?php
                     $aQuery = "SELECT ID, Type$Lang AS Type FROM tblasmintegrationtype ORDER BY ID ASC";
-                    $aRows = mysql_query($aQuery, $Conn);
-                    while ($aRow = mysql_fetch_object($aRows)) {
+                    $aRows = mysqli_query($con, $aQuery);
+                    while ($aRow = mysqli_fetch_object($aRows)) {
                         echo "<tr>\n" .
                         "<td width=\"20\"><input type=\"radio\" name=\"Integration\" id=\"Integration$aRow->ID\" class=\"Integration\" value=\"$aRow->ID\"" . (((empty($Integration) && $aRow->ID == 1) || $Integration == $aRow->ID) ? " checked=\"checked\"" : "") . " /></td>\n" .
                         "<td style=\"padding:3px\">$aRow->Type</td>\n" .

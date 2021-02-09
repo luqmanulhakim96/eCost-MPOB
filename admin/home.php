@@ -1,7 +1,7 @@
-<?php 
+<?php
 session_start();
 include('../main/open_link.php');
-//include ('../Connections/connection.class.php'); 
+//include ('../Connections/connection.class.php');
 extract($_GET);
 extract($_POST); ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -16,15 +16,15 @@ if($_REQUEST['title'] != "")
 
 <?php if($frame=="on"){?>
 <script type="text/javascript">
-			$(document).ready(function(){				
+			$(document).ready(function(){
 			$('.tajuk').hide();
 			});
 </script>
 <?php } ?>
-        
+
 <script src="../js/live/livevalidation_standalone.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="../js/live/consolidated_common.css">
-  
+
 
 
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -47,7 +47,7 @@ if($_REQUEST['title'] != "")
   <tr class="tajuk">
     <td height="15" colspan="2" class="nav"><?php include('menu_admin.php'); ?></td>
   </tr>
-  
+
   <tr>
     <td height="100%" colspan="2" valign="top"><table width="99%" align="center" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC" class="table" style="margin-top:5px">
       <tr>
@@ -60,4 +60,4 @@ if($_REQUEST['title'] != "")
 -->
 </body>
 </html>
-<?php mysql_close($con);?>
+<?php mysqli_close($con);?>

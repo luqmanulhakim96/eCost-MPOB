@@ -20,11 +20,11 @@ extract($_REQUEST);
 	$all_complete .= " AND kos_matang_penjagaan.status = 1";
 	$all_complete .= " AND kos_matang_penuaian.status = 1";
 	$all_complete .= " AND esub.no_lesen_baru = '$id' LIMIT 1";
-	
-//	echo $all_complete; 
-	
-	$r		= mysql_query($all_complete,$con);
-	$row	= mysql_fetch_assoc($r);
+
+//	echo $all_complete;
+
+	$r		= mysqli_query($con, $all_complete);
+	$row	= mysqli_fetch_assoc($r);
 ?><style type="text/css">
 <!--
 body,td,th {
@@ -95,4 +95,4 @@ body,td,th {
 		<td><?php if ($row['status4'] == 0 || $row['status4'] == 2) { echo "<img src='images/no.png' />"; } else { echo "<img src='images/yes.png' />"; } ?></td>
 	</tr>
 </table>
-<?php mysql_close($con);?>
+<?php mysqli_close($con);?>

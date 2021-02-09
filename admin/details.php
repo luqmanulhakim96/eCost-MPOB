@@ -7,9 +7,9 @@ $year = $_COOKIE['tahun_report'];
 	$q1 .= " LEFT JOIN alamat_ekilang ON ekilang.no_lesen = alamat_ekilang.lesen";
 	$q1 .= " WHERE ekilang.no_lesen = '$id'";
 	$q1 .= " LIMIT 1";
-	$r1		= mysql_query($q1,$con);
-	$row	= mysql_fetch_assoc($r1);
-	
+	$r1		= mysqli_query($con, $q1);
+	$row	= mysqli_fetch_assoc($r1);
+
 	$q2	= "SELECT mill_buruh.status status3, mill_pemprosesan.status status1, mill_kos_lain.status status2 FROM ekilang";
 	$q2 .= " LEFT JOIN mill_buruh ON ekilang.no_lesen = mill_buruh.lesen";
 	$q2 .= " LEFT JOIN mill_kos_lain ON ekilang.no_lesen = mill_kos_lain.lesen";
@@ -17,8 +17,8 @@ $year = $_COOKIE['tahun_report'];
 	$q2 .= " WHERE ekilang.no_lesen = '$id'";
 	$q2 .= " AND mill_kos_lain.tahun = $year";
 	$q2 .= " AND mill_pemprosesan.tahun = $year LIMIT 1";
-	$r2		= mysql_query($q2,$con);
-	$row2	= mysql_fetch_assoc($r2);
+	$r2		= mysqli_query($con, $q2);
+	$row2	= mysqli_fetch_assoc($r2);
 	//print_r($row);
 ?><style type="text/css">
 <!--
@@ -83,4 +83,4 @@ body,td,th {
 		<td><?php if ($row2['status3'] == 0) { echo "Incomplete"; } else { echo "Complete"; } ?></td>
 	</tr>
 </table>
-<?php mysql_close($con);?>
+<?php mysqli_close($con);?>

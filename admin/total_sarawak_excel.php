@@ -18,12 +18,12 @@ header("Content-Disposition: attachment; filename=List_of_Completed_Response_Sur
       <th class="style1">E-mail</th>
        <th class="style2">Address</th>
       		<th class="style2">Phone No.</th>
-      		<th class="style2">Fax No.</th>	
+      		<th class="style2">Fax No.</th>
       <th class="style1">Last access</th>
     </tr>
   </thead>
   <tbody>
-    <?php while($row=mysql_fetch_array($result_sarawak)) { ?>
+    <?php while($row=mysqli_fetch_array($result_sarawak)) { ?>
     <tr valign="top">
       <td><?php echo $list++; ?></td>
       <td><?php echo $row['nama'];?></td>
@@ -35,6 +35,6 @@ header("Content-Disposition: attachment; filename=List_of_Completed_Response_Sur
               <td><?php echo $row['nofax'];?></td>
       <td><?php echo $row['access'];?></td>
     </tr>
-    <?php } mysql_close($con);?>
+    <?php } mysqli_close($con);?>
   </tbody>
 </table>

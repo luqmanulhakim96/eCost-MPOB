@@ -35,15 +35,15 @@ header("Content-Disposition: attachment; filename=All_Estate_Response_Survey.xls
         </tr>
     </thead>
     <tbody>
-        <?php while ($row = mysql_fetch_array($result_all)) { ?>
+        <?php while ($row = mysqli_fetch_array($result_all)) { ?>
             <tr valign="top">
                 <td><?php echo ++$l; ?>. </td>
                 <td>
                     <?php
                     $con = connect();
                     $qm = "select * from esub where no_lesen_baru ='" . $row['lesen'] . "'";
-                    $rm = mysql_query($qm, $con);
-                    $rowm = mysql_fetch_array($rm);
+                    $rm = mysqli_query($con, $qm);
+                    $rowm = mysqli_fetch_array($rm);
                     ?>	      <?php echo $rowm['Nama_Estet']; ?>            </td>
                 <td><?php echo $rowm['Syarikat_Induk']; ?></td>
                 <td><?php echo $rowm['No_Lesen_Baru']; ?></td>
@@ -57,14 +57,13 @@ header("Content-Disposition: attachment; filename=All_Estate_Response_Survey.xls
                 <td><?php echo $row['no_fax']; ?></td>
                 <td><?php
                     $qa = "select success,password from login_estate where lesen ='" . $row['lesen'] . "'";
-                    $ra = mysql_query($qa, $con);
-                    $rowa = mysql_fetch_array($ra);
+                    $ra = mysqli_query($con, $qa);
+                    $rowa = mysqli_fetch_array($ra);
 
                     echo $rowa['success'];
                     ?></td>
             </tr>
-<?php } mysql_close($con); ?>
+<?php } mysqli_close($con); ?>
     </tbody>
 </table>
 <br />
-

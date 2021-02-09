@@ -34,7 +34,7 @@ $bts_sum = new user('bts', $variable);
 $jumlah_bts = $bts_sum->purata_hasil_buah;
 
 $var[0] = $_SESSION['lesen'];
-$var[1] = $_SESSION['tahun']; 
+$var[1] = $_SESSION['tahun'];
 //$_SESSION['tahun']
 
 $matang[0] = $var[0];
@@ -43,8 +43,8 @@ $matang[1] = $var[1];
 function kbm($pembolehubah) {
     $con = connect();
     $q = "select * from kos_belum_matang where lesen ='" . $_SESSION['lesen'] . "' and pb_thisyear ='" . $_SESSION['tahun'] . "'  and status=1 and pb_tahun='$pembolehubah' ";
-    $r = mysql_query($q, $con);
-    $res_total = mysql_num_rows($r);
+    $r = mysqli_query($con, $q);
+    $res_total = mysqli_num_rows($r);
     $survey [0] = $res_total;
     return $survey;
 }
@@ -52,8 +52,8 @@ function kbm($pembolehubah) {
 function mtg($pembolehubah) {
     $con = connect();
     $qbaja = "select * from $pembolehubah where lesen ='" . $_SESSION['lesen'] . "' and pb_thisyear ='" . $_SESSION['tahun'] . "'  and status!=1 ";
-    $rbaja = mysql_query($qbaja, $con);
-    $res_total_baja = mysql_num_rows($rbaja);
+    $rbaja = mysqli_query($con, $qbaja);
+    $res_total_baja = mysqli_num_rows($rbaja);
     $matured[0] = $res_total_baja;
     return $matured;
 }
@@ -94,13 +94,13 @@ function viewkos_semasa($pu) {
     if ($pu[5] <= 0) {
         $con = connect();
         $q = "delete from kos_belum_matang where lesen ='" . $pu[0] . "' and pb_thisyear = '" . $pu[1] . "' and pb_tahun='" . $pu[2] . "' and pb_type='" . $pu[3] . "'";
-        mysql_query($q, $con);
+        mysqli_query($con, $q);
     }
 
     $qe = "select sum(total_a) as jumlah_a, sum(total_b) as jumlah_b from kos_belum_matang where lesen ='" . $pu[0] . "' and pb_thisyear = '" . $pu[1] . "' and pb_tahun='" . $pu[2] . "' and pb_type='" . $pu[3] . "'";
-    $re = mysql_query($qe, $con);
-    mysql_num_rows($re);
-    $rowe = mysql_fetch_array($re);
+    $re = mysqli_query($con, $qe);
+    mysqli_num_rows($re);
+    $rowe = mysqli_fetch_array($re);
 
     $t[0] = $rowe['lesen'];
     $t[1] = $rowe['jumlah_a'] / $pu[4];
@@ -131,16 +131,16 @@ function viewkos_semasa($pu) {
 <form id="form1" name="form1" method="post" action="mail_ringkasan.php">
     <table width="100%" align="center" class="tableCss" aria-describedby="estateRingkasan">
         <?php
-        $Conn = connect();
+        $con = connect();
         $aQuery = "SELECT Integration " .
                 "FROM tblasmintegrationestate " .
                 "WHERE License = '" . $_SESSION['lesen'] . "' AND `Year` = '" . $_SESSION['tahun'] . "'";
-        $aRows = mysql_query($aQuery, $Conn);
-        if (mysql_num_rows($aRows) == 0){
+        $aRows = mysqli_query($con, $aQuery);
+        if (mysqli_num_rows($aRows) == 0){
             $IntegrationStatus = "<span style=\"color:#f00\">" . ($_SESSION['lang'] == "mal" ? "Belum Kemaskini" : "Not Update") . "</span>";
         }
         else {
-            $aRow = mysql_fetch_object($aRows);
+            $aRow = mysqli_fetch_object($aRows);
             switch ($aRow->Integration) {
                 case 2: $IntegrationStatus = "<span style=\"color:#00f\">" . ($_SESSION['lang'] == "mal" ? "Integrasi Tanaman" : "Crops Integration") . "</span>";
                     break;
@@ -298,7 +298,7 @@ function viewkos_semasa($pu) {
                                         $pembolehubah[5] = $dua[1];
                                         $ps1 = viewkos_semasa($pembolehubah);
                                         echo number_format($ps1[4], 2);
-                                        ?>          
+                                        ?>
                                     </div></td>
                                 <td><div align="right">
                                         <?php
@@ -316,7 +316,7 @@ function viewkos_semasa($pu) {
                                         $pembolehubah[5] = $dua[3];
                                         $ps3 = viewkos_semasa($pembolehubah);
                                         echo number_format($ps3[4], 2);
-                                        ?>          
+                                        ?>
                                     </div></td>
                                 <td><div align="right">
                                         <?php
@@ -466,9 +466,9 @@ function viewkos_semasa($pu) {
                         <td bgcolor="#CCFFCC" ><div align="right"><?php
                                 $con = connect();
                                 $qjaga = "select total_b_3, b_3a, b_3b, b_3c, b_3d from kos_matang_penjagaan where pb_thisyear ='" . $_SESSION['tahun'] . "' and lesen ='" . $_SESSION['lesen'] . "' ";
-                                $rjaga = mysql_query($qjaga, $con);
-                                $rowjaga = mysql_fetch_array($rjaga);
-                                $totaljaga = mysql_num_rows($rjaga);
+                                $rjaga = mysqli_query($con, $qjaga);
+                                $rowjaga = mysqli_fetch_array($rjaga);
+                                $totaljaga = mysqli_num_rows($rjaga);
 
                                 if ($rowjaga['total_b_3'] == 0) {
                                     $ftotal = $rowjaga['b_3a'] + $rowjaga['b_3b'] + $rowjaga['b_3c'] + $rowjaga['b_3d'];
@@ -476,7 +476,7 @@ function viewkos_semasa($pu) {
                                 if ($rowjaga['total_b_3'] > 0) {
                                     $ftotal = $rowjaga['total_b_3'];
                                 }
-                              
+
 
                                 $f = ($ftotal / $jumlah_luas_2);
                                 $f = round($f, 2, PHP_ROUND_HALF_UP);
@@ -635,4 +635,4 @@ function viewkos_semasa($pu) {
                 </div>
                 <br /></td>
         </tr></form>
-<?php mysql_close($con); ?>
+<?php mysqli_close($con); ?>
