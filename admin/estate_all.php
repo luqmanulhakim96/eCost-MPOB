@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 
 if ($_SESSION['type']<>"admin")
@@ -30,11 +30,11 @@ a:active {
         </style>
 <script type="text/javascript" language="javascript" src="../js/datatable/js/jquery.dataTables.js"></script>
 
-    
-    
+
+
     <script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
-		
+
 	$('#the_table').dataTable( {
 		"bProcessing": true,
 		"bAutoWidth": true,
@@ -57,13 +57,13 @@ a:active {
 		"aaSorting": [[ 2, 'asc' ]]
 	} );
 			} );
-			
-			
-			
-</script> 
 
-      
-      
+
+
+</script>
+
+
+
 <script type="text/javascript">
 
 function openScript(url, width, height) {
@@ -71,16 +71,16 @@ function openScript(url, width, height) {
 }
 
 </script>
-        
+
         <h2>List of Estate in E-COST<br />
         </h2>
         <h3>
         <a href="#" onclick="openScript('add_estate_all.php','','')" >
         <img src="../images/add_48.png" width="24" height="24" border="0" />
         Add New Estate      </a>  </h3>
-   
-      <table width="100%" id="the_table" class="display"> 
-            
+
+      <table width="100%" id="the_table" class="display">
+
           <thead>
           <tr>
             <th width="4%">No.</th>
@@ -88,19 +88,17 @@ function openScript(url, width, height) {
             <th width="16%">Old License No.</th>
             <th width="24%">New License No. </th>
             <th width="26%">Main Company</th>
-  
+
             <th width="26%">Action</th>
           </tr>
-        </thead> 
-        <tbody> 
+        </thead>
+        <tbody>
         <tr>
 			<td colspan="6" class="dataTables_empty">Loading data from server</td>
 		</tr>
-        </tbody> 
+        </tbody>
       </table>
-   
+
         <br />
 <br />
-<?php mysql_close($con);?>
-        
-       
+<?php mysqli_close($con);?>

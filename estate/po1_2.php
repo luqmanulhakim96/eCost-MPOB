@@ -19,10 +19,10 @@
 	{
 		$con = connect();
 		$q ="INSERT INTO buruh (lesen,tahun) VALUES ('".$pu[0]."','".$pu[1]."')";
-		$r=mysql_query($q,$con);
-		
+		$r=mysqli_query($con, $q);
+
 		$s = "SELECT * FROM warga_estate WHERE lesen ='".$_SESSION['lesen']."' AND tahun ='".date('Y')."'";
-		$t = mysql_query($s,$con);
+		$t = mysqli_query($con, $s);
 	}
 
 	$jentera = new user('','');
@@ -40,14 +40,14 @@
 		}
 		else {
 			$(val).addClass('edited_input');
-			//$(val).format({format:"#,###.00", locale:"us"}); 
+			//$(val).format({format:"#,###.00", locale:"us"});
 		}
 	}
 	$(function() {
 	$("#single4").hide();
 	$("#single6").hide();
 	});
-	
+
 	function sembunyi(val) {
 		if(val.value == 'kumpulan') {
 			$("#single1").hide('slow');
@@ -103,7 +103,7 @@ function add_racun(x)
 no_kutip=0;
 function add_kutip(x)
 {
-	
+
 	no_kutip++;
 	//alert(no_kutip);
 	document.getElementById(x+no_kutip).className="show";
@@ -126,7 +126,7 @@ function add_angkut(x)
 }
 
 function tukar_field(x,y)
-{	
+{
 	if(x=="Lain-lain")
 	{
 		document.getElementById(y).className="show";
@@ -154,10 +154,10 @@ function openScript(url, width, height) {
 
 	}
 	.style6{
-		background-color:#CCCCCC; 
-		text-align:center; 
-		font-weight:bold; 
-		border:hidden 
+		background-color:#CCCCCC;
+		text-align:center;
+		font-weight:bold;
+		border:hidden
 	}
 </style>
 <script language="javascript">
@@ -166,17 +166,17 @@ function kira(obj,nilai,total_nilai,nilai_asal)
 	if(number_only(obj)) {
 	total_nilai_baru = document.getElementById(total_nilai).value;
 	total_nilai_baru = total_nilai_baru.replace(",","");
-	
+
 	nilai_obj = obj.value;
 	nilai_obj = nilai_obj.replace(",","");
-	
+
 	total_nilai_baru = Number(total_nilai_baru)+ Number(nilai_obj)-Number(nilai_asal);
 	total_nilai_baru = bulatkan(total_nilai_baru);
-	
+
 	$(obj).format({format:"#,###", locale:"us"});
-	document.getElementById(total_nilai).value=total_nilai_baru; 
+	document.getElementById(total_nilai).value=total_nilai_baru;
 	$("#"+total_nilai).format({format:"#,###", locale:"us"});
-	
+
 	$(obj).removeClass("active_input");
 	$(obj).addClass("field_edited");
 	}
@@ -186,14 +186,14 @@ function tukar_format(obj)
 {
 	if(number_only(obj)) {
 		$(obj).format({format:"#,###.00", locale:"us"});
-	} 
+	}
 }
 
 function tukar_format2(obj)
 {
 	if(number_only(obj)) {
 		$(obj).format({format:"#,###", locale:"us"});
-	} 
+	}
 }
 </script>
 <script language="javascript">
@@ -223,7 +223,7 @@ var pitmid = false;
 </script>
 <form id="form1" name="form1" method="post" action="home.php?id=buruh">
 <table width="90%" border="0" align="center" cellpadding="0" cellspacing="0">
-  
+
   <tr>
     <td colspan="2"><div style="text-align:center;"><h2><?=setstring ( 'mal', 'Bilangan Pekerja Mengikut Kategori', 'en', 'Number of workers according to work categories'); ?></h2></div></td>
   </tr>
@@ -236,7 +236,7 @@ var pitmid = false;
   </tr>
   <tr>
     <td colspan="2"><table width="90%" align="center" cellspacing="0" frame="box"  class="tableCss">
-      
+
       <tr align="center">
         <td width="218" rowspan="2" valign="middle" background="../images/tb_BG.gif" bgcolor="#A5BEE0"><b><?=setstring ( 'mal', 'Kategori Kerja', 'en', 'Work category'); ?>
 </b></td>
@@ -324,7 +324,7 @@ var pitmid = false;
         <td  bgcolor="#FFFFCC"><input name="penuai_ak" type="text" class="field_active" id="penuai_ak" onKeypress="keypress(event)" onchange="kira(this, this.value,'total_pak','<?= $buruh->penuai_asing_kontraktor;?>')" value="<?= number_format($buruh->penuai_asing_kontraktor);?>"  size="11" readonly="true"/>
           <a class='warga' href="warga.php?type=FOREIGN&amp;field=penuai_asing_kontraktor"><img id="no-print" src="../images/add_48.png" alt="sss" width="16" height="16" border="0" /></a></td>
       </tr>
-      
+
       <tr align="center" id="single4" >
         <td width="218" height="32" bgcolor="#FFCCFF"><div align="left">
 		<select style="border:1px #FF6600 solid; font-size:12px; font-family:Arial, Helvetica, sans-serif;" onchange="sembunyi(this)">			         <option  value="penuai"><?=setstring ( 'mal', 'Penuai', 'en', 'Harvester'); ?></option>
@@ -370,7 +370,7 @@ var pitmid = false;
         <td bgcolor="#99FF99"><input name="total_ptk" type="text" class="style6" onKeypress="keypress(event)" id="total_ptk"  value="<?= number_format($buruh->penuai_tempatan_kontraktor+$buruh->pemungut_bts_tempatan_kontraktor+ $buruh->pemungut_buahrelai_tempatan_kontraktor);?>"   size="11" readonly="true"/></td>
         <td bgcolor="#FFFFCC"><input name="total_pak" type="text" class="style6" onKeypress="keypress(event)" id="total_pak"  value="<?= number_format($buruh->penuai_asing_kontraktor+$buruh->pemungut_bts_asing_kontraktor+$buruh->pemungut_buahrelai_asing_kontraktor);?>"   size="11" readonly="true"/></td>
       </tr>
-	  
+
 	  <tr align="center" id="single6">
         <td height="31" bgcolor="#FFCCFF"><div align="left"><b><?=setstring ( 'mal', 'Jumlah kecil', 'en', 'Sub-total'); ?></b></div></td>
         <td bgcolor="#99FF99"><input name="total_pt_kumpulan" type="text" class="style6" onKeypress="keypress(event)" id="total_pt_kumpulan"  value="<?= number_format($buruh->penuai_kumpulan_tempatan);?>"   size="11" readonly="true"/></td>
@@ -423,10 +423,10 @@ var pitmid = false;
         <td height="36" bgcolor="#FFCCFF"><div align="left"><b><?=setstring ( 'mal', 'Jumlah kecil', 'en', 'Sub-total'); ?></b></div></td>
         <td bgcolor="#99FF99"><input name="total_pekerja_t" type="text" class="style6" onKeypress="keypress(event)" id="total_pekerja_t"  value="<?php $jpt=$buruh->pekerja_estet_tempatan+$buruh->pekerja_am_tempatan; echo number_format($jpt);?>"   size="11" readonly="true"/></td>
         <td bgcolor="#FFFFCC"><input name="total_pekerja_a" type="text" class="style6" onKeypress="keypress(event)" id="total_pekerja_a"  value="<?php $jpa = $buruh->pekerja_estet_asing+ $buruh->pekerja_am_asing; echo number_format($jpa);?>"   size="11" readonly="true"/></td>
-        <td bgcolor="#99FF99"><input name="total_pekerja_tk" type="text" class="style6" onKeypress="keypress(event)" id="total_pekerja_tk"  value="<?php 
+        <td bgcolor="#99FF99"><input name="total_pekerja_tk" type="text" class="style6" onKeypress="keypress(event)" id="total_pekerja_tk"  value="<?php
 		$jpkt = $buruh->pekerja_estet_k_tempatan+$buruh->pekerja_am_k_tempatan;
 		echo number_format($jpkt);?>"   size="11" readonly="true"/></td>
-        <td bgcolor="#FFFFCC"><input name="total_pekerja_ak" type="text" class="style6" onKeypress="keypress(event)" id="total_pekerja_ak"  value="<?php 
+        <td bgcolor="#FFFFCC"><input name="total_pekerja_ak" type="text" class="style6" onKeypress="keypress(event)" id="total_pekerja_ak"  value="<?php
 		$jpka = $buruh->pekerja_estet_k_asing+$buruh->pekerja_am_k_asing;
 		echo number_format($jpka);?>"   size="11" readonly="true"/></td>
       </tr>
@@ -476,7 +476,7 @@ var pitmid = false;
         <td bgcolor="#99FF99"><input name="total_kakitangan_t" type="text" class="style6" onKeypress="keypress(event)" id="total_kakitangan_t"  value="<?php $jkt =$buruh->eksekutif_tempatan+$buruh->kakitangan_tempatan; echo number_format($jkt);?>"   size="11" readonly="true"/></td>
         <td bgcolor="#FFFFCC"><input name="total_kakitangan_a" type="text" class="style6" onKeypress="keypress(event)" id="total_kakitangan_a"  value="<?php $jka = $buruh->eksekutif_asing+ $buruh->kakitangan_asing; echo number_format($jka);?>"   size="11" readonly="true"/></td>
         <td bgcolor="#99FF99"><input name="total_kakitangan_tk" type="text" class="style6" onKeypress="keypress(event)" id="total_kakitangan_tk"  value="<?php  $jkkt = $buruh->eksekutif_k_tempatan+$buruh->kakitangan_k_tempatan; echo number_format($jkkt);?>"   size="11" readonly="true"/></td>
-        <td bgcolor="#FFFFCC"><input name="total_kakitangan_ak" type="text" class="style6" onKeypress="keypress(event)" id="total_kakitangan_ak"  value="<?php 
+        <td bgcolor="#FFFFCC"><input name="total_kakitangan_ak" type="text" class="style6" onKeypress="keypress(event)" id="total_kakitangan_ak"  value="<?php
 		$jkka= $buruh->eksekutif_k_asing+$buruh->kakitangan_k_asing;
 		echo number_format($jkka);?>"   size="11" readonly="true"/></td>
       </tr>
@@ -488,7 +488,7 @@ var pitmid = false;
       </tr>
     </table></td>
   </tr>
-  
+
   <tr>
     <td colspan="2">&nbsp;</td>
   </tr>
@@ -502,11 +502,11 @@ var pitmid = false;
 		<input name="totalpemunggahan" type="hidden" id="totalpemunggahan" value="<?php echo $jentera->viewtotaljentera('Pemunggahan');?>"/>
 		<input name="totalpengangkutan" type="hidden" id="totalpengangkutan" value="<?php echo $jentera->viewtotaljentera('Pengangkutan');?>"/>
 		<input name="tahun" type="hidden" id="tahun" value="<?= date('Y');?>" />
-    
+
 	<?php
 	$varjentera[0] = $_SESSION['lesen'];
 	$varjentera[1]=date('Y');
-	
+
 	?>
 	</span></td>
   </tr>
@@ -525,7 +525,7 @@ var pitmid = false;
 	  <!-- pembajaan -->
       <tr>
         <td height="34"><?=setstring ( 'mal', 'Pembajaan', 'en', 'Fertilizer Application'); ?>
-<?php 
+<?php
 		$varjentera[2]='pembajaan';
 		$jbaja = new user('jentera_estate',$varjentera);
 		?>
@@ -541,12 +541,12 @@ var pitmid = false;
           <div align="left">
             <select name="jentera_pembajaan[0]" id="jentera_pembajaan[0]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value,'pembajaan_lain')">
               <option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
-			  <?php 
+			  <?php
 			  $con = connect();
 			  $q ="select * from jentera where kategori_jentera ='Pembajaan' order by id_jentera";
-			  $r = mysql_query($q,$con);
-			  $total_jentera = mysql_num_rows($r);
-			  while($row=mysql_fetch_array($r)){?>
+			  $r = mysqli_query($con, $q);
+			  $total_jentera = mysqli_num_rows($r);
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jbaja->id_jentera[0]){?>selected="selected"<?php } ?>><?= $row['nama_jentera'];?></option>
 			  <?php } ?>
             </select>
@@ -559,7 +559,7 @@ var pitmid = false;
           <input type="text" class="field_active" name="bil_pembajaan[0]" onKeypress="keypress(event)" size="11" id="bil_pembajaan[0]" value="<?= number_format($jbaja->value[0]);?>" onchange="tukar_format2(this)" autocomplete="off" onblur="pitmid = true; hantar(2, 'sementara');"/>
         </div></td>
       </tr>
-	  
+
 	  <?php
 	  $totbaja = $jbaja->total;
 	  for ($j=1; $j<$total_jentera; $j++){?>
@@ -577,11 +577,11 @@ var pitmid = false;
           <div align="left">
             <select name="jentera_pembajaan[<?= $j; ?>]" id="jentera_pembajaan[<?= $j; ?>]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'pembajaan_lain<?= $j; ?>');">
               <option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
-			  <?php 
+			  <?php
 			  $con = connect();
 			  $q ="select * from jentera where kategori_jentera ='Pembajaan' order by id_jentera";
-			  $r = mysql_query($q,$con);
-			  while($row=mysql_fetch_array($r)){?>
+			  $r = mysqli_query($con, $q);
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jbaja->id_jentera[$j]){?>selected="selected"<?php } ?>><?= $row['nama_jentera'];?></option>
 			  <?php } ?>
             </select>
@@ -595,16 +595,16 @@ var pitmid = false;
         </div></td>
       </tr>
 	  <?php } ?>
-	  
+
 	  <!-- meracun -->
 	  <tr bgcolor="#99FF99">
         <td height="35" bgcolor="#99FF99"><?=setstring ( 'mal', 'Meracun', 'en', 'Weeding'); ?>
 
-        <?php 
+        <?php
 			$varjentera[2]='Peracunan';
 			$jracun = new user('jentera_estate',$varjentera);
 		?>
-		
+
 		 <input name="racun1[0]" type="hidden" id="racun1[0]" value="<?= $jracun->id_jentera[0];?>" />
           <input name="racun2[0]" type="hidden" id="racun2[0]" value="<?= $jracun->lesen[0];?>" />
           <input name="racun3[0]" type="hidden" id="racun3[0]" value="<?= $jracun->tahun[0];?>" />
@@ -615,24 +615,24 @@ var pitmid = false;
 %</div></td>
         <td>
           <div align="left">
-          
+
           <?php
           	  $con = connect();
 			  $q ="SELECT * FROM jentera WHERE kategori_jentera ='Peracunan' ORDER BY id_jentera";
-			  $r = mysql_query($q,$con);
-			  $total_racun = mysql_num_rows($r);
+			  $r = mysqli_query($con, $q);
+			  $total_racun = mysqli_num_rows($r);
 		  ?>
             <select name="jentera_peracunan[0]" id="jentera_peracunan[0]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'peracunan_lain');">
               <option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
-              <?php 
-		
-			  while($row=mysql_fetch_array($r)){?>
+              <?php
+
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jracun->id_jentera[0]){?>selected="selected"<?php } ?>>
                 <?= $row['nama_jentera'];?>
                 </option>
               <?php } ?>
             </select>
-			
+
 			<div id="peracunan_lain" class="<?php if($jracun->nama_jentera[0]!=""){echo "show";} else{echo "hide";}?>">
             <input name="lain_peracunan[0]" type="text" id="lain_peracunan[0]" value="<?= $jracun->nama_jentera[0];?>" size="25" />
            </div>
@@ -642,14 +642,14 @@ var pitmid = false;
           <input type="text" class="field_active" name="bil_peracunan[0]" onKeypress="keypress(event)" size="11" id="bil_peracunan[0]" value="<?= number_format($jracun->value[0]);?>" onchange="tukar_format2(this)" autocomplete="off" onblur="pitmid = true; hantar(2, 'sementara');"/>
         </div></td>
       </tr>
-	  
-	  	  <?php 
-		 $totracun = $jracun->total; 
+
+	  	  <?php
+		 $totracun = $jracun->total;
 		  for ($zz=1; $zz<$total_racun; $zz++){?>
 
 	  <tr bgcolor="#99FF99" class="<?php if($totracun>$zz){ echo "show";} else{echo "hide";}?>" id="zz<?= $zz; ?>">
         <td height="35"><?=setstring ( 'mal', 'Meracun', 'en', 'Weeding'); ?>
-		
+
 		 <input name="racun1[<?= $zz; ?>]" type="hidden" id="racun1[<?= $zz; ?>]" value="<?= $jracun->id_jentera[$zz];?>" />
           <input name="racun2[<?= $zz; ?>]" type="hidden" id="racun2[<?= $zz; ?>]" value="<?= $jracun->lesen[$zz];?>" />
           <input name="racun3[<?= $zz; ?>]" type="hidden" id="racun3[<?= $zz; ?>]" value="<?= $jracun->tahun[$zz];?>" />
@@ -662,17 +662,17 @@ var pitmid = false;
           <div align="left">
             <select name="jentera_peracunan[<?= $zz; ?>]" id="jentera_peracunan[<?= $zz; ?>]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'peracunan_lain<?= $zz; ?>');">
               <option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
-              <?php 
+              <?php
 			  $con = connect();
 			  $q ="SELECT * FROM jentera WHERE kategori_jentera ='Peracunan' ORDER BY id_jentera";
-			  $r = mysql_query($q,$con);
-			  while($row=mysql_fetch_array($r)){?>
+			  $r = mysqli_query($con, $q);
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jracun->id_jentera[$zz]){?>selected="selected"<?php } ?>>
                 <?= $row['nama_jentera'];?>
                 </option>
               <?php } ?>
             </select>
-			
+
 			<div id="peracunan_lain<?= $zz; ?>" class="<?php if($jracun->nama_jentera[$zz]!=""){echo "show";} else{echo "hide";}?>">
             <input type="text" name="lain_peracunan[<?= $zz; ?>]" id="lain_peracunan<?= $zz; ?>" size="25" value="<?= $jracun->nama_jentera[$zz];?>" />
            </div>
@@ -683,15 +683,15 @@ var pitmid = false;
         </div></td>
       </tr>
 	  <?php } ?>
-	  <!-- kawalan penyakit--> 
+	  <!-- kawalan penyakit-->
       <tr>
         <td height="35"><?=setstring ( 'mal', 'Kawalan penyakit dan makhluk perosak', 'en', 'Pests and diseases control'); ?>
 
-          <?php 
+          <?php
 		$varjentera[2]='penyemburan';
 		$jsembur = new user('jentera_estate',$varjentera);
 		?>
-		
+
 		 <input name="sembur1[0]" type="hidden" id="sembur1[0]" value="<?= $jsembur->id_jentera[0];?>" />
           <input name="sembur2[0]" type="hidden" id="sembur2[0]" value="<?= $jsembur->lesen[0];?>" />
           <input name="sembur3[0]" type="hidden" id="sembur3[0]" value="<?= $jsembur->tahun[0];?>" />
@@ -704,18 +704,18 @@ var pitmid = false;
           <div align="left">
             <select name="jentera_penyemburan[0]" id="jentera_penyemburan[0]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'penyemburan_lain');">
               <option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
-              <?php 
+              <?php
 			  $con = connect();
 			  $q ="select * from jentera where kategori_jentera ='Penyemburan' order by id_jentera";
-			  $r = mysql_query($q,$con);
-			  $total_sembur = mysql_num_rows($r);
-			  while($row=mysql_fetch_array($r)){?>
+			  $r = mysqli_query($con, $q);
+			  $total_sembur = mysqli_num_rows($r);
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jsembur->id_jentera[0]){?>selected="selected"<?php } ?>>
                 <?= $row['nama_jentera'];?>
                 </option>
               <?php } ?>
             </select>
-			
+
 			<div id="penyemburan_lain" class="<?php if($jsembur->nama_jentera[0]!=""){echo "show";} else{echo "hide";}?>">
             <input type="text" name="lain_penyemburan[0]" id="lain_penyemburan[0]" size="25" />
            </div>
@@ -725,14 +725,14 @@ var pitmid = false;
           <input type="text" class="field_active" name="bil_penyemburan[0]" onKeypress="keypress(event)" size="11" id="bil_penyemburan[0]" value="<?= number_format($jsembur->value[0]);?>" onchange="tukar_format2(this)" autocomplete="off" onblur="pitmid = true; hantar(2, 'sementara');"/>
         </div></td>
       </tr>
-	  
-	  	  <?php 
-		 $totsembur = $jsembur->total; 
+
+	  	  <?php
+		 $totsembur = $jsembur->total;
 		  for ($s=1; $s<$total_sembur; $s++){?>
 
 	  <tr class="<?php if($totsembur>$s){ echo "show";} else{echo "hide";}?>" id="s<?= $s; ?>">
         <td height="35"><?=setstring ( 'mal', 'Kawalan penyakit dan makhluk perosak', 'en', 'Pests and diseases control'); ?>
-		
+
 		 <input name="sembur1[<?= $s; ?>]" type="hidden" id="sembur1[<?= $s; ?>]" value="<?= $jsembur->id_jentera[$s];?>" />
           <input name="sembur2[<?= $s; ?>]" type="hidden" id="sembur2[<?= $s; ?>]" value="<?= $jsembur->lesen[$s];?>" />
           <input name="sembur3[<?= $s; ?>]" type="hidden" id="sembur3[<?= $s; ?>]" value="<?= $jsembur->tahun[$s];?>" />
@@ -745,17 +745,17 @@ var pitmid = false;
           <div align="left">
             <select name="jentera_penyemburan[<?= $s; ?>]" id="jentera_penyemburan[<?= $s; ?>]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'penyemburan_lain<?= $s; ?>');">
               <option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
-              <?php 
+              <?php
 			  $con = connect();
 			  $q ="select * from jentera where kategori_jentera ='Penyemburan' order by id_jentera";
-			  $r = mysql_query($q,$con);
-			  while($row=mysql_fetch_array($r)){?>
+			  $r = mysqli_query($con, $q);
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jsembur->id_jentera[$s]){?>selected="selected"<?php } ?>>
                 <?= $row['nama_jentera'];?>
                 </option>
               <?php } ?>
             </select>
-			
+
 			<div id="penyemburan_lain<?= $s; ?>" class="<?php if($jsembur->nama_jentera[$s]!=""){echo "show";} else{echo "hide";}?>">
             <input type="text" name="lain_penyemburan[<?= $s; ?>]" id="lain_penyemburan<?= $s; ?>" size="25" value="<?= $jsembur->nama_jentera[$s];?>" />
            </div>
@@ -766,12 +766,12 @@ var pitmid = false;
         </div></td>
       </tr>
 	  <?php } ?>
-	  
+
 	  <!-- pemotongan BTS -->
       <tr>
         <td height="35" bgcolor="#99FF99"><?=setstring ( 'mal', 'Pemotongan BTS', 'en', 'Cutting of FFB'); ?>
 
-        <?php 
+        <?php
 		$varjentera[2]='penuaian';
 		$jtuai = new user('jentera_estate',$varjentera);
 		?>
@@ -787,18 +787,18 @@ var pitmid = false;
           <div align="left">
             <select name="jentera_penuaian[0]" id="jentera_penuaian[0]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'penuaian_lain');">
               <option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
-              <?php 
+              <?php
 			  $con = connect();
 			  $q ="SELECT * FROM jentera WHERE kategori_jentera ='Penuaian' ORDER BY id_jentera";
-			  $r = mysql_query($q,$con);
-			  $total_penuaian = mysql_num_rows($r);
-			  while($row=mysql_fetch_array($r)){?>
+			  $r = mysqli_query($con, $q);
+			  $total_penuaian = mysqli_num_rows($r);
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jtuai->id_jentera[0]){?>selected="selected"<?php } ?>>
                 <?= $row['nama_jentera'];?>
                 </option>
               <?php } ?>
             </select>
-			
+
 			<div id="penuaian_lain" class="<?php if($jtuai->nama_jentera[0]!=""){echo "show";} else{echo "hide";}?>">
             <input type="text" name="lain_penuaian[0]" id="lain_penuaian[0]" size="25" value="<?= ucwords($jtuai->nama_jentera[0]);?>" />
            </div>
@@ -808,15 +808,15 @@ var pitmid = false;
           <input type="text" class="field_active" name="bil_penuaian[0]" onKeypress="keypress(event)" size="11" id="bil_penuaian[0]" value="<?= number_format($jtuai->value[0]);?>" onchange="tukar_format2(this)" autocomplete="off" onblur="pitmid = true; hantar(2, 'sementara');"/>
         </div></td>
       </tr>
-	  
-	  	  <?php 
-		  $tottuai = $jtuai->total; 
+
+	  	  <?php
+		  $tottuai = $jtuai->total;
 		  for ($t=1; $t<$total_penuaian; $t++){
 		  ?>
 
 	  <tr class="<?php if($tottuai>$t){ echo "show";} else{echo "hide";}?>" id="t<?= $t; ?>">
         <td height="35" bgcolor="#99FF99"><?=setstring ( 'mal', 'Pemotongan BTS', 'en', 'Cutting of FFB'); ?>
-		
+
 		  <input name="tuai1[<?= $t; ?>]" type="hidden" id="tuai1[<?= $t; ?>]" value="<?= $jtuai->id_jentera[$t];?>" />
           <input name="tuai2[<?= $t; ?>]" type="hidden" id="tuai2[<?= $t; ?>]" value="<?= $jtuai->lesen[$t];?>" />
           <input name="tuai3[<?= $t; ?>]" type="hidden" id="tuai3[<?= $t; ?>]" value="<?= $jtuai->tahun[$t];?>" />
@@ -829,17 +829,17 @@ var pitmid = false;
           <div align="left">
             <select name="jentera_penuaian[<?= $t; ?>]" id="jentera_penuaian[<?= $t; ?>]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'penuaian_lain<?= $t; ?>');" >
               <option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
-              <?php 
+              <?php
 			  $con = connect();
 			  $q ="SELECT * FROM jentera WHERE kategori_jentera ='Penuaian' ORDER BY id_jentera";
-			  $r = mysql_query($q,$con);
-			  while($row=mysql_fetch_array($r)){?>
+			  $r = mysqli_query($con, $q);
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jtuai->id_jentera[$t]){?>selected="selected"<?php } ?>>
                 <?= $row['nama_jentera'];?>
                 </option>
               <?php } ?>
             </select>
-			
+
 			<div id="penuaian_lain<?= $t; ?>" class="<?php if($jtuai->nama_jentera[$t]!=""){echo "show";} else{echo "hide";}?>">
             <input type="text" name="lain_penuaian[<?= $t; ?>]" id="lain_penuaian[<?= $t; ?>]" size="25" value="<?= ucwords($jtuai->nama_jentera[$t]);?>" />
            </div>
@@ -850,16 +850,16 @@ var pitmid = false;
         </div></td>
       </tr>
 	  <?php } ?>
-	  
+
 <!-- kutip -->
       <tr>
         <td height="37">
         <?=setstring ('mal', 'Pengutipan buah relai', 'en', 'Loose fruit collection')?>
-          <?php 
+          <?php
 		$varjentera[2]='pengutipan';
 		$jkutip = new user('jentera_estate',$varjentera);
 		?>
-		
+
 		 <input name="kutip1[0]" type="hidden" id="kutip1[0]" value="<?= $jkutip->id_jentera[0];?>" />
           <input name="kutip2[0]" type="hidden" id="kutip2[0]" value="<?= $jkutip->lesen[0];?>" />
           <input name="kutip3[0]" type="hidden" id="kutip3[0]" value="<?= $jkutip->tahun[0];?>" />
@@ -872,18 +872,18 @@ var pitmid = false;
           <div align="left">
             <select name="jentera_pengutipan[0]" id="jentera_pengutipan[0]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'pengutipan_lain');">
               <option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
-              <?php 
+              <?php
 			  $con = connect();
 			  $q ="select * from jentera where kategori_jentera ='Pemungutan' order by id_jentera";
-			  $r = mysql_query($q,$con);
-			  $total_pengutipan = mysql_num_rows($r);
-			  while($row=mysql_fetch_array($r)){?>
+			  $r = mysqli_query($con, $q);
+			  $total_pengutipan = mysqli_num_rows($r);
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jkutip->id_jentera[0]){?>selected="selected"<?php } ?>>
                 <?= $row['nama_jentera'];?>
                 </option>
               <?php } ?>
             </select>
-			
+
 			<div id="pengutipan_lain" class="<?php if($jkutip->nama_jentera[0]!=""){echo "show";} else{echo "hide";}?>">
             <input type="text" name="lain_pengutipan[0]" id="lain_pengutipan[0]" size="25" value="<?= ucwords($jkutip->nama_jentera[0]);?>" />
            </div>
@@ -893,17 +893,17 @@ var pitmid = false;
           <input type="text" class="field_active" name="bil_pengutipan[0]" onKeypress="keypress(event)" size="11" id="bil_pengutipan[0]" value="<?= number_format($jkutip->value[0]);?>" onchange="tukar_format2(this)" autocomplete="off" onblur="pitmid = true; hantar(2, 'sementara');"/>
         </div></td>
       </tr>
-      
-	  	  <?php $totkutip= $jkutip->total; 
-		//  echo $total_pengutipan; 
+
+	  	  <?php $totkutip= $jkutip->total;
+		//  echo $total_pengutipan;
 		  for ($b=1; $b<$total_pengutipan; $b++){?>
 
 	  <tr bgcolor="#ffFFff" class="<?php if($totkutip>$b){ echo "show";} else{echo "hide";}?>" id="bb<?= $b; ?>">
         <td height="37">
-        
+
         <?php //echo "bb".$b; ?>
         <?=setstring ('mal', 'Pengutipan buah relai', 'en', 'Loose fruit collection')?>
-		
+
 		 <input name="kutip1[<?= $b; ?>]" type="hidden" id="kutip1[<?= $b; ?>]" value="<?= $jkutip->id_jentera[$b];?>" />
           <input name="kutip2[<?= $b; ?>]" type="hidden" id="kutip2[<?= $b; ?>]" value="<?= $jkutip->lesen[$b];?>" />
           <input name="kutip3[<?= $b; ?>]" type="hidden" id="kutip3[<?= $b; ?>]" value="<?= $jkutip->tahun[$b];?>" />
@@ -916,17 +916,17 @@ var pitmid = false;
           <div align="left">
             <select name="jentera_pengutipan[<?= $b; ?>]" id="jentera_pengutipan[<?= $b; ?>]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'pengutipan_lain<?= $b; ?>');">
               <option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
-              <?php 
+              <?php
 			  $con = connect();
 			  $q ="select * from jentera where kategori_jentera ='Pemungutan' order by id_jentera";
-			  $r = mysql_query($q,$con);
-			  while($row=mysql_fetch_array($r)){?>
+			  $r = mysqli_query($con, $q);
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jkutip->id_jentera[$b]){?>selected="selected"<?php } ?>>
                 <?= $row['nama_jentera'];?>
                 </option>
               <?php } ?>
             </select>
-			
+
 			<div id="pengutipan_lain<?= $b; ?>" class="<?php if($jkutip->nama_jentera[$b]!=""){echo "show";} else{echo "hide";}?>">
             <input type="text" name="lain_pengutipan[<?= $b; ?>]" id="lain_pengutipan[<?= $b; ?>]" size="25" value="<?= ucwords($jkutip->nama_jentera[$b]);?>" />
            </div>
@@ -937,16 +937,16 @@ var pitmid = false;
         </div></td>
       </tr>
 	  <?php } ?>
-	  
+
 <!-- Pemunggahan BTS ke platform atau pusat pengumpulan -->
       <tr bgcolor="#99FF99">
         <td height="37">
         <?=setstring ('mal', 'Pemunggahan BTS ke platform atau pusat pengumpulan', 'en', 'Infield collection of FFBs to platform or collection centre')?>
-          <?php 
+          <?php
 		$varjentera[2]='pemunggahan';
 		$jpunggah = new user('jentera_estate',$varjentera);
 		?>
-		
+
 		 <input name="punggah1[0]" type="hidden" id="punggah1[0]" value="<?= $jpunggah->id_jentera[0];?>" />
           <input name="punggah2[0]" type="hidden" id="punggah2[0]" value="<?= $jpunggah->lesen[0];?>" />
           <input name="punggah3[0]" type="hidden" id="punggah3[0]" value="<?= $jpunggah->tahun[0];?>" />
@@ -959,18 +959,18 @@ var pitmid = false;
           <div align="left">
             <select name="jentera_pemunggahan[0]" id="jentera_pemunggahan[0]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'pemunggahan_lain');">
               <option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
-              <?php 
+              <?php
 			  $con = connect();
 			  $q ="select * from jentera where kategori_jentera ='Pemunggahan' order by id_jentera";
-			  $r = mysql_query($q,$con);
-			  $total_pemunggahan = mysql_num_rows($r);
-			  while($row=mysql_fetch_array($r)){?>
+			  $r = mysqli_query($con, $q);
+			  $total_pemunggahan = mysqli_num_rows($r);
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jpunggah->id_jentera[0]){?>selected="selected"<?php } ?>>
                 <?= $row['nama_jentera'];?>
                 </option>
               <?php } ?>
             </select>
-			
+
 			<div id="pemunggahan_lain" class="<?php if($jpunggah->nama_jentera[0]!=""){echo "show";} else{echo "hide";}?>">
             <input type="text" name="lain_pemunggahan[0]" id="lain_pemunggahan[0]" size="25" value="<?= ucwords($jpunggah->nama_jentera[0]);?>" />
            </div>
@@ -980,17 +980,17 @@ var pitmid = false;
           <input type="text" class="field_active" name="bil_pemunggahan[0]" onKeypress="keypress(event)" size="11" id="bil_pemunggahan[0]" value="<?= $jpunggah->value[0];?>" onchange="tukar_format2(this)" autocomplete="off" onblur="pitmid = true; hantar(2, 'sementara');"/>
         </div></td>
       </tr>
-      
-	  	  <?php 
-		  $totpunggah= $jpunggah->total; 
+
+	  	  <?php
+		  $totpunggah= $jpunggah->total;
 		  for ($b=1; $b<$total_pemunggahan; $b++){
 		  ?>
 
 	  <tr bgcolor="#99FF99" class="<?php if($totpunggah>$b){ echo "show";} else{echo "hide";}?>" id="b<?= $b; ?>">
         <td height="37"><label></label>
-        <?=setstring ('mal', 'Pemunggahan BTS ke platform atau pusat pengumpulan', 'en', 'Infield collection of FFBs to 
+        <?=setstring ('mal', 'Pemunggahan BTS ke platform atau pusat pengumpulan', 'en', 'Infield collection of FFBs to
        platform or collection centre')?>
-		
+
 		 <input name="punggah1[<?= $b; ?>]" type="hidden" id="punggah1[<?= $b; ?>]" value="<?= $jpunggah->id_jentera[$b];?>" />
           <input name="punggah2[<?= $b; ?>]" type="hidden" id="punggah2[<?= $b; ?>]" value="<?= $jpunggah->lesen[$b];?>" />
           <input name="punggah3[<?= $b; ?>]" type="hidden" id="punggah3[<?= $b; ?>]" value="<?= $jpunggah->tahun[$b];?>" />
@@ -1003,17 +1003,17 @@ var pitmid = false;
           <div align="left">
             <select name="jentera_pemunggahan[<?= $b; ?>]" id="jentera_pemunggahan[<?= $b; ?>]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'pemunggahan_lain<?= $b; ?>');">
               <option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
-              <?php 
+              <?php
 			  $con = connect();
 			  $q ="SELECT * FROM jentera WHERE kategori_jentera ='Pemunggahan' order by id_jentera";
-			  $r = mysql_query($q,$con);
-			  while($row=mysql_fetch_array($r)){?>
+			  $r = mysqli_query($con, $q);
+			  while($row=mysqli_fetch_array($r)){?>
               <option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jpunggah->id_jentera[$b]){?>selected="selected"<?php } ?>>
                 <?= $row['nama_jentera'];?>
                 </option>
               <?php } ?>
             </select>
-			
+
 			<div id="pemunggahan_lain<?= $b; ?>" class="<?php if($jpunggah->nama_jentera[$b]!=""){echo "show";} else{echo "hide";}?>">
             <input type="text" name="lain_pemunggahan[<?= $b; ?>]" id="lain_pemunggahan[<?= $b; ?>]" size="25" value="<?= ucwords($jpunggah->nama_jentera[$b]);?>" />
            </div>
@@ -1027,7 +1027,7 @@ var pitmid = false;
  <!-- angkut new additional 14/07/2010 -->
  <tr>
     <td height="37"><?=setstring ('mal', 'Pengangkutan BTS dari platform atau pusat pengumpulan ke kilang', 'en', 'Mainline Transportation of FFBs from platform or collection centres to mill')?>
-	<?php 
+	<?php
 		$varjentera[2]='pengangkutan';
 		$jangkut = new user('jentera_estate',$varjentera);
 	?>
@@ -1043,18 +1043,18 @@ var pitmid = false;
 		</td>
     <td>
         <div align="left">
-        
+
         <?php
         	$con = connect();
 			$q ="SELECT * FROM jentera WHERE kategori_jentera ='Pengangkutan' ORDER BY id_jentera";
-			$r = mysql_query($q,$con);
+			$r = mysqli_query($con, $q);
 		?>
             <select name="jentera_pengangkutan[0]" id="jentera_pengangkutan[0]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'pengangkutan_lain')">
 				<option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
 				<?php
-				
-					$total_pengangkutan = mysql_num_rows($r);
-					while($row=mysql_fetch_array($r)){
+
+					$total_pengangkutan = mysqli_num_rows($r);
+					while($row=mysqli_fetch_array($r)){
 				?>
 				<option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jangkut->id_jentera[0]){?>selected="selected"<?php } ?>><?= $row['nama_jentera'];?></option>
               <?php } ?>
@@ -1071,11 +1071,11 @@ var pitmid = false;
         </div>
 	</td>
 </tr>
-      
+
 <?php
 	$totangkut= $jangkut->total;
-	//echo $total_pengangkutan; 
-	
+	//echo $total_pengangkutan;
+
 	for ($bb=1; $bb<$total_pengangkutan; $bb++){
 	//echo "bts".$bb;
 	?>
@@ -1097,19 +1097,19 @@ var pitmid = false;
         <?php
         			$con = connect();
 					$q ="SELECT * FROM jentera WHERE kategori_jentera ='Pengangkutan' ORDER BY id_jentera";
-					$r = mysql_query($q,$con);
+					$r = mysqli_query($con, $q);
 		?>
             <select name="jentera_pengangkutan[<?= $bb; ?>]" id="jentera_pengangkutan[<?= $bb; ?>]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'pengangkutan_lain<?= $bb; ?>')">
 				<option><?=setstring ( 'mal', '-Pilih-', 'en', '-Choose-'); ?></option>
-				<?php 
-				
-					while($row=mysql_fetch_array($r)){?>
+				<?php
+
+					while($row=mysqli_fetch_array($r)){?>
 					<option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$jangkut->id_jentera[$bb]){?>selected="selected"<?php } ?>>
 				<?= $row['nama_jentera'];?>
 				</option>
 				<?php } ?>
 			</select>
-			
+
 		<div id="pengangkutan_lain<?= $bb; ?>" class="<?php if($jangkut->nama_jentera[$b]!=""){echo "show";} else{echo "hide";}?>">
             <input type="text" name="lain_pengangkutan[<?= $bb; ?>]" id="lain_pengangkutan[<?= $bb; ?>]" size="25" value="<?= ucwords($jangkut->nama_jentera[$bb]);?>" />
         </div>
@@ -1126,7 +1126,7 @@ var pitmid = false;
 <!-- End -->
     </table></td>
   </tr>
-  
+
 
   <tr>
     <td colspan="2"></td>

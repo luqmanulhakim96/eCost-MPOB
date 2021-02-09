@@ -13,8 +13,8 @@ $tableesub2 = "esub_" . $tahunsub2;
 $qacreate = "SELECT count(*) as total
 FROM information_schema.TABLES
 WHERE  (TABLE_NAME = '$tableesub2');";
-$rqa = mysql_query($qacreate, $con);
-$rowsub = mysql_fetch_array($rqa);
+$rqa = mysqli_query($con, $qacreate);
+$rowsub = mysqli_fetch_array($rqa);
 //echo "tbale".$rowsub['total'];
 $warning = "";
 if ($rowsub['total'] === 0) {
@@ -28,9 +28,9 @@ function updateesub($nolesen, $table, $column, $value) {
             . "WHERE "
             . " No_Lesen_Baru='$nolesen'  "
             . " LIMIT 1";
-    //echo "<br>".$qupdate; 
-    mysql_query($qupdate, $con);
-    if (mysql_affected_rows()) {
+    //echo "<br>".$qupdate;
+    mysqli_query($con, $qupdate);
+    if (mysqli_affected_rows()) {
         $set = 1;
     }
     return $set;
@@ -52,8 +52,8 @@ function getKiraan($type, $tahun_esub, $nolesen) {
             . "union select sum(tanaman_$type) as jumlah FROM tanam_$type$kedua   where lesen ='$nolesen' "
             . "union select sum(tanaman_$type) as jumlah FROM tanam_$type$ketiga where lesen ='$nolesen' ) as aa ; ";
     //echo $q . "<br>";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
     $total = $row['total'];
     return $total;
 }
@@ -65,7 +65,7 @@ function getKiraan($type, $tahun_esub, $nolesen) {
         <br />  1. Use this template <a href="template/esub.csv"><strong>here</strong></a>, and fill all data according to column name. Refer <a href="template/esub-sample.csv"><strong>here</strong></a> if you need sample data.<br />
         2. Select <strong>year</strong> to be upload and click <strong>submit</strong>.</div>
     <br />
-    <table width="80%" align="center" >        
+    <table width="80%" align="center" >
         <tr>
             <td><strong>Select Year</strong></td>
             <td><strong>:</strong></td>
@@ -118,7 +118,7 @@ function getKiraan($type, $tahun_esub, $nolesen) {
 if (isset($_POST["submit"])) {
 
     /* start of captcha validation */
-//echo $_SESSION['captcha']['code']; 
+//echo $_SESSION['captcha']['code'];
     if ($captcha != $captchasession) {
         echo "<html><script language='javascript'>alert('Invalid CAPTCHA Code! You have entered :" . $captcha . " instead of " . $captchasession . " '); location.href='home.php?id=config&sub=admin_upload_esub';</script></html>";
     }
@@ -133,15 +133,15 @@ if (isset($_POST["submit"])) {
 
 
     $qa_delete = "delete FROM esub ";
-    $rqa_delete = mysql_query($qa_delete, $con);
+    $rqa_delete = mysqli_query($con, $qa_delete);
 
 
     while (($filesop = fgetcsv($handle, 1000, ",")) !== false) {
-        $Nama_Estet = mysql_real_escape_string($filesop[0]);
-        $No_Lesen = mysql_real_escape_string($filesop[1]);
-        $No_Lesen_Baru = mysql_real_escape_string($filesop[2]);
-        $Berhasil = str_replace(",", "", mysql_real_escape_string($filesop[3]));
-        $Keluasan_Yang_Dituai = str_replace(",", "", mysql_real_escape_string($filesop[4]));
+        $Nama_Estet = mysqli_real_escape_string($filesop[0]);
+        $No_Lesen = mysqli_real_escape_string($filesop[1]);
+        $No_Lesen_Baru = mysqli_real_escape_string($filesop[2]);
+        $Berhasil = str_replace(",", "", mysqli_real_escape_string($filesop[3]));
+        $Keluasan_Yang_Dituai = str_replace(",", "", mysqli_real_escape_string($filesop[4]));
 
 
         $sql = "INSERT INTO esub "
@@ -158,7 +158,7 @@ if (isset($_POST["submit"])) {
                 . "'$Berhasil'"
                 . ")";
         //echo $sql . "<br><br>";
-        $rsql = mysql_query($sql, $con);
+        $rsql = mysqli_query($con, $sql);
 
         $c = $c + 1;
         if ($rsql) {
@@ -170,7 +170,7 @@ if (isset($_POST["submit"])) {
     }
     /* clean header after migrate */
     $sqldelete = "delete from esub where nama_estet='nama_estet';  ";
-    $rsqldelete = mysql_query($sqldelete, $con);
+    $rsqldelete = mysqli_query($con, $sqldelete);
     /* end of clean header after migrate */
 
 
@@ -194,7 +194,7 @@ $tableesub.Syarikat_Induk,
 $tableesub.Berhasil,
 $tableesub.Belum_Berhasil,
 $tableesub.Jumlah,
-$tableesub.Keluasan_Yang_Dituai, 
+$tableesub.Keluasan_Yang_Dituai,
     esub.No_Lesen_Baru as nlb
 
 FROM
@@ -203,8 +203,8 @@ INNER JOIN $tableesub ON esub.No_Lesen_Baru = $tableesub.No_Lesen_Baru
  ";
 
     // echo $sqlselect. "<br><br>";
-    $rsql = mysql_query($sqlselect, $con);
-    while ($row = mysql_fetch_array($rsql)) {
+    $rsql = mysqli_query($con, $sqlselect);
+    while ($row = mysqli_fetch_array($rsql)) {
         $sqlupdate = "UPDATE esub SET "
                 . "Alamat1='" . $row['Alamat1'] . "', "
                 . "Alamat2='" . $row['Alamat2'] . "', "
@@ -218,7 +218,7 @@ INNER JOIN $tableesub ON esub.No_Lesen_Baru = $tableesub.No_Lesen_Baru
                 . "Daerah_Premis='" . $row['Daerah_Premis'] . "', "
                 . "Syarikat_Induk='" . $row['Syarikat_Induk'] . "' "
                 . "WHERE No_Lesen_Baru='" . $row['nlb'] . "' LIMIT 1";
-        mysql_query($sqlupdate, $con);
+        mysqli_query($con, $sqlupdate);
         /* start of belum_berhasil */
         $totalsemula = getKiraan("semula", $tahun_esub, $row['nlb']);
         $totalbaru = getKiraan("baru", $tahun_esub, $row['nlb']);
@@ -233,4 +233,3 @@ INNER JOIN $tableesub ON esub.No_Lesen_Baru = $tableesub.No_Lesen_Baru
     /* end of select & update data */
 }
 ?>
-    

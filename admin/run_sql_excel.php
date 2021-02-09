@@ -17,21 +17,21 @@ include ('../Connections/connection.class.php');
 $con = connect();
 $query = trim($statement);
 
-$q = mysql_query($query, $con);
+$q = mysqli_query($con, $query);
 
-$num_fields = mysql_num_fields($q);
+$num_fields = mysqli_num_fields($q);
 
 echo "<table width='100%' class='baju'><tr>";
 
 ////Field name display starts////
 for ($i = 0; $i < $num_fields; $i++)
 {
-  echo '<th>' . mysql_field_name($q, $i) . '</th>';
+  echo '<th>' . mysqli_field_name($q, $i) . '</th>';
 }
 /// Field name display ends /////
 
 /// Data or Record display starts /////
-while ($nt = mysql_fetch_row($q))
+while ($nt = mysqli_fetch_row($q))
 {
   ++$r;
   if ($r % 2 == 0)

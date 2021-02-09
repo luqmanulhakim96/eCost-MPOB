@@ -3,7 +3,7 @@
  if (($_SESSION['type']<>"estate") && ($_SESSION['type']<>"admin")){
        header("location:../logout.php");
  }
-	   
+
 include('../Connections/connection.class.php');
 include('../class/syarikat.class.php');
 include('../class/user.class.php');
@@ -17,32 +17,32 @@ $muka = new syarikat('mukabumi','');
 $pengguna = new user('estate',$_SESSION['lesen']);
 
 
-		
+
 		function luas_data($table,$data, $tahunsebelum){
-		
+
 		if(strlen($tahunsebelum)==1)
-			{ 
+			{
 		$table = $table."0".substr($tahunsebelum,-2);
 			}
 		else{
-		$table = $table.substr($tahunsebelum,-2); 
+		$table = $table.substr($tahunsebelum,-2);
 		}
 		$con = connect();
 	    $qblm="SELECT sum($data) as $data FROM $table WHERE lesen = '".$_SESSION['lesen']."' group by lesen";
-		$rblm=mysql_query($qblm,$con);
-		$totalblm = mysql_num_rows($rblm);
-		$rowblm= mysql_fetch_array($rblm);
+		$rblm=mysqli_query($con, $qblm);
+		$totalblm = mysqli_num_rows($rblm);
+		$rowblm= mysqli_fetch_array($rblm);
 		$data1 = $rowblm[$data];
-		$jum_data = $data1; 
-		
-		return $jum_data; 
+		$jum_data = $data1;
+
+		return $jum_data;
 		}
-		
+
 
  $ps1 = luas_data("tanam_semula","tanaman_semula", $_SESSION['tahun']-1);
  $ps2 = luas_data("tanam_semula","tanaman_semula", $_SESSION['tahun']-2);
  $ps3 = luas_data("tanam_semula","tanaman_semula", $_SESSION['tahun']-3);
- 
+
  $pb1 = luas_data("tanam_baru","tanaman_baru", $_SESSION['tahun']-1);
  $pb2 = luas_data("tanam_baru","tanaman_baru", $_SESSION['tahun']-2);
  $pb3 = luas_data("tanam_baru","tanaman_baru", $_SESSION['tahun']-3);
@@ -53,7 +53,7 @@ $pengguna = new user('estate',$_SESSION['lesen']);
  $pt2 = luas_data("tanam_tukar","tanaman_tukar", $_SESSION['tahun']-2);
  $pt3 = luas_data("tanam_tukar","tanaman_tukar", $_SESSION['tahun']-3);
 
-$jumlah_semua = 	$pengguna->luastuai + $pb1+$pb2+$pb3 + $ps1+$ps2+$ps3 + $pt1+$pt2+$pt3; 
+$jumlah_semua = 	$pengguna->luastuai + $pb1+$pb2+$pb3 + $ps1+$ps2+$ps3 + $pt1+$pt2+$pt3;
 $pengguna->jumlahakhir;
 ?>
 <script type="text/javascript">
@@ -67,7 +67,7 @@ $pengguna->jumlahakhir;
 <script type="text/javascript" src="../jquery.numberformatter-1.1.2.js"></script>
 <script type="text/javascript">
 
-	
+
 	var total_ha =  <?= $pengguna->jumlahluas; ?>;
 	function field_blur(obj,obj_id) {
 		if(number_only(obj)) {
@@ -85,29 +85,29 @@ $pengguna->jumlahakhir;
 		}
 		else {
 			$("#" + obj_id).html("0 %");
-			
+
 		}
 	}
-	
+
 	function field_click(obj) {
 		$(obj).removeClass("field_edited");
 		$(obj).addClass("field_active");
 	}
-	
-	
+
+
 	function kiraan (e){
 		var jumlah = 0;
 		var a = $("#percentrata").val();
 		var b = $("#percentalun").val();
 		var c = $("#percentbukit").val();
 		var d = $("#percentcerun").val();
-		
+
 		var f = e.value;
 		if(f>100){
 			alert('<?php echo setstring ( 'mal', 'Jumlah Peratusan melebihi had 100 %', 'en', 'Total Percentage is more than 100%'); ?>');
 		e.value = "0.00";}
-		
-		
+
+
 		jum = parseInt(a)+parseInt(b)+parseInt(c)+parseInt(d);
 		//alert(jum);
 		if(jum>100){
@@ -139,13 +139,13 @@ $pengguna->jumlahakhir;
     <td colspan="4" bgcolor="#99FF99"><input name="pegawai" type="text" id="pegawai" style="text-align:left; font-weight:normal;" value="<?php echo $pengguna->pegawai; ?>" size="50" width="50" />
       <input name="nolesen" type="hidden" id="nolesen" value="<?php echo  $_SESSION['lesen'];?>" />    </td>
   </tr>
-  
+
   <tr>
     <td width="14" height="37">&nbsp;</td>
     <td colspan="2"><strong><?php echo setstring ( 'mal', 'Jenis syarikat', 'en', 'Company Type'); ?></strong></td>
     <td colspan="4"><select name="syarikat" id="syarikat" style="width:330px">
       <option>-<?php echo setstring ( 'mal', 'Pilih', 'en', 'Select'); ?>-</option>
-      <?php 
+      <?php
 		for ($i=0; $i<$company->total; $i++){ ?>
       <option value="<?php echo  $company->comp_name[$i];?>" <?php if($company->comp_name[$i]==$pengguna->jenissyarikat){?>selected="selected"<?php } ?>>
         <?php echo $company->comp_alt[$i]; ?>
@@ -153,7 +153,7 @@ $pengguna->jumlahakhir;
       <?php } ?>
     </select></td>
   </tr>
-  
+
   <tr>
     <td height="32" bgcolor="#99FF99">&nbsp;</td>
     <td colspan="2" bgcolor="#99FF99"><strong><?php echo setstring ( 'mal', 'Keahlian dalam persatuan', 'en', 'Membership in Union'); ?></strong></strong></td>
@@ -166,7 +166,7 @@ $pengguna->jumlahakhir;
       <?php } ?>
     </select></td>
   </tr>
-  
+
   <tr>
     <td height="31">&nbsp;</td>
     <td colspan="2"><strong><?php echo setstring ( 'mal', 'Integrasi dengan kilang buah sawit', 'en', 'Integration with Palm Factory'); ?></strong></td>
@@ -207,9 +207,9 @@ $pengguna->jumlahakhir;
     <td colspan="2" bgcolor="#FFCCCC"><div align="left"><?php echo setstring ( 'mal', 'b. Tanah Pedalaman', 'en', 'b. Rural Land'); ?></div></td>
     <td bgcolor="#FFCCCC">
       <div align="center">
-<input name="pedalaman" type="text" class="field_active" id="pedalaman" onblur="field_blur(this,'s2')" onclick="field_click(this)" value="<?php echo  $pengguna->pedalaman; ?>" size="3" />        
+<input name="pedalaman" type="text" class="field_active" id="pedalaman" onblur="field_blur(this,'s2')" onclick="field_click(this)" value="<?php echo  $pengguna->pedalaman; ?>" size="3" />
 <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div>
-    
+
       <div align="center"></div></td>
     <td bgcolor="#FFCCCC">
       <div align="center">
@@ -228,7 +228,7 @@ $pengguna->jumlahakhir;
         <div align="center">
           <?php $a = round($tg/$jumlah_semua*100,2);echo number_format($a,2); ?>
  %</div>
-      
+
     </span></td>
     <td bgcolor="#FFFFCC">&nbsp;</td>
     <td bgcolor="#FFFFCC">&nbsp;</td>
@@ -269,10 +269,10 @@ $pengguna->jumlahakhir;
     <td colspan="2" bgcolor="#CACAFF"><?php echo setstring ( 'mal', 'd. Lain-lain Jenis Tanah :', 'en', 'Other Soil Type:'); ?></td>
     <td bgcolor="#CACAFF"><div align="center" class="style1"><?php echo $lt = $pengguna->laterit+$pengguna->asidsulfat+$pengguna->tanahpasir; ?> <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div></td>
     <td bgcolor="#CACAFF"><span class="style1">
-            
+
     </span>      <strong>
-    
-    </strong>    
+
+    </strong>
     <div align="center" class="style1">
       <?php $a = round($lt/$jumlah_semua*100,2);echo number_format($a,2); ?>
  %</div>    </td>
@@ -284,7 +284,7 @@ $pengguna->jumlahakhir;
     <td bgcolor="#CACAFF"><div align="right"> i)</div></td>
     <td bgcolor="#CACAFF"> <?php echo setstring ( 'mal', 'laterit', 'en', 'Laterite'); ?></td>
     <td bgcolor="#CACAFF"><div align="center">
-          <input name="laterit" type="text" class="field_active" id="laterit" onblur="field_blur(this,'s5')" onclick="field_click(this)" value="<?php echo  $pengguna->laterit; ?>" size="3" /> 
+          <input name="laterit" type="text" class="field_active" id="laterit" onblur="field_blur(this,'s5')" onclick="field_click(this)" value="<?php echo  $pengguna->laterit; ?>" size="3" />
       <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div></td>
     <td bgcolor="#CACAFF"><div align="center">
           <span id="s5">
@@ -299,7 +299,7 @@ $pengguna->jumlahakhir;
     <td bgcolor="#CACAFF"><div align="right">ii) </div></td>
     <td bgcolor="#CACAFF"><?php echo setstring ( 'mal', 'Asid Sulfat', 'en', 'Sulphate Acid'); ?> </td>
     <td bgcolor="#CACAFF"><div align="center">
-          <input name="asidsulfat" type="text" class="field_active" id="asidsulfat" onblur="field_blur(this,'s6')" onclick="field_click(this)" value="<?php echo $pengguna->asidsulfat; ?>" size="3" /> 
+          <input name="asidsulfat" type="text" class="field_active" id="asidsulfat" onblur="field_blur(this,'s6')" onclick="field_click(this)" value="<?php echo $pengguna->asidsulfat; ?>" size="3" />
       <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div></td>
    <td bgcolor="#CACAFF"><div align="center">
      <span id="s6">
@@ -322,7 +322,7 @@ $pengguna->jumlahakhir;
     <td bgcolor="#CACAFF">&nbsp;</td>
     <td bgcolor="#CACAFF">&nbsp;</td>
   </tr>
-  
+
   <!--<tr>
     <td height="34" bgcolor="#99FF99">&nbsp;</td>
     <td colspan="2" bgcolor="#99FF99"><strong><?php echo setstring ( 'mal', 'Bentuk mukabumi estet', 'en', 'Estate Terrain Type'); ?></strong></strong></td>
@@ -348,7 +348,7 @@ $pengguna->jumlahakhir;
     <tr valign="top">
       <td height="65">&nbsp;</td>
       <td colspan="6">
-        <table width="100%" border="0" cellspacing="0" class="hide" id="rata"> 
+        <table width="100%" border="0" cellspacing="0" class="hide" id="rata">
           <tr>
             <td height="30" bgcolor="#CCFF99">&nbsp;</td>
             <td colspan="3" bgcolor="#CCFF99"><strong>
@@ -407,7 +407,7 @@ $pengguna->jumlahakhir;
             <td height="33" bgcolor="#CCFF99">&nbsp;</td>
             <td height="33" bgcolor="#CCFF99">&nbsp;</td>
             <td colspan="2" bgcolor="#CCFF99">
-              <img src="images/001_11.gif" width="20" height="20" /> 
+              <img src="images/001_11.gif" width="20" height="20" />
               <span style=" color:#FF0000; font-weight:bold;">
               <?php echo setstring ( 'mal', 'Jumlah Peratusan melebihi had 100 %', 'en', 'Total Percentage is more than 100%'); ?>
               </span>              </td>
@@ -423,4 +423,4 @@ $pengguna->jumlahakhir;
       </div></td>
     </tr>
 </table>
-</form> 
+</form>

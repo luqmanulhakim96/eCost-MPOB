@@ -68,7 +68,7 @@ if (isset($_GET['firsttime'])) {
                 <table  aria-describedby="index-home-2"><tr><td><strong><img src="../folder.png" alt="aaa" width="100" height="100" /></strong></td>
                         <td>
                             <ul>
-                                <li><?= setstring('mal', 'Login berjaya terakhir anda pada', 'en', 'Last success login on'); ?> 
+                                <li><?= setstring('mal', 'Login berjaya terakhir anda pada', 'en', 'Last success login on'); ?>
                                     <?php
                                     if ($pengguna->success != '') {
                                         echo date('d-F-Y g:i A', strtotime($pengguna->success));
@@ -97,8 +97,9 @@ if (isset($_GET['firsttime'])) {
 
                                     <?php
                                     $sql = "SELECT * FROM ringkasan_kos_hantar WHERE no_lesen = '" . $_SESSION['lesen'] . "' AND TAHUN = '" . $_SESSION['tahun'] . "' ORDER BY TARIKH_HANTAR DESC LIMIT 1";
-                                    $result_hantar = mysql_query($sql);
-                                    $hantar = mysql_fetch_array($result_hantar);
+                                    $con = connect();
+                                    $result_hantar = mysqli_query($con, $sql);
+                                    $hantar = mysqli_fetch_array($result_hantar);
 
                                     if (!$hantar) {
                                         ?>

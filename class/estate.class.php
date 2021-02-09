@@ -1,10 +1,10 @@
 <?php
-class estate 
+class estate
 {
-	function estate($var)
+	function  __construct($var)
 	{
 	if($type=='estate')
-		{ 
+		{
 		echo $var;
 		$this->viewestate($var);}
 	}
@@ -26,15 +26,15 @@ class estate
 				$table="esub_".$_COOKIE['tahun_report'];
 			}
 		}
-		
-		
+
+
 		$con = connect();
 		echo $q ="select * from $table where es.no_lesen_baru = '$var' group by es.no_lesen_baru";
-		$r = mysql_query($q,$con);
-		$res_total = mysql_num_rows($r);
-		$this->total = $res_total; 
+		$r = mysqli_query($con,$q);
+		$res_total = mysqli_num_rows($r);
+		$this->total = $res_total;
 		$i = 0;
-		while($row=mysql_fetch_array($r))
+		while($row=mysqli_fetch_array($r))
 		{
 			$this->nolesenlama=$row['No_Lesen'];
 			$this->namaestet=$row['Nama_Estet'];
@@ -55,8 +55,8 @@ class estate
 			$this->berhasil=$row['Berhasil'];
 			$this->belumberhasil=$row['Belum_Berhasil'];
 			$this->luastuai=$row['Keluasan_Yang_Dituai'];
-			$i++;		
-		}	
+			$i++;
+		}
 	}
 }
 ?>

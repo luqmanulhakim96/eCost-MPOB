@@ -46,8 +46,8 @@ total_perbelanjaan='$total_perbelanjaan',
 status = '$status'
 where lesen = '" . $_SESSION['lesen'] . "' and thisyear = '$tahun'
 ";
-$r = mysql_query($q, $con);
-//echo $q; 
+$r = mysqli_query($con, $q);
+//echo $q;
 if ($status == '1') {
     echo "<script>window.location.href='home.php?id=ringkasan'</script>";
 } else {

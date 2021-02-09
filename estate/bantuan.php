@@ -6,7 +6,7 @@ function MM_CheckFlashVersion(reqVerStr,msg){
   with(navigator){
     var isIE  = (appVersion.indexOf("MSIE") != -1 && userAgent.indexOf("Opera") == -1);
     var isWin = (appVersion.toLowerCase().indexOf("win") != -1);
-    if (!isIE || !isWin){  
+    if (!isIE || !isWin){
       var flashVer = -1;
       if (plugins && plugins.length > 0){
         var desc = plugins["Shockwave Flash"] ? plugins["Shockwave Flash"].description : "";
@@ -26,13 +26,13 @@ function MM_CheckFlashVersion(reqVerStr,msg){
 
       var verArr = reqVerStr.split(",");
       var reqVer = parseFloat(verArr[0] + "." + verArr[2]);
-  
+
       if (flashVer < reqVer){
         if (confirm(msg))
           window.location = "http://www.macromedia.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash";
       }
     }
-  } 
+  }
 }
 </script>
 <?php include('baju_merah.php');?>
@@ -60,8 +60,8 @@ function MM_CheckFlashVersion(reqVerStr,msg){
       <?php
 		  $con =connect();
           $qfile = "select * from file_upload order by title";
-		  $rfile = mysql_query($qfile,$con);
-		  while($rowfile = mysql_fetch_array($rfile)){
+		  $rfile = mysqli_query($con, $qfile);
+		  while($rowfile = mysqli_fetch_array($rfile)){
 		  ?>
       <tr <?php if(++$rt%2==0){?>class="alt"<?php } ?>>
         <td width="7%" height="31">&nbsp;<?php echo $rt; ?>. </td>
@@ -72,12 +72,12 @@ function MM_CheckFlashVersion(reqVerStr,msg){
     </table>
       <em class="arahan style2">** Click on icon to download the material      </em></td>
   </tr>
-   <?php 
+   <?php
   $con = connect();
 		$query = "select * from setting where st_name ='video' and st_value ='1'";
-		$res = mysql_query($query,$con);
-		$row = mysql_fetch_array($res); 
-		$res_total = mysql_num_rows($res);
+		$res = mysqli_query($con, $query);
+		$row = mysqli_fetch_array($res);
+		$res_total = mysqli_num_rows($res);
 		if($res_total>0){
   ?> <tr>
     <td width="4%"><div align="left"><strong><img src="../images/Get_Info.jpg" width="30" height="30"></strong></div></td>
@@ -86,7 +86,7 @@ function MM_CheckFlashVersion(reqVerStr,msg){
   <tr>
     <td colspan="2"></td>
   </tr>
-  
+
 
   <tr>
     <td>&nbsp;</td>
@@ -101,7 +101,7 @@ AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/
         <param name="scale" value="noscale" />
         <param name="wmode" value="transparent" />
         <param name="FlashVars" value="&MM_ComponentVersion=1&skinName=Clear_Skin_1&streamName=../ecost&autoPlay=false&autoRewind=false" />
-        <embed src="FLVPlayer_Progressive.swf" flashvars="&MM_ComponentVersion=1&skinName=Clear_Skin_1&streamName=<?= $video->path; ?>&autoPlay=false&autoRewind=false" quality="high" scale="noscale" wmode="transparent" width="600" height="450" name="FLVPlayer" salign="LT" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />    
+        <embed src="FLVPlayer_Progressive.swf" flashvars="&MM_ComponentVersion=1&skinName=Clear_Skin_1&streamName=<?= $video->path; ?>&autoPlay=false&autoRewind=false" quality="high" scale="noscale" wmode="transparent" width="600" height="450" name="FLVPlayer" salign="LT" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
       </object></noscript>
     </div></td>
   </tr>
@@ -150,18 +150,18 @@ AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/
         <th><strong>Cost Component </strong></th>
         <th width="66%"><strong>Description</strong></th>
       </tr>
-      
+
 		<?php for($i=0; $i<$komponen->total; $i++){ ?>
       <tr valign="top" <?php if($i%2==0){?>class="alt"<?php } ?>>
         <td width="32%">         <strong> <?= $komponen->title[$i]; ?></strong>        </td>
         <td><?= $komponen->description[$i]; ?></td>
       </tr>
 	  <?php }?>
-      
+
     </table></td>
   </tr>
 </table>-->
-			
+
 <br>
 <br>
 <br>

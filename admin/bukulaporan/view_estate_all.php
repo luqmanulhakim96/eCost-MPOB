@@ -17,7 +17,7 @@ body,td,th {
 </style>
 <script src="../js/live/livevalidation_standalone.js" type="text/javascript"></script>
   <link rel="stylesheet" type="text/css" href="../js/live/consolidated_common.css">
-  
+
 <link rel="stylesheet" href="../js/tabber/example.css" TYPE="text/css" MEDIA="screen">
 <script type="text/javascript" src="../jquery-1.3.2.js"></script>
 
@@ -106,35 +106,35 @@ function deleteCookie(name, path, domain) {
 </script>
 <script language="javascript">
 	$(document).ready(function() {
-	
+
 	$(".esub_edit").hide();
 	$(".kemaskini").hide();
-	
-	
+
+
 	var a = document.getElementById("tanaman_semula").value;
 	if(a !=null){
 	document.getElementById("tanaman_semula").value="";
 	}
-	
+
 	var b = document.getElementById("tanaman_baru").value;
 	if(b !=null){
 	document.getElementById("tanaman_baru").value="";
 	}
 
-	
+
 	var c = document.getElementById("tanaman_tukar").value;
 	if(c !=null){
 	document.getElementById("tanaman_tukar").value="";
 	}
 
-	
-	
-	
+
+
+
 		});
 
 function buka(x,y,z,a){
-	
-	
+
+
 	$("."+x).hide();
 	$("."+y).show();
 	$("."+z).hide();
@@ -167,23 +167,23 @@ function pergi(x)
 
      <div class="tabbertab">
 	  <h2>E-Sub</h2>
-   <?php 
+   <?php
   				$con =connect();
 				$qd="select * FROM esub where no_lesen_baru ='$nolesen'";
-				$rd=mysql_query($qd,$con);
-				$rowd=mysql_fetch_array($rd);
-				$total=mysql_num_rows($rd);
-				
+				$rd=mysqli_query($con, $qd);
+				$rowd=mysqli_fetch_array($rd);
+				$total=mysqli_num_rows($rd);
+
 				if($total==0){
 					$qadd="insert into esub (no_lesen_baru) values ('$nolesen')";
-					$radd=mysql_query($qadd,$con);
+					$radd=mysqli_query($con, $qadd);
 					echo "<script>window.location.href='view_estate_all.php'</script>";
 				}
   ?>
-     
-    
+
+
 <table width="100%" class="esub">
-  
+
   <tr>
     <td width="15%">NAMA_ESTET</td>
     <td width="1%">:</td>
@@ -277,7 +277,7 @@ function pergi(x)
 </table>
 
 <table width="100%" class="esub_edit">
-  
+
   <tr>
     <td width="15%">NAMA_ESTET</td>
     <td width="1%">:</td>
@@ -303,7 +303,7 @@ function pergi(x)
     <td width="15%">NO_LESEN_BARU</td>
     <td width="1%">:</td>
     <td width="84%">
-     
+
       <?php echo $rowd['No_Lesen_Baru'];?></td>
   </tr>
   <tr>
@@ -381,40 +381,40 @@ function pergi(x)
       var berhasil = new LiveValidation('berhasil');
 		berhasil.add( Validate.Numericality );
       </script>
-      
+
       Ha</td>
   </tr>
   <tr>
     <td width="15%">JUMLAH (TANAM BARU + TANAM SEMULA +TANAM TUKAR)</td>
     <td width="1%">:</td>
     <td width="84%">
-      <input type="text" name="belum_berhasil" id="belum_berhasil" value="<?php echo $rowd['Belum_Berhasil'];?>" /> 
+      <input type="text" name="belum_berhasil" id="belum_berhasil" value="<?php echo $rowd['Belum_Berhasil'];?>" />
            <script language="javascript">
       var belum_berhasil = new LiveValidation('belum_berhasil');
 		belum_berhasil.add( Validate.Numericality );
       </script>
-      
-      
+
+
       Ha</td>
   </tr>
   <tr>
     <td width="15%">JUMLAH (BERHASIL + BELUM BERHASIL)</td>
     <td width="1%">:</td>
     <td width="84%">
-      <input type="text" name="jumlah" id="jumlah" value="<?php echo $rowd['Jumlah'];?>" /> 
+      <input type="text" name="jumlah" id="jumlah" value="<?php echo $rowd['Jumlah'];?>" />
            <script language="javascript">
       var jumlah = new LiveValidation('jumlah');
 		jumlah.add( Validate.Numericality );
       </script>
-      
+
       Ha </td>
   </tr>
   <tr>
     <td width="15%">TERAKHIR DRPD E-SUB</td>
     <td width="1%">:</td>
     <td width="84%">
-      <input type="text" name="keluasan" id="keluasan" value="<?php echo $rowd['Keluasan_Yang_Dituai'];?>" /> 
-     
+      <input type="text" name="keluasan" id="keluasan" value="<?php echo $rowd['Keluasan_Yang_Dituai'];?>" />
+
                <script language="javascript">
       var keluasan = new LiveValidation('keluasan');
 		keluasan.add( Validate.Numericality );
@@ -433,17 +433,17 @@ function pergi(x)
 	        <?php
       		$con = connect();
 			$q="SHOW COLUMNS FROM fbb_production";
-			$r=mysql_query($q,$con);
-			
+			$r=mysqli_query($con, $q);
+
 			$nolesenffb = $nolesen; //substr($nolesen,0,-1);
 	  ?>
  <p><table width="100%" class="esub">    <td colspan="3"><strong>MAKLUMAT FBB PRODUCTION E-COST</strong></td>
     </tr>
   <tr>
-  <?php while($row = mysql_fetch_array($r)){
+  <?php while($row = mysqli_fetch_array($r)){
   				$qd="select ".$row['Field']." as jenis FROM fbb_production where lesen ='$nolesenffb'";
-				$rd=mysql_query($qd,$con);
-				$rowd=mysql_fetch_array($rd);
+				$rd=mysqli_query($con, $qd);
+				$rowd=mysqli_fetch_array($rd);
   ?>
   <tr>
 
@@ -455,17 +455,17 @@ function pergi(x)
 </table>
 
 
-   <?php 
+   <?php
   				$con =connect();
 				$lesen_singkat = substr($nolesen, 0,-1);
 				$qfbb="select * FROM fbb_production where lesen ='$lesen_singkat'";
-				$rfbb=mysql_query($qfbb,$con);
-				$rowfbb=mysql_fetch_array($rfbb);
-				$totalfbb=mysql_num_rows($rfbb);
-				
+				$rfbb=mysqli_query($con, $qfbb);
+				$rowfbb=mysqli_fetch_array($rfbb);
+				$totalfbb=mysqli_num_rows($rfbb);
+
 				if($totalfbb==0){
 					$qaddfbb="insert into fbb_production (lesen) values ('$lesen_singkat')";
-					$raddfbb=mysql_query($qaddfbb,$con);
+					$raddfbb=mysqli_query($con, $qaddfbb);
 					echo "<script>window.location.href='view_estate_all.php'</script>";
 				}
   ?>
@@ -474,7 +474,7 @@ function pergi(x)
    <tr>
      <td colspan="3"><strong>MAKLUMAT FBB PRODUCTION E-COST</strong></td>
     </tr>
-   
+
    <tr>
      <td width="11%">NAMA</td>
      <td width="1%">:</td>
@@ -501,20 +501,20 @@ function pergi(x)
      <td width="11%">JUMLAH_PENGELUARAN</td>
      <td width="1%">:</td>
      <td width="88%"><input type="text" name="fbb_jumlah_pengeluaran" id="fbb_jumlah_pengeluaran" value="<?php echo $rowfbb['jumlah_pengeluaran'];?>" />
-     
+
                <script language="javascript">
       var fbb_jumlah = new LiveValidation('fbb_jumlah');
 		fbb_jumlah.add( Validate.Numericality );
       </script>
-     
+
      </td>
    </tr>
    <tr>
      <td width="11%">PURATA_HASIL_BUAH</td>
      <td width="1%">:</td>
      <td width="88%"><input type="text" name="purata_hasil_buah" id="purata_hasil_buah" value="<?php echo $rowfbb['purata_hasil_buah'];?>" />
-     
-     
+
+
                <script language="javascript">
       var purata_hasil_buah = new LiveValidation('purata_hasil_buah');
 		purata_hasil_buah.add( Validate.Numericality );
@@ -534,13 +534,13 @@ function pergi(x)
 	        <?php
       		$con = connect();
 			$q="SHOW COLUMNS FROM login_estate";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
 	        <p><table width="100%" class="esub">
-  <?php while($row = mysql_fetch_array($r)){
+  <?php while($row = mysqli_fetch_array($r)){
   				$qd="select ".$row['Field']." as jenis FROM login_estate where lesen ='$nolesen'";
-				$rd=mysql_query($qd,$con);
-				$rowd=mysql_fetch_array($rd);
+				$rd=mysqli_query($con, $qd);
+				$rowd=mysqli_fetch_array($rd);
   ?>
   <tr>
     <td width="11%"><?php echo strtoupper($row['Field']);?></td>
@@ -552,16 +552,16 @@ function pergi(x)
 </p>
 
 
-   <?php 
+   <?php
   				$con =connect();
 				$qdlogin="select * FROM login_estate where lesen ='$nolesen'";
-				$rdlogin=mysql_query($qdlogin,$con);
-				$rowdlogin=mysql_fetch_array($rdlogin);
-				$totallogin=mysql_num_rows($rdlogin);
-				
+				$rdlogin=mysqli_query($con, $qdlogin);
+				$rowdlogin=mysqli_fetch_array($rdlogin);
+				$totallogin=mysqli_num_rows($rdlogin);
+
 				if($totallogin==0){
 					$qaddlogin="insert into login_estate (lesen) values ('$nolesen')";
-					$raddlogin=mysql_query($qaddlogin,$con);
+					$raddlogin=mysqli_query($con, $qaddlogin);
 					echo "<script>window.location.href='view_estate_all.php'</script>";
 				}
   ?>
@@ -570,8 +570,8 @@ function pergi(x)
          <td width="11%">LESEN</td>
          <td width="1%">:</td>
          <td width="88%"><?php echo $rowdlogin['lesen'];?>
-         
-         
+
+
          </td>
        </tr>
        <tr>
@@ -596,36 +596,36 @@ function pergi(x)
        </tr>
      </table>
      </div>
-     
-     
+
+
      <div class="tabbertab">
-   
+
    <div class="esub_edit"><table width="100%">
   <tr>
     <td>Tahun</td>
     <td>:</td>
     <td>
-    
+
     	      <?php
 		  	$tahun = $_COOKIE['tahun_report'];
-			
+
 			$pertama = $tahun-3;
 			$kedua = $tahun-2;
-			$ketiga = $tahun-1; 
-			
+			$ketiga = $tahun-1;
+
 			$pertama = substr($pertama,-2);
 			$kedua = substr($kedua,-2);
 			$ketiga = substr($ketiga,-2);
 			?>
 
-    
+
     <select name="tahun_baru" id="tahun_baru">
       <option value="<?php echo $ketiga; ?>">Pertama</option>
       <option value="<?php echo $kedua; ?>">Kedua</option>
       <option value="<?php echo $pertama; ?>">Ketiga</option>
     </select>    </td>
   </tr>
-  
+
   <tr>
     <td width="11%">Bulan </td>
     <td width="1%">:</td>
@@ -649,27 +649,27 @@ function pergi(x)
     <td>Luas Tanaman</td>
     <td>:</td>
     <td><input type="text" name="tanaman_baru" id="tanaman_baru" />
-    
+
         <script language="javascript">
       var tanaman_baru = new LiveValidation('tanaman_baru');
 		tanaman_baru.add( Validate.Numericality );
       </script>
-    
+
       Ha</td>
   </tr>
 </table>
 </div>
-   
-   
+
+
      <div class="esub">
 	  <h2>Tanam Baru</h2>
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_baru$pertama where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
-			$total=mysql_num_rows($r);
-				
-			
+			$r=mysqli_query($con, $q);
+			$total=mysqli_num_rows($r);
+
+
 	  ?>
  <p>
  <b>TANAMAN BARU PADA <?php echo $pertama;?></b>
@@ -680,19 +680,19 @@ function pergi(x)
     <th>Tanaman Baru</th>
     <th>Tindakan</th>
   </tr>
-   <?php 
+   <?php
   $jumlah1=0;
   $rs=0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?> 		<tr <?php if(++$rs%2==0){?>class="alt"<?php } ?>>
 
     <td width="29%"><?php echo $row['bulan'];?></td>
     <td width="62%"><?php echo $row['tanaman_baru'];$jumlah1=$jumlah1+$row['tanaman_baru'];?></td>
     <td width="9%"><div align="center"><a href="save_all.php?type=delete&amp;lesen=<?php echo $nolesen; ?>&amp;bulan=<?php echo $row['bulan'];?>&amp;luas=<?php echo $row['tanaman_baru'];?>&amp;table=<?php echo "tanam_baru$pertama";?>&amp;field=<?php echo "tanaman_baru"; ?>"><img src="../images/remove.png" alt="" width="20" height="20" border="0" onclick="return confirm('Buang data ini?');" /></a></div></td>
   </tr>
-  
-  
+
+
   <?php } ?>
 </table>
 <b><em>JUMLAH KESELURUHAN : <?php echo $jumlah1; ?></em></b>
@@ -704,30 +704,30 @@ function pergi(x)
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_baru$kedua where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN BARU PADA <?php echo $kedua;?></b>
  <table width="60%" align="center" cellpadding="2" cellspacing="2"  class="baju">
- 
+
   <tr>
     <th>Bulan</th>
     <th>Tanaman Baru</th>
     <th>Tindakan</th>
-  </tr> <?php 
-  $jumlah2 =0; 
-  
+  </tr> <?php
+  $jumlah2 =0;
+
   $rs1=0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?>
 		<tr <?php if(++$rs%2==0){?>class="alt"<?php } ?>>
     <td width="29%"><?php echo $row['bulan'];?></td>
     <td width="62%"><?php echo $row['tanaman_baru'];$jumlah2=$jumlah2 +$row['tanaman_baru'];?></td>
     <td width="9%"><div align="center"><a href="save_all.php?type=delete&amp;lesen=<?php echo $nolesen; ?>&amp;bulan=<?php echo $row['bulan'];?>&amp;luas=<?php echo $row['tanaman_baru'];?>&amp;table=<?php echo "tanam_baru$kedua";?>&amp;field=<?php echo "tanaman_baru"; ?>"><img src="../images/remove.png" width="20" height="20" border="0" onclick="return confirm('Buang data ini?');" /></a></div></td>
   </tr>
-  
-  
+
+
   <?php } ?>
 </table>
 <b><em>JUMLAH KESELURUHAN : <?php echo $jumlah2; ?></em></b>
@@ -739,21 +739,21 @@ function pergi(x)
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_baru$ketiga where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN BARU PADA <?php echo $ketiga;?></b>
  <table width="60%" align="center" cellpadding="2" cellspacing="2" class="baju">
-  
+
   <tr>
     <th>Bulan</th>
     <th>Tanaman Baru</th>
     <th>Tindakan</th>
-  </tr><?php 
-  $jumlah3 = 0; 
+  </tr><?php
+  $jumlah3 = 0;
   $rs2=0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?>		<tr <?php if(++$rs2%2==0){?>class="alt"<?php } ?>>
     <td width="29%"><?php echo $row['bulan'];?></td>
     <td width="62%"><?php echo $row['tanaman_baru'];$jumlah3 = $jumlah3 + $row['tanaman_baru'];?></td>
@@ -766,38 +766,38 @@ function pergi(x)
 </p>
 </div>
      </div>
-     
-     
-     
+
+
+
      <div class="tabbertab">
 	  <h2>Tanam Semula</h2>
-	
+
     <div class="esub_edit"><table width="100%">
   <tr>
     <td>Tahun</td>
     <td>:</td>
     <td>
-    
+
     	      <?php
 		  	//$tahun = $_SESSION['tahun'];
-			
+
 			$pertama = $tahun-3;
 			$kedua = $tahun-2;
-			$ketiga = $tahun-1; 
-			
+			$ketiga = $tahun-1;
+
 			$pertama = substr($pertama,-2);
 			$kedua = substr($kedua,-2);
 			$ketiga = substr($ketiga,-2);
 			?>
 
-    
+
     <select name="tahun_semula" id="tahun_semula">
       <option value="<?php echo $ketiga; ?>">Pertama</option>
       <option value="<?php echo $kedua; ?>">Kedua</option>
       <option value="<?php echo $pertama; ?>">Ketiga</option>
     </select>    </td>
   </tr>
-  
+
   <tr>
     <td width="11%">Bulan </td>
     <td width="1%">:</td>
@@ -825,17 +825,17 @@ function pergi(x)
       var tanaman_semula = new LiveValidation('tanaman_semula');
 		tanaman_semula.add( Validate.Numericality );
       </script>
-    
+
       Ha</td>
   </tr>
 </table>
 </div>
-    
+
       <div class="esub">
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_semula$pertama where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN SEMULA PADA <?php echo $pertama;?></b>
@@ -845,11 +845,11 @@ function pergi(x)
     <th>Bulan</th>
     <th>Tanaman Semula</th>
     <th>Tindakan</th>
-  </tr>  <?php 
+  </tr>  <?php
   $jumlaha1=0;
-  $rs3=0; 
-  while($row = mysql_fetch_array($r)){
-  				
+  $rs3=0;
+  while($row = mysqli_fetch_array($r)){
+
   ?>
 <tr <?php if(++$rs3%2==0){?>class="alt"<?php } ?>>    <td width="29%"><?php echo $row['bulan'];?></td>
     <td width="62%"><?php echo $row['tanaman_semula'];$jumlaha1=$jumlaha1+$row['tanaman_semula'];?></td>
@@ -865,26 +865,26 @@ function pergi(x)
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_semula$kedua where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN SEMULA PADA <?php echo $kedua;?></b>
  <table width="60%" align="center" cellpadding="2" cellspacing="2" class="baju">
- 
+
   <tr>
     <th>Bulan</th>
     <th>Tanaman Semula</th>
     <th>Tindakan</th>
   </tr>
-  
-   <?php 
-  
-  $jumlaha2 =0; 
+
+   <?php
+
+  $jumlaha2 =0;
   $rs5=0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?>
-<tr <?php if(++$rs5%2==0){?>class="alt"<?php } ?>>   
+<tr <?php if(++$rs5%2==0){?>class="alt"<?php } ?>>
     <td width="29%"><?php echo $row['bulan'];?></td>
     <td width="61%"><?php echo $row['tanaman_semula'];$jumlaha2=$jumlaha2+$row['tanaman_semula'];?></td>
     <td width="10%"><div align="center"><a href="save_all.php?type=delete&amp;lesen=<?php echo $nolesen; ?>&amp;bulan=<?php echo $row['bulan'];?>&amp;luas=<?php echo $row['tanaman_semula'];?>&amp;table=<?php echo "tanam_semula$kedua";?>&amp;field=<?php echo "tanaman_semula"; ?>"><img src="../images/remove.png" alt="" width="20" height="20" border="0" onclick="return confirm('Buang data ini?');" /></a></div></td>
@@ -899,7 +899,7 @@ function pergi(x)
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_semula$ketiga where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN SEMULA PADA <?php echo $ketiga;?></b>
@@ -909,13 +909,13 @@ function pergi(x)
     <th>Bulan</th>
     <th>Tanaman Semula</th>
     <th>Tindakan</th>
-  </tr>  <?php 
+  </tr>  <?php
   $jumlaha3=0;
   $rs6=0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?>
- <tr <?php if(++$rs6%2==0){?>class="alt"<?php } ?>> 
+ <tr <?php if(++$rs6%2==0){?>class="alt"<?php } ?>>
     <td width="28%"><?php echo $row['bulan'];?></td>
     <td width="61%"><?php echo $row['tanaman_semula'];$jumlaha3=$jumlaha3+$row['tanaman_semula'];?></td>
     <td width="11%"><div align="center"><a href="save_all.php?type=delete&amp;lesen=<?php echo $nolesen; ?>&amp;bulan=<?php echo $row['bulan'];?>&amp;luas=<?php echo $row['tanaman_semula'];?>&amp;table=<?php echo "tanam_semula$ketiga";?>&amp;field=<?php echo "tanaman_semula"; ?>"><img src="../images/remove.png" alt="" width="20" height="20" border="0" onclick="return confirm('Buang data ini?');" /></a></div></td>
@@ -927,38 +927,38 @@ function pergi(x)
 </p>
 
      </div></div>
-     
-     
-     
+
+
+
      <div class="tabbertab">
 	  <h2>Tanam Tukar</h2>
-      
+
       <div class="esub_edit"><table width="100%">
   <tr>
     <td>Tahun</td>
     <td>:</td>
     <td>
-    
+
     	      <?php
 		  	//$tahun = $_SESSION['tahun'];
-			
+
 			$pertama = $tahun-3;
 			$kedua = $tahun-2;
-			$ketiga = $tahun-1; 
-			
+			$ketiga = $tahun-1;
+
 			$pertama = substr($pertama,-2);
 			$kedua = substr($kedua,-2);
 			$ketiga = substr($ketiga,-2);
 			?>
 
-    
+
     <select name="tahun_tukar" id="tahun_tukar">
       <option value="<?php echo $ketiga; ?>">Pertama</option>
       <option value="<?php echo $kedua; ?>">Kedua</option>
       <option value="<?php echo $pertama; ?>">Ketiga</option>
     </select>    </td>
   </tr>
-  
+
   <tr>
     <td width="11%">Bulan </td>
     <td width="1%">:</td>
@@ -986,17 +986,17 @@ function pergi(x)
       var tanaman_tukar = new LiveValidation('tanaman_tukar');
 	tanaman_tukar.add( Validate.Numericality );
       </script>
-    
+
       Ha</td>
   </tr>
 </table>
 </div>
-      
+
       <div class="esub">
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_tukar$pertama where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN TUKAR PADA <?php echo $pertama;?></b>
@@ -1007,15 +1007,15 @@ function pergi(x)
     <th>Tanaman Baru</th>
     <th>Tindakan</th>
   </tr>
-  
-  
-    <?php 
+
+
+    <?php
   $jumlahb1=0;
   $rs7=0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?>
- <tr <?php if(++$rs7%2==0){?>class="alt"<?php } ?>> 
+ <tr <?php if(++$rs7%2==0){?>class="alt"<?php } ?>>
     <td width="27%"><?php echo $row['bulan'];?></td>
     <td width="62%"><?php echo $row['tanaman_tukar'];$jumlahb1=$jumlahb1+$row['tanaman_tukar'];?></td>
     <td width="11%"><div align="center"><a href="save_all.php?type=delete&amp;lesen=<?php echo $nolesen; ?>&amp;bulan=<?php echo $row['bulan'];?>&amp;luas=<?php echo $row['tanaman_tukar'];?>&amp;table=<?php echo "tanam_tukar$pertama";?>&amp;field=<?php echo "tanaman_tukar"; ?>"><img src="../images/remove.png" alt="" width="20" height="20" border="0" onclick="return confirm('Buang data ini?');" /></a></div></td>
@@ -1024,32 +1024,32 @@ function pergi(x)
 </table>
 <b><em>JUMLAH KESELURUHAN : <?php echo $jumlahb1; ?></em></b>
 
-</p>     
+</p>
 
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_tukar$kedua where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN TUKAR PADA <?php echo $kedua;?></b>
  <table width="60%" align="center" cellpadding="2" cellspacing="2" class="baju">
- 
+
   <tr>
     <th>Bulan</th>
     <th>Tanaman Semula</th>
     <th>Tindakan</th>
-  </tr> <?php 
+  </tr> <?php
   $jumlahb2 =0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?>
- <tr <?php if(++$rs6%2==0){?>class="alt"<?php } ?>> 
+ <tr <?php if(++$rs6%2==0){?>class="alt"<?php } ?>>
     <td width="27%"><?php echo $row['bulan'];?></td>
     <td width="63%"><?php echo $row['tanaman_tukar']; $jumlahb2=$jumlahb2+$row['tanaman_tukar'];?></td>
     <td width="10%"><div align="center"><a href="save_all.php?type=delete&amp;lesen=<?php echo $nolesen; ?>&amp;bulan=<?php echo $row['bulan'];?>&amp;luas=<?php echo $row['tanaman_tukar'];?>&amp;table=<?php echo "tanam_tukar$kedua";?>&amp;field=<?php echo "tanaman_tukar"; ?>"><img src="../images/remove.png" alt="" width="20" height="20" border="0" onclick="return confirm('Buang data ini?');" /></a></div></td>
   </tr>
-  
+
   <?php } ?>
 </table>
 <b><em>JUMLAH KESELURUHAN : <?php echo $jumlahb2; ?></em></b>
@@ -1059,7 +1059,7 @@ function pergi(x)
 			<?php
       		$con = connect();
 			$q="select * FROM tanam_tukar$ketiga where lesen ='$nolesen'";
-			$r=mysql_query($q,$con);
+			$r=mysqli_query($con, $q);
 	  ?>
  <p>
  <b>TANAMAN TUKAR PADA <?php echo $ketiga;?></b>
@@ -1070,13 +1070,13 @@ function pergi(x)
     <th>Tanaman Semula</th>
     <th>Tindakan</th>
   </tr>
-  
-    <?php 
+
+    <?php
   $jumlahb3=0;
-  while($row = mysql_fetch_array($r)){
-  				
+  while($row = mysqli_fetch_array($r)){
+
   ?>
- <tr <?php if(++$rs6%2==0){?>class="alt"<?php } ?>> 
+ <tr <?php if(++$rs6%2==0){?>class="alt"<?php } ?>>
 
 
 
@@ -1093,7 +1093,7 @@ function pergi(x)
 
      <div class="tabbertab">
 	  <h2>Estate Info</h2>
-   
+
    <?php $pengguna = new user('estate',$nolesen);
    $negeri = new daerah('negeri','');
    ?>
@@ -1114,7 +1114,7 @@ function pergi(x)
       <td><strong>:</strong></td>
       <td colspan="2">
 
-	  
+
 	  <?= $pengguna->alamat2; ?></td>
     </tr>
     <tr>
@@ -1122,8 +1122,8 @@ function pergi(x)
       <td><strong>Poskod</strong></td>
       <td><strong>:</strong></td>
       <td colspan="2">
-  
-	  
+
+
 	  <?= $pengguna->poskod; ?></td>
     </tr>
     <tr>
@@ -1131,7 +1131,7 @@ function pergi(x)
       <td><strong>Daerah</strong></td>
       <td><strong>:</strong></td>
       <td colspan="2">
-	  
+
 	  <?php $pb = $pengguna->bandar; echo str_replace(",","",$pb); ?></td>
     </tr>
     <tr>
@@ -1140,7 +1140,7 @@ function pergi(x)
       <td><strong>:</strong></td>
       <td colspan="2">
       <?php echo $pengguna->negeri; ?>
-      
+
       </td>
     </tr>
     <tr>
@@ -1149,7 +1149,7 @@ function pergi(x)
       <td><strong>:</strong></td>
       <td colspan="2">
       <?= $pengguna->notelefon; ?>
-      
+
       </td>
     </tr>
     <tr>
@@ -1157,25 +1157,25 @@ function pergi(x)
       <td><strong>No. Faks</strong></td>
       <td><strong>:</strong></td>
       <td colspan="2">
-	  
+
 	  <?= $pengguna->nofax; ?></td>
     </tr>
     <tr>
       <td height="31">&nbsp;</td>
       <td><strong>Emel</strong></td>
       <td><strong>:</strong></td>
-      <td colspan="2">	  
-	  
+      <td colspan="2">
+
 	  <?= $pengguna->email; ?></td>
     </tr>
-    
-    
-    
-  
+
+
+
+
   </table>
   </div>
-  
-  
+
+
    <div class="esub_edit">
   <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1" style="border:1px #333333 solid">
 
@@ -1240,12 +1240,12 @@ function pergi(x)
       <td colspan="2">
       <input name="email" type="text" id="email" value="<?= $pengguna->email; ?>" size="50" /></td>
     </tr>
-    
-    
-    
-  
+
+
+
+
   </table>
-  </div>   
+  </div>
       </div>
 
 
@@ -1257,10 +1257,10 @@ function pergi(x)
 		$ahli = new syarikat('keahlian','');
 		$muka = new syarikat('mukabumi','');
 		$pengguna = new user('estate',$nolesen);
-		
-		
+
+
 	  ?>
-      
+
       <div class="esub">
       <table width="100%" align="center" cellspacing="0" class="tableCss">
         <tr>
@@ -1270,7 +1270,7 @@ function pergi(x)
           </strong> </td>
           <td width="19" ><div align="center">:</div></td>
           <td width="808" colspan="4" >
-		  
+
 		  <?= $pengguna->pegawai; ?>
           <input name="nolesen2" type="hidden" id="nolesen2" value="<?= $_SESSION['lesen'];?>" />          </td>
         </tr>
@@ -1301,7 +1301,7 @@ function pergi(x)
         </tr>
       </table>
       </div>
-      
+
       <div class="esub_edit">
       <table width="100%" align="center" cellspacing="0" class="tableCss">
         <tr>
@@ -1323,7 +1323,7 @@ function pergi(x)
               <option>-
                 <?=setstring ( 'mal', 'Pilih', 'en', 'Select'); ?>
                 -</option>
-              <?php 
+              <?php
 		for ($i=0; $i<$company->total; $i++){ ?>
               <option value="<?= $company->comp_name[$i];?>" <?php if($company->comp_name[$i]==$pengguna->jenissyarikat){?>selected="selected"<?php } ?>>
               <?= $company->comp_alt[$i]; ?>
@@ -1373,4 +1373,4 @@ function pergi(x)
       <input name="nolesen" type="hidden" id="nolesen" value="<?php echo $nolesen; ?>" />
       </form>
 
-<?php mysql_close($con);?>
+<?php mysqli_close($con);?>

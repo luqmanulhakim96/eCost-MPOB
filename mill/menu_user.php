@@ -2,31 +2,32 @@
 <!-- Menu -->
 
 <script type="text/javascript">
-	
+
 	$(function() {
 		<?php
 			if(isset($_GET['finished'])) {
 		?>
 		$.fn.colorbox({
 			<?php if(isset($_GET['ringkasan'])) {?>
-			href:'ringkasan_end.php?page=mill', 
+			href:'ringkasan_end.php?page=mill',
 			<?php } else {?>
 			href:'po_end.php?page=mill',
 			<?php } ?>
 			open:true,
-			width:"50%", 
-			height:"35%", 
+			width:"50%",
+			height:"35%",
 			iframe:false
 		});
+
 		<?php
 			}
 			if(isset($_GET['logging'])) {
 		?>
 		$.fn.colorbox({
-			href:'welcome.php?page=mill', 
+			href:'welcome.php?page=mill',
 			open:true,
-			width:"50%", 
-			height:"35%", 
+			width:"50%",
+			height:"35%",
 			iframe:false
 		});
 		<?php
@@ -34,15 +35,17 @@
 			if(isset($_GET['mill'])) {
 		?>
 		$.fn.colorbox({
-			href:'welcome.php?mill=true', 
+			href:'welcome.php?mill=true',
 			open:true,
-			width:"50%", 
-			height:"50%", 
+			width:"50%",
+			height:"50%",
 			iframe:false
 		});
 		<?php
 			}
-			if(($_GET['id'] == 'home')or(eregi("^cpo",$_GET['id']))) {
+			// if(($_GET['id'] == 'home')or(eregi("^cpo",$_GET['id']))) {
+			if(($_GET['id'] == 'home')or(preg_match("^cpo",$_GET['id']))) {
+
 		?>
 		$("#home_hover").show();
 		$("#home_normal").hide();
@@ -68,7 +71,9 @@
 		});
 		<?php
 			}
-			if(eregi("^print",$_GET['id'])) {
+			// if(eregi("^print",$_GET['id'])) {
+			if(preg_match("^print",$_GET['id'])) {
+
 		?>
 		$("#print_hover").show();
 		$("#print_normal").hide();
@@ -94,7 +99,9 @@
 		});
 		<?php
 			}
-			if(eregi("^profile",$_GET['id']) or eregi("^view_message",$_GET['id']) or eregi("^compose",$_GET['id']) or eregi("^read",$_GET['id'])) {
+			// if(eregi("^profile",$_GET['id']) or eregi("^view_message",$_GET['id']) or eregi("^compose",$_GET['id']) or eregi("^read",$_GET['id'])) {
+			if(preg_match("^profile",$_GET['id']) or preg_match("^view_message",$_GET['id']) or preg_match("^compose",$_GET['id']) or preg_match("^read",$_GET['id'])) {
+
 		?>
 		$("#profile_hover").show();
 		$("#profile_normal").hide();

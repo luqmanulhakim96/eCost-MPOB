@@ -11,36 +11,36 @@
 include('baju_merah.php');
 ?>
 
-<div align="center"><strong>Search Result in 
-	<?php if ($sub=='view_estate') { ?>Estate<?php } ?> 
+<div align="center"><strong>Search Result in
+	<?php if ($sub=='view_estate') { ?>Estate<?php } ?>
 	<?php if($sub=='view_mill'){?>Mill<?php } ?>
-	
+
 </strong></div>
-     
+
      <?php
   $con = connect();
   $year = $_COOKIE['tahun_report'];
-  
+
   if($year == date('Y')){
 	  $table = "esub";
   }
   else{
 	  $table = "esub_".$year;
   }
-  
+
   $q ="select * from $table  where ";
   $q.="Nama_Estet like '%$search%' ";
   $q.="or No_Lesen like '%$search%'";
    $q.="or No_Lesen_Baru like '%$search%'";
 
 	  $q.="group by No_Lesen_Baru";
-	  
-  
-  
- // echo $q; 
-  $r = mysql_query($q,$con);
-  $j =0; 
-	 
+
+
+
+ // echo $q;
+  $r = mysqli_query($con, $q);
+  $j =0;
+
 	 ?>
 
 <table width="100%" class="baju" id="example" align="left">
@@ -59,8 +59,8 @@ include('baju_merah.php');
   </tr>
  </thead>
   <tbody>
-  <?php 
-  while($row=mysql_fetch_array($r)){
+  <?php
+  while($row=mysqli_fetch_array($r)){
   ?>
   <tr valign="top">
     <td><?php echo ++$j; ?></td>
@@ -77,14 +77,14 @@ include('baju_merah.php');
     <td><?= $row['No_Telepon'];?></td>
     <td><?php
 	$qm ="select * from login_estate where lesen ='".$row['No_Lesen_Baru']."'";
-	$rm = mysql_query($qm,$con);
-	$rowm = mysql_fetch_array($rm);
-	
+	$rm = mysqli_query($con, $qm);
+	$rowm = mysqli_fetch_array($rm);
+
 	$rc = explode(" ",$rowm['success']);
-	echo $rc[0]; 
+	echo $rc[0];
 	 ?></td>
     <td><div align="center"><a href="auto_login.php?username=<?php echo $row['No_Lesen_Baru'];?>&password=<?php echo $rowm['password'];?>&tahun=<?php echo $_COOKIE['tahun_report'];?>" target="_blank" title="View Survey"><img src="../estate/images/001_43.gif" alt="View Survey" width="20" height="20" border="0" title="View Survey" /></a></div></td>
   </tr>
-  <?php } mysql_close($con);?>
+  <?php } mysqli_close($con);?>
   </tbody>
 </table>

@@ -5,7 +5,7 @@
 <script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
 
-			
+
 	$('#example').dataTable( {"sPaginationType": "full_numbers","iDisplayLength": 25,
 		"fnDrawCallback": function ( oSettings ) {
 			/* Need to redo the counters if filtered or sorted */
@@ -24,17 +24,17 @@
 	} );
 } );
 			</script>
-           
+
 <link rel="stylesheet" href="../js/colorbox/colorbox.css" type="text/css" />
 <script type="text/javascript" src="../js/colorbox/colorbox/jquery.colorbox.js"></script>
-        
+
 <script type="text/javascript">
 			$(document).ready(function(){
 				$(".boxcolor").colorbox({width:"60%", height:"100%", iframe:true});
 			});
 		</script>
-    
-    
+
+
       <style>
       		@import "../js/datatable/css/demo_page.css";
 			@import "../js/datatable/css/demo_table.css";
@@ -46,7 +46,7 @@ include('pages.php');
 List of All Mill Response Survey in Malaysia</strong></div>
         <table width="100%" class="baju" align="left" id="example2">
 	<thead>
-	
+
 		<tr  height="30">
 			<th width="4%">No.</th>
 			<th>Mill Name</th>
@@ -58,7 +58,7 @@ List of All Mill Response Survey in Malaysia</strong></div>
 		</tr>
 	</thead>
 	<tbody>
-	<?php while($row = mysql_fetch_array($result_all)) { ?>
+	<?php while($row = mysqli_fetch_array($result_all)) { ?>
 		<tr valign="top" <?php if($list%2==0){?>class="alt"<?php } ?>>
 			<td><?php echo $list++; ?></td>
 			<td><a href="details.php?id=<?php echo $row['lesen'];?>" class="boxcolor"><?php echo $row['nama'];?></a></td>
@@ -70,7 +70,7 @@ List of All Mill Response Survey in Malaysia</strong></div>
             	<a href="auto_login_mill.php?username=<?php echo $row['lesen'];?>&amp;password=<?php echo $row['password'];?>&amp;tahun=<?php echo $_COOKIE['tahun_report'];?>&view=true" target="_blank" > <img src="../images/001_36.png" width="20" height="20" border="0" title="View Only" /></a>
             	</div></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>
 <br />

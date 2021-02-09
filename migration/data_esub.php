@@ -14,7 +14,7 @@ $q = "SELECT b.No_Lesen_Baru, b.Nama_Estet, SUM(b.Keluasan_Yang_Dituai) as luas 
 				 ON a.lesen=b.No_Lesen_Baru
 				 WHERE b.No_Lesen_Baru NOT LIKE '%123456%'
 				 GROUP BY b.No_Lesen_Baru";
-$r = mysql_query($q,$con);
+$r = mysqli_query($con, $q);
 
 ?>
 
@@ -30,19 +30,19 @@ $r = mysql_query($q,$con);
     <th><strong>Purata Hasil Buah</strong></th>
   </tr>
   </thead>
-  
+
   <tbody>
   <?php
-  $i=0; 
+  $i=0;
   $con = connect();
-   while($row= mysql_fetch_array($r)){?>
+   while($row= mysqli_fetch_array($r)){?>
   <tr <?php if($i%2==0){?>class="alt"<?php } ?>>
     <td><?php echo ++$i; ?></td>
     <td><?php echo $row['No_Lesen_Baru'];?></td>
     <td><?php echo $row['Nama_Estet'];?></td>
     <td><div align="right"><?php echo $row['luas'];?></div></td>
     <td><div align="right">
-   <?php 
+   <?php
    if(date('Y') == $_COOKIE['tahun_report']){
 		$tableffb = "fbb_production";
 		$nl = $row['No_Lesen_Baru'];
@@ -56,8 +56,8 @@ $r = mysql_query($q,$con);
 	}
    //
 		$qf="select * from $tableffb where lesen like '$nl'";
-		$rf=mysql_query($qf,$con);
-		$rowf = mysql_fetch_array($rf);
+		$rf=mysqli_query($con, $qf);
+		$rowf = mysqli_fetch_array($rf);
    		echo number_format($rowf['jumlah_pengeluaran'],2);
    ?>
     </div></td>

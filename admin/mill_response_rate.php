@@ -72,13 +72,13 @@
 			<td bgcolor="#99FF99"><div align="center"><?php echo $percent_peninsular;?></div></td>
 			<td bgcolor="#99FF99"><div align="center"><a href="home.php?id=adm_mill&amp;sub=nonresponse_peninsular&jenis=peninsular"><strong><?php echo $nonresponse_peninsular; ?></strong></a></div></td>
 		</tr>
-        
-        	
-        <?php  
+
+
+        <?php
 		$con = connect();
 		$query_negeri = "select * from negeri where nama !='SABAH' and nama !='SARAWAK'";
-		$res_negeri = mysql_query($query_negeri,$con);
-		while($row_negeri = mysql_fetch_array($res_negeri)){ 
+		$res_negeri = mysqli_query($con, $query_negeri);
+		while($row_negeri = mysqli_fetch_array($res_negeri)){
 		?>
         <tr <?php if(++$op%2!=0){echo "bgcolor=\"#FFCC66\""; }
 		else{echo "bgcolor=\"#99FF99\"";}
@@ -86,7 +86,7 @@
 		  <td><strong>&nbsp;<?php echo $row_negeri['nama']; ?></strong></td>
 		  <td><div align="center">
           <?php $neg = negeri_mill($row_negeri['nama'],'', $_COOKIE['tahun_report']);
-		  echo number_format($neg[0]); 
+		  echo number_format($neg[0]);
 		  ?>
           </div></td>
 		  <td><div align="center"><a href="home.php?id=adm_mill&amp;sub=total_peninsular&amp;negeri=<?php echo $row_negeri['nama'];?>"><?php echo number_format($neg[1]);?></a></div></td>
@@ -133,9 +133,9 @@
 			<td bgcolor="#99FF99"><div align="center"><a href="home.php?id=adm_mill&amp;sub=nonresponse_peninsular&jenis=sarawak"><strong><?php echo $nonresponse_sarawak; ?></strong></a></div></td>
 		</tr>
     </table>
-	<p>&nbsp; </p>	  
+	<p>&nbsp; </p>
 	<?php } ?>
-	
+
 	<p>&nbsp; </p></td>
   </tr>
 </table>
@@ -151,7 +151,7 @@
 
 	<script type="text/javascript" src="amcolumn/swfobject.js"></script>
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mie_region_setting.xml"));
@@ -160,9 +160,9 @@
 		so.write("mi_region1");
 		// ]]>
 	</script>
-	
+
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mie_region_setting2.xml"));
@@ -171,9 +171,9 @@
 		so.write("mi_region2");
 		// ]]>
 	</script>
-	
+
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mie_region_setting3.xml"));

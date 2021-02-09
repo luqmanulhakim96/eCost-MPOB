@@ -1,8 +1,8 @@
-<?php 
+<?php
 $con = connect();
 $q="select * from belanja_am_kos where lesen = '".$_SESSION['lesen']."' and thisyear = '".$_COOKIE['tahun_report']."'";
-$r = mysql_query($q,$con);
-$totalr = mysql_num_rows($r);
+$r = mysqli_query($con, $q);
+$totalr = mysqli_num_rows($r);
 if($totalr==0)
 	{
 		$q = "INSERT INTO belanja_am_kos (
@@ -29,7 +29,7 @@ VALUES (
 '".$_COOKIE['tahun_report']."', '".$_SESSION['lesen']."', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0'
 );
 ";
-		$r = mysql_query($q,$con);
+		$r = mysqli_query($con, $q);
 	}
 
 $var_nilai[0]=$_SESSION['lesen'];
@@ -37,17 +37,17 @@ $var_nilai[1]=$_COOKIE['tahun_report'];
 $belanja = new user('belanja_am', $var_nilai);
 ?>
 
-<?php 
+<?php
 $hektar = $pengguna->jumlahluas;
 $fbb = new user('bts',$_SESSION['lesen']);
-$bts =$fbb->purata_hasil_buah; 
+$bts =$fbb->purata_hasil_buah;
 ?>
 
 <script type="text/javascript">
 	$(function() {
 		$("#helper").hide();
 	});
-	
+
 	function tunjuk_bantu(str) {
 		$("#penerangan").html(str);
 		$().mousemove(function(e) {
@@ -56,7 +56,7 @@ $bts =$fbb->purata_hasil_buah;
 		});
 		$("#helper").show();
 	}
-	
+
 	function sembunyi_bantu() {
 		$("#helper").hide();
 	}
@@ -72,11 +72,11 @@ function hantar(x)
 </script>
 
 <link href="facebox/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
-<script src="facebox/facebox.js" type="text/javascript"></script> 
+<script src="facebox/facebox.js" type="text/javascript"></script>
 <script>
 jQuery(document).ready(function($) {
   $('a[rel*=facebox]').facebox()
-}) 
+})
 </script>
 
 <style type="text/css">
@@ -117,12 +117,12 @@ body {
 var check=0;
 function checkProgress()
 {
-	
+
 	for(i = 0; i<= document.form1.elements.length; i++)
 	{
 			if(document.form1.elements[i].value =="")
 			{
-				document.form1.action='home.php?id=home&finished=true&po2=<? echo $_GET['po2']; ?>&pol=<? echo $_GET['pol']; ?>&po3=<? echo $_GET['po3']; ?>&po4=<? echo $_GET['po4'];?>&po5=<? echo $_GET['po5']; ?>&po6=<? echo $_GET['po6']; ?>&po7=<? echo $_GET['po7']; ?>&po8=false';		
+				document.form1.action='home.php?id=home&finished=true&po2=<? echo $_GET['po2']; ?>&pol=<? echo $_GET['pol']; ?>&po3=<? echo $_GET['po3']; ?>&po4=<? echo $_GET['po4'];?>&po5=<? echo $_GET['po5']; ?>&po6=<? echo $_GET['po6']; ?>&po7=<? echo $_GET['po7']; ?>&po8=false';
 			}
 	}
 
@@ -161,34 +161,34 @@ function field_click(obj) {
 		$(obj).removeClass("field_edited");
 		$(obj).addClass("field_active");
 	}
-	
-	
+
+
 		var hektar = <?= $luas = $pengguna->jumlahluas; ?>;
-		var bts = <?= $bts; ?>; 
+		var bts = <?= $bts; ?>;
 		var total_perbelanjaan = 0.00;
-		
+
 		function field_blur_1(obj,obj_id) {
-	
-		kos = obj*1; 
-		total_perbelanjaan +=kos; 
-		
-		kos_hektar = kos/hektar; 
+
+		kos = obj*1;
+		total_perbelanjaan +=kos;
+
+		kos_hektar = kos/hektar;
 		kos_tan = kos/bts;
-		
+
 		kos_hektar=bulatkan(kos_hektar);
 		kos_tan =bulatkan(kos_tan);
 		total_perbelanjaan = bulatkan(kos);
-		
+
 			$("#"+ obj_id +"_per_ha").html(kos_hektar);
 			$("#"+ obj_id +"_per_ha").format({format:"#,###.00", locale:"us"});
 			$("#"+ obj_id +"_per_bts").html(kos_tan);
 			$("#"+ obj_id +"_per_bts").format({format:"#,###.00", locale:"us"});
-			
-						
-			document.form1.total_perbelanjaan.value = total_perbelanjaan; 
+
+
+			document.form1.total_perbelanjaan.value = total_perbelanjaan;
 			$("#total_perbelanjaan").format({format:"#,###.00", locale:"us"});
 
-	$(obj_id).format({format:"#,###.00", locale:"us"}); 
+	$(obj_id).format({format:"#,###.00", locale:"us"});
 }
 </script>
 
@@ -199,7 +199,7 @@ function field_click(obj) {
  </style>
  <form id="form1" name="form1" method="post" action="">
 <table class="tableCss" align="center">
-  
+
   <tr>
     <td colspan="3"><b><?=setstring ( 'mal', 'MAKLUMAT  PERBELANJAAN AM', 'en', 'GENERAL EXPENSES INFORMATION'); ?></b></td>
   </tr>
@@ -234,10 +234,10 @@ function field_click(obj) {
           <div align="center"><strong>(RM)</strong></div></td>
         <td background="../images/tb_BG.gif"><div align="center"><strong><?=setstring ( 'mal', 'Kos Per Tan BTS', 'en', 'Cost Per Tonne FFB'); ?></strong></div>
           <div align="center"><strong>(RM)</strong></div></td>
-        <td background="../images/tb_BG.gif"><div align="center"><strong><?=setstring ( 'mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?></strong></div>          
+        <td background="../images/tb_BG.gif"><div align="center"><strong><?=setstring ( 'mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?></strong></div>
           <div align="center"><strong> (%)</strong></div></td>
       </tr>
-      
+
       <tr>
         <td width="24" height="37" align="center" bgcolor="#AEFFAE">1.</td>
         <td width="296" bgcolor="#AEFFAE"><a href="javascript:openScript('belanja_am.php?type=emolumen','700','400')"> <?=setstring ( 'mal', 'Emolumen untuk eksekutif dan bukan eksekutif', 'en', 'Executive and non-executive emoluments '); ?></a></td>
@@ -285,7 +285,7 @@ function field_click(obj) {
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?= number_format($belanja->kos_agensi,2); ?>
-<?php } ?>  
+<?php } ?>
         </div></td>
         <td bgcolor="#AEFFAE"><div align="center" id="kos_agensi_per_ha"><?php $per_ha3 = $belanja->kos_agensi/$hektar; echo number_format($per_ha3,2); ?></div></td>
         <td bgcolor="#AEFFAE"><div align="center" id="kos_agensi_per_bts"> <?php $per_bts3 = $per_ha3/$bts; echo number_format($per_bts3,2); ?></div></td>
@@ -302,7 +302,7 @@ function field_click(obj) {
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?= number_format($belanja->kebajikan,2); ?>
-<?php } ?>    
+<?php } ?>
         </div></td>
         <td><div align="center" id="kebajikan_per_ha"><?php $per_ha4 = $belanja->kebajikan/$hektar; echo number_format($per_ha4,2); ?></div></td>
         <td><div align="center" id="kebajikan_per_bts"> <?php $per_bts4 = $per_ha4/$bts; echo number_format($per_bts4,2); ?>
@@ -319,7 +319,7 @@ function field_click(obj) {
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?= number_format($belanja->sewa_tol,2); ?>
-<?php } ?>    
+<?php } ?>
         </div></td>
         <td><div align="center" id="sewa_tol_per_ha"><?php $per_ha5 = $belanja->sewa_tol/$hektar; echo number_format($per_ha5,2); ?></div></td>
         <td><div align="center" id="sewa_tol_per_bts"> <?php $per_bts5 = $per_ha5/$bts; echo number_format($per_bts5,2); ?>
@@ -337,7 +337,7 @@ function field_click(obj) {
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?= number_format($belanja->penyelidikan,2); ?>
-<?php } ?>    
+<?php } ?>
         </div></td>
         <td><div align="center" id="penyelidikan_per_ha"><?php $per_ha6 = $belanja->penyelidikan/$hektar; echo number_format($per_ha6,2); ?></div></td>
         <td><div align="center" id="penyelidikan_per_bts"> <?php $per_bts6= $per_ha6/$bts; echo number_format($per_bts6,2); ?>
@@ -355,7 +355,7 @@ function field_click(obj) {
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?= number_format($belanja->perubatan,2); ?>
-<?php } ?>    
+<?php } ?>
         </div></td>
         <td><div align="center" id="perubatan_per_ha"><?php $per_ha7 = $belanja->perubatan/$hektar; echo number_format($per_ha7,2); ?></div></td>
         <td><div align="center" id="perubatan_per_bts" > <?php $per_bts7 = $per_ha7/$bts; echo number_format($per_bts7,2); ?>
@@ -373,7 +373,7 @@ function field_click(obj) {
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?= number_format($belanja->penyelenggaraan,2); ?>
-<?php } ?>   
+<?php } ?>
         </div></td>
         <td><div align="center" id="penyelenggaraan_per_ha"><?php $per_ha8 = $belanja->penyelenggaraan/$hektar; echo number_format($per_ha8,2); ?></div></td>
         <td><div align="center" id="penyelenggaraan_per_bts">
@@ -392,7 +392,7 @@ function field_click(obj) {
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?= number_format($belanja->cukai_keuntungan,2); ?>
-<?php } ?>  
+<?php } ?>
         </div></td>
         <td><div align="center" id="cukai_keuntungan_per_ha"><?php $per_ha9 = $belanja->cukai_keuntungan/$hektar; echo number_format($per_ha9,2); ?></div></td>
         <td><div align="center" id="cukai_keuntungan_per_bts">
@@ -410,11 +410,11 @@ function field_click(obj) {
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?= number_format($belanja->penjagaan,2); ?>
-<?php } ?>   
+<?php } ?>
         </div></td>
         <td><div align="center" id="penjagaan_per_ha"><?php $per_ha10 = $belanja->penjagaan/$hektar; echo number_format($per_ha10,2); ?></div></td>
         <td><div align="center" id="penjagaan_per_bts"> <?php $per_bts10 = $per_ha10/$bts; echo number_format($per_bts10,2); ?>
-          
+
         </div></td>
         <td>
           <div align="center">
@@ -429,7 +429,7 @@ function field_click(obj) {
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?= number_format($belanja->kawalan,2); ?>
-<?php } ?>    
+<?php } ?>
         </div></td>
         <td><div align="center" id="kawalan_per_ha"><?php $per_ha11 = $belanja->kawalan/$hektar; echo number_format($per_ha11,2); ?></div></td>
         <td><div align="center" id="kawalan_per_bts">
@@ -447,7 +447,7 @@ function field_click(obj) {
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?= number_format($belanja->air_tenaga,2); ?>
-<?php } ?>  
+<?php } ?>
         </div></td>
         <td><div align="center" id="air_tenaga_per_ha"><?php $per_ha12 = $belanja->air_tenaga/$hektar; echo number_format($per_ha12,2); ?></div></td>
         <td><div align="center" id="air_tenaga_per_bts">
@@ -462,7 +462,7 @@ function field_click(obj) {
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?= number_format($belanja->perbelanjaan_pejabat,2); ?>
-<?php } ?>  
+<?php } ?>
         </div></td>
         <td><div align="center" id="perbelanjaan_pejabat_per_ha"><?php $per_ha13 = $belanja->perbelanjaan_pejabat/$hektar; echo number_format($per_ha13,2); ?></div></td>
         <td><div align="center" id="perbelanjaan_pejabat_per_bts">
@@ -477,7 +477,7 @@ function field_click(obj) {
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?= number_format($belanja->susut_nilai,2); ?>
-<?php } ?> 
+<?php } ?>
         </div></td>
         <td><div align="center" id="susut_nilai_per_ha"><?php $per_ha14 = $belanja->susut_nilai/$hektar; echo number_format($per_ha14,2); ?></div></td>
         <td><div align="center" id="susut_nilai_per_bts">
@@ -493,7 +493,7 @@ function field_click(obj) {
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?= number_format($belanja->perbelanjaan_lain,2); ?>
-<?php } ?>    
+<?php } ?>
         </div></td>
         <td><div align="center" id="perbelanjaan_lain_per_ha"><?php $per_ha15 = $belanja->perbelanjaan_lain/$hektar; echo number_format($per_ha15,2); ?></div></td>
         <td><div align="center" id="perbelanjaan_lain_per_bts">
@@ -519,10 +519,10 @@ function field_click(obj) {
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo number_format($total_belanja_all,2);
 		   //number_format($belanja->total_perbelanjaan,2); ?>
-<?php } ?>  
+<?php } ?>
         </div></td>
         <td bgcolor="#FFCC66"><div align="center">
-		<?php  $total_kos_hektar = $per_ha1+$per_ha2+$per_ha3+$per_ha4+$per_ha5+$per_ha6+$per_ha7+$per_ha8+$per_ha9+$per_ha10+$per_ha11+$per_ha12+$per_ha13+$per_ha14+$per_ha15; 
+		<?php  $total_kos_hektar = $per_ha1+$per_ha2+$per_ha3+$per_ha4+$per_ha5+$per_ha6+$per_ha7+$per_ha8+$per_ha9+$per_ha10+$per_ha11+$per_ha12+$per_ha13+$per_ha14+$per_ha15;
 		echo number_format($total_kos_hektar,2);
 		?>
 		</div></td>
@@ -541,12 +541,12 @@ function field_click(obj) {
         <td> </td>
         <td> </td>
       </tr>
-      
-      
+
+
     </table></td>
   </tr>
-    
-  
+
+
   <tr>
     <td colspan="3">
       <div align="center">
@@ -574,4 +574,4 @@ function field_click(obj) {
     <td colspan="3"> </td>
   </tr>
 </table>
-</form> 
+</form>

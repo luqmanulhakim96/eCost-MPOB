@@ -24,7 +24,7 @@ function tukarbahasa(x){
 </script>
 
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 function keypress(e)
 {
 	if ([e.keyCode||e.which]==8 || [e.keyCode||e.which]==46 || [e.keyCode||e.which]==44) //alow backspace and dot and comma
@@ -94,12 +94,12 @@ function keypress(e)
 <link href="../css/body.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" href="../images/icon.ico" />
 
-<style type="text/css">
-<!--
+<!-- <style type="text/css">
+
 .style2 {color: #CCCCCC}
 .style4 {font-size: 16px; font-weight: bold; }
--->
-</style>
+
+</style> -->
 </head>
 
 <body onload="MM_preloadImages('../nav/hm1.png')">
@@ -125,9 +125,9 @@ function keypress(e)
       <td valign="top"><strong>:</strong></td>
       <td valign="top"><input name="textfield2" type="password" id="textfield2" value="1234567890" /></td>
       </tr>
-    
-    
-    
+
+
+
     <tr>
       <td colspan="3"><label>
         <input type="submit" name="button" id="button" value="<?=setstring ( 'mal', 'Masuk', 'en', 'Enter'); ?>" />
@@ -135,14 +135,14 @@ function keypress(e)
     </tr>
     <tr>
       <td colspan="3"><p><strong>En. Azman Ismail - 03-78022880</strong><br />
-          <?=setstring ( 'mal', 'Emel', 'en', 'Email'); ?> 
+          <?=setstring ( 'mal', 'Emel', 'en', 'Email'); ?>
           : azman@mpob.gov.my</p>
           <p><strong>Nor Fadilah Mazlan - 03 78022851</strong><br />
-            <?=setstring ( 'mal', 'Emel', 'en', 'Email'); ?> 
+            <?=setstring ( 'mal', 'Emel', 'en', 'Email'); ?>
             : norfadilah@mpob.gov.my
 </p>
         <p><strong>Norhazifah Suhani - 03  78022866</strong><br />
-          <?=setstring ( 'mal', 'Emel', 'en', 'Email'); ?> 
+          <?=setstring ( 'mal', 'Emel', 'en', 'Email'); ?>
           : zifah@mpob.gov.my</p>
         <p><strong>Fax No: 03 78061013</strong></p></td>
     </tr>
@@ -158,12 +158,14 @@ function keypress(e)
     <td height="71" colspan="2" align="right"><?php include('session.php'); ?>&nbsp;</td>
   </tr>
   <tr>
-    <td height="15" colspan="3" class="nav"><?php include('menu_user.php'); ?></td>
+    <!-- <td height="15" colspan="3" class="nav"><?php //include ('menu_user.php'); ?></td> -->
+    <td height="15" colspan="3" class="nav"><?php include ('menu_user.php'); ?></td>
+
   </tr>
   <tr>
     <td height="100%" colspan="3" valign="top"><table width="99%" align="center" cellpadding="0" cellspacing="0" bordercolor="#CCCCCC" class="table" style="margin-top:5px">
       <tr>
-        <td height="100" valign="top" bgcolor="#F4FFF4"><?php 
+        <td height="100" valign="top" bgcolor="#F4FFF4"><?php
 			include($open);
 		?></td>
       </tr>

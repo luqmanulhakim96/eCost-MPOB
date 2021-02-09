@@ -5,8 +5,8 @@ extract($_REQUEST);
 function semak ($name,$year, $type,$pro, $min,$max){
 	$con=connect();
 	$q="select * from outliers where name = '$name' and type='$type' and year='$year'";
-	$r=mysql_query($q,$con);
-	$total = mysql_num_rows($r);
+	$r=mysqli_query($con, $q);
+	$total = mysqli_num_rows($r);
 	if($total==0){add ($name,$year, $type, $pro, $min, $max);}
 	else {kemaskini ($name,$year, $type, $min, $max);}
 }
@@ -24,14 +24,14 @@ function add ($name,$year, $type, $pro, $min, $max){
 VALUES (
 '$name', '$year', '$type', '$pro', '$min', '$max'
 );";
-	$r=mysql_query($q,$con);
+	$r=mysqli_query($con, $q);
 
 }
 
 function kemaskini ($name,$year, $type, $min, $max){
 	$con=connect();
  	$q="update outliers set min='$min', max='$max'  where name = '$name' and type='$type' and year='$year'";
-	$r=mysql_query($q,$con);
+	$r=mysqli_query($con, $q);
 
 }
 
@@ -73,7 +73,7 @@ if(isset($update_mature_transportation))
 
 $con=connect();
 $qd="delete from outliers where name='' ";
-$rd=mysql_query($qd,$con);
+$rd=mysqli_query($con, $qd);
 
 if(isset($update_mill)){
 echo "<script>window.location.href='home.php?id=config&sub=range_outliers_mill'; </script>";

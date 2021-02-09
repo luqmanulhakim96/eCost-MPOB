@@ -4,12 +4,12 @@ set_time_limit(0);
 extract($_GET);
 extract($_POST);
 $start = $level;
-$end = $level+1; 
+$end = $level+1;
 
 $con = connect();
 $qt="select * from taxonomy_all where id = '$taxoid'";
-$rt = mysql_query($qt,$con); 
-$row = mysql_fetch_array($rt);
+$rt = mysqli_query($con, $qt);
+$row = mysqli_fetch_array($rt);
 
 ?>
 <style type="text/css">
@@ -42,8 +42,8 @@ if(isset($simpan)){
 
         $con = connect();
 		$query = "update taxonomy_all set name = '$domain', position ='$position' where id = '$id' ";
-		$res = mysql_query($query,$con);
-		
+		$res = mysqli_query($con, $query);
+
 		echo "<script>window.location.href='home.php?id=config&sub=chapter';</script>";
 
 }

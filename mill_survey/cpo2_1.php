@@ -1,4 +1,4 @@
-<?php 
+<?php
 $variable[0]=$_SESSION['lesen'];
 $variable[1]=$_COOKIE['tahun_report'];
 $bts2 = new user('pemprosesan',$variable);
@@ -30,7 +30,7 @@ VALUES (
 '".$_SESSION['lesen']."', '".$_COOKIE['tahun_report']."', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '',''
 )
 ";
-	$r=mysql_query($q,$con);
+	$r=mysqli_query($con, $q);
 }
 $bts = new user('bts',$_SESSION['lesen']);
 
@@ -43,11 +43,11 @@ $proses = new user('pemprosesan',$variable);
 <script type="text/javascript">
  <?php //echo $bts->bts;?>
 var bts_lepas = 0;
-var tan_lepas = <?php echo $bts->fbb_proses; ?>; 
+var tan_lepas = <?php echo $bts->fbb_proses; ?>;
 
 	function field_blur(obj, bts_tan, bts_beza, nilai,nilai_asal, total_nilai,total_bts_tan, total_bts_beza) {
 		if(number_only(obj)) {
-			
+
 			jumlah_all =0;
 			for(e=1; e<=15; e++ ){
 			jumlah= document.getElementById("kp_"+e).value;
@@ -57,61 +57,61 @@ var tan_lepas = <?php echo $bts->fbb_proses; ?>;
 			}
 			document.getElementById("total_kp").value=jumlah_all;
 			$("#total_kp").format({format:"#,###.00", locale:"us"});
-			
+
 			jumlahbts_all =0;
-			
-			all_kiraan =0; 
+
+			all_kiraan =0;
 			for(b=1; b<=15; b++ ){
-			
+
 			kos= document.getElementById("kp_"+b).value;
 			kos = kos.replace(/,/g,"");
 			//alert(kos);
-			
+
 			all_kiraan = Number(all_kiraan)+Number(kos);
-			
+
 			bts = Number(kos)/Number(tan_lepas);
 			bts = bts;
 			//alert(bts);
 			$("#bts_tan_"+b).html(bts);
 			$("#bts_tan_"+b).format({format:"#,###.00", locale:"us"});
-			
+
 			jumlahbts_all = Number(jumlahbts_all)+Number(bts);
 			}
-			
-			//alert(all_kiraan); 
+
+			//alert(all_kiraan);
 			$("#total_bts_tan").html(jumlahbts_all);
-			$("#total_bts_tan").format({format:"#,###.00", locale:"us"}); 
-			
+			$("#total_bts_tan").format({format:"#,###.00", locale:"us"});
+
 			total_all=document.getElementById(total_nilai).value;
 				total_all = total_all.replace(",","");
 				total_btstan=document.getElementById(total_bts_tan).innerHTML;
 				total_btstan = total_btstan.replace(",","");
-				
+
  				total_bersih=Number(total_all)-Number(nilai_asal);
 				total_bersih = bulatkan(total_bersih);
 				new_value=Number(total_bersih)+Number(nilai);
 				new_value=bulatkan(new_value);
 				document.getElementById(total_nilai).value=all_kiraan;
 				//nilai total
-				
+
 				nilai_bts_tan = Number(nilai)/tan_lepas;
 				nilai_bts_tan = bulatkan(nilai_bts_tan);
 				nilai_total_bts_tan = total_btstan-Number(document.getElementById(bts_tan).innerHTML)+nilai_bts_tan;
 				$("#"+total_bts_tan).html(nilai_total_bts_tan);
 				$("#"+bts_tan).html(nilai_bts_tan);
-			
+
 				$(obj).format({format:"#,###.00", locale:"us"});
-				$("#"+total_nilai).format({format:"#,###.00", locale:"us"}); 
-				$("#"+total_bts_tan).format({format:"#,###.00", locale:"us"}); 
-				
-				$("#"+bts_tan).format({format:"#,###.00", locale:"us"}); 
+				$("#"+total_nilai).format({format:"#,###.00", locale:"us"});
+				$("#"+total_bts_tan).format({format:"#,###.00", locale:"us"});
+
+				$("#"+bts_tan).format({format:"#,###.00", locale:"us"});
 				$("#"+bts_beza).format({format:"#,###.00", locale:"us"});
-			
+
 		}
 		else {
 			$("#" + obj_id).html("0.00");
 		}
-		$(obj).format({format:"#,###.00", locale:"us"}); 
+		$(obj).format({format:"#,###.00", locale:"us"});
 	}
 	function field_click(obj) {
 		$(obj).format({format:"#,###.00", locale:"us"});
@@ -177,8 +177,8 @@ var pitmid = false;
       <td width="426" height="26" bgcolor="#FFCCFF"><strong><?=setstring ( 'mal', 'Jumlah BTS diproses pada tahun lepas ', 'en', 'Total of Processed FFB on Last Year'); ?>
 </strong></td>
       <td colspan="3" bgcolor="#FFCCFF"><label><strong>
-<?php $d =$bts->fbb_proses; echo number_format($d,2); 
-	 //echo $bts->bts;?>      
+<?php $d =$bts->fbb_proses; echo number_format($d,2);
+	 //echo $bts->bts;?>
 <?=setstring ( 'mal', 'Tan', 'en', 'Tonne'); ?>
 </strong> </label></td>
     </tr>
@@ -214,7 +214,7 @@ var pitmid = false;
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo number_format($proses->kp_1,2); ?>
 <?php } ?>
-                  
+
                   </label>
               </div></td>
             <td width="166" align="center" valign="middle" bgcolor="#99FF99"><div align="center" id="bts_tan_1"><?php $k1=$proses->kp_1/$d; echo number_format($k1,2);?></div></td>
@@ -229,7 +229,7 @@ var pitmid = false;
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo number_format($proses->kp_2,2); ?>
-<?php } ?>  
+<?php } ?>
             </div></td>
             <td align="center" valign="middle"><div align="center">
                 <div align="center" id="bts_tan_2"><?php $k2=$proses->kp_2/$d; echo number_format($k2,2);?></div>
@@ -265,7 +265,7 @@ var pitmid = false;
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo number_format($proses->kp_4,2); ?>
-<?php } ?> 
+<?php } ?>
             </div></td>
             <td align="center" valign="middle"><div align="center" id="bts_tan_4"><?php $k4=$proses->kp_4/$d; echo number_format($k4,2);?></div></td>
             <td align="center" valign="middle"><div align="center" id="bts_beza_4">
@@ -317,7 +317,7 @@ var pitmid = false;
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo number_format($proses->kp_7,2); ?>
-<?php } ?> 
+<?php } ?>
             </div></td>
             <td align="center" valign="middle" bgcolor="#99FF99"><div align="center">
                 <div align="center" id="bts_tan_7"><?php $k7=$proses->kp_7/$d; echo number_format($k7,2);?></div>
@@ -334,7 +334,7 @@ var pitmid = false;
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo number_format($proses->kp_8,2); ?>
-<?php } ?> 
+<?php } ?>
             </div></td>
             <td align="center" valign="middle"><div align="center">
                 <div align="center" id="bts_tan_8"><?php $k8=$proses->kp_8/$d; echo number_format($k8,2);?></div>
@@ -351,7 +351,7 @@ var pitmid = false;
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo number_format($proses->kp_9,2); ?>
-<?php } ?> 
+<?php } ?>
             </div></td>
             <td align="center" valign="middle" bgcolor="#99FF99"><div align="center">
                 <div align="center" id="bts_tan_9"><?php $k9=$proses->kp_9/$d; echo number_format($k9,2);?></div>
@@ -368,7 +368,7 @@ var pitmid = false;
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo number_format($proses->kp_10,2); ?>
-<?php } ?> 
+<?php } ?>
               </div>            </td>
             <td align="center" valign="middle"><div align="center">
                 <div align="center" id="bts_tan_10"><?php $k10=$proses->kp_10/$d; echo number_format($k10,2);?></div>
@@ -385,7 +385,7 @@ var pitmid = false;
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo number_format($proses->kp_11,2); ?>
-<?php } ?> 
+<?php } ?>
             </div></td>
             <td align="center" valign="middle" bgcolor="#99FF99"><div align="center">
                 <div align="center" id="bts_tan_11"><?php $k11=$proses->kp_11/$d; echo number_format($k11,2);?></div>
@@ -402,7 +402,7 @@ var pitmid = false;
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo number_format($proses->kp_12,2); ?>
-<?php } ?> 
+<?php } ?>
             </div></td>
             <td align="center" valign="middle"><div align="center">
                 <div align="center" id="bts_tan_12"><?php $k12=$proses->kp_12/$d; echo number_format($k12,2);?></div>
@@ -419,7 +419,7 @@ var pitmid = false;
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo number_format($proses->kp_13,2); ?>
-<?php } ?>   
+<?php } ?>
             </div></td>
             <td align="center" valign="middle" bgcolor="#99FF99"><div align="center">
                 <div align="center" id="bts_tan_13"><?php $k13=$proses->kp_13/$d; echo number_format($k13,2);?></div>
@@ -436,7 +436,7 @@ var pitmid = false;
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo number_format($proses->kp_14,2); ?>
-<?php } ?> 
+<?php } ?>
             </div></td>
             <td align="center" valign="middle"><div align="center" id="bts_tan_14"><?php $k14=$proses->kp_14/$d; echo number_format($k14,2);?></div></td>
             <td align="center" valign="middle"><div align="center" id="bts_beza_14">
@@ -447,7 +447,7 @@ var pitmid = false;
             <td height="37" align="center" valign="middle" bgcolor="#99FF99">15</td>
             <td bgcolor="#99FF99"><?=setstring ('mal','Bayaran pengurusan Ibu Pejabat', 'en','Headquaters management charges')?></td>
             <td align="center" valign="middle" bgcolor="#99FF99">
-            
+
             <?php if($_SESSION['view']!="true"){ ?> <input name="kp_15" type="text" class="field_active" id="kp_15" onchange="field_blur(this,'bts_tan_15','bts_beza_15',this.value,'<?= $proses->kp_15; ?>','total_kp','total_bts_tan', 'total_bts_beza')" onclick="field_click(this)" onKeypress="keypress(event)" value="<?php echo number_format($proses->kp_15,2); ?>" />
 <?php } ?>
 
@@ -497,7 +497,7 @@ var pitmid = false;
 		   }
 		   else {
 		  ?>
-          
+
           <?php if($_SESSION['view']!="true"){ ?>          <input type="button" name="button2" id="button2" value=<?=setstring ( 'mal', '"Simpan Sementara"', 'en', '"Save Temporarily"'); ?> onclick="hantar(2,'sementara');" />
           <input type="button" name="button" id="button" value=<?=setstring ( 'mal', '"Simpan &amp; Sahkan"', 'en', 'Save &amp; Verify'); ?> onclick="pitmid=true; hantar(1, 'sahkan');"/>
           <input name="cetak" type="button" value=<?=setstring ( 'mal', '"Cetak"', 'en', '"Print"'); ?>  onclick="window.print()" />

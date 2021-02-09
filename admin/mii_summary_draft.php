@@ -1,4 +1,4 @@
-<?php 
+<?php
 include ('../Connections/connection.class.php');
 include('baju_merah.php');
 $con = connect();
@@ -22,84 +22,84 @@ extract($_REQUEST);
 
 <?php
 $con=connect();
-  
+
 function pertama($tahun, $nama, $status,$negeri,$daerah, $type, $tahuntanam){
 	global $con;
-	$sql = "SELECT * FROM graf_kbm where sessionid='$nama' 
-	and tahun ='$tahun' 
-	and (status='$status' or status='9')  
-	and pb_type = '$type' 
+	$sql = "SELECT * FROM graf_kbm where sessionid='$nama'
+	and tahun ='$tahun'
+	and (status='$status' or status='9')
+	and pb_type = '$type'
 	and pb_tahun = '$tahuntanam'";
 	if($negeri!="" & $negeri!="peninsular")
 	{
 		$sql.=" and negeri = '$negeri'";
-	} 
+	}
 	if($negeri!="" && $daerah!="")
 	{
 		$sql.=" and daerah = '$daerah'";
-	} 
+	}
 	if($negeri=="peninsular")
 	{
 		$sql.=" and negeri not like 'SARAWAK' and negeri not like 'SABAH'";
-	} 
+	}
 
-	$sql_result = mysql_query($sql,$con); 
-	$i=0; 
-	while ($row = mysql_fetch_array($sql_result)) 
-	{ 
+	$sql_result = mysqli_query($con, $sql);
+	$i=0;
+	while ($row = mysqli_fetch_array($sql_result))
+	{
 		$test_data[] = $row["y"];
-		$i = $i + 1; 
-	} 
-			
+		$i = $i + 1;
+	}
+
 	$qavg = "SELECT AVG(y) as purata FROM graf_kbm where sessionid='$nama' and tahun ='$tahun' and (status='$status' or status='9')  and pb_type='$type' and  pb_tahun = '$tahuntanam'";
 	if($negeri!="" & $negeri!="peninsular")
 	{
 		$qavg.=" and negeri = '$negeri'";
-	} 
+	}
 	if($negeri!="" && $daerah!="")
 	{
 		$qavg.=" and daerah = '$daerah'";
-	} 
+	}
 	if($negeri=="peninsular")
 	{
 		$qavg.=" and (negeri not like 'SARAWAK' and negeri not like 'SABAH')";
-	} 
-		
+	}
+
 	//echo $qavg."<br>";
-	$ravg = mysql_query($qavg,$con);
-	$rrow = mysql_fetch_array($ravg);
-		
-		
+	$ravg = mysqli_query($con, $qavg);
+	$rrow = mysqli_fetch_array($ravg);
+
+
 	$var[0] = median($test_data);
-	$var[1] = $rrow['purata'];		
-	return $var; 
+	$var[1] = $rrow['purata'];
+	return $var;
 }
 
 function cop ($name, $type, $year, $state, $district, $tahun_r){
 	global $con;
 	$q_cop = "select  * from cop where
 	NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT='$tahun_r'";
-	$r_cop = mysql_query($q_cop, $con);
-	$row_cop = mysql_fetch_array($r_cop);
+	$r_cop = mysqli_query($con, $q_cop);
+	$row_cop = mysqli_fetch_array($r_cop);
 	//echo $q_cop;
 	$var[0] = $row_cop['VALUE_MEDIAN'];
 	$var[1] = $row_cop['VALUE_MEAN'];
 	return $var;
 }
-		
+
 function summary($tahun_tanam ,$tahun, $jenis, $negeri, $daerah ){
 	global $con;
-	
+
 	if($tahun_tanam=="" || $tahun_tanam=='1'){
-		$qs =" select * from q_kbm"; 
-	} 
+		$qs =" select * from q_kbm";
+	}
 	else {
 		$qs = " select * from q_kbm where tahun!='0'";
 	}
 
-	$r = mysql_query($qs, $con);
-	
-	while($rows = mysql_fetch_array($r)){
+	$r = mysqli_query($con, $qs);
+
+	while($rows = mysqli_fetch_array($r)){
 		if($rows['isChild'] == 'N' && strlen($rows['sub_type']) > 0){
 			if($rows['sub_type'] == "weeding"){
 				if($tahun==2010){
@@ -136,8 +136,8 @@ function summary($tahun_tanam ,$tahun, $jenis, $negeri, $daerah ){
 			}
 		}
 	}
-	
-	$variable[0] = $sum;	
+
+	$variable[0] = $sum;
 	return $variable;
 }
 
@@ -145,7 +145,7 @@ function median($numbers=array())
 {
 	if (!is_array($numbers))
 		$numbers = func_get_args();
-	
+
 	rsort($numbers);
 	$mid = (count($numbers) / 2);
 	return ($mid % 2 != 0) ? $numbers{$mid-1} : (($numbers{$mid-1}) + $numbers{$mid}) / 2;
@@ -155,8 +155,8 @@ function summary_parenthesis($tahun_tanam ,$tahun, $jenis, $negeri, $daerah ){
 	global $con;
 
 	$qs = " select * from q_kbm where tahun = '0'";
-	$r = mysql_query($qs, $con);
-	while($rows = mysql_fetch_array($r)){
+	$r = mysqli_query($con, $qs);
+	while($rows = mysqli_fetch_array($r)){
 		if($tahun==2010){
 			$total = cop ( $rows['name'],  $jenis, $tahun_tanam, $negeri, $daerah, $tahun);
 		}else{
@@ -164,12 +164,12 @@ function summary_parenthesis($tahun_tanam ,$tahun, $jenis, $negeri, $daerah ){
 			$sum+=$a[1];
 		}
 	}
-	
-	
+
+
 	$purata[0] = $sum;
-	
+
 	return $purata;
-	
+
 }
 ?>
 <table width="80%" border="0" align="center" class="baju">
@@ -254,9 +254,9 @@ function summary_parenthesis($tahun_tanam ,$tahun, $jenis, $negeri, $daerah ){
       <?php $purata3= $malaysia_tukar/3; echo number_format($purata3,2);?>
     </span></div></td>
   </tr>
-  
-  
-  
+
+
+
   <tr class="alt">
     <td>Peninsular</td>
     <td>Year 1</td>
@@ -327,7 +327,7 @@ function summary_parenthesis($tahun_tanam ,$tahun, $jenis, $negeri, $daerah ){
       <?php $purata3_peninsular= $peninsular_tukar/3; echo number_format($purata3_peninsular,2);?>
     </span></div></td>
   </tr>
-  
+
   <tr class="alt">
     <td>Sabah</td>
     <td>Year 1</td>
@@ -398,12 +398,12 @@ function summary_parenthesis($tahun_tanam ,$tahun, $jenis, $negeri, $daerah ){
       <?php $purata3_sabah= $sabah_tukar/3; echo number_format($purata3_sabah,2);?>
     </span></div></td>
   </tr>
-  
- 
- 
- 
- 
- 
+
+
+
+
+
+
  <tr  class="alt">
     <td>Sarawak</td>
     <td>Year 1</td>
@@ -461,7 +461,7 @@ function summary_parenthesis($tahun_tanam ,$tahun, $jenis, $negeri, $daerah ){
       <?php $sarawak_tukar = $sarawak_1tukar[0]+$sarawak_2tukar[0]+$sarawak_3tukar[0]; echo number_format($sarawak_tukar,2);?>
     </div></td>
   </tr>
-  <tr> 
+  <tr>
     <td style="border-bottom:#000000 1px solid;">&nbsp;</td>
     <td style="border-bottom:#000000 1px solid;"><strong>Average</strong></td>
     <td style="border-bottom:#000000 1px solid;"><div align="center"><span class="style2">

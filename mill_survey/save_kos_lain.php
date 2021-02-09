@@ -6,7 +6,7 @@ $con = connect();
 
 $isirung = str_replace(",",'',$isirung);
 $qisirung="update mill_isirung set isirung ='$isirung' where lesen ='$lesen' and tahun = '$tahun'";
-$risirunng=mysql_query($qisirung,$con);
+$risirunng=mysqli_query($con, $qisirung);
 
 
 
@@ -27,7 +27,7 @@ total_kl = '$total_kl' ,
 status='$status'
 WHERE lesen = '$lesen' AND tahun =$tahun
 ";
-$r = mysql_query($q,$con);
+$r = mysqli_query($con, $q);
 
 if ($status==2){
 	$id = "kos_lain";

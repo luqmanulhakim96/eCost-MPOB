@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../Connections/connection.class.php');
 include '../class/test.class.php';
 header("Content-Disposition: attachment; filename=List_of_Incompleted_Mill_Response_Survey_in_Malaysia");
@@ -21,7 +21,7 @@ header("Content-Disposition: attachment; filename=List_of_Incompleted_Mill_Respo
 	  </tr>
 	</thead>
 	<tbody>
-	<?php while($row = mysql_fetch_array($result_all)) { ?>
+	<?php while($row = mysqli_fetch_array($result_all)) { ?>
 		<tr valign="top">
 			<td><?php echo $list++; ?></td>
 			<td><?php echo $row['nama'];?></td>
@@ -31,6 +31,6 @@ header("Content-Disposition: attachment; filename=List_of_Incompleted_Mill_Respo
 		  <div align="center"></div></td>
 			<td><?php echo $row['access'];?></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>

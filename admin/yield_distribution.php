@@ -6,16 +6,16 @@ $t1 = $_COOKIE['tahun_report'];
 function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
 	$con =connect();
 	$tahun_semasa = date('Y');
-	
+
 	if($tahun_semasa!=$tahun1){
 		$table = "fbb_production".$tahun1;
 	}
 	else{
-		$table ="fbb_production"; 
+		$table ="fbb_production";
 	}
-	
+
 	//$table = "fbb_production".$tahun1;
-	
+
 	if($flag=="count"){
 		$sql = "SELECT count(purata_hasil_buah) as jumlah FROM $table where ";
 	}
@@ -25,26 +25,26 @@ function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
 		if($negeri!="" & $negeri!="pm")
 		{
 			$sql.="negeri = '$negeri' and ";
-		} 
-		
+		}
+
 		if($negeri=="pm")
 		{
 			$sql.="(negeri not like '%SARAWAK%' and negeri not like '%SABAH%') and ";
-		} 
+		}
 		$sql.=" purata_hasil_buah between '$nilai1' and '$nilai2' ";
-		
-		$r = mysql_query($sql,$con);
-		$row = mysql_fetch_array($r);
-		
-		
+
+		$r = mysqli_query($con, $sql);
+		$row = mysqli_fetch_array($r);
+
+
 		$qa = "select count(lesen) as jumlah from $table ";
-		$ra = mysql_query($qa,$con);
-		$rowa = mysql_fetch_array($ra);	
-		$total = $rowa['jumlah']; 
-		
+		$ra = mysqli_query($con, $qa);
+		$rowa = mysqli_fetch_array($ra);
+		$total = $rowa['jumlah'];
+
 		$n[0]=$row['jumlah'];
 		$n[1]=$row['jumlah']/$total*100;
-		return $n; 
+		return $n;
 
 }
 ?>
@@ -59,11 +59,11 @@ function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
 -->
 </style>
 <table width="90%" class="baju" align="center">
-  
+
   <tr>
     <td colspan="8"><div align="center"><strong style="font-size:16px">Yield Distribution of Oil Palm Estate in Malaysia </strong></div></td>
   </tr>
-  
+
   <tr bgcolor="#8A1602" class="style2">
     <td height="28" colspan="2" bgcolor="#8A1602"><span class="style1">Yield group (tonnes/ha/yr) </span></td>
     <td width="9%"><div align="right">Below 18 </div></td>
@@ -82,7 +82,7 @@ function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
     <td><div align="right"><?php $a4 = fbb($t1, 'pm','count', '25','30'); echo number_format($a4[0]);?></div></td>
     <td><div align="right"><?php $a5 = fbb($t1, 'pm','count', '30','9999999'); echo number_format($a5[0]);?></div></td>
     <td><div align="right"><strong>
-      <?php $totala = $a1[0]+$a2[0]+$a3[0]+$a4[0]+$a5[0]; echo number_format($totala);?> 
+      <?php $totala = $a1[0]+$a2[0]+$a3[0]+$a4[0]+$a5[0]; echo number_format($totala);?>
     </strong></div></td>
   </tr>
   <tr >
@@ -94,10 +94,10 @@ function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
     <td><div align="right"><?php $b4 = fbb($t1, 'pm','sum', '25','30'); echo number_format($b4[0],2);?></div></td>
     <td><div align="right"><?php $b5 = fbb($t1, 'pm','sum', '30','9999999'); echo number_format($b5[0],2);?></div></td>
     <td><div align="right"><strong>
-      <?php $totalb = $b1[0]+$b2[0]+$b3[0]+$b4[0]+$b5[0]; echo number_format($totalb,2);?> 
+      <?php $totalb = $b1[0]+$b2[0]+$b3[0]+$b4[0]+$b5[0]; echo number_format($totalb,2);?>
     </strong></div></td>
   </tr>
-  
+
   <tr class="alt">
     <td height="20" style="border-bottom:solid 1px #000;">&nbsp;</td>
     <td style="border-bottom:solid 1px #000;">%</td>
@@ -111,7 +111,7 @@ function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
     </strong></div>
     </div>  </td>
   </tr>
-  
+
   <tr>
     <td width="18%" height="19">Sabah</td>
     <td width="13%">No. Estates </td>
@@ -121,7 +121,7 @@ function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
     <td><div align="right"><?php $c4 = fbb($t1, 'sabah','count', '25','30'); echo number_format($c4[0]);?></div></td>
     <td><div align="right"><?php $c5 = fbb($t1, 'sabah','count', '30','9999999'); echo number_format($c5[0]);?></div></td>
     <td><div align="right"><strong>
-      <?php $totalc = $c1[0]+$c2[0]+$c3[0]+$c4[0]+$c5[0]; echo number_format($totalc);?> 
+      <?php $totalc = $c1[0]+$c2[0]+$c3[0]+$c4[0]+$c5[0]; echo number_format($totalc);?>
     </strong></div></td>
   </tr>
   <tr class="alt">
@@ -133,10 +133,10 @@ function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
     <td><div align="right"><?php $d4 = fbb($t1, 'sabah','sum', '25','30'); echo number_format($d4[0],2);?></div></td>
     <td><div align="right"><?php $d5 = fbb($t1, 'sabah','sum', '30','9999999'); echo number_format($d5[0],2);?></div></td>
     <td><div align="right"><strong>
-      <?php $totald = $d1[0]+$d2[0]+$d3[0]+$d4[0]+$d5[0]; echo number_format($totald,2);?> 
+      <?php $totald = $d1[0]+$d2[0]+$d3[0]+$d4[0]+$d5[0]; echo number_format($totald,2);?>
     </strong></div></td>
   </tr>
-  
+
   <tr>
     <td height="20" style="border-bottom:solid 1px #000;">&nbsp;</td>
     <td style="border-bottom:solid 1px #000;">%</td>
@@ -150,8 +150,8 @@ function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
     </strong></div>
     </div>  </td>
   </tr>
-  
-  
+
+
   <tr class="alt">
     <td width="18%" height="19">Sarawak </td>
     <td width="13%">No. Estates </td>
@@ -161,7 +161,7 @@ function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
     <td><div align="right"><?php $e4 = fbb($t1, 'sarawak','count', '25','30'); echo number_format($e4[0]);?></div></td>
     <td><div align="right"><?php $e5 = fbb($t1, 'sarawak','count', '30','9999999'); echo number_format($e5[0]);?></div></td>
     <td><div align="right"><strong>
-      <?php $totale = $e1[0]+$e2[0]+$e3[0]+$e4[0]+$e5[0]; echo number_format($totale);?> 
+      <?php $totale = $e1[0]+$e2[0]+$e3[0]+$e4[0]+$e5[0]; echo number_format($totale);?>
     </strong></div></td>
   </tr>
   <tr>
@@ -173,10 +173,10 @@ function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
     <td><div align="right"><?php $f4 = fbb($t1, 'sarawak','sum', '25','30'); echo number_format($f4[0],2);?></div></td>
     <td><div align="right"><?php $f5 = fbb($t1, 'sarawak','sum', '30','9999999'); echo number_format($f5[0],2);?></div></td>
     <td><div align="right"><strong>
-      <?php $totalf = $f1[0]+$f2[0]+$f3[0]+$f4[0]+$f5[0]; echo number_format($totalf,2);?> 
+      <?php $totalf = $f1[0]+$f2[0]+$f3[0]+$f4[0]+$f5[0]; echo number_format($totalf,2);?>
     </strong></div></td>
   </tr>
-  
+
   <tr class="alt">
     <td height="20" style="border-bottom:solid 1px #000;">&nbsp;</td>
     <td style="border-bottom:solid 1px #000;">%</td>
@@ -190,8 +190,8 @@ function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
     </strong></div>
     </div>  </td>
   </tr>
-  
-  
+
+
   <tr>
     <td height="19"><strong>Total</strong></td>
     <td><strong>No. Estates </strong></td>
@@ -212,7 +212,7 @@ function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
     <td><div align="right"><?php echo number_format($b5[0]+$d5[0]+$f5[0]);?></div></td>
     <td><div align="right"><strong><?php echo number_format($totalb+$totald+$totalf);?></strong></div></td>
   </tr>
-  
+
   <tr>
     <td height="20" style="border-bottom:solid 1px #000;">&nbsp;</td>
     <td style="border-bottom:solid 1px #000;"><strong>%</strong></td>
@@ -226,4 +226,3 @@ function fbb ($tahun1,$negeri, $flag,$nilai1, $nilai2){
 </table>
 <br />
 <br />
-

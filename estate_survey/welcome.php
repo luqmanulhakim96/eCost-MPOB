@@ -24,7 +24,7 @@ function waiting()
 		}
 		?>
 	}
-	//document.getElementById("time").innerHTML=t; 
+	//document.getElementById("time").innerHTML=t;
 	var a=setTimeout("waiting()",1000);
 }
 </script>

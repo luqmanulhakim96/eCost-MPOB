@@ -32,11 +32,11 @@ body {
 -->
     </style>
 <link href="facebox/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
-<script src="facebox/facebox.js" type="text/javascript"></script> 
+<script src="facebox/facebox.js" type="text/javascript"></script>
 <script>
 jQuery(document).ready(function($) {
   $('a[rel*=facebox]').facebox()
-}) 
+})
 </script>
 <link rel="stylesheet" href="../js/tabber/example.css" TYPE="text/css" MEDIA="screen">
 <link rel="stylesheet" href="../js/tabber/example-print.css" TYPE="text/css" MEDIA="print">
@@ -129,19 +129,19 @@ function deleteCookie(name, path, domain) {
 <script type="text/javascript" src="../js/tabber/tabber.js"></script>
 <?php
 
-	$id = $lesen;	
+	$id = $lesen;
 	$con = connect();
 	$q ="SELECT * FROM esub WHERE No_Lesen_Baru = '$id' LIMIT 1";
-	$r = mysql_query($q,$con);
-	$j =0; 
-	while($row=mysql_fetch_array($r)){
+	$r = mysqli_query($con, $q);
+	$j =0;
+	while($row=mysqli_fetch_array($r)){
 ?>
 <div class="tabber" id="profile">
-<?php //echo $_GET['lesen']; ?>	 
+<?php //echo $_GET['lesen']; ?>
      <div class="tabbertab">
 	  <h2>Estate Profile</h2>
 	  <p>
- 
+
 <table width="95%" border="0" align="center">
 	<tr>
     	<td><table width="100%" border="0" align="center" cellpadding="1" cellspacing="1" style="border:1px #333333 solid">
@@ -155,7 +155,7 @@ function deleteCookie(name, path, domain) {
             <td><strong>:</strong></td>
             <td colspan="2"><?php echo $row['No_Lesen_Baru']; ?></td>
           </tr>
-          
+
           <tr>
             <td><strong>Address</strong></td>
             <td><strong>:</strong></td>
@@ -211,14 +211,14 @@ function deleteCookie(name, path, domain) {
             <td><strong>:</strong></td>
             <td colspan="2"><?php echo $row['Negeri_Premis']; ?></td>
           </tr>
-          
+
           <tr>
             <td colspan="4" bgcolor="#999999"><label></label>
                 <br /></td>
           </tr>
       </table></td>
     </tr>
-    
+
     <tr>
     	<td><div id="borang">
    <table width="100%" align="center" class="tableCss" style="border:#333333 solid 1px;">
@@ -240,11 +240,11 @@ function deleteCookie(name, path, domain) {
       <tr>
         <td width="201" align="left" valign="top"><strong>Palm Oil Mill Integration </strong></td>
         <td><div align="center"><strong>:</strong></div></td>
-        <td><?php if ($row['integrasi'] == 'Y') { 
+        <td><?php if ($row['integrasi'] == 'Y') {
 			echo "<img src='../images/accepted_48.png' width='16' height='16' /> YA";
 			}
-			else { 
-			echo "<img src='../images/remove.png' width='20' height='20' /> TIDAK"; 
+			else {
+			echo "<img src='../images/remove.png' width='20' height='20' /> TIDAK";
 			} ?>
 		</td>
       </tr>
@@ -282,7 +282,7 @@ function deleteCookie(name, path, domain) {
 <div align="center">
 <script type="text/javascript" src="ampie/swfobject.js"></script>
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("ampie/ampie.swf", "ampie", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "ampie/");
 		so.addVariable("settings_file", encodeURIComponent("ampie/settings.xml"));

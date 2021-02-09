@@ -2,12 +2,12 @@
 var check=0;
 function checkProgress()
 {
-	
+
 	for(i = 0; i<= document.form1.elements.length; i++)
 	{
 			if(document.form1.elements[i].value =="")
 			{
-				document.form1.action='home.php?id=po1year&po2=false&pol=<? echo $_GET['pol']; ?>&po3=<? echo $_GET['po3']; ?>&po4=<? echo $_GET['po4'];?>&po5=<? echo $_GET['po5']; ?>&po6=<? echo $_GET['po6']; ?>&po7=<? echo $_GET['po7']; ?>&po8=<? echo $_GET['po8']; ?>';		
+				document.form1.action='home.php?id=po1year&po2=false&pol=<? echo $_GET['pol']; ?>&po3=<? echo $_GET['po3']; ?>&po4=<? echo $_GET['po4'];?>&po5=<? echo $_GET['po5']; ?>&po6=<? echo $_GET['po6']; ?>&po7=<? echo $_GET['po7']; ?>&po8=<? echo $_GET['po8']; ?>';
 			}
 	}
 
@@ -16,7 +16,7 @@ function checkProgress()
 </script>
 <form id="form1" name="form1" method="post" action="home.php?id=po1year&po2=true&pol=<? echo $_GET['pol']; ?>&po3=<? echo $_GET['po3']; ?>&po4=<? echo $_GET['po4'];?>&po5=<? echo $_GET['po5']; ?>&po6=<? echo $_GET['po6']; ?>&po7=<? echo $_GET['po7']; ?>&po8=<? echo $_GET['po8']; ?>">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-  
+
   <tr>
     <td colspan="2"><b>1.9 &nbsp;&nbsp;  Penggunaan jentera ladang [<i>Form mechanizations</i>].</b></td>
   </tr>
@@ -86,5 +86,5 @@ function checkProgress()
       </td>
   </tr>
 </table>
-  </form> 
+  </form>
 <br>

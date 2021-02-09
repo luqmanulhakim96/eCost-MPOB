@@ -260,13 +260,13 @@ if (isset($_REQUEST['welcome'])) {
                 <td height="71" colspan="2" align="right">
 
         <?php
-        include('session.php');
+        include('../estate/session.php');
         /** if($id!="login" && $welcome!="true"){
-         * include('session.php'); 
-         * } 
+         * include('session.php');
+         * }
          * if($id!="login" && $welcome!="true" && $mill=="true"){
-         * include('session.php'); 
-         * } 
+         * include('session.php');
+         * }
          */
         ?>
                 </td>
@@ -287,5 +287,4 @@ if (isset($_REQUEST['welcome'])) {
         </table>
     </body>
 </html>
-<?php mysql_close($con); ?>
-
+<?php mysqli_close($con); ?>

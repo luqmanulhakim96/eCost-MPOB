@@ -5,34 +5,34 @@
 //-------------------------- kernel price ------------------------
 function kernel_price($negeri, $tahun){
 
-$tahun_lepas = $tahun-1; 
+$tahun_lepas = $tahun-1;
 
 		$con = connect();
 		$query = "select avg(isirung) as isirung, avg(PENGELUARAN_CPO) as PENGELUARAN_CPO, avg(FFB_PROSES) as FFB_PROSES  from mill_isirung mi, ekilang es where mi.tahun ='$tahun' and mi.lesen not like '%123456%' and es.tahun = '$tahun_lepas'
 		and mi.lesen = es.no_lesen
 		";
-		
+
 		if($negeri!="" & $negeri!="pm")
 		{
 			$query.=" and es.negeri = '$negeri'";
-		} 
+		}
 		if($negeri=="pm")
 		{
 			$query.=" and (es.negeri not like 'SARAWAK' and es.negeri not like 'SABAH')";
-		} 
-		
+		}
+
 		//echo $query;
-		
-		$res = mysql_query($query,$con);
-		$row = mysql_fetch_array($res); 
-		
-		
-	
-	
+
+		$res = mysqli_query($con, $query);
+		$row = mysqli_fetch_array($res);
+
+
+
+
 		$oer = round($row['PENGELUARAN_CPO']/$row['FFB_PROSES'] *100,4);
 		$tan_ffb = round($row['isirung']/$row['FFB_PROSES'],4);
 		$tan_oer = $tan_ffb / $oer;
-		
+
 		$var[0] = $row['isirung'];
 		$var[1] = $row['PENGELUARAN_CPO'];
 		return $var;
@@ -42,14 +42,14 @@ $tahun_lepas = $tahun-1;
 
 
 		///--------------------cop----------------
-			
+
 		function cop ($name, $type, $year, $state, $district, $tahun_r){
 				$con =connect();
 				$q_cop = "select  * from cop where
 				NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT='$tahun_r'";
-				$r_cop = mysql_query($q_cop, $con);
-				$row_cop = mysql_fetch_array($r_cop);
-				
+				$r_cop = mysqli_query($con, $q_cop);
+				$row_cop = mysqli_fetch_array($r_cop);
+
 				$var[0] = $row_cop['VALUE_MEDIAN'];
 				$var[1] = $row_cop['VALUE_MEAN'];
 				return $var;
@@ -72,7 +72,7 @@ $tahun_lepas = $tahun-1;
 <?php
 	$satu = $_COOKIE['tahun_report']-0;
   	$dua = $_COOKIE['tahun_report']-1;
-  
+
 ?>
 <script type="text/javascript">
 
@@ -106,7 +106,7 @@ function openScript(url, width, height) {
       <div align="left"></div></td>
     <td><div align="right">
       <?php
-	  
+
 	  if($_COOKIE['tahun_report']==2010){
 	if($year==""){ $year=1;}
 	$a1 = cop ( "Malaysia",  "OER CPO", $year, $state, $district, $_COOKIE['tahun_report']);
@@ -125,8 +125,8 @@ function openScript(url, width, height) {
     <td height="21" colspan="2" <?php if($_COOKIE['tahun_report']==2010){?> ondblclick="javascript:openScript('add_cop.php?name=<?php echo "Peninsular";?>&type=<?php echo "OER CPO"; ?>&tahun=<?php echo $_COOKIE['tahun_report'];?>&year=<?php echo $year;?>&state=<?php echo $state; ?>','700','200')"<?php } ?>><div align="right">Peninsular Malaysia </div>
       <div align="left"></div></td>
     <td><div align="right">
-      <?php 
-	  
+      <?php
+
 	  if($_COOKIE['tahun_report']==2010){
 	if($year==""){ $year=1;}
 	$b1 = cop ( "Peninsular", "OER CPO", $year, $state, $district, $_COOKIE['tahun_report']);
@@ -147,14 +147,14 @@ function openScript(url, width, height) {
   <tr class="alt">
     <td height="28" colspan="2" <?php if($_COOKIE['tahun_report']==2010){?> ondblclick="javascript:openScript('add_cop.php?name=<?php echo "Sabah";?>&type=<?php echo "OER CPO"; ?>&tahun=<?php echo $_COOKIE['tahun_report'];?>&year=<?php echo $year;?>&state=<?php echo $state; ?>','700','200')"<?php } ?>><div align="right">Sabah</div></td>
     <td><div align="right">
-      <?php 
-	  
+      <?php
+
 	  if($_COOKIE['tahun_report']==2010){
 	if($year==""){ $year=1;}
 	$c1 = cop ( "sabah",  "OER CPO", $year, $state, $district, $_COOKIE['tahun_report']);
 	}
 	if($_COOKIE['tahun_report']!=2010){
-	  $c1 = kernel_price('sabah', $_COOKIE['tahun_report']-1); 
+	  $c1 = kernel_price('sabah', $_COOKIE['tahun_report']-1);
 	  }echo number_format($c1[0],2);
 	  ?>
     </div></td>
@@ -169,14 +169,14 @@ function openScript(url, width, height) {
     <td height="28" colspan="2" style="border-bottom:solid 1px #000" <?php if($_COOKIE['tahun_report']==2010){?> ondblclick="javascript:openScript('add_cop.php?name=<?php echo "Sarawak";?>&type=<?php echo "OER CPO"; ?>&tahun=<?php echo $_COOKIE['tahun_report'];?>&year=<?php echo $year;?>&state=<?php echo $state; ?>','700','200')"<?php } ?>><div align="right">Sarawak</div>
       <div align="left"></div></td>
     <td style="border-bottom:solid 1px #000"><div align="right">
-      <?php 
-	  
+      <?php
+
 	  if($_COOKIE['tahun_report']==2010){
 	if($year==""){ $year=1;}
 	$d1 = cop ( "sarawak",  "OER CPO", $year, $state, $district, $_COOKIE['tahun_report']);
 	}
 	if($_COOKIE['tahun_report']!=2010){
-	  $d1 = kernel_price('sarawak', $_COOKIE['tahun_report']-1); 
+	  $d1 = kernel_price('sarawak', $_COOKIE['tahun_report']-1);
 	  }echo number_format($d1[0],2);
 	  ?>
     </div></td>
@@ -200,7 +200,7 @@ $_SESSION['kernel_sarawak']=round($d[0],2);
     </div>
 <script type="text/javascript" src="../js/bar/swfobject.js"></script>
 <script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("ampie/ampie.swf", "amline", "100%", "100%", "8", "#FFFFFF");
 		so.addVariable("settings_file", encodeURIComponent("../xml/settings_estate_size1.xml"));
 		so.addVariable("data_file", encodeURIComponent("kernel_data_oil.php"));

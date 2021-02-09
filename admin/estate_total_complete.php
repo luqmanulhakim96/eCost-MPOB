@@ -1,31 +1,31 @@
-<?php include '../class/admin.estate.class.php'; 
+<?php include '../class/admin.estate.class.php';
 include('pages.php');
 include('baju.php');
 ?>
 
 <link rel="stylesheet" href="../js/colorbox/colorbox.css" type="text/css" />
 <script type="text/javascript" src="../js/colorbox/colorbox/jquery.colorbox.js"></script>
-        
+
 <script type="text/javascript">
 			$(document).ready(function(){
 				$(".boxcolor").colorbox({width:"60%", height:"100%", iframe:true});
 			});
 		</script>
-        
 
-        
-        
-        
-        
-        
+
+
+
+
+
+
 <style>
 .filtering { background-color:light-gray}
 #jqtf_filters {
 	list-style:none;
 	}
 #jqtf_filters li {
-	display:inline-block; 
-	position:relative; 
+	display:inline-block;
+	position:relative;
 	float:left;
 	margin-bottom:20px
 }
@@ -46,7 +46,7 @@ include('baju.php');
 	  </tr>
 	</thead>
 	<tbody>
-	<?php while($row=mysql_fetch_array($result_complete)) { ?>
+	<?php while($row=mysqli_fetch_array($result_complete)) { ?>
 		<tr valign="top" <?php if($list%2==0){?>class="alt"<?php } ?>>
 			<td><?php echo $list++; ?></td>
 			<td><a href="estate_details.php?id=<?php echo $row['lesen'];?>&year=<?php echo $_COOKIE['tahun_report'];?>" class="boxcolor"><?php echo $row['nama'];?></a></td>
@@ -57,18 +57,18 @@ include('baju.php');
 		    <td><div align="center">
             <?php
              $qa ="select success,password,lesen from login_estate where lesen ='".$row['lesen']."'";
-	$ra = mysql_query($qa,$con);
-	$rowa = mysql_fetch_array($ra);
+	$ra = mysqli_query($con, $qa);
+	$rowa = mysqli_fetch_array($ra);
 			?>
-            
+
             <a href="auto_login.php?username=<?php echo $rowa['lesen'];?>&amp;password=<?php echo $rowa['password'];?>&amp;tahun=<?php echo $_COOKIE['tahun_report'];?>" target="_blank" title="View Survey"><img src="../estate/images/001_43.gif" alt="View Survey" width="20" height="20" border="0" title="View Survey" /></a>
-            
-            
+
+
                    <a href="auto_login.php?username=<?php echo $rowa['lesen'];?>&amp;password=<?php echo $rowa['password'];?>&amp;tahun=<?php echo $_COOKIE['tahun_report'];?>&view=true" target="_blank" > <img src="../images/001_36.png" width="20" height="20" border="0" title="View Only" /></a>
-            
+
             </div></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>
 
@@ -80,4 +80,3 @@ include('baju.php');
 <a href="estate_total_complete_excel.php" target="_blank"><img src="../images/Excel-icon.png" width="48" height="48" border="0" title="Pindah ke Excel" /></a><br/>
 <br />
 <br />
-

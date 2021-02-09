@@ -57,8 +57,8 @@ f2.add( Validate.Presence );
           <?php
 		  $con =connect();
           $qfile = "select * from file_upload order by title";
-		  $rfile = mysql_query($qfile,$con);
-		  while($rowfile = mysql_fetch_array($rfile)){
+		  $rfile = mysqli_query($con, $qfile);
+		  while($rowfile = mysqli_fetch_array($rfile)){
 		  ?>
           <tr <?php if(++$o%2==0){?>class="alt"<?php } ?>>
             <td><?php echo $o; ?>. </td>

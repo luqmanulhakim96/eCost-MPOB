@@ -2,7 +2,7 @@
 session_start();
 
     if ($_SESSION['type'] <> "admin")
-	{	
+	{
 		header("location:../logout.php");
 		exit();
     }
@@ -23,9 +23,9 @@ function updateesub($nolesen, $table, $column, $value) {
             . "WHERE "
             . " No_Lesen_Baru='$nolesen'  "
             . " LIMIT 1";
-    //echo "<br>".$qupdate; 
-    mysql_query($qupdate, $con);
-    if (mysql_affected_rows()) {
+    //echo "<br>".$qupdate;
+    mysqli_query($con, $qupdate);
+    if (mysqli_affected_rows($con)) {
         $set = 1;
     }
     return $set;
@@ -229,19 +229,19 @@ function updateesub($nolesen, $table, $column, $value) {
             $con = connect();
             $qd = "select * FROM $table where no_lesen_baru ='$nolesen'";
 
-            $rd = mysql_query($qd, $con);
-            $rowd = mysql_fetch_array($rd);
-            $total = mysql_num_rows($rd);
+            $rd = mysqli_query($con, $qd);
+            $rowd = mysqli_fetch_array($rd);
+            $total = mysqli_num_rows($rd);
 //echo $qd."<br>".$total;
             if ($total > 1) {
                 $total = $total - 1;
                 $qddelete = " delete from login_estate where lesen ='500778-202000' limit $total; ";
-                $rddelete = mysql_query($qddelete, $con);
+                $rddelete = mysqli_query($con, $qddelete);
             }
 
             if ($total == 0) {
                 $qadd = "insert into esub (no_lesen_baru) values ('$nolesen')";
-                $radd = mysql_query($qadd, $con);
+                $radd = mysqli_query($con, $qadd);
                 echo "<script>window.location.href='view_estate_all.php'</script>";
             }
             ?>
@@ -442,7 +442,7 @@ function updateesub($nolesen, $table, $column, $value) {
                     <td width="15%">JUMLAH (TANAM BARU + TANAM SEMULA +TANAM TUKAR)</td>
                     <td width="1%">:</td>
                     <td width="84%">
-                        <input type="text" name="belum_berhasil" id="belum_berhasil" value="<?php echo $rowd['Belum_Berhasil']; ?>" onchange="kiraTotal();" /> 
+                        <input type="text" name="belum_berhasil" id="belum_berhasil" value="<?php echo $rowd['Belum_Berhasil']; ?>" onchange="kiraTotal();" />
                         <script language="javascript">
                             var belum_berhasil = new LiveValidation('belum_berhasil');
                             belum_berhasil.add(Validate.Numericality);
@@ -455,7 +455,7 @@ function updateesub($nolesen, $table, $column, $value) {
                     <td width="15%">TERAKHIR DRPD E-SUB</td>
                     <td width="1%">:</td>
                     <td width="84%">
-                        <input type="text" name="keluasan" id="keluasan" value="<?php echo $rowd['Keluasan_Yang_Dituai']; ?>" onchange="kiraTotal();" /> 
+                        <input type="text" name="keluasan" id="keluasan" value="<?php echo $rowd['Keluasan_Yang_Dituai']; ?>" onchange="kiraTotal();" />
 
                         <script language="javascript">
                             var keluasan = new LiveValidation('keluasan');
@@ -479,7 +479,7 @@ function updateesub($nolesen, $table, $column, $value) {
                     <td width="15%">JUMLAH (BERHASIL + BELUM BERHASIL)</td>
                     <td width="1%">:</td>
                     <td width="84%">
-                        <input type="text" name="jumlah" id="jumlah" value="<?php echo $rowd['Jumlah']; ?>" /> 
+                        <input type="text" name="jumlah" id="jumlah" value="<?php echo $rowd['Jumlah']; ?>" />
                         <script language="javascript">
                             var jumlah = new LiveValidation('jumlah');
                             jumlah.add(Validate.Numericality);
@@ -512,8 +512,8 @@ function updateesub($nolesen, $table, $column, $value) {
 
             $con = connect();
             $q = "SHOW COLUMNS FROM $table";
-            $r = mysql_query($q, $con);
-            $totalffb = mysql_num_rows($r);
+            $r = mysqli_query($con, $q);
+            $totalffb = mysqli_num_rows($r);
             if (!$r) {
                 echo "<script>alert('No values in table $table !!! Please upload data in UPLOAD DATA NEXT YEAR > FFB PRODUCTION');window.close();</script>";
             }
@@ -522,10 +522,10 @@ function updateesub($nolesen, $table, $column, $value) {
                 </tr>
                 <tr>
                     <?php
-                    while ($row = mysql_fetch_array($r)) {
+                    while ($row = mysqli_fetch_array($r)) {
                         $qd = "select " . $row['Field'] . " as jenis FROM $table where lesen ='$nolesenffb'";
-                        $rd = mysql_query($qd, $con);
-                        $rowd = mysql_fetch_array($rd);
+                        $rd = mysqli_query($con, $qd);
+                        $rowd = mysqli_fetch_array($rd);
                         ?>
                     <tr>
 
@@ -542,15 +542,15 @@ function updateesub($nolesen, $table, $column, $value) {
 
 
             $qfbb = "select * FROM $table where lesen ='$nolesenffb'";
-            $rfbb = mysql_query($qfbb, $con);
-            $rowfbb = mysql_fetch_array($rfbb);
-            $totalfbb = mysql_num_rows($rfbb);
+            $rfbb = mysqli_query($con, $qfbb);
+            $rowfbb = mysqli_fetch_array($rfbb);
+            $totalfbb = mysqli_num_rows($rfbb);
 
 //echo "<br>";
 
             if ($totalfbb == 0) {
                 $qaddfbb = "insert into $table (lesen) values ('$nolesenffb')";
-                $raddfbb = mysql_query($qaddfbb, $con);
+                $raddfbb = mysqli_query($con, $qaddfbb);
                 echo "<script>window.location.href='view_estate_all.php'</script>";
             }
             ?>
@@ -619,14 +619,14 @@ function updateesub($nolesen, $table, $column, $value) {
             <?php
             $con = connect();
             //$q = "SHOW COLUMNS FROM login_estate";
-            //$r = mysql_query($q, $con);
+            //$r = mysql_query($con, $q);
             ?>
             <p><table width="100%" class="esub">
                 <?php
                 //while ($row = mysql_fetch_array($r)) {
                     $qd = "select lesen,firsttime,success,fail FROM login_estate where lesen ='$nolesen'";
-                    $rd = mysql_query($qd, $con);
-                    $rowd = mysql_fetch_array($rd);
+                    $rd = mysqli_query($con, $qd);
+                    $rowd = mysqli_fetch_array($rd);
                     ?>
                     <tr>
                         <td width="11%"><?php echo "LESEN"; ?></td>
@@ -657,13 +657,13 @@ function updateesub($nolesen, $table, $column, $value) {
             $con = connect();
             $qdlogin = "select * FROM login_estate where lesen ='$nolesen'";
 //echo $qdlogin . "<br>";
-            $rdlogin = mysql_query($qdlogin, $con);
-            $rowdlogin = mysql_fetch_array($rdlogin);
-            $totallogin = mysql_num_rows($rdlogin);
+            $rdlogin = mysqli_query($con, $qdlogin);
+            $rowdlogin = mysqli_fetch_array($rdlogin);
+            $totallogin = mysqli_num_rows($rdlogin);
 
             if ($totallogin == 0) {
                 $qaddlogin = "insert into login_estate (lesen) values ('$nolesen')";
-                $raddlogin = mysql_query($qaddlogin, $con);
+                $raddlogin = mysqli_query($con, $qaddlogin);
                 //echo "<script>window.location.href='view_estate_all.php'</script>";
             }
             ?>
@@ -769,12 +769,12 @@ function updateesub($nolesen, $table, $column, $value) {
                 $con = connect();
 
                 $qdelete = "delete FROM tanam_baru$pertama where tanaman_baru='0' and lesen ='$nolesen'";
-                mysql_query($qdelete, $con);
+                mysqli_query($con, $qdelete);
 
 
                 $q = "select * FROM tanam_baru$pertama where lesen ='$nolesen'";
-                $r = mysql_query($q, $con);
-                $total = mysql_num_rows($r);
+                $r = mysqli_query($con, $q);
+                $total = mysqli_num_rows($r);
                 ?>
                 <p>
                     <b>TANAMAN BARU PADA <?php echo $pertama; ?></b>
@@ -788,7 +788,7 @@ function updateesub($nolesen, $table, $column, $value) {
                     <?php
                     $jumlah1 = 0;
                     $rs = 0;
-                    while ($row = mysql_fetch_array($r)) {
+                    while ($row = mysqli_fetch_array($r)) {
                         ?> 		<tr <?php if (++$rs % 2 == 0) { ?>class="alt"<?php } ?>>
 
                             <td width="29%"><?php echo $row['bulan']; ?></td>
@@ -812,11 +812,11 @@ function updateesub($nolesen, $table, $column, $value) {
                 $con = connect();
 
                 $qdelete = "delete FROM tanam_baru$kedua where tanaman_baru='0' and lesen ='$nolesen'";
-                mysql_query($qdelete, $con);
+                mysqli_query($con, $qdelete);
 
 
                 $q = "select * FROM tanam_baru$kedua where lesen ='$nolesen'";
-                $r = mysql_query($q, $con);
+                $r = mysqli_query($con, $q);
                 ?>
                 <p>
                     <b>TANAMAN BARU PADA <?php echo $kedua; ?></b>
@@ -830,7 +830,7 @@ function updateesub($nolesen, $table, $column, $value) {
                     $jumlah2 = 0;
 
                     $rs1 = 0;
-                    while ($row = mysql_fetch_array($r)) {
+                    while ($row = mysqli_fetch_array($r)) {
                         ?>
                         <tr <?php if (++$rs % 2 == 0) { ?>class="alt"<?php } ?>>
                             <td width="29%"><?php echo $row['bulan']; ?></td>
@@ -855,10 +855,10 @@ function updateesub($nolesen, $table, $column, $value) {
 
                 /* to delete data tanaman =0 if not applicable */
                 $qdelete = "delete FROM tanam_baru$ketiga where tanaman_baru='0' and lesen ='$nolesen'";
-                mysql_query($qdelete, $con);
+                mysqli_query($con, $qdelete);
 
                 $q = "select * FROM tanam_baru$ketiga where lesen ='$nolesen'";
-                $r = mysql_query($q, $con);
+                $r = mysqli_query($con, $q);
                 if($r){
                 ?>
                 <p>
@@ -872,7 +872,7 @@ function updateesub($nolesen, $table, $column, $value) {
                     </tr><?php
                     $jumlah3 = 0;
                     $rs2 = 0;
-                    while ($row = mysql_fetch_array($r)) {
+                    while ($row = mysqli_fetch_array($r)) {
                         ?>		<tr <?php if (++$rs2 % 2 == 0) { ?>class="alt"<?php } ?>>
                             <td width="29%"><?php echo $row['bulan']; ?></td>
                             <td width="62%"><?php
@@ -967,11 +967,11 @@ function updateesub($nolesen, $table, $column, $value) {
                 $con = connect();
 
                 $qdelete = "delete FROM tanam_semula$pertama where lesen ='$nolesen' and tanaman_semula='0'";
-                mysql_query($qdelete, $con);
+                mysqli_query($con, $qdelete);
 
 
                 $q = "select * FROM tanam_semula$pertama where lesen ='$nolesen'";
-                $r = mysql_query($q, $con);
+                $r = mysqli_query($con, $q);
                 ?>
                 <p>
                     <b>TANAMAN SEMULA PADA <?php echo $pertama; ?></b>
@@ -984,7 +984,7 @@ function updateesub($nolesen, $table, $column, $value) {
                     </tr>  <?php
                     $jumlaha1 = 0;
                     $rs3 = 0;
-                    while ($row = mysql_fetch_array($r)) {
+                    while ($row = mysqli_fetch_array($r)) {
                         ?>
                         <tr <?php if (++$rs3 % 2 == 0) { ?>class="alt"<?php } ?>>    <td width="29%"><?php echo $row['bulan']; ?></td>
                             <td width="62%"><?php
@@ -1004,11 +1004,11 @@ function updateesub($nolesen, $table, $column, $value) {
                 $con = connect();
 
                 $qdelete = "delete FROM tanam_semula$kedua where lesen ='$nolesen' and tanaman_semula='0'";
-                mysql_query($qdelete, $con);
+                mysqli_query($con, $qdelete);
 
 
                 $q = "select * FROM tanam_semula$kedua where lesen ='$nolesen'";
-                $r = mysql_query($q, $con);
+                $r = mysqli_query($con, $q);
                 ?>
                 <p>
                     <b>TANAMAN SEMULA PADA <?php echo $kedua; ?></b>
@@ -1023,9 +1023,9 @@ function updateesub($nolesen, $table, $column, $value) {
                     <?php
                     $jumlaha2 = 0;
                     $rs5 = 0;
-                    while ($row = mysql_fetch_array($r)) {
+                    while ($row = mysqli_fetch_array($r)) {
                         ?>
-                        <tr <?php if (++$rs5 % 2 == 0) { ?>class="alt"<?php } ?>>   
+                        <tr <?php if (++$rs5 % 2 == 0) { ?>class="alt"<?php } ?>>
                             <td width="29%"><?php echo $row['bulan']; ?></td>
                             <td width="61%"><?php
                                 echo $row['tanaman_semula'];
@@ -1043,12 +1043,12 @@ function updateesub($nolesen, $table, $column, $value) {
                 $con = connect();
 
                 $qdelete = "delete FROM tanam_semula$ketiga where lesen ='$nolesen' and tanaman_semula='0'";
-                mysql_query($qdelete, $con);
+                mysqli_query($con, $qdelete);
 
 
                 $q = "select * FROM tanam_semula$ketiga where lesen ='$nolesen'";
-                //echo $q; 
-                $r = mysql_query($q, $con);
+                //echo $q;
+                $r = mysqli_query($con, $q);
                 ?>
                 <p>
                     <b>TANAMAN SEMULA PADA <?php echo $ketiga; ?></b>
@@ -1062,9 +1062,9 @@ function updateesub($nolesen, $table, $column, $value) {
                     </tr>  <?php
                     $jumlaha3 = 0;
                     $rs6 = 0;
-                    while ($row = mysql_fetch_array($r)) {
+                    while ($row = mysqli_fetch_array($r)) {
                         ?>
-                        <tr <?php if (++$rs6 % 2 == 0) { ?>class="alt"<?php } ?>> 
+                        <tr <?php if (++$rs6 % 2 == 0) { ?>class="alt"<?php } ?>>
                             <td width="28%"><?php echo $row['bulan']; ?></td>
                             <td width="61%"><?php
                                 echo $row['tanaman_semula'];
@@ -1160,11 +1160,11 @@ function updateesub($nolesen, $table, $column, $value) {
                 $con = connect();
 
                 $qdelete = "delete FROM tanam_tukar$pertama where lesen ='$nolesen' and tanaman_tukar='0'";
-                mysql_query($qdelete, $con);
+                mysqli_query($con, $qdelete);
 
 
                 $q = "select * FROM tanam_tukar$pertama where lesen ='$nolesen'";
-                $r = mysql_query($q, $con);
+                $r = mysqli_query($con, $q);
                 ?>
                 <p>
                     <b>TANAMAN TUKAR PADA <?php echo $pertama; ?></b>
@@ -1180,9 +1180,9 @@ function updateesub($nolesen, $table, $column, $value) {
                     <?php
                     $jumlahb1 = 0;
                     $rs7 = 0;
-                    while ($row = mysql_fetch_array($r)) {
+                    while ($row = mysqli_fetch_array($r)) {
                         ?>
-                        <tr <?php if (++$rs7 % 2 == 0) { ?>class="alt"<?php } ?>> 
+                        <tr <?php if (++$rs7 % 2 == 0) { ?>class="alt"<?php } ?>>
                             <td width="27%"><?php echo $row['bulan']; ?></td>
                             <td width="62%"><?php
                                 echo $row['tanaman_tukar'];
@@ -1194,17 +1194,17 @@ function updateesub($nolesen, $table, $column, $value) {
                 </table>
                 <b><em>JUMLAH KESELURUHAN : <?php echo $jumlahb1; ?></em></b>
 
-                </p>     
+                </p>
 
                 <?php
                 $con = connect();
 
                 $qdelete = "delete FROM tanam_tukar$kedua where lesen ='$nolesen' and tanaman_tukar='0'";
-                mysql_query($qdelete, $con);
+                mysqli_query($con, $qdelete);
 
 
                 $q = "select * FROM tanam_tukar$kedua where lesen ='$nolesen'";
-                $r = mysql_query($q, $con);
+                $r = mysqli_query($con, $q);
                 ?>
                 <p>
                     <b>TANAMAN TUKAR PADA <?php echo $kedua; ?></b>
@@ -1216,9 +1216,9 @@ function updateesub($nolesen, $table, $column, $value) {
                         <th>Tindakan</th>
                     </tr> <?php
                     $jumlahb2 = 0;
-                    while ($row = mysql_fetch_array($r)) {
+                    while ($row = mysqli_fetch_array($r)) {
                         ?>
-                        <tr <?php if (++$rs6 % 2 == 0) { ?>class="alt"<?php } ?>> 
+                        <tr <?php if (++$rs6 % 2 == 0) { ?>class="alt"<?php } ?>>
                             <td width="27%"><?php echo $row['bulan']; ?></td>
                             <td width="63%"><?php
                                 echo $row['tanaman_tukar'];
@@ -1237,12 +1237,12 @@ function updateesub($nolesen, $table, $column, $value) {
                 $con = connect();
 
                 $qdelete = "delete FROM tanam_tukar$ketiga where lesen ='$nolesen' and tanaman_tukar='0'";
-                mysql_query($qdelete, $con);
+                mysqli_query($con, $qdelete);
 
 
                 $q = "select * FROM tanam_tukar$ketiga where lesen ='$nolesen'";
-                $r = mysql_query($q, $con);
-                
+                $r = mysqli_query($con, $q);
+
                 if($r){
                 ?>
                 <p>
@@ -1257,9 +1257,9 @@ function updateesub($nolesen, $table, $column, $value) {
 
                     <?php
                     $jumlahb3 = 0;
-                    while ($row = mysql_fetch_array($r)) {
+                    while ($row = mysqli_fetch_array($r)) {
                         ?>
-                        <tr <?php if (++$rs6 % 2 == 0) { ?>class="alt"<?php } ?>> 
+                        <tr <?php if (++$rs6 % 2 == 0) { ?>class="alt"<?php } ?>>
 
 
 
@@ -1271,10 +1271,10 @@ function updateesub($nolesen, $table, $column, $value) {
                             <td width="10%"><div align="center"><a href="save_all.php?type=delete&amp;lesen=<?php echo $nolesen; ?>&amp;bulan=<?php echo $row['bulan']; ?>&amp;luas=<?php echo $row['tanaman_tukar']; ?>&amp;table=<?php echo "tanam_tukar$ketiga"; ?>&amp;field=<?php echo "tanaman_tukar"; ?>&tahun1=<?= $pertama ?>&tahun2=<?= $kedua ?>&tahun3=<?= $ketiga ?>"><img src="../images/remove.png" alt="" width="20" height="20" border="0" onclick="return confirm('Buang data ini?');" /></a></div></td>
                         </tr>
 <?php } ?>
-                        
+
                 </table>
                 <?php } //not show if no data ?>
-                
+
                  <?php if(!$r){?>
                 <p><strong style="color:red">TIADA DATA UNTUK TANAMAN TUKAR PADA <?php echo $ketiga; ?> </strong></p>
                   <?php } // show only query valid ?>
@@ -1287,7 +1287,7 @@ function updateesub($nolesen, $table, $column, $value) {
 
                     $totalbelumberhasil = $total123 + $totala123 + $totalb123;
                     $yesupdate = updateesub($nolesen, $tableesub, 'Belum_Berhasil', $totalbelumberhasil);
-                    //echo "<br><br>".$yesupdate; 
+                    //echo "<br><br>".$yesupdate;
                     $totaljumlah = $totalbelumberhasil + $Berhasil;
                     updateesub($nolesen, $tableesub, 'Jumlah', $totaljumlah);
                     if ($yesupdate === 1) {
@@ -1379,7 +1379,7 @@ function updateesub($nolesen, $table, $column, $value) {
                         <td height="31">&nbsp;</td>
                         <td><strong>Emel</strong></td>
                         <td><strong>:</strong></td>
-                        <td colspan="2">	  
+                        <td colspan="2">
 
 <?= $pengguna->email; ?></td>
                     </tr>
@@ -1463,7 +1463,7 @@ function updateesub($nolesen, $table, $column, $value) {
 
 
                 </table>
-            </div>   
+            </div>
         </div>
 
 
@@ -1589,4 +1589,4 @@ function updateesub($nolesen, $table, $column, $value) {
         <input name="nolesen" type="hidden" id="nolesen" value="<?php echo $nolesen; ?>" />
 </form>
 
-<?php mysql_close($con); ?>
+<?php mysqli_close($con); ?>

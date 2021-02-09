@@ -33,29 +33,29 @@ include('baju_merah.php');
   </tr>
   <tr>
     <td>
-    
+
     <?php
-	
+
 	$con =connect();
 	$query = "SELECT count(Jumlah) as Jumlah FROM esub ";
-		$res_jumlah = mysql_query($query,$con);
-		$row_jumlah = mysql_fetch_array($res_jumlah); 
+		$res_jumlah = mysqli_query($con, $query);
+		$row_jumlah = mysqli_fetch_array($res_jumlah);
 		$jumlah = $row_jumlah['Jumlah'];
-	
+
     function luas($nilai,$nilai2,$jumlah){
 			$con=connect();
 			$q ="SELECT count(Jumlah) as Jumlah FROM esub WHERE Jumlah between '$nilai' and '$nilai2'";
-			$r = mysql_query($q,$con);
-			$row = mysql_fetch_array($r);
-			$total = mysql_num_rows($r);
+			$r = mysqli_query($con, $q);
+			$row = mysqli_fetch_array($r);
+			$total = mysqli_num_rows($r);
 			$size[0] = $row['Jumlah'];
-			
+
 			$size[1] = round($size[0]/$jumlah*100,2);
-			
+
 			return $size;
 			}
 	?>
-    
+
     <table width="60%" align="center" class="baju">
       <tr>
         <th>Size group</th>
@@ -121,7 +121,7 @@ include('baju_merah.php');
 </table>
 
 <script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("../xml/amline.swf", "amline", "100%", "100%", "8", "#FFFFFF");
 		so.addVariable("settings_file", encodeURIComponent("../xml/amline_settings.xml"));
 		so.addVariable("data_file", encodeURIComponent("../xml/amline_data.php"));

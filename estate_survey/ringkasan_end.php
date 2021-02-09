@@ -4,19 +4,19 @@ extract($_GET);
 extract($_POST);
 $con =connect();
 $q ="update belanja_am_kos set status='1' where lesen = '".$_SESSION['lesen']."'";
-$r =mysql_query($q,$con);
+$r =mysqli_query($con, $q);
 
 $q ="update kos_belum_matang set status='1' where lesen = '".$_SESSION['lesen']."'";
-$r =mysql_query($q,$con);
+$r =mysqli_query($con, $q);
 
 $q ="update kos_matang_penjagaan set status='1' where lesen = '".$_SESSION['lesen']."'";
-$r =mysql_query($q,$con);
+$r =mysqli_query($con, $q);
 
 $q ="update kos_matang_penuaian set status='1' where lesen = '".$_SESSION['lesen']."'";
-$r =mysql_query($q,$con);
+$r =mysqli_query($con, $q);
 
 $q ="update kos_matang_pengangkutan set status='1' where lesen = '".$_SESSION['lesen']."'";
-$r =mysql_query($q,$con);
+$r =mysqli_query($con, $q);
 ?>
 
 
@@ -30,7 +30,7 @@ function waiting()
 	{
 		window.location.href='home.php?id=home';
 	}
-	//document.getElementById("time").innerHTML=t; 
+	//document.getElementById("time").innerHTML=t;
 	var a=setTimeout("waiting()",1000);
 }
 </script>

@@ -1,6 +1,6 @@
 <tr bgcolor="#99FF99">
     <td height="37"><?=setstring ('mal', 'Pengangkutan BTS dari platform atau pusat pengumpulan ke kilang', 'en', 'Mainline loading of FFBs from platform or collection centres to mill')?>
-	<?php 
+	<?php
 		$varjentera[2]='pengangkutan';
 		$angkut = new user('jentera_estate',$varjentera);
 	?>
@@ -18,12 +18,12 @@
         <div align="left">
             <select name="jentera_pengangkutan[0]" id="jentera_pengangkutan[0]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'pengangkutan_lain');">
 				<option>-Pilih-</option>
-				<?php 
+				<?php
 					$con = connect();
 					$q ="select * from jentera where kategori_jentera ='pengangkutan' order by id_jentera";
-					$r = mysql_query($q,$con);
-					$total_pengangkutan = mysql_num_rows($r);
-					while($row=mysql_fetch_array($r)){
+					$r = mysqli_query($con, $q);
+					$total_pengangkutan = mysqli_num_rows($r);
+					while($row=mysqli_fetch_array($r)){
 				?>
 				<option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$angkut->id_jentera[0]){?>selected="selected"<?php } ?>><?= $row['nama_jentera'];?></option>
               <?php } ?>
@@ -40,8 +40,8 @@
         </div>
 	</td>
 </tr>
-      
-<?php 
+
+<?php
 	$totpunggah= $angkut->total;
 	for ($b=1; $b<$total_pengangkutan; $b++){?>
 
@@ -61,17 +61,17 @@
         <div align="left">
             <select name="jentera_pengangkutan[<?= $b; ?>]" id="jentera_pengangkutan[<?= $b; ?>]" style="border:#FF6600 1px solid; font-family:Arial, Helvetica, sans-serif; font-size:12px; width:200px;" onchange="tukar_field(this.value, 'pengangkutan_lain<?= $b; ?>');">
 				<option>-Pilih-</option>
-				<?php 
+				<?php
 					$con = connect();
 					$q ="select * from jentera where kategori_jentera ='pengangkutan' order by id_jentera";
-					$r = mysql_query($q,$con);
-					while($row=mysql_fetch_array($r)){?>
+					$r = mysqli_query($con, $q);
+					while($row=mysqli_fetch_array($r)){?>
 					<option value="<?= $row['nama_jentera'];?>" <?php if($row['nama_jentera']==$angkut->id_jentera[$b]){?>selected="selected"<?php } ?>>
 				<?= $row['nama_jentera'];?>
 				</option>
 				<?php } ?>
 			</select>
-			
+
 		<div id="pengangkutan_lain<?= $b; ?>" class="<?php if($angkut->nama_jentera[$b]!=""){echo "show";} else{echo "hide";}?>">
             <input type="text" name="lain_pengangkutan[<?= $b; ?>]" id="lain_pengangkutan[<?= $b; ?>]" size="25" value="<?= ucwords($angkut->nama_jentera[$b]);?>" />
         </div>

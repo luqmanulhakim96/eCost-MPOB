@@ -38,7 +38,7 @@ bkLib.onDomLoaded(function() {
       <td><input type="submit" name="save" id="save" value="Save" onclick="return confirm('Update this data?');" />
       <input type="reset" name="button2" id="button2" value="Reset" /></td>
     </tr>
-    
+
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
@@ -47,12 +47,12 @@ bkLib.onDomLoaded(function() {
   </table>
 </form>
 
-<?php 
+<?php
 if(isset($save)){
 
 $con = connect();
  $q="update global_variables set description ='$bi' where value ='$id_pengumuman'";
-$r= mysql_query($q,$con);
+$r= mysqli_query($con, $q);
 
 echo "<script>window.location.href='home.php?id=config&sub=people_set';</script>";
 }

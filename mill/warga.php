@@ -1,6 +1,6 @@
 <?php
 /*
- *      Filename: mill/warga.php 
+ *      Filename: mill/warga.php
  *      Copyright 2010 Malaysia Palm Oil Board <azman@mpob.gov.my>
  *		Last update: 15.10.2010 11:46:16 am
  */
@@ -19,8 +19,8 @@ $buruh = new user('buruh_mill','');
 $con = connect();
 
 $q = "select * from warganegara where jenis = '$type'";
-$r = mysql_query($q,$con);
-$totalrekod = mysql_num_rows($r);
+$r = mysqli_query($con, $q);
+$totalrekod = mysqli_num_rows($r);
 
 $var[0]=$field;
 $var[1]=$_SESSION['lesen'];
@@ -39,23 +39,23 @@ $warga = new user('warga','');
 function kira(obj,nilaiasal)
 {
 		if(number_only(obj)) {
-		
-		nilai_baru =0; 
-		
+
+		nilai_baru =0;
+
 		for(b=1; b<=<?= $totalrekod; ?>; b++ ){
 					jumlahb= document.getElementById("warga["+b+"]").value;
 					jumlahb = jumlahb.replace(/,/g,"");
-					
+
 					nilai_baru = Number(nilai_baru)+Number(jumlahb);
 		}
-	
-		
+
+
 		$(obj).format({format:"#,###", locale:"us"});
-		
-		
+
+
 		document.getElementById("total").value= nilai_baru;
-		$("#total").format({format:"#,###", locale:"us"}); 
-		
+		$("#total").format({format:"#,###", locale:"us"});
+
 		}
 }
 </script>
@@ -73,10 +73,10 @@ function kira(obj,nilaiasal)
         <?php //$table = str_replace("_"," ", $field); echo ucwords($table);?>
          </strong></u></h3></td>
     </tr>
-	
-	<?php 
+
+	<?php
 	$d=0;
-	while($row=mysql_fetch_array($r)){
+	while($row=mysqli_fetch_array($r)){
 	 ++$d;
 	?>
     <tr>
@@ -89,7 +89,7 @@ function kira(obj,nilaiasal)
     <tr>
       <td><strong><?=setstring ( 'mal', 'Jumlah', 'en', 'Total'); ?>
 </strong></td>
-      <td>:      
+      <td>:
         <label>
         <input name="total" type="text" class="field_total" id="total" value="<?php echo $warga->viewwargatotal($var); ?>"   onKeypress="keypress(event)"/>
         <input name="tahun" type="hidden" id="tahun" value="<?= $_SESSION['tahun'];?>" />

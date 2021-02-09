@@ -3,13 +3,13 @@ session_start();
 
 if ($_SESSION['type']<>"admin")
        header("location:../logout.php");
-	   
+
 
 $con = connect();
 		$query = "select * from pengumuman ";
-		$res = mysql_query($query,$con);
-		$row = mysql_fetch_array($res); 
-		$res_total = mysql_num_rows($res);
+		$res = mysqli_query($con, $query);
+		$row = mysqli_fetch_array($res);
+		$res_total = mysqli_num_rows($res);
 ?>
 <script type="text/javascript" src="../js/nice/nicEdit.js"></script>
 <script type="text/javascript">
@@ -51,7 +51,7 @@ bkLib.onDomLoaded(function() {
       <td><input type="submit" name="save" id="save" value="Save" onclick="return confirm('Update this data?');" />
       <input type="reset" name="button2" id="button2" value="Reset" /></td>
     </tr>
-    
+
     <tr>
       <td>&nbsp;</td>
       <td>&nbsp;</td>
@@ -60,12 +60,12 @@ bkLib.onDomLoaded(function() {
   </table>
 </form>
 
-<?php 
+<?php
 if(isset($save)){
 
 $con = connect();
  $q="update pengumuman set pengumuman ='$bm', pengumuman_bi ='$bi' where id_pengumuman ='$id_pengumuman'";
-$r= mysql_query($q,$con);
+$r= mysqli_query($con, $q);
 
 echo "<script>window.location.href='home.php?id=config&sub=announce_set';</script>";
 }

@@ -54,7 +54,7 @@ $tahun = $year - 1;
 
 /* cleansing data bulan 0 */
 $qadeletemonth = "delete from ekilang where bulan ='0'; ";
-$radeletemonth = mysql_query($qadeletemonth, $con);
+$radeletemonth = mysqli_query($con, $qadeletemonth);
 /* end of cleansing data bulan 0 */
 
 
@@ -65,9 +65,9 @@ $q = "SELECT ekilang.no_lesen lesen, syarikat_induk, nama_kilang, success access
 /*
   SELECT ekilang.no_lesen lesen, syarikat_induk, nama_kilang, success access, email FROM ekilang LEFT JOIN login_mill ON login_mill.lesen = ekilang.no_lesen LEFT JOIN alamat_ekilang ON ekilang.no_lesen = alamat_ekilang.lesen WHERE ekilang.tahun = 2015 AND ekilang.no_lesen <> '' AND ekilang.no_lesen not like '%123456%' GROUP BY no_lesen
  */
-//echo $q; 
-$r = mysql_query($q, $con);
-while ($row = mysql_fetch_array($r)) {
+//echo $q;
+$r = mysqli_query($con, $q);
+while ($row = mysqli_fetch_array($r)) {
     ?>
             <tr <?php if ($i % 2 == 0) { ?>class="alt"<?php } ?>>
                 <td><?php echo ++$i; ?>.</td>
@@ -77,9 +77,9 @@ while ($row = mysql_fetch_array($r)) {
     $con = connect();
     $tahunlepas = $_COOKIE['tahun_report'] - 1;
     $qall = "select * from ekilang where no_lesen ='" . $row['lesen'] . "' and tahun ='" . $tahunlepas . "' group by no_lesen";
-    $rall = mysql_query($qall, $con);
-    $totalall = mysql_num_rows($rall);
-    $rowall = mysql_fetch_array($rall);
+    $rall = mysqli_query($con, $qall);
+    $totalall = mysqli_num_rows($rall);
+    $rowall = mysqli_fetch_array($rall);
 
     if ($totalall == 0) {
         echo "<span style=\"color:red\"><b>TIADA</b><span>";

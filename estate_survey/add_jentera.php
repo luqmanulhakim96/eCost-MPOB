@@ -33,7 +33,7 @@ extract($_GET);?>
 {
 	$con = connect();
 	$q ="insert into jentera values('','$jentera','$nama')";
-	$r = mysql_query($q,$con);
+	$r = mysqli_query($con, $q);
 	echo "<script>window.close();top.opener.window.location.reload();</script>";
 }
 ?>

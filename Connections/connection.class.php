@@ -7,11 +7,12 @@ function connect($alternate=1, $custom=false)
         $pass = "";
         $db_n = "mpob";
 
-        $con=mysql_connect($host,$user,$pass);
-        mysql_select_db($db_n,$con);
+        $con = mysqli_connect($host,$user,$pass);
+        // mysqli_select_db($db_n,$con);
+        mysqli_select_db($con, $db_n);
+
 
         return $con;
 
-        }
-
+    }
 ?>

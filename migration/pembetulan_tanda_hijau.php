@@ -1,18 +1,18 @@
 <?php
 
 
-function connect($alternate=1, $custom=false) 
+function connect($alternate=1, $custom=false)
 	{
 		$host = "localhost";
 		$user = "root";
-		$pass = "mpob2010ecop";
-		$db_n = "ecost_db";
-		
-		$con=mysql_connect($host,$user,$pass);
-		mysql_select_db($db_n,$con);
-		
+		$pass = "";
+		$db_n = "mpob";
+
+		$con=mysqli_connect($host,$user,$pass);
+		mysqli_select_db($con, $db_n);
+
 		return $con;
-		
+
 		}
 
 
@@ -46,31 +46,31 @@ body,td,th {
     <th width="30%">Pengangkutan</th>
     </tr>
   </thead>
-  
+
   <tbody>
-  <?php 
+  <?php
   $q="select * from login_estate where firsttime ='1'";
-  $r=mysql_query($q,$con);
-  while($row=mysql_fetch_array($r)){
-  
+  $r=mysqli_query($con, $q);
+  while($row=mysqli_fetch_array($r)){
+
   	$con=connect();
-		
+
 		$qall="select count(lesen) as jumlah from kos_matang_penjagaan where lesen ='".$row['lesen']."' ";
-		$rall=mysql_query($qall,$con);
-		$totalall = mysql_num_rows($rall);
-		$rowall=mysql_fetch_array($rall);
-		
+		$rall=mysqli_query($con, $qall);
+		$totalall = mysqli_num_rows($rall);
+		$rowall=mysqli_fetch_array($rall);
+
 		$qall_a="select count(lesen) as jumlah from kos_matang_penuaian where lesen ='".$row['lesen']."' ";
-		$rall_a=mysql_query($qall_a,$con);
-		$totalall_a = mysql_num_rows($rall_a);
-		$rowall_a=mysql_fetch_array($rall_a);
-		
+		$rall_a=mysqli_query($con, $qall_a);
+		$totalall_a = mysqli_num_rows($rall_a);
+		$rowall_a=mysqli_fetch_array($rall_a);
+
 		$qall_b="select count(lesen) as jumlah from kos_matang_pengangkutan where lesen ='".$row['lesen']."' ";
-		$rall_b=mysql_query($qall_b,$con);
-		$totalall_b = mysql_num_rows($rall_b);
-		$rowall_b=mysql_fetch_array($rall_b);
-		
-		$semua =  $rowall['jumlah']+ $rowall_a['jumlah']+ $rowall_b['jumlah']; 
+		$rall_b=mysqli_query($con, $qall_b);
+		$totalall_b = mysqli_num_rows($rall_b);
+		$rowall_b=mysqli_fetch_array($rall_b);
+
+		$semua =  $rowall['jumlah']+ $rowall_a['jumlah']+ $rowall_b['jumlah'];
   		if($semua>0){
   ?>
   <tr <?php if($i%2==0){?>class="alt"<?php } ?>>
@@ -80,11 +80,11 @@ body,td,th {
     <td>
       <div align="center">
         <?php
-   
-	
-		echo $rowall['jumlah']; 
-	
-	?>   
+
+
+		echo $rowall['jumlah'];
+
+	?>
       </div></td>
     <td><div align="center"><?php echo $rowall_a['jumlah'];  ?></div></td>
     <td><div align="center"><?php  echo $rowall_b['jumlah'];  ?></div></td>

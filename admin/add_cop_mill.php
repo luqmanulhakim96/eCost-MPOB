@@ -6,9 +6,9 @@ if($year==""){$year='1';}
 $con = connect();
 $qselect = "select * from cop where
 NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT = '$tahun'";
-$rselect = mysql_query($qselect, $con);
-$rowselect = mysql_fetch_array($rselect);
-$totalselect = mysql_num_rows($rselect); ?><style type="text/css">
+$rselect = mysqli_query($con,$qselect);
+$rowselect = mysqli_fetch_array($rselect);
+$totalselect = mysqli_num_rows($rselect); ?><style type="text/css">
 <!--
 body,td,th {
 	font-family: Geneva, Arial, Helvetica, sans-serif;
@@ -34,7 +34,7 @@ body {
     </tr>
     <tr>
       <td width="27%"><strong>RM per tonne FFB </strong>(Mean)</td>
-      <td width="73%">: 
+      <td width="73%">:
       <input name="mean" type="text" id="mean" value="<?php echo $rowselect['VALUE_MEAN']; ?>" />
       <script language="javascript">
       	var f3 = new LiveValidation('mean');
@@ -48,7 +48,7 @@ body {
     </tr>
     <tr>
       <td><strong>RM per tonne CPO</strong>(Mean)</td>
-      <td>: 
+      <td>:
       <input name="median" type="text" id="median" value="<?php echo $rowselect['VALUE_MEDIAN']; ?>" />
       <script language="javascript">
       	var f1 = new LiveValidation('median');
@@ -74,8 +74,8 @@ $median = round($median,2);
 
   $qselect = "select * from cop where
 NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT='$tahun'";
-  $rselect = mysql_query($qselect, $con);
-  $totalselect = mysql_num_rows($rselect);
+  $rselect = mysqli_query($con, $qselect);
+  $totalselect = mysqli_num_rows($rselect);
 
   if ($totalselect == 0)
   {
@@ -92,14 +92,14 @@ NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRI
 VALUES (
 '$name', '$type', '$year', '$state', '$district', '$mean', '$median', '$tahun'
 );";
-    $r = mysql_query($q, $con);
+    $r = mysqli_query($con, $q);
   }
 
   if ($totalselect > 0)
   {
     $qupdate = "update cop set value_mean ='$mean', value_median='$median' where
 	NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT='$tahun'";
-    $rupdate = mysql_query($qupdate, $con);
+    $rupdate = mysqli_query($con, $qupdate);
   }
 
   echo "<script>window.location.href='add_cop_mill.php?name=$name&type=$type&year=$year&state=$state&district=$district&tahun=$tahun';</script>";

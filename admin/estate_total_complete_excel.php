@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../Connections/connection.class.php');
 include '../class/admin.estate.class.php';
 header("Content-Disposition: attachment; filename=Completed_Response_Survey_in_Malaysia.xls");
@@ -16,7 +16,7 @@ header("Content-Disposition: attachment; filename=Completed_Response_Survey_in_M
 	  </tr>
 	</thead>
 	<tbody>
-	<?php while($row=mysql_fetch_array($result_complete)) { ?>
+	<?php while($row=mysqli_fetch_array($result_complete)) { ?>
 		<tr valign="top">
 			<td><?php echo $list++; ?></td>
 			<td><a href="estate_details.php?id=<?php echo $row['lesen'];?>" class="boxcolor"><?php echo $row['nama'];?></a></td>
@@ -25,6 +25,6 @@ header("Content-Disposition: attachment; filename=Completed_Response_Survey_in_M
 			<td><a href="emailnonresponde.php?bil=<?php echo $row['id'];?>"  class="boxcolor"><?php echo $row['email'];?></a><div align="center"></div></td>
 			<td><?php echo $row['access'];?></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>

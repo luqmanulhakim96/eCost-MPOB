@@ -1,11 +1,11 @@
 <?php
-$Conn = connect();
-error_reporting(-1);
+$con = connect();
+// error_reporting(-1);
 
 $Year = $_COOKIE['tahun_report'];
 $Table = $Year == date('Y') ? "esub" : "esub_" . $Year;
 $aQuery = "SELECT nama, id FROM negeri ORDER BY id ASC";
-$aRows = mysql_query($aQuery, $Conn);
+$aRows = mysqli_query($con, $aQuery);
 $State = array();
 $Lang = "en";
 
@@ -31,7 +31,7 @@ function getImmatureArea($year, $nolesen, $type) {
 }
 
 function tanaman_tahun($tahuntanaman, $nolesen, $type) {
-    global $Conn;
+    global $con;
     $q1 = "";
     $q2 = "";
     $q3 = "";
@@ -61,14 +61,14 @@ function tanaman_tahun($tahuntanaman, $nolesen, $type) {
                 . "and b.Year = '$Year' ";
     }
 
-    $r1 = mysql_query($q1, $Conn);
-    $row1 = mysql_fetch_array($r1);
+    $r1 = mysqli_query($con, $q1);
+    $row1 = mysqli_fetch_array($r1);
 
-    $r2 = mysql_query($q2, $Conn);
-    $row2 = mysql_fetch_array($r2);
+    $r2 = mysqli_query($con, $q2);
+    $row2 = mysqli_fetch_array($r2);
 
-    $r3 = mysql_query($q3, $Conn);
-    $row3 = mysql_fetch_array($r3);
+    $r3 = mysqli_query($con, $q3);
+    $row3 = mysqli_fetch_array($r3);
     /** echo $q1 . ";<br>";
       echo $q2 . ";<br>";
       echo $q3 . ";<br>"; */
@@ -85,7 +85,7 @@ function tanaman_tahun($tahuntanaman, $nolesen, $type) {
 
 function getMatureArea($year, $nolesen, $type) {
     $jumlahMatang = 0;
-    global $Conn;
+    global $con;
 
     if (date('Y') == $year) {
         $table = "esub";
@@ -107,8 +107,8 @@ function getMatureArea($year, $nolesen, $type) {
                 . "and b.Year = '$year' ";
     }
     /** echo $q . "<br>"; */
-    $r = mysql_query($q, $Conn);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
     if ($row) {
         $jumlahMatang = $row['Jumlah'];
     }
@@ -118,7 +118,7 @@ function getMatureArea($year, $nolesen, $type) {
 /* end of kiraan mature area estate */
 
 function luas_data($Table, $Data, $iYear, $Year, $Type, $State) {
-    global $Conn;
+    global $con;
     if (strlen($Year) == 1) {
         $Table = $Table . "0" . substr($Year, -2);
     } else {
@@ -128,13 +128,13 @@ function luas_data($Table, $Data, $iYear, $Year, $Type, $State) {
             "FROM $Table a " .
             "JOIN tblasmintegrationestate b ON b.License = a.lesen " .
             "WHERE negeri = '$State' AND b.`Year` = '$iYear' AND b.Integration IN ($Type)" . (!empty($License) ? " AND lesen = '$License'" : "");
-    $aRows = mysql_query($aQuery, $Conn);
-    $aRow = mysql_fetch_array($aRows);
+    $aRows = mysqli_query($con, $aQuery);
+    $aRow = mysqli_fetch_array($aRows);
     return $aRow[$Data];
 }
 
 function Immature($Type, $State, $License = '') {
-    global $Conn;
+    global $con;
     global $Year;
 
     $pb1 = luas_data("tanam_baru", "tanaman_baru", $Year, $Year - 1, $Type, $State, $License);
@@ -145,7 +145,7 @@ function Immature($Type, $State, $License = '') {
 }
 
 function Mature($Type, $State, $License = '') {
-    global $Conn;
+    global $con;
     global $Year;
     global $Table;
 
@@ -153,9 +153,9 @@ function Mature($Type, $State, $License = '') {
             "FROM $Table a " .
             "JOIN tblasmintegrationestate b ON b.License = a.no_lesen_baru " .
             "WHERE a.Negeri_Premis = '$State' AND b.`Year` = '$Year' AND b.Integration IN ($Type)" . (!empty($License) ? " AND a.no_lesen_baru = '$License'" : "");
-    $aRows = mysql_query($aQuery, $Conn);
+    $aRows = mysqli_query($con, $aQuery);
     $Luastuai = 0;
-    if ($aRow = mysql_fetch_object($aRows)) {
+    if ($aRow = mysqli_fetch_object($aRows)) {
         $Luastuai = $aRow->Keluasan_Yang_Dituai == "" ? 0 : $aRow->Keluasan_Yang_Dituai;
     }
 
@@ -171,23 +171,23 @@ function Mature($Type, $State, $License = '') {
 }
 
 function getTotalLiveStock($item, $category, $Year, $nolesen) {
-    global $Conn;
+    global $con;
     $total = 0;
     if($item!='IS NULL'){
-    $bQuery = "SELECT c.Total as total " 
-            ." FROM login_estate a " 
-            ." inner JOIN tblasmintegrationestate b ON b.License = a.lesen " 
-            ." inner JOIN tblasmintegrationdetail c ON a.lesen = c.License " 
+    $bQuery = "SELECT c.Total as total "
+            ." FROM login_estate a "
+            ." inner JOIN tblasmintegrationestate b ON b.License = a.lesen "
+            ." inner JOIN tblasmintegrationdetail c ON a.lesen = c.License "
             ." WHERE b.`Year` = '$Year' "
             . " AND c.License = '$nolesen' "
             . "AND c.Item = '$item'"
             . "AND c.Category = '$category' ";
     }
     else{
-    $bQuery = "SELECT c.Total as total " 
-            ." FROM login_estate a " 
-            ." inner JOIN tblasmintegrationestate b ON b.License = a.lesen " 
-            ." inner JOIN tblasmintegrationdetail c ON a.lesen = c.License " 
+    $bQuery = "SELECT c.Total as total "
+            ." FROM login_estate a "
+            ." inner JOIN tblasmintegrationestate b ON b.License = a.lesen "
+            ." inner JOIN tblasmintegrationdetail c ON a.lesen = c.License "
             ." WHERE b.`Year` = '$Year' "
             . " AND c.License = '$nolesen' "
             . "AND c.Item is null "
@@ -195,8 +195,8 @@ function getTotalLiveStock($item, $category, $Year, $nolesen) {
     }
 
     /**echo $bQuery.'<br>;';*/
-    $bRows = mysql_query($bQuery, $Conn);
-    if ($row = mysql_fetch_array($bRows)) {
+    $bRows = mysqli_query($con, $bQuery);
+    if ($row = mysqli_fetch_array($bRows)) {
         $total = $row['total'];
     }
     return $total;
@@ -204,7 +204,7 @@ function getTotalLiveStock($item, $category, $Year, $nolesen) {
 
 /* ------------ by hafez ------------ */
 
-while ($aRow = mysql_fetch_object($aRows)) {
+while ($aRow = mysqli_fetch_object($aRows)) {
     $State[$aRow->id] = array('Name' => $aRow->nama,
         'isState' => 1,
         'CropsNumber' => 0,
@@ -307,14 +307,14 @@ $State['ZZMY'] = array('Name' => 'Malaysia',
     'EstateCrops' => array(),
     'EstateLivestock' => array());
 $aQuery = "SELECT nama, id FROM negeri ORDER BY id ASC";
-$aRows = mysql_query($aQuery, $Conn);
+$aRows = mysqli_query($con, $aQuery);
 $Key = array("NoIntegration", "Crops", "Livestock", "CropsLivestock");
 $CropsKey = array("Watermelon", "Pineapple", "SweetPotatoes", "Banana", "Others");
 $LivestockKey = array("Cattle", "Buffalo", "Goat", "Sheep", "Others");
 $ImmatureZPMY = 0;
 $ImmatureZSMY = 0;
 $ImmatureZZMY = 0;
-while ($aRow = mysql_fetch_object($aRows)) {
+while ($aRow = mysqli_fetch_object($aRows)) {
     for ($i = 1; $i <= 4; $i++) {
         $bQuery = "SELECT COUNT(DISTINCT b.License) AS cnt " .
                 "FROM login_estate a " .
@@ -322,9 +322,9 @@ while ($aRow = mysql_fetch_object($aRows)) {
                 "JOIN $Table c ON a.lesen = c.No_Lesen_Baru " .
                 "WHERE b.`Year` = '$Year' AND b.Integration = $i " .
                 "AND c.No_Lesen_Baru NOT LIKE '%123456%' AND c.negeri_premis = '$aRow->nama'";
-        $bRows = mysql_query($bQuery, $Conn);
+        $bRows = mysqli_query($con, $bQuery);
         /** echo $bQuery."<br>"; */
-        if ($bRow = mysql_fetch_object($bRows)) {
+        if ($bRow = mysqli_fetch_object($bRows)) {
             $State[$aRow->id][$Key[$i - 1]] += $bRow->cnt;
             $State['ZZMY'][$Key[$i - 1]] += $bRow->cnt;
             if ($aRow->id == "SBH" || $aRow->id == "SWK") {
@@ -342,8 +342,8 @@ while ($aRow = mysql_fetch_object($aRows)) {
             "JOIN $Table c ON a.lesen = c.No_Lesen_Baru " .
             "WHERE b.`Year` = '$Year' AND b.Integration IN (2, 4) " .
             "AND c.No_Lesen_Baru NOT LIKE '%123456%' AND c.negeri_premis = '$aRow->nama'";
-    $bRows = mysql_query($bQuery, $Conn);
-    if ($bRow = mysql_fetch_object($bRows)) {
+    $bRows = mysqli_query($con, $bQuery);
+    if ($bRow = mysqli_fetch_object($bRows)) {
         $State[$aRow->id]['CropsNumber'] += $bRow->cnt;
         $State['ZZMY']['CropsNumber'] += $bRow->cnt;
         if ($aRow->id == "SBH" || $aRow->id == "SWK") {
@@ -359,8 +359,8 @@ while ($aRow = mysql_fetch_object($aRows)) {
             "JOIN $Table c ON a.lesen = c.No_Lesen_Baru " .
             "WHERE b.`Year` = '$Year' AND b.Integration IN (3, 4) " .
             "AND c.No_Lesen_Baru NOT LIKE '%123456%' AND c.negeri_premis = '$aRow->nama'";
-    $bRows = mysql_query($bQuery, $Conn);
-    if ($bRow = mysql_fetch_object($bRows)) {
+    $bRows = mysqli_query($con, $bQuery);
+    if ($bRow = mysqli_fetch_object($bRows)) {
         $State[$aRow->id]['LivestockNumber'] += $bRow->cnt;
         $State['ZZMY']['LivestockNumber'] += $bRow->cnt;
         if ($aRow->id == "SBH" || $aRow->id == "SWK") {
@@ -417,8 +417,8 @@ while ($aRow = mysql_fetch_object($aRows)) {
                 "		 AND " . ($i < 5 ? "c.Item = $i" : "c.Item IS NULL") . " AND c.Category = 1 AND c.Total IS NOT NULL " .
                 "		 AND d.No_Lesen_Baru NOT LIKE '%123456%' AND d.negeri_premis = '$aRow->nama') AS a";
         /**echo $bQuery.";<br>";*/
-        $bRows = mysql_query($bQuery, $Conn);
-        if ($bRow = mysql_fetch_object($bRows)) {
+        $bRows = mysqli_query($con, $bQuery);
+        if ($bRow = mysqli_fetch_object($bRows)) {
             $State[$aRow->id]['CropsData'][$CropsKey[$i - 1]] += $bRow->Total;
             $State['ZZMY']['CropsData'][$CropsKey[$i - 1]] += $bRow->Total;
             if ($aRow->id == "SBH" || $aRow->id == "SWK") {
@@ -440,8 +440,8 @@ while ($aRow = mysql_fetch_object($aRows)) {
                 "		 AND d.No_Lesen_Baru NOT LIKE '%123456%' AND d.negeri_premis = '$aRow->nama') AS a";
 
         /** echo $bQuery.";<br>";*/
-        $bRows = mysql_query($bQuery, $Conn);
-        if ($bRow = mysql_fetch_object($bRows)) {
+        $bRows = mysqli_query($con, $bQuery);
+        if ($bRow = mysqli_fetch_object($bRows)) {
             /**echo $aRow->id.";<br>";*/
             $State[$aRow->id]['LivestockData'][$LivestockKey[$i - 1]] += $bRow->Total;
             $State['ZZMY']['LivestockData'][$LivestockKey[$i - 1]] += $bRow->Total;
@@ -459,8 +459,8 @@ while ($aRow = mysql_fetch_object($aRows)) {
             "		 JOIN $Table c ON a.lesen = c.No_Lesen_Baru " .
             "		 WHERE b.`Year` = '$Year' AND b.AreaEstimation IS NOT NULL " .
             "		 AND c.No_Lesen_Baru NOT LIKE '%123456%' AND c.negeri_premis = '$aRow->nama') AS a";
-    $bRows = mysql_query($bQuery, $Conn);
-    if ($bRow = mysql_fetch_object($bRows)) {
+    $bRows = mysqli_query($con, $bQuery);
+    if ($bRow = mysqli_fetch_object($bRows)) {
         $State[$aRow->id]['LivestockData']['EstimatedArea'] += $bRow->AreaEstimation;
         $State['ZZMY']['LivestockData']['EstimatedArea'] += $bRow->AreaEstimation;
         if ($aRow->id == "SBH" || $aRow->id == "SWK") {
@@ -475,11 +475,11 @@ while ($aRow = mysql_fetch_object($aRows)) {
             "JOIN $Table c ON a.lesen = c.No_Lesen_Baru " .
             "WHERE b.`Year` = '$Year' AND b.Integration IN (2, 4) " .
             "AND c.No_Lesen_Baru NOT LIKE '%123456%' AND c.negeri_premis = '$aRow->nama'";
-    $cRows = mysql_query($cQuery, $Conn);
+    $cRows = mysqli_query($con, $cQuery);
     $index = 0;
     $indexp = 0;
     $indexs = 0;
-    while ($cRow = mysql_fetch_object($cRows)) {
+    while ($cRow = mysqli_fetch_object($cRows)) {
         array_push($State[$aRow->id]['EstateCrops'], array('Name' => $cRow->Nama_Estet,
             'License' => $cRow->No_Lesen_Baru,
             'CropsData' => array('Immature' => 0,
@@ -549,8 +549,8 @@ while ($aRow = mysql_fetch_object($aRows)) {
                     "		 WHERE b.`Year` = '$Year' " .
                     "		 AND " . ($i < 5 ? "c.Item = $i" : "c.Item IS NULL") . " AND c.Category = 1 AND c.Total IS NOT NULL " .
                     "		 AND d.No_Lesen_Baru NOT LIKE '%123456%' AND d.negeri_premis = '$aRow->nama' AND d.No_Lesen_Baru = '$cRow->No_Lesen_Baru') AS a";
-            $bRows = mysql_query($bQuery, $Conn);
-            if ($bRow = mysql_fetch_object($bRows)) {
+            $bRows = mysqli_query($con, $bQuery);
+            if ($bRow = mysqli_fetch_object($bRows)) {
                 $State[$aRow->id]['EstateCrops'][$index]['CropsData'][$CropsKey[$i - 1]] += $bRow->cnt;
                 $State['ZZMY']['EstateCrops'][$index]['CropsData'][$CropsKey[$i - 1]] += $bRow->cnt;
                 if ($aRow->id == "SBH" || $aRow->id == "SWK") {
@@ -575,11 +575,11 @@ while ($aRow = mysql_fetch_object($aRows)) {
             "AND c.No_Lesen_Baru NOT LIKE '%123456%' AND c.negeri_premis = '$aRow->nama'";
     /**echo $bQuery.'<br>;';*/
 
-    $cRows = mysql_query($cQuery, $Conn);
+    $cRows = mysqli_query($con, $cQuery);
     $index = 0;
     $indexp = 0;
     $indexs = 0;
-    while ($cRow = mysql_fetch_object($cRows)) {
+    while ($cRow = mysqli_fetch_object($cRows)) {
         array_push($State[$aRow->id]['EstateLivestock'], array('Name' => $cRow->Nama_Estet,
             'License' => $cRow->No_Lesen_Baru,
             'LivestockData' => array('Immature' => 0,
@@ -656,10 +656,10 @@ while ($aRow = mysql_fetch_object($aRows)) {
                     . "AND d.No_Lesen_Baru = '$cRow->No_Lesen_Baru') AS a";
              /**if ($cRow->No_Lesen_Baru == "515246-002000") {
               echo $bQuery . ';<br>';
-              }*/ 
+              }*/
 
-            $bRows = mysql_query($bQuery, $Conn);
-            if ($bRow = mysql_fetch_object($bRows)) {
+            $bRows = mysqli_query($con, $bQuery);
+            if ($bRow = mysqli_fetch_object($bRows)) {
 
                 /** if ($cRow->No_Lesen_Baru == "515246-002000") { echo $LivestockKey[$i - 1] . "-" . $bRow->cnt . '<br>'; } */
                 $State[$aRow->id]['EstateLivestock'][$index]['LivestockData'][$LivestockKey[$i - 1]] += $bRow->cnt;
@@ -680,8 +680,8 @@ while ($aRow = mysql_fetch_object($aRows)) {
                 . "AND c.No_Lesen_Baru = '$cRow->No_Lesen_Baru'";
 
         /**echo $bQuery.'<br>;';*/
-        $bRows = mysql_query($bQuery, $Conn);
-        if ($bRow = mysql_fetch_object($bRows)) {
+        $bRows = mysqli_query($con, $bQuery);
+        if ($bRow = mysqli_fetch_object($bRows)) {
             $State[$aRow->id]['EstateLivestock'][$index]['LivestockData']['EstimatedArea'] += $bRow->AreaEstimation;
             $State['ZZMY']['EstateLivestock'][$index]['LivestockData']['EstimatedArea'] += $bRow->AreaEstimation;
             if ($aRow->id == "SBH" || $aRow->id == "SWK") {
@@ -716,7 +716,7 @@ while ($aRow = mysql_fetch_object($aRows)) {
     <tr><td style="padding:5px 10px 5px 10px">[ 2 ]&nbsp;&nbsp;<span id="rpt2" class="rptclick" style="cursor:pointer"><a href="#"><?php echo $Lang == "mal" ? "Bilangan dan keluasan estet terlibat dengan integrasi tanaman *" : "Number and area of estates carried out crops integration *"; ?></a></span></td></tr>
     <tr><td style="padding:5px 10px 5px 10px">[ 3 ]&nbsp;&nbsp;<span id="rpt3" class="rptclick" style="cursor:pointer"><a href="#"><?php echo $Lang == "mal" ? "Bilangan dan keluasan estet terlibat dengan integrasi ternakan *" : "Number and area of estates carried out livestock integration *"; ?></a></span>
             <br>  <br> <div class="info">
-                <p><strong>Info!</strong> 
+                <p><strong>Info!</strong>
                     <br>
                     1. <?php echo $Lang == "mal" ? "*Pengiraan termasuk kedua-dua integrasi jika ada " : "*Calculations include both integrations if any "; ?>
                     <br>
@@ -800,9 +800,9 @@ while ($aRow = mysql_fetch_object($aRows)) {
                         </tr>
 <?php } ?>
                 </table><br>
-                <div align="center">  
-                    <button name="create_excel<?php echo $key; ?>" id="create_excel<?php echo $key; ?>" class="btn btn-success" onclick="exportExcel('containerRpt1', '<?php echo $Lang == "mal" ? "Bilangan estet terlibat dengan integrasi" : "Number of estate carried out integration"; ?>')">Create Excel File</button>  
-                </div> 
+                <div align="center">
+                    <button name="create_excel<?php echo $key; ?>" id="create_excel<?php echo $key; ?>" class="btn btn-success" onclick="exportExcel('containerRpt1', '<?php echo $Lang == "mal" ? "Bilangan estet terlibat dengan integrasi" : "Number of estate carried out integration"; ?>')">Create Excel File</button>
+                </div>
             </div>
             <div id="containerRpt2" style="float:left;width:100%;display:none">
                 <div style="float:left;width:100%;font-weight:bold"><?php echo $Lang == "mal" ? "Bilangan dan keluasan estet terlibat dengan integrasi tanaman" : "Number and area of estates carried out crops integration"; ?></div>
@@ -845,7 +845,7 @@ while ($aRow = mysql_fetch_object($aRows)) {
                             <td style="padding:2px"><?php
                                 $totalAreaState = $immatureAreaState + $matureAreaState;
                                 echo number_format($totalAreaState, 2);
-                                ?></td> 
+                                ?></td>
                             <td style="padding:2px"><?php echo $val['CropsData']['Watermelon']; ?></td>
                             <td style="padding:2px"><?php echo $val['CropsData']['Pineapple']; ?></td>
                             <td style="padding:2px"><?php echo $val['CropsData']['SweetPotatoes']; ?></td>
@@ -886,9 +886,9 @@ while ($aRow = mysql_fetch_object($aRows)) {
 <?php } ?>
                 </table>
                 <br>
-                <div align="center">  
-                    <button name="create_excel<?php echo $key; ?>" id="create_excel<?php echo $key; ?>" class="btn btn-success" onclick="exportExcel('containerRpt2', '<?php echo $Lang == "mal" ? "Bilangan dan keluasan estet terlibat dengan integrasi tanaman" : "Number and area of estates carried out crops integration"; ?>')">Create Excel File</button>  
-                </div> 
+                <div align="center">
+                    <button name="create_excel<?php echo $key; ?>" id="create_excel<?php echo $key; ?>" class="btn btn-success" onclick="exportExcel('containerRpt2', '<?php echo $Lang == "mal" ? "Bilangan dan keluasan estet terlibat dengan integrasi tanaman" : "Number and area of estates carried out crops integration"; ?>')">Create Excel File</button>
+                </div>
             </div>
             <div id="containerRpt3" style="float:left;width:100%;display:none">
                 <div style="float:left;width:100%;font-weight:bold"><?php echo $Lang == "mal" ? "Bilangan dan keluasan estet terlibat dengan integrasi ternakan" : "Number and area of estates carried out livestock integration"; ?></div>
@@ -976,8 +976,8 @@ while ($aRow = mysql_fetch_object($aRows)) {
 <?php } ?>
                 </table>
                 <div align="center">  <br>
-                    <button name="create_excel" id="create_excelLiveStock" class="btn btn-success" onclick="exportExcel('containerRpt3LiveStock', '<?php echo $Lang == "mal" ? "Bilangan dan keluasan estet terlibat dengan integrasi ternakan" : "Number and area of estates carried out livestock integration"; ?>')">Create Excel File</button>  
-                </div> 
+                    <button name="create_excel" id="create_excelLiveStock" class="btn btn-success" onclick="exportExcel('containerRpt3LiveStock', '<?php echo $Lang == "mal" ? "Bilangan dan keluasan estet terlibat dengan integrasi ternakan" : "Number and area of estates carried out livestock integration"; ?>')">Create Excel File</button>
+                </div>
             </div>
             <div id="containerRpt4" style="float:left;width:100%;display:none">
 <?php foreach ($State as $key => $val) { ?>
@@ -1053,9 +1053,9 @@ while ($aRow = mysql_fetch_object($aRows)) {
                             $sNo++;
                         }
                         ?><br>
-                        <div align="center">  
-                            <button name="create_excel<?php echo $key; ?>" id="create_excel<?php echo $key; ?>" class="btn btn-success" onclick="exportExcel('containerRpt4<?php echo $key; ?>', '<?php echo "List of estates carried out crops integration - " . ucwords(strtolower($val['Name'])); ?>')">Create Excel File</button>  
-                        </div>                             
+                        <div align="center">
+                            <button name="create_excel<?php echo $key; ?>" id="create_excel<?php echo $key; ?>" class="btn btn-success" onclick="exportExcel('containerRpt4<?php echo $key; ?>', '<?php echo "List of estates carried out crops integration - " . ucwords(strtolower($val['Name'])); ?>')">Create Excel File</button>
+                        </div>
                         <div style="float:left;width:100%;padding-top:10px;text-align:center"><input type="button" name="btnBack" id="btnBack" class="btnBackCrops" value="<?php echo $Lang == "mal" ? "Kembali" : "Back"; ?>" /></div>
                     </div>
                 <?php } ?>
@@ -1113,18 +1113,18 @@ while ($aRow = mysql_fetch_object($aRows)) {
                                         $cattle = getTotalLiveStock(5, 2, $Year, $estate['License']);
                                         echo number_format($cattle);
                                         ?></td>
-                                    <td style="padding:2px"><?php 
+                                    <td style="padding:2px"><?php
                                     $buffalo = getTotalLiveStock(6, 2, $Year, $estate['License']);
                                         echo number_format($buffalo);
                                     ?></td>
-                                    <td style="padding:2px"><?php 
+                                    <td style="padding:2px"><?php
                                      $goat = getTotalLiveStock(7, 2, $Year, $estate['License']);
                                         echo number_format($goat); ?></td>
                                     <td style="padding:2px"><?php
                                      $sheep = getTotalLiveStock(8, 2, $Year, $estate['License']);
                                         echo number_format($sheep); ?></td>
-                                    <td style="padding:2px"><?php 
-                                    
+                                    <td style="padding:2px"><?php
+
                                       $others = getTotalLiveStock('IS NULL', 2, $Year, $estate['License']);
                                         echo number_format($others);
                                    ?></td>
@@ -1155,10 +1155,10 @@ while ($aRow = mysql_fetch_object($aRows)) {
                             <?php
                             $sNo++;
                         }
-                        ?>  
+                        ?>
                         <div align="center">  <br>
-                            <button name="create_excel" id="create_excel<?php echo $key; ?>" class="btn btn-success" onclick="exportExcel('containerRpt5<?php echo $key; ?>', '<?php echo "List of estates carried out livestock integration - " . ucwords(strtolower($val['Name'])); ?>')">Create Excel File</button>  
-                        </div> 
+                            <button name="create_excel" id="create_excel<?php echo $key; ?>" class="btn btn-success" onclick="exportExcel('containerRpt5<?php echo $key; ?>', '<?php echo "List of estates carried out livestock integration - " . ucwords(strtolower($val['Name'])); ?>')">Create Excel File</button>
+                        </div>
                         <div style="float:left;width:100%;padding-top:10px;text-align:center"><input type="button" name="btnBack" id="btnBack" class="btnBackLivestock" value="<?php echo $Lang == "mal" ? "Kembali" : "Back"; ?>" /></div>
                     </div>
 <?php } ?>
@@ -1234,18 +1234,15 @@ while ($aRow = mysql_fetch_object($aRows)) {
 
 <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.js"></script>
     <script type="text/javascript" src="../libs/js-xlsx/xlsx.core.min.js"></script>
-    <script type="text/javascript" src="../libs/FileSaver/FileSaver.min.js"></script> 
+    <script type="text/javascript" src="../libs/FileSaver/FileSaver.min.js"></script>
     <script type="text/javascript" src="../libs/tableExport.js"></script>
-    <script type="text/javascript">   
-        
-      
+    <script type="text/javascript">
+
+
         function exportExcel(container, title){
-          
+
            $('#table' + container).tableExport({fileName: title,
                         type: 'xlsx'
                        });
         }
     </script>
-
-
-

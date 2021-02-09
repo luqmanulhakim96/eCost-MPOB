@@ -64,8 +64,8 @@ body,td,th {
     </tr>
   </thead>
   <tbody>
-	<?php 	
-		while($row=mysql_fetch_array($result_incomplete)) { ?>
+	<?php
+		while($row=mysqli_fetch_array($result_incomplete)) { ?>
 		<tr valign="top" <?php if($list%2==0){?>class="alt"<?php } ?>>
 			<td><?php echo $list++; ?></td>
 			<td><?php echo $row['nama_estet'];?></td>
@@ -78,7 +78,7 @@ body,td,th {
             <td><?php echo $row['negeri'];?></td>
             <td><?php echo $row['no_telepon'];?></td>
             <td><?php echo $row['no_fax'];?></td>
-		  <div align="center"></div></td>		    
+		  <div align="center"></div></td>
 		</tr>
 	<?php }?>
   </tbody>

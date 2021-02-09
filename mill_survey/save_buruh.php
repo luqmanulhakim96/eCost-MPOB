@@ -1,7 +1,7 @@
 <?php
 /*
  *      Filename: mill/save_buruh.php
- *      Copyright 2010 Malaysia Palm Oil Board <azman@mpob.gov.my>	
+ *      Copyright 2010 Malaysia Palm Oil Board <azman@mpob.gov.my>
  *		Last update: 15.10.2010 11:46:16 am
  */
 session_start();
@@ -16,14 +16,14 @@ $con = connect();
 	$mb_4 = str_replace(",",'',$mb_4);
 	$mb_5 = str_replace(",",'',$mb_5);
 	$total_mb = str_replace(",",'',$total_mb);
-	
+
 	$mb_1b = str_replace(",",'',$mb_1b);
 	$mb_2b = str_replace(",",'',$mb_2b);
 	$mb_3b = str_replace(",",'',$mb_3b);
 	$mb_4b = str_replace(",",'',$mb_4b);
 	$mb_5b = str_replace(",",'',$mb_5b);
 	$total_mb_b = str_replace(",",'',$total_mb_b);
-	
+
 	$mb_1c = str_replace(",",'',$mb_1c);
 	$mb_2c = str_replace(",",'',$mb_2c);
 	$mb_3c = str_replace(",",'',$mb_3c);
@@ -55,7 +55,7 @@ total_mb_c = '$total_mb_c' ,
 status='$status'
 WHERE lesen = '$lesen' AND tahun =$tahun
 ";
-$r = mysql_query($q,$con);
+$r = mysqli_query($con, $q);
 
 if ($status==2){
 	$id = "buruh_mill";

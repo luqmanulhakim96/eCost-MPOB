@@ -12,14 +12,14 @@
 }
 -->
 </style>
-<?php 
+<?php
 	$con = connect();
 	$q	= "SELECT ekilang.syarikat_induk, ekilang.no_lesen lesen, ekilang.nama_kilang nama, ekilang.negeri negeri, alamat_ekilang.alamatsurat1 alamat1,  alamat_ekilang.alamatsurat2 alamat2, alamat_ekilang.alamatsurat3 alamat3, alamat_ekilang.notel notel, alamat_ekilang.nofax nofax, alamat_ekilang.email, alamat_ekilang.pegawai FROM ekilang";
 	$q .= " LEFT JOIN alamat_ekilang ON ekilang.no_lesen = alamat_ekilang.lesen";
 	$q .= " WHERE ekilang.no_lesen = '$lesen'";
 	$q .= " LIMIT 1";
-	$r = mysql_query($q,$con);
-	$row=mysql_fetch_array($r);
+	$r = mysqli_query($con, $q);
+	$row=mysqli_fetch_array($r);
 ?>
 <form id="form1" name="form1" method="post" action="email.php?bil=<?= $row['email'];?>">
   <table width="100%" border="0" align="center" cellpadding="5" cellspacing="2" style="border:1px #333333 solid">

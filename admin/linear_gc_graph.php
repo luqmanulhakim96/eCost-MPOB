@@ -29,28 +29,28 @@ if ($type == "tan")
 if ($hold == "yes")
 {
   $q = "delete from $table where km_nama ='$field'
-			and pb_thisyear = '" . $_COOKIE['tahun_report'] . "' 
+			and pb_thisyear = '" . $_COOKIE['tahun_report'] . "'
 			   ";
-  $r = mysql_query($q, $con);
+  $r = mysqli_query($con, $q);
 }
 
 
-$q = "select $medan as nilai ,km_nama, negeri, daerah, lesen   from $table where km_nama not like '%Total%' 
+$q = "select $medan as nilai ,km_nama, negeri, daerah, lesen   from $table where km_nama not like '%Total%'
 and km_nama ='$field' and pb_thisyear = '$tahun' and $medan > 0 order by $medan ";
 if ($field == "Cost Per Hectare") {
-	$q = "select a.* from (select SUM($medan) as nilai , 'Cost Per Hectare' AS km_nama, negeri, daerah, lesen   from $table where km_nama not like '%Total%' 
+	$q = "select a.* from (select SUM($medan) as nilai , 'Cost Per Hectare' AS km_nama, negeri, daerah, lesen   from $table where km_nama not like '%Total%'
 and pb_thisyear = '$tahun' and $medan > 0 GROUP BY negeri, daerah, lesen) AS a order by a.nilai";
 }
-$r = mysql_query($q, $con);
-$total = mysql_num_rows($r);
+$r = mysqli_query($con, $q);
+$total = mysqli_num_rows($r);
 
 if ($total > 0)
 {
   $qbuang = "delete from $graf where sessionid='$field' and tahun = '$tahun'";
-  $rbuang = mysql_query($qbuang, $con);
+  $rbuang = mysqli_query($con, $qbuang);
 
   $i = 0;
-  while ($row = mysql_fetch_array($r))
+  while ($row = mysqli_fetch_array($r))
   {
     /*	$datax[$i] = $i;
     $datay[$i] = $a + $b*$row['nilai'];
@@ -60,18 +60,18 @@ if ($total > 0)
       $row['nilai'] . "', '" . $row['km_nama'] . "','" . $_COOKIE['tahun_report'] .
       "',0,'" . $row['negeri'] . "','" . $row['daerah'] . "' ,  '" . $row['lesen'] .
       "' )";
-    $radd = mysql_query($qadd, $con);
+    $radd = mysqli_query($con, $qadd);
 
     $i++;
   }
 
 }
 
-$qsum = "SELECT sum(x) as sumx, avg(x) as avgx, sum(y) as sumy , avg(y) as avgy 
+$qsum = "SELECT sum(x) as sumx, avg(x) as avgx, sum(y) as sumy , avg(y) as avgy
 , sum(pow(x,2)) as sumx2, count(*) as n, SUM(x * y) as sumxy
 FROM $graf where sessionid='$field' and tahun = '$tahun' and status ='0'";
-$rsum = mysql_query($qsum, $con);
-$rowsum = mysql_fetch_array($rsum);
+$rsum = mysqli_query($con, $qsum);
+$rowsum = mysqli_fetch_array($rsum);
 
 $a1 = ($rowsum['n'] * $rowsum['sumxy']) - ($rowsum['sumx'] * $rowsum['sumy']);
 $a2 = 0;
@@ -97,15 +97,15 @@ $maxy = $m * $total - $c;
 
 
 $qplot = "select * from $graf where sessionid='$field' and tahun = '$tahun' and status='0'  order by x ";
-$rplot = mysql_query($qplot, $con);
-$totalplot = mysql_num_rows($rplot);
+$rplot = mysqli_query($con, $qplot);
+$totalplot = mysqli_num_rows($rplot);
 $p = 0;
-while ($rowplot = mysql_fetch_array($rplot))
+while ($rowplot = mysqli_fetch_array($rplot))
 {
   $xdatax[$p] = $p;
   //$datay[$p] = $c + $m*$rowplot['y'];
   $xdatay[$p] = $rowplot['y'];
-  
+
   $datax[$p] = $p;
   //$datay[$p] = $c + $m*$rowplot['y'];
   $datay[$p] = $rowplot['y'];
@@ -148,17 +148,17 @@ $p = 0;
 
 if($trim=='yes'){
 $qplot_over = "update $graf set status='1' where sessionid='$field' and tahun = '$tahun' and y>=$maxy and status='0' order by x ";
-$rplot_over = mysql_query($qplot_over, $con);
+$rplot_over = mysqli_query($con, $qplot_over);
 }
 /*$q="update  $graf set status='1' where bkm_nama not like '%Total%'
 and bkm_nama ='$field'
 and pb_type = '$type'
-and pb_tahun = '$tahun' and pb_thisyear = '".$_COOKIE['tahun_report']."' 
+and pb_tahun = '$tahun' and pb_thisyear = '".$_COOKIE['tahun_report']."'
 and nilai < $maxy
 ";
 $r= mysql_query($q,$con);
 */
-while ($rowplot = mysql_fetch_array($rplot))
+while ($rowplot = mysqli_fetch_array($rplot))
 {
   //$datax[$p] = $p;
   ///$datay[$p] = $c + $m*$rowplot['y'];
@@ -168,7 +168,7 @@ while ($rowplot = mysql_fetch_array($rplot))
     "' and tahun = '" . $rowplot['tahun'] . "' and x = '" . $rowplot['x'] .
     "' and y ='" . $rowplot['y'] . "'
 	and status = '" . $rowplot['status'] . "'";
-  $rup = mysql_query($qup, $con);
+  $rup = mysqli_query($con, $qup);
 
 
   $p++;

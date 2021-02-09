@@ -2,13 +2,13 @@
 function semak ($name,$year, $type){
 	$con=connect();
 	$q="select * from outliers where name = '$name' and type='$type' and year='$year'";
-	$r=mysql_query($q,$con);
-	$total = mysql_num_rows($r);
-	$row = mysql_fetch_array($r);
+	$r=mysqli_query($con, $q);
+	$total = mysqli_num_rows($r);
+	$row = mysqli_fetch_array($r);
 	$var[0]=$row['MIN'];
 	$var[1]=$row['MAX'];
-	
-	return $var; 
+
+	return $var;
 }
 
 ?>
@@ -22,7 +22,7 @@ function semak ($name,$year, $type){
 <script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
 
-			
+
 	$('#example').dataTable( {"sPaginationType": "full_numbers","iDisplayLength": 25,"sDom" : '<"H"frilp><t>', "bAutoWidth": false,
 		"fnDrawCallback": function ( oSettings ) {
 			/* Need to redo the counters if filtered or sorted */
@@ -38,7 +38,7 @@ function semak ($name,$year, $type){
 			{ "bSortable": false, "aTargets": [ 0 ] }
 		]
 	} );
-	
+
 	$('#example1').dataTable( {"sPaginationType": "full_numbers","iDisplayLength": 25,"sDom" : '<"H"frilp><t>', "bAutoWidth": false,
 		"fnDrawCallback": function ( oSettings ) {
 			/* Need to redo the counters if filtered or sorted */
@@ -54,7 +54,7 @@ function semak ($name,$year, $type){
 			{ "bSortable": false, "aTargets": [ 0 ] }
 		]
 	} );
-	
+
 	$('#example2').dataTable( {"sPaginationType": "full_numbers","iDisplayLength": 25,"sDom" : '<"H"frilp><t>', "bAutoWidth": false,
 		"fnDrawCallback": function ( oSettings ) {
 			/* Need to redo the counters if filtered or sorted */
@@ -70,8 +70,8 @@ function semak ($name,$year, $type){
 			{ "bSortable": false, "aTargets": [ 0 ] }
 		]
 	} );
-	
-	
+
+
 	$('#example3').dataTable( {"sPaginationType": "full_numbers","iDisplayLength": 25,"sDom" : '<"H"frilp><t>', "bAutoWidth": false,
 		"fnDrawCallback": function ( oSettings ) {
 			/* Need to redo the counters if filtered or sorted */
@@ -87,7 +87,7 @@ function semak ($name,$year, $type){
 			{ "bSortable": false, "aTargets": [ 0 ] }
 		]
 	} );
-	
+
 } );
 
 
@@ -102,7 +102,7 @@ function number_only(obj) {
 		}
 		else {
 			$(obj).val=obj.value;
-			$(obj).format({format:"#,###.00", locale:"us"}); 			
+			$(obj).format({format:"#,###.00", locale:"us"});
 			$(obj).removeClass("field_active");
 			$(obj).addClass("field_edited");
 			return true;
@@ -140,18 +140,18 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
           </tr>
 	</thead>
     <tbody>
-    
+
     <?php $con =connect();
 	$q="select * from q_kbm ";
-	$r = mysql_query($q,$con);
-	while($row=mysql_fetch_array($r)){?>
+	$r = mysqli_query($con, $q);
+	while($row=mysqli_fetch_array($r)){?>
           <tr <?php if(++$t%2==0){?>class="alt"<?php } ?>>
             <td><?php echo $t; ?>. </td>
             <td><?php echo $row['name'];?>
-            
+
             <input name="name[<?php echo $t; ?>]" type="hidden" id="name[<?php echo $t; ?>]" value="<?php echo $row['name'];?>" />
               <input name="type[<?php echo $t; ?>]" type="hidden" id="type[<?php echo $t; ?>]" value="<?php echo $row['tahun'];?>" />
-            
+
             </td>
             <td><div align="center">
               <?php $j = semak($row['name'],$_COOKIE['tahun_report'],'estate_immature');?>
@@ -172,9 +172,9 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
     </form>
     <p>&nbsp;</p>
   </div>
-     
-     
-     
+
+
+
      <div class="tabbertab">
 	  <h2>Mature Cost (Upkeep)</h2>
       <form id="form2" name="form1" method="post" action="save_outliers.php">
@@ -188,17 +188,17 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
             </tr>
           </thead>
           <tbody>
-            <?php 
+            <?php
 	$q1="select * from q_km  where type ='upk'";
-	$r1 = mysql_query($q1,$con);
-	while($row1=mysql_fetch_array($r1)){?>
+	$r1 = mysqli_query($con, $q1);
+	while($row1=mysqli_fetch_array($r1)){?>
             <tr <?php if(++$t1%2==0){?>class="alt"<?php } ?>>
               <td><?php echo $t1; ?>. </td>
               <td><?php echo $row1['name'];?>
               <input name="name[<?php echo $t1; ?>]" type="hidden" id="name[<?php echo $t1; ?>]" value="<?php echo $row1['name'];?>" />
               <input name="type[<?php echo $t1; ?>]" type="hidden" id="type[<?php echo $t1; ?>]" value="<?php echo $row1['type'];?>" />
-            
-              
+
+
               </td>
                 <td><div align="center">
               <?php $j1 = semak($row1['name'],$_COOKIE['tahun_report'],'estate_mature');?>
@@ -211,7 +211,7 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
             <?php } ?>
           </tbody>
         </table>
-        
+
                 <p>
           <input type="submit" name="update_mature_cost" id="update_mature_cost" value="Update Outliers" />
           <input name="jumlah" type="hidden" id="jumlah" value="<?php echo $t1;  ?>" />
@@ -219,7 +219,7 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
 
       </form>
   </div>
-  
+
      <div class="tabbertab">
 	  <h2>Mature Cost (Harvesting)</h2>
       <form id="form3" name="form1" method="post" action="save_outliers.php">
@@ -233,16 +233,16 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
             </tr>
           </thead>
           <tbody>
-            <?php 
+            <?php
 	$q2="select * from q_km where type ='harvest_all' ";
-	$r2 = mysql_query($q2,$con);
-	while($row2=mysql_fetch_array($r2)){?>
+	$r2 = mysqli_query($con, $q2);
+	while($row2=mysqli_fetch_array($r2)){?>
             <tr <?php if(++$t2%2==0){?>class="alt"<?php } ?>>
               <td><?php echo $t2; ?>. </td>
               <td><?php echo $row2['name'];?>
               <input name="name[<?php echo $t2; ?>]" type="hidden" id="name[<?php echo $t2; ?>]" value="<?php echo $row2['name'];?>" />
               <input name="type[<?php echo $t2; ?>]" type="hidden" id="type[<?php echo $t2; ?>]" value="<?php echo $row2['type'];?>" />
-            
+
               </td>
               <td><div align="center">
               <?php $j2 = semak($row2['name'],$_COOKIE['tahun_report'],'estate_mature');?>
@@ -255,16 +255,16 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
             <?php } ?>
           </tbody>
         </table>
-        
+
         <p>
           <input type="submit" name="update_mature_harvesting" id="update_mature_harvesting" value="Update Outliers" />
           <input name="jumlah" type="hidden" id="jumlah" value="<?php echo $t2; ?>" />
         </p>
 
-        
+
       </form>
   </div>
-  
+
      <div class="tabbertab">
 	  <h2>Mature Cost (Transportation)</h2>
       <form id="form4" name="form1" method="post" action="save_outliers.php">
@@ -278,17 +278,17 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
             </tr>
           </thead>
           <tbody>
-            <?php 
+            <?php
 	$q3="select * from q_km where type='transportation_all'";
-	$r3 = mysql_query($q3,$con);
-	while($row3=mysql_fetch_array($r3)){?>
+	$r3 = mysqli_query($con, $q3);
+	while($row3=mysqli_fetch_array($r3)){?>
             <tr <?php if(++$t3%2==0){?>class="alt"<?php } ?>>
               <td><?php echo $t3; ?>. </td>
               <td><?php echo $row3['name'];?>
               <input name="name[<?php echo $t3; ?>]" type="hidden" id="name[<?php echo $t3; ?>]" value="<?php echo $row3['name'];?>" />
               <input name="type[<?php echo $t3; ?>]" type="hidden" id="type[<?php echo $t3; ?>]" value="<?php echo $row3['type'];?>" />
-            
-              
+
+
               </td>
                   <td><div align="center">
               <?php $j3 = semak($row3['name'],$_COOKIE['tahun_report'],'estate_mature');?>
@@ -306,11 +306,11 @@ document.write('<style type="text/css">.tabber{display:none;}<\/style>');
           <input name="jumlah" type="hidden" id="jumlah" value="<?php echo $t3; ?>" />
         </p>
 
-        
-        
+
+
       </form>
   </div>
-  
- 
-  
+
+
+
 </div>

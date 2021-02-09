@@ -23,7 +23,7 @@ function median($numbers=array())
 {
 	if (!is_array($numbers))
 		$numbers = func_get_args();
-	
+
 	rsort($numbers);
 	$mid = (count($numbers) / 2);
 	return ($mid % 2 != 0) ? $numbers{$mid-1} : (($numbers{$mid-1}) + $numbers{$mid}) / 2;
@@ -35,86 +35,86 @@ function pertama($tahun, $nama, $status,$negeri,$daerah){
 		if($negeri!="" && $negeri!="pm")
 		{
 			$sql.=" and negeri = '$negeri'";
-		} 
+		}
 		if($negeri!="" && $daerah!="")
 		{
 			$sql.=" and daerah = '$daerah'";
-		} 
+		}
 		if($negeri=="pm")
 		{
 			$sql.=" and (negeri not like 'SARAWAK' and negeri not like 'SABAH')";
-		} 
-		
+		}
+
 	//echo $sql."<br>";
-		$sql_result = mysql_query($sql,$con); 
-		$i=0; 
-				while ($row = mysql_fetch_array($sql_result)) 
-				{ 
+		$sql_result = mysqli_query($con, $sql);
+		$i=0;
+				while ($row = mysqli_fetch_array($sql_result))
+				{
 				$test_data[] = $row["y"];
-				
-				$i = $i + 1; 
-				} 
+
+				$i = $i + 1;
+				}
 	//-----------------------------------------------------------------------------------------
-	$tahun_lepas = $tahun-1; 
+	$tahun_lepas = $tahun-1;
 	$qoer = "SELECT SUM(FFB_PROSES) as FFB_PROSES, SUM(PENGELUARAN_CPO) as PENGELUARAN_CPO FROM graf_mill gm, ekilang ek where gm.sessionid='$nama' and gm.tahun ='$tahun' and gm.status='$status' ";
 		if($negeri!="" & $negeri!="pm")
 		{
 			$qoer.=" and gm.negeri = '$negeri'";
-		} 
+		}
 		if($negeri!="" && $daerah!="")
 		{
 			$qoer.=" and gm.daerah = '$daerah'";
-		} 
+		}
 		if($negeri=="pm")
 		{
 			$qoer.=" and (gm.negeri not like 'SARAWAK' and gm.negeri not like 'SABAH')";
-		} 
+		}
 		$qoer .= " and gm.lesen = ek.no_lesen and ek.tahun='".$tahun_lepas."'";
-		
+
 	//echo $qoer;
-		
-	$roer = mysql_query($qoer,$con);
-	$rowoer = mysql_fetch_array($roer);
-	
+
+	$roer = mysqli_query($con, $qoer);
+	$rowoer = mysqli_fetch_array($roer);
+
 	$oer = round($rowoer['PENGELUARAN_CPO']/$rowoer['FFB_PROSES'] *100,2);
-	
+
 	//-----------------------------------------------------------------------------------------
-			
-			
-			
+
+
+
 		$qavg = "SELECT AVG(y) as purata FROM graf_mill where sessionid='$nama' and tahun ='$tahun' and status='$status' ";
 		if($negeri!="" & $negeri!="pm")
 		{
 			$qavg.=" and negeri = '$negeri'";
-		} 
+		}
 		if($negeri!="" && $daerah!="")
 		{
 			$qavg.=" and daerah = '$daerah'";
-		} 
+		}
 		if($negeri=="pm")
 		{
 			$qavg.=" and (negeri not like 'SARAWAK' and negeri not like 'SABAH')";
-		} 
-		
-	//echo $qavg."<br>";
-		$ravg = mysql_query($qavg,$con);
-		$rrow = mysql_fetch_array($ravg);
-		
-		
-			$var[0] = median($test_data);
-			$var[1] = $rrow['purata'];		
-			
-			$tan_cpo = round($rrow['purata']/$oer*100,2); 
-			$var[2]= $tan_cpo;
-			
-			$tan_cpo_median = round($var[0]/$oer*100,2); 
-			$var[3]= $tan_cpo_median;
-			
-			return $var; 
-				
 		}
-		
-		
+
+	//echo $qavg."<br>";
+		$ravg = mysqli_query($con, $qavg);
+		$rrow = mysqli_fetch_array($ravg);
+
+
+			$var[0] = median($test_data);
+			$var[1] = $rrow['purata'];
+
+			$tan_cpo = round($rrow['purata']/$oer*100,2);
+			$var[2]= $tan_cpo;
+
+			$tan_cpo_median = round($var[0]/$oer*100,2);
+			$var[3]= $tan_cpo_median;
+
+			return $var;
+
+		}
+
+
 		//-------------------cop --------------
 		function cop ($name, $type, $year, $state, $district, $tahun_r){
 				global $con;
@@ -128,30 +128,30 @@ function pertama($tahun, $nama, $status,$negeri,$daerah){
 				NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE!='sbh' and STATE!='swk' and DISTRICT= '$district' and YEAR_REPORT='$tahun_r'";
 				}
 				//echo $q_cop;
-				$r_cop = mysql_query($q_cop, $con);
-				$row_cop = mysql_fetch_array($r_cop);
-				
+				$r_cop = mysqli_query($con, $q_cop);
+				$row_cop = mysqli_fetch_array($r_cop);
+
 				$var[1] = $row_cop['VALUE_MEDIAN'];
 				$var[0] = $row_cop['VALUE_MEAN'];
 				return $var;
 		}
-		
+
 ?>
 <div align="center"> <?php if($state==""){?>
 <img name="" src="../images/state/bendera_malaysia.jpg" width="91" height="45" alt="" class="thinborderfloat" />
   <?php } ?>
-  <?php 
+  <?php
 	if($state!=""){
 	$con = connect();
 	$qstate ="select * from negeri where id like '$state'";
-	$rstate = mysql_query($qstate,$con);
-	$rowstate = mysql_fetch_array($rstate);
-	
-	
-	
+	$rstate = mysqli_query($con, $qstate);
+	$rowstate = mysqli_fetch_array($rstate);
+
+
+
 	//$state = $rowstate['NAMA'];
 	?>
-  
+
   <img src="../images/<?= $rowstate['negeri_path']; ?>" alt="" name="state" width="91" height="45" class="thinborderfloat" id="state" title="<?= $rowstate['nama'];?>" />
   <?php }?><br />
 <br />
@@ -162,13 +162,13 @@ function pertama($tahun, $nama, $status,$negeri,$daerah){
     <a href="javascript:openScript('all_process_cost_draft.php?year=<?php echo $year; ?>&state=<?php echo $state; ?>&sub=<?php echo $sub; ?>&area=<?php echo $area; ?>','800','600')" >View Draft</a>
 </div>
 
-<div align="center" class="style6">Cost of FFB Processing and Sales in 
+<div align="center" class="style6">Cost of FFB Processing and Sales in
    <?= $rowstate['nama'];?>
-   <?php 
-   
+   <?php
+
    if($area==""){echo "MALAYSIA";}
    if($area=="Peninsular Malaysia"){
-   
+
    echo "PENINSULAR MALAYSIA";}
    ?><br />
 </div>
@@ -210,35 +210,35 @@ function pertama($tahun, $nama, $status,$negeri,$daerah){
     <?php
   $satu = $_COOKIE['tahun_report']-0;
   $dua = $_COOKIE['tahun_report']-1;
-  
+
   $qs="select * from q_mill where type='process'";
-  $rs = mysql_query($qs,$con);
-  
- 
-  
+  $rs = mysqli_query($con, $qs);
+
+
+
   $jl=0;
   $js=0;
   $ms=0;
-  
-   while($rows=mysql_fetch_array($rs)){
+
+   while($rows=mysqli_fetch_array($rs)){
   ?>
-  
+
   <tr <?php if(++$gg%2==0){?>class="alt"<?php } ?>>
        <td <?php if($_COOKIE['tahun_report']==2010){?> ondblclick="javascript:openScript('add_cop_mill.php?name=<?php echo $rows['name'];?>&type=<?php echo "Processing"; ?>&tahun=<?php echo $_COOKIE['tahun_report'];?>&year=<?php echo $year;?>&state=<?php echo $state; ?>','700','200')"<?php } ?>><?php echo $rows['name'];?></td>
-       
-	
-    <td><div align="right"><?php 
-	
+
+
+    <td><div align="right"><?php
+
 	if($year==""){$year=1;}
 	if($area == "Peninsular Malaysia"){$state="pm";}else{$state=$rowstate['nama'];}
-	if($_COOKIE['tahun_report']==2010){		
+	if($_COOKIE['tahun_report']==2010){
 		if($area == "Peninsular Malaysia"){$state="pm";}else{$state=$rowstate['id'];}
 		$a1 = cop ( $rows['name'],  "Processing", $year, $state, $district, $_COOKIE['tahun_report']);
 	}
 	if($_COOKIE['tahun_report']!=2010){
 		$a1 = pertama ($dua, $rows['name'], '0',$state, $district);
 	}
-	
+
 	 echo number_format($a1[1],2);$jl = $jl+$a1[1]; ?></div></td>
     <td><div align="right"><?php $a= pertama ($satu,  $rows['name'], '0',$state, $district); echo number_format($a[1],2); $js = $js+$a[1]; ?></div></td>
     <td><div align="right"><?php echo number_format($a[0],2); $ms = $ms+$a[0]; ?></div></td>
@@ -249,7 +249,7 @@ function pertama($tahun, $nama, $status,$negeri,$daerah){
     <td><div align="right"><?php $cha = (($a[2]-$a1[1])/$a1[1])*100; echo number_format($cha,2);; ?></div></td>
   </tr>
 <?php } ?>
-  
+
   <tr bgcolor="#FF9966">
     <td><strong>Total</strong></td>
     <td bgcolor="#FF9966"><div align="right"><?php echo number_format($jl,2);?></div></td>
@@ -278,4 +278,3 @@ function pertama($tahun, $nama, $status,$negeri,$daerah){
 <br />
 <br />
 <br />
-

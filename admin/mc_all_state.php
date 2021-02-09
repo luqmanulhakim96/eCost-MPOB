@@ -32,12 +32,12 @@
         <tr>
           <td><?php $con = connect();
 	$qstate ="select * from negeri where id like '$state'";
-	$rstate = mysql_query($qstate,$con);
-	$rowstate = mysql_fetch_array($rstate);
+	$rstate = mysqli_query($con, $qstate);
+	$rowstate = mysqli_fetch_array($rstate);
 	?>
-	
+
 	        <div align="center"><img src="../images/<?= $rowstate['negeri_path']; ?>" alt="" name="state" width="91" height="45" class="thinborderfloat" id="state" title="<?= $rowstate['nama'];?>" />
-                <?php mysql_close($con);?>	
+                <?php mysqli_close($con);?>
             </div></td>
         </tr>
       </table>

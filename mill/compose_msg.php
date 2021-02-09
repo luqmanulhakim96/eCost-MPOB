@@ -15,7 +15,7 @@
 	<script type="text/javascript" src="../ui/effects.highlight.js"></script>
 	<script type="text/javascript" src="../external/bgiframe/jquery.bgiframe.js"></script>
 	<script type="text/javascript">
-	
+
 	$(document).ready(function() {
 		$("#dialog").dialog({
 			bgiframe: true,
@@ -32,7 +32,7 @@
 				}
 			}
 		});
-		
+
 		$('#send').click(function() {
 			$("#dialogTxt").html(<?=setstring ( 'mal', '"Mesej berjaya dihantar."', 'en', 'Message sent success.'); ?>);
 			$("#dialog").dialog('option','buttons',{
@@ -44,16 +44,16 @@
 			$("#dialog").dialog("open");
 		})
 		.hover(
-			function(){ 
-				$(this).addClass("ui-state-hover"); 
+			function(){
+				$(this).addClass("ui-state-hover");
 			},
-			function(){ 
-				$(this).removeClass("ui-state-hover"); 
+			function(){
+				$(this).removeClass("ui-state-hover");
 			}
 		)
 		.mousedown(
 			function(){
-				$(this).addClass("ui-state-active"); 
+				$(this).addClass("ui-state-active");
 			}
 		)
 		.mouseup(
@@ -61,7 +61,7 @@
 				$(this).removeClass("ui-state-active");
 			}
 		);
-		
+
 		$('#save').click(function() {
 			$("#dialog").dialog('option','title','Operasi Berjaya');
 			$("#dialogTxt").html("Mesej berjaya disimpan");
@@ -73,16 +73,16 @@
 			$("#dialog").dialog("open");
 		})
 		.hover(
-			function(){ 
-				$(this).addClass("ui-state-hover"); 
+			function(){
+				$(this).addClass("ui-state-hover");
 			},
-			function(){ 
-				$(this).removeClass("ui-state-hover"); 
+			function(){
+				$(this).removeClass("ui-state-hover");
 			}
 		)
 		.mousedown(
 			function(){
-				$(this).addClass("ui-state-active"); 
+				$(this).addClass("ui-state-active");
 			}
 		)
 		.mouseup(
@@ -90,7 +90,7 @@
 				$(this).removeClass("ui-state-active");
 			}
 		);
-		
+
 		$('#discard')
 		.click(
 			function() {
@@ -98,16 +98,16 @@
 			}
 		)
 		.hover(
-			function(){ 
-				$(this).addClass("ui-state-hover"); 
+			function(){
+				$(this).addClass("ui-state-hover");
 			},
-			function(){ 
-				$(this).removeClass("ui-state-hover"); 
+			function(){
+				$(this).removeClass("ui-state-hover");
 			}
 		)
 		.mousedown(
 			function(){
-				$(this).addClass("ui-state-active"); 
+				$(this).addClass("ui-state-active");
 			}
 		)
 		.mouseup(
@@ -116,7 +116,7 @@
 			}
 		);
 	});
-	
+
 	</script>
     <style type="text/css">
 <!--
@@ -151,7 +151,7 @@
           <input name="textfield3" type="text" id="textfield3" value="admin@MPOB" size="50" disabled="disabled" />
         </label></td>
       </tr>
-      
+
       <tr>
         <td width="9%"><div align="left" class="style2"><?=setstring ( 'mal', 'Subjek', 'en', 'Subject'); ?></div></td>
         <td width="1%"><span class="style2">:</span></td>
@@ -165,7 +165,7 @@
         <td><span class="style2">:</span></td>
         <td><textarea name="textfield2" cols="60" rows="6" id="textfield2"><?=setstring ( 'mal', 'Sistem E-COST menawarkan fungsi-fungsi yang lebih mantap bagi membantu pengguna sistem ini bekerja dengan lebih efektif.', 'en', 'E-Cost system provides outstanding function to aid user to improve the efficiency'); ?></textarea></td>
       </tr>
-      
+
     </table>
     <br /></td>
   </tr>

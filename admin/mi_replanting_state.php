@@ -29,14 +29,14 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <td width="45%">
 	<?php $con = connect();
 	$qstate ="select * from negeri where id like '$state'";
-	$rstate = mysql_query($qstate,$con);
-	$rowstate = mysql_fetch_array($rstate);
+	$rstate = mysqli_query($con, $qstate);
+	$rowstate = mysqli_fetch_array($rstate);
 	?>
-	
+
 	<img src="../images/<?= $rowstate['negeri_path']; ?>" alt="" name="state" width="91" height="45" class="thinborderfloat" id="state" title="<?= $rowstate['nama'];?>" />
-	<?php mysql_close($con);?>	</td>
+	<?php mysqli_close($con);?>	</td>
   </tr>
-  
+
 </table>
 <?php
 	if($_GET['year'] == "1" or !isset($_GET['year'])) {
@@ -282,7 +282,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	else if($_GET['year'] == "2") {
 ?>
 <table width="85%" align="center" cellpadding="4" cellspacing="0" style="border-collapse:collapse">
-  
+
   <tr>
 <td colspan="5"><strong>Cost in the Second Year of Oil Palm Replanting (RM per hectare) </strong></td>
 </tr>

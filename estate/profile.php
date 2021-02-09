@@ -41,16 +41,16 @@ body {
 <script type="text/javascript">
 			$(document).ready(function(){
 				//Examples of how to assign the ColorBox event to elements
-				
-				$(".facebox").colorbox({width:"60%", height:"50%", iframe:true,onClosed:function(){ 
+
+				$(".facebox").colorbox({width:"60%", height:"50%", iframe:true,onClosed:function(){
 						window.location='home.php?id=profile';
 					}});
-				$(".facebox1").colorbox({width:"60%", height:"80%", iframe:true,onClosed:function(){ 
+				$(".facebox1").colorbox({width:"60%", height:"80%", iframe:true,onClosed:function(){
 						window.location='home.php?id=profile';
 					}}
 );
 
-			
+
 
 			});
 		</script>
@@ -121,13 +121,16 @@ body {
           <td colspan="2"><?php echo  $pengguna->negeri; ?></td>
         </tr>
         <tr>
+
           <td><strong>
             <?php echo setstring ( 'mal', 'No. Telefon', 'en', 'Contact No'); ?>
             </strong></td>
           <td><strong>:</strong></td>
           <td colspan="2"><?php echo  $pengguna->notelefon; ?></td>
+					
         </tr>
         <tr>
+
           <td><strong>
             <?php echo setstring ( 'mal', 'No. Faks', 'en', 'Fax No'); ?>
             </strong></td>
@@ -182,7 +185,7 @@ body {
               <input type="submit" name="button" id="sw-sunting" value=<?php echo setstring ( 'mal', '"Edit Maklumat Am"', 'en', 'Edit General Information'); ?> />
             </td>
         </tr>
-       
+
       </table></td>
   </tr>
   <tr>
@@ -204,8 +207,8 @@ body {
             <td width="674"><?php function company($x){
 			$con =connect();
 			$query = "select * from company where comp_name = '$x' ";
-			$res = mysql_query($query,$con);
-			$row = mysql_fetch_array($res); 
+			$res = mysqli_query($con, $query);
+			$row = mysqli_fetch_array($res);
 			if($_COOKIE['lang']=='mal'){
 			$data = $row['comp_name'];
 			}
@@ -214,13 +217,13 @@ body {
 			}
 			return $data;
 		}
-		
-		
+
+
 		function keahlian($x){
 			$con =connect();
 			$query = "select * from keahlian where ahli_name = '$x' ";
-			$res = mysql_query($query,$con);
-			$row = mysql_fetch_array($res); 
+			$res = mysqli_query($con, $query);
+			$row = mysqli_fetch_array($res);
 			if($_COOKIE['lang']=='mal'){
 			$data = $row['ahli_name'];
 			}
@@ -229,8 +232,8 @@ body {
 			}
 			return $data;
 		}
-		
-		
+
+
 		?>
               <?php echo company($pengguna->jenissyarikat); ?></td>
           </tr>
@@ -246,10 +249,10 @@ body {
               <?php echo setstring ( 'mal', 'Integrasi dengan Kilang Buah Sawit', 'en', 'Integration with Palm Factory'); ?>
               </strong></td>
             <td><div align="center"><strong>:</strong></div></td>
-            <td><?php $ig = $pengguna->integrasi; 
+            <td><?php $ig = $pengguna->integrasi;
 		if ($ig=='Y'){?>
               <?php echo setstring ( 'mal', 'Ya', 'en', 'Yes'); ?>
-              <?php } 
+              <?php }
 		if ($ig=='N'){?>
               <?php echo setstring ( 'mal', 'Tidak', 'en', 'No'); ?>
               <?php } ?>
@@ -276,7 +279,7 @@ body {
                       </strong>
                       <script type="text/javascript" src="ampie/swfobject.js"></script>
                       <script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("ampie/ampie.swf", "ampie", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "ampie/");
 		so.addVariable("settings_file", encodeURIComponent("ampie/settings.xml"));
@@ -297,7 +300,7 @@ body {
                       <?php echo setstring ( 'mal', 'Peratusan Jenis Mukabumi', 'en', 'Percentage of Terrain Type'); ?>
                       </strong>
                       <script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("ampie/ampie.swf", "ampie", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "ampie/");
 		so.addVariable("settings_file", encodeURIComponent("ampie/settingsmukabumi.xml"));

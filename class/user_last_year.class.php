@@ -2,7 +2,7 @@
 
 class user_last_year {
 
-    function user_last_year($type, $var, $year) {
+    function  __construct($type, $var, $year) {
         if ($type == 'estateTahun') {
             $this->viewestateTahun($var, $year);
         }
@@ -16,18 +16,18 @@ class user_last_year {
         $table = "esub_" . $tahun;
 
         $con = connect();
-        $q = "select 
-			es.No_Lesen, es.Jumlah, es.Nama_Estet, 	es.No_Lesen_Baru, es.Alamat1,es.Alamat2, es.Poskod, es.Bandar, es.Negeri,				es.No_Telepon, 				 	 				 	
-	es.No_Fax, 				 	 				 	
-	es.Emel,		 	 				 	
-	es.Negeri_Premis, 				 	 				 	
-	es.Daerah_Premis, 				 	 				 	
-	es.Syarikat_Induk, 				 	 				 	
-	es.Berhasil, 				 	 				 	
-	es.Belum_Berhasil, 				 	 				 	
+        $q = "select
+			es.No_Lesen, es.Jumlah, es.Nama_Estet, 	es.No_Lesen_Baru, es.Alamat1,es.Alamat2, es.Poskod, es.Bandar, es.Negeri,				es.No_Telepon,
+	es.No_Fax,
+	es.Emel,
+	es.Negeri_Premis,
+	es.Daerah_Premis,
+	es.Syarikat_Induk,
+	es.Berhasil,
+	es.Belum_Berhasil,
 	es.Keluasan_Yang_Dituai,
 	le.password , ei.pegawai, ei.syarikat, ei.integrasi, ei.keahlian,
-	 	ei.lanar, 
+	 	ei.lanar,
 		ei.pedalaman ,
 		ei.gambutcetek ,
 		ei.gambutdalam ,
@@ -38,18 +38,18 @@ class user_last_year {
 		ei.percentalun ,
 		ei.percentbukit ,
 		ei.percentcerun, le.success, le.fail, le.firsttime
-		from 
-			$table es,estate_info ei, login_estate le 
+		from
+			$table es,estate_info ei, login_estate le
 		where es.no_lesen_baru = '$var' and ei.lesen ='$var' and le.lesen='$var'  group by es.no_lesen_baru";
 
-        $r = mysql_query($q, $con);
+        $r = mysqli_query($con, $q);
         $res_total = 0;
         if ($r) {
-            $res_total = mysql_num_rows($r);
+            $res_total = mysqli_num_rows($r);
         }
         $this->total = $res_total;
         $i = 0;
-        while ($row = mysql_fetch_array($r)) {
+        while ($row = mysqli_fetch_array($r)) {
             $this->nolesenlama = $row['No_Lesen'];
             $this->namaestet = $row['Nama_Estet'];
             $this->password = $row['password'];

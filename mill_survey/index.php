@@ -18,15 +18,15 @@ $pemprosesan = view_survey_satu("mill_pemprosesan");
 	{
 		$con = connect();
 		$q ="select * from ".$var." where lesen ='".$_SESSION['lesen']."' and tahun ='".$_COOKIE['tahun_report']."'  and status=1 ";
-		$r = mysql_query($q,$con);
-		$res_total = mysql_num_rows($r);		
+		$r = mysqli_query($con, $q);
+		$res_total = mysqli_num_rows($r);
 		$survey [0] = $res_total;
-		return $survey; 
+		return $survey;
 	}
 
 
-$totalkosmill =3; 
-$totalmill = ($buruh[0]+ $koslain[0]+ $pemprosesan[0])/$totalkosmill*100; 
+$totalkosmill =3;
+$totalmill = ($buruh[0]+ $koslain[0]+ $pemprosesan[0])/$totalkosmill*100;
 if(isset($_GET['firsttime'])) {
 ?>
 <link type="text/css" href="../themes/base/ui.all.css" rel="stylesheet" />
@@ -70,7 +70,7 @@ body {
 <script type="text/javascript" src="../external/bgiframe/jquery.bgiframe.js"></script>
 <script type="text/javascript">
 	$(function() {
-		$("#progress").progressbar({ 
+		$("#progress").progressbar({
 			value:<?php echo number_format($totalmill,2);?>
 		});
 	});
@@ -88,7 +88,7 @@ padding: 10px;">
 <table><tr><td><strong><img src="../folder.png" alt="aaa" width="100" height="100" /></strong></td>
 <td>
         <ul>
-          <li><?=setstring ( 'mal', 'Login berjaya terakhir anda pada', 'en', 'Last success login on'); ?> 
+          <li><?=setstring ( 'mal', 'Login berjaya terakhir anda pada', 'en', 'Last success login on'); ?>
             <?= $pengguna->success; ?>
           </li>
         <br />
@@ -122,7 +122,7 @@ padding: 10px;">
   <tr>
     <td colspan="3" valign="top"><div align="center">
      <p style="font-weight:bold; font-size:14px;"><?=setstring ( 'mal', 'Tiada Prestasi Kos Pemprosesan pada Tahun Lepas', 'en', 'The Processing Cost Performance for Previous Years in Unavailable'); ?>
-</p> 
+</p>
 	 <p style="font-weight:bold; font-size:14px;"> </p>
       <p style="font-weight:bold; font-size:14px;"> </p>
       <p style="font-weight:bold; font-size:14px;"> </p>
@@ -145,7 +145,7 @@ padding: 10px;">
         <td width="32%" bgcolor="#62DFFF"><div align="center"><strong><?=setstring ( 'mal', 'Kadar Perahan Minyak', 'en', 'Oil Extraction Rate'); ?>
 </strong></div>          <div align="center"></div>          <div align="center"><strong>(%)</strong></div></td>
         </tr>
-      
+
       <tr>
         <td width="2%" height="44" bgcolor="#FFCCFF"> </td>
         <td width="33%" bgcolor="#FFCCFF"><div align="left"><strong><?= strtoupper($pengguna->nama);?></strong></div></td>
@@ -193,12 +193,12 @@ padding: 10px;">
 		<strong></strong>	</div>
 
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("../admin/amxy/amxy.swf", "amxy", "80%", "400", "8", "#FFFFFF");
 		so.addVariable("path", "../admin/amxy/");
 		so.addVariable("settings_file", encodeURIComponent("summary_all_settings.xml"));
 		so.addVariable("data_file", encodeURIComponent("summary_all_data.php"));
-		
+
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "60%", "380", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mi_all_setting.xml"));

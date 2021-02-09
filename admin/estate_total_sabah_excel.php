@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../Connections/connection.class.php');
 include '../class/admin.estate.class.php';
 header("Content-Disposition: attachment; filename=Estate_Response_Survey_in_Sabah.xls");
@@ -30,8 +30,8 @@ body,td,th {
     </tr>
   </thead>
   <tbody>
-	<?php 	
-		while($row=mysql_fetch_array($result_sabah)) { ?>
+	<?php
+		while($row=mysqli_fetch_array($result_sabah)) { ?>
 		<tr valign="top" <?php if($list%2==0){?>class="alt"<?php } ?>>
 			<td><?php echo $list++; ?></td>
 			<td><?php echo $row['nama_estet'];?></td>
@@ -46,7 +46,7 @@ body,td,th {
             <td><?php echo $row['no_telepon'];?></td>
             <td><?php echo $row['no_fax'];?></td>
 		  <td><?php echo $row['success'];?></td>
-		    
+
 		</tr>
 	<?php }?>
   </tbody>

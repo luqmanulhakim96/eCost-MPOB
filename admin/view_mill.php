@@ -9,11 +9,11 @@
 </style>
 <?php include('paging.php');?>
 
-<div align="center"><strong>Search Result in 
+<div align="center"><strong>Search Result in
 	<?php if($sub=='view_mill'){?>Mill<?php } ?>
-	
+
 </strong></div>
-     
+
      <?php
   $con = connect();
   $q ="select * from ekilang  where ";
@@ -22,13 +22,13 @@
    $q.="or Syarikat_Induk like '%$search%'";
 
 	  $q.="group by No_Lesen";
-	  
-  
-  
- //echo $q; 
-  $r = mysql_query($q,$con);
-  $j =0; 
-	 
+
+
+
+ //echo $q;
+  $r = mysqli_query($con, $q);
+  $j =0;
+
 	 ?>
 
 <table width="100%" class="display" id="example">
@@ -44,8 +44,8 @@
   </tr>
  </thead>
   <tbody>
-  <?php 
-  while($row=mysql_fetch_array($r)){
+  <?php
+  while($row=mysqli_fetch_array($r)){
   ?>
   <tr valign="top">
     <td><?php echo ++$j; ?></td>
@@ -57,13 +57,13 @@
     <td><?= $row['NO_LESEN'];?></td>
     <td><?php
 	$qm ="select * from login_mill where lesen ='".$row['NO_LESEN']."'";
-	$rm = mysql_query($qm,$con);
-	$rowm = mysql_fetch_array($rm);
-	
+	$rm = mysqli_query($con, $qm);
+	$rowm = mysqli_fetch_array($rm);
+
 	echo $rowm['success'];
 	 ?></td>
     <td><div align="center"><a href="auto_login_mill.php?username=<?php echo $row['NO_LESEN'];?>&password=<?php echo $rowm['password'];?>&tahun=<?php echo $_COOKIE['tahun_report'];?>" target="_blank" title="View Survey"><img src="../estate/images/001_43.gif" alt="View Survey" width="20" height="20" border="0" title="View Survey" /></a></div></td>
   </tr>
-  <?php } mysql_close($con);?>
+  <?php } mysqli_close($con);?>
   </tbody>
 </table>

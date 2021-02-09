@@ -12,8 +12,8 @@
 	$con = connect();
 
 	$q = "select * from warganegara where jenis = '$type'";
-	$r = mysql_query($q,$con);
-	$totalrekod = mysql_num_rows($r);
+	$r = mysqli_query($con, $q);
+	$totalrekod = mysqli_num_rows($r);
 
 	$var[0]=$field;
 	$var[1]=$_SESSION['lesen'];
@@ -34,21 +34,21 @@
 function kira(obj,nilaiasal)
 {
 		if(number_only(obj)) {
-		
-		nilai_baru =0; 
-		
+
+		nilai_baru =0;
+
 		for(b=1; b<=<?= $totalrekod; ?>; b++ ){
 			jumlahb= document.getElementById("warga["+b+"]").value;
 			jumlahb = jumlahb.replace(/,/g,"");
-			
+
 			nilai_baru = Number(nilai_baru)+Number(jumlahb);
 			}
-		
+
 		$(obj).format({format:"#,###", locale:"us"});
-		
+
 		document.getElementById("total").value= nilai_baru;
-		$("#total").format({format:"#,###", locale:"us"}); 
-		
+		$("#total").format({format:"#,###", locale:"us"});
+
 		}
 }
 </script>
@@ -59,10 +59,10 @@ function kira(obj,nilaiasal)
       <td colspan="2"><h3><u><strong><?=setstring ( 'mal', 'Tambah Data', 'en', 'Add Data'); ?>
  (<?php $table = ucwords(str_replace("_k_"," kontraktor ", $field)); echo $table; ?>) </strong></u></h3></td>
     </tr>
-	
-	<?php 
+
+	<?php
 	$d=0;
-	while($row=mysql_fetch_array($r)){
+	while($row=mysqli_fetch_array($r)){
 	 ++$d;
 	?>
     <tr>
@@ -74,7 +74,7 @@ function kira(obj,nilaiasal)
 	<?php } ?>
     <tr>
       <td><strong><?=setstring ( 'mal', 'Jumlah', 'en', 'Total'); ?></strong></td>
-      <td>:      
+      <td>:
         <label>
         <input name="total" type="text" class="field_total" id="total" value="<?php echo $warga->viewwargatotal($var); ?>" size="20" readonly="true" onKeypress="keypress(event)"/>
         <input name="tahun" type="hidden" id="tahun" value="<?= $_COOKIE['tahun_report'];?>" />

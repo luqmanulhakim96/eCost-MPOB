@@ -5,10 +5,10 @@ extract($_REQUEST);
 	$all_complete = "SELECT esub.no_lesen_baru lesen, esub.nama_estet nama, esub.alamat1 alamat1, esub.alamat2 alamat2, esub.negeri negeri, esub.no_telepon notel, esub.no_fax nofax, esub.emel email FROM esub, login_estate";
 	$all_complete .= " where esub.no_lesen_baru = login_estate.lesen";
 	$all_complete .= " AND esub.no_lesen_baru = '$id' LIMIT 1";
-	
-	//echo $all_complete; 
-	$r		= mysql_query($all_complete,$con);
-	$row	= mysql_fetch_assoc($r);
+
+	//echo $all_complete;
+	$r		= mysqli_query($con, $all_complete);
+	$row	= mysqli_fetch_assoc($r);
 ?><style type="text/css">
 <!--
 body,td,th {
@@ -55,4 +55,4 @@ body,td,th {
 		<td><?php echo $row['email']; ?></td>
 	</tr>
 </table>
-<?php mysql_close($con);?>
+<?php mysqli_close($con);?>

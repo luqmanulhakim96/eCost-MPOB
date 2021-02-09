@@ -1,7 +1,7 @@
 <?php
 include ('../Connections/connection.class.php');
 include('baju_merah.php');
-$con = connect();
+$con =connect();
 extract($_REQUEST);
 
 $satu = $_COOKIE['tahun_report'] - 0;
@@ -22,7 +22,7 @@ function median($numbers = array()) {
 
 function pertama($tahun, $nama, $status, $negeri, $daerah) {
     $con = connect();
-	
+
 	$Company = array('publicagencies' => array("Agensi", "Public agencies"),
 					 'cooperatives' => array("Koperasi", "Co-operatives"),
 					 'publiclimitedcompany' => array("Syarikat Berhad", "Public limited company"),
@@ -45,10 +45,10 @@ function pertama($tahun, $nama, $status, $negeri, $daerah) {
 			$qavg.=" and negeri not like 'SARAWAK' and negeri not like 'SABAH'";
 		}
 	}
-    //echo $qavg; 
+    //echo $qavg;
 
-    $ravg = mysql_query($qavg, $con);
-    $rrow = mysql_fetch_array($ravg);
+    $ravg = mysqli_query($con, $qavg);
+    $rrow = mysqli_fetch_array($ravg);
 
 
 
@@ -70,8 +70,8 @@ function pertama($tahun, $nama, $status, $negeri, $daerah) {
 	}
     //echo $qavg2;
 
-    $ravg2 = mysql_query($qavg2, $con);
-    $rrow2 = mysql_fetch_array($ravg2);
+    $ravg2 = mysqli_query($con, $qavg2);
+    $rrow2 = mysqli_fetch_array($ravg2);
 
 
     $var[0] = $rrow['purata'];
@@ -85,8 +85,8 @@ function cop($name, $type, $year, $state, $district, $tahun_r) {
     $con = connect();
     $q_cop = "select  * from cop where
 				NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT='$tahun_r'";
-    $r_cop = mysql_query($q_cop, $con);
-    $row_cop = mysql_fetch_array($r_cop);
+    $r_cop = mysqli_query($con, $q_cop);
+    $row_cop = mysqli_fetch_array($r_cop);
 
     $var[1] = $row_cop['VALUE_MEDIAN'];
     $var[0] = $row_cop['VALUE_MEAN'];
@@ -127,9 +127,9 @@ function cop($name, $type, $year, $state, $district, $tahun_r) {
 <?php
 if ($state != "" && $state != "publicagencies" && $state != "cooperatives" && $state != "publiclimitedcompany" && $state != "partnership" && $state != "solepropriertorship" && $state != "privatelimitedcompany") {
 	$qstate = "select * from negeri where id like '$state'";
-	$rstate = mysql_query($qstate, $con);
-	$rowstate = mysql_fetch_array($rstate);
-	$totalstate = mysql_num_rows($rstate);
+	$rstate = mysqli_query($con, $qstate);
+	$rowstate = mysqli_fetch_array($rstate);
+	$totalstate = mysqli_num_rows($rstate);
 	if ($state == "pm") {
 		$state = "pm";
 	} else {
@@ -191,7 +191,7 @@ if ($state != "" && $state != "publicagencies" && $state != "cooperatives" && $s
     ?>
     <?php
     $qs = "select * from q_km where type='gc'";
-    $rs = mysql_query($qs, $con);
+    $rs = mysqli_query($con, $qs);
 
     $jl = 0;
     $js = 0;
@@ -201,8 +201,8 @@ if ($state != "" && $state != "publicagencies" && $state != "cooperatives" && $s
     $perubahan = 0;
     $perubahan_baru = 0;
 
-    while ($rows = mysql_fetch_array($rs)) {
-        ?> 
+    while ($rows = mysqli_fetch_array($rs)) {
+        ?>
         <tr height="17" <?php if (++$gg % 2 == 0) { ?>class="alt"<?php } ?>>
             <td <?php if ($_COOKIE['tahun_report'] == 2010) { ?> ondblclick="javascript:openScript('add_cop_upk.php?name=<?php echo $rows['name']; ?>&type=<?php echo "General_Charges"; ?>&tahun=<?php echo $_COOKIE['tahun_report']; ?>&year=<?php echo $year; ?>&state=<?php echo $state; ?>', '700', '200')"<?php } ?>><?php echo $rows['name']; ?></td>
 
@@ -289,7 +289,7 @@ if ($state != "" && $state != "publicagencies" && $state != "cooperatives" && $s
 </table>
 <script type="text/javascript" src="amcolumn/swfobject.js"></script>
 <script type="text/javascript">
-                // <![CDATA[		
+                // <![CDATA[
                 var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "380", "8", "#FFFFFF");
                 so.addVariable("path", "amcolumn/");
                 so.addVariable("settings_file", encodeURIComponent("mc_all_setting.xml"));
@@ -300,7 +300,7 @@ if ($state != "" && $state != "publicagencies" && $state != "cooperatives" && $s
         </script>
 <script type="text/javascript" src="../amline/swfobject.js"></script>
 <script type="text/javascript">
-// <![CDATA[		
+// <![CDATA[
                 var so1 = new SWFObject("../amline/amline.swf", "amline", "520", "380", "8", "#FFFFFF");
                 so1.addVariable("path", "../amline/");
                 so1.addVariable("settings_file", encodeURIComponent("amline_settings.xml"));

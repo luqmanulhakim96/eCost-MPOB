@@ -29,7 +29,7 @@ function openScript(url, width, height) {
 
   $con=connect();
     $qs="select * from q_km where type='gc'";
-  $rs = mysql_query($qs,$con);
+  $rs = mysqli_query($con, $qs);
 
   $jl=0;
   $js=0;
@@ -39,7 +39,7 @@ function openScript(url, width, height) {
   $perubahan =0;
   $perubahan_baru=0;
   $countColumn = 0;
-   while($rows=mysql_fetch_array($rs)){
+   while($rows=mysqli_fetch_array($rs)){
 	   if($countColumn == 0){
 ?>
 	<tr>
@@ -86,5 +86,3 @@ function openScript(url, width, height) {
   </tr>
 
 </table>
-
-

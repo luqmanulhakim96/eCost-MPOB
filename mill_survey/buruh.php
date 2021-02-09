@@ -3,7 +3,7 @@
  *      Filename: mill/buruh.php
  *      Copyright 2010 Malaysia Palm Oil Board <azman@mpob.gov.my>
  *		Last update: 15.10.2010 11:46:16 am
- 
+
  		// edit by Hafez Hamid fezcodeworks@gmail.com 25jan2011
  */
 $variable[0]=$_SESSION['lesen'];
@@ -12,7 +12,7 @@ $buruh2 = new user('buruh',$variable);
 if($buruh2->total==0)
 {
 	$con =connect();
-	$q="INSERT INTO mill_buruh 
+	$q="INSERT INTO mill_buruh
 VALUES (
 '".$_SESSION['lesen']."', '".$_COOKIE['tahun_report']."', '', '', '', '', '', ''
 ,'','','','','','',
@@ -20,7 +20,7 @@ VALUES (
 ,'0'
 )
 ";
-	$r=mysql_query($q,$con);
+	$r=mysqli_query($con, $q);
 }
 
 $bts = new user('bts',$_SESSION['lesen']);
@@ -78,8 +78,8 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 					jumlah_all = Number(jumlah_all)+Number(jumlah);
 					}
 					document.getElementById("total_mb").value=jumlah_all;
-					
-					
+
+
 					jumlah_allb =0;
 					for(b=1; b<=5; b++ ){
 					jumlahb= document.getElementById("mb_"+b+"b").value;
@@ -87,8 +87,8 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 					jumlah_allb = Number(jumlah_allb)+Number(jumlahb);
 					}
 					document.getElementById("total_mb_b").value=jumlah_allb;
-					
-					
+
+
 					jumlah_allc =0;
 					for(c=1; c<=5; c++ ){
 					jumlahc = document.getElementById("mb_"+c+"c").value;
@@ -96,8 +96,8 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 					jumlah_allc = Number(jumlah_allc)+Number(jumlahc);
 					}
 					document.getElementById("total_mb_c").value=jumlah_allc;
-			
-	
+
+
 	/*total_asal=document.getElementById(field_total).value;
 	total_asal = total_asal.replace(",","");
 	if(total_asal >0){
@@ -109,9 +109,9 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 	nilai_baru=bulatkan(nilai_baru);
 
 	document.getElementById(field_total).value=new_value;*/
-			
+
 	//alert(nilai_baru);alert(nilai_asal);alert(new_value);	alert(total_asal);
-	
+
 }
 
 </script>
@@ -158,30 +158,30 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo $buruh->mb_1; ?>
 <?php } ?>
-        
-            
+
+
                <a href="warga.php?type=FOREIGN&amp;field=mb_1" class='warga' ><img id="no-print" src="../images/add_48.png" alt="sss" width="16" height="16" border="0" /></a>
-            
+
             </td>
             <td align="center" bgcolor="#99FF99">
-            
+
             <?php if($_SESSION['view']!="true"){ ?><input name="mb_1b" type="text" class="field_active" id="mb_1b" onchange="kiraan_baru(this.value, '<?php echo $buruh->mb_1b;?>','total_mb_b')" value="<?php echo $buruh->mb_1b; ?>" size="10" readonly="true" autocomplete="off"  />
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo $buruh->mb_1b; ?>
 <?php } ?>
-            
+
             <a href="warga.php?type=LOCAL&amp;field=mb_1b" class='warga' ><img id="no-print" src="../images/add_48.png" alt="sss" width="16" height="16" border="0" /></a></td>
             <td align="center" bgcolor="#99FF99">
-            
+
             <?php if($_SESSION['view']!="true"){ ?>  <input name="mb_1c" type="text" autocomplete="off" class="field_active" id="mb_1c" value="<?php echo $buruh->mb_1c; ?>" size="10" onchange="kiraan_baru(this.value, '<?php echo $buruh->mb_1c;?>','total_mb_c')" />
 <?php } ?>
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo $buruh->mb_1c; ?>
 <?php } ?>
-            
-          
-            
+
+
+
             </td>
           </tr>
           <tr>
@@ -192,7 +192,7 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo $buruh->mb_2; ?>
 <?php } ?>
-            
+
             <a href="warga.php?type=FOREIGN&amp;field=mb_2" class='warga' ><img id="no-print" src="../images/add_48.png" alt="sss" width="16" height="16" border="0" /></a></td>
             <td align="center">
             <?php if($_SESSION['view']!="true"){ ?>  <input name="mb_2b" type="text" class="field_active" id="mb_2b" onchange="kiraan_baru(this.value, '<?php echo $buruh->mb_2b;?>','total_mb_b')" value="<?php echo $buruh->mb_2b; ?>" size="10" readonly="true" autocomplete="off"/>
@@ -200,7 +200,7 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo $buruh->mb_2b; ?>
 <?php } ?>
-          
+
             <a href="warga.php?type=LOCAL&amp;field=mb_2b" class='warga' ><img id="no-print" src="../images/add_48.png" alt="sss" width="16" height="16" border="0" /></a></td>
             <td align="center"><?php if($_SESSION['view']!="true"){ ?><input name="mb_2c" type="text" autocomplete="off" class="field_active" id="mb_2c" value="<?php echo $buruh->mb_2c; ?>" size="10" onchange="kiraan_baru(this.value, '<?php echo $buruh->mb_2c;?>','total_mb_c')"/>
 <?php } ?>
@@ -222,10 +222,10 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo $buruh->mb_3b; ?>
 <?php } ?>
-            
+
             <a href="warga.php?type=LOCAL&amp;field=mb_3b" class='warga' ><img id="no-print" src="../images/add_48.png" alt="sss" width="16" height="16" border="0" /></a></td>
             <td align="center" bgcolor="#99FF99">
-            
+
             <?php if($_SESSION['view']!="true"){ ?><input name="mb_3c" type="text" autocomplete="off" class="field_active" id="mb_3c" value="<?php echo $buruh->mb_3c; ?>" size="10" onchange="kiraan_baru(this.value, '<?php echo $buruh->mb_3c;?>','total_mb_c')"/>
 <?php } ?>
 
@@ -241,7 +241,7 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo $buruh->mb_4; ?>
 <?php } ?>
-          
+
             <a href="warga.php?type=FOREIGN&amp;field=mb_4" class='warga' ><img id="no-print" src="../images/add_48.png" alt="sss" width="16" height="16" border="0" /></a></td>
             <td align="center">
             <?php if($_SESSION['view']!="true"){ ?> <input name="mb_4b" type="text" class="field_active" id="mb_4b" onchange="kiraan_baru(this.value, '<?php echo $buruh->mb_4b;?>','total_mb_b')" value="<?php echo $buruh->mb_4b; ?>" size="10" readonly="true" autocomplete="off"/>
@@ -249,7 +249,7 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo $buruh->mb_4b; ?>
 <?php } ?>
-           
+
             <a href="warga.php?type=LOCAL&amp;field=mb_4b" class='warga' ><img id="no-print" src="../images/add_48.png" alt="sss" width="16" height="16" border="0" /></a></td>
             <td align="center">
             <?php if($_SESSION['view']!="true"){ ?> <input name="mb_4c" type="text" autocomplete="off" class="field_active" id="mb_4c" value="<?php echo $buruh->mb_4c; ?>" size="10" onchange="kiraan_baru(this.value, '<?php echo $buruh->mb_4c;?>','total_mb_c')"/>
@@ -267,7 +267,7 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo $buruh->mb_5; ?>
 <?php } ?>
-           
+
             <a href="warga.php?type=FOREIGN&amp;field=mb_5" class='warga' ><img id="no-print" src="../images/add_48.png" alt="sss" width="16" height="16" border="0" /></a></td>
             <td align="center" bgcolor="#99FF99">
             <?php if($_SESSION['view']!="true"){ ?><input name="mb_5b" type="text" class="field_active" id="mb_5b" onchange="kiraan_baru(this.value, '<?php echo $buruh->mb_5b;?>','total_mb_b')" value="<?php echo $buruh->mb_5b; ?>" size="10" readonly="true" autocomplete="off"/>
@@ -275,7 +275,7 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 
 <?php if($_SESSION['view']=="true"){ ?><?php echo $buruh->mb_5b; ?>
 <?php } ?>
-            
+
             <a href="warga.php?type=LOCAL&amp;field=mb_5b" class='warga' ><img id="no-print" src="../images/add_48.png" alt="sss" width="16" height="16" border="0" /></a></td>
             <td align="center" bgcolor="#99FF99">
             <?php if($_SESSION['view']!="true"){ ?><input name="mb_5c" type="text" autocomplete="off" class="field_active" id="mb_5c" value="<?php echo $buruh->mb_5c; ?>" size="10" onchange="kiraan_baru(this.value, '<?php echo $buruh->mb_5c;?>','total_mb_c')"/>
@@ -288,35 +288,35 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
           <tr bgcolor="#FFFFCC">
             <td height="36" align="left" bgcolor="#FFFFCC"><span ><b><?=setstring ( 'mal', 'Jumlah keseluruhan', 'en', 'Total'); ?></b> </span></td>
             <td align="center">
-            <?php if($_SESSION['view']!="true"){ ?>   <input name="total_mb" type="text" class="field_total" id="total_mb" value="<?php 
+            <?php if($_SESSION['view']!="true"){ ?>   <input name="total_mb" type="text" class="field_total" id="total_mb" value="<?php
 			$total_mb = $buruh->mb_1+$buruh->mb_2+$buruh->mb_3+$buruh->mb_4+$buruh->mb_5;
 			echo $total_mb; ?>" size="10" readonly="true" autocomplete="off" />
 <?php } ?>
 
-<?php if($_SESSION['view']=="true"){ ?><?php 
+<?php if($_SESSION['view']=="true"){ ?><?php
 			$total_mb = $buruh->mb_1+$buruh->mb_2+$buruh->mb_3+$buruh->mb_4+$buruh->mb_5;
 			echo $total_mb; ?>
 <?php } ?>
          </td>
             <td align="center">
-            <?php if($_SESSION['view']!="true"){ ?>   <input name="total_mb_b" type="text" class="field_total" id="total_mb_b" value="<?php 
-			$total_mb_b = $buruh->mb_1b+$buruh->mb_2b+$buruh->mb_3b+$buruh->mb_4b+$buruh->mb_5b; 
+            <?php if($_SESSION['view']!="true"){ ?>   <input name="total_mb_b" type="text" class="field_total" id="total_mb_b" value="<?php
+			$total_mb_b = $buruh->mb_1b+$buruh->mb_2b+$buruh->mb_3b+$buruh->mb_4b+$buruh->mb_5b;
 			echo $total_mb_b; ?>" size="10" readonly="true" autocomplete="off" />
 <?php } ?>
 
-<?php if($_SESSION['view']=="true"){ ?><?php 
-			$total_mb_b = $buruh->mb_1b+$buruh->mb_2b+$buruh->mb_3b+$buruh->mb_4b+$buruh->mb_5b; 
+<?php if($_SESSION['view']=="true"){ ?><?php
+			$total_mb_b = $buruh->mb_1b+$buruh->mb_2b+$buruh->mb_3b+$buruh->mb_4b+$buruh->mb_5b;
 			echo $total_mb_b; ?>
 <?php } ?>
          </td>
             <td align="center">
-            <?php if($_SESSION['view']!="true"){ ?> <input name="total_mb_c" type="text" class="field_total" id="total_mb_c" value="<?php 
-			$total_mb_c=$buruh->mb_1c+$buruh->mb_2c+$buruh->mb_3c+$buruh->mb_4c+$buruh->mb_5c; 
+            <?php if($_SESSION['view']!="true"){ ?> <input name="total_mb_c" type="text" class="field_total" id="total_mb_c" value="<?php
+			$total_mb_c=$buruh->mb_1c+$buruh->mb_2c+$buruh->mb_3c+$buruh->mb_4c+$buruh->mb_5c;
 			echo $total_mb_c; ?>" size="10" readonly="true" autocomplete="off" />
 <?php } ?>
 
-<?php if($_SESSION['view']=="true"){ ?><?php 
-			$total_mb_c=$buruh->mb_1c+$buruh->mb_2c+$buruh->mb_3c+$buruh->mb_4c+$buruh->mb_5c; 
+<?php if($_SESSION['view']=="true"){ ?><?php
+			$total_mb_c=$buruh->mb_1c+$buruh->mb_2c+$buruh->mb_3c+$buruh->mb_4c+$buruh->mb_5c;
 			echo $total_mb_c; ?>
 <?php } ?>
            </td>
@@ -346,7 +346,7 @@ function kiraan_baru(nilai_baru, nilai_asal,field_total)
 <?php } ?>
 
 
-        
+
           <?php
 			}
 			?>

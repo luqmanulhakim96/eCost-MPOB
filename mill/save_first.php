@@ -1,10 +1,10 @@
-<?php 
+<?php
 session_start();
 extract($_POST);
 include ('../Connections/connection.class.php');
 $con = connect();
 $q="update login_mill set firsttime ='2' where lesen = '".$_SESSION['lesen']."'";
-$r = mysql_query($q,$con);
+$r = mysqli_query($con, $q);
 
 $qinfo="INSERT INTO mill_info (
 lesen ,
@@ -17,7 +17,7 @@ VALUES (
 '".$_SESSION['lesen']."', '$syarikat', '$integrasi', '$teknologi', '$tahun_operasi','','','','',''
 )
 ";
-$rinfo = mysql_query($qinfo,$con);
+$rinfo = mysqli_query($con, $qinfo);
 
 
 

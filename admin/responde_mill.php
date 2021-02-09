@@ -8,7 +8,7 @@
 -->
 </style>
 <link href="facebox/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
-<script src="facebox/facebox.js" type="text/javascript"></script> 
+<script src="facebox/facebox.js" type="text/javascript"></script>
 <script>
 jQuery(document).ready(function($) {
   $('a[rel*=facebox]').facebox()
@@ -28,8 +28,8 @@ include('baju_merah.php');
   </tr>
 </thead>
 <tbody>
-<?php 
-//echo $negeri; 
+<?php
+//echo $negeri;
 	$con = connect();
 	$year = $_COOKIE['tahun_report'];
 	$peninsular = "SELECT ekilang.no_lesen lesen, ekilang.nama_kilang nama, ekilang.syarikat_induk syarikat_induk,login_mill.success access, alamat_ekilang.email email FROM ekilang";
@@ -49,17 +49,17 @@ include('baju_merah.php');
 		else {
 		$peninsular .= " AND ekilang.negeri LIKE '%$negeri%' ";
 		}
-		
+
 	}
 	$peninsular .= " GROUP BY ekilang.no_lesen";
 	$peninsular .= " ORDER BY login_mill.success DESC";
-		
-			
-		//echo $peninsular; 
-		$r=mysql_query($peninsular,$con);
+
+
+		//echo $peninsular;
+		$r=mysqli_query($con, $peninsular);
 		$j =0;
 		//	echo $q;
-	while($row=mysql_fetch_array($r)){
+	while($row=mysqli_fetch_array($r)){
 ?>
   <tr valign="top">
     <td><?php echo ++$j; ?></td>
@@ -67,7 +67,7 @@ include('baju_merah.php');
     <td><?php echo $row['email'];?></td>
 	<td><?php echo $row['notel'];?></td>
   </tr>
-  <?php } mysql_close($con);?>
+  <?php } mysqli_close($con);?>
 </tbody>
 </table>
 <br />

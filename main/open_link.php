@@ -71,7 +71,7 @@ if ($id == "estate") {
 
     else if ($sub == "nonresponse_all")
         $open_detail = "estate_nonresponse_all.php";
-    // end of mill response     
+    // end of mill response
 
     else if ($sub == "imm")
         $open_detail = "mi_all.php";
@@ -117,7 +117,7 @@ if ($id == "estate") {
 
     else if ($sub == "soiltype")
         $open_detail = "estate_soiltype.php";
-	
+
 	else if ($sub == "summary")
         $open_detail = "mi_summary.php";
 
@@ -234,7 +234,7 @@ else if ($id == "adm_mill") {
         $open_detail = "nonresponse_peninsular.php";
 
 
-    // end of mill response 
+    // end of mill response
 
     else if ($sub == "responde_mill")
         $open_detail = "responde_mill.php";
@@ -405,7 +405,7 @@ else if ($id == "bantuan") {
 } else if ($id == "print") {
     //$open = "print.php"; //xpasti lagi
     $open = "print_all.php";
-} 
+}
 	else if ($id == "print_estate") {
     $open = "print_ringkasankos_estate.php";
 }else if ($id == "login") {
@@ -692,9 +692,9 @@ else if ($id == "mill") {
     $open = "palmoil.php";
     $open_detail = "po1_1.php";
 
-    if ($sub == 'password') 
+    if ($sub == 'password')
         $open_detail = "password.php";
-    else if ($sub == 'faq') 
+    else if ($sub == 'faq')
         $open_detail = "faq.php";
     else if ($sub == 'chapter')
         $open_detail = "chapter.php";

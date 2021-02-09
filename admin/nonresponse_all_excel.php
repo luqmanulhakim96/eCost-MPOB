@@ -11,7 +11,7 @@ header("Content-Disposition: attachment; filename=All_Mill_Non_Response_Survey_i
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="display" id="example">
 	<thead>
-	
+
 	  <tr bgcolor="#8A1602" height="30">
 		  <th width="4%" class="style2">No.</th>
 			<th class="style2">Mill Name</th>
@@ -25,7 +25,7 @@ header("Content-Disposition: attachment; filename=All_Mill_Non_Response_Survey_i
 	  </tr>
 	</thead>
 	<tbody>
-	<?php while($row=mysql_fetch_array($result_all_incomplete)) { ?>
+	<?php while($row=mysqli_fetch_array($result_all_incomplete)) { ?>
 		<tr valign="top">
 			<td><?php echo $list++; ?></td>
 			<td><?php echo $row['nama'];?></td>
@@ -37,6 +37,6 @@ header("Content-Disposition: attachment; filename=All_Mill_Non_Response_Survey_i
               <td><?php echo $row['nofax'];?></td>
 			<td><?php echo $row['access'];?></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>

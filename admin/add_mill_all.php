@@ -23,13 +23,13 @@ body,td,th {
       <?php if($jenis==""){?>
       For new registration mill, please insert license no (new number).
       <?php } ?>
-      
-      
+
+
       <?php if($jenis=="edit"){?>
       For update new license no please add the no into the box below.
       <?php } ?>
-      
-      
+
+
       </strong></em></td>
     </tr>
     <tr>
@@ -44,20 +44,20 @@ body,td,th {
         <script language="javascript">
       		var nama_kilang = new LiveValidation('nama_kilang');
 			nama_kilang.add( Validate.Presence );
-      </script>  
+      </script>
       </td>
     </tr>
     <tr>
       <td width="158">New License No. </td>
       <td width="10">:</td>
       <td width="816"><input name="nolesen" type="text" id="nolesen" size="40" />
-      
+
         <script language="javascript">
       		var no_lesen = new LiveValidation('nolesen');
 			no_lesen.add( Validate.Presence );
       </script>      <input name="lesen_lama" type="hidden" id="lesen_lama" value="<?php  echo $lesen_lama; ?>" />
       <input name="tahun" type="hidden" id="tahun" value="<?php  echo $tahun; ?>" />
-      
+
       </td>
     </tr>
     <tr>
@@ -67,11 +67,11 @@ body,td,th {
       <?php if($jenis==""){?>
       <input type="submit" name="simpan" id="simpan" value="Save Data" onclick="return confirm('Add this new data?');" />
       <?php } ?>
-      
+
       <?php if($jenis=="edit"){?>
       <input type="submit" name="kemaskini" id="kemaskini" value="Update Data" />
       <?php } ?>
-      
+
       <input type="button" name="button2" id="button2" value="Close"  onclick="window.close();top.opener.window.location.reload()"/></td>
     </tr>
     <tr>
@@ -92,37 +92,37 @@ if(isset($_COOKIE['tahun_report'])){
 	}else{
 		$table = "ekilang".$_COOKIE['tahun_report'];
 	}
-	
+
 	$tahunEkilang = $_COOKIE['tahun_report'];
 }
 
 if(isset($simpan)){
-		
-		
+
+
 		$qselect ="select * from $table where no_lesen ='$nolesen'";
-		$rselect = mysql_query($qselect,$con);
-		$totalselect = mysql_num_rows($rselect);
-		
+		$rselect = mysqli_query($con,$qselect);
+		$totalselect = mysqli_num_rows($rselect);
+
 		if($totalselect == 0){
-		$tahun = $tahun-1; 
+		$tahun = $tahun-1;
 		for($y=1; $y<=12; $y++){
-		
+
 			 $qadd ="insert into $table (no_lesen, nama_kilang, bulan, tahun) values('$nolesen', ucase('$nama_kilang'), '$y', $tahun)";
 			 		 //echo $qadd."<br>";
 
-			$radd = mysql_query($qadd, $con);
+			$radd = mysqli_query($con,$qadd);
 			}//loop 12month
 			// "<br>";
 		 	$qadd1 ="insert into login_mill (lesen, password, firsttime) values('$nolesen','ecost$tahunEkilang', '1')";
-			$radd1 = mysql_query($qadd1, $con);
+			$radd1 = mysqli_query($con, $qadd1);
 			// "<br>";
-				$tahun = $tahun+1; 
+				$tahun = $tahun+1;
 			echo "<script>window.location.href='view_mill_all.php?nolesen=$nolesen&tahun=$tahun';</script>";
 		}
-		
+
 		if($totalselect>0){
 		 echo "<script>alert('Data already exist!! Please add other license no.');window.close();</script>";
-		}	
+		}
 }
 
 
@@ -132,104 +132,104 @@ if(isset($kemaskini)){
 		$nlama = substr($lesen_lama,0,-1);
 		//******
 		$qupdate ="update  fbb_production set lesen = '$nl' where lesen ='$nlama' ";
-		$rupdate = mysql_query($qupdate, $con);
-		
+		$rupdate = mysqli_query($con, $qupdate);
+
 		 $qupdate ="update  age_profile set lesen = '$nolesen' where lesen ='$lesen_lama' ";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
 
 		  $qupdate ="update  belanja_am_kos set lesen = '$nolesen' where lesen ='$lesen_lama'";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
 
 		  $qupdate ="update  belanja_am_var set lesen = '$nolesen' where lesen ='$lesen_lama' ";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
 
 		  $qupdate ="update  buruh set lesen = '$nolesen' where lesen ='$lesen_lama' ";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
 
 		  $qupdate ="update  buruh_status set lesen = '$nolesen' where lesen ='$lesen_lama' ";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
 
 		  $qupdate ="update  age_profile where lesen ='$nolesen' and tahun = '$tahun' ";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
 
 		 $qupdate ="update  estate_info set lesen = '$nolesen' where lesen ='$lesen_lama' ";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
-		
+
 		  $qupdate ="update  estate_jentera set lesen = '$nolesen' where lesen ='$lesen_lama'";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
-		
+
 		  $qupdate ="update  esub  set no_lesen_baru = '$nolesen' where no_lesen_baru ='$lesen_lama' ";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
-		
+
 		 $qupdate ="update  kos_belum_matang set lesen = '$nolesen' where lesen ='$lesen_lama'";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
 
 		  $qupdate ="update  kos_matang_pengangkutan set lesen = '$nolesen' where lesen ='$lesen_lama'";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
 
 		  $qupdate ="update  kos_matang_penjagaan set lesen = '$nolesen' where lesen ='$lesen_lama'";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
 
 		  $qupdate ="update  kos_matang_penuaian set lesen = '$nolesen' where lesen ='$lesen_lama'";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
 
 		  $qupdate ="update  login_estate set lesen = '$nolesen' where lesen ='$lesen_lama' ";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
-		
+
 		 $qupdate ="update  ringkasan_kos_am set lesen = '$nolesen' where lesen ='$lesen_lama'";
-		$rupdate = mysql_query($qupdate, $con);
+		$rupdate = mysqli_query($con, $qupdate);
 // "<br>";
 
 		  $qupdate ="update  warga_estate set lesen = '$nolesen' where lesen ='$lesen_lama'";
-		$rupdate = mysql_query($qupdate, $con);
-// "<br>";		
-		
+		$rupdate = mysqli_query($con, $qupdate);
+// "<br>";
+
 		function kemaskini($table,$nolesen,$lesen_lama){
 		$con = connect();
-		// $table; 
+		// $table;
 		$qupdate3 ="update $table set lesen = '$nolesen' where lesen ='$lesen_lama'";
-		$rupdate3 = mysql_query($qupdate3, $con);
-		
+		$rupdate3 = mysqli_query($con, $qupdate3);
+
 		echo "<br>";
 		}
-		
+
 			$tahun = $_SESSION['tahun'];
-			
+
 			$pertama = $tahun-3;
 			$kedua = $tahun-2;
-			$ketiga = $tahun-1; 
-			
+			$ketiga = $tahun-1;
+
 			$pertama = substr($pertama,-2);
 			$kedua = substr($kedua,-2);
 			$ketiga = substr($ketiga,-2);
 		//echo "tanam_tukar$pertama";
-		
+
 		kemaskini("tanam_tukar$pertama",$nolesen,$lesen_lama);
 		kemaskini("tanam_tukar$kedua",$nolesen,$lesen_lama);
 		kemaskini("tanam_tukar$kedua",$nolesen,$lesen_lama);
-		
+
 		kemaskini("tanam_baru$pertama",$nolesen,$lesen_lama);
 		kemaskini("tanam_baru$kedua",$nolesen,$lesen_lama);
 		kemaskini("tanam_baru$kedua",$nolesen,$lesen_lama);
-		
+
 		kemaskini("tanam_semula$pertama",$nolesen,$lesen_lama);
 		kemaskini("tanam_semula$kedua",$nolesen,$lesen_lama);
 		kemaskini("tanam_semula$kedua",$nolesen,$lesen_lama);
-		
+
 		echo "<script>window.location.href='view_mill_all.php?nolesen=$nolesen&tahun=$tahun';</script>";
 }
  ?>

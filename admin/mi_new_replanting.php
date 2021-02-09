@@ -14,7 +14,7 @@ function median($numbers=array())
 {
 	if (!is_array($numbers))
 		$numbers = func_get_args();
-	
+
 	rsort($numbers);
 	$mid = (count($numbers) / 2);
 	return ($mid % 2 != 0) ? $numbers{$mid-1} : (($numbers{$mid-1}) + $numbers{$mid}) / 2;
@@ -26,63 +26,63 @@ function pertama($tahun, $nama, $status,$negeri,$daerah, $type, $tahuntanam){
 		if($negeri!="" & $negeri!="pm")
 		{
 			$sql.=" and negeri = '$negeri'";
-		} 
+		}
 		if($negeri!="" && $daerah!="")
 		{
 			$sql.=" and daerah = '$daerah'";
-		} 
+		}
 		if($negeri=="pm")
 		{
 			$sql.=" and (negeri not like 'SARAWAK' and negeri not like 'SABAH')";
-		} 
-		
+		}
+
 		//echo $sql."<br>";
-		$sql_result = mysql_query($sql,$con); 
-		$i=0; 
-				while ($row = mysql_fetch_array($sql_result)) 
-				{ 
+		$sql_result = mysqli_query($con, $sql);
+		$i=0;
+				while ($row = mysqli_fetch_array($sql_result))
+				{
 				$test_data[] = $row["y"];
-				$i = $i + 1; 
-				} 
-			
+				$i = $i + 1;
+				}
+
 		$qavg = "SELECT AVG(y) as purata FROM graf_kbm where sessionid='$nama' and tahun ='$tahun' and status='$status' and pb_type='$type' and pb_tahun = '$tahuntanam'";
 		if($negeri!="" & $negeri!="pm")
 		{
 			$qavg.=" and negeri = '$negeri'";
-		} 
+		}
 		if($negeri!="" && $daerah!="")
 		{
 			$qavg.=" and daerah = '$daerah'";
-		} 
+		}
 		if($negeri=="pm")
 		{
 			$qavg.=" and (negeri not like 'SARAWAK' and negeri not like 'SABAH')";
-		} 
-		
-		
-		$ravg = mysql_query($qavg,$con);
-		$rrow = mysql_fetch_array($ravg);
-		
-		
+		}
+
+
+		$ravg = mysqli_query($con, $qavg);
+		$rrow = mysqli_fetch_array($ravg);
+
+
 			$var[0] = median($test_data);
-			$var[1] = $rrow['purata'];		
-				return $var; 
-				
-		}	
-		
-		
+			$var[1] = $rrow['purata'];
+				return $var;
+
+		}
+
+
 		function cop ($name, $type, $year, $state, $district, $tahun_r){
 				global $con;
 				$q_cop = "select  * from cop where
 				NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT='$tahun_r'";
-				$r_cop = mysql_query($q_cop, $con);
-				$row_cop = mysql_fetch_array($r_cop);
-				
+				$r_cop = mysqli_query($con, $q_cop);
+				$row_cop = mysqli_fetch_array($r_cop);
+
 				$var[0] = $row_cop['VALUE_MEDIAN'];
 				$var[1] = $row_cop['VALUE_MEAN'];
 				return $var;
 		}
-		
+
 ?>
 <link rel="stylesheet" href="../text_style.css" type="text/css" />
 <style type="text/css">
@@ -108,7 +108,7 @@ function openScript(url, width, height) {
 </script>
 <link rel="stylesheet" href="../js/colorbox/colorbox.css" type="text/css" />
 <script type="text/javascript" src="../js/colorbox/colorbox/jquery.colorbox.js"></script>
-        
+
 <script type="text/javascript">
 			$(document).ready(function(){
 								$(".boxcolor").colorbox({width:"40%", height:"100%"});
@@ -135,13 +135,13 @@ function openScript(url, width, height) {
     <?php if($state=="" || $state=="pm"){?>
     <img name="" src="../images/state/bendera_malaysia.jpg" width="91" height="45" alt="" class="thinborderfloat" />
     <?php } ?>
-	<?php 
+	<?php
 	if($state!=""){
-	
+
 	$qstate ="select * from negeri where id like '$state'";
-	$rstate = mysql_query($qstate,$con);
-	$rowstate = mysql_fetch_array($rstate);
-	$totalstate = mysql_num_rows($rstate);
+	$rstate = mysqli_query($con, $qstate);
+	$rowstate = mysqli_fetch_array($rstate);
+	$totalstate = mysqli_num_rows($rstate);
 	if($state=="pm"){$state="pm";}
 	else{$state = $rowstate['nama'];
 	}
@@ -150,7 +150,7 @@ function openScript(url, width, height) {
 	<img src="../images/<?= $rowstate['negeri_path']; ?>" alt="" name="state" width="91" height="45" class="thinborderfloat" id="state" title="<?= $rowstate['nama'];?>" /><br />
 <h2><?php echo $district; ?></h2>
 	<?php }}?>
-    
+
     </td>
   </tr>
   <tr class="tajuk">
@@ -158,7 +158,7 @@ function openScript(url, width, height) {
     <a href="negeri_select.php?id=<?php echo  $rowstate['nama'];?>" class="boxcolor">View By District</a>
     <?php } ?>  </td>
   </tr>
-  
+
   <tr class="tajuk">
       <td colspan="3" valign="top"> <a href="javascript:openScript('mi_new_replanting_draft.php?year=<?php echo $year; ?>&state=<?php echo $state; ?>','800','600')" >View Draft</a></td>
     </tr>
@@ -185,9 +185,9 @@ function openScript(url, width, height) {
     <td bgcolor="#8A1602"><div align="right"><span class="style5">Mean</span></div></td>
     <td bgcolor="#8A1602"><div align="right"><span class="style5">Median</span></div></td>
   </tr>
-  
-  
-  <?php 
+
+
+  <?php
   $satu = $_COOKIE['tahun_report']-0;
   $dua = $_COOKIE['tahun_report']-1;
   ?>
@@ -197,28 +197,28 @@ function openScript(url, width, height) {
   <tr class="alt">
     <td colspan="5"><strong>Non-Recurrent Costs</strong></td>
   </tr>
-  
+
   <?php
   }
   /*
   $qs="select * from q_kbm";
   if($year=="" || $year=='1'){
-  $qs.=" where tahun ='0'"; 
-  } 
+  $qs.=" where tahun ='0'";
+  }
   */
   if($year=="" || $year=='1'){
-  $qs =" select * from q_kbm"; 
-  } 
+  $qs =" select * from q_kbm";
+  }
   else {
   $qs = " select * from q_kbm where tahun!='0'";
   }
-  $rs = mysql_query($qs,$con);
-  
+  $rs = mysqli_query($con, $qs);
+
   $jl=0;
   $js=0;
   $ms=0;
-  
-   while($rows=mysql_fetch_array($rs)){
+
+   while($rows=mysqli_fetch_array($rs)){
   ?>
   <tr <?php if(++$gg%2==0){?>class="alt"<?php } ?>>
   	<td <?php if($_COOKIE['tahun_report']==2010){?> ondblclick="javascript:openScript('add_cop.php?name=<?php echo $rows['name'];?>&type=<?php echo "Penanaman Semula"; ?>&tahun=<?php echo $_COOKIE['tahun_report'];?>&year=<?php echo $year;?>&state=<?php echo $state; ?>','700','200')"<?php } ?>><?php echo $rows['name'];?></td>
@@ -226,7 +226,7 @@ function openScript(url, width, height) {
 	if($year==""){
 		$year=1;
 	}
-	
+
 	if($rows['isChild'] == 'N' && strlen($rows['sub_type']) > 0){
 		if($rows['sub_type'] == "weeding"){
 			if($_COOKIE['tahun_report']==2010){
@@ -236,11 +236,11 @@ function openScript(url, width, height) {
 				$total2 = pertama($dua, "Labour cost for weeding", '0', $state, $district, "Penanaman Semula", $year);
 				$total3 = pertama($dua, "Machinery use and maintenance", '0', $state, $district, "Penanaman Semula", $year);
 			}
-			
+
 			$total4 = pertama($satu, "Purchase of weedicides", '0', $state, $district, "Penanaman Semula", $year);
 			$total5 = pertama($satu, "Labour cost for weeding", '0', $state, $district, "Penanaman Semula", $year);
 			$total6 = pertama($satu, "Machinery use and maintenance", '0', $state, $district, "Penanaman Semula", $year);
-	?>    
+	?>
     <td width="68"><div align="right"><?php $totalAll1 = $total1[1]+$total2[1]+$total3[1]; echo number_format($totalAll1,2);?></div></td>
     <td width="68"><div align="right"><?php $totalAll2 = $total4[1]+$total5[1]+$total6[1]; echo number_format($totalAll2,2);?></div></td>
     <td width="68"><div align="right"><?php $totalAll3 = $total4[0]+$total5[0]+$total6[0]; echo number_format($totalAll3,2);?></div></td>
@@ -255,7 +255,7 @@ function openScript(url, width, height) {
 				$total9 = pertama($dua, "Machinery use and maintenances", '0', $state, $district, "Penanaman Semula", $year);
 				$total10 = pertama($dua, "Soil and foliar analysis", '0', $state, $district, "Penanaman Semula", $year);
 			}
-			
+
 			$total11 = pertama($satu, "Purchase of fertilizer", '0', $state, $district, "Penanaman Semula", $year);
 			$total12 = pertama($satu, "Labour cost to apply fertilizers", '0', $state, $district, "Penanaman Semula", $year);
 			$total13 = pertama($satu, "Machinery use and maintenances", '0', $state, $district, "Penanaman Semula", $year);
@@ -277,7 +277,7 @@ function openScript(url, width, height) {
 		}else{
 			$a1 = pertama ($dua, $rows['name'], '0',$state, $district, "Penanaman Semula", $year);
 		}
-		
+
 		$a= pertama ($satu,  $rows['name'], '0',$state, $district, "Penanaman Semula", $year);
 	?>
     <td width="68"><div align="right">
@@ -299,8 +299,8 @@ function openScript(url, width, height) {
 	?>
     </div></td>
     <td width="68"><div align="right">
-    <?php 
-	$ch = (($a[1]-$a1[1])/$a1[1])*100; echo number_format($ch,2);if(strlen($rows['sub_type']) == 0){$jch+=$ch;} 
+    <?php
+	$ch = (($a[1]-$a1[1])/$a1[1])*100; echo number_format($ch,2);if(strlen($rows['sub_type']) == 0){$jch+=$ch;}
 	?>
     </div></td>
     <?php
@@ -319,4 +319,3 @@ function openScript(url, width, height) {
 <br />
 <br />
 <br />
-

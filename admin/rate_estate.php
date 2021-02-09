@@ -8,11 +8,11 @@
 -->
 </style>
 <link href="facebox/facebox.css" media="screen" rel="stylesheet" type="text/css"/>
-<script src="facebox/facebox.js" type="text/javascript"></script> 
+<script src="facebox/facebox.js" type="text/javascript"></script>
 <script>
 jQuery(document).ready(function($) {
   $('a[rel*=facebox]').facebox()
-}) 
+})
 </script>
 
 <table width="90%" border="0" align="center" cellpadding="4" cellspacing="0">
@@ -27,9 +27,9 @@ jQuery(document).ready(function($) {
   </tr>
   <?php $con = connect();
  $q ="select * from esub  order by rand() limit 0,$total";
-  $r = mysql_query($q,$con);
-  $j =0; 
-  while($row=mysql_fetch_array($r)){
+  $r = mysqli_query($con, $q);
+  $j =0;
+  while($row=mysqli_fetch_array($r)){
   ?>
   <tr valign="top">
     <td><?php echo ++$j; ?></td>
@@ -38,8 +38,8 @@ jQuery(document).ready(function($) {
     <td><a href="email.php?bil=<?= $row['Bil'];?>" rel="facebox" ><?= $row['Emel'];?></a>
     <div align="center"></div></td>
   </tr>
-  <?php } mysql_close($con);?>
-  
+  <?php } mysqli_close($con);?>
+
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>

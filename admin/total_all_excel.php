@@ -24,7 +24,7 @@ header("Content-Disposition: attachment; filename=All_Mill_Response_Survey_in_Ma
     </tr>
   </thead>
   <tbody>
-    <?php while($row=mysql_fetch_array($result_all)) { ?>
+    <?php while($row=mysqli_fetch_array($result_all)) { ?>
     <tr valign="top">
       <td><?php echo $list++; ?></td>
       <td><?php echo $row['nama'];?></td>

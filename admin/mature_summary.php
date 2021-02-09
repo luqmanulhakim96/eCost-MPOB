@@ -12,14 +12,14 @@ function soalan($jenis, $subjenis, $tahun1, $tahun2, $state, $district) {
         $q.=" and sub_type = '$subjenis'";
     }
 
-    $r = mysql_query($q, $con);
+    $r = mysqli_query($con, $q);
 
     $jas1 = 0;
     $jas2 = 0;
     $jb1 = 0;
     $jb2 = 0;
 
-    while ($row = mysql_fetch_array($r)) {
+    while ($row = mysqli_fetch_array($r)) {
         if ($subjenis != "fertiliser") {
             if ($row['isChild'] == "N" && strlen($row['sub_type']) > 0) {
                 continue;
@@ -72,8 +72,8 @@ function pertama($tahun, $nama, $status, $negeri, $daerah) {
         $qavg.=" and negeri not like 'SARAWAK' and negeri not like 'SABAH' ; ";
     }
 
-    $ravg = mysql_query($qavg, $con);
-    $rrow = mysql_fetch_array($ravg);
+    $ravg = mysqli_query($con, $qavg);
+    $rrow = mysqli_fetch_array($ravg);
 
     $qavg2 = "SELECT AVG(y) as purata FROM graf_km_tan where sessionid='$nama' and tahun ='$tahun' and status='$status' ";
     if ($negeri != "" && $negeri != "pm") {
@@ -86,8 +86,8 @@ function pertama($tahun, $nama, $status, $negeri, $daerah) {
         $qavg2.=" and negeri not like 'SARAWAK' and negeri not like 'SABAH'";
     }
 
-    $ravg2 = mysql_query($qavg2, $con);
-    $rrow2 = mysql_fetch_array($ravg2);
+    $ravg2 = mysqli_query($con, $qavg2);
+    $rrow2 = mysqli_fetch_array($ravg2);
 
     $var[0] = $rrow['purata'];
     $var[1] = $rrow2['purata'];
@@ -101,8 +101,8 @@ function cop($name, $type, $year, $state, $district, $tahun_r) {
 
     $q_cop = "select  * from cop where
 	NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT='$tahun_r'";
-    $r_cop = mysql_query($q_cop, $con);
-    $row_cop = mysql_fetch_array($r_cop);
+    $r_cop = mysqli_query($con, $q_cop);
+    $row_cop = mysqli_fetch_array($r_cop);
 
     $var[1] = $row_cop['VALUE_MEDIAN'];
     $var[0] = $row_cop['VALUE_MEAN'];
@@ -139,9 +139,9 @@ function cop($name, $type, $year, $state, $district, $tahun_r) {
     if ($state != "") {
 
         $qstate = "select * from negeri where id like '$state'";
-        $rstate = mysql_query($qstate, $con);
-        $rowstate = mysql_fetch_array($rstate);
-        $totalstate = mysql_num_rows($rstate);
+        $rstate = mysqli_query($con, $qstate);
+        $rowstate = mysqli_fetch_array($rstate);
+        $totalstate = mysqli_num_rows($rstate);
         if ($state == "pm") {
             $state = "pm";
         } else {
@@ -389,15 +389,15 @@ $_SESSION['fertilizer_session_before'] = round($sp[0] / $sb * 100, 2);
             <div id="flashcontent">
                     <strong>You need to upgrade your Flash Player</strong>
             </div>
-    
+
             <script type="text/javascript">
-                    // <![CDATA[		
+                    // <![CDATA[
                     var so = new SWFObject("ampie/ampie.swf", "ampie", "620", "500", "8", "#FFFFFF");
                     so.addVariable("path", "ampie/");
-                    
+
                             so.addVariable("settings_file", encodeURIComponent("ampie/ampie_settings_mature.xml"));                // you can set two or more different settings files here (separated by commas)
                     so.addVariable("data_file", encodeURIComponent("ampie/ampie_data_mature.php"));
-                    
+
                     so.write("flashcontent");
                     // ]]>
             </script>-->
@@ -409,7 +409,7 @@ $_SESSION['fertilizer_session_before'] = round($sp[0] / $sb * 100, 2);
             </div>
 
             <script type="text/javascript">
-            // <![CDATA[		
+            // <![CDATA[
             var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "380", "8", "#FFFFFF");
             so.addVariable("path", "amcolumn/");
             so.addVariable("settings_file", encodeURIComponent("amcolumn/amcolumn_settings_mature.xml"));
@@ -424,4 +424,3 @@ $_SESSION['fertilizer_session_before'] = round($sp[0] / $sb * 100, 2);
     </tr>
 </table>
 <br />
-

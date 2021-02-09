@@ -4,11 +4,11 @@ include('baju2.php');
 
   $con=connect();
   $qb="truncate age_profile_analysis";
-  $rb=mysql_query($qb,$con);
-  
+  $rb=mysqli_query($con, $qb);
+
   $con=connect();
-  
-  
+
+
   $tahunsemasa = $_COOKIE['tahun_report'];
    $ts = ($tahunsemasa[2].$tahunsemasa[3])-1;
   if(strlen($ts)==1){ $pertama ="0".$ts;}else{$pertama=$ts;}
@@ -16,65 +16,64 @@ include('baju2.php');
   if(strlen($ts1)==1){ $kedua ="0".$ts1;}else{$kedua=$ts1;}
   $ts2= $ts-2;
   if(strlen($ts2)==1){ $ketiga ="0".$ts2;}else{$ketiga=$ts2;}
-  
+
   if($state=="" and $district==""){
   $qs="select No_Lesen_Baru, Negeri_Premis, Daerah_Premis from esub ";
   }
-  
+
   if($state!="" and $district==""){
   $qs="select No_Lesen_Baru, Negeri_Premis, Daerah_Premis from esub where negeri_premis = '$state' ";
   }
   if($state!="" and $district!=""){
   $qs="select No_Lesen_Baru, Negeri_Premis, Daerah_Premis from esub where negeri_premis = '$state' and daerah_premis = '$district' ";
   }
-  $rs=mysql_query($qs,$con);
-  
+  $rs=mysqli_query($con, $qs);
+
  // echo $qs;
-  while($rows=mysql_fetch_array($rs)){
+  while($rows=mysqli_fetch_array($rs)){
   		 $qa ="INSERT INTO age_profile_analysis
     SELECT *
-    FROM age_profile where age_profile.lesen = '".$rows['No_Lesen_Baru']."'
-";
-		$ra = mysql_query($qa,$con);
-  
+    FROM age_profile where age_profile.lesen = '".$rows['No_Lesen_Baru']."'";
+		$ra = mysqli_query($con, $qa);
+
   tambahan($pertama,$rows['No_Lesen_Baru']);
-  
+
   tambahan($kedua,$rows['No_Lesen_Baru']);
-  
+
   tambahan($ketiga,$rows['No_Lesen_Baru']);
-  
+
   }
-  
+
   function tambahan ($year_semasa, $lesen){
   		$con=connect();
 		$qs="select sum(tanaman_semula) as jumlah from tanam_semula$year_semasa where lesen = '$lesen'";
-		$rs=mysql_query($qs,$con);
-		$rows=mysql_fetch_array($rs);
-		
+		$rs=mysqli_query($con, $qs);
+		$rows=mysqli_fetch_array($rs);
+
 		$qt ="select sum(tanaman_tukar) as jumlah from tanam_tukar$year_semasa where lesen = '$lesen'";
-		$rt=mysql_query($qt,$con);
-		$rowt=mysql_fetch_array($rt);
-  		
+		$rt=mysqli_query($con, $qt);
+		$rowt=mysqli_fetch_array($rt);
+
 		$qb ="select sum(tanaman_baru) as jumlah from tanam_baru$year_semasa where lesen = '$lesen'";
-		$rb=mysql_query($qb,$con);
-		$rowb=mysql_fetch_array($rb);
-		
+		$rb=mysqli_query($con, $qb);
+		$rowb=mysqli_fetch_array($rb);
+
 		$jj = $rows['jumlah']+$rowt['jumlah']+$rowb['jumlah'];
 		$ys = 2000+$year_semasa;
 		$ss = $_COOKIE['tahun_report']-$ys;
-		
+
 		$qa ="INSERT INTO age_profile_analysis (lesen ,umur_pokok ,tahun_tanam ,keluasan)VALUES ('$lesen', '$ss','$ys','$jj') ";
-		$ra = mysql_query($qa,$con);
-		
+		$ra = mysqli_query($con, $qa);
+
 	}
-  
-  
-  
+
+
+
   	 $qd ="delete from age_profile_analysis where keluasan =0 or lesen ='' ";
-		$rd= mysql_query($qd,$con);
-	
-  
-  
+		$rd= mysqli_query($con, $qd);
+
+
+
 ?>
 
 <style type="text/css">
@@ -119,14 +118,14 @@ opacity:1;
 </style>
 <link rel="stylesheet" href="../js/colorbox/colorbox.css" type="text/css" />
 <script type="text/javascript" src="../js/colorbox/colorbox/jquery.colorbox.js"></script>
-        
+
 <script type="text/javascript">
 			$(document).ready(function(){
 								$(".boxcolor").colorbox({width:"40%", height:"100%"});
 
 			});
 		</script>
-        
+
 
 
 <span class="style6"> <br />&nbsp;&nbsp;
@@ -176,13 +175,13 @@ Age Profile<br />
     <td><div align="center"><h2><u><strong>    <?php if($state=="" || $state=="pm"){?>
     <img name="" src="../images/state/bendera_malaysia.jpg" width="91" height="45" alt="" class="thinborderfloat" />
     <?php } ?>
-	<?php 
+	<?php
 	if($state!=""){
-	
+
 	$qstate ="select * from negeri where nama like '$state'";
-	$rstate = mysql_query($qstate,$con);
-	$rowstate = mysql_fetch_array($rstate);
-	$totalstate = mysql_num_rows($rstate);
+	$rstate = mysqli_query($con, $qstate);
+	$rowstate = mysqli_fetch_array($rstate);
+	$totalstate = mysqli_num_rows($rstate);
 	if($state=="pm"){$state="pm";}
 	else{$state = $rowstate['nama'];
 	}
@@ -202,32 +201,32 @@ Age Profile<br />
     <th width="36%"> 	Area (Hectares) </th>
     <th width="10%">Total Estate</th>
   </tr>
-  
-  <?php 
+
+  <?php
   function age_profile($tn){
 	  $con=connect();
 	  $q="select sum(keluasan) as keluasan from age_profile_analysis where tahun_tanam = '$tn' and lesen not like '123456%' ";
-	  $r=mysql_query($q,$con);
-	  $row=mysql_fetch_array($r);
+	  $r=mysqli_query($con, $q);
+	  $row=mysqli_fetch_array($r);
 	  //$total = mysql_num_rows($r);
-	  
+
 	  $q="select * from age_profile_analysis where tahun_tanam = '$tn' and lesen not like '123456%' ";
-	  $r=mysql_query($q,$con);
-	  $total = mysql_num_rows($r);
-	  
+	  $r=mysqli_query($con, $q);
+	  $total = mysqli_num_rows($r);
+
 	  $variable[0] = $total;
 	  $variable[1] = $row['keluasan'];
-	  
+
 	  return $variable;
   }
-  
-  //echo $_COOKIE['tahun_report']; 
-  $jumlah_semua =0; 
+
+  //echo $_COOKIE['tahun_report'];
+  $jumlah_semua =0;
   $tamat= $_COOKIE['tahun_report']-44;
   for($i=($_COOKIE['tahun_report']-1); $i>=$tamat; $i=$i-1){
   	$tahun_tanam = $_COOKIE['tahun_report']-$i;
   	$tanam = age_profile($i);
-  
+
   	if($tanam[1]>0){
   ?>
   <tr <?php if($i%2==0){?>class="alt"<?php } ?>>
@@ -239,12 +238,12 @@ Age Profile<br />
     <td><div align="right"><?php echo number_format($tanam[0],0);?></div></td>
   </tr>
 
-  <?php 
+  <?php
   		$jumlah_semua = $jumlah_semua+$tanam[1];
   		$jumlah_semua_estate += $tanam[0];
   	}
-  } ?>  
-  
+  } ?>
+
   <tr>
     <td colspan="2"><div align="right"><strong>Total Area Plant (in hectare)</strong></div></td>
     <td><div align="right"><b><?php echo number_format($jumlah_semua,2);?></b></div></td>
@@ -257,17 +256,17 @@ Age Profile<br />
 
 <p align="center"><a href="age_profile_excel.php?type=excel" target="_blank"><img src="../images/Office-excel-xls-icon.png" width="50" height="50" border="0" title="Convert to Excel" /></a><a href="age_profile_excel.php?type=print" target="_blank"><img src="../images/Printer-icon.png" width="50" height="50" border="0" title="View to print" /></a></p>
 <p><br />
-  
-  
+
+
   <br />
-  
+
   <?php //} ?>
-  
-  <?php 
+
+  <?php
 $con = connect();
 $qnegeri ="select * from negeri order by id";
-$rnegeri = mysql_query($qnegeri,$con);
-while($rownegeri=mysql_fetch_array($rnegeri)){
+$rnegeri = mysqli_query($con, $qnegeri);
+while($rownegeri=mysqli_fetch_array($rnegeri)){
 ?>
     <span id="<?= $rownegeri['id']; ?>" >      </span></p>
 <span >
@@ -278,13 +277,11 @@ while($rownegeri=mysql_fetch_array($rnegeri)){
 	  <?php $daerahnegeri = new daerah('daerah',$rownegeri['id']);
 	  for($j=0; $j<$daerahnegeri->total; $j++){?>
   <a href="home.php?id=estate&sub=age_profile&amp;state=<?= $rownegeri['id'];?>&amp;district=<?= $daerahnegeri->daerah[$j]; ?>"><?= $daerahnegeri->daerah[$j];?></a> &bull;
-  	  <?php } ?> 
-	 
+  	  <?php } ?>
+
 	  <a href="home.php?id=estate&sub=age_profile&amp;state=<?= $rownegeri['id'];?>&amp;district=All">All</a></div>
     </div></td>
   </tr>
 </table>
 </span>
 <?php }?>
-
-

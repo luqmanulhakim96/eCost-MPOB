@@ -9,7 +9,7 @@
 
 class user {
 
-    function user($type, $var) {
+    function  __construct($type, $var) {
         if ($type == 'mill') {
             $this->viewmill($var);
         } else if ($type == 'bts') {
@@ -36,8 +36,8 @@ class user {
     function viewwargatotal($var) {
         $con = connect();
         $q = "select sum(value) as value from warga_mill where jenis ='" . $var[0] . "' and lesen ='" . $var[1] . "' and tahun='" . $var[2] . "' ";
-        $r = mysql_query($q, $con);
-        $row = mysql_fetch_array($r);
+        $r = mysqli_query($con, $q);
+        $row = mysqli_fetch_array($r);
         $nilai = $row['value'];
         if ($nilai == NULL) {
             $nilai = 0;
@@ -48,10 +48,10 @@ class user {
     function viewwargawhere($var) {
         $con = connect();
         $q = "select * from warga_mill where jenis ='" . $var[0] . "' and lesen ='" . $var[1] . "' and tahun='" . $var[2] . "' and warga ='" . $var[3] . "' ";
-        $r = mysql_query($q, $con);
-        $res_total = mysql_num_rows($r);
+        $r = mysqli_query($con,$q);
+        $res_total = mysqli_num_rows($r);
         $this->total = $res_total;
-        $row = mysql_fetch_array($r);
+        $row = mysqli_fetch_array($r);
         $nilai = $row['value'];
         if ($res_total == 0) {
             $nilai = 0;
@@ -96,11 +96,11 @@ class user {
                 . "eak.lesen = '$var' "
                 . "and lm.lesen='$var' "
                 . "and mi.lesen='$var'";
-        $r = mysql_query($q, $con);
-        $res_total = mysql_num_rows($r);
+        $r = mysqli_query($con,$q);
+        $res_total = mysqli_num_rows($r);
         $this->total = $res_total;
         $i = 0;
-        while ($row = mysql_fetch_array($r)) {
+        while ($row = mysqli_fetch_array($r)) {
             $this->lesen = $row['lesen'];
             $this->nama = $row['nama'];
             $this->alamat1 = $row['alamat1'];
@@ -138,11 +138,11 @@ class user {
     function viewbts($var) {
         $con = connect();
         $q = "select NO_LESEN, NEGERI, SYARIKAT_INDUK, SUM(FFB_PROSES) as fbb_proses, count(BULAN)as bulan from ekilang where NO_LESEN = '" . $var[0] . "' and tahun = '" . $var[1] . "' group by NO_LESEN";
-        $r = mysql_query($q, $con);
-        $res_total = mysql_num_rows($r);
+        $r = mysqli_query($con,$q);
+        $res_total = mysqli_num_rows($r);
         $this->total = $res_total;
         $i = 0;
-        while ($row = mysql_fetch_array($r)) {
+        while ($row = mysqli_fetch_array($r)) {
             $this->lesen = $row['NO_LESEN'];
             $this->negeri = $row['NEGERI'];
             $this->syarikatinduk = $row['SYARIKAT_INDUK'];
@@ -158,11 +158,11 @@ class user {
         $con = connect();
         $q = "select * from mill_pemprosesan where lesen = '" . $var[0] . "' and tahun = '" . $var[1] . "'";
 
-        $r = mysql_query($q, $con);
-        $res_total = mysql_num_rows($r);
+        $r = mysqli_query($con,$q );
+        $res_total = mysqli_num_rows($r);
         $this->total = $res_total;
         $i = 0;
-        while ($row = mysql_fetch_array($r)) {
+        while ($row = mysqli_fetch_array($r)) {
             $this->lesen = $row['lesen'];
             $this->tahun = $row['tahun'];
             $this->kp_1 = $row['kp_1'];
@@ -191,11 +191,11 @@ class user {
     function viewkoslain($var) {
         $con = connect();
         $q = "select * from mill_kos_lain where lesen = '" . $var[0] . "' and tahun = '" . $var[1] . "'";
-        $r = mysql_query($q, $con);
-        $res_total = mysql_num_rows($r);
+        $r = mysqli_query($con,$q);
+        $res_total = mysqli_num_rows($r);
         $this->total = $res_total;
         $i = 0;
-        while ($row = mysql_fetch_array($r)) {
+        while ($row = mysqli_fetch_array($r)) {
             $this->lesen = $row['lesen'];
             $this->tahun = $row['tahun'];
             $this->kl_1 = $row['kl_1'];
@@ -214,11 +214,11 @@ class user {
     function viewburuh($var) {
         $con = connect();
         $q = "select * from mill_buruh where lesen = '" . $var[0] . "' and tahun = '" . $var[1] . "'";
-        $r = mysql_query($q, $con);
-        $res_total = mysql_num_rows($r);
+        $r = mysqli_query($con,$q );
+        $res_total = mysqli_num_rows($r);
         $this->total = $res_total;
         $i = 0;
-        while ($row = mysql_fetch_array($r)) {
+        while ($row = mysqli_fetch_array($r)) {
             $this->lesen = $row['lesen'];
             $this->tahun = $row['tahun'];
             $this->mb_1 = $row['mb_1'];
@@ -253,11 +253,11 @@ class user {
                 . "SYARIKAT_INDUK,"
                 . "ekilang.NAMA_KILANG "
                 . "from ekilang where NO_LESEN = '" . $var . "' group by NO_LESEN";
-        $r = mysql_query($q, $con);
-        $res_total = mysql_num_rows($r);
+        $r = mysqli_query($con,$q);
+        $res_total = mysqli_num_rows($r);
         $this->total = $res_total;
         $i = 0;
-        while ($row = mysql_fetch_array($r)) {
+        while ($row = mysqli_fetch_array($r)) {
             $this->lesen = $row['NO_LESEN'];
             $this->negeri = $row['NEGERI'];
             $this->syarikatinduk = $row['SYARIKAT_INDUK'];
@@ -270,10 +270,10 @@ class user {
     function viewvideo() {
         $con = connect();
         $q = "select * from video where status=1";
-        $r = mysql_query($q, $con);
-        $res_total = mysql_num_rows($r);
+        $r = mysqli_query($con,$q );
+        $res_total = mysqli_num_rows($r);
         $this->total = $res_total;
-        while ($row = mysql_fetch_array($r)) {
+        while ($row = mysqli_fetch_array($r)) {
             $this->id = $row['id'];
             $this->path = $row['path'];
             $this->title = $row['title'];
@@ -285,11 +285,11 @@ class user {
     function viewkoskomponen() {
         $con = connect();
         $q = "select * from var_costcomponent order by title";
-        $r = mysql_query($q, $con);
-        $res_total = mysql_num_rows($r);
+        $r = mysqli_query($con,$q);
+        $res_total = mysqli_num_rows($r);
         $this->total = $res_total;
         $i = 0;
-        while ($row = mysql_fetch_array($r)) {
+        while ($row = mysqli_fetch_array($r)) {
             $this->title[$i] = $row['title'];
             $this->description[$i] = $row['description'];
             $i++;

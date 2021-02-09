@@ -1,9 +1,9 @@
-<?php //require_once('../Connections/connection.class.php'); 
+<?php //require_once('../Connections/connection.class.php');
 session_start();
 
 if ($_SESSION['type']<>"admin")
        header("location:../logout.php");
-	   
+
 $con=connect();
 /*
 if(isset($tambah))
@@ -11,22 +11,22 @@ if(isset($tambah))
 	if($email==NULL)
 	{
 		$error[0]="<- Sila lengkapkan nama";
-	
+
 	}
 	if($id==NULL)
 	{
-	
+
 		$error[1]="<- Sila isi id/nama pengguna";
 	}
 	if($password==NULL)
 	{
-	
+
 		$error[2]="<- Sila isi kata laluan";
-	
+
 	}
 	if(($email!=NULL) and ($id!=NULL) and ($password!=NULL))
 	{
-	
+
 	 $query="INSERT INTO `login_admin` (
 `email` ,
 `password` ,
@@ -43,7 +43,7 @@ VALUES (
         <script>
 		document.getElementById('tambah').style.display="none";
 		</script>
-        
+
         <?
 
 	}
@@ -53,17 +53,17 @@ VALUES (
 */
 if(isset($edit))
 {
-	foreach ($idp as $value) 
+	foreach ($idp as $value)
 	{
 		$con =connect();
 		$query="SELECT a.*, b.u_fullname fullname FROM login_admin a inner join user b on a.email=b.u_email WHERE a.email='$value'";
-		$r=mysql_query($query,$con);
-		$row=mysql_fetch_array($r);
-		
+		$r=mysqli_query($con, $query);
+		$row=mysqli_fetch_array($r);
+
 		$fullname = $row['fullname'];
 		$email=$row['email'];
 		$password=$row['password'];
-		$level=$row['level']; 
+		$level=$row['level'];
 	}
 
 
@@ -75,34 +75,34 @@ if(isset($ubah))
 	$query="UPDATE login_admin SET email='$email',password='$password',level='$level'
 	WHERE email='$idp'";
 	$res=mysql_query($query,$con);
-	
+
 	echo "<script>window.location.href='home.php?id=config&sub=user';</script>";
 
 }
 */
 if(isset($buang))
 {
-	foreach ($idp as $value) 
+	foreach ($idp as $value)
 	{
 		$con =connect();
 		$query="DELETE FROM login_admin WHERE email='$value'";
-		$r=mysql_query($query,$con);
+		$r=mysqli_query($con, $query);
 		echo "<script>window.location.href='home.php?id=config&sub=user';</script>";
-		
+
 	}
 	?>
     <script>
 	alert('DATA BERJAYA DIBUANG');
 	</script>
-    
+
     <?php
 
 }
 ?>
 <script>
 function paparTambah()
-{	
-	
+{
+
 	document.getElementById('tambah').style.display="";
 
 }
@@ -117,7 +117,7 @@ include ("baju.php");
 
 <script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
-	$('#kodhasil').dataTable( {"sPaginationType": "full_numbers","iDisplayLength": 25,"sDom" : '<"H"frilp><t>',  
+	$('#kodhasil').dataTable( {"sPaginationType": "full_numbers","iDisplayLength": 25,"sDom" : '<"H"frilp><t>',
 	"bJQueryUI": false,
 		"fnDrawCallback": function ( oSettings ) {
 			/* Need to redo the counters if filtered or sorted */
@@ -168,7 +168,7 @@ include ("baju.php");
           <input name="email" type="text" class="add" id="kod" size="40"/>
          </td>
       </tr>
-      
+
       <tr class="alt">
         <td><strong>PASSWORD</strong></td>
         <td><strong>:</strong></td>
@@ -187,10 +187,10 @@ include ("baju.php");
       </tr>
     </table>
     <div align="center"><br />
-    
+
 <button type="submit" class="regular" name="tambah" id="tambah" onclick="return confirm ('Add this data?');">
 <img src="images/icon/floppy_disk_48.png" alt=""> Save</button>
-		
+
           <p>&nbsp;</p>
           <p>&nbsp;</p>
   </div>
@@ -226,20 +226,20 @@ include ("baju.php");
         <td><strong>LEVEL</strong></td>
         <td>&nbsp;</td>
         <td>
-     
+
         <select name="level">
         <option value="1" <?php if($level=="1") {?> selected="selected" <?php } ?>>SUPER ADMIN</option>
         <option value="2" <?php if($level=="2") {?> selected="selected" <?php } ?>>USER</option>
         </select>
-   
-        
-        
+
+
+
         <input type="hidden" name="idp" value="<?php echo $email; ?>" />        </td>
       </tr>
     </table>
     <div align="center"><br />
    		  <button type="submit" class="regular" name="ubah" onclick="return confirm ('Save this data?');"><img src="images/icon/floppy_disk_48.png" alt=""> Edit </button>
-		
+
           <p>&nbsp;</p>
           <p>&nbsp;</p>
   </div>
@@ -258,12 +258,12 @@ include ("baju.php");
           <th width="30%">FAIL</th>
         </tr>
         </thead>
-        
+
         <tbody>
         <?php
 		$query="SELECT * FROM login_admin";
-		$res=mysql_query($query,$con);
-		while($row=mysql_fetch_array($res))
+		$res=mysqli_query($con, $query);
+		while($row=mysqli_fetch_array($res))
 		{
 		 ?>
         <tr bgcolor="eeeeee">
@@ -280,12 +280,11 @@ include ("baju.php");
       </table>
 <br />
 
-    
+
       <div align="center">
           <button type="button" class="positive" id="tambah" name="tambah" onclick="paparTambah()" ><img src="images/icon/apply2.png" alt="" /> Add User </button>
           <button type="submit" class="negative" id="buang" name="buang" onclick="return confirm ('Delete this data?');" value="1"><img src="images/icon/cross.png" alt="" /> Delete </button>
           <button type="submit" class="regular" id="edit" name="edit" value="1"><img src="images/icon/textfield_key.png" alt="" /> Edit User </button>
-       
+
     </div>
     </form>
-

@@ -18,16 +18,16 @@ function median($numbers = array()) {
 
     rsort($numbers);
     $mid = (count($numbers) / 2);
-    return ($mid % 2 != 0) ? $numbers{$mid - 1} : (($numbers{$mid - 1}) + $numbers{$mid}) / 2;
+    return ($mid % 2 != 0) ? $numbers[$mid - 1] : (($numbers[$mid - 1]) + $numbers[$mid]) / 2;
 }
 
 function pertama($tahun, $nama, $status, $negeri, $daerah, $type, $tahuntanam) {
 
     global $con;
-    $sql = "SELECT * FROM graf_kbm where sessionid='$nama' 
-		and tahun ='$tahun' 
+    $sql = "SELECT * FROM graf_kbm where sessionid='$nama'
+		and tahun ='$tahun'
 		and (status='$status' or status='9')
-		and pb_type = '$type' 
+		and pb_type = '$type'
 		and pb_tahun = '$tahuntanam'";
     if ($negeri != "" & $negeri != "pm") {
         $sql.=" and negeri = '$negeri'";
@@ -38,10 +38,10 @@ function pertama($tahun, $nama, $status, $negeri, $daerah, $type, $tahuntanam) {
     if ($negeri == "pm") {
         $sql.=" and (negeri not like 'SARAWAK' and negeri not like 'SABAH')";
     }
-//echo $sql."<br>"; 
-    $sql_result = mysql_query($sql, $con);
+//echo $sql."<br>";
+    $sql_result = mysqli_query($con, $sql);
     $i = 0;
-    while ($row = mysql_fetch_array($sql_result)) {
+    while ($row = mysqli_fetch_array($sql_result)) {
         $test_data[] = $row["y"];
         $i = $i + 1;
     }
@@ -58,8 +58,8 @@ function pertama($tahun, $nama, $status, $negeri, $daerah, $type, $tahuntanam) {
     }
 
 //echo $qavg."<br>";
-    $ravg = mysql_query($qavg, $con);
-    $rrow = mysql_fetch_array($ravg);
+    $ravg = mysqli_query($con, $qavg);
+    $rrow = mysqli_fetch_array($ravg);
 
     if (empty($test_data)) {
         $var[0] = 0;
@@ -76,8 +76,8 @@ function cop($name, $type, $year, $state, $district, $tahun_r) {
     global $con;
     $q_cop = "select  * from cop where
 				NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT='$tahun_r'";
-    $r_cop = mysql_query($q_cop, $con);
-    $row_cop = mysql_fetch_array($r_cop);
+    $r_cop = mysqli_query($con, $q_cop);
+    $row_cop = mysqli_fetch_array($r_cop);
 
     $var[0] = $row_cop['VALUE_MEDIAN'];
     $var[1] = $row_cop['VALUE_MEAN'];
@@ -153,7 +153,7 @@ function cop($name, $type, $year, $state, $district, $tahun_r) {
 <?php
 $satu = $_COOKIE['tahun_report'] - 0;
 $dua = $_COOKIE['tahun_report'] - 1;
-?> 
+?>
 <?php
 if ($year == "" || $year == '1') {
     ?>
@@ -172,13 +172,13 @@ if ($year == "" || $year == '1') {
     $qs = " select * from q_kbm where tahun!='0'";
 }
 
-$rs = mysql_query($qs, $con);
+$rs = mysqli_query($con, $qs);
 
 $jl = 0;
 $js = 0;
 $ms = 0;
 
-while ($rows = mysql_fetch_array($rs)) {
+while ($rows = mysqli_fetch_array($rs)) {
     ?>
     <tr <?php if (++$gg % 2 == 0) { ?>class="alt"<?php } ?>>
         <td <?php if ($_COOKIE['tahun_report'] == 2010) { ?> ondblclick="javascript:openScript('add_cop.php?name=<?php echo $rows['name']; ?>&type=<?php echo "Penanaman Baru"; ?>&tahun=<?php echo $_COOKIE['tahun_report']; ?>&year=<?php echo $year; ?>&state=<?php echo $state; ?>', '700', '200')"<?php } ?>><?php echo $rows['name']; ?></td>
@@ -318,5 +318,3 @@ if ($year == '3') {
 <?php } ?>
 </table>
 <br />
-
-

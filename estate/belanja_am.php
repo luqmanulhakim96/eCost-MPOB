@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include ('../Connections/connection.class.php');
 include ('../class/user.class.php');
@@ -8,14 +8,14 @@ extract($_GET);
 
 $con = connect();
 $qw = "select * from belanja_am_var where thisyear='".date('Y')."' and lesen = '".$_SESSION['lesen']."' and type = '$type'";
-$rw = mysql_query($qw,$con);
-$total_rw = mysql_num_rows($rw);
+$rw = mysqli_query($con, $qw);
+$total_rw = mysqli_num_rows($rw);
 ?>
 <link rel="shortcut icon" href="../images/icon.ico" />
 <link rel="stylesheet" href="../text_style.css" type="text/css" />
 <script type="text/javascript" src="../text_js.js"></script>
 <script type="text/javascript" src="../jquery.numberformatter-1.1.2.js"></script>
-<script type="text/javascript"> 
+<script type="text/javascript">
 function keypress(e)
 {
 	if ([e.keyCode||e.which]==8 || [e.keyCode||e.which]==46 || [e.keyCode||e.which]==44) //alow backspace and dot and comma
@@ -27,29 +27,29 @@ function keypress(e)
 
 <script language="javascript">
 
-	var emolumen = 0.00; 	
-	//var kos_ibupejabat = 0.00; 	
-	//var kos_agensi = 0.00; 	
-	//var kebajikan = 0.00; 	
-	//var sewa_tol = 0.00; 	
-	//var penyelidikan = 0.00; 	
-	//var perubatan = 0.00; 	 			
-	//var penyelenggaraan = 0.00; 	
-	//var cukai_keuntungan = 0.00; 	
-	//var penjagaan = 0.00; 				
-	//var kawalan = 0.00; 			
-	//var air_tenaga = 0.00; 	
-	//var perbelanjaan_pejabat = 0.00; 	 	
-	//var susut_nilai = 0.00; 
+	var emolumen = 0.00;
+	//var kos_ibupejabat = 0.00;
+	//var kos_agensi = 0.00;
+	//var kebajikan = 0.00;
+	//var sewa_tol = 0.00;
+	//var penyelidikan = 0.00;
+	//var perubatan = 0.00;
+	//var penyelenggaraan = 0.00;
+	//var cukai_keuntungan = 0.00;
+	//var penjagaan = 0.00;
+	//var kawalan = 0.00;
+	//var air_tenaga = 0.00;
+	//var perbelanjaan_pejabat = 0.00;
+	//var susut_nilai = 0.00;
 	//var perbelanjaan_lain  = 0.00;
 
 
-function field_click(obj) 
+function field_click(obj)
 {
 		$(obj).format({format:"#,###.00", locale:"us"});
 		$(obj).removeClass("field_edited");
 		$(obj).addClass("field_active");
-		
+
 
 }
 function addCommas(nStr)
@@ -73,21 +73,21 @@ function field_blur(obj,nilai,total,nilai_asal)
 	alert(nilai);
 	alert(nilai_asal);
 	alert(total);
-	
+
 	total_all=document.getElementById(total_nilai).value;
 	alert(total_all);
 
 	if(nilai_asal ==null){ nilai_asal=0;}
 	nilai_bersih = 	nilai_asal-nilai;
-	alert(nilai_bersih);	*/	
+	alert(nilai_bersih);	*/
 
 	/*total_emolumen = document.getElementById(total).value;
 	total_emolumen = total_emolumen.replace(",","");
 	nilai_asal = nilai_asal.replace(",","");
 	emolumen =Number(total_emolumen)+Number(nilai)-Number(nilai_asal);
-	
-	document.getElementById(total).value = emolumen; 
-	$("#"+total).format({format:"#,###.00", locale:"us"}); 
+
+	document.getElementById(total).value = emolumen;
+	$("#"+total).format({format:"#,###.00", locale:"us"});
 		*/
 	jumlah =0;
 	for(j=1; j<=11; j++ )
@@ -102,12 +102,12 @@ function field_blur(obj,nilai,total,nilai_asal)
 	}
 		//alert(jumlah);
 		//document.getElementById("totalemolumen").value=jumlah;
-		
-		//$("#total").format({format:"#,###.00", locale:"us"}); 
+
+		//$("#total").format({format:"#,###.00", locale:"us"});
 		//$(obj).format({format:"#,###.00", locale:"us"});
-	
+
 }
-	
+
 </script>
 <style type="text/css">
 <!--
@@ -121,7 +121,7 @@ body {
 .style2 {font-weight: bold}
 -->
 </style>
-<title>Perbelanjaan Am</title><h3><?php 
+<title>Perbelanjaan Am</title><h3><?php
 if($type=='emolumen'){ $title = setstring ( 'mal', 'Emolumen untuk eksekutif dan bukan eksekutif', 'en', 'Executive and non-executive emoluments'); }
 else if($type=='kos_ibupejabat'){ $title =setstring ( 'mal', 'Kos ibu pejabat', 'en', 'Headquarters Cost'); }
 else if($type=='kos_agensi'){ $title =setstring ( 'mal', 'Kos agensi dan yuran professional', 'en', 'Agency cost and professional fee'); }
@@ -137,7 +137,7 @@ else if($type=='air_tenaga'){ $title =setstring ( 'mal', 'Air dan tenaga', 'en',
 else if($type=='perbelanjaan_pejabat'){ $title =setstring ( 'mal', 'Perbelanjaan pejabat', 'en', 'Office expenses'); }
 else if($type=='susut_nilai'){ $title =setstring ( 'mal', 'Susutnilai', 'en', 'Value Depreciation'); }
 else if($type=='perbelanjaan_lain'){ $title =setstring ( 'mal', 'Perbelanjaan lain', 'en', 'Others expenses'); }
-echo "<u>".$title."</u>"; 
+echo "<u>".$title."</u>";
 $var[0]=$_SESSION['lesen'];
 $var[1]=date('Y');
 $var[2]=$type;
@@ -146,14 +146,14 @@ $var[2]=$type;
 
 <form id="form1" name="form1" method="post" action="save_belanja_am.php">
   <table width="100%" cellpadding="2" cellspacing="2">
-    
+
 	<?php if ($type=='emolumen'){?>
 	<tr valign="top">
       <td width="2%"><div align="left">1. </div></td>
       <td width="18%" height="26"><?=setstring ( 'mal', 'Gaji dan elaun', 'en', 'Emoluments and allowances'); ?></td>
       <td width="1%">:</td>
       <td width="79%">
-	  <?php $var[3]=1; 
+	  <?php $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
       <input name="emolumen[1]" type="text" class="field_active" id="emolumen[1]" onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')"  value="<?php echo number_format($emolumen1,2);
@@ -164,11 +164,11 @@ $var[2]=$type;
       <td><div align="left">2. </div></td>
       <td height="26"><?=setstring ( 'mal', 'Kerja lebih masa', 'en', 'Overtime'); ?> </td>
       <td>:</td>
-      <td><?php $var[3]=2; 
+      <td><?php $var[3]=2;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen2 = $belanja->kos;?>
-      <input name="emolumen[2]" type="text" class="field_active" onKeypress="keypress(event)" autocomplete="off" id="emolumen[2]" size="15"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')" value="<?php 
-	  
+      <input name="emolumen[2]" type="text" class="field_active" onKeypress="keypress(event)" autocomplete="off" id="emolumen[2]" size="15"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')" value="<?php
+
 	  echo number_format($emolumen2,2);
 	  ?>" /></td>
     </tr>
@@ -176,11 +176,11 @@ $var[2]=$type;
       <td><div align="left">3. </div></td>
       <td height="26"><?=setstring ( 'mal', 'Perubatan', 'en', 'Medical'); ?></td>
       <td>:</td>
-      <td><?php   $var[3]=3; 
+      <td><?php   $var[3]=3;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen3 = $belanja->kos;?>
-      <input name="emolumen[3]" value="<?php 
-	
+      <input name="emolumen[3]" value="<?php
+
 	  echo number_format($emolumen3,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" autocomplete="off" id="emolumen[3]" size="15"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen3; ?>')" /></td>
     </tr>
@@ -188,11 +188,11 @@ $var[2]=$type;
       <td><div align="left">4. </div></td>
       <td height="26"><?=setstring ( 'mal', 'Perjalanan', 'en', 'Travelling'); ?></td>
       <td>:</td>
-      <td><?php   $var[3]=4; 
+      <td><?php   $var[3]=4;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen4 = $belanja->kos;?>
-      <input name="emolumen[4]" value="<?php 
-	
+      <input name="emolumen[4]" value="<?php
+
 	  echo number_format($emolumen4,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" autocomplete="off" id="emolumen[4]" size="15"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen4; ?>')" /></td>
     </tr>
@@ -200,11 +200,11 @@ $var[2]=$type;
       <td><div align="left">5. </div></td>
       <td height="26"><?=setstring ( 'mal', 'Bonus', 'en', 'Bonuses'); ?> </td>
       <td>:</td>
-      <td><?php   $var[3]=5; 
+      <td><?php   $var[3]=5;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen5 = $belanja->kos;?>
-      <input name="emolumen[5]" value="<?php 
-	
+      <input name="emolumen[5]" value="<?php
+
 	  echo number_format($emolumen5,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" autocomplete="off" id="emolumen[5]" size="15"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen5; ?>')" /></td>
     </tr>
@@ -212,11 +212,11 @@ $var[2]=$type;
       <td><div align="left">6.  </div></td>
       <td height="26"><?=setstring ( 'mal', 'Insuran peribadi', 'en', 'Personal Insurance'); ?> </td>
       <td>:</td>
-      <td><?php  $var[3]=6; 
+      <td><?php  $var[3]=6;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen6 = $belanja->kos;?>
-      <input name="emolumen[6]" value="<?php 
-	 
+      <input name="emolumen[6]" value="<?php
+
 	  echo number_format($emolumen6,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" autocomplete="off" id="emolumen[6]" size="15"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen6; ?>')" /></td>
     </tr>
@@ -224,10 +224,10 @@ $var[2]=$type;
       <td><div align="left">7. </div></td>
       <td height="26"><?=setstring ( 'mal', 'Insentif', 'en', 'Incentive'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=7; 
+      <td><?php 	  $var[3]=7;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen7 = $belanja->kos;?>
-      <input name="emolumen[7]" value="<?php 
+      <input name="emolumen[7]" value="<?php
 
 	  echo number_format($emolumen7,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" autocomplete="off" id="emolumen[7]" size="15"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen7; ?>')" /></td>
@@ -236,10 +236,10 @@ $var[2]=$type;
       <td><div align="left">8. </div></td>
       <td height="26"><?=setstring ( 'mal', 'KWSP', 'en', 'EPF'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=8; 
+      <td><?php 	  $var[3]=8;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen8 = $belanja->kos;?>
-      <input name="emolumen[8]" value="<?php 
+      <input name="emolumen[8]" value="<?php
 
 	  echo number_format($emolumen8,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" autocomplete="off" id="emolumen[8]" size="15"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen8; ?>')" /></td>
@@ -248,10 +248,10 @@ $var[2]=$type;
       <td><div align="left">9. </div></td>
       <td height="26"><?=setstring ( 'mal', 'PERKESO', 'en', 'SOCSO'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=9; 
+      <td><?php 	  $var[3]=9;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen9 = $belanja->kos;?>
-      <input name="emolumen[9]" value="<?php 
+      <input name="emolumen[9]" value="<?php
 
 	  echo number_format($emolumen9,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" autocomplete="off" id="emolumen[9]"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen9; ?>')" size="15" /></td>
@@ -260,10 +260,10 @@ $var[2]=$type;
       <td><div align="left">10.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Lain-lain', 'en', 'Others'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=10; 
+      <td><?php 	  $var[3]=10;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen10 = $belanja->kos;?>
-      <input name="emolumen[10]" value="<?php 
+      <input name="emolumen[10]" value="<?php
 
 	  echo number_format($emolumen10,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" autocomplete="off" id="emolumen[10]" size="15"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen10; ?>')" /></td>
@@ -282,10 +282,10 @@ $var[2]=$type;
       <td><div align="left">1.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Yuran/bayaran pentadbiran', 'en', 'Administration fees'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=1; 
+      <td><?php 	  $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
-      <input name="emolumen[1]" value="<?php 
+      <input name="emolumen[1]" value="<?php
 
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" autocomplete="off" id="emolumen[1]" size="15"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')" /></td>
@@ -294,10 +294,10 @@ $var[2]=$type;
       <td><div align="left">2.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Yuran/bayaran lesen', 'en', 'Licensing fees'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=2; 
+      <td><?php 	  $var[3]=2;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen2 = $belanja->kos;?>
-      <input name="emolumen[2]" value="<?php 
+      <input name="emolumen[2]" value="<?php
 
 	  echo number_format($emolumen2,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" autocomplete="off" id="emolumen[2]" size="15"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')" /></td>
@@ -306,10 +306,10 @@ $var[2]=$type;
       <td><div align="left">3.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Lain-lain', 'en', 'Others'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=3; 
+      <td><?php 	  $var[3]=3;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen3 = $belanja->kos;?>
-      <input name="emolumen[3]" value="<?php 
+      <input name="emolumen[3]" value="<?php
 
 	  echo number_format($emolumen3,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" autocomplete="off" id="emolumen[3]" size="15"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen3; ?>')" /></td>
@@ -328,10 +328,10 @@ $var[2]=$type;
       <td><div align="left">1.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Cukai tanah', 'en', 'Quit rent'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=1; 
+      <td><?php 	  $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
-      <input name="emolumen[1]" value="<?php 
+      <input name="emolumen[1]" value="<?php
 
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[1]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')" /></td>
@@ -340,11 +340,11 @@ $var[2]=$type;
       <td><div align="left">2.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Yuran/bayaran TOL', 'en', 'TOL fees'); ?> </td>
       <td>:</td>
-      <td><?php   $var[3]=2; 
+      <td><?php   $var[3]=2;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen2 = $belanja->kos;?>
-      <input name="emolumen[2]" value="<?php 
-	
+      <input name="emolumen[2]" value="<?php
+
 	  echo number_format($emolumen2,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[2]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')" /></td>
     </tr>
@@ -352,10 +352,10 @@ $var[2]=$type;
       <td><div align="left">3.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Insurans kebakaran/kecurian', 'en', 'Fire Insurance'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=3; 
+      <td><?php 	  $var[3]=3;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen3 = $belanja->kos;?>
-      <input name="emolumen[3]" value="<?php 
+      <input name="emolumen[3]" value="<?php
 
 	  echo number_format($emolumen3,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[3]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen3; ?>')" /></td>
@@ -364,10 +364,10 @@ $var[2]=$type;
       <td><div align="left">4.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Insuran', 'en', 'Insurances'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=4; 
+      <td><?php 	  $var[3]=4;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen4 = $belanja->kos;?>
-      <input name="emolumen[4]" value="<?php 
+      <input name="emolumen[4]" value="<?php
 
 	  echo number_format($emolumen4,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[4]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen4; ?>')" /></td>
@@ -376,10 +376,10 @@ $var[2]=$type;
       <td><div align="left">5.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Penghantaran', 'en', 'Delivery'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=5; 
+      <td><?php 	  $var[3]=5;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen5 = $belanja->kos;?>
-      <input name="emolumen[5]" value="<?php 
+      <input name="emolumen[5]" value="<?php
 
 	  echo number_format($emolumen5,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[5]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen5; ?>')" /></td>
@@ -388,10 +388,10 @@ $var[2]=$type;
       <td><div align="left">6.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Lain-lain', 'en', 'Others'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=6; 
+      <td><?php 	  $var[3]=6;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen6 = $belanja->kos;?>
-      <input name="emolumen[6]" value="<?php 
+      <input name="emolumen[6]" value="<?php
 
 	  echo number_format($emolumen6,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[6]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen6; ?>')" /></td>
@@ -410,10 +410,10 @@ $var[2]=$type;
       <td>1.</td>
       <td height="26"><?=setstring ( 'mal', 'Perbelanjaan lawatan agen', 'en', 'Visiting agent fees'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=1; 
+      <td><?php 	  $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
-      <input name="emolumen[1]" value="<?php 
+      <input name="emolumen[1]" value="<?php
 
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[1]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')"/></td>
@@ -422,10 +422,10 @@ $var[2]=$type;
       <td>2.</td>
       <td height="26"><?=setstring ( 'mal', 'Perbelanjaan perundangan dan lain-lain profesional', 'en', 'Legal and others professional fees'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=2; 
+      <td><?php 	  $var[3]=2;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen2 = $belanja->kos;?>
-      <input name="emolumen[2]" value="<?php 
+      <input name="emolumen[2]" value="<?php
 
 	  echo number_format($emolumen2,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[2]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')"/></td>
@@ -434,10 +434,10 @@ $var[2]=$type;
       <td><div align="left">3.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Yuran/bayaran khidmat nasihat lawatan/penanaman', 'en', 'Visiting/planting consultation fees'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=3; 
+      <td><?php 	  $var[3]=3;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen3 = $belanja->kos;?>
-      <input name="emolumen[3]" value="<?php 
+      <input name="emolumen[3]" value="<?php
 
 	  echo number_format($emolumen3,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[3]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen3; ?>')"/></td>
@@ -446,10 +446,10 @@ $var[2]=$type;
       <td><div align="left">4.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Yuran/bayaran ahli agromoni', 'en', 'Agronomist fees'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=4; 
+      <td><?php 	  $var[3]=4;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen4 = $belanja->kos;?>
-      <input name="emolumen[4]" value="<?php 
+      <input name="emolumen[4]" value="<?php
 
 	  echo number_format($emolumen4,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[4]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen4; ?>')"/></td>
@@ -458,11 +458,11 @@ $var[2]=$type;
       <td><div align="left">5.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Yuran/bayaran audit', 'en', 'Audit fees'); ?> </td>
       <td>:</td>
-      <td><?php   $var[3]=5; 
+      <td><?php   $var[3]=5;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen5 = $belanja->kos;?>
-      <input name="emolumen[5]" value="<?php 
-	
+      <input name="emolumen[5]" value="<?php
+
 	  echo number_format($emolumen5,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[5]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen5; ?>')"/></td>
     </tr>
@@ -470,11 +470,11 @@ $var[2]=$type;
       <td><div align="left">6.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Yuran/bayaran sokongan sistem komputer estet', 'en', 'Estate\'s computer system support'); ?> </td>
       <td>:</td>
-      <td><?php   $var[3]=6; 
+      <td><?php   $var[3]=6;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen6 = $belanja->kos;?>
-      <input name="emolumen[6]" value="<?php 
-	
+      <input name="emolumen[6]" value="<?php
+
 	  echo number_format($emolumen6,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[6]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen6; ?>')"/></td>
     </tr>
@@ -482,11 +482,11 @@ $var[2]=$type;
       <td><div align="left">7.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Lain-lain', 'en', 'Others'); ?></td>
       <td>:</td>
-      <td><?php   $var[3]=7; 
+      <td><?php   $var[3]=7;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen7 = $belanja->kos;?>
-      <input name="emolumen[7]" value="<?php 
-	
+      <input name="emolumen[7]" value="<?php
+
 	  echo number_format($emolumen7,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[7]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen7; ?>')"/></td>
     </tr>
@@ -504,10 +504,10 @@ $var[2]=$type;
       <td><div align="left">1.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Bayaran lawatan pegawai perubatan (VMO)', 'en', 'Visiting Medical Officer fees'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=1; 
+      <td><?php 	  $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
-      <input name="emolumen[1]" value="<?php 
+      <input name="emolumen[1]" value="<?php
 
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[1]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')"/></td>
@@ -516,24 +516,24 @@ $var[2]=$type;
       <td><div align="left">2.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Pelbagai ubat dan peralatan', 'en', 'Medicine and Instrument'); ?> </td>
       <td>:</td>
-      <td><?php  $var[3]=2; 
+      <td><?php  $var[3]=2;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen2 = $belanja->kos;?>
-      <input name="emolumen[2]" value="<?php 
-	 
+      <input name="emolumen[2]" value="<?php
+
 	  echo number_format($emolumen2,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[2]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')"/></td>
     </tr>
-    
+
     <tr valign="top">
       <td><div align="left">3.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Peralatan sukan/permainan', 'en', 'Sports/recreations equipment'); ?> </td>
       <td>:</td>
-      <td><?php   $var[3]=3; 
+      <td><?php   $var[3]=3;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen3 = $belanja->kos;?>
-      <input name="emolumen[3]" value="<?php 
-	
+      <input name="emolumen[3]" value="<?php
+
 	  echo number_format($emolumen3,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[3]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen3; ?>')"/></td>
     </tr>
@@ -541,10 +541,10 @@ $var[2]=$type;
       <td><div align="left">4.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Lain-lain', 'en', 'Others'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=4; 
+      <td><?php 	  $var[3]=4;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen4 = $belanja->kos;?>
-      <input name="emolumen[4]" value="<?php 
+      <input name="emolumen[4]" value="<?php
 
 	  echo number_format($emolumen4,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[4]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen4; ?>')"/></td>
@@ -563,10 +563,10 @@ $var[2]=$type;
       <td><div align="left">1.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Pembaikan dan pengecatan', 'en', 'Painting and repair'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=1; 
+      <td><?php 	  $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
-      <input name="emolumen[1]" value="<?php 
+      <input name="emolumen[1]" value="<?php
 
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[1]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')"/></td>
@@ -575,11 +575,11 @@ $var[2]=$type;
       <td><div align="left">2.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Perabut dan <em>fitting</em> untuk banglow/kuaters/rumah kedai/bengkel', 'en', 'Fitting for bungalow/quarters/shophouse/workshop'); ?></td>
       <td>:</td>
-      <td><?php   $var[3]=2; 
+      <td><?php   $var[3]=2;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen2 = $belanja->kos;?>
-      <input name="emolumen[2]" value="<?php 
-	
+      <input name="emolumen[2]" value="<?php
+
 	  echo number_format($emolumen2,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[2]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')"/></td>
     </tr>
@@ -588,8 +588,8 @@ $var[2]=$type;
       <td height="26"><?=setstring ( 'mal', 'Lain-lain', 'en', 'Others'); ?></td>
       <td>:</td>
       <td>
-      <input name="emolumen[3]" value="<?php 
-	  $var[3]=3; 
+      <input name="emolumen[3]" value="<?php
+	  $var[3]=3;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen3 = $belanja->kos;
 	  echo number_format($emolumen3,2);
@@ -609,10 +609,10 @@ $var[2]=$type;
       <td><div align="left">1.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Anti-vektor', 'en', 'Anti-vector'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=1; 
+      <td><?php 	  $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
-      <input name="emolumen[1]" value="<?php 
+      <input name="emolumen[1]" value="<?php
 
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[1]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')"/></td>
@@ -621,10 +621,10 @@ $var[2]=$type;
       <td><div align="left">2.</div></td>
       <td height="35"><?=setstring ( 'mal', 'Pembersihan part-parit monsun', 'en', 'Drain repair and cleaning'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=2; 
+      <td><?php 	  $var[3]=2;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen2 = $belanja->kos;?>
-      <input name="emolumen[2]" value="<?php 
+      <input name="emolumen[2]" value="<?php
 
 	  echo number_format($emolumen2,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[2]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')"/></td>
@@ -633,10 +633,10 @@ $var[2]=$type;
       <td><div align="left">3.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Pengorekan lubang sampah', 'en', 'Pits and upkeep'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=3; 
+      <td><?php 	  $var[3]=3;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen3 = $belanja->kos;?>
-      <input name="emolumen[3]" value="<?php 
+      <input name="emolumen[3]" value="<?php
 
 	  echo number_format($emolumen3,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[3]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen3; ?>')"/></td>
@@ -645,11 +645,11 @@ $var[2]=$type;
       <td><div align="left">4.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Parit dan bentung', 'en', 'Drainage and culvert'); ?></td>
       <td>:</td>
-      <td><?php   $var[3]=4; 
+      <td><?php   $var[3]=4;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen4 = $belanja->kos;?>
-      <input name="emolumen[4]" value="<?php 
-	
+      <input name="emolumen[4]" value="<?php
+
 	  echo number_format($emolumen4,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[4]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen4; ?>')"/></td>
     </tr>
@@ -657,10 +657,10 @@ $var[2]=$type;
       <td><div align="left">5.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Pemotongan rumput', 'en', 'Grass cutting expenses'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=5; 
+      <td><?php 	  $var[3]=5;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen5 = $belanja->kos;?>
-      <input name="emolumen[5]" value="<?php 
+      <input name="emolumen[5]" value="<?php
 
 	  echo number_format($emolumen5,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[5]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen5; ?>')"/></td>
@@ -669,11 +669,11 @@ $var[2]=$type;
       <td><div align="left">6.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Penjagaan pejabat/banglow/kuaters/taman', 'en', 'Upkeep of office/buanglow/quarters/park'); ?> </td>
       <td>:</td>
-      <td><?php   $var[3]=6; 
+      <td><?php   $var[3]=6;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen6 = $belanja->kos;?>
-      <input name="emolumen[6]" value="<?php 
-	
+      <input name="emolumen[6]" value="<?php
+
 	  echo number_format($emolumen6,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[6]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen6; ?>')"/></td>
     </tr>
@@ -681,10 +681,10 @@ $var[2]=$type;
       <td><div align="left">7.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Lain-lain', 'en', 'Others'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=7; 
+      <td><?php 	  $var[3]=7;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen7 = $belanja->kos;?>
-      <input name="emolumen[7]" value="<?php 
+      <input name="emolumen[7]" value="<?php
 
 	  echo number_format($emolumen7,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[7]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen7; ?>')"/></td>
@@ -703,10 +703,10 @@ $var[2]=$type;
       <td><div align="left">1.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Gaji pegawai keselamatan', 'en', 'Auxillary police/watchman salary'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=1; 
+      <td><?php 	  $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
-      <input name="emolumen[1]" value="<?php 
+      <input name="emolumen[1]" value="<?php
 
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[1]" size="15" autocomplete="off"  onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')" /></td>
@@ -715,10 +715,10 @@ $var[2]=$type;
       <td><div align="left">2.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Penjagaan pos keselamatan dan pagar ', 'en', 'Routine upkeep of security post and fences'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=2; 
+      <td><?php 	  $var[3]=2;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen2 = $belanja->kos;?>
-      <input name="emolumen[2]" value="<?php 
+      <input name="emolumen[2]" value="<?php
 
 	  echo number_format($emolumen2,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[2]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')"/></td>
@@ -727,10 +727,10 @@ $var[2]=$type;
       <td><div align="left">3.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Yuran/bayaran lesen senjata', 'en', 'Guns license fees'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=3; 
+      <td><?php 	  $var[3]=3;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen3 = $belanja->kos;?>
-      <input name="emolumen[3]" value="<?php 
+      <input name="emolumen[3]" value="<?php
 
 	  echo number_format($emolumen3,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[3]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen3; ?>')"/></td>
@@ -739,11 +739,11 @@ $var[2]=$type;
       <td><div align="left">4.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Pembaikan senjata dan peluru', 'en', 'Guns and repair'); ?> </td>
       <td>:</td>
-      <td><?php   $var[3]=4; 
+      <td><?php   $var[3]=4;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen4 = $belanja->kos;?>
-      <input name="emolumen[4]" value="<?php 
-	
+      <input name="emolumen[4]" value="<?php
+
 	  echo number_format($emolumen4,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[4]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen4; ?>')"/></td>
     </tr>
@@ -751,10 +751,10 @@ $var[2]=$type;
       <td><div align="left">5.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Yuran/bayaran penghantaran wang gaji', 'en', 'Securicor/payroll collect fees'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=5; 
+      <td><?php 	  $var[3]=5;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen5 = $belanja->kos;?>
-      <input name="emolumen[5]" value="<?php 
+      <input name="emolumen[5]" value="<?php
 
 	  echo number_format($emolumen5,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[5]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen5; ?>')"/></td>
@@ -763,10 +763,10 @@ $var[2]=$type;
       <td><div align="left">6.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Tiket jambatan timbang dan <em>seals</em>', 'en', 'Seals and Weighbrigde Ticket'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=6; 
+      <td><?php 	  $var[3]=6;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen6 = $belanja->kos;?>
-      <input name="emolumen[6]" value="<?php 
+      <input name="emolumen[6]" value="<?php
 
 	  echo number_format($emolumen6,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[6]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen6; ?>')"/></td>
@@ -785,10 +785,10 @@ $var[2]=$type;
       <td><div align="left">1.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Perbelanjaan elektrik/air', 'en', 'Water and power bills'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=1; 
+      <td><?php 	  $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
-      <input name="emolumen[1]" value="<?php 
+      <input name="emolumen[1]" value="<?php
 
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[1]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')"/></td>
@@ -797,10 +797,10 @@ $var[2]=$type;
       <td><div align="left">2.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Wayar kabel', 'en', 'Cabling'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=2; 
+      <td><?php 	  $var[3]=2;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen2 = $belanja->kos;?>
-      <input name="emolumen[2]" value="<?php 
+      <input name="emolumen[2]" value="<?php
 
 	  echo number_format($emolumen2,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[2]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')"/></td>
@@ -809,10 +809,10 @@ $var[2]=$type;
       <td><div align="left">3.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Mentol lampu', 'en', 'Replace bulbs'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=3; 
+      <td><?php 	  $var[3]=3;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen3 = $belanja->kos;?>
-      <input name="emolumen[3]" value="<?php 
+      <input name="emolumen[3]" value="<?php
 
 	  echo number_format($emolumen3,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[3]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen3; ?>')"/></td>
@@ -821,11 +821,11 @@ $var[2]=$type;
       <td><div align="left">4.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Bahan kimia', 'en', 'Chemicals'); ?> </td>
       <td>:</td>
-      <td><?php   $var[3]=4; 
+      <td><?php   $var[3]=4;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen4 = $belanja->kos;?>
-      <input name="emolumen[4]" value="<?php 
-	
+      <input name="emolumen[4]" value="<?php
+
 	  echo number_format($emolumen4,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[4]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen4; ?>')"/></td>
     </tr>
@@ -833,10 +833,10 @@ $var[2]=$type;
       <td><div align="left">5.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Penyelenggaraan dan servis pam air ', 'en', 'Maintenance and services of water pump'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=5; 
+      <td><?php 	  $var[3]=5;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen5 = $belanja->kos;?>
-      <input name="emolumen[5]" value="<?php 
+      <input name="emolumen[5]" value="<?php
 
 	  echo number_format($emolumen5,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[5]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen5; ?>')"/></td>
@@ -845,10 +845,10 @@ $var[2]=$type;
       <td><div align="left">6.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Penyelenggaraan kawasan tadahan', 'en', 'Maintenance of water reservoir'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=6; 
+      <td><?php 	  $var[3]=6;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen6 = $belanja->kos;?>
-      <input name="emolumen[6]" value="<?php 
+      <input name="emolumen[6]" value="<?php
 
 	  echo number_format($emolumen6,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[6]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen6; ?>')"/></td>
@@ -857,10 +857,10 @@ $var[2]=$type;
       <td><div align="left">7.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Lain-lain', 'en', 'Others'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=7; 
+      <td><?php 	  $var[3]=7;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen7 = $belanja->kos;?>
-      <input name="emolumen[7]" value="<?php 
+      <input name="emolumen[7]" value="<?php
 
 	  echo number_format($emolumen7,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[7]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen7; ?>')"/></td>
@@ -879,11 +879,11 @@ $var[2]=$type;
       <td><div align="left">1.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Telefon/fax/telegram', 'en', 'Telephone/fax/telegram fees'); ?> </td>
       <td>:</td>
-      <td><?php   $var[3]=1; 
+      <td><?php   $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
-      <input name="emolumen[1]" value="<?php 
-	
+      <input name="emolumen[1]" value="<?php
+
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[1]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')"/></td>
     </tr>
@@ -891,10 +891,10 @@ $var[2]=$type;
       <td><div align="left">2.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Yuran/bayaran post/kurier', 'en', 'Postage and parcel freight fees'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=2; 
+      <td><?php 	  $var[3]=2;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen2 = $belanja->kos;?>
-      <input name="emolumen[2]" value="<?php 
+      <input name="emolumen[2]" value="<?php
 
 	  echo number_format($emolumen2,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[2]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')"/></td>
@@ -903,10 +903,10 @@ $var[2]=$type;
       <td><div align="left">3.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Alatan pelbagai', 'en', 'Miscellanous'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=3; 
+      <td><?php 	  $var[3]=3;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen3 = $belanja->kos;?>
-      <input name="emolumen[3]" value="<?php 
+      <input name="emolumen[3]" value="<?php
 
 	  echo number_format($emolumen3,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[3]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen3; ?>')"/></td>
@@ -915,10 +915,10 @@ $var[2]=$type;
       <td><div align="left">4.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Alatan komputer', 'en', 'Computer stationaries and supplies'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=4; 
+      <td><?php 	  $var[3]=4;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen4 = $belanja->kos;?>
-      <input name="emolumen[4]" value="<?php 
+      <input name="emolumen[4]" value="<?php
 
 	  echo number_format($emolumen4,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[4]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen4; ?>')"/></td>
@@ -927,10 +927,10 @@ $var[2]=$type;
       <td><div align="left">5.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Majalah dan suratkhabar', 'en', 'Magazine and newspaper'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=5; 
+      <td><?php 	  $var[3]=5;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen5 = $belanja->kos;?>
-      <input name="emolumen[5]" value="<?php 
+      <input name="emolumen[5]" value="<?php
 
 	  echo number_format($emolumen5,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[5]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen5; ?>')"/></td>
@@ -939,10 +939,10 @@ $var[2]=$type;
       <td><div align="left">6.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Buku cek', 'en', 'Cheque book'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=6; 
+      <td><?php 	  $var[3]=6;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen6 = $belanja->kos;?>
-      <input name="emolumen[6]" value="<?php 
+      <input name="emolumen[6]" value="<?php
 
 	  echo number_format($emolumen6,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[6]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen6; ?>')"/></td>
@@ -951,11 +951,11 @@ $var[2]=$type;
       <td><div align="left">7.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Caj bank', 'en', 'Bank charges'); ?> </td>
       <td>:</td>
-      <td><?php   $var[3]=7; 
+      <td><?php   $var[3]=7;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen7 = $belanja->kos;?>
-      <input name="emolumen[7]" value="<?php 
-	
+      <input name="emolumen[7]" value="<?php
+
 	  echo number_format($emolumen7,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[7]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen7; ?>')"/></td>
     </tr>
@@ -963,11 +963,11 @@ $var[2]=$type;
       <td><div align="left">8.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Servis komputer/peralatan pejabat', 'en', 'Computer/office equipment services'); ?> </td>
       <td>:</td>
-      <td><?php $var[3]=8; 
+      <td><?php $var[3]=8;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen8 = $belanja->kos;?>
-      <input name="emolumen[8]" value="<?php 
-	  
+      <input name="emolumen[8]" value="<?php
+
 	  echo number_format($emolumen8,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[8]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen8; ?>')"/></td>
     </tr>
@@ -975,10 +975,10 @@ $var[2]=$type;
       <td><div align="left">9.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Pembersih pejabat ', 'en', 'Office cleaners'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=9; 
+      <td><?php 	  $var[3]=9;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen9 = $belanja->kos;?>
-      <input name="emolumen[9]" value="<?php 
+      <input name="emolumen[9]" value="<?php
 
 	  echo number_format($emolumen9,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[9]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen9; ?>')"/></td>
@@ -987,10 +987,10 @@ $var[2]=$type;
       <td><div align="left">10.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Pelbagai barang pejabat', 'en', 'Misc. office equipments'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=10; 
+      <td><?php 	  $var[3]=10;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen10 = $belanja->kos;?>
-      <input name="emolumen[10]" value="<?php 
+      <input name="emolumen[10]" value="<?php
 
 	  echo number_format($emolumen10,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[10]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen10; ?>')"/></td>
@@ -999,10 +999,10 @@ $var[2]=$type;
       <td><div align="left">11.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Lain-lain', 'en', 'Others'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=11; 
+      <td><?php 	  $var[3]=11;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen11 = $belanja->kos;?>
-      <input name="emolumen[11]" value="<?php 
+      <input name="emolumen[11]" value="<?php
 
 	  echo number_format($emolumen11,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[11]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen11; ?>')"/></td>
@@ -1021,10 +1021,10 @@ $var[2]=$type;
       <td><div align="left">1.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Pelunasan tanah pajakan', 'en', 'Statutory Payment cess'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=1; 
+      <td><?php 	  $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
-      <input name="emolumen[1]" value="<?php 
+      <input name="emolumen[1]" value="<?php
 
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[1]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')"/></td>
@@ -1033,10 +1033,10 @@ $var[2]=$type;
       <td><div align="left">2.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Susutnilai bangunan/mesin/kenderaan/ peralatan pejabat', 'en', 'Depreciation of building/machine/transport/office equipment'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=2; 
+      <td><?php 	  $var[3]=2;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen2 = $belanja->kos;?>
-      <input name="emolumen[2]" value="<?php 
+      <input name="emolumen[2]" value="<?php
 
 	  echo number_format($emolumen2,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[2]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')"/></td>
@@ -1055,10 +1055,10 @@ $var[2]=$type;
       <td><div align="left">1.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Keraian pelawat', 'en', 'Entertain visitors'); ?> </td>
       <td>&nbsp;</td>
-      <td><?php 	  $var[3]=1; 
+      <td><?php 	  $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
-      <input name="emolumen[1]" value="<?php 
+      <input name="emolumen[1]" value="<?php
 
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[1]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')"/></td>
@@ -1067,10 +1067,10 @@ $var[2]=$type;
       <td><div align="left">2.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Penerbitan pertanian', 'en', 'Agricultural publication'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=2; 
+      <td><?php 	  $var[3]=2;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen2 = $belanja->kos;?>
-      <input name="emolumen[2]" value="<?php 
+      <input name="emolumen[2]" value="<?php
 
 	  echo number_format($emolumen2,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[2]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')"/></td>
@@ -1079,10 +1079,10 @@ $var[2]=$type;
       <td><div align="left">3.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Yuran/bayaran seminar/persidangan', 'en', 'Seminar/conference fees'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=3; 
+      <td><?php 	  $var[3]=3;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen3 = $belanja->kos;?>
-      <input name="emolumen[3]" value="<?php 
+      <input name="emolumen[3]" value="<?php
 
 	  echo number_format($emolumen3,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[3]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen3; ?>')"/></td>
@@ -1091,11 +1091,11 @@ $var[2]=$type;
       <td><div align="left">4.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Pembaikan notis/papan tanda', 'en', 'Repairs to Notices/signboard'); ?></td>
       <td>:</td>
-      <td><?php   $var[3]=4; 
+      <td><?php   $var[3]=4;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen4 = $belanja->kos;?>
-      <input name="emolumen[4]" value="<?php 
-	
+      <input name="emolumen[4]" value="<?php
+
 	  echo number_format($emolumen4,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[4]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen4; ?>')"/></td>
     </tr>
@@ -1103,11 +1103,11 @@ $var[2]=$type;
       <td><div align="left">5.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Derma/sumbangan', 'en', 'Sundry charitable donation'); ?> </td>
       <td>:</td>
-      <td><?php   $var[3]=5; 
+      <td><?php   $var[3]=5;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen5 = $belanja->kos;?>
-      <input name="emolumen[5]" value="<?php 
-	
+      <input name="emolumen[5]" value="<?php
+
 	  echo number_format($emolumen5,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[5]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen5; ?>')"/></td>
     </tr>
@@ -1115,10 +1115,10 @@ $var[2]=$type;
       <td><div align="left">6.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Lain-lain', 'en', 'Others'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=6; 
+      <td><?php 	  $var[3]=6;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen6 = $belanja->kos;?>
-      <input name="emolumen[6]" value="<?php 
+      <input name="emolumen[6]" value="<?php
 
 	  echo number_format($emolumen6,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[6]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen6; ?>')"/></td>
@@ -1137,10 +1137,10 @@ $var[2]=$type;
       <td><div align="left">1.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Kebajikan pekerja', 'en', 'Welfare'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=1; 
+      <td><?php 	  $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
-      <input name="emolumen[1]" value="<?php 
+      <input name="emolumen[1]" value="<?php
 
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[1]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')"/></td>
@@ -1149,10 +1149,10 @@ $var[2]=$type;
       <td>2.</td>
       <td height="26"><?=setstring ( 'mal', 'Ganjaran persaraan', 'en', 'Retirement rewards'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=2; 
+      <td><?php 	  $var[3]=2;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen2 = $belanja->kos;?>
-      <input name="emolumen[2]" value="<?php 
+      <input name="emolumen[2]" value="<?php
 
 	  echo number_format($emolumen2,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[2]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen2; ?>')"/></td>
@@ -1161,10 +1161,10 @@ $var[2]=$type;
       <td>3.</td>
       <td height="26"><?=setstring ( 'mal', 'Pampasan kepada pekerja', 'en', 'Compensation'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=3; 
+      <td><?php 	  $var[3]=3;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen3 = $belanja->kos;?>
-      <input name="emolumen[3]" value="<?php 
+      <input name="emolumen[3]" value="<?php
 
 	  echo number_format($emolumen3,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[3]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen3; ?>')"/></td>
@@ -1173,10 +1173,10 @@ $var[2]=$type;
       <td>4.</td>
       <td height="26"><?=setstring ( 'mal', 'Subsidi', 'en', 'Subsidies'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=4; 
+      <td><?php 	  $var[3]=4;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen4 = $belanja->kos;?>
-      <input name="emolumen[4]" value="<?php 
+      <input name="emolumen[4]" value="<?php
 
 	  echo number_format($emolumen4,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[4]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen4; ?>')"/></td>
@@ -1185,10 +1185,10 @@ $var[2]=$type;
       <td>5.</td>
       <td height="26"><?=setstring ( 'mal', 'Lain-lain', 'en', 'Others'); ?></td>
       <td>:</td>
-      <td><?php 	  $var[3]=5; 
+      <td><?php 	  $var[3]=5;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen5 = $belanja->kos;?>
-      <input name="emolumen[5]" value="<?php 
+      <input name="emolumen[5]" value="<?php
 
 	  echo number_format($emolumen5,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[5]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen5; ?>')"/></td>
@@ -1207,11 +1207,11 @@ $var[2]=$type;
       <td><div align="left">1.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Penyelidikan dan pembangunan', 'en', 'Research and development'); ?> </td>
       <td>:</td>
-      <td><?php   $var[3]=1; 
+      <td><?php   $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
 	  $emolumen1 = $belanja->kos;?>
-      <input name="emolumen[1]" value="<?php 
-	
+      <input name="emolumen[1]" value="<?php
+
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[1]" size="15" autocomplete="off"   onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')"/></td>
     </tr>
@@ -1229,9 +1229,9 @@ $var[2]=$type;
       <td><div align="left">1.</div></td>
       <td height="26"><?=setstring ( 'mal', 'Cukai keuntungan', 'en', 'Profit tax'); ?> </td>
       <td>:</td>
-      <td><?php 	  $var[3]=1; 
+      <td><?php 	  $var[3]=1;
 	  $belanja =new user ('belanja_am_var',$var);
-	  $emolumen1 = $belanja->kos;?><input name="emolumen[1]" value="<?php 
+	  $emolumen1 = $belanja->kos;?><input name="emolumen[1]" value="<?php
 
 	  echo number_format($emolumen1,2);
 	  ?>" type="text" class="field_active" onKeypress="keypress(event)" id="emolumen[1]" size="15" autocomplete="off" onkeyup="field_blur(this,this.value,'totalemolumen','<?= $emolumen1; ?>')"/></td>
@@ -1244,7 +1244,7 @@ $var[2]=$type;
 	    <input name="totalemolumen" type="text" class="field_active" id="totalemolumen" value="<?php $totalemolumen = $emolumen1; echo number_format($totalemolumen,2);?>" size="15" readonly="true" autocomplete="off" />
 	  </strong></td>
     </tr>
-    
+
     <?php } //cukai keuntungan luar biasa ?><tr valign="middle">
       <td>&nbsp;</td>
       <td height="26">&nbsp;</td>
@@ -1265,8 +1265,8 @@ $var[2]=$type;
   </table>
 </form>
 
-<?php 
+<?php
 	if (isset($simpan)){
 	echo "<script>top.opener.window.location.reload();</script>";
-	} 
+	}
 ?>

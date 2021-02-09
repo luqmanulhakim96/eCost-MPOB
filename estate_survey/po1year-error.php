@@ -1,17 +1,17 @@
-<?php 
+<?php
 // edited and done 22/06/2010
 
 /*if(isset($simpan2))
 {
 $con = connect();
 $q="insert into kos_belum_matang values('$tahun','C','$total_C')";
-$r=mysql_query($q,$con);
+$r=mysqli_query($q,$con);
 }
 else
 {
 $con = connect();
 $q="truncate table kos_belum_matang";
-$r=mysql_query($q,$con);
+$r=mysqli_query($q,$con);
 }*/
 if($nilai->total==0)
 {
@@ -61,7 +61,7 @@ VALUES (
 '$year', '".date('Y')."', '".$_SESSION['lesen']."', '".$t."', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0'
 );
 ";
-$r=mysql_query($q,$con);
+$r=mysqli_query($con, $q);
 }
 	// Check lesen exist in table tanam_semula, tanam_baru or tanam_tukar
 
@@ -77,16 +77,16 @@ $r=mysql_query($q,$con);
 		$table="tanam_tukar";
 		$data = "tanaman_tukar";
 		}
-		
+
 		$con = connect();
-		$tahunsebelum = date('y')-$year; 
+		$tahunsebelum = date('y')-$year;
 		$table = $table.'0'.$tahunsebelum;
-		
+
 		$qblm="SELECT * FROM $table WHERE lesen = '".$_SESSION['lesen']."'";
-		$rblm=mysql_query($qblm,$con);
-		$rowblm= mysql_fetch_array($rblm);
-		$totalblm = mysql_num_rows($rblm);
-		
+		$rblm=mysqli_query($con, $qblm);
+		$rowblm= mysqli_fetch_array($rblm);
+		$totalblm = mysqli_num_rows($rblm);
+
 		$data = $rowblm[$data];
 ?>
 <script language="javascript">
@@ -103,7 +103,7 @@ function hantar(x)
 	$(function() {
 		$("#helper").hide();
 	});
-	
+
 	function tunjuk_bantu(str) {
 		$("#penerangan").html(str);
 		$().mousemove(function(e) {
@@ -112,7 +112,7 @@ function hantar(x)
 		});
 		$("#helper").show('slow');
 	}
-	
+
 	function sembunyi_bantu() {
 		$("#helper").hide('slow');
 	}
@@ -144,124 +144,124 @@ function kiraan_baru(obj,jenis)
 var tanambaru = <?php echo $data;?>;
 
 	if(number_only(obj)) {
-		
+
 			jumlah_belanja =0;
-			jumlah_belanja_kos =0; 
+			jumlah_belanja_kos =0;
 			for(b=1; b<=11; b++ ){
 			jumlahb= document.getElementById("a_"+b).value;
 			jumlahb = jumlahb.replace(/,/g,"");
-		
+
 			jumlah_belanja = Number(jumlah_belanja)+Number(jumlahb);//kos perbelanjaan
 			jumlahb_kos = Number(jumlahb)/Number(tanambaru);
 			jumlahb_kos = bulatkan(jumlahb_kos);
 			jumlah_belanja_kos = Number(jumlah_belanja_kos)+Number(jumlahb_kos);//kos perbelanjaan per ha
-			
+
 			$("#a_"+b).format({format:"#,###.00", locale:"us"});
 			$("#kosha"+b).html(jumlahb_kos);
-			$("#kosha"+b).format({format:"#,###.00", locale:"us"}); 
-			
+			$("#kosha"+b).format({format:"#,###.00", locale:"us"});
+
 			}
 			document.getElementById("total_kos_a").value=jumlah_belanja;
-			$("#total_kos_a").format({format:"#,###.00", locale:"us"}); 
+			$("#total_kos_a").format({format:"#,###.00", locale:"us"});
 			$("#total_kos_per_ha_a").html(jumlah_belanja_kos);
-			$("#total_kos_per_ha_a").format({format:"#,###.00", locale:"us"}); 
+			$("#total_kos_per_ha_a").format({format:"#,###.00", locale:"us"});
 			//-------------------------- penjagaan ------------------------------------------
-			
+
 			jumlah_jaga =0;
-			jumlah_jaga_kos = 0; 
-			
-			if(jenis=="anak"){					
+			jumlah_jaga_kos = 0;
+
+			if(jenis=="anak"){
 			//alert(jenis);
 			a = document.getElementById("b_1a").value;
 			a = a.replace(/,/g,"");
 			a1 = Number(a)/Number(tanambaru);
 			$("#j1").html(a1);
 			$("#j1").format({format:"#,###.00", locale:"us"});
-			
+
 			b = document.getElementById("b_1b").value;
 			b = b.replace(/,/g,"");
 			b1 = Number(b)/Number(tanambaru);
 			$("#j2").html(b1);
 			$("#j2").format({format:"#,###.00", locale:"us"});
-			
+
 			c = document.getElementById("b_1c").value;
 			c = c.replace(/,/g,"");
 			c1 = Number(c)/Number(tanambaru);
 			$("#j3").html(c1);
 			$("#j3").format({format:"#,###.00", locale:"us"});
-			
+
 			abc = Number(a)+Number(b)+Number(c);
 			document.getElementById("total_b_1").value=abc;
-			$("#total_b_1").format({format:"#,###.00", locale:"us"}); 
-			
+			$("#total_b_1").format({format:"#,###.00", locale:"us"});
+
 			d = document.getElementById("b_3a").value;
 			d = d.replace(/,/g,"");
 			d1 = Number(d)/Number(tanambaru);
 			$("#j5").html(d1);
 			$("#j5").format({format:"#,###.00", locale:"us"});
-			
+
 			e = document.getElementById("b_3b").value;
 			e = e.replace(/,/g,"");
 			e1 = Number(e)/Number(tanambaru);
 			$("#j6").html(e1);
 			$("#j6").format({format:"#,###.00", locale:"us"});
-			
+
 			f = document.getElementById("b_3c").value;
 			f = f.replace(/,/g,"");
 			f1 = Number(f)/Number(tanambaru);
 			$("#j7").html(f1);
 			$("#j7").format({format:"#,###.00", locale:"us"});
-			
+
 			g = document.getElementById("b_3d").value;
 			g = g.replace(/,/g,"");
 			g1 = Number(g)/Number(tanambaru);
 			$("#j8").html(g1);
 			$("#j8").format({format:"#,###.00", locale:"us"});
-			
+
 			defg = Number(d)+Number(e)+Number(f)+Number(g);
 			document.getElementById("total_b_3").value=defg;
-			$("#total_b_3").format({format:"#,###.00", locale:"us"}); 
+			$("#total_b_3").format({format:"#,###.00", locale:"us"});
 			}
 
-			
-			
+
+
 			for(j=1; j<=14; j++ ){
 			jumlahj= document.getElementById("total_b_"+j).value;
 			jumlahj = jumlahj.replace(/,/g,"");
-		
+
 			jumlah_jaga = Number(jumlah_jaga)+Number(jumlahj);//kos penjagaan
 			jumlahj_kos = Number(jumlahj)/Number(tanambaru);
 			jumlahj_kos = bulatkan(jumlahj_kos);
 			jumlah_jaga_kos = Number(jumlah_jaga_kos)+Number(jumlahj_kos);//kos perbelanjaan per ha
-			
+
 			$("#total_b_"+j).format({format:"#,###.00", locale:"us"});
 			$("#jaga"+j).html(jumlahj_kos);
-			$("#jaga"+j).format({format:"#,###.00", locale:"us"}); 
-			
+			$("#jaga"+j).format({format:"#,###.00", locale:"us"});
+
 			}
-			
+
 			document.getElementById("total_kos_b").value=jumlah_jaga;
-			
-			$("#total_kos_b").format({format:"#,###.00", locale:"us"}); 
+
+			$("#total_kos_b").format({format:"#,###.00", locale:"us"});
 			$("#total_kos_per_ha_b").html(jumlah_jaga_kos);
-			$("#total_kos_per_ha_b").format({format:"#,###.00", locale:"us"}); 
-			
+			$("#total_kos_per_ha_b").format({format:"#,###.00", locale:"us"});
+
 			total_all = Number(jumlah_belanja)+Number(jumlah_jaga);
 			$("#total_all").html(total_all);
-			$("#total_all").format({format:"#,###.00", locale:"us"}); 
-			
+			$("#total_all").format({format:"#,###.00", locale:"us"});
+
 			total_all_per_ha = Number(jumlah_belanja_kos)+Number(jumlah_jaga_kos);
 			$("#total_all_per_ha").html(total_all_per_ha);
-			$("#total_all_per_ha").format({format:"#,###.00", locale:"us"}); 
-			
-			
-			
+			$("#total_all_per_ha").format({format:"#,###.00", locale:"us"});
+
+
+
 			//------------------------------------------------- keseluruhan -------------------------------------
 		}
 		else {
 			$("#" +obj).html("0.00");
 		}
-		$(obj).format({format:"#,###.00", locale:"us"}); 
+		$(obj).format({format:"#,###.00", locale:"us"});
 
 }
 </script>
@@ -284,7 +284,7 @@ var pitmid = false;
 .style2 {font-weight: bold}
 -->
 </style>
-<?php 
+<?php
 	if(!$_GET['t']){
 		echo setstring('mal', '<p>Sila pilih data yang ingin dimasukkan pada menu disebelah</p>', 'en', '<p>Please choose the required data on the left menu</p>');
 		}
@@ -296,38 +296,38 @@ var pitmid = false;
     <td colspan="4">&nbsp;</td>
   </tr>
   <tr>
-    <td colspan="4"><span class="style7"> 
+    <td colspan="4"><span class="style7">
        <?=setstring ( 'mal', 'MAKLUMAT KAWASAN BELUM MATANG BAGI', 'en', 'INFORMATION OF IMMATURE AREA FOR'); ?>
        <span style="text-transform:uppercase; color:#FF3300;">
-	   
+
 	   <?php if($_GET['t']=="Penanaman Baru"){
-	   	echo setstring('mal', 'Penanaman Baru', 'en', 'New Planting');	
+	   	echo setstring('mal', 'Penanaman Baru', 'en', 'New Planting');
 	   }
 	   if($_GET['t']=="Penanaman Semula"){
-	   	echo setstring('mal', 'Penanaman Semula', 'en', 'Replanting');	
+	   	echo setstring('mal', 'Penanaman Semula', 'en', 'Replanting');
 	   }
 	   if($_GET['t']=="Penukaran"){
-	   	echo setstring('mal', 'Penukaran', 'en', 'Conversion');	
+	   	echo setstring('mal', 'Penukaran', 'en', 'Conversion');
 	   }	    ?>
        </span>
-       
+
        <?php
-	if($_GET['year'] == "1"){ 
+	if($_GET['year'] == "1"){
 		echo setstring('mal', 'TAHUN PERTAMA', 'en', 'FIRST YEAR');
-		$x=1; 
-		} 
+		$x=1;
+		}
 	else if($_GET['year'] == "2") {
 		echo setstring('mal', 'TAHUN KEDUA', 'en', 'SECOND YEAR');
 		$x=2;
 		}
 	else {
 		echo setstring('mal', 'TAHUN KETIGA', 'en', 'THIRD YEAR');
-		$x=3; 
+		$x=3;
 		}
 	 ?>
     </span></td>
   </tr>
-  
+
   <tr>
     <td><span class="style7">(<?=setstring ( 'mal', 'DITANAM PADA', 'en', 'PLANTED IN YEAR'); ?> <?php echo $ts = $tahunsemasa-$x; ?>)</span></td>
     <td colspan="3"><span class="style8"></span></td>
@@ -341,7 +341,7 @@ var pitmid = false;
     <?=setstring ( 'mal', 'Keluasan kawasan penanaman baru tahun pertama pada tahun lepas (terakhir dari e-SUB)', 'en', 'Total of last year new planting area at year one (last from e-SUB)'); ?></strong></td>
     </tr>
   <tr>
-    <td height="31"><span style="color:#0000CC; font-weight:bold;"><?php 
+    <td height="31"><span style="color:#0000CC; font-weight:bold;"><?php
 	$keluasan_sub = $data;
 	 echo number_format($keluasan_sub,2);?></span>
       &nbsp;<?=setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></td>
@@ -362,14 +362,14 @@ var pitmid = false;
   <tr>
     <td colspan="4"><b><?=setstring ( 'mal', 'Jumlah kos mengikut operasi: ', 'en', 'Total cost according to operation: '); ?></b></td>
   </tr>
-  
+
   <tr>
     <td>&nbsp;</td>
     <td width="128">&nbsp;</td>
     <td width="214">&nbsp;</td>
     <td width="181">&nbsp;</td>
     </tr>
-  
+
   <tr>
     <td colspan="4">
     <table width="100%" cellspacing="0" frame="box" class="subTable" style="margin:3px;">
@@ -377,10 +377,10 @@ var pitmid = false;
         <td height="40" align="right" background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="right" class="style1 style2 style11">a.  </div></td>
         <td height="34" align="right" background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="left" class="style12"><?=setstring ( 'mal', 'Perbelanjaan Tidak Berulang', 'en', 'Non-Recurrent Expenditures'); ?></div></td>
         <td background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="center" class="style12"><?=setstring ( 'mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style12">(RM)</div></td>
-        <td background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="center" class="style12"><?=setstring ( 'mal', 'Kos Per Hektar', 'en', 'Cost Per hectare'); ?></div>          
+        <td background="../images/tb_BG.gif" bgcolor="#CC3366"><div align="center" class="style12"><?=setstring ( 'mal', 'Kos Per Hektar', 'en', 'Cost Per hectare'); ?></div>
         <div align="center" class="style12"> (RM)</div></td>
         </tr>
-      
+
       <tr bgcolor="#99FF99">
         <td width="18" height="35" align="right">1.</td>
         <td width="429" bgcolor="#99FF99"><?=setstring ( 'mal', 'Menebang dan membersih kawasan', 'en', 'Felling and land clearing'); ?></td>
@@ -501,14 +501,14 @@ var pitmid = false;
         <td height="45" align="right"><div align="right"></div></td>
         <td><div align="right"><strong><?=setstring ( 'mal', 'Jumlah kecil', 'en', 'Subtotal'); ?> (a) :</strong><strong> </strong></div></td>
         <td bgcolor="#FFCC66">
-          
+
           <div align="center">
             <input name="total_kos_a" type="text" id="total_kos_a"  style="font-weight:bold; text-align:center" value="<?= number_format($nilai->total_a,2); ?>" size="15" readonly="true" />
           </div>          </td>
         <td bgcolor="#FFCC66"><div align="center"><strong>
           <span id="total_kos_per_ha_a"><?php $total_x = $x1+$x2+$x3+$x4+$x5+$x6+$x7+$x8+$x9+$x10+$x11; echo number_format($total_x,2);?></span>
         </strong>
-            
+
         </div></td>
         </tr>
       <tr>
@@ -528,10 +528,10 @@ var pitmid = false;
         <td height="41" align="right" background="../images/tb_BG.gif"><div align="right" class="style3">b. </div></td>
         <td height="41" align="right" background="../images/tb_BG.gif"><div align="left" class="style3"><?=setstring ( 'mal', 'Penjagaan', 'en', 'Upkeep'); ?></div></td>
         <td background="../images/tb_BG.gif"><div align="center" class="style3"><?=setstring ( 'mal', 'Kos', 'en', 'Cost'); ?></div>          <div align="center" class="style3"> (RM)</div></td>
-        <td background="../images/tb_BG.gif"><div align="center" class="style3"><?=setstring ( 'mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>          
+        <td background="../images/tb_BG.gif"><div align="center" class="style3"><?=setstring ( 'mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></div>
         <div align="center" class="style3"> (RM)</div></td>
         </tr>
-      
+
       <tr>
         <td width="18" height="36" align="right" bgcolor="#99FF99"><div align="right">1.</div></td>
         <td width="428" bgcolor="#99FF99"><?=setstring ( 'mal', 'Meracun', 'en', 'Weeding'); ?> &nbsp;</td>
@@ -717,7 +717,7 @@ var pitmid = false;
           <span id="jaga13"><?php $y13 =($nilai->total_b_13/$data); echo number_format($y13,2); ?></span>
         </div></td>
       </tr>
-      
+
       <tr bgcolor="#99FF99">
         <td height="36" align="right">14.</td>
         <td align="right"><div align="left"><?=setstring ( 'mal', 'Perbelanjaan pelbagai', 'en', 'Other Expenditures'); ?></div></td>
@@ -749,8 +749,8 @@ var pitmid = false;
       </tr>
     </table></td>
   </tr>
-  
-  
+
+
   <tr>
     <td>&nbsp;</td>
     <td>&nbsp;</td>
@@ -760,19 +760,19 @@ var pitmid = false;
   <tr>
     <td height="44" colspan="2"><div align="right"><strong><?=setstring ( 'mal', 'Jumlah kos', 'en', 'Total cost'); ?>
           <span style="text-transform:lowercase;">	   <?php if($_GET['t']=="Penanaman Baru"){
-	   	echo setstring('mal', 'Penanaman Baru', 'en', 'New Planting');	
+	   	echo setstring('mal', 'Penanaman Baru', 'en', 'New Planting');
 	   }
 	   if($_GET['t']=="Penanaman Semula"){
-	   	echo setstring('mal', 'Penanaman Semula', 'en', 'Replanting');	
+	   	echo setstring('mal', 'Penanaman Semula', 'en', 'Replanting');
 	   }
 	   if($_GET['t']=="Penukaran"){
-	   	echo setstring('mal', 'Penukaran', 'en', 'Conversion');	
-	   }	    ?></span> 
-	   
+	   	echo setstring('mal', 'Penukaran', 'en', 'Conversion');
+	   }	    ?></span>
+
 	   <?php
-	if($_GET['year'] == "1"){ 
+	if($_GET['year'] == "1"){
 		echo setstring('mal', 'pada tahun pertama', 'en', 'on first year');
-		} 
+		}
 	else if($_GET['year'] == "2") {
 		echo setstring('mal', 'pada tahun kedua', 'en', 'on second year');
 		}
@@ -801,7 +801,7 @@ var pitmid = false;
 </table>
 
 
-</form> 
+</form>
 <?php } } ?>
 
 <?php if(!$totalblm){ ?>

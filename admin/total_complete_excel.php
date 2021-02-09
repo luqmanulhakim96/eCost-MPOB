@@ -1,6 +1,6 @@
-<?php 
+<?php
 include('../Connections/connection.class.php');
-include '../class/test.class.php'; 
+include '../class/test.class.php';
 header("Content-Disposition: attachment; filename=All_Mill_Response_Survey.xls");
 ?>
 <style type="text/css">
@@ -21,7 +21,7 @@ header("Content-Disposition: attachment; filename=All_Mill_Response_Survey.xls")
 	  </tr>
 	</thead>
 	<tbody>
-	<?php while($row=mysql_fetch_array($result_complete)) { ?>
+	<?php while($row=mysqli_fetch_array($result_complete)) { ?>
 		<tr valign="top">
 			<td><?php echo $list++; ?></td>
 			<td><a href="details.php?id=<?php echo $row['lesen'];?>" class="boxcolor"><?php echo $row['nama'];?></a></td>
@@ -30,6 +30,6 @@ header("Content-Disposition: attachment; filename=All_Mill_Response_Survey.xls")
 			<td><a href="emailnonresponde.php?bil=<?php echo $row['id'];?>" class="boxcolor"><?php echo $row['email'];?></a><div align="center"></div></td>
 			<td><?php echo $row['access'];?></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>

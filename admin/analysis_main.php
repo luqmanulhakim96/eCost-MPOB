@@ -90,15 +90,15 @@
     </tr>
     <?php
     $q_super = "select * from user_super where u_email = '" . $_SESSION['email'] . "'";
-    $r_super = mysql_query($q_super, $con);
-    $total_super = mysql_num_rows($r_super);
+    $r_super = mysqli_query($con, $q_super);
+    $total_super = mysqli_num_rows($r_super);
 
     function analysis($type, $year) {
         $con = connect();
         $qt1 = "select * from analysis where type='$type' and year = '$year'";
-        $rt1 = mysql_query($qt1, $con);
-        $total = mysql_num_rows($rt1);
-        $row = mysql_fetch_array($rt1);
+        $rt1 = mysqli_query($con, $qt1);
+        $total = mysqli_num_rows($rt1);
+        $row = mysqli_fetch_array($rt1);
 
         $variable[0] = $total;
         $variable[1] = $row['type'];
@@ -111,8 +111,8 @@
 
     $con = connect();
     $qt = "select pb_thisyear from kos_belum_matang where pb_thisyear>0 group by pb_thisyear ";
-    $rt = mysql_query($qt, $con);
-    while ($rowt = mysql_fetch_array($rt)) {
+    $rt = mysqli_query($con, $qt);
+    while ($rowt = mysqli_fetch_array($rt)) {
 
 
         $ana1 = analysis("ESTATE", $rowt['pb_thisyear']);
@@ -123,30 +123,30 @@
             <td><?php echo $rowt['pb_thisyear']; ?></td>
             <td><?php echo $ana1[3]; ?></td>
             <td><?php echo $ana1[4]; ?></td>
-            <td width="15%">     
+            <td width="15%">
 
                 <?php if ($total_super > 0) { ?>
                     <div id="green-button" align="center">
 <!--                        <a href="home.php?id=analysis&sub=analysis_estate&tahun=<?php echo $rowt['pb_thisyear']; ?>" class="green-button pcb">
 -->
                         <a href="javascript:;" onclick="callAjax('home.php?id=analysis&sub=analysis_estate&tahun=<?php echo $rowt['pb_thisyear']; ?>');" class="green-button pcb">
-                        
-    <span>Run analysis</span>		  
+
+    <span>Run analysis</span>
                         </a>
 
                         <div id="green-button" align="center">
                             <a href="analysis_estate_excel.php?tahun=<?php echo $rowt['pb_thisyear']; ?>" class="green-button pcb">
-                                <span>Download</span>		  
+                                <span>Download</span>
                             </a>
 
-                        </div> 
+                        </div>
                     <?php } ?>
                     <?php if ($total_super == 0) { ?>
                         <div id="green-button" align="center">
                             <a href="#" class="green-button pcb">
-                                <span>Not allowed</span>		  
-                            </a>	
-                        </div> 
+                                <span>Not allowed</span>
+                            </a>
+                        </div>
                     <?php } ?>
 
 
@@ -164,28 +164,25 @@
                     <div id="red-button" align="center">
                       <!--  <a href="home.php?id=analysis&sub=analysis_mill&tahun=<?php echo $rowt['pb_thisyear']; ?>" class="red-button pcb">-->
                         <a href="javascript:;" onclick="callAjax('home.php?id=analysis&sub=analysis_mill&tahun=<?php echo $rowt['pb_thisyear']; ?>');" class="red-button pcb">
-                            <span>Run analysis</span>		
+                            <span>Run analysis</span>
                         </a>
                     </div>
                     <div id="red-button" align="center">
                         <a href="analysis_mill_excel.php?tahun=<?php echo $rowt['pb_thisyear']; ?>" class="red-button pcb">
-                            <span>Download</span>		
+                            <span>Download</span>
                         </a>
-                    </div>	
+                    </div>
                 <?php } ?>
                 <?php if ($total_super == 0) { ?>
                     <div id="red-button" align="center">
                         <a href="#" class="red-button pcb">
-                            <span>Not alowed</span>		
+                            <span>Not alowed</span>
                         </a>
-                    </div>	
+                    </div>
                 <?php } ?>
 
 
             </td>
         </tr>
-    <?php } ?> 
+    <?php } ?>
 </table>
-
-
-

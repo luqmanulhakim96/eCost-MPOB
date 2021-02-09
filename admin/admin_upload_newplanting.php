@@ -10,9 +10,9 @@ function updateesub($nolesen, $table, $column, $value) {
             . "WHERE "
             . " No_Lesen_Baru='$nolesen'  "
             . " LIMIT 1";
-    //echo "<br>".$qupdate; 
-    mysql_query($qupdate, $con);
-    if (mysql_affected_rows()) {
+    //echo "<br>".$qupdate;
+    mysqli_query($con, $qupdate);
+    if (mysqli_affected_rows()) {
         $set = 1;
     }
     return $set;
@@ -34,12 +34,12 @@ function getKiraan($type, $tahun_esub, $nolesen) {
             . "union select sum(tanaman_$type) as jumlah FROM tanam_$type$kedua   where lesen ='$nolesen' "
             . "union select sum(tanaman_$type) as jumlah FROM tanam_$type$ketiga where lesen ='$nolesen' ) as aa ; ";
     //echo $q . "<br>";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
     $total = $row['total'];
     return $total;
 }
-?> 
+?>
 <form name="import" method="post" enctype="multipart/form-data"><br />
     <h2>Upload Excel File New Planting (Tanam Baru)</h2>
     <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;"> <span class="ui-icon ui-icon-info" style="float: left; margin-right: 1em;"></span>
@@ -97,7 +97,7 @@ if (isset($_POST["submit"])) {
 
 
     /* start of captcha validation */
-//echo $_SESSION['captcha']['code']; 
+//echo $_SESSION['captcha']['code'];
     if ($captcha != $captchasession) {
         echo "<html><script language='javascript'>alert('Invalid CAPTCHA Code! You have entered :" . $captcha . " instead of " . $captchasession . " '); location.href='home.php?id=config&sub=admin_upload_newplanting';</script></html>";
     }
@@ -116,8 +116,8 @@ if (isset($_POST["submit"])) {
     $tahun_esub = $tahun_estate - 1;
     $tableesub = "esub_" . $tahun_esub;
 
-    $checktable = mysql_query("SHOW TABLES LIKE '$this_table'");
-    $table_exists = mysql_num_rows($checktable) > 0;
+    $checktable = mysqli_query("SHOW TABLES LIKE '$this_table'");
+    $table_exists = mysqli_num_rows($checktable) > 0;
 
     //echo "table_exists:" . $table_exists;
     if ($table_exists == 0) {
@@ -129,16 +129,21 @@ if (isset($_POST["submit"])) {
                 . "`bulan` varchar(255) DEFAULT NULL,  "
                 . "`tanaman_baru` varchar(255) DEFAULT NULL,  "
                 . "KEY `lesen` (`lesen`) , KEY `bulan` (`bulan`) USING BTREE) ENGINE=MyISAM DEFAULT CHARSET=latin1;";
-        $r_add = mysql_query($qadd, $con);
-        if ($r_add) {
+        $r_add = mysqli_query($con, $qadd);
+
+		// remove as requested by Puan Zifah 05/02/2021
+		/*start
+		if ($r_add) {
             $qa = "INSERT INTO $this_table "
                     . " SELECT * FROM $this_current_table ";
             //echo $qa."<br><br>";
-            mysql_query($qa, $con);
-        }//add data to new table 
-    }//if table no exist 
+            mysqli_query($qa, $con);
+        }
+		end*/
+		//add data to new table
+    }//if table no exist
     else {
-//        mysql_query("DROP TABLE IF EXISTS $this_current_table", $con);
+//        mysqli_query("DROP TABLE IF EXISTS $this_current_table", $con);
 //        $qadd = "CREATE TABLE $this_current_table (`bil` varchar(255) DEFAULT NULL,  "
 //                . "`nama_estet` varchar(255) DEFAULT NULL,  "
 //                . "`lesen` varchar(255) DEFAULT NULL,  "
@@ -147,22 +152,22 @@ if (isset($_POST["submit"])) {
 //                . "`bulan` varchar(255) DEFAULT NULL,  "
 //                . "`tanam_baru` varchar(255) DEFAULT NULL,  "
 //                . "KEY `lesen` (`lesen`) USING BTREE) ENGINE=MyISAM DEFAULT CHARSET=latin1;";
-//        $r_add = mysql_query($qadd, $con);
+//        $r_add = mysqli_query($qadd, $con);
         /* delete data from this table */
         $qa = "delete from $this_table ";
-        mysql_query($qa, $con);
+        mysqli_query($con, $qa);
         /* delete data from this table */
     }
 
     /* add data into table */
     while (($filesop = fgetcsv($handle, 10000, ",")) !== false) {
-        $bil = mysql_real_escape_string($filesop[0]);
-        $namaestate = mysql_real_escape_string($filesop[1]);
-        $lesen = mysql_real_escape_string($filesop[2]);
-        $negeri = mysql_real_escape_string($filesop[3]);
-        $daerah = mysql_real_escape_string($filesop[4]);
-        $bulan = mysql_real_escape_string($filesop[5]);
-        $tanam_baru = str_replace(",", "", mysql_real_escape_string($filesop[6])); //$filesop[6];
+        $bil = mysqli_real_escape_string($con, $filesop[0]);
+        $namaestate = mysqli_real_escape_string($con, $filesop[1]);
+        $lesen = mysqli_real_escape_string($con, $filesop[2]);
+        $negeri = mysqli_real_escape_string($con, $filesop[3]);
+        $daerah = mysqli_real_escape_string($con, $filesop[4]);
+        $bulan = mysqli_real_escape_string($con, $filesop[5]);
+        $tanam_baru = str_replace(",", "", mysqli_real_escape_string($con, $filesop[6])); //$filesop[6];
 
         $sql = "INSERT INTO $this_table "
                 . "(`bil`, "
@@ -183,7 +188,8 @@ if (isset($_POST["submit"])) {
                 . "'" . $tanam_baru . "'"
                 . ")";
         //echo $sql . "<br><br>";
-        $rsql = mysql_query($sql, $con);
+        $rsql = mysqli_query($con, $sql);
+
         $c = $c + 1;
         if ($sql) {
             echo "Your database has imported successfully. You have inserted " . $c . " records";
@@ -201,17 +207,18 @@ if (isset($_POST["submit"])) {
         $yesupdate = updateesub($nolesen, $tableesub, 'Belum_Berhasil', $totalbelumberhasil);
         $yesjumlah = updateesub($nolesen, $tableesub, 'Jumlah', $totaljumlah);
         /* end start of belum_berhasil */
-    }//while add 
+    }//while add
     $qa = "delete from $this_table where tanaman_baru='0'; ";
-    mysql_query($qa, $con);
+    mysqli_query($con, $qa);
 
 
-    $qa_deletelast = "delete FROM $this_table "
-            . " WHERE bil ='bil' or bil ='1'";
-    mysql_query($qa_deletelast, $con);
+    $qa_deletelast = "delete FROM $this_table WHERE bil='bil'";
+    mysqli_query($con, $qa_deletelast);
+
+	/*
     $qa_deletelast = "delete FROM $this_current_table "
-            . " WHERE bil ='bil' or bil ='1'";
-    mysql_query($qa_deletelast, $con);
+            . " WHERE bil='bil'";
+    mysqli_query($qa_deletelast, $con);*/
+
 }
 ?>
-    

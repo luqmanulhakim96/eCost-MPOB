@@ -4,7 +4,7 @@
 <script type="text/javascript" charset="utf-8">
 			$(document).ready(function() {
 
-			
+
 	$('#example').dataTable( {"sPaginationType": "full_numbers","iDisplayLength": 25,
 		"fnDrawCallback": function ( oSettings ) {
 			/* Need to redo the counters if filtered or sorted */
@@ -23,17 +23,17 @@
 	} );
 } );
 			</script>
-           
+
 <link rel="stylesheet" href="../js/colorbox/colorbox.css" type="text/css" />
 <script type="text/javascript" src="../js/colorbox/colorbox/jquery.colorbox.js"></script>
-        
+
 <script type="text/javascript">
 			$(document).ready(function(){
 				$(".boxcolor").colorbox({width:"60%", height:"100%", iframe:true});
 			});
 		</script>
-    
-    
+
+
       <style>
       		@import "../js/datatable/css/demo_page.css";
 			@import "../js/datatable/css/demo_table.css";
@@ -44,7 +44,7 @@ include('pages.php');
       <div align="center"><strong>List of Completed Mill Response Survey in Sabah</strong></div>
         <table width="100%" class="baju" align="left" id="example2">
 	<thead>
-	
+
 	  <tr height="30">
 		  <th width="4%">No.</th>
 			<th>Mill Name</th>
@@ -56,7 +56,7 @@ include('pages.php');
 	  </tr>
 	</thead>
 	<tbody>
-	<?php while($row=mysql_fetch_array($result_sabah)) { ?>
+	<?php while($row=mysqli_fetch_array($result_sabah)) { ?>
 		<tr valign="top">
 			<td><?php echo $list++; ?></td>
 			<td><a href="details.php?id=<?php echo $row['lesen'];?>" class="boxcolor"><?php echo $row['nama'];?></a></td>
@@ -68,7 +68,7 @@ include('pages.php');
             	<a href="auto_login_mill.php?username=<?php echo $row['lesen'];?>&amp;password=<?php echo $row['password'];?>&amp;tahun=<?php echo $_COOKIE['tahun_report'];?>&view=true" target="_blank" > <img src="../images/001_36.png" width="20" height="20" border="0" title="View Only" /></a>
             	</div></td>
 		</tr>
-	<?php } mysql_close($con);?>
+	<?php } mysqli_close($con);?>
 	</tbody>
 </table>
 
@@ -77,4 +77,3 @@ include('pages.php');
 <a href="total_sabah_excel.php" target="_blank"><img src="../images/Excel-icon.png" width="48" height="48" border="0" title="Pindah ke Excel" /></a><br/>
 <br />
 <br />
-

@@ -37,7 +37,7 @@ $_SESSION['captcha'] = simple_php_captcha();
             <td><b>Please enter CAPTCHA code below.</b>
                 <i>(case sensitive)</i><br><input name="captcha" type="text" id="captcha" size="20" />
                 <input name="captchasession" type="hidden" id="captchasession" size="20" value="<?php echo  $_SESSION['captcha']['code']; ?>" />
-               
+
                 <script language="javascript">
                     var f2 = new LiveValidation('captcha');
                     f2.add(Validate.Presence);
@@ -56,14 +56,14 @@ $_SESSION['captcha'] = simple_php_captcha();
 </form>
 <?php
 if (isset($_POST["submit"])) {
-    
+
         /* start of captcha validation */
-//echo $_SESSION['captcha']['code']; 
+//echo $_SESSION['captcha']['code'];
     if ($captcha != $captchasession) {
         echo "<html><script language='javascript'>alert('Invalid CAPTCHA Code! You have entered :".$captcha." instead of ".$captchasession." '); location.href='home.php?id=config&sub=upload_excel_mill';</script></html>";
     }
     /* end of captcha validation */
-    
+
     $file = $_FILES['file']['tmp_name'];
     $handle = fopen($file, "r");
     $c = 0;
@@ -72,8 +72,8 @@ if (isset($_POST["submit"])) {
     $this_table = "fbb_production" . $tahun_short;
     $this_current_table = "fbb_production";
 
-    $checktable = mysql_query("SHOW TABLES LIKE '$this_table'");
-    $table_exists = mysql_num_rows($checktable) > 0;
+    $checktable = mysqli_query("SHOW TABLES LIKE '$this_table'");
+    $table_exists = mysqli_num_rows($checktable) > 0;
 
     //echo "table_exists:" . $table_exists;
     if ($table_exists == 0) {
@@ -86,30 +86,30 @@ if (isset($_POST["submit"])) {
                 . "`jumlah_pengeluaran` varchar(255) DEFAULT NULL,  "
                 . "`purata_hasil_buah` varchar(255) DEFAULT NULL,  KEY `lesen` (`lesen`)) "
                 . "ENGINE=MyISAM DEFAULT CHARSET=latin1;";
-        $r_add = mysql_query($qadd, $con);
+        $r_add = mysqli_query($con, $qadd);
         if ($r_add) {
             $qa = "INSERT INTO $this_table "
                     . " SELECT * FROM $this_current_table ; ";
             //echo $qa."<br><br>";
-            mysql_query($qa, $con);
-        }//add data to new table 
-    }//if table no exist 
+            mysqli_query($con, $qa);
+        }//add data to new table
+    }//if table no exist
     else {
         /* delete data from this table */
         $qa = "delete from $this_current_table; ";
         //echo $qa."<br>";
-        mysql_query($qa, $con);
+        mysqli_query($con, $qa);
         /* delete data from this table */
     }
 
     /* add data into table */
     while (($filesop = fgetcsv($handle, 10000, ",")) !== false) {
-        $namaestate = mysql_real_escape_string($filesop[0]);
-        $lesen = mysql_real_escape_string($filesop[1]);
-        $negeri = mysql_real_escape_string($filesop[2]);
-        $daerah = mysql_real_escape_string($filesop[3]);
-        $jumlah_pengeluaran = str_replace(",","",mysql_real_escape_string($filesop[4]));//$filesop[4];
-        $purata_hasil_buah = str_replace(",","",mysql_real_escape_string($filesop[5]));//$filesop[5];
+        $namaestate = mysqli_real_escape_string($filesop[0]);
+        $lesen = mysqli_real_escape_string($filesop[1]);
+        $negeri = mysqli_real_escape_string($filesop[2]);
+        $daerah = mysqli_real_escape_string($filesop[3]);
+        $jumlah_pengeluaran = str_replace(",","",mysqli_real_escape_string($filesop[4]));//$filesop[4];
+        $purata_hasil_buah = str_replace(",","",mysqli_real_escape_string($filesop[5]));//$filesop[5];
 
         $sql = "INSERT INTO $this_current_table "
                 . "("
@@ -128,7 +128,7 @@ if (isset($_POST["submit"])) {
                 . "'$purata_hasil_buah'"
                 . "); ";
         //echo $sql . "<br>";
-        $rsql = mysql_query($sql, $con);
+        $rsql = mysqli_query($con, $sql);
         $c = $c + 1;
         if ($rsql) {
             echo "Your database has imported successfully. You have inserted " . $c . " records";
@@ -136,16 +136,15 @@ if (isset($_POST["submit"])) {
             echo "Sorry! There is some problem.";
         }
         echo "<br>";
-    }//while add 
+    }//while add
     $qa_deletelast = "delete FROM $this_table "
             . " WHERE bil ='bil' or bil ='1' or bil ='nama'  or  nama ='nama'";
-    mysql_query($qa_deletelast, $con);
-    
+    mysqli_query($con, $qa_deletelast);
+
       $qa_deletelast = "delete FROM $this_current_table "
             . " WHERE bil ='bil' or bil ='1' or bil ='nama' or  nama ='nama'";
-    mysql_query($qa_deletelast, $con);
-    //echo $qa_deletelast; 
-   
+    mysqli_query($con, $qa_deletelast);
+    //echo $qa_deletelast;
+
 }
 ?>
-    

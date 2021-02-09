@@ -5,10 +5,10 @@ ini_set('memory_limit', '2048M');
 date_default_timezone_set('Asia/Kuala_Lumpur');
 require_once ("xlsxwriter.class.php");
 require_once ("../Connections/connection.class.php");
-$Conn = connect();
+$con = connect();
 
 $writer = new XLSXWriter();
-	
+
 if (get_magic_quotes_gpc()) {
 	$process = array(&$_GET, &$_POST, &$_COOKIE, &$_REQUEST);
 	while (list($key, $val) = each($process)) {
@@ -161,7 +161,7 @@ for ($i = 0; $i < count($Name); $i++) {
 	}
 	$writer->writeSheetRow($sheet, $Data, $formatData);
 }
-mysql_close($Conn);
+mysqli_close($con);
 $Filename = XLSXWriter::sanitize_filename($Year."_".$Title.".xlsx");
 $writer->writeToFile($Filename);
 header('Content-disposition: attachment; filename="'.$Filename.'"');

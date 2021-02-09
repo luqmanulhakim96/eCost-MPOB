@@ -1,8 +1,8 @@
-<?php 
+<?php
 $con = connect();
 $q="select * from esub where no_lesen_baru ='$lesen'";
-$r= mysql_query($q,$con);
-$row= mysql_fetch_array($r);
+$r= mysqli_query($con, $q);
+$row= mysqli_fetch_array($r);
 
 ?>
 <table width="100%">
@@ -59,10 +59,10 @@ $row= mysql_fetch_array($r);
   <?php
   $con=connect();
   $qpokok ="select * from age_profile where lesen = '$lesen' order by tahun_tanam";
-  $rpokok = mysql_query($qpokok,$con);
-  
+  $rpokok = mysqli_query($con, $qpokok);
+
   $totalluas=0;
-  while($rowpokok=mysql_fetch_array($rpokok)){
+  while($rowpokok=mysqli_fetch_array($rpokok)){
   ?>
   <tr>
     <td><div align="center">
@@ -73,7 +73,7 @@ $row= mysql_fetch_array($r);
     </div></td>
     <td><div align="center">
       <?php $luas=$rowpokok['keluasan']; echo number_format($luas,2);
-	  $totalluas =$totalluas+$luas; 
+	  $totalluas =$totalluas+$luas;
 	  ?>
     </div></td>
   </tr>

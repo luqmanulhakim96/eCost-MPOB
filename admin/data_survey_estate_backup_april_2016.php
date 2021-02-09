@@ -14,7 +14,7 @@ $con = connect();
 <style>
     body {
         font-family:Tahoma ;
-        font-size: 12px; 
+        font-size: 12px;
 
     }td,th {
         font-size: 12px;
@@ -28,8 +28,8 @@ $con = connect();
 function estate_info($lesen) {
     $con = connect();
     $q = "select * from estate_info where lesen = '$lesen' ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
     $syarikat = $row['syarikat'];
     if ($syarikat == '-Pilih-' || $syarikat == '- Pilih -') {
         $syarikat = '';
@@ -63,8 +63,8 @@ function estate_info($lesen) {
 function esub($lesen) {
     $con = connect();
     $q = "select * from esub where NO_LESEN_BARU = '$lesen' limit 1 ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
 
     $sub[0] = $row['Nama_Estet'];
     $sub[1] = $row['Negeri_Premis'];
@@ -82,8 +82,8 @@ function esub($lesen) {
 function luas($lesen, $table, $field) {
     $con = connect();
     $q = "select sum($field) as jumlah from $table where lesen = '$lesen' group by lesen limit 1 ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
 
     $sub[0] = round($row['jumlah'], 2);
     return $sub;
@@ -93,8 +93,8 @@ function luas($lesen, $table, $field) {
 function kos_belum_matang($lesen, $tahun, $type, $tahun_tanam, $keluasan) {
     $con = connect();
     $q = "select * from kos_belum_matang where lesen = '$lesen' and pb_thisyear='$tahun' and pb_tahun='$tahun_tanam' and pb_type='$type' limit 1 ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
     $a_1 = 0;
     $a_2 = 0;
     $a_3 = 0;
@@ -207,10 +207,10 @@ function kos_belum_matang($lesen, $tahun, $type, $tahun_tanam, $keluasan) {
 function bts($var) {
     $con = connect();
     //$vari = substr($var, 0, -1);
-    $vari=$var; 
+    $vari=$var;
     $q = "select * from fbb_production where lesen ='" . $vari . "'";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
     //$sub[0]=$row['jumlah_pengeluaran'];
     $sub[0] = round($row['purata_hasil_buah'], 2);
     return $sub;
@@ -222,8 +222,8 @@ function kos_matang_penjagaan($lesen, $tahun, $jum_tanam, $jum_bts) {
     //  echo $jum_bts;
 
     $q = "select * from kos_matang_penjagaan where lesen = '$lesen' and pb_thisyear='$tahun' limit 1 ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
     $b_1a = 0;
     $b_1b = 0;
     $b_1c = 0;
@@ -266,7 +266,7 @@ function kos_matang_penjagaan($lesen, $tahun, $jum_tanam, $jum_bts) {
         $total_b_12 = round($row['total_b_12'] , 2);
         $total_b = round($row['total_b'] , 2);
     }
-    
+
     /* if ($jum_tanam > 0) {
         $b_1a = round($row['b_1a'] / $jum_tanam, 2);
         $b_1b = round($row['b_1b'] / $jum_tanam, 2);
@@ -310,7 +310,7 @@ function kos_matang_penjagaan($lesen, $tahun, $jum_tanam, $jum_bts) {
     $sub[17] = $total_b_11;
     $sub[18] = $total_b_12;
     $sub[19] = $total_b;
-    
+
     /* if ($jum_bts > 0) {
         $sub[20] = round($sub[0] / $jum_bts, 2);
         $sub[21] = round($sub[1] / $jum_bts, 2);
@@ -384,8 +384,8 @@ function kos_matang_penjagaan($lesen, $tahun, $jum_tanam, $jum_bts) {
 function kos_matang_penuaian($lesen, $tahun, $jum_tanam, $jum_bts) {
     $con = connect();
     $q = "select * from kos_matang_penuaian where lesen = '$lesen' and pb_thisyear='$tahun' limit 1 ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
 
     /* if ($jum_tanam > 0) {
         $sub[0] = round($row['a_1'] / $jum_tanam, 2);
@@ -394,7 +394,7 @@ function kos_matang_penuaian($lesen, $tahun, $jum_tanam, $jum_bts) {
         $sub[3] = round($row['a_4'] / $jum_tanam, 2);
         $sub[4] = round($row['total_b'] / $jum_tanam, 2);
     } */
-    
+
     if ($jum_tanam > 0) {
         $sub[0] = round($row['a_1'] , 2);
         $sub[1] = round($row['a_2'] , 2);
@@ -431,8 +431,8 @@ function kos_matang_pengangkutan($lesen, $tahun, $jum_tanam, $jum_bts) {
     $con = connect();
 //  echo $jum_bts;
     $q = "select * from kos_matang_pengangkutan where lesen = '$lesen' and pb_thisyear='$tahun' limit 1 ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
 
     /*
  if ($jum_tanam > 0) {
@@ -447,7 +447,7 @@ function kos_matang_pengangkutan($lesen, $tahun, $jum_tanam, $jum_bts) {
         $sub[8] = round($row['total_b_2'] / $jum_tanam, 2);
         $sub[9] = round($row['total_b'] / $jum_tanam, 2);
     }     */
-    
+
     if ($jum_tanam > 0) {
         $sub[0] = round($row['a_1'] , 2);
         $sub[1] = round($row['a_2'] , 2);
@@ -504,8 +504,8 @@ function kos_matang_pengangkutan($lesen, $tahun, $jum_tanam, $jum_bts) {
 function belanja_am_kos($lesen, $tahun, $jum_tanam, $jum_bts) {
     $con = connect();
     $q = "select * from belanja_am_kos where lesen = '$lesen' and thisyear='$tahun' limit 1 ";
-    $r = mysql_query($q, $con);
-    $row = mysql_fetch_array($r);
+    $r = mysqli_query($con, $q);
+    $row = mysqli_fetch_array($r);
 
     $sub[0] = 0;
     $sub[1] = 0;
@@ -543,7 +543,7 @@ function belanja_am_kos($lesen, $tahun, $jum_tanam, $jum_bts) {
         $sub[14] = round($row['perbelanjaan_lain'] / $jum_tanam, 2);
         $sub[15] = round($row['total_perbelanjaan'] / $jum_tanam, 2);
     }     */
-    
+
     if ($jum_tanam > 0) {
         $sub[0] = round($row['emolumen'] , 2);
         $sub[1] = round($row['kos_ibupejabat'] , 2);
@@ -952,9 +952,9 @@ function belanja_am_kos($lesen, $tahun, $jum_tanam, $jum_bts) {
     $q = "
   select * from login_estate
   INNER JOIN ringkasan_kos_hantar ON login_estate.lesen = ringkasan_kos_hantar.NO_LESEN
-where 
+where
 ringkasan_kos_hantar.TAHUN='".$year."'
-and  success!='0000-00-00 00:00:00' and lesen not like '%123456%' 
+and  success!='0000-00-00 00:00:00' and lesen not like '%123456%'
 and lesen in (SELECT
 	b.lesen
 FROM
@@ -984,7 +984,7 @@ ORDER BY
 group by lesen order by lesen limit 50 ";
     //echo $q;
 
-    /* backup sql 
+    /* backup sql
       select * from login_estate
       where
       success!='0000-00-00 00:00:00' and lesen not like '%123456%'
@@ -1018,9 +1018,9 @@ group by lesen order by lesen limit 50 ";
      */
 
     /* if no data in table ringkasan kos, means estate not submit their survey */
-    $r = mysql_query($q, $con);
+    $r = mysqli_query($con, $q);
     $bil = 0;
-    while ($row = mysql_fetch_array($r)) {
+    while ($row = mysqli_fetch_array($r)) {
         ?>
         <tr <?php if ($bil % 2 == 0) { ?>class="alt"<?php } ?>>
             <td><?php echo ++$bil; ?>. </td>

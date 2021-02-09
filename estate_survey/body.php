@@ -42,11 +42,11 @@ $con = connect();
 
 	$username = addslashes(strip_tags($username));
 	$katalaluan = addslashes(strip_tags($katalaluan));
-	
-/*	$remember = TRUE; 
+
+/*	$remember = TRUE;
     $auth->login($username, $katalaluan, $remember, 1, 1);*/
-	
-	
+
+
 if($mill!="true")
 {
 $q ="select * from login_estate where lesen = '$username' and password = '$katalaluan'";
@@ -55,9 +55,9 @@ if($mill=="true")
 {
 $q ="select * from login_mill where lesen = '$username' and password = '$katalaluan'";
 }
-$r = mysql_query($q,$con);
-$row = mysql_fetch_array($r);
-$total = mysql_num_rows($r);
+$r = mysqli_query($con, $q);
+$row = mysqli_fetch_array($r);
+$total = mysqli_num_rows($r);
 $firsttime = $row['firsttime'];
 $lesen = $row['lesen'];
 $password = $row['password'];
@@ -65,8 +65,8 @@ $password = $row['password'];
 
 /*
 $qhash ="select * from phpbb_users where username='$username'";
-$rhash=mysql_query($qhash,$con);
-$rowhash = mysql_fetch_array($rhash);
+$rhash=mysqli_query($qhash,$con);
+$rowhash = mysqli_fetch_array($rhash);
 $password_hash = $rowhash['user_password'];
 
 $check = phpbb_check_hash($katalaluan, $password_hash);
@@ -77,62 +77,62 @@ if($check==FALSE)
 else if($check==TRUE)
 {
 	echo "password correct";
-}*/	
+}*/
 
     $_SESSION['lesen'] = $lesen;
 	$_SESSION['password']=$password;
 	if($mill!="true"){$_SESSION['type']=  "estate";
 	$q1 ="update login_estate set success= now() where lesen = '$lesen'";
-	$r1 = mysql_query($q1,$con);
+	$r1 = mysqli_query($con, $q1);
 	}
 	if($mill=="true"){$_SESSION['type']=  "mill";
 	$q1 ="update login_mill set success= now() where lesen = '$lesen'";
-	$r1 = mysql_query($q1,$con);
-	} 
+	$r1 = mysqli_query($con, $q1);
+	}
 
 if ($total==0 and $mill!="true")
 {
-	
+
 	$q ="update login_estate set fail= NOW() where lesen = '$username'";
-		$r = mysql_query($q,$con);
+		$r = mysqli_query($con, $q);
 	echo "<script>window.location.href='../index1.php?fail=true';</script>";
 }
 
 if ($total!=0 and $mill!="true")
 {
-	
+
 		$q ="update login_estate set succes= NOW() where lesen = '$username'";
-		$r = mysql_query($q,$con);
+		$r = mysqli_query($con, $q);
 }
 if ($total==0 and $mill=="true")
 {
-	
+
 	$q ="update login_mill set fail= NOW() where lesen = '$username'";
-		$r = mysql_query($q,$con);
+		$r = mysqli_query($con, $q);
 	echo "<script>window.location.href='../index1.php?fail=true';</script>";
 }
 
 if ($total!=0 and $mill=="true")
 {
-	
+
 		$q ="update login_mill set succes= NOW() where lesen = '$username'";
-		$r = mysql_query($q,$con);
+		$r = mysqli_query($con, $q);
 }
 
 if ($firsttime=='2' and $mill!="true"){
 ?>
 <body onLoad="hantar(1)"></body>
 <?php
-} 
+}
 if ($firsttime=='1' and $mill!="true"){?>
 <body onLoad="hantar(2)"></body>
 <?php } ?>
-<?php 
+<?php
 if ($firsttime=='2' and $mill=="true"){
 ?>
 <body onLoad="hantar(4)"></body>
 <?php
-} 
+}
 if ($firsttime=='1' and $mill=="true"){?>
 <body onLoad="hantar(3)"></body>
 <?php } ?>

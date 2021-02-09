@@ -1,7 +1,7 @@
-<?php 
+<?php
 class responsemill
 {
-	function totalresponse($var)
+	function  __construct($var)
 	{
 		//total semua response mill survey yang complete (submitted to mpob) 0=not complete, 1=sah, 2=sementara
 		$con = connect();
@@ -13,27 +13,27 @@ class responsemill
 		$q .= " WHERE mill_buruh.tahun = $var";
 		$q .= " AND mill_kos_lain.tahun = $var";
 		$q .= " AND mill_pemprosesan.tahun = $var";
-		$r=mysql_query($q,$con);
-		$row = mysql_fetch_array($r);
+		$r=mysqli_query($con, $q);
+		$row = mysqli_fetch_array($r);
 		$jumlah = $row['jumlah'];
-		return $jumlah;	
+		return $jumlah;
 	}
-	
+
 	function totalresponse_sementara($var)
 	{
 		//total semua response mill survey yang imcomplete (submitted to mpob) 0=not complete, 1=sah, 2=sementara
 		$con = connect();
 		$q="SELECT count(lesen) AS jumlah FROM mill_buruh WHERE status = '2' AND tahun = $var";
-		$r=mysql_query($q,$con);
-		$row = mysql_fetch_array($r);
+		$r=mysqli_query($con,$q);
+		$row = mysqli_fetch_array($r);
 		$jumlah = $row['jumlah'];
-		return $jumlah;	
+		return $jumlah;
 	}
-	
+
 	function totalall($var, $year)
 	{
 		//total all response mill
-		$con = connect();
+		$con =connect();
 		if($var == 'all' && $year = date('Y'))
 		{
 			$q = "SELECT COUNT(mill_info.lesen) AS jumlah, ekilang.negeri AS negeri FROM ekilang";
@@ -101,11 +101,11 @@ $q .= " AND mill_pemprosesan.tahun = $year";
 $q .= " AND ekilang.negeri LIKE '%SARAWAK%'";
 $q .= " GROUP BY mill_info.lesen";
 		}
-		$r=mysql_query($q,$con);
-		$row = mysql_fetch_array($r);
+		$r=mysqli_query($con,$q);
+		$row = mysqli_fetch_array($r);
 		$jumlah = $row['jumlah'];
 		return $jumlah;
-		
+
 	}
 	function totalresponsekawasan($var,$tahun)
 	{//total all response kawasan estate
@@ -131,13 +131,13 @@ $q .= " GROUP BY mill_info.lesen";
 			$q .= " AND mill_kos_lain.tahun = $var";
 			$q .= " AND mill_pemprosesan.tahun = $var";
 			$q .= " AND $sqladd";
-			$r=mysql_query($q,$con); 
-			$row = mysql_fetch_array($r);
-			$jumlah = mysql_num_rows($r);
+			$r=mysqli_query($con,$q);
+			$row = mysqli_fetch_array($r);
+			$jumlah = mysqli_num_rows($r);
 			return $jumlah;
 	}
-	
-	
+
+
 	function outliers($var,$tahun)
 	{
 	$jumlah=0;

@@ -21,7 +21,7 @@ extract($_GET);
 <script src="../js/live/livevalidation_standalone.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css" href="../js/live/consolidated_common.css">
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 
 
 
@@ -47,7 +47,7 @@ function keypress(e)
 <?php
 	}
 	if(isset($_GET['welcome'])) {
-	
+
 
 ?>
 	<link type="text/css" href="../css/jquery-ui-1.7.2.custom.css" rel="stylesheet" />
@@ -58,16 +58,16 @@ function keypress(e)
 	<script type="text/javascript" src="../ui/effects.core.js"></script>
 	<script type="text/javascript" src="../ui/effects.highlight.js"></script>
 	<script type="text/javascript" src="../external/bgiframe/jquery.bgiframe.js"></script>
-    
+
     <script type="text/javascript" src="../js/jquery.maskedinput-1.2.2.js"></script>
 
-    
+
 	<script type="text/javascript">
 		$(document).ready(function() {
-		
-		
-		
-		
+
+
+
+
 			<?php if($mill!="true"){?>
 			$("#username").mask("999999-999999");
 		<?php } ?>
@@ -126,7 +126,7 @@ function keypress(e)
 ?>
 <div id="errorDialog">
 	<p>
-    	<img src="../images/001_30.gif" width="24" height="24" alt="Ralat" />   
+    	<img src="../images/001_30.gif" width="24" height="24" alt="Ralat" /> 
         <?=setstring ( 'mal', 'Anda perlu log masuk terlebih dahulu sebelum menggunakan sistem', 'en', 'You must login before use the system'); ?>
         !    </p>
 </div>
@@ -143,14 +143,14 @@ function keypress(e)
 	  </strong></td>
       <td width="2%" valign="bottom"><strong>:</strong></td>
       <td width="36%" valign="bottom"><input name="username" type="text" id="username" autocomplete="off" />
-      
+
       <?php if($mill==true){?>
       <script>
       var f17 = new LiveValidation('username');
 f17.add( Validate.Exclusion, { within: [ '-' ], partialMatch: true } );
       </script>
       <?php } ?>
-      
+
       </td>
       </tr>
     <tr>
@@ -158,9 +158,9 @@ f17.add( Validate.Exclusion, { within: [ '-' ], partialMatch: true } );
       <td valign="top"><strong>:</strong></td>
       <td valign="top"><input name="katalaluan" type="password" id="katalaluan" autocomplete="off"  /></td>
       </tr>
-    
-    
-    
+
+
+
     <tr>
       <td colspan="3"><label>
         <input type="submit" name="button" id="button" value="Login" />
@@ -176,13 +176,13 @@ f17.add( Validate.Exclusion, { within: [ '-' ], partialMatch: true } );
 
 }
 		?>
-		
+
 		</td>
     </tr>
     <tr>
     	<td colspan="4" style="font-size:13px;"><strong>
         <?=setstring ( 'mal', 'Untuk sebarang pertanyaan, sila hubungi:', 'en', 'For any enquiries, please contact:'); ?>
-        
+
         </strong></td>
     </tr>
     <tr>
@@ -204,12 +204,12 @@ f17.add( Validate.Exclusion, { within: [ '-' ], partialMatch: true } );
   <tr>
     <td width="15%" height="71">  <?php include('../main/logo.php'); ?> </td>
     <td height="71" colspan="2" align="right">
-	<?php 
+	<?php
 	include('session.php');
 
-	
+
 	 ?>
-	
+
 	 </td>
   </tr>
   <tr>
@@ -221,8 +221,8 @@ f17.add( Validate.Exclusion, { within: [ '-' ], partialMatch: true } );
       <tr>
         <td height="100" valign="top" bgcolor="#F4FFF4">
 		<?php include($open);?>
-		
-		
+
+
 		</td>
       </tr>
     </table></td>
@@ -231,4 +231,4 @@ f17.add( Validate.Exclusion, { within: [ '-' ], partialMatch: true } );
 </body>
 
 </html>
-<?php mysql_close($con);?>
+<?php mysqli_close($con);?>

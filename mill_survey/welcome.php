@@ -20,10 +20,10 @@ function waiting()
 	{
 		window.location.href='home.php?id=home';
 	}
-	
+
 	//document.getElementById("time").innerHTML=t; 
 	var a=setTimeout("waiting()",1000);
-	
+
 }
 </script>
 

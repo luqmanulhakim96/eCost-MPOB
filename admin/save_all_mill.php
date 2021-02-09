@@ -1,6 +1,6 @@
 <?php include('../Connections/connection.class.php'); ?>
 <?php
- 
+
 extract($_REQUEST);
 
 $con = connect();
@@ -15,7 +15,7 @@ if ($type != "delete") {
             . " where "
             . " no_lesen = '$nolesen' "
             . " and tahun ='$tahun' ";
-    $r_fbb = mysql_query($q_fbb, $con);
+    $r_fbb = mysqli_query($con, $q_fbb);
 
 
     $q_login = "update "
@@ -26,7 +26,7 @@ if ($type != "delete") {
             . " success='$success', "
             . " fail='$fail' "
             . " where lesen ='$nolesen'	";
-    $r_login = mysql_query($q_login, $con);
+    $r_login = mysqli_query($con, $q_login);
 
 
     $qall = "select "
@@ -35,8 +35,8 @@ if ($type != "delete") {
             . "where "
             . "no_lesen ='$nolesen' "
             . "and tahun='$tahun' ";
-    $rall = mysql_query($qall, $con);
-    $totalall = mysql_num_rows($rall);
+    $rall = mysqli_query($con, $qall);
+    $totalall = mysqli_num_rows($rall);
 
     foreach ($jumlah as $id => $value) {
         $var = explode(":", $id);
@@ -75,7 +75,7 @@ if ($type != "delete") {
                     . "'')";
         }//if total 0
 		//echo $q."<br>";
-        $a = mysql_query($q, $con);
+        $a = mysqli_query($con, $q);
     }
 
     $tahun = $tahun + 1;

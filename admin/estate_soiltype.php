@@ -4,7 +4,7 @@
 <?php
 if($_COOKIE['tahun_report'] == date('Y')) $table = 'esub';
 else $table = "esub_".$_COOKIE['tahun_report'];
-$Conn = connect();
+$con = connect();
 ?>
 <link rel="stylesheet" href="../js/colorbox/colorbox.css" type="text/css" />
 <script type="text/javascript" src="../js/colorbox/colorbox/jquery.colorbox.js"></script>
@@ -19,8 +19,8 @@ $(document).ready(function(){
 	list-style:none;
 	}
 #jqtf_filters li {
-	display:inline-block; 
-	position:relative; 
+	display:inline-block;
+	position:relative;
 	float:left;
 	margin-bottom:20px
 }
@@ -29,7 +29,7 @@ $(document).ready(function(){
 <div align="center">
 <?php
 $aQuery = "SELECT lesen FROM estate_info WHERE ".$_GET['field']." > 0";
-$aRows = mysql_query($aQuery, $Conn);
+$aRows = mysqli_query($con, $aQueryn);
 if ($_GET['field'] == "lanar") echo "<h2>List of Estate with Alluvail Soil</h2>";
 else if ($_GET['field'] == "pedalaman") echo "<h2>List of Estate with Rural Land</h2>";
 else if ($_GET['field'] == "gambutcetek") echo "<h2>List of Estate with Shallow Peat Soil</h2>";
@@ -56,14 +56,14 @@ else if ($_GET['field'] == "percentcerun") echo "<h2>List of Estate with Steep</
 	</tr>
 </thead>
 <tbody>
-	<?php while($aRow = mysql_fetch_array($aRows)) { ?>
+	<?php while($aRow = mysqli_fetch_array($aRows)) { ?>
 		<tr valign="top" <?php if(++$er % 2 == 0){?>class="alt"<?php } ?>>
 			<td><?php //echo $list++; ?></td>
 			<td><a href="estate_details_incomplete.php?id=<?php echo $aRow['lesen'];?>" class="boxcolor">
-			<?php 
+			<?php
 			$bQuery ="select * from $table where no_lesen_baru ='".$aRow['lesen']."'";
-			$bRows = mysql_query($bQuery, $Conn);
-			$bRow = mysql_fetch_array($bRows);
+			$bRows = mysqli_query($con, $bQueryn);
+			$bRow = mysqli_fetch_array($bRows);
 			?>
 			<?php echo $bRow['Nama_Estet']; ?></a></td>
 			<td><?php echo $bRow['Syarikat_Induk']; ?></td>
@@ -72,8 +72,8 @@ else if ($_GET['field'] == "percentcerun") echo "<h2>List of Estate with Steep</
 			<td>
 			<?php
 			$cQuery ="select success,password from login_estate where lesen ='".$aRow['lesen']."'";
-			$cRows = mysql_query($cQuery, $Conn);
-			$cRow = mysql_fetch_array($cRows);
+			$cRows = mysqli_query($con, $cQuery);
+			$cRow = mysqli_fetch_array($cRows);
 			echo $cRow['success'];
 			?>
 			</td>
@@ -81,7 +81,7 @@ else if ($_GET['field'] == "percentcerun") echo "<h2>List of Estate with Steep</
             <a href="auto_login.php?username=<?php echo $bRow['No_Lesen_Baru'];?>&amp;password=<?php echo $cRow['password'];?>&amp;tahun=<?php echo $_COOKIE['tahun_report'];?>&view=true" target="_blank" > <img src="../images/001_36.png" width="20" height="20" border="0" title="View Only" /></a>
             </div></td>
 		</tr>
-	<?php } mysql_close($Conn); ?>
+	<?php } mysqli_close($con); ?>
 	</tbody>
 </table>
 <br />
@@ -120,67 +120,67 @@ function openScript(url, width, height) {
 }
 </script>
 <?php
-$Conn = connect();
+$con = connect();
 
 $aQuery = "SELECT SUM(lanar) AS Alluvail FROM estate_info WHERE lanar IS NOT NULL";
-$aRows = mysql_query($aQuery, $Conn);
-if (mysql_num_rows($aRows) == 0) $Alluvail = 0;
+$aRows = mysqli_query($con, $aQueryn);
+if (mysqli_num_rows($aRows) == 0) $Alluvail = 0;
 else {
-	$aRow = mysql_fetch_object($aRows);
+	$aRow = mysqli_fetch_object($aRows);
 	if ($aRow->Alluvail == "") $Alluvail = 0;
 	else $Alluvail = $aRow->Alluvail;
 }
 
 $aQuery = "SELECT SUM(pedalaman) AS Rural FROM estate_info WHERE pedalaman IS NOT NULL";
-$aRows = mysql_query($aQuery, $Conn);
-if (mysql_num_rows($aRows) == 0) $Rural = 0;
+$aRows = mysqli_query($con, $aQueryn);
+if (mysqli_num_rows($aRows) == 0) $Rural = 0;
 else {
-	$aRow = mysql_fetch_object($aRows);
+	$aRow = mysqli_fetch_object($aRows);
 	if ($aRow->Rural == "") $Rural = 0;
 	else $Rural = $aRow->Rural;
 }
 
 $aQuery = "SELECT SUM(gambutcetek) AS Shallow FROM estate_info WHERE gambutcetek IS NOT NULL";
-$aRows = mysql_query($aQuery, $Conn);
-if (mysql_num_rows($aRows) == 0) $Shallow = 0;
+$aRows = mysqli_query($con, $aQueryn);
+if (mysqli_num_rows($aRows) == 0) $Shallow = 0;
 else {
-	$aRow = mysql_fetch_object($aRows);
+	$aRow = mysqli_fetch_object($aRows);
 	if ($aRow->Shallow == "") $Shallow = 0;
 	else $Shallow = $aRow->Shallow;
 }
 
 $aQuery = "SELECT SUM(gambutdalam) AS Deep FROM estate_info WHERE gambutdalam IS NOT NULL";
-$aRows = mysql_query($aQuery, $Conn);
-if (mysql_num_rows($aRows) == 0) $Deep = 0;
+$aRows = mysqli_query($con, $aQueryn);
+if (mysqli_num_rows($aRows) == 0) $Deep = 0;
 else {
-	$aRow = mysql_fetch_object($aRows);
+	$aRow = mysqli_fetch_object($aRows);
 	if ($aRow->Deep == "") $Deep = 0;
 	else $Deep = $aRow->Deep;
 }
 
 $aQuery = "SELECT SUM(laterit) AS Lateritel FROM estate_info WHERE laterit IS NOT NULL";
-$aRows = mysql_query($aQuery, $Conn);
-if (mysql_num_rows($aRows) == 0) $Lateritel = 0;
+$aRows = mysqli_query($con, $aQueryn);
+if (mysqli_num_rows($aRows) == 0) $Lateritel = 0;
 else {
-	$aRow = mysql_fetch_object($aRows);
+	$aRow = mysqli_fetch_object($aRows);
 	if ($aRow->Lateritel == "") $Lateritel = 0;
 	else $Lateritel = $aRow->Lateritel;
 }
 
 $aQuery = "SELECT SUM(asidsulfat) AS Sulphate FROM estate_info WHERE asidsulfat IS NOT NULL";
-$aRows = mysql_query($aQuery, $Conn);
-if (mysql_num_rows($aRows) == 0) $Sulphate = 0;
+$aRows = mysqli_query($con, $aQueryn);
+if (mysqli_num_rows($aRows) == 0) $Sulphate = 0;
 else {
-	$aRow = mysql_fetch_object($aRows);
+	$aRow = mysqli_fetch_object($aRows);
 	if ($aRow->Sulphate == "") $Sulphate = 0;
 	else $Sulphate = $aRow->Sulphate;
 }
 
 $aQuery = "SELECT SUM(tanahpasir) AS Sandy FROM estate_info WHERE tanahpasir IS NOT NULL";
-$aRows = mysql_query($aQuery, $Conn);
-if (mysql_num_rows($aRows) == 0) $Sandy = 0;
+$aRows = mysqli_query($con, $aQueryn);
+if (mysqli_num_rows($aRows) == 0) $Sandy = 0;
 else {
-	$aRow = mysql_fetch_object($aRows);
+	$aRow = mysqli_fetch_object($aRows);
 	if ($aRow->Sandy == "") $Sandy = 0;
 	else $Sandy = $aRow->Sandy;
 }
@@ -191,10 +191,10 @@ $aQuery = "SELECT SUM((IFNULL(lanar, 0) + IFNULL(pedalaman, 0) + IFNULL(gambutce
 		  "IFNULL(gambutdalam, 0) + IFNULL(laterit, 0) + IFNULL(asidsulfat, 0) + ".
 		  "IFNULL(tanahpasir, 0)) * (ROUND(IFNULL(percentrata, 0) / 100, 4))) AS Flat ".
 		  "FROM estate_info";
-$aRows = mysql_query($aQuery, $Conn);
-if (mysql_num_rows($aRows) == 0) $Flat = 0;
+$aRows = mysqli_query($con, $aQueryn);
+if (mysqli_num_rows($aRows) == 0) $Flat = 0;
 else {
-	$aRow = mysql_fetch_object($aRows);
+	$aRow = mysqli_fetch_object($aRows);
 	if ($aRow->Flat == "") $Flat = 0;
 	else $Flat = $aRow->Flat;
 }
@@ -203,10 +203,10 @@ $aQuery = "SELECT SUM((IFNULL(lanar, 0) + IFNULL(pedalaman, 0) + IFNULL(gambutce
 		  "IFNULL(gambutdalam, 0) + IFNULL(laterit, 0) + IFNULL(asidsulfat, 0) + ".
 		  "IFNULL(tanahpasir, 0)) * (ROUND(IFNULL(percentalun, 0) / 100, 4))) AS Undulating ".
 		  "FROM estate_info";
-$aRows = mysql_query($aQuery, $Conn);
-if (mysql_num_rows($aRows) == 0) $Undulating = 0;
+$aRows = mysqli_query($con, $aQueryn);
+if (mysqli_num_rows($aRows) == 0) $Undulating = 0;
 else {
-	$aRow = mysql_fetch_object($aRows);
+	$aRow = mysqli_fetch_object($aRows);
 	if ($aRow->Undulating == "") $Undulating = 0;
 	else $Undulating = $aRow->Undulating;
 }
@@ -215,10 +215,10 @@ $aQuery = "SELECT SUM((IFNULL(lanar, 0) + IFNULL(pedalaman, 0) + IFNULL(gambutce
 		  "IFNULL(gambutdalam, 0) + IFNULL(laterit, 0) + IFNULL(asidsulfat, 0) + ".
 		  "IFNULL(tanahpasir, 0)) * (ROUND(IFNULL(percentbukit, 0) / 100, 4))) AS Hilly ".
 		  "FROM estate_info";
-$aRows = mysql_query($aQuery, $Conn);
-if (mysql_num_rows($aRows) == 0) $Hilly = 0;
+$aRows = mysqli_query($con, $aQueryn);
+if (mysqli_num_rows($aRows) == 0) $Hilly = 0;
 else {
-	$aRow = mysql_fetch_object($aRows);
+	$aRow = mysqli_fetch_object($aRows);
 	if ($aRow->Hilly == "") $Hilly = 0;
 	else $Hilly = $aRow->Hilly;
 }
@@ -227,10 +227,10 @@ $aQuery = "SELECT SUM((IFNULL(lanar, 0) + IFNULL(pedalaman, 0) + IFNULL(gambutce
 		  "IFNULL(gambutdalam, 0) + IFNULL(laterit, 0) + IFNULL(asidsulfat, 0) + ".
 		  "IFNULL(tanahpasir, 0)) * (ROUND(IFNULL(percentcerun, 0) / 100, 4))) AS Steep ".
 		  "FROM estate_info";
-$aRows = mysql_query($aQuery, $Conn);
-if (mysql_num_rows($aRows) == 0) $Steep = 0;
+$aRows = mysqli_query($con, $aQueryn);
+if (mysqli_num_rows($aRows) == 0) $Steep = 0;
 else {
-	$aRow = mysql_fetch_object($aRows);
+	$aRow = mysqli_fetch_object($aRows);
 	if ($aRow->Steep == "") $Steep = 0;
 	else $Steep = $aRow->Steep;
 }
@@ -318,7 +318,7 @@ $(document).ready(function(){
 	$(".SoilType").click(function(e) {
 		window.location.href = "?id=estate&sub=soiltype&type=type&field=" + $(this).attr("id");
 	});
-	
+
 	$(".EstateTrain").click(function(e) {
 		window.location.href = "?id=estate&sub=soiltype&type=type&field=" + $(this).attr("id");
 	});

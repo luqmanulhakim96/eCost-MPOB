@@ -4,6 +4,8 @@ $pengguna = new user('mill', $_SESSION['lesen']);
 $ekilang = new user('ekilang', $_SESSION['lesen']);
 $session_lesen = $_SESSION['lesen'];
 
+
+
 if ($_SESSION['lesen'] == NULL) {
     echo "<script>window.location.href='../index1.php?session=false';</script>";
 
@@ -46,7 +48,7 @@ if ($_SESSION['lesen'] == NULL) {
 
                                             <?= $pengguna->nama; ?>
 
-                                       
+
 
                                         </strong></div></td>
                             </tr>

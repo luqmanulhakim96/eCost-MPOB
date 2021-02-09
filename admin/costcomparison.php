@@ -4,8 +4,8 @@ session_start();
 if ($_SESSION['type']<>"admin"){
 	header("location:../logout.php");
 }
-	   
-$Conn = connect();
+
+$con = connect();
 
 $Year = $_COOKIE['tahun_report'];
 
@@ -23,7 +23,7 @@ if (isset($_POST['Malaysia'])) {
 	$Sarawak2 = $_POST['Sarawak2'];
 	$isShow = $_POST['isShow'];
 	$Proceed = true;
-	
+
 	$TotalMalaysia = 0;
 	$TotalPMalaysia = 0;
 	$TotalSabah = 0;
@@ -32,7 +32,7 @@ if (isset($_POST['Malaysia'])) {
 	$TotalPMalaysia2 = 0;
 	$TotalSabah2 = 0;
 	$TotalSarawak2 = 0;
-	
+
 	for ($i = 0; $i < count($ItemID); $i++) {
 		if ($Malaysia[$i] == "") {
 			$message = "Please insert Cost Per Hectare of Malaysia for ".$Item[$i]."!";
@@ -79,7 +79,7 @@ if (isset($_POST['Malaysia'])) {
 			}
 		}
 	}
-	
+
 	if ($Proceed) {
 		$isNew = true;
 		for ($i = 0; $i < count($ItemID); $i++) {
@@ -90,10 +90,10 @@ if (isset($_POST['Malaysia'])) {
 						  "VALUES (".$ItemID[$i].", '$Year', ".
 						  $Malaysia[$i].", ".$PMalaysia[$i].", ".$Sabah[$i].", ".$Sarawak[$i].", ".
 						  $Malaysia2[$i].", ".$PMalaysia2[$i].", ".$Sabah2[$i].", ".$Sarawak2[$i].", $isShow)";
-				$aResult = mysql_query($aQuery, $Conn);
+				$aResult = mysqli_query($con, $aQuery);
 				$aQuery = "SELECT LAST_INSERT_ID() AS IDX";
-				$aRows = mysql_query($aQuery, $Conn);
-				$aRow = mysql_fetch_object($aRows);
+				$aRows = mysqli_query($con, $aQuery);
+				$aRow = mysqli_fetch_object($aRows);
 				$ID[$i] = $aRow->IDX;
 			} else {
 				$isNew = false;
@@ -103,7 +103,7 @@ if (isset($_POST['Malaysia'])) {
 						  "MalaysiaAmount2 = ".$Malaysia2[$i].", PMalaysiaAmount2 = ".$PMalaysia2[$i].", ".
 						  "SabahAmount2 = ".$Sabah2[$i].", SarawakAmount2 = ".$Sarawak2[$i].", isShow = $isShow ".
 						  "WHERE ID = ".$ID[$i];
-				mysql_query($aQuery, $Conn);
+				mysqli_query($con, $aQuery);
 			}
 		}
 		if ($isNew) {
@@ -113,7 +113,7 @@ if (isset($_POST['Malaysia'])) {
 					  "VALUES (6, '$Year', ".
 					  $TotalMalaysia.", ".$TotalPMalaysia.", ".$TotalSabah.", ".$TotalSarawak.", ".
 					  $TotalMalaysia2.", ".$TotalPMalaysia2.", ".$TotalSabah2.", ".$TotalSarawak2.", $isShow)";
-			mysql_query($aQuery, $Conn);
+			mysqli_query($con, $aQuery);
 			$message = "Data has been saved!";
 		} else {
 			$aQuery = "UPDATE tblasmcostsummarydetail ".
@@ -122,7 +122,7 @@ if (isset($_POST['Malaysia'])) {
 					  "MalaysiaAmount2 = ".$TotalMalaysia2.", PMalaysiaAmount2 = ".$TotalPMalaysia2.", ".
 					  "SabahAmount2 = ".$TotalSabah2.", SarawakAmount2 = ".$TotalSarawak2.", isShow = $isShow ".
 					  "WHERE `Item` = 6 AND `Year` = '$Year'";
-			mysql_query($aQuery, $Conn);
+			mysqli_query($con,$aQuery);
 			$message = "Data has been updated!";
 		}
 	}
@@ -134,7 +134,7 @@ if (isset($_POST['Malaysia'])) {
 			  "JOIN tblasmcostsummaryitem AS t2 ON t2.ID = t1.Item ".
 			  "WHERE t1.`Year` = '$Year' AND t2.ID != 6 ".
 			  "ORDER BY t2.Ordering, t2.`Parent` ASC";
-	$aRows = mysql_query($aQuery, $Conn);
+	$aRows = mysqli_query($con, $aQuery);
 	$ID = array();
 	$ItemID = array();
 	$Item = array();
@@ -146,14 +146,14 @@ if (isset($_POST['Malaysia'])) {
 	$PMalaysia2 = array();
 	$Sabah2 = array();
 	$Sarawak2 = array();
-	if (mysql_num_rows($aRows) == 0) {
+	if (mysqli_num_rows($aRows) == 0) {
 		$aQuery = "SELECT ID AS ItemID, ItemEn ".
 				  "FROM tblasmcostsummaryitem ".
 				  "WHERE ID != 6 ".
 				  "ORDER BY Ordering, `Parent` ASC";
-		$aRows = mysql_query($aQuery, $Conn);
+		$aRows = mysqli_query($con, $aQuery);
 		$isShow = 1;
-		while ($aRow = mysql_fetch_object($aRows)) {
+		while ($aRow = mysqli_fetch_object($aRows)) {
 			array_push($ID, "");
 			array_push($ItemID, $aRow->ItemID);
 			array_push($Item, $aRow->ItemEn);
@@ -167,7 +167,7 @@ if (isset($_POST['Malaysia'])) {
 			array_push($Sarawak2, "");
 		}
 	} else {
-		while ($aRow = mysql_fetch_object($aRows)) {
+		while ($aRow = mysqli_fetch_object($aRows)) {
 			array_push($ID, $aRow->ID);
 			array_push($ItemID, $aRow->ItemID);
 			array_push($Item, $aRow->ItemEn);
@@ -279,7 +279,7 @@ $(function() {
 		});
 		$("#TotalMalaysia").html(Total.toFixed(2));
 	});
-	
+
 	$(".PMalaysia").keyup(function(e) {
 		var Total = 0;
 		$(".PMalaysia").each(function(e, i) {
@@ -287,7 +287,7 @@ $(function() {
 		});
 		$("#TotalPMalaysia").html(Total.toFixed(2));
 	});
-	
+
 	$(".Sabah").keyup(function(e) {
 		var Total = 0;
 		$(".Sabah").each(function(e, i) {
@@ -295,7 +295,7 @@ $(function() {
 		});
 		$("#TotalSabah").html(Total.toFixed(2));
 	});
-	
+
 	$(".Sarawak").keyup(function(e) {
 		var Total = 0;
 		$(".Sarawak").each(function(e, i) {
@@ -303,7 +303,7 @@ $(function() {
 		});
 		$("#TotalSarawak").html(Total.toFixed(2));
 	});
-	
+
 	$(".Malaysia2").keyup(function(e) {
 		var Total = 0;
 		$(".Malaysia2").each(function(e, i) {
@@ -311,7 +311,7 @@ $(function() {
 		});
 		$("#TotalMalaysia2").html(Total.toFixed(2));
 	});
-	
+
 	$(".PMalaysia2").keyup(function(e) {
 		var Total = 0;
 		$(".PMalaysia2").each(function(e, i) {
@@ -319,7 +319,7 @@ $(function() {
 		});
 		$("#TotalPMalaysia2").html(Total.toFixed(2));
 	});
-	
+
 	$(".Sabah2").keyup(function(e) {
 		var Total = 0;
 		$(".Sabah2").each(function(e, i) {
@@ -327,7 +327,7 @@ $(function() {
 		});
 		$("#TotalSabah2").html(Total.toFixed(2));
 	});
-	
+
 	$(".Sarawak2").keyup(function(e) {
 		var Total = 0;
 		$(".Sarawak2").each(function(e, i) {
@@ -335,13 +335,13 @@ $(function() {
 		});
 		$("#TotalSarawak2").html(Total.toFixed(2));
 	});
-	
+
 	$(".DecimalOnly").keydown(function(e) {
         // Allow: backspace, delete, tab, escape, enter and .
         if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110, 190]) !== -1 ||
 		//if ($.inArray(e.keyCode, [46, 8, 9, 27, 13, 110]) !== -1 ||
              // Allow: Ctrl+A, Command+A
-            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) || 
+            (e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true)) ||
              // Allow: home, end, left, right, down, up
             (e.keyCode >= 35 && e.keyCode <= 40)) {
                  // let it happen, don't do anything

@@ -12,8 +12,9 @@
  */
 
 // Report all PHP errors
-//error_reporting(-1)
+// error_reporting(-1)
 $con = connect();
+
 
 include ('../class/user_last_year.class.php');
 $penggunaLastYear = new user_last_year('estateTahun', $_SESSION['lesen'], ($_SESSION['tahun'] - 1));
@@ -21,9 +22,9 @@ $penggunaLastYear = new user_last_year('estateTahun', $_SESSION['lesen'], ($_SES
 $tahun_lepas = date('Y') - 1;
 $query = "select * from graf_km where lesen ='" . $_SESSION['lesen'] . "' and tahun = '$tahun_lepas' and status='0' ";
 //echo $query
-$res = mysql_query($query, $con);
-$row = mysql_fetch_array($res);
-$res_total = mysql_num_rows($res);
+$res = mysqli_query($con, $query);
+$row = mysqli_fetch_array($res);
+$res_total = mysqli_num_rows($res);
 
 function median($numbers = array()) {
     if (!is_array($numbers)) {
@@ -32,7 +33,7 @@ function median($numbers = array()) {
 
     rsort($numbers);
     $mid = (count($numbers) / 2);
-    return ($mid % 2 != 0) ? $numbers{$mid - 1} : (($numbers{$mid - 1}) + $numbers{$mid}) / 2;
+    return ($mid % 2 != 0) ? $numbers[$mid - 1] : (($numbers[$mid - 1]) + $numbers[$mid]) / 2;
 }
 
 function pertama($tahun, $status, $negeri, $daerah, $type, $table) {
@@ -52,9 +53,9 @@ function pertama($tahun, $status, $negeri, $daerah, $type, $table) {
     }
 
     //echo $sql . "<br>"
-    $sql_result = mysql_query($sql, $con);
+    $sql_result = mysqli_query($con, $sql);
     $i = 0;
-    while ($row = mysql_fetch_array($sql_result)) {
+    while ($row = mysqli_fetch_array($sql_result)) {
         $test_data[] = $row["y"];
         $i = $i + 1;
     }
@@ -75,8 +76,8 @@ function pertama($tahun, $status, $negeri, $daerah, $type, $table) {
 
 
 //echo $qavg."<br>"
-    $ravg = mysql_query($qavg, $con);
-    $rrow = mysql_fetch_array($ravg);
+    $ravg = mysqli_query($con, $qavg);
+    $rrow = mysqli_fetch_array($ravg);
 
 
     $var[0] = median($test_data);
@@ -192,7 +193,7 @@ echo number_format($unpercent_kos, 2);
 
                         <td><ul>
 
-                                <li> <?= setstring('mal', 'Login berjaya terakhir anda pada', 'en', 'Last success login on'); ?> 
+                                <li> <?= setstring('mal', 'Login berjaya terakhir anda pada', 'en', 'Last success login on'); ?>
 
                                     <?= date('d-F-Y', strtotime($pengguna->success)) ?>
 
@@ -215,8 +216,8 @@ echo number_format($unpercent_kos, 2);
 
                                     <?php
                                     $sql = "SELECT * FROM ringkasan_kos_hantar WHERE no_lesen = '" . $_SESSION['lesen'] . "' AND TAHUN = '" . $_SESSION['tahun'] . "' ORDER BY TARIKH_HANTAR DESC LIMIT 1";
-                                    $result_hantar = mysql_query($sql);
-                                    $hantar = mysql_fetch_array($result_hantar);
+                                    $result_hantar = mysqli_query($con, $sql);
+                                    $hantar = mysqli_fetch_array($result_hantar);
 
                                     if (!$hantar) {
                                         ?>
@@ -267,10 +268,10 @@ $aQuery = "SELECT MalaysiaAmount, "
         . "AND isShow = 2";
 
 //echo $aQuery."<br>"
-$aRows = mysql_query($aQuery, $con);
+$aRows = mysqli_query($con, $aQuery);
 $Show = true;
 $Display = false;
-if (mysql_num_rows($aRows) != 0) {
+if (mysqli_num_rows($aRows) != 0) {
     $Show = false;
 }
 
@@ -280,10 +281,10 @@ if ($Show) {
     $matang = array($_SESSION['lesen'], $_SESSION['tahun'] - 1);
     $jumlah_luas_2 = $penggunaLastYear->jumlahluas;
     $aQuery = "SELECT ID, Item" . ($_SESSION['lang'] == "mal" ? "My" : "En") . " AS Item, Ordering FROM tblasmcostsummaryitem WHERE `Parent` IS NULL ORDER BY Ordering ASC";
-    $aRows = mysql_query($aQuery, $con);
+    $aRows = mysqli_query($con, $aQuery);
     $EstateAmountTotal = 0;
     $EstateAmountTotal2 = 0;
-    while ($aRow = mysql_fetch_object($aRows)) {
+    while ($aRow = mysqli_fetch_object($aRows)) {
         if ($aRow->ID == 1) {
             $jaga = new user('matang_penjagaan', $matang);
             $EstateAmount = ($jaga->total_b / $jumlah_luas_2);
@@ -325,11 +326,11 @@ if ($Show) {
         }
 
         $aQuery = "SELECT Negeri FROM $Table WHERE No_Lesen = '" . $_SESSION['lesen'] . "' OR No_Lesen_Baru = '" . $_SESSION['lesen'] . "'";
-        $aRows = mysql_query($aQuery, $con);
-        if (mysql_num_rows($aRows) == 0) {
+        $aRows = mysqli_query($con, $aQuery);
+        if (mysqli_num_rows($aRows) == 0) {
             $isPMalaysia = 1;
         } else {
-            $aRow = mysql_fetch_object($aRows);
+            $aRow = mysqli_fetch_object($aRows);
             if ($aRow->Negeri == "SABAH") {
                 $isPMalaysia = 2;
             } else if ($aRow->Negeri == "SARAWAK") {
@@ -346,11 +347,11 @@ if ($Show) {
         }
 
         $aQuery = "SELECT Negeri FROM $Table WHERE No_Lesen = '" . $_SESSION['lesen'] . "' OR No_Lesen_Baru = '" . $_SESSION['lesen'] . "'";
-        $aRows = mysql_query($aQuery, $con);
-        if (mysql_num_rows($aRows) == 0) {
+        $aRows = mysqli_query($con, $aQuery);
+        if (mysqli_num_rows($aRows) == 0) {
             $isPMalaysia = 1;
         } else {
-            $aRow = mysql_fetch_object($aRows);
+            $aRow = mysqli_fetch_object($aRows);
             if ($aRow->Negeri == "SABAH") {
                 $isPMalaysia = 2;
             } else if ($aRow->Negeri == "SARAWAK") {
@@ -374,8 +375,8 @@ if ($Show) {
         }
         $con = connect();
         $qblm = "SELECT sum($data) as $data FROM $table WHERE lesen = '" . $_SESSION['lesen'] . "' group by lesen";
-        $rblm = mysql_query($qblm, $con);
-        $rowblm = mysql_fetch_array($rblm);
+        $rblm = mysqli_query($con, $qblm);
+        $rowblm = mysqli_fetch_array($rblm);
         return $rowblm[$data];
     }
 
@@ -425,10 +426,10 @@ if ($Show) {
     $matang = array($_SESSION['lesen'], $_SESSION['tahun'] - 1);
     $jumlah_luas_2 = $penggunaLastYear->jumlahluas;
     $aQuery = "SELECT ID, Item" . ($_SESSION['lang'] == "mal" ? "My" : "En") . " AS Item, Ordering FROM tblasmcostsummaryitem WHERE `Parent` IS NULL ORDER BY Ordering ASC";
-    $aRows = mysql_query($aQuery, $con);
+    $aRows = mysqli_query($con, $aQuery);
     $EstateAmountTotal = 0;
     $EstateAmountTotal2 = 0;
-    while ($aRow = mysql_fetch_object($aRows)) {
+    while ($aRow = mysqli_fetch_object($aRows)) {
         echo "<tr>\n";
         echo "<td style=\"padding:8px;font-weight:bold;background-color:#FFE8AE\">$aRow->Item</td>\n";
         if ($aRow->ID == 1) {
@@ -463,8 +464,8 @@ if ($Show) {
                 . "SabahAmount2, SarawakAmount2 "
                 . "FROM tblasmcostsummarydetail WHERE Item = $aRow->ID AND `Year` = '" . ($_SESSION['tahun'] - 1) . "'; ";
         //echo $bQuery."<br>"
-        $bRows = mysql_query($bQuery, $con);
-        if (mysql_num_rows($bRows) == 0) {
+        $bRows = mysqli_query($con, $bQuery);
+        if (mysqli_num_rows($bRows) == 0) {
             echo "<td style=\"padding:3px;text-align:right; background-color:#FFFF00\">" . number_format($EstateAmount, 2, ".", ",") . "</td>\n";
             echo "<td style=\"padding:3px;text-align:right; background-color:#D0FBC6\">" . number_format(0, 2, ".", ",") . "</td>\n";
             if ($isPMalaysia == 1) {
@@ -488,8 +489,8 @@ if ($Show) {
                 echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format(0, 2, ".", ",") . "</td>\n";
             }
         } else {
-            $bRow = mysql_fetch_object($bRows);
-            //$bRow = mysql_fetch_array($bRows)
+            $bRow = mysqli_fetch_object($bRows);
+            //$bRow = mysqli_fetch_array($bRows)
             //echo "xx".$bRow->MalaysiaAmount
             echo "<td style=\"padding:3px;text-align:right;background-color:#FFFF00\">" . number_format($EstateAmount, 2, ".", ",") . "</td>\n";
             echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format($bRow->MalaysiaAmount, 2) . "</td>\n";
@@ -516,14 +517,14 @@ if ($Show) {
         }
         echo "</tr>\n";
         $bQuery = "SELECT ID, Item" . ($_SESSION['lang'] == "mal" ? "My" : "En") . " AS Item FROM tblasmcostsummaryitem WHERE `Parent` IS NOT NULL AND `Parent` = $aRow->ID ORDER BY Ordering ASC";
-        $bRows = mysql_query($bQuery, $con);
-        while ($bRow = mysql_fetch_object($bRows)) {
+        $bRows = mysqli_query($con, $bQuery);
+        while ($bRow = mysqli_fetch_object($bRows)) {
             echo "<tr>\n";
             echo "<td style=\"padding:3px 3px 3px 15px;font-weight:bold;background-color:#FFE8AE\">- $bRow->Item</td>\n"; //Fertilizing Cost
             $dQuery = "select total_b_3, b_3a, b_3b, b_3c, b_3d from kos_matang_penjagaan where pb_thisyear ='" . $_SESSION['tahun'] . "' and lesen ='" . $_SESSION['lesen'] . "' ";
-            $dRows = mysql_query($dQuery, $con);
-            $rowjaga = mysql_fetch_array($dRows);
-            $totaljaga = mysql_num_rows($dRows);
+            $dRows = mysqli_query($con, $dQuery);
+            $rowjaga = mysqli_fetch_array($dRows);
+            $totaljaga = mysqli_num_rows($dRows);
             if ($rowjaga['total_b_3'] == 0) {
                 $ftotal = $rowjaga['b_3a'] + $rowjaga['b_3b'] + $rowjaga['b_3c'] + $rowjaga['b_3d'];
             }
@@ -533,8 +534,8 @@ if ($Show) {
             $EstateAmount = ($ftotal / $jumlah_luas_2);
             $EstateAmount2 = $EstateAmount / $jumlah_bts;
             $cQuery = "SELECT MalaysiaAmount, PMalaysiaAmount, SabahAmount, SarawakAmount, MalaysiaAmount2, PMalaysiaAmount2, SabahAmount2, SarawakAmount2 FROM tblasmcostsummarydetail WHERE Item = $bRow->ID AND `Year` = '" . ($_SESSION['tahun'] - 1) . "'";
-            $cRows = mysql_query($cQuery, $con);
-            if (mysql_num_rows($cRows) == 0) {
+            $cRows = mysqli_query($con, $cQuery);
+            if (mysqli_num_rows($cRows) == 0) {
                 echo "<td style=\"padding:3px;text-align:right;background-color:#FFFF00\">" . number_format($EstateAmount, 2, ".", ",") . "</td>\n";
                 echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format(0, 2, ".", ",") . "</td>\n";
                 if ($isPMalaysia == 1) {
@@ -558,7 +559,7 @@ if ($Show) {
                     echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format(0, 2, ".", ",") . "</td>\n";
                 }
             } else {
-                $cRow = mysql_fetch_object($cRows);
+                $cRow = mysqli_fetch_object($cRows);
                 echo "<td style=\"padding:3px;text-align:right;background-color:#FFFF00\">" . number_format($EstateAmount, 2, ".", ",") . "</td>\n";
                 echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format($Display ? 0 : $cRow->MalaysiaAmount, 2, ".", ",") . "</td>\n";
                 if ($isPMalaysia == 1) {
@@ -594,12 +595,10 @@ if ($Show) {
         if (!$Show) {
             /** Bug #11340 Jadual Ringkasan Kos */
             //echo "<div style=\"float:left;width:100%;padding:0px 0px 5px 0px;font-weight:bold;color:#f00;text-align:center\">" . ($_SESSION['lang'] == "mal" ? "Tiada Jadual Perbandingan Kos yang ditetapkan bagi tahun " . ($_SESSION['tahun'] - 1) . ". " : "No Comparison Cost table has been set for year " . ($_SESSION['tahun'] - 1) . ".") . "</div>\n";
-        }//jika tiada show display 
+        }//jika tiada show display
         ?>
 <br>
 
 <br>
 
 <p>&nbsp;</p>
-
-

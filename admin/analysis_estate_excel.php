@@ -9,49 +9,49 @@ set_time_limit(0);
 $con = connect();
 $type = explode("_", $sub);
 $qt1="select * from analysis where type='".$type[1]."' and year = '$tahun'";
-$rt1=mysql_query($qt1,$con);
-$total = mysql_num_rows($rt1);
-			
+$rt1=mysqli_query($con, $qt1);
+$total = mysqli_num_rows($rt1);
+
 if($total ==0){
 	$qa="INSERT INTO `analysis` (`type` ,`year` ,`modifiedby` ,`modified`)VALUES ('".$type[1]."', '$tahun', '".$_SESSION['email']."',NOW() ";
-	$ra=mysql_query($qa,$con);
+	$ra=mysqli_query($con, $qa);
 }
 if($total>0){
 	$qa="update  analysis
 		set modifiedby = '". $_SESSION['email']."',
 		modified=NOW()
 		where type='".$type[1]."' and year = '$tahun'";
-	$ra=mysql_query($qa,$con);
+	$ra=mysqli_query($con, $qa);
 }
-			
+
 $qdeletedata ="delete from analysis_kos_belum_matang where pb_thisyear = '$tahun' ";
-$rdeletedata = mysql_query($qdeletedata,$con);
-			
+$rdeletedata = mysqli_query($con, $qdeletedata);
+
 $qdeletedata ="delete from analysis_kos_matang_penjagaan where pb_thisyear = '$tahun' ";
-$rdeletedata = mysql_query($qdeletedata,$con);
-			
+$rdeletedata = mysqli_query($con, $qdeletedata);
+
 $qdeletedata ="delete from analysis_kos_matang_penuaian where pb_thisyear = '$tahun' ";
-$rdeletedata = mysql_query($qdeletedata,$con);
-		
+$rdeletedata = mysqli_query($con, $qdeletedata);
+
 $qdeletedata ="delete from analysis_kos_matang_pengangkutan where pb_thisyear = '$tahun' ";
-$rdeletedata = mysql_query($qdeletedata,$con);
+$rdeletedata = mysqli_query($con, $qdeletedata);
 
 $qdeletedata ="delete from analysis_belanja_am_kos where pb_thisyear = '$tahun' ";
-$rdeletedata = mysql_query($qdeletedata,$con);
+$rdeletedata = mysqli_query($con, $qdeletedata);
 ?>
 <h2>Analysis Data Survey Estate for <?php echo $tahun;?></h2>
 
 <style>
 body {
 	font-family:Tahoma ;
-	font-size: 12px; 
+	font-size: 12px;
 
 }td,th {
 	font-size: 12px;
 }
 
 </style>
- 
+
 
 <?php
 function esub($lesen, $tahun){
@@ -60,12 +60,12 @@ function esub($lesen, $tahun){
 	}else{
 		$table = "esub_".$tahun;
 	}
-	
+
 	$con=connect();
  	$q="select * from $table where NO_LESEN_BARU = '$lesen' limit 1 ";
-  	$r=mysql_query($q,$con);
-	$row=mysql_fetch_array($r);
-		
+  	$r=mysqli_query($con, $q);
+	$row=mysqli_fetch_array($r);
+
 	$sub[0]=$row['Nama_Estet'];
 	$sub[1]=$row['Negeri_Premis'];
 	$sub[2]=$row['Daerah_Premis'];
@@ -74,18 +74,18 @@ function esub($lesen, $tahun){
 	$sub[5]=$row['Belum_Berhasil'];
 	$sub[6]=$row['Jumlah'];
 	$sub[7]=$row['Keluasan_Yang_Dituai'];
-		
-	return $sub;	
+
+	return $sub;
 }
 
 //----------------------------------------------------
 function luas($lesen,$table,$field){
 	$con=connect();
 	$q="select sum($field) as jumlah from $table where lesen = '$lesen' group by lesen limit 1 ";
-  	$r=mysql_query($q,$con);		
-		
-	if(mysql_num_rows($r) > 0){
-		$row=mysql_fetch_array($r);
+  	$r=mysqli_query($con, $q);
+
+	if(mysqli_num_rows($r) > 0){
+		$row=mysqli_fetch_array($r);
 		$sub[0] = round($row['jumlah'],2);
 		return $sub;
 	}else{
@@ -96,9 +96,9 @@ function luas($lesen,$table,$field){
 function kos_belum_matang($lesen,$tahun,$type,$tahun_tanam,$keluasan,$negeri,$daerah){
 	$con=connect();
 	$q="select * from kos_belum_matang where lesen = '$lesen' and pb_thisyear='$tahun' and pb_tahun='$tahun_tanam' and pb_type='$type' limit 1 ";
-  	$r=mysql_query($q,$con);
-	$row=mysql_fetch_array($r);
-	
+  	$r=mysqli_query($con, $q);
+	$row=mysqli_fetch_array($r);
+
 	if($keluasan > 0){
 		$sub[0]=round($row['a_1']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Felling and land clearing",$sub[0]);
 		$sub[1]=round($row['a_2']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Terracing and platform",$sub[1]);
@@ -133,22 +133,22 @@ function kos_belum_matang($lesen,$tahun,$type,$tahun_tanam,$keluasan,$negeri,$da
 		$sub[30]=round($row['total_b_12']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Census / supplies",$sub[30]);
 		$sub[31]=round($row['total_b_13']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Castration",$sub[31]);
 		$sub[32]=round($row['total_b_14']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Others Expenditure",$sub[32]);
-		$sub[33]=round($row['total_b']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Total Upkeep",$sub[33]);	
+		$sub[33]=round($row['total_b']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Total Upkeep",$sub[33]);
 	}
-	
+
 	return $sub;
 }
-	
-	
+
+
 function add_kbm ($tahun_tanam ,$tahun ,$lesen ,$type ,$negeri ,$daerah , $bkm_nama ,$nilai)
 {
 	$con=connect();
 	$q="INSERT INTO analysis_kos_belum_matang (pb_tahun ,pb_thisyear ,lesen ,pb_type ,bkm_nama ,nilai ,negeri ,daerah)
 		VALUES ('$tahun_tanam' ,'$tahun' ,'$lesen' ,'$type' ,'$bkm_nama' ,'$nilai' ,'$negeri' ,'$daerah'
 		);";
-	$r = mysql_query($q,$con);
+	$r = mysqli_query($con, $q);
 	$qdelete ="delete from analysis_kos_belum_matang where nilai=0";
-	$rdelete = mysql_query($qdelete,$con);
+	$rdelete = mysqli_query($con, $qdelete);
 }
 //-----------------------------------------
 function bts($var, $tahun){
@@ -157,13 +157,13 @@ function bts($var, $tahun){
 	}else{
 		$table = "fbb_production".$tahun;
 	}
-		
+
 	$con = connect();
 	$vari = substr($var,0,-1);
 	$q ="select * from $table where lesen ='".$vari."'";
-	$r = mysql_query($q,$con);
-	if(mysql_num_rows($r) > 0){
-		$row = mysql_fetch_array($r);
+	$r = mysqli_query($con, $q);
+	if(mysqli_num_rows($r) > 0){
+		$row = mysqli_fetch_array($r);
 		$sub[0]=round($row['purata_hasil_buah'],2);
 		return $sub;
 	}else{
@@ -175,9 +175,9 @@ function kos_matang_penjagaan($lesen,$tahun,$jum_tanam,$jum_bts, $negeri,$daerah
 	$con=connect();
 
 	$q="select * from kos_matang_penjagaan where lesen = '$lesen' and pb_thisyear='$tahun' limit 1 ";
-	$r=mysql_query($q,$con);
-	$row=mysql_fetch_array($r);
-		
+	$r=mysqli_query($con, $q);
+	$row=mysqli_fetch_array($r);
+
 	if($jum_tanam > 0){
 		$sub[0]=round($row['b_1a']/$jum_tanam,2);
 		$sub[1]=round($row['b_1b']/$jum_tanam,2);
@@ -200,7 +200,7 @@ function kos_matang_penjagaan($lesen,$tahun,$jum_tanam,$jum_bts, $negeri,$daerah
 		$sub[18]=round($row['total_b_12']/$jum_tanam,2);
 		$sub[19]=round($row['total_b']/$jum_tanam,2);
 	}
-		
+
 	if($jum_bts > 0){
 		$sub[20]=round($sub[0]/$jum_bts,2);add_kmp($lesen,$tahun, $negeri,$daerah, $sub[0], $sub[20], "Weeding");
 		$sub[21]=round($sub[1]/$jum_bts,2);add_kmp($lesen,$tahun, $negeri,$daerah, $sub[1], $sub[21], "i. Purchase of weed poison");
@@ -230,17 +230,17 @@ function add_kmp ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_tan, $km
 	$con=connect();
 	$q="INSERT INTO analysis_kos_matang_penjagaan (pb_thisyear ,lesen ,km_nama ,kos_per_hektar ,kos_per_tan ,negeri ,daerah)
 		VALUES ('$tahun', '$lesen', '$km_nama', '$nilai_hektar', '$nilai_tan', '$negeri', '$daerah');";
-	$r = mysql_query($q,$con);
+	$r = mysqli_query($con, $q);
 	$qdelete ="delete from analysis_kos_matang_penjagaan  where kos_per_hektar=0 and kos_per_tan=0";
-	$rdelete = mysql_query($qdelete,$con);
+	$rdelete = mysqli_query($con, $qdelete);
 }
 //----------------------------------------------------------------
 function kos_matang_penuaian($lesen,$tahun,$jum_tanam,$jum_bts, $negeri, $daerah){
 	$con=connect();
 	$q="select * from kos_matang_penuaian where lesen = '$lesen' and pb_thisyear='$tahun' limit 1 ";
-  	$r=mysql_query($q,$con);
-	$row=mysql_fetch_array($r);
-		
+  	$r=mysqli_query($con, $q);
+	$row=mysqli_fetch_array($r);
+
 	if($jum_tanam > 0){
 		$sub[0]=round($row['a_1']/$jum_tanam,2);
 		$sub[1]=round($row['a_2']/$jum_tanam,2);
@@ -248,7 +248,7 @@ function kos_matang_penuaian($lesen,$tahun,$jum_tanam,$jum_bts, $negeri, $daerah
 		$sub[3]=round($row['a_4']/$jum_tanam,2);
 		$sub[4]=round($row['total_b']/$jum_tanam,2);
 	}
-		
+
 	if($jum_bts > 0){
 		$sub[5]=round($sub[0]/$jum_bts,2);add_kmptuai($lesen,$tahun, $negeri,$daerah, $sub[0], $sub[5], "Harvesting tools ");
 		$sub[6]=round($sub[1]/$jum_bts,2);add_kmptuai($lesen,$tahun, $negeri,$daerah, $sub[1], $sub[6], "Harvesting and collection of FFB and loose fruit");
@@ -256,7 +256,7 @@ function kos_matang_penuaian($lesen,$tahun,$jum_tanam,$jum_bts, $negeri, $daerah
 		$sub[8]=round($sub[3]/$jum_bts,2);add_kmptuai($lesen,$tahun, $negeri,$daerah, $sub[3], $sub[8], "Machinery use and maintenance ");
 		$sub[9]=round($sub[4]/$jum_bts,2);add_kmptuai($lesen,$tahun, $negeri,$daerah, $sub[4], $sub[9], "Total Harvesting");
 	}
-	
+
 	return $sub;
 }
 //------------------------------------- add kos matang penjagaan ---------------------------
@@ -264,19 +264,19 @@ function add_kmptuai ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_tan,
 	$con=connect();
 	$q="INSERT INTO analysis_kos_matang_penuaian (pb_thisyear ,lesen ,km_nama ,kos_per_hektar ,kos_per_tan ,negeri ,daerah)
 		VALUES ('$tahun', '$lesen', '$km_nama', '$nilai_hektar', '$nilai_tan', '$negeri', '$daerah');";
-	$r = mysql_query($q,$con);
+	$r = mysqli_query($con, $q);
 	$qdelete ="delete from analysis_kos_matang_penuaian  where kos_per_hektar=0 and kos_per_tan=0";
-	$rdelete = mysql_query($qdelete,$con);
+	$rdelete = mysqli_query($con, $qdelete);
 }
 //----------------------------------------------------------------
-	
+
 //----------------------------------------------------------------
 function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts,$negeri,$daerah){
 	$con=connect();
 	$q="select * from kos_matang_pengangkutan where lesen = '$lesen' and pb_thisyear='$tahun' limit 1 ";
-  	$r=mysql_query($q,$con);
-	$row=mysql_fetch_array($r);
-		
+  	$r=mysqli_query($con, $q);
+	$row=mysqli_fetch_array($r);
+
 	if($jum_tanam > 0){
 		$sub[0]=round($row['a_1']/$jum_tanam,2);
 		$sub[1]=round($row['a_2']/$jum_tanam,2);
@@ -289,7 +289,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts,$negeri,$daer
 		$sub[8]=round($row['total_b_2']/$jum_tanam,2);
 		$sub[9]=round($row['total_b']/$jum_tanam,2);
 	}
-		
+
 	if($jum_bts > 0){
 		$sub[10]=round($sub[0]/$jum_bts,2);add_kmpangkut($lesen,$tahun, $negeri,$daerah, $sub[0], $sub[10], "Internal");
 		$sub[11]=round($sub[1]/$jum_bts,2);add_kmpangkut($lesen,$tahun, $negeri,$daerah, $sub[1], $sub[11], "a) Platform");
@@ -302,7 +302,7 @@ function kos_matang_pengangkutan($lesen,$tahun,$jum_tanam,$jum_bts,$negeri,$daer
 		$sub[18]=round($sub[8]/$jum_bts,2);add_kmpangkut($lesen,$tahun, $negeri,$daerah, $sub[8], $sub[18], "Other expenditures");
 		$sub[19]=round($sub[9]/$jum_bts,2);add_kmpangkut($lesen,$tahun, $negeri,$daerah, $sub[9], $sub[19], "Total Transportation");
 	}
-	
+
 	return $sub;
 }
 //-----------------------------------------------------------------
@@ -311,18 +311,18 @@ function add_kmpangkut ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_ta
 	$con=connect();
 	$q="INSERT INTO analysis_kos_matang_pengangkutan (pb_thisyear ,lesen ,km_nama ,kos_per_hektar ,kos_per_tan ,negeri ,daerah)
 		VALUES ('$tahun', '$lesen', '$km_nama', '$nilai_hektar', '$nilai_tan', '$negeri', '$daerah');";
-	$r = mysql_query($q,$con);
+	$r = mysqli_query($con, $q);
 	$qdelete ="delete from analysis_kos_matang_pengangkutan where kos_per_hektar=0 and kos_per_tan=0";
-	$rdelete = mysql_query($qdelete,$con);
+	$rdelete = mysqli_query($con, $qdelete);
 }
 //----------------------------------------------------------------
 
 function kos_belanja_am ($lesen, $tahun, $hektar, $bts, $negeri, $daerah){
 	$con=connect();
 	$q="select * from belanja_am_kos where lesen = '$lesen' and thisyear='$tahun' limit 1 ";
-  	$r=mysql_query($q,$con);
-	$row=mysql_fetch_array($r);
-		
+  	$r=mysqli_query($con, $q);
+	$row=mysqli_fetch_array($r);
+
 	if($hektar > 0){
 		$sub[0]=round($row['emolumen']/$hektar,2);
 		$sub[1]=round($row['kos_ibupejabat']/$hektar,2);
@@ -341,7 +341,7 @@ function kos_belanja_am ($lesen, $tahun, $hektar, $bts, $negeri, $daerah){
 		$sub[14]=round($row['perbelanjaan_lain']/$hektar,2);
 		$sub[15]=round($row['total_perbelanjaan']/$hektar,2);
 	}
-		
+
 	if($bts > 0){
 		$sub[16]=round($sub[0]/$bts,2);add_belanja_am($lesen,$tahun, $negeri,$daerah, $sub[0], $sub[16], "Executive and non-executive emoluments");
 		$sub[17]=round($sub[1]/$bts,2);add_belanja_am($lesen,$tahun, $negeri,$daerah, $sub[1], $sub[17], "Headquarters Cost");
@@ -360,42 +360,42 @@ function kos_belanja_am ($lesen, $tahun, $hektar, $bts, $negeri, $daerah){
 		$sub[30]=round($sub[14]/$bts,2);add_belanja_am($lesen,$tahun, $negeri,$daerah, $sub[14], $sub[30], "Other expenses");
 		$sub[31]=round($sub[15]/$bts,2);//add_belanja_am($lesen,$tahun, $negeri,$daerah, $sub[15], $sub[31], "Total General Chargers");
 	}
-	return $sub; 	
+	return $sub;
 }
 
 
 function luas_data($table,$data, $tahunsebelum, $lesen){
-	if(strlen($tahunsebelum)==1){ 
+	if(strlen($tahunsebelum)==1){
 		$table = $table."0".substr($tahunsebelum,-2);
 	}
 	else{
-		$table = $table.substr($tahunsebelum,-2); 
+		$table = $table.substr($tahunsebelum,-2);
 	}
 	$con = connect();
 	$qblm="SELECT sum($data) as $data FROM $table WHERE lesen = '$lesen' group by lesen";
-	$rblm=mysql_query($qblm,$con);
+	$rblm=mysqli_query($con, $qblm);
 	if($rblm){
-		$rowblm= mysql_fetch_array($rblm);
+		$rowblm= mysqli_fetch_array($rblm);
 		//echo "<br>";
 		$data1 = $rowblm[$data];
-		$jum_data = $data1; 
-		
-		return $jum_data; 
+		$jum_data = $data1;
+
+		return $jum_data;
 	}else{
 		return 0;
 	}
 }
-		
+
 //------------------------------------- add kos perbelanjaan am ---------------------------
 function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_tan, $km_nama){
 	$con=connect();
 	$q="INSERT INTO analysis_belanja_am_kos (pb_thisyear ,lesen ,km_nama ,kos_per_hektar ,kos_per_tan ,negeri ,daerah)
 		VALUES ('$tahun', '$lesen', '$km_nama', '$nilai_hektar', '$nilai_tan', '$negeri', '$daerah');";
-	$r = mysql_query($q,$con);
+	$r = mysqli_query($con, $q);
 	$qdelete ="delete from analysis_belanja_am_kos where kos_per_hektar=0 and kos_per_tan=0";
-	$rdelete = mysql_query($qdelete,$con);
+	$rdelete = mysqli_query($con, $qdelete);
 }
-	
+
 ?>
 
 
@@ -410,7 +410,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="22%">Negeri</th>
     <th width="12%">Daerah </th>
     <th width="10%">Syarikat Induk</th>
-    
+
     <th width="2%">PB1_Luas</th>
     <th width="2%">PB1_a_1</th>
     <th width="2%">PB1_a_2</th>
@@ -468,7 +468,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">PB1_total_b_13</th>
     <th width="3%">PB1_total_b_14</th>
     <th width="3%">PB1_total_a</th>
-    
+
     <th width="2%">PB2_Luas</th>
     <th width="2%">PB2_b_1a</th>
     <th width="2%">PB2_b_1b</th>
@@ -492,8 +492,8 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">PB2_total_b_13</th>
     <th width="3%">PB2_total_b_14</th>
     <th width="3%">PB2_total_a</th>
-    
-    
+
+
     <th width="2%">PB3_Luas</th>
     <th width="2%">PB3_b_1a</th>
     <th width="2%">PB3_b_1b</th>
@@ -517,7 +517,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">PB3_total_b_13</th>
     <th width="3%">PB3_total_b_14</th>
     <th width="3%">PB3_total_a</th>
-    
+
     <th width="2%">PS1_Luas</th>
     <th width="2%">PS1_a_1</th>
     <th width="2%">PS1_a_2</th>
@@ -531,7 +531,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">PS1_a_10</th>
     <th width="3%">PS1_a_11</th>
     <th width="3%">PS1_total_a</th>
-    
+
     <th width="2%">PS2_Luas</th>
     <th width="2%">PS2_b_1a</th>
     <th width="2%">PS2_b_1b</th>
@@ -555,8 +555,8 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">PS2_total_b_13</th>
     <th width="3%">PS2_total_b_14</th>
     <th width="3%">PS2_total_a</th>
-    
-    
+
+
     <th width="2%">PS3_Luas</th>
     <th width="2%">PS3_b_1a</th>
     <th width="2%">PS3_b_1b</th>
@@ -580,7 +580,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">PS3_total_b_13</th>
     <th width="3%">PS3_total_b_14</th>
     <th width="3%">PS3_total_a</th>
-    
+
     <th width="2%">PT1_Luas</th>
     <th width="2%">PT1_a_1</th>
     <th width="2%">PT1_a_2</th>
@@ -594,7 +594,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">PT1_a_10</th>
     <th width="3%">PT1_a_11</th>
     <th width="3%">PT1_total_a</th>
-    
+
     <th width="2%">PT2_Luas</th>
     <th width="2%">PT2_b_1a</th>
     <th width="2%">PT2_b_1b</th>
@@ -618,8 +618,8 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">PT2_total_b_13</th>
     <th width="3%">PT2_total_b_14</th>
     <th width="3%">PT2_total_a</th>
-    
-    
+
+
     <th width="2%">PT3_Luas</th>
     <th width="2%">PT3_b_1a</th>
     <th width="2%">PT3_b_1b</th>
@@ -643,7 +643,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">PT3_total_b_13</th>
     <th width="3%">PT3_total_b_14</th>
     <th width="3%">PT3_total_a</th>
-    
+
     <th width="3%">KJ_Berhasil</th>
     <th width="3%">KJ_BTS</th>
     <th width="3%">KJ_b_1a</th>
@@ -666,7 +666,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">KJ_total_b_11</th>
     <th width="3%">KJ_total_b_12</th>
     <th width="3%">KJ_total_b</th>
-    
+
     <th width="3%">KJB_b_1a</th>
     <th width="3%">KJB_b_1b</th>
     <th width="3%">KJB_b_1c</th>
@@ -697,7 +697,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">KPB_a_3</th>
     <th width="3%">KPB_a_4</th>
     <th width="3%">KPB_total_b</th>
-    
+
     <th width="3%">KA_a_1</th>
     <th width="3%">KA_a_2</th>
     <th width="3%">KA_a_3</th>
@@ -708,7 +708,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">KA_total_b_1</th>
     <th width="3%">KA_total_b_2</th>
     <th width="3%">KA_total_b</th>
-    
+
     <th width="3%">KAB_a_1</th>
     <th width="3%">KAB_a_2</th>
     <th width="3%">KAB_a_3</th>
@@ -736,7 +736,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">KBA_susut_nilai</th>
     <th width="3%">KBA_perbelanjaan_lain</th>
     <th width="3%">KBA_total_perbelanjaan</th>
-    
+
     <th width="3%">KBAB_emolumen</th>
     <th width="3%">KBAB_kos_ibupejabat</th>
     <th width="3%">KBAB_kos_agensi</th>
@@ -753,37 +753,37 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">KBAB_susut_nilai</th>
     <th width="3%">KBAB_perbelanjaan_lain</th>
     <th width="3%">KBAB_total_perbelanjaan</th>
-    
+
   </tr>
   <?php
  $con=connect();
  /*$q="select * from login_estate where success!='0000-00-00 00:00:00' and firsttime ='2' and lesen not like '123456%' and lesen <> '' group by lesen order by lesen  ";*/
- 
+
  if ($tahun == date('Y')) {
     $table = 'esub';
 } else {
     $table = "esub_" . $tahun;
 }
-		
-	$q = "SELECT b.lesen FROM $table a  
-			INNER JOIN login_estate b on a.No_Lesen_Baru = b.lesen 
-            LEFT JOIN kos_matang_pengangkutan c on a.No_Lesen_Baru = c.lesen and c.pb_thisyear='$tahun' 
-			LEFT JOIN kos_matang_penjagaan d on a.No_Lesen_Baru = d.lesen and d.pb_thisyear='$tahun'  
-			LEFT JOIN kos_matang_penuaian e on a.No_Lesen_Baru = e.lesen and e.pb_thisyear='$tahun' 
+
+	$q = "SELECT b.lesen FROM $table a
+			INNER JOIN login_estate b on a.No_Lesen_Baru = b.lesen
+            LEFT JOIN kos_matang_pengangkutan c on a.No_Lesen_Baru = c.lesen and c.pb_thisyear='$tahun'
+			LEFT JOIN kos_matang_penjagaan d on a.No_Lesen_Baru = d.lesen and d.pb_thisyear='$tahun'
+			LEFT JOIN kos_matang_penuaian e on a.No_Lesen_Baru = e.lesen and e.pb_thisyear='$tahun'
 			LEFT JOIN belanja_am_kos f on a.No_Lesen_Baru = f.lesen and f.thisyear='$tahun'
-			WHERE   
-            b.lesen not like '%123456%'  
-		    and a.No_Lesen_Baru <> '' 
-			and a.No_Lesen_Baru not like '%123456%'  
-			and a.nama_estet!=''  
+			WHERE
+            b.lesen not like '%123456%'
+		    and a.No_Lesen_Baru <> ''
+			and a.No_Lesen_Baru not like '%123456%'
+			and a.nama_estet!=''
 			and (c.total_b > 0 or d.total_b > 0 or e.total_b > 0 or f.total_perbelanjaan > 0)";
- 
- 
- $r=mysql_query($q,$con);
- $total_data_proses = mysql_num_rows($r);
-  
+
+
+ $r=mysqli_query($con, $q);
+ $total_data_proses = mysqli_num_rows($r);
+
  $bil=0;
-  
+
  $tahun_pendek = substr($tahun,-2);
  $one = $tahun_pendek-1;
  if(strlen($one)=='1'){$one = "0".$one;}
@@ -791,12 +791,12 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
  if(strlen($two)=='1'){$two = "0".$two;}
  $three = $tahun_pendek-3;
  if(strlen($three)=='1'){$three = "0".$three;}
-  
- while($row=mysql_fetch_array($r)){
+
+ while($row=mysqli_fetch_array($r)){
  	$ps1 = luas_data("tanam_semula","tanaman_semula", $tahun-1,$row['lesen']);
  	$ps2 = luas_data("tanam_semula","tanaman_semula", $tahun-2,$row['lesen']);
 	$ps3 = luas_data("tanam_semula","tanaman_semula", $tahun-3,$row['lesen']);
- 
+
  	$pb1 = luas_data("tanam_baru","tanaman_baru", $tahun-1,$row['lesen']);
  	$pb2 = luas_data("tanam_baru","tanaman_baru", $tahun-2,$row['lesen']);
  	$pb3 = luas_data("tanam_baru","tanaman_baru", $tahun-3,$row['lesen']);
@@ -849,7 +849,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-   
+
     <td><?php echo $kbm[12];?></td>
     <td><?php echo $kbm[13];?></td>
     <td><?php echo $kbm[14];?></td>
@@ -872,8 +872,8 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-    
-    
+
+
     <td><?php $luas = luas($row['lesen'],"tanam_baru".$two,'tanaman_baru'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Baru','2',$luas[0],$nl[1],$nl[2]); echo $kbm[12];?></td>
     <td><?php echo $kbm[13];?></td>
@@ -897,8 +897,8 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?>    </td>
-    
-    
+
+
     <td><?php $luas = luas($row['lesen'],"tanam_baru".$three,'tanaman_baru'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Baru','3',$luas[0],$nl[1],$nl[2]); echo $kbm[12];?></td>
     <td><?php echo $kbm[13];?></td>
@@ -922,7 +922,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-    
+
     <td><?php $luas = luas($row['lesen'],"tanam_semula".$one,'tanaman_semula'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Semula','1',$luas[0],$nl[1],$nl[2]); echo $kbm[0];?></td>
     <td><?php echo $kbm[1];?></td>
@@ -936,7 +936,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kbm[9];?></td>
     <td><?php echo $kbm[10];?></td>
     <td><?php echo $kbm[11];?></td>
-    
+
     <td><?php $luas = luas($row['lesen'],"tanam_semula".$two,'tanaman_semula'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Semula','2',$luas[0],$nl[1],$nl[2]); echo $kbm[12];?></td>
     <td><?php echo $kbm[13];?></td>
@@ -960,8 +960,8 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-    
-    
+
+
     <td><?php $luas = luas($row['lesen'],"tanam_semula".$three,'tanaman_semula'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Semula','3',$luas[0],$nl[1],$nl[2]); echo $kbm[12];?></td>
     <td><?php echo $kbm[13];?></td>
@@ -985,7 +985,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-    
+
     <!-- --- ------ ------ --- - - -- - - -- - -   -- -- - --->
     <td><?php $luas = luas($row['lesen'],"tanam_tukar".$one,'tanaman_tukar'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penukaran','1',$luas[0],$nl[1],$nl[2]); echo $kbm[0];?></td>
@@ -1000,7 +1000,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kbm[9];?></td>
     <td><?php echo $kbm[10];?></td>
     <td><?php echo $kbm[11];?></td>
-    
+
     <td><?php $luas = luas($row['lesen'],"tanam_tukar".$two,'tanaman_tukar'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penukaran','2',$luas[0],$nl[1],$nl[2]); echo $kbm[12];?></td>
     <td><?php echo $kbm[13];?></td>
@@ -1047,7 +1047,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kbm[31];?></td>
     <td><?php echo $kbm[32];?></td>
     <td><?php echo $kbm[33];?></td>
-    
+
     <td><?php echo $nl[4];?></td>
     <td><?php $bts=bts($row['lesen'], $tahun); echo $bts[0];?></td>
     <td><?php $jaga = kos_matang_penjagaan($row['lesen'],$tahun,$nl[4],$bts[0],$nl[1],$nl[2]); echo $jaga[0];?></td>
@@ -1070,7 +1070,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $jaga[17];?></td>
     <td><?php echo $jaga[18];?></td>
     <td><?php echo $jaga[19];?></td>
-    
+
     <td><?php echo $jaga[20];?></td>
     <td><?php echo $jaga[21];?></td>
     <td><?php echo $jaga[22];?></td>
@@ -1091,7 +1091,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $jaga[37];?></td>
     <td><?php echo $jaga[38];?></td>
     <td><?php echo $jaga[39];?></td>
-    
+
     <td><?php $kt = kos_matang_penuaian($row['lesen'],$tahun,$nl[4],$bts[0], $nl[1],$nl[2]); echo $kt[0];?></td>
     <td><?php echo $kt[1];?></td>
     <td><?php echo $kt[2];?></td>
@@ -1102,7 +1102,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kt[7];?></td>
     <td><?php echo $kt[8];?></td>
     <td><?php echo $kt[9];?></td>
-    
+
     <td><?php $ka = kos_matang_pengangkutan($row['lesen'],$tahun,$nl[4],$bts[0],$nl[1],$nl[2]); echo $ka[0];?></td>
     <td><?php echo $ka[1];?></td>
     <td><?php echo $ka[2];?></td>
@@ -1123,7 +1123,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $ka[17];?></td>
     <td><?php echo $ka[18];?></td>
     <td><?php echo $ka[19];?></td>
-    
+
     <td><?php $kba = kos_belanja_am($row['lesen'],$tahun,$nl[4],$bts[0]+$jumlah_semua, $nl[1],$nl[2]); echo $kba[0]; ?></td>
     <td><?php echo $kba[1]; ?></td>
     <td><?php echo $kba[2]; ?></td>
@@ -1140,7 +1140,7 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kba[13]; ?></td>
     <td><?php echo $kba[14]; ?></td>
     <td><?php echo $kba[15]; ?></td>
-    
+
     <td><?php echo $kba[16]; ?></td>
     <td><?php echo $kba[17]; ?></td>
     <td><?php echo $kba[18]; ?></td>
@@ -1157,9 +1157,9 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kba[29]; ?></td>
     <td><?php echo $kba[30]; ?></td>
     <td><?php echo $kba[31]; ?></td>
-    
+
   </tr>
-  <?php 
+  <?php
    //sleep(2);
   }
   ?>

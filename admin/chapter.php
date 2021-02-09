@@ -1,36 +1,36 @@
 	<link rel="stylesheet" href="../css/buttons/css/buttons.css" type="text/css" media="screen" />
 
-<?php 
+<?php
 
 function getListRef($con, $ref) {
 	$qw = "select * from taxonomy_all where parent = ".$ref." and type ='".$_COOKIE['tahun_report']."' order by position";
-	$res = mysql_query($qw,$con);
-    $ss = mysql_num_rows($res);
+	$res = mysqli_query($con, $qw);
+    $ss = mysqli_num_rows($res);
 	$arr = array();
     $x=0;
-	while($row=mysql_fetch_array($res))
+	while($row=mysqli_fetch_array($res))
 		{
 			 $arr[$x] = array($row['id'], $row['name']);
-             $x++;				
+             $x++;
 		}
 
-return $arr;		
+return $arr;
 
 }
 
 function tree() {
 	$con = connect();
     return trace($con, 0);
-    
+
 }
 
 function trace($con, $ref) {
 	$qw = "select * from taxonomy_all where parent = ".$ref." and type ='".$_COOKIE['tahun_report']."'  order by position";
-	$res = mysql_query($qw,$con);
-	
+	$res = mysqli_query($con, $qw);
+
 	$treestr = '';
 	// $treestr += "<li>" + node(code,name) + "<ul>" + tree() + "</ul></li>";
-	while($row=mysql_fetch_array($res))
+	while($row=mysqli_fetch_array($res))
 		{
 		$id = $row['id'];
 		$name = $row['name'];
@@ -40,14 +40,14 @@ function trace($con, $ref) {
 
 			  &nbsp;<a href='save_element.php?jenis=delete&id=$id&type=$type' onclick=\"return confirm('Delete this data?');\">Delete</a>
 			   &nbsp;<a href='add_element.php?taxoname=$name&taxoid=$id&type=$type&level=$level' class='nilai'>Add</a>
-			   
+
 			   &nbsp;<a href='edit_element.php?taxoname=$name&taxoid=$id&type=$type&level=$level' class='nilai'>Edit</a>
-			 
-			 
-			 <b><a href='home.php?id=config&sub=generate&reportid=".$row['id']."'>[".$row['position']."] - " . $row['name'] . "</a></b><ul>" . trace($con, $row['id']) . "</ul></li>";			
+
+
+			 <b><a href='home.php?id=config&sub=generate&reportid=".$row['id']."'>[".$row['position']."] - " . $row['name'] . "</a></b><ul>" . trace($con, $row['id']) . "</ul></li>";
 		}
-    
-    return $treestr; 
+
+    return $treestr;
 
 }
 
@@ -61,18 +61,18 @@ $(document).ready(function(){
 		collapsed: false,
 		control: "#treecontrol"
 	});
-	
+
 	$(".nilai").colorbox({width:"60%", height:"20%"});
 
 
 
 });
-</script>    
+</script>
 <?php
 	$con = connect();
 	$qw_total = "select * from taxonomy_all where type ='".$_COOKIE['tahun_report']."'  order by name";
-	$res_total = mysql_query($qw_total,$con);
-	$total_res = mysql_num_rows($res_total);
+	$res_total = mysqli_query($con, $qw_total);
+	$total_res = mysqli_num_rows($res_total);
 ?>
 <table width="100%">
   <tr>
@@ -91,16 +91,14 @@ $(document).ready(function(){
 <?php } ?>
   <br />
   <br />
-  
+
 
 <ul id="red" class="treeview-red">
 <?php echo  tree(); ?>
 </ul>
-  
-    
+
+
 
 </form></td>
   </tr>
 </table>
-
-
