@@ -70,7 +70,7 @@ $mean = round($mean,2);
 $median = round($median,2);
 
 
-  $con = mysqli_connect();
+  $con = connect();
 
   $qselect = "select * from cop where
 NAME ='$name' and TYPE= '$type' and YEAR= '$year' and STATE= '$state' and DISTRICT= '$district' and YEAR_REPORT='$tahun'";

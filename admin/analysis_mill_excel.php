@@ -165,7 +165,7 @@ function add_mill_kos_lain ($lesen,$tahun, $negeri,$daerah, $nilai, $km_nama){
 
 
 function mill_buruh($lesen,$tahun){
-		$con=mysqli_connect();
+		$con=connect();
  		$q="select * from mill_buruh where lesen ='$lesen' and tahun='$tahun' ";
   		$r=mysqli_query($con, $q);
 		$row=mysqli_fetch_array($r);
@@ -274,7 +274,7 @@ function mill_buruh($lesen,$tahun){
 
   </tr>
   <?php
-  $con=mysqli_connect();
+  $con=connect();
   /*$q="select * from login_mill where success!='0000-00-00 00:00:00' and lesen like '500%' and lesen not like '123456%'  group by lesen order by lesen  ";*/
   $tahunsebelum = $tahun-1;
   $q="SELECT ekilang.no_lesen as lesen FROM ekilang

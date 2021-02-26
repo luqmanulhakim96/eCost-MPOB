@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include('../Connections/connection.class.php');
 include('../class/user.class.php');
@@ -7,11 +7,11 @@ include('../setstring.inc');
 $pengguna = new user('estate',$_SESSION['lesen']);
 $negeri = new daerah('negeri','');
 ?>
-<script type="text/javascript"> 
+<script type="text/javascript">
 	$('.poskod').numeric();
 </script>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 	$('.telefon').numeric({allow:"-"});
 </script><style type="text/css">
 <!--
@@ -67,28 +67,25 @@ body,td,th {
       <td height="35">&nbsp;</td>
       <td><strong><?=setstring ( 'mal', 'No. Telefon', 'en', 'Phone No.'); ?></strong></td>
       <td><strong>:</strong></td>
-      <td colspan="2">
-      <input name="notelefon" type="text" id="notelefon" value="<?= $pengguna->notelefon; ?>" size="50" class="telefon" /></td>
+      <td colspan="2"> <input name="notelefon" type="text" id="notelefon" value="<?= $pengguna->notelefon; ?>" size="50" class="telefon" /></td>
     </tr>
     <tr>
       <td height="32">&nbsp;</td>
       <td><strong><?=setstring ( 'mal', 'No. Faks', 'en', 'Fax No.'); ?></strong></td>
       <td><strong>:</strong></td>
-      <td colspan="2">
-      <input name="nofax" type="text" id="nofax" value="<?= $pengguna->nofax; ?>" size="50" class="telefon" /></td>
+      <td colspan="2"> <input name="nofax" type="text" id="nofax" value="<?= $pengguna->nofax; ?>" size="50" class="telefon" /></td>
     </tr>
     <tr>
       <td height="31">&nbsp;</td>
       <td><strong><?=setstring ( 'mal', 'Emel', 'en', 'E-mail'); ?></strong></td>
       <td><strong>:</strong></td>
-      <td colspan="2">
-      <input name="email" type="text" id="email" value="<?= $pengguna->email; ?>" size="50" /></td>
+      <td colspan="2"> <input name="email" type="text" id="email" value="<?= $pengguna->email; ?>" size="50" /></td>
     </tr>
-    
-    
-    
-    
-    
+
+
+
+
+
     <tr>
       <td colspan="5">
           <div align="center"><br />

@@ -2,6 +2,8 @@
 include ('../Connections/connection.class.php');
 include('baju_merah.php');
 $con = connect();
+error_reporting(0);
+
 extract($_REQUEST);
 
 $satu = $_COOKIE['tahun_report'] - 0;

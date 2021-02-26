@@ -25,7 +25,6 @@ class PiePlot {
     public $posx=0.5,$posy=0.5;
     public $is_using_plot_theme = false;
     public $theme="earth";
-	public $rptLbl;
     protected $use_plot_theme_colors = false;
     protected $radius=0.3;
     protected $explode_radius=array(),$explode_all=false,$explode_r=20;
@@ -59,14 +58,14 @@ class PiePlot {
 
     //---------------
     // CONSTRUCTOR
-    function __construct($data, $format = '%.1f%%') {
+    function __construct($data) {
         $this->data = array_reverse($data);
         $this->title = new Text("");
         $this->title->SetFont(FF_DEFAULT,FS_BOLD);
         $this->value = new DisplayValue();
         $this->value->Show();
-        $this->value->SetFormat($format);
-		$this->guideline = new LineProperty();
+        $this->value->SetFormat('%.1f%%');
+        $this->guideline = new LineProperty();
     }
 
     //---------------
@@ -240,7 +239,7 @@ class PiePlot {
     // Set text labels for slices
     function SetLabels($aLabels,$aLblPosAdj="auto") {
         $this->labels = array_reverse($aLabels);
-        if ($aLblPosAdj != "none") $this->ilabelposadj=$aLblPosAdj;
+        $this->ilabelposadj=$aLblPosAdj;
     }
 
     function SetLabelPos($aLblPosAdj) {
@@ -297,14 +296,16 @@ class PiePlot {
 
         // Make sure we don't plot more values than data points
         // (in case the user added more legends than data points)
-        $n = min(count($this->legends),count($this->data));
+        $legendsCount = is_array($this->legends) ? count($this->legends) : 0;
+        $n = min($legendsCount,count($this->data));
         if( $this->legends != "" ) {
             $this->legends = array_reverse(array_slice($this->legends,0,$n));
         }
         for( $i=$n-1; $i >= 0; --$i ) {
             $l = $this->legends[$i];
             // Replace possible format with actual values
-            if( count($this->csimalts) > $i ) {
+            $count = is_array($this->csimalts) ? count($this->csimalts) : 0;
+            if( $count > $i ) {
                 $fmt = $this->csimalts[$i];
             }
             else {
@@ -333,10 +334,12 @@ class PiePlot {
             }
 
             if( $this->setslicecolors==null ) {
-                $graph->legend->Add($l,$colors[$ta[$i%$numcolors]],"",0,$this->csimtargets[$i],$alt,$wintarg);
+                $csimtarget = isset($this->csimtargets[$i]) ? $this->csimtargets[$i] : null;
+                $graph->legend->Add($l,$colors[$ta[$i%$numcolors]],"",0,$csimtarget,$alt,$wintarg);
             }
             else {
-                $graph->legend->Add($l,$this->setslicecolors[$i%$numcolors],"",0,$this->csimtargets[$i],$alt,$wintarg);
+                $csimtarget = isset($this->csimtargets[$i]) ? $this->csimtargets[$i] : null;
+                $graph->legend->Add($l,$this->setslicecolors[$i%$numcolors],"",0,$csimtarget,$alt,$wintarg);
             }
         }
     }
@@ -632,14 +635,10 @@ class PiePlot {
                 else {
                     $l = $this->adjusted_data[$i];
                 }
-				if ($this->labeltype == 2) {
-					$this->labels[$i] = $this->data[$i]." ".$this->rptLbl." (".sprintf($this->value->format,$this->adjusted_data[$i]).")";
-				} else {
-					if( isset($this->labels[$i]) && is_string($this->labels[$i]) )
-					$this->labels[$i]=sprintf($this->labels[$i],$l);
-					else
-					$this->labels[$i]=$l;
-				}
+                if( isset($this->labels[$i]) && is_string($this->labels[$i]) )
+                $this->labels[$i]=sprintf($this->labels[$i],$l);
+                else
+                $this->labels[$i]=$l;
             }
         }
 

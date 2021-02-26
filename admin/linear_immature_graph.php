@@ -4,6 +4,8 @@ require_once ('jpgraph/src/jpgraph.php');
 require_once ('jpgraph/src/jpgraph_scatter.php');
 require_once ('jpgraph/src/jpgraph_line.php');
 require_once ('jpgraph/src/jpgraph_utils.inc.php');
+
+
 extract($_REQUEST);
 // Create some "fake" regression data
 $datay = array();
@@ -193,7 +195,12 @@ $graph->subtitle->SetFont(FF_ARIAL, FS_NORMAL, 12);
 $graph->xaxis->SetPos('min');
 
 // Create the scatter plot with some nice colors
-$sp1 = new ScatterPlot($datay, $datax);
+if($datay == null && $datax == null){
+	$sp1 = new ScatterPlot('-', '-');							//NULL data handling
+}
+else {
+	$sp1 = new ScatterPlot($datay, $datax);
+}
 $sp1->mark->SetType(MARK_FILLEDCIRCLE);
 $sp1->mark->SetFillColor("red");
 $sp1->SetColor("blue");

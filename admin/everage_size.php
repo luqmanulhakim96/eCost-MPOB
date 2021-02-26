@@ -51,7 +51,7 @@
 </div>
 
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("../xml/amline.swf", "amline", "100%", "100%", "8", "#FFFFFF");
 		so.addVariable("settings_file", encodeURIComponent("../xml/amline_settings.xml"));
 		so.addVariable("data_file", encodeURIComponent("../xml/amline_data.xml"));

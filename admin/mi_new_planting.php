@@ -63,6 +63,7 @@ function pertama($tahun, $nama, $status, $negeri, $daerah, $type, $tahuntanam) {
     $var[0] = median($test_data);
     $var[1] = $rrow['purata'];
     return $var;
+    
 }
 
 ///--------------------cop----------------

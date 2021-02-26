@@ -2,6 +2,8 @@
 include ('../Connections/connection.class.php');
 include('baju_merah.php');
 $con = connect();
+error_reporting(0);
+
 extract($_REQUEST);
 ?>
 <link rel="stylesheet" href="../text_style.css" type="text/css" />
@@ -148,7 +150,7 @@ function median($numbers=array())
 
 	rsort($numbers);
 	$mid = (count($numbers) / 2);
-	return ($mid % 2 != 0) ? $numbers{$mid-1} : (($numbers{$mid-1}) + $numbers{$mid}) / 2;
+	return ($mid % 2 != 0) ? $numbers[$mid-1] : (($numbers[$mid-1]) + $numbers[$mid]) / 2;
 }
 
 function summary_parenthesis($tahun_tanam ,$tahun, $jenis, $negeri, $daerah ){

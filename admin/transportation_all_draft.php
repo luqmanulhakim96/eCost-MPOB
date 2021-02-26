@@ -1,6 +1,8 @@
 <?php include ('../Connections/connection.class.php');
 include('baju_merah.php');
 $con=connect();
+error_reporting(0);
+
 extract($_REQUEST);
 
 $_SESSION['ru']='';
@@ -14,7 +16,7 @@ function median($numbers=array())
 
 	rsort($numbers);
 	$mid = (count($numbers) / 2);
-	return ($mid % 2 != 0) ? $numbers{$mid-1} : (($numbers{$mid-1}) + $numbers{$mid}) / 2;
+	return ($mid % 2 != 0) ? $numbers[$mid-1] : (($numbers[$mid-1]) + $numbers[$mid]) / 2;
 }
 
 function pertama($tahun, $nama, $status,$negeri,$daerah ){
