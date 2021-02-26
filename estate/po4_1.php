@@ -475,7 +475,7 @@ if (($bts * 1) == 0) {
                 <tr valign="top">
                     <td width="24" height="37" align="center" bgcolor="#AEFFAE">1.</td>
                     <td width="296" bgcolor="#AEFFAE"> <span class="style4">
-                            <?= setstring('mal', 'Emolumen untuk eksekutif dan bukan eksekutif', 'en', 'Executive and non-executive emoluments '); ?>
+                            <?= setstring('mal', 'Pembayaran gaji dan elaun untuk eksekutif dan bukan eksekutif serta kebajikan kepada buruh', 'en', 'Payment of salaries and allowances for executives and non-executives as well as welfare to labor'); ?>
                         </span>          <br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Gaji dan elaun', 'en', 'Emoluments and allowances'); ?>
@@ -519,6 +519,8 @@ if (($bts * 1) == 0) {
                             <?php echo kiraPerubahan($per_ha1, $belanjaAmTahunSebelum->emolumen / $hektar); ?>
                         </div></td>
                 </tr>
+
+<?php /*
                 <tr valign="top">
                     <td height="33" align="center">2.</td>
                     <td><span class="style4">
@@ -533,27 +535,35 @@ if (($bts * 1) == 0) {
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )        </span></td>
                     <td><div align="center">
-                            <input onKeypress="keypress(event)" name="kos_ibupejabat" type="text" onchange="kiraanbaru('kos_ibupejabat')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="kos_ibupejabat" value="<?= number_format($belanja->kos_ibupejabat, 2); ?>" />
-                        </div></td>
+                    */?>
+                            <input onKeypress="keypress(event)" name="kos_ibupejabat" type="hidden" onchange="kiraanbaru('kos_ibupejabat')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="kos_ibupejabat" value="<?= number_format($belanja->kos_ibupejabat, 2); ?>" />
+                          </div></td>
                     <td><div align="center" id="kos_ibupejabat_per_ha"><?php
                             $per_ha2 = $belanja->kos_ibupejabat / $hektar;
                             $per_ha2 = round($per_ha2, 2);
-                            echo number_format($per_ha2, 2);
+                            // echo number_format($per_ha2, 2);
+                             number_format($per_ha2, 2);
+
                             ?></div></td>
                     <td><div align="center" id="kos_ibupejabat_per_bts">
                             <?php
                             $per_bts2 = $per_ha2 / $bts;
-                            echo number_format($per_bts2, 2);
+                            // echo number_format($per_bts2, 2);
+                             number_format($per_bts2, 2);
+
                             ?>        </div></td>
                     <td>
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha2, $belanjaAmTahunSebelum->kos_ibupejabat / $hektar); ?>
+                            <?php //echo kiraPerubahan($per_ha2, $belanjaAmTahunSebelum->kos_ibupejabat / $hektar);
+                             kiraPerubahan($per_ha2, $belanjaAmTahunSebelum->kos_ibupejabat / $hektar);
+                            ?>
                         </div></td>
                 </tr>
+
                 <tr valign="top">
-                    <td height="32" align="center" bgcolor="#AEFFAE">3.</td>
-                    <td bgcolor="#AEFFAE"  ><span class="style4">
-                            <?= setstring('mal', 'Kos agensi dan yuran professional', 'en', 'Agency cost and professional fees'); ?>
+                    <td height="32" align="center" bgcolor="#FFFFFF">2.</td>
+                    <td bgcolor="#FFFFFF"  ><span class="style4">
+                            <?= setstring('mal', 'Yuran professional dan khidmat nasihat', 'en', 'Agency cost and professional fees'); ?>
                         </span>
                         <br />
                         <span class="kecil">(
@@ -571,24 +581,26 @@ if (($bts * 1) == 0) {
                             ,
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )        </span></td>
-                    <td bgcolor="#AEFFAE"><div align="center">
+                    <td bgcolor="#FFFFFF"><div align="center">
                             <input onKeypress="keypress(event)" name="kos_agensi" type="text" onchange="kiraanbaru('kos_agensi')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="kos_agensi" value="<?= number_format($belanja->kos_agensi, 2); ?>" />
                         </div></td>
-                    <td bgcolor="#AEFFAE"><div align="center" id="kos_agensi_per_ha"><?php
+                    <td bgcolor="#FFFFFF"><div align="center" id="kos_agensi_per_ha"><?php
                             $per_ha3 = $belanja->kos_agensi / $hektar;
                             $per_ha3 = round($per_ha3, 2);
 
                             echo number_format($per_ha3, 2);
                             ?></div></td>
-                    <td bgcolor="#AEFFAE"><div align="center" id="kos_agensi_per_bts"> <?php
+                    <td bgcolor="#FFFFFF"><div align="center" id="kos_agensi_per_bts"> <?php
                             $per_bts3 = $per_ha3 / $bts;
                             echo number_format($per_bts3, 2);
                             ?></div></td>
-                    <td bgcolor="#AEFFAE">
+                    <td bgcolor="#FFFFFF">
                         <div align="center">
                             <?php echo kiraPerubahan($per_ha3, $belanjaAmTahunSebelum->kos_agensi / $hektar); ?>
                         </div></td>
                 </tr>
+
+<?php  /*
                 <tr valign="top">
                     <td height="36" align="center">4.</td>
                     <td><span class="style4">
@@ -606,26 +618,34 @@ if (($bts * 1) == 0) {
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )</span></td>
                     <td><div align="center">
-                            <input onKeypress="keypress(event)" name="kebajikan" type="text" onchange="kiraanbaru('kebajikan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="kebajikan" value="<?= number_format($belanja->kebajikan, 2); ?>"  />
+                    */ ?>
+                            <input onKeypress="keypress(event)" name="kebajikan" type="hidden" onchange="kiraanbaru('kebajikan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="kebajikan" value="<?= number_format($belanja->kebajikan, 2); ?>"  />
                         </div></td>
                     <td><div align="center" id="kebajikan_per_ha"><?php
                             $per_ha4 = $belanja->kebajikan / $hektar;
                             $per_ha4 = round($per_ha4, 2);
-                            echo number_format($per_ha4, 2);
+                            // echo number_format($per_ha4, 2);
+                             number_format($per_ha4, 2);
+
                             ?></div></td>
                     <td><div align="center" id="kebajikan_per_bts"> <?php
                             $per_bts4 = $per_ha4 / $bts;
-                            echo number_format($per_bts4, 2);
+                            // echo number_format($per_bts4, 2);
+                             number_format($per_bts4, 2);
+
                             ?>
                         </div></td>
                     <td><div align="center">
-                            <?php echo kiraPerubahan($per_ha4, $belanjaAmTahunSebelum->kebajikan / $hektar); ?>
+                            <?php //echo kiraPerubahan($per_ha4, $belanjaAmTahunSebelum->kebajikan / $hektar);
+                             kiraPerubahan($per_ha4, $belanjaAmTahunSebelum->kebajikan / $hektar);
+                            ?>
                         </div></td>
                 </tr>
+
                 <tr valign="top" bgcolor="#AEFFAE">
-                    <td height="36" align="center">5.</td>
+                    <td height="36" align="center">3.</td>
                     <td><span class="style4">
-                            <?= setstring('mal', 'Sewa, TOL dan insuran', 'en', 'Rent, TOL and insurance'); ?>
+                            <?= setstring('mal', 'Cukai, pemilikan tanah sementara (TOL) dan insuran', 'en', 'Rent, TOL and insurance'); ?>
                         </span>
                         <br />
                         <span class="kecil">(
@@ -659,6 +679,7 @@ if (($bts * 1) == 0) {
                             <?php echo kiraPerubahan($per_ha5, $belanjaAmTahunSebelum->sewa_tol / $hektar); ?>
                         </div></td>
                 </tr>
+<?php /*
                 <tr valign="top">
                     <td height="35" align="center">6.</td>
                     <td><span class="style4">
@@ -669,24 +690,34 @@ if (($bts * 1) == 0) {
                             <?= setstring('mal', 'Penyelidikan dan pembangunan', 'en', 'Research and development'); ?>
                             )        </span></td>
                     <td><div align="center">
-                            <input onKeypress="keypress(event)" name="penyelidikan" type="text" onchange="kiraanbaru('penyelidikan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="penyelidikan" value="<?= number_format($belanja->penyelidikan, 2); ?>"  />
-                        </div></td>
+                    */?>
+                            <input onKeypress="keypress(event)" name="penyelidikan" type="hidden" onchange="kiraanbaru('penyelidikan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="penyelidikan" value="<?= number_format($belanja->penyelidikan, 2); ?>"  />
+                         </div></td>
                     <td><div align="center" id="penyelidikan_per_ha"><?php
                             $per_ha6 = $belanja->penyelidikan / $hektar;
                             $per_ha6 = round($per_ha6, 2);
-                            echo number_format($per_ha6, 2);
+                            // echo number_format($per_ha6, 2);
+                             number_format($per_ha6, 2);
+
                             ?></div></td>
                     <td><div align="center" id="penyelidikan_per_bts"> <?php
                             $per_bts6 = $per_ha6 / $bts;
-                            echo number_format($per_bts6, 2);
+                            // echo number_format($per_bts6, 2);
+                             number_format($per_bts6, 2);
+
                             ?>
                         </div></td>
                     <td>
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha6, $belanjaAmTahunSebelum->penyelidikan / $hektar); ?>
+                            <?php //echo kiraPerubahan($per_ha6, $belanjaAmTahunSebelum->penyelidikan / $hektar);
+                             kiraPerubahan($per_ha6, $belanjaAmTahunSebelum->penyelidikan / $hektar);
+                            ?>
                         </div></td>
                 </tr>
-                <tr valign="top" bgcolor="#AEFFAE">
+
+
+
+<?php /*                  <tr valign="top" bgcolor="#AEFFAE">
                     <td height="36" align="center">7.</td>
                     <td><span class="style4">
                             <?= setstring('mal', 'Perubatan', 'en', 'Medical'); ?>
@@ -702,27 +733,36 @@ if (($bts * 1) == 0) {
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )        </span></td>
                     <td><div align="center">
-                            <input onKeypress="keypress(event)" name="perubatan" type="text" onchange="kiraanbaru('perubatan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="perubatan" value="<?= number_format($belanja->perubatan, 2); ?>"/>
+                    */?>
+                            <input onKeypress="keypress(event)" name="perubatan" type="hidden" onchange="kiraanbaru('perubatan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="perubatan" value="<?= number_format($belanja->perubatan, 2); ?>"/>
                         </div></td>
                     <td><div align="center" id="perubatan_per_ha"><?php
                             $per_ha7 = $belanja->perubatan / $hektar;
                             $per_ha7 = round($per_ha7, 2);
-                            echo number_format($per_ha7, 2);
+                            // echo number_format($per_ha7, 2);
+                             number_format($per_ha7, 2);
+
                             ?></div></td>
                     <td><div align="center" id="perubatan_per_bts" > <?php
                             $per_bts7 = $per_ha7 / $bts;
-                            echo number_format($per_bts7, 2);
+                            // echo number_format($per_bts7, 2);
+                             number_format($per_bts7, 2);
+
                             ?>
                         </div></td>
                     <td>
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha7, $belanjaAmTahunSebelum->perubatan / $hektar); ?>
+                            <?php //echo kiraPerubahan($per_ha7, $belanjaAmTahunSebelum->perubatan / $hektar);
+                             kiraPerubahan($per_ha7, $belanjaAmTahunSebelum->perubatan / $hektar);
+                            ?>
                         </div></td>
                 </tr>
-                <tr valign="top">
-                    <td height="33" align="center">8.</td>
+
+
+                <tr valign="top" bgcolor="#FFFFFF">
+                    <td height="33" align="center">4.</td>
                     <td><span class="style4">
-                            <?= setstring('mal', 'Penyelenggaraan bangunan', 'en', 'Building maintenance'); ?>
+                            <?= setstring('mal', 'Penjagaan, pemuliharaan  dan penyelenggaraan bangunan', 'en', 'Maintenance, conservation and maintenance of buildings'); ?>
                         </span><br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Pembaikan dan pengecatan', 'en', 'Painting and repair'); ?>
@@ -750,6 +790,8 @@ if (($bts * 1) == 0) {
                             <?php echo kiraPerubahan($per_ha8, $belanjaAmTahunSebelum->penyelenggaraan / $hektar); ?>
                         </div></td>
                 </tr>
+
+<?php /*
                 <tr valign="top" bgcolor="#AEFFAE">
                     <td height="34" align="center">9.</td>
                     <td><span class="style4">
@@ -759,23 +801,32 @@ if (($bts * 1) == 0) {
                             <?= setstring('mal', 'Cukai keuntungan', 'en', 'Profit tax'); ?>
                             )</span></td>
                     <td><div align="center">
-                            <input onKeypress="keypress(event)" name="cukai_keuntungan" type="text" onchange="kiraanbaru('cukai_keuntungan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="cukai_keuntungan" value="<?= number_format($belanja->cukai_keuntungan, 2); ?>" />
-                        </div></td>
+                    */?>
+                            <input onKeypress="keypress(event)" name="cukai_keuntungan" type="hidden" onchange="kiraanbaru('cukai_keuntungan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="cukai_keuntungan" value="<?= number_format($belanja->cukai_keuntungan, 2); ?>" />
+                         </div></td>
                     <td><div align="center" id="cukai_keuntungan_per_ha"><?php
                             $per_ha9 = $belanja->cukai_keuntungan / $hektar;
                             $per_ha9 = round($per_ha9, 2);
-                            echo number_format($per_ha9, 2);
+                            // echo number_format($per_ha9, 2);
+                             number_format($per_ha9, 2);
+
                             ?></div></td>
                     <td><div align="center" id="cukai_keuntungan_per_bts">
                             <?php
                             $per_bts9 = $per_ha9 / $bts;
-                            echo number_format($per_bts9, 2);
+                            // echo number_format($per_bts9, 2);
+                             number_format($per_bts9, 2);
+
                             ?>        </div></td>
                     <td>
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha9, $belanjaAmTahunSebelum->cukai_keuntungan / $hektar); ?>
+                            <?php //echo kiraPerubahan($per_ha9, $belanjaAmTahunSebelum->cukai_keuntungan / $hektar);
+                             kiraPerubahan($per_ha9, $belanjaAmTahunSebelum->cukai_keuntungan / $hektar);
+                            ?>
                         </div></td>
                 </tr>
+
+<?php /*
                 <tr valign="top">
                     <td height="36" align="center">10.</td>
                     <td><span class="style4">
@@ -797,27 +848,35 @@ if (($bts * 1) == 0) {
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )</span></td>
                     <td><div align="center">
-                            <input onKeypress="keypress(event)" name="penjagaan" type="text" onchange="kiraanbaru('penjagaan')" autocomplete="off" onclick="field_click(this)" class="active_field" id="penjagaan" value="<?= number_format($belanja->penjagaan, 2); ?>" />
-                        </div></td>
-                    <td><div align="center" id="penjagaan_per_ha"><?php
+                    */?>
+                            <input onKeypress="keypress(event)" name="penjagaan" type="hidden" onchange="kiraanbaru('penjagaan')" autocomplete="off" onclick="field_click(this)" class="active_field" id="penjagaan" value="<?= number_format($belanja->penjagaan, 2); ?>" />
+                     <td><div align="center" id="penjagaan_per_ha"><?php
                             $per_ha10 = $belanja->penjagaan / $hektar;
                             $per_ha10 = round($per_ha10, 2);
 
-                            echo number_format($per_ha10, 2);
+                            // echo number_format($per_ha10, 2);
+                             number_format($per_ha10, 2);
+
                             ?></div></td>
                     <td><div align="center" id="penjagaan_per_bts"> <?php
                             $per_bts10 = $per_ha10 / $bts;
-                            echo number_format($per_bts10, 2);
+                            // echo number_format($per_bts10, 2);
+                             number_format($per_bts10, 2);
+
                             ?>
 
                         </div></td>
                     <td>
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha10, $belanjaAmTahunSebelum->penjagaan / $hektar); ?>
+                            <?php //echo kiraPerubahan($per_ha10, $belanjaAmTahunSebelum->penjagaan / $hektar);
+                             kiraPerubahan($per_ha10, $belanjaAmTahunSebelum->penjagaan / $hektar);
+                            ?>
                         </div></td>
                 </tr>
+
+
                 <tr valign="top" bgcolor="#AEFFAE">
-                    <td height="33" align="center">11.</td>
+                    <td height="33" align="center">5.</td>
                     <td><span class="style4">
                             <?= setstring('mal', 'Kawalan keselamatan', 'en', 'Security Control'); ?>
                         </span><br />
@@ -853,6 +912,8 @@ if (($bts * 1) == 0) {
                             <?php echo kiraPerubahan($per_ha11, $belanjaAmTahunSebelum->kawalan / $hektar); ?>
                         </div></td>
                 </tr>
+
+<?php /*
                 <tr valign="top">
                     <td height="30" align="center">12.</td>
                     <td><span class="style4">
@@ -875,25 +936,34 @@ if (($bts * 1) == 0) {
                             <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                             )</span></td>
                     <td><div align="center">
-                            <input onKeypress="keypress(event)" name="air_tenaga" type="text" onchange="kiraanbaru('air_tenaga')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="air_tenaga" value="<?= number_format($belanja->air_tenaga, 2); ?>" />
-                        </div></td>
+                      */?>
+                            <input onKeypress="keypress(event)" name="air_tenaga" type="hidden" onchange="kiraanbaru('air_tenaga')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="air_tenaga" value="<?= number_format($belanja->air_tenaga, 2); ?>" />
+                      </div></td>
                     <td><div align="center" id="air_tenaga_per_ha"><?php
                             $per_ha12 = $belanja->air_tenaga / $hektar;
                             $per_ha12 = round($per_ha12, 2);
 
-                            echo number_format($per_ha12, 2);
+                            // echo number_format($per_ha12, 2);
+                             number_format($per_ha12, 2);
+
                             ?></div></td>
                     <td><div align="center" id="air_tenaga_per_bts">
                             <?php
                             $per_bts12 = $per_ha12 / $bts;
-                            echo number_format($per_bts12, 2);
+                            // echo number_format($per_bts12, 2);
+                             number_format($per_bts12, 2);
+
                             ?>        </div></td>
-                    <td><div align="center"><?php echo kiraPerubahan($per_ha12, $belanjaAmTahunSebelum->air_tenaga / $hektar); ?></div></td>
+                    <td><div align="center"><?php //echo kiraPerubahan($per_ha12, $belanjaAmTahunSebelum->air_tenaga / $hektar);
+                     kiraPerubahan($per_ha12, $belanjaAmTahunSebelum->air_tenaga / $hektar);
+
+                    ?></div></td>
                 </tr>
-                <tr valign="top" bgcolor="#AEFFAE">
-                    <td height="31" align="center">13.</td>
+
+                <tr valign="top" bgcolor="#FFFFFF">
+                    <td height="31" align="center">6.</td>
                     <td><span class="style4">
-                            <?= setstring('mal', 'Perbelanjaan pejabat', 'en', 'Office expenses'); ?>
+                            <?= setstring('mal', 'Perbelanjaan pejabat dan utiliti', 'en', 'Office expenses'); ?>
                         </span> <br />
                         <span class="kecil">(
                             <?= setstring('mal', 'Telefon/fax/telegram', 'en', 'Telephone/fax/telegram fees'); ?>
@@ -934,8 +1004,8 @@ if (($bts * 1) == 0) {
                             ?>        </div></td>
                     <td><div align="center"><?php echo kiraPerubahan($per_ha13, $belanjaAmTahunSebelum->perbelanjaan_pejabat / $hektar); ?></div></td>
                 </tr>
-                <tr valign="top">
-                    <td height="31" align="center">14.</td>
+                <tr valign="top" bgcolor="#AEFFAE">
+                    <td height="31" align="center" >7.</td>
                     <td><span class="style4">
                             <?= setstring('mal', 'Susutnilai', 'en', 'Value depreciation'); ?>
                         </span><br />
@@ -961,8 +1031,8 @@ if (($bts * 1) == 0) {
                         </div></td>
                     <td><div align="center"><?php echo kiraPerubahan($per_ha14, $belanjaAmTahunSebelum->susut_nilai / $hektar); ?></div></td>
                 </tr>
-                <tr valign="top" bgcolor="#AEFFAE">
-                    <td height="31" align="center">15.</td>
+                <tr valign="top" bgcolor="#FFFFFF">
+                    <td height="31" align="center">8.</td>
                     <td><span class="style4">
                             <?= setstring('mal', 'Perbelanjaan lain', 'en', 'Other expenses'); ?>
                         </span><br />
@@ -995,6 +1065,88 @@ if (($bts * 1) == 0) {
                             ?>        </div></td>
                     <td><div align="center"><?php echo kiraPerubahan($per_ha15, $belanjaAmTahunSebelum->perbelanjaan_lain / $hektar); ?></div></td>
                 </tr>
+
+
+
+                <tr valign="top" bgcolor="#AEFFAE">
+                    <td height="31" align="center">9.</td>
+                    <td><span class="style4">
+                            <?= setstring('mal', 'Pembelian mesin/jentera dan juga bin untuk kegunaan di ladang ', 'en', 'Purchase of machinery and bin for farm use'); ?>
+                        </span><br />
+                        <span class="kecil">(
+                            <?= setstring('mal', 'Keraian pelawat', 'en', 'Entertain visitors'); ?>
+                            ,
+                            <?= setstring('mal', 'Penerbitan pertanian', 'en', 'Agricultural publication'); ?>
+                            ,
+                            <?= setstring('mal', 'Yuran/bayaran seminar/persidangan', 'en', 'Seminar/conference fees'); ?>
+                            ,
+                            <?= setstring('mal', 'Pembaikan notis/papan tanda', 'en', 'Repairs to Notices/signboard'); ?>
+                            ,
+                            <?= setstring('mal', 'Derma/sumbangan', 'en', 'Sundry charitable donation'); ?>
+                            ,
+                            <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
+                            )        </span></td>
+                    <td><div align="center">
+                    <?php  /*
+                            <input onKeypress="keypress(event)" name="perbelanjaan_lain" type="text" onchange="kiraanbaru('perbelanjaan_lain')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="perbelanjaan_lain" value="<?= number_format($belanja->perbelanjaan_lain, 2); ?>"/>
+                        </div></td>
+                    <td><div align="center" id="perbelanjaan_lain_per_ha"><?php
+                            $per_ha15 = $belanja->perbelanjaan_lain / $hektar;
+                            $per_ha15 = round($per_ha15,2);
+
+                            echo number_format($per_ha15, 2);
+                            ?></div></td>
+                    <td><div align="center" id="perbelanjaan_lain_per_bts">
+                            <?php
+                            $per_bts15 = $per_ha15 / $bts;
+                            echo number_format($per_bts15, 2);
+                            ?>        </div></td>
+                    <td><div align="center"><?php echo kiraPerubahan($per_ha15, $belanjaAmTahunSebelum->perbelanjaan_lain / $hektar); ?></div></td>
+                    */?>
+                </tr>
+
+
+                <tr valign="top" bgcolor="#FFFFFF">
+                    <td height="31" align="center">10.</td>
+                    <td><span class="style4">
+                            <?= setstring('mal', 'Pembelian aset untuk kegunaan pejabat dan bangunan lain di ladang', 'en', 'Purchase of assets for the use of offices and other buildings on the farm'); ?>
+                        </span><br />
+                        <span class="kecil">(
+                            <?= setstring('mal', 'Keraian pelawat', 'en', 'Entertain visitors'); ?>
+                            ,
+                            <?= setstring('mal', 'Penerbitan pertanian', 'en', 'Agricultural publication'); ?>
+                            ,
+                            <?= setstring('mal', 'Yuran/bayaran seminar/persidangan', 'en', 'Seminar/conference fees'); ?>
+                            ,
+                            <?= setstring('mal', 'Pembaikan notis/papan tanda', 'en', 'Repairs to Notices/signboard'); ?>
+                            ,
+                            <?= setstring('mal', 'Derma/sumbangan', 'en', 'Sundry charitable donation'); ?>
+                            ,
+                            <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
+                            )        </span></td>
+                    <td><div align="center">
+                      <?php  /*
+                            <input onKeypress="keypress(event)" name="perbelanjaan_lain" type="text" onchange="kiraanbaru('perbelanjaan_lain')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="perbelanjaan_lain" value="<?= number_format($belanja->perbelanjaan_lain, 2); ?>"/>
+                        </div></td>
+                    <td><div align="center" id="perbelanjaan_lain_per_ha"><?php
+                            $per_ha15 = $belanja->perbelanjaan_lain / $hektar;
+                            $per_ha15 = round($per_ha15,2);
+
+                            echo number_format($per_ha15, 2);
+                            ?></div></td>
+                    <td><div align="center" id="perbelanjaan_lain_per_bts">
+                            <?php
+                            $per_bts15 = $per_ha15 / $bts;
+                            echo number_format($per_bts15, 2);
+                            ?>        </div></td>
+                    <td><div align="center"><?php echo kiraPerubahan($per_ha15, $belanjaAmTahunSebelum->perbelanjaan_lain / $hektar); ?></div></td>
+                    */?>
+                </tr>
+
+
+
+
+
                 <tr>
                     <td height="17" align="center"> </td>
                     <td> </td>

@@ -32,9 +32,11 @@ body,td,th {
 		$r = mysqli_query($con, $q);
 		$res_total = mysqli_num_rows($r);
 		while($rowd=mysqli_fetch_array($r)){
+			$l=0;
   ?>
 
-  <tr <?php if(++$l%2==0){?>class="alt"<?php } ?>>
+  <tr
+	<?php if(++$l%2==0){?>class="alt"<?php } ?>>
     <td><?php echo $l;?>. </td>
     <td><?php echo $rowd['district_name'];?></td>
     <td><div align="center"><a href="<?php echo $_SESSION['ru'];?>&district=<?php echo $rowd['district_name'];?>">View</a></div></td>

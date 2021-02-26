@@ -152,9 +152,9 @@ if (!isset($tan_ha)) {
 
             }
 
-            
-         
-            
+
+
+
 
             for (j = 1; j <= 12; j++) {
                 jumlahj = document.getElementById("total_b_" + j).value;
@@ -251,7 +251,7 @@ if (!isset($tan_ha)) {
             $("#total_b_kos_per_hektar").val(jumlah_jaga_kos);
             $("#total_b_perha").format({format: "#,###.00", locale: "us"});
             $("#total_b_pertan").html(jumlah_jaga_tan);
-            
+
             $("#total_b_pertan").format({format: "#,###.00", locale: "us"});
 
 
@@ -551,7 +551,14 @@ echo $tahun_sebelum = $tahun - 4;
 
     <tr>
         <td colspan="5"><span class="style56">
-<?= setstring('mal', 'Keluasan kawasan matang pada tahun lepas (terakhir dari e-sub)', 'en', 'Matured area on last year (Final from e-sub)'); ?>
+<?php /* setstring('mal', 'Keluasan kawasan matang pada tahun lepas (terakhir dari e-sub)', 'en', 'Matured area on last year (Final from e-sub)'); */?>
+
+<?= setstring('mal', 'Keluasan kawasan matang pada tahun ', 'en', 'Matured area on year'); ?> <span class="style2">
+<?php
+$tahun = $_SESSION['tahun'];
+echo $tahun_sebelum = $tahun - 1;
+?>
+
             </span></td>
     </tr>
     <tr>
@@ -563,7 +570,7 @@ echo number_format($a, 2);
             </span> &nbsp;<?= setstring('mal', 'Hektar', 'en', 'Hectares'); ?></td>
         <td colspan="4">&nbsp;</td>
     </tr>
-                <?php if (isset($_GET['penjagaan'])) { ?> 
+                <?php if (isset($_GET['penjagaan'])) { ?>
         <form action="" method="post" name="form1" id="form1">
 
             <tr>
@@ -600,7 +607,7 @@ echo number_format($a, 2);
 
 
             for ($i = $sebelumtahun; $i <= $tahun_3; $i++) {
-                ?> 
+                ?>
                                                 <option value="<?= $i; ?>" <?php if ($umur->tahun_tanam[$j] == $i) { ?>selected="selected"<?php } ?>><?= $i; ?></option>
                                             <?php } ?>
 
@@ -619,7 +626,7 @@ echo number_format($a, 2);
                         $tahun_y = $_SESSION['tahun'];
                         $tahun_3 = $tahun_y - 4;
                         for ($i = $sebelumtahun; $i <= $tahun_3; $i++) {
-                            ?> 
+                            ?>
                                         <option value="<?= $i; ?>"><?= $i; ?></option>
     <?php } ?>
                                 </select></td>
@@ -631,10 +638,10 @@ echo number_format($a, 2);
                             <td><div align="right"><strong><?= setstring('mal', 'Jumlah', 'en', 'Total'); ?></strong></div></td>
                             <td><input onKeypress="keypress(event)" name="totalj" type="text" id="totalj" style="background-color:#FFCC66; font-weight:bold" value="<?= $total_umur; ?>" />
     <?php
-    $total_umur = (int) $total_umur; 
+    $total_umur = (int) $total_umur;
     $a_semua = (int) $pengguna->luastuai;
 
-    $pjl = (int) $pengguna->jumlahluas; 
+    $pjl = (int) $pengguna->jumlahluas;
 
     if ($a_semua != $total_umur) {
         echo "<br>";
@@ -655,7 +662,13 @@ echo number_format($a, 2);
         </tr>
         <tr>
             <td colspan="5"><span class="style57">
-<?= setstring('mal', 'Purata keluasan kawasan matang pada tahun lepas', 'en', 'Mean of matured area on last year'); ?>
+<?php /* setstring('mal', 'Purata keluasan kawasan matang pada tahun lepas', 'en', 'Mean of matured area on last year'); */?>
+<?= setstring('mal', 'Purata keluasan kawasan matang pada tahun ', 'en', 'Mean of matured area on year'); ?>
+<span class="style2">
+<?php
+$tahun = $_SESSION['tahun'];
+echo $tahun_sebelum = $tahun - 1;
+?>
                 </span></td>
         </tr>
         <tr>
@@ -669,7 +682,13 @@ echo number_format($b, 2);
         </tr>
         <tr>
             <td height="27" colspan="5"><span class="style58">
-                    <?= setstring('mal', 'Purata hasil pada tahun lepas', 'en', 'Mean of yield on last year'); ?>
+                    <?php /* setstring('mal', 'Purata hasil pada tahun lepas', 'en', 'Mean of yield on last year'); */?>
+                    <?= setstring('mal', 'Purata hasil pada tahun', 'en', 'Mean of yield on year'); ?>
+                    <span class="style2">
+                    <?php
+                    $tahun = $_SESSION['tahun'];
+                    echo $tahun_sebelum = $tahun - 1;
+                    ?>
                 </span></td>
         </tr>
         <tr>
@@ -703,11 +722,11 @@ if (isset($_GET['penjagaan'])) {
                             <td height="52" background="../images/tb_BG.gif"><div align="center"><strong>a.</strong></div></td>
                             <td background="../images/tb_BG.gif"><strong><?= setstring('mal', 'Penjagaan', 'en', 'Upkeep'); ?></strong></td>
                             <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos', 'en', 'Cost'); ?></strong></div>          <div align="center"><strong>(RM)</strong></div></td>
-                            <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></strong></div>          
+                            <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?></strong></div>
                                 <div align="center"><strong>(RM)</strong></div></td>
-                            <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos Per Tan BTS', 'en', 'Cost Per Tonne FFB'); ?></strong> <strong></strong></div>          
+                            <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos Per Tan BTS', 'en', 'Cost Per Tonne FFB'); ?></strong> <strong></strong></div>
                                 <div align="center"><strong>(RM)</strong></div></td>
-                            <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?></strong></div>          
+                            <td background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?></strong></div>
                                 <div align="center"><strong>(%)</strong></div></td>
                         </tr>
 
@@ -843,68 +862,92 @@ if (isset($_GET['penjagaan'])) {
     echo number_format($y1, 2); ?></span></div></td>
                             <td bgcolor="#FFFFCC"><div align="center"><span id="s8_beza"><?php echo kiraPerubahan($x1, $jagaTahunSebelum->b_3c / $b); ?></span></div></td>
                         </tr>
+
+                        <?php /*
                         <tr>
                             <td height="39" align="center">&nbsp;</td>
                             <td bgcolor="#FFFFCC">iv. <?= setstring('mal', 'Analisis tanah dan daun', 'en', 'Soil and foliar analysis'); ?></td>
                             <td bgcolor="#FFFFCC"><div align="center">
-                                    <input onKeypress="keypress(event)" name="b_3d" type="text" class="field_active" id="b_3d" onchange="kiraan_baru(this, 'anak');;"  value="<?= number_format($jaga->b_3d, 2); ?>" size="15" />
-                                </div></td>
+                            */ ?>
+                                    <input onKeypress="keypress(event)" name="b_3d" type="hidden" class="field_active" id="b_3d" onchange="kiraan_baru(this, 'anak');;"  value="<?= number_format($jaga->b_3d, 2); ?>" size="15" />
+                    <?php /*              </div></td>
                             <td bgcolor="#FFFFCC"><div align="center"><span id="s9"><?php $x1 = ($jaga->b_3d / $b);
     echo number_format($x1, 2); ?></span></div></td>
                             <td bgcolor="#FFFFCC"><div align="center"><span id="s9a_tan"><?php $y1 = ($x1 / $tan_ha);
     echo number_format($y1, 2); ?></span></div></td>
                             <td bgcolor="#FFFFCC"><div align="center"><span id="s9_beza"><?php echo kiraPerubahan($x1, $jagaTahunSebelum->b_3d / $b); ?></span></div></td>
                         </tr>
+
+                        */ ?>
+
+
+<?php /*
                         <tr bgcolor="#AEFFAE">
                             <td height="39" align="center">4.</td>
                             <td><?= setstring('mal', 'Pemuliharan tanah dan air', 'en', 'Soil and water conservation'); ?>&nbsp;</td>
                             <td bgcolor="#AEFFAE"><div align="center">
-                                    <input onKeypress="keypress(event)" name="total_b_4" type="text" class="field_active" id="total_b_4" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_4, 2); ?>" size="20" />
-                                </div></td>
+                            */ ?>
+                                    <input onKeypress="keypress(event)" name="total_b_4" type="hidden" class="field_active" id="total_b_4" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_4, 2); ?>" size="20" />
+    <?php /*                            </div></td>
                             <td bgcolor="#AEFFAE"><div align="center"><span id="jaga4"><?php $x1 = ($jaga->total_b_4 / $b);
     echo number_format($x1, 2); ?></span></div></td>
                             <td bgcolor="#AEFFAE"><div align="center"><span id="s4_tan"><?php $y1 = ($x1 / $tan_ha);
     echo number_format($y1, 2); ?></span></div></td>
                             <td bgcolor="#AEFFAE"><div align="center"><span id="s10_beza"><?php echo kiraPerubahan($x1, $jagaTahunSebelum->total_b_4 / $b); ?></span></div></td>
                         </tr>
+                            */ ?>
+
+  <?php /*
                         <tr>
                             <td height="38" align="center">5.</td>
                             <td><?= setstring('mal', 'Penjagaan jalan, jambatan, lorong dsb', 'en', 'Upkeep of roads, bridges, paths and etc.'); ?></td>
                             <td bgcolor="#FFFFFF"><div align="center">
-                                    <input onKeypress="keypress(event)" name="total_b_5" type="text" class="field_active" id="total_b_5" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_5, 2); ?>" size="20" />
-                                </div></td>
+                              */ ?>
+                                    <input onKeypress="keypress(event)" name="total_b_5" type="hidden" class="field_active" id="total_b_5" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_5, 2); ?>" size="20" />
+            <?php /*                          </div></td>
                             <td bgcolor="#FFFFFF"><div align="center"><span id="jaga5"><?php $x1 = ($jaga->total_b_5 / $b);
     echo number_format($x1, 2); ?></span></div></td>
                             <td bgcolor="#FFFFFF"><div align="center"><span id="s5_tan"><?php $y1 = ($x1 / $tan_ha);
     echo number_format($y1, 2); ?></span></div></td>
                             <td bgcolor="#FFFFFF"><div align="center"><span id="s11_beza"><?php echo kiraPerubahan($x1, $jagaTahunSebelum->total_b_5 / $b); ?></span></div></td>
                         </tr>
+                        */ ?>
+
+  <?php /*
                         <tr bgcolor="#AEFFAE">
                             <td height="36" align="center">6.</td>
                             <td><?= setstring('mal', 'Penjagaan parit', 'en', 'Upkeep of drains'); ?> </td>
                             <td bgcolor="#AEFFAE"><div align="center">
-                                    <input onKeypress="keypress(event)" name="total_b_6" type="text" class="field_active" id="total_b_6" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_6, 2); ?>" size="20" />
-                                </div></td>
+                              */ ?>
+                                    <input onKeypress="keypress(event)" name="total_b_6" type="hidden" class="field_active" id="total_b_6" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_6, 2); ?>" size="20" />
+        <?php /*                             </div></td>
                             <td bgcolor="#AEFFAE"><div align="center"><span id="jaga6"><?php $x1 = ($jaga->total_b_6 / $b);
     echo number_format($x1, 2); ?></span></div></td>
                             <td bgcolor="#AEFFAE"><div align="center"><span id="s6_tan"><?php $y1 = ($x1 / $tan_ha);
     echo number_format($y1, 2); ?></span></div></td>
                             <td bgcolor="#AEFFAE"><div align="center"><span id="s12_beza"><?php echo kiraPerubahan($x1, $jagaTahunSebelum->total_b_6 / $b); ?></span></div></td>
                         </tr>
+
+                        */ ?>
+
+<?php /*
                         <tr>
                             <td height="36" align="center">7.</td>
                             <td><?= setstring('mal', 'Penjagaan ban dan pintu air', 'en', 'Upkeeps of bunds, boundaries and Watergates'); ?></td>
                             <td bgcolor="#FFFFFF"><div align="center">
-                                    <input onKeypress="keypress(event)" name="total_b_7" type="text" class="field_active" id="total_b_7" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_7, 2); ?>" size="20" />
-                                </div></td>
+                            */ ?>
+                                    <input onKeypress="keypress(event)" name="total_b_7" type="hidden" class="field_active" id="total_b_7" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_7, 2); ?>" size="20" />
+  <?php /*                              </div></td>
                             <td bgcolor="#FFFFFF"><div align="center"><span id="jaga7"><?php $x1 = ($jaga->total_b_7 / $b);
     echo number_format($x1, 2); ?></span></div></td>
                             <td bgcolor="#FFFFFF"><div align="center"><span id="s7_tan"><?php $y1 = ($x1 / $tan_ha);
     echo number_format($y1, 2); ?></span></div></td>
                             <td bgcolor="#FFFFFF"><div align="center"><span id="s13_beza"><?php echo kiraPerubahan($x1, $jagaTahunSebelum->total_b_7 / $b); ?></span></div></td>
                         </tr>
+                          */ ?>
+
                         <tr bgcolor="#AEFFAE">
-                            <td height="37" align="center">8.</td>
+                            <td height="37" align="center">4.</td>
                             <td><?= setstring('mal', 'Kawalan serangga dan penyakit', 'en', 'Pests and diseases control'); ?> </td>
                             <td bgcolor="#AEFFAE"><div align="center">
                                     <input onKeypress="keypress(event)" name="total_b_8" type="text" class="field_active" id="total_b_8" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_8, 2); ?>" size="20" />
@@ -916,7 +959,7 @@ if (isset($_GET['penjagaan'])) {
                             <td bgcolor="#AEFFAE"><div align="center"><span id="s14_beza"><?php echo kiraPerubahan($x1, $jagaTahunSebelum->total_b_8 / $b); ?></span></div></td>
                         </tr>
                         <tr>
-                            <td height="35" align="center">9.</td>
+                            <td height="35" align="center">5.</td>
                             <td><?= setstring('mal', 'Memangkas dan membersihkan pokok', 'en', 'Pruning and palm sanitation') ?> </td>
                             <td bgcolor="#FFFFFF"><div align="center">
                                     <input onKeypress="keypress(event)" name="total_b_9" type="text" class="field_active" id="total_b_9" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_9, 2); ?>" size="20" />
@@ -928,7 +971,7 @@ if (isset($_GET['penjagaan'])) {
                             <td bgcolor="#FFFFFF"><div align="center"><span id="s15_beza"><?php echo kiraPerubahan($x1, $jagaTahunSebelum->total_b_9 / $b); ?></span></div></td>
                         </tr>
                         <tr bgcolor="#AEFFAE">
-                            <td height="36" align="center">10.</td>
+                            <td height="36" align="center">6.</td>
                             <td><?= setstring('mal', 'Banci / sulaman', 'en', 'Census / supplies') ?> </td>
                             <td bgcolor="#AEFFAE"><div align="center">
                                     <input onKeypress="keypress(event)" name="total_b_10" type="text" class="field_active" id="total_b_10" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_10, 2); ?>" size="20" />
@@ -939,9 +982,10 @@ if (isset($_GET['penjagaan'])) {
     echo number_format($y1, 2); ?></span></div></td>
                             <td bgcolor="#AEFFAE"><div align="center"><span id="s16_beza"><?php echo kiraPerubahan($x1, $jagaTahunSebelum->total_b_10 / $b); ?></span></div></td>
                         </tr>
+
                         <tr>
-                            <td height="34" align="center">11.</td>
-                            <td><?= setstring('mal', 'Upah mandur dan kos penyeliaan estet', 'en', 'Mandore wages/ direct field supervision costs') ?> </td>
+                            <td height="34" align="center">7.</td>
+                            <td><?= setstring('mal', 'Upah Mandur Am', 'en', 'Mandore Wages') ?> </td>
                             <td bgcolor="#FFFFFF"><div align="center">
                                     <input onKeypress="keypress(event)" name="total_b_11" type="text" class="field_active" id="total_b_11" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_11, 2); ?>" size="20" />
                                 </div></td>
@@ -952,7 +996,7 @@ if (isset($_GET['penjagaan'])) {
                             <td bgcolor="#FFFFFF"><div align="center"><span id="s17_beza"><?php echo kiraPerubahan($x1, $jagaTahunSebelum->total_b_11 / $b); ?></span></div></td>
                         </tr>
                         <tr bgcolor="#AEFFAE">
-                            <td height="36" align="center">12.</td>
+                            <td height="36" align="center">8.</td>
                             <td><?= setstring('mal', 'Perbelanjaan pelbagai', 'en', 'Other expenditure') ?> &nbsp;</td>
                             <td bgcolor="#AEFFAE"><div align="center">
                                     <input onKeypress="keypress(event)" name="total_b_12" type="text" class="field_active" id="total_b_12" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_12, 2); ?>" size="20" />
@@ -963,6 +1007,39 @@ if (isset($_GET['penjagaan'])) {
                                 echo number_format($y1, 2); ?></span></div></td>
                             <td bgcolor="#AEFFAE"><div align="center"><span id="s18_beza"><?php echo kiraPerubahan($x1, $jagaTahunSebelum->total_b_12 / $b); ?></span></div></td>
                         </tr>
+
+
+                        <tr>
+                            <td height="34" align="center">9.</td>
+                            <td><?= setstring('mal', 'Penjagaan jalan, parit, ban, pintu air dan sebagainya', 'en', 'Maintenance of roads, ditches, ban, sluices and so on') ?> </td>
+                            <td bgcolor="#FFFFFF"><div align="center">
+                            <?php /*
+                                    <input onKeypress="keypress(event)" name="total_b_11" type="text" class="field_active" id="total_b_11" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_11, 2); ?>" size="20" />
+                                </div></td>
+                            <td bgcolor="#FFFFFF"><div align="center"><span id="jaga11"><?php $x1 = ($jaga->total_b_11 / $b);
+    echo number_format($x1, 2); ?></span></div></td>
+                            <td bgcolor="#FFFFFF"><div align="center"><span id="s11_tan"><?php $y1 = ($x1 / $tan_ha);
+    echo number_format($y1, 2); ?></span></div></td>
+                            <td bgcolor="#FFFFFF"><div align="center"><span id="s17_beza"><?php echo kiraPerubahan($x1, $jagaTahunSebelum->total_b_11 / $b); ?></span></div></td>
+                            */?>
+                        </tr>
+                        <tr bgcolor="#AEFFAE">
+                            <td height="36" align="center">10.</td>
+                            <td><?= setstring('mal', 'Analisis tanah dan daun', 'en', 'Soil and foliar analysis') ?> &nbsp;</td>
+                            <td bgcolor="#AEFFAE"><div align="center">
+                            <?php /*
+                                    <input onKeypress="keypress(event)" name="total_b_12" type="text" class="field_active" id="total_b_12" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_12, 2); ?>" size="20" />
+                                </div></td>
+                            <td bgcolor="#AEFFAE"><div align="center"><span id="jaga12"><?php $x1 = ($jaga->total_b_12 / $b);
+    echo number_format($x1, 2); ?></span></div></td>
+                            <td bgcolor="#AEFFAE"><div align="center"><span id="s12_tan"><?php $y1 = ($x1 / $tan_ha);
+                                echo number_format($y1, 2); ?></span></div></td>
+                            <td bgcolor="#AEFFAE"><div align="center"><span id="s18_beza"><?php echo kiraPerubahan($x1, $jagaTahunSebelum->total_b_12 / $b); ?></span></div></td>
+                            */?>
+                        </tr>
+
+
+
                         <tr>
                             <td height="15" align="center">&nbsp;</td>
                             <td>&nbsp;</td>
@@ -979,7 +1056,7 @@ if (isset($_GET['penjagaan'])) {
                                         <input onKeypress="keypress(event)" name="total_a" type="text" id="total_a"  style="font-weight:bold; text-align:center" value="<?= number_format($jaga->total_b, 2); ?>" size="20" readonly="true" />
                                     </strong></div></td>
                             <td bgcolor="#FFCC66"><div align="center"><strong>
-                                        <span id="total_a_perha"><?php 
+                                        <span id="total_a_perha"><?php
                                 $x1a = ($jaga->total_b / $b);
                                 $x1a = round($x1a, 2, PHP_ROUND_HALF_UP);
                                 echo number_format($x1a, 2); ?></span>
@@ -1051,22 +1128,48 @@ if (isset($_GET['penuaian'])) {
                         <td height="52" align="center" background="../images/tb_BG.gif"><div align="left"><strong><?= setstring('mal', 'Penuaian', 'en', 'Harvesting'); ?>
                                 </strong></div></td>
                         <td background="../images/tb_BG.gif" class="tableCss"><div align="center"><strong><?= setstring('mal', 'Kos', 'en', 'Cost'); ?>
-                                </strong></div>            
+                                </strong></div>
                                 <div align="center"><strong>&nbsp;(RM)</strong></div></td>
                         <td background="../images/tb_BG.gif" class="tableCss"><div align="center"><strong><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?>
-                                </strong></div>            
+                                </strong></div>
                             <div align="center"><strong>(RM)</strong></div></td>
                         <td background="../images/tb_BG.gif" class="tableCss"><div align="center"><strong><?= setstring('mal', 'Kos Per Tan BTS', 'en', 'Cost Per Tonne FFB'); ?>
-                                </strong></div>            
+                                </strong></div>
                             <div align="center"><strong>(RM)</strong></div></td>
                         <td background="../images/tb_BG.gif" class="tableCss"><div align="center"><strong><?= setstring('mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?>
-                                </strong></div>            
+                                </strong></div>
                             <div align="center"><strong>(%)</strong></div></td>
                     </tr>
 
                     <tr>
-                        <td width="16" height="44" align="center" bgcolor="#AEFFAE">1.</td>
-                        <td width="284" bgcolor="#AEFFAE"><?= setstring('mal', 'Peralatan menuai', 'en', 'Harvesting tools'); ?></td>
+                        <td height="43" align="center" bgcolor="#AEFFAE">1.</td>
+                        <td bgcolor="#AEFFAE"><?= setstring('mal', 'Upah Menuai, memungut BTS dan buah relai', 'en', 'Harvesting and collection of FFB and loose fruit'); ?></td>
+                        <td bgcolor="#AEFFAE"> <div align="center">
+                                <input onKeypress="keypress(event)" name="a_2" type="text" class="field_active" id="a_2"  onchange="kiraan_baru_tuai(this)" onclick="field_click(this)" value="<?= number_format($tuai->a_2, 2); ?>" size="20" />
+                            </div></td>
+                        <td bgcolor="#AEFFAE"><div align="center"><span id="t2"><?php $x1 = ($tuai->a_2 / $b);
+    echo number_format($x1, 2); ?></span></div></td>
+                        <td bgcolor="#AEFFAE"><div align="center"><span id="t2_tan"><?php $y1 = ($x1 / $tan_ha);
+    echo number_format($y1, 2); ?></span></div></td>
+                        <td bgcolor="#AEFFAE"><div align="center"><strong><span id="t2_beza"><?php echo kiraPerubahan($x1, $tuaiTahunSebelum->a_2 / $b); ?></span> </strong></div></td>
+                    </tr>
+
+                    <tr>
+                        <td height="38" align="center" bgcolor="#FFFFFF">2.</td>
+                        <td bgcolor="#FFFFFF"><?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance') ?> </td>
+                        <td bgcolor="#FFFFFF"><div align="center">
+                                <input onKeypress="keypress(event)" name="a_4" type="text" class="field_active" id="a_4" onchange="kiraan_baru_tuai(this)" onclick="field_click(this)" value="<?= number_format($tuai->a_4, 2); ?>" size="20" />
+                            </div></td>
+                        <td bgcolor="#FFFFFF"><div align="center"><span id="t4"><?php $x1 = ($tuai->a_4 / $b);
+                            echo number_format($x1, 2); ?></span></div></td>
+                        <td bgcolor="#FFFFFF"><div align="center"><span id="t4_tan"><?php $y1 = ($x1 / $tan_ha);
+                            echo number_format($y1, 2); ?></span></div></td>
+                        <td bgcolor="#FFFFFF"><div align="center"><strong><span id="t4_beza"><?php echo kiraPerubahan($x1, $tuaiTahunSebelum->a_4 / $b); ?></span> </strong></div></td>
+                    </tr>
+
+                    <tr>
+                        <td width="16" height="44" align="center" bgcolor="#AEFFAE">3.</td>
+                        <td width="284" bgcolor="#AEFFAE"><?= setstring('mal', 'Pembelian peralatan menuai', 'en', 'Purchase of harvesting equipment'); ?></td>
                         <td width="141" bgcolor="#AEFFAE"><div align="center">
                                 <input onKeypress="keypress(event)" name="a_1" type="text" class="field_active" id="a_1" onchange="kiraan_baru_tuai(this)" onclick="field_click(this)" value="<?= number_format($tuai->a_1, 2); ?>" size="20" />
                             </div></td>
@@ -1076,42 +1179,30 @@ if (isset($_GET['penuaian'])) {
     echo number_format($y1, 2); ?></span></div></td>
                         <td width="186" bgcolor="#AEFFAE"><div align="center"><strong><span id="t1_beza"><?php echo kiraPerubahan($x1, $tuaiTahunSebelum->a_1 / $b); ?></span> </strong></div></td>
                     </tr>
+
                     <tr>
-                        <td height="43" align="center">2.</td>
-                        <td><?= setstring('mal', 'Menuai, memungut BTS dan buah relai', 'en', 'Harvesting and collection of FFB and loose fruit'); ?></td>
-                        <td><div align="center">
-                                <input onKeypress="keypress(event)" name="a_2" type="text" class="field_active" id="a_2"  onchange="kiraan_baru_tuai(this)" onclick="field_click(this)" value="<?= number_format($tuai->a_2, 2); ?>" size="20" />
-                            </div></td>
-                        <td><div align="center"><span id="t2"><?php $x1 = ($tuai->a_2 / $b);
-    echo number_format($x1, 2); ?></span></div></td>
-                        <td><div align="center"><span id="t2_tan"><?php $y1 = ($x1 / $tan_ha);
-    echo number_format($y1, 2); ?></span></div></td>
-                        <td><div align="center"><strong><span id="t2_beza"><?php echo kiraPerubahan($x1, $tuaiTahunSebelum->a_2 / $b); ?></span> </strong></div></td>
-                    </tr>
-                    <tr>
-                        <td height="43" align="center" bgcolor="#AEFFAE">3.</td>
-                        <td bgcolor="#AEFFAE"><?= setstring('mal', 'Upah mandur dan kos penyeliaan estet', 'en', 'Mandore wages/ direct field supervision costs'); ?></td>
-                        <td bgcolor="#AEFFAE"><div align="center">
+                        <td height="43" align="center" bgcolor="#FFFFFF">4.</td>
+                        <td bgcolor="#FFFFFF"><?= setstring('mal', 'Upah Mandur Penuai', 'en', 'Mandore wages'); ?></td>
+                        <td bgcolor="#FFFFFF"><div align="center">
                                 <input onKeypress="keypress(event)" name="a_3" type="text" class="field_active" id="a_3"  onchange="kiraan_baru_tuai(this)" onclick="field_click(this)" value="<?= number_format($tuai->a_3, 2); ?>" size="20"/>
                             </div></td>
-                        <td bgcolor="#AEFFAE"><div align="center"><span id="t3"><?php $x1 = ($tuai->a_3 / $b);
+                        <td bgcolor="#FFFFFF"><div align="center"><span id="t3"><?php $x1 = ($tuai->a_3 / $b);
                                     echo number_format($x1, 2); ?></span></div></td>
-                        <td bgcolor="#AEFFAE"><div align="center"><span id="t3_tan"><?php $y1 = ($x1 / $tan_ha);
+                        <td bgcolor="#FFFFFF"><div align="center"><span id="t3_tan"><?php $y1 = ($x1 / $tan_ha);
                             echo number_format($y1, 2); ?></span></div></td>
-                        <td bgcolor="#AEFFAE"><div align="center"><strong><span id="t3_beza"><?php echo kiraPerubahan($x1, $tuaiTahunSebelum->a_3 / $b); ?></span> </strong></div></td>
+                        <td bgcolor="#FFFFFF"><div align="center"><strong><span id="t3_beza"><?php echo kiraPerubahan($x1, $tuaiTahunSebelum->a_3 / $b); ?></span> </strong></div></td>
                     </tr>
-                    <tr>
-                        <td height="38" align="center">4.</td>
-                        <td><?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance') ?> </td>
-                        <td><div align="center">
-                                <input onKeypress="keypress(event)" name="a_4" type="text" class="field_active" id="a_4" onchange="kiraan_baru_tuai(this)" onclick="field_click(this)" value="<?= number_format($tuai->a_4, 2); ?>" size="20" />
-                            </div></td>
-                        <td><div align="center"><span id="t4"><?php $x1 = ($tuai->a_4 / $b);
-                            echo number_format($x1, 2); ?></span></div></td>
-                        <td><div align="center"><span id="t4_tan"><?php $y1 = ($x1 / $tan_ha);
-                            echo number_format($y1, 2); ?></span></div></td>
-                        <td><div align="center"><strong><span id="t4_beza"><?php echo kiraPerubahan($x1, $tuaiTahunSebelum->a_4 / $b); ?></span> </strong></div></td>
-                    </tr>
+
+
+
+
+
+
+
+
+
+
+
                     <tr>
                         <td height="15" align="center">&nbsp;</td>
                         <td>&nbsp;</td>
@@ -1124,7 +1215,7 @@ if (isset($_GET['penuaian'])) {
                         <td height="38" align="center">&nbsp;</td>
                         <td><div align="right"><strong><?= setstring('mal', 'Jumlah kos penuaian', 'en', 'Total of harvesting cost'); ?>
                                     (b) :</strong></div></td>
-                                             <td bgcolor="#FFCC66"><div align="center"><strong> 
+                                             <td bgcolor="#FFCC66"><div align="center"><strong>
 
                                     <input onKeypress="keypress(event)" name="total_b" type="text" id="total_b"  style="font-weight:bold; text-align:center" value="<?= number_format($tuai->total_b, 2); ?>" size="20" readonly="true" />
                                 </strong></div></td>
@@ -1181,88 +1272,110 @@ if (isset($_GET['pengangkutan'])) {
                         <td width="164" valign="middle" background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos', 'en', 'Cost'); ?>
                                 </strong></div>            <div align="center"><strong>(RM)</strong></div></td>
                         <td width="142" valign="middle" background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos Per Hektar', 'en', 'Cost Per Hectare'); ?>
-                                </strong></div>            
+                                </strong></div>
                             <div align="center"><strong>(RM)</strong></div></td>
                         <td width="124" valign="middle" background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Kos Per Tan BTS', 'en', 'Cost Per Tonne FFB'); ?>
                                 </strong></div>            <div align="center"><strong> (RM)</strong></div></td>
                         <td width="154" valign="middle" background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?>
-                                </strong></div>            
+                                </strong></div>
                             <div align="center"><strong> (%)</strong></div></td>
                     </tr>
 
+<?php /*
                     <tr>
                         <td height="37" align="center" valign="middle" bgcolor="#AEFFAE">1.</td>
                         <td colspan="2" valign="middle" bgcolor="#AEFFAE"><?= setstring('mal', 'Dalaman', 'en', 'Internal'); ?></td>
                         <td valign="middle" bgcolor="#AEFFAE"><div align="center"><strong>
-                                    <input onKeypress="keypress(event)" name="total_b_1" type="text" id="total_b_1"  style="font-weight:bold; text-align:center" value="<?php
+                        */ ?>
+                                    <input onKeypress="keypress(event)" name="total_b_1" type="hidden" id="total_b_1"  style="font-weight:bold; text-align:center" value="<?php
     if ($angkut->total_a == 0) {
         $angkut->total_a = $angkut->a_1 + $angkut->a_2 + $angkut->a_3;
     }
     echo number_format($angkut->total_a, 2);
     ?>" size="20" class="field_active" onchange="kiraan_baru_angkut(this, 'a')" />
-                                </strong></div></td>
+<?php /*                                </strong></div></td>
                         <td valign="middle" bgcolor="#AEFFAE"><div align="center"><span id="jaga1"><?php $x1 = ($angkut->total_a / $b);
     echo number_format($x1, 2); ?></span></div></td>
                         <td valign="middle" bgcolor="#AEFFAE"><div align="center"><span id="s1_tan"><?php $y1 = ($x1 / $tan_ha);
                                 echo number_format($y1, 2); ?></span></div></td>
                         <td valign="middle" bgcolor="#AEFFAE"><div align="center"><span id="total_racun_beza"><?php echo kiraPerubahan($x1, $angkutTahunSebelum->total_a / $b); ?></span></div></td>
                     </tr>
-                    <tr>
-                        <td width="15" height="37" align="center" valign="middle">&nbsp;</td>
-                        <td colspan="6" valign="middle" bgcolor="#CCCCFF">i. <?= setstring('mal', 'Pemunggahan BTS ke', 'en', 'Loading of FFB to'); ?>
+                    */ ?>
+
+
+
+<?php /*
+                        <td colspan="6" valign="middle" bgcolor="#CCCCFF"><?= setstring('mal', 'Pemunggahan BTS ke', 'en', 'Loading of FFB to'); ?>
                             :</td>
                     </tr>
+                    */ ?>
+
+
+  <?php /*
                     <tr>
                         <td height="39" align="center" valign="top">&nbsp;</td>
                         <td width="34" valign="middle" bgcolor="#CCCCFF">&nbsp;</td>
                         <td width="215" valign="middle" bgcolor="#CCCCFF">a) <?= setstring('mal', 'Platform', 'en', 'Platform'); ?></td>
                         <td valign="middle" bgcolor="#CCCCFF"><div align="center">
-                                <input onKeypress="keypress(event)" name="a_1" type="text" class="field_active" id="a_1" onchange="kiraan_baru_angkut(this, 'anak');;" value="<?= number_format($angkut->a_1, 2); ?>" size="15" />
-                            </div></td>
+                          */ ?>
+                                <input onKeypress="keypress(event)" name="a_1" type="hidden" class="field_active" id="a_1" onchange="kiraan_baru_angkut(this, 'anak');;" value="<?= number_format($angkut->a_1, 2); ?>" size="15" />
+    <?php /*                          </div></td>
+
                         <td valign="middle" bgcolor="#CCCCFF"><div align="center"><span id="a1"><?php $x1 = ($angkut->a_1 / $b);
                                        echo number_format($x1, 2); ?></span></div></td>
                         <td valign="middle" bgcolor="#CCCCFF"><div align="center"><span id="a1_tan"><?php $y1 = ($x1 / $tan_ha);
                                        echo number_format($y1, 2); ?></span></div></td>
                         <td valign="middle" bgcolor="#CCCCFF"><div align="center"><strong><span id="a1_beza"><?php echo kiraPerubahan($x1, $angkutTahunSebelum->a_1 / $b); ?></span> </strong></div></td>
                     </tr>
+                    */ ?>
+
+<?php /*
                     <tr>
                         <td height="39" align="center" valign="top">&nbsp;</td>
                         <td valign="middle" bgcolor="#CCCCFF">&nbsp;</td>
                         <td valign="middle" bgcolor="#CCCCFF">b) <?= setstring('mal', 'Ramp', 'en', 'Ramp'); ?></td>
                         <td valign="middle" bgcolor="#CCCCFF"><div align="center">
-                                <input onKeypress="keypress(event)" name="a_2" type="text" class="field_active" id="a_2" onchange="kiraan_baru_angkut(this, 'anak');;"  value="<?= number_format($angkut->a_2, 2); ?>" size="15"/>
-                            </div></td>
+                          */ ?>
+                                <input onKeypress="keypress(event)" name="a_2" type="hidden" class="field_active" id="a_2" onchange="kiraan_baru_angkut(this, 'anak');;"  value="<?= number_format($angkut->a_2, 2); ?>" size="15"/>
+  <?php /*                          </div></td>
+
                         <td valign="middle" bgcolor="#CCCCFF"><div align="center"><span id="a2"><?php $x1 = ($angkut->a_2 / $b);
                                        echo number_format($x1, 2); ?></span></div></td>
                         <td valign="middle" bgcolor="#CCCCFF"><div align="center"><span id="a2_tan"><?php $y1 = ($x1 / $tan_ha);
                                        echo number_format($y1, 2); ?></span></div></td>
                         <td valign="middle" bgcolor="#CCCCFF"><div align="center"><strong><span id="a2_beza"><?php echo kiraPerubahan($x1, $angkutTahunSebelum->a_2 / $b); ?></span> </strong></div></td>
                     </tr>
-                    <tr>
+                    */ ?>
+
+<?php /*                    <tr>
                         <td height="39" align="center" valign="top">&nbsp;</td>
                         <td colspan="2" valign="middle" bgcolor="#CCCCFF">ii. <?= setstring('mal', 'Penjagaan ramp', 'en', 'Ramp upkeep'); ?></td>
                         <td valign="middle" bgcolor="#CCCCFF"><div align="center">
-                                <input onKeypress="keypress(event)" name="a_3" type="text" class="field_active" id="a_3" onchange="kiraan_baru_angkut(this, 'anak');
+                          */ ?>
+                                <input onKeypress="keypress(event)" name="a_3" type="hidden" class="field_active" id="a_3" onchange="kiraan_baru_angkut(this, 'anak');
                                         ;"  value="<?= number_format($angkut->a_3, 2); ?>" size="15" />
-                            </div></td>
-                        <td valign="middle" bgcolor="#CCCCFF"><div align="center"><span id="a3"><?php $x1 = ($angkut->a_3 / $b);
+<?php /*                          <td valign="middle" bgcolor="#CCCCFF"><div align="center"><span id="a3"><?php $x1 = ($angkut->a_3 / $b);
                                        echo number_format($x1, 2); ?></span></div></td>
                         <td valign="middle" bgcolor="#CCCCFF"><div align="center"><span id="a3_tan"><?php $y1 = ($x1 / $tan_ha);
                                        echo number_format($y1, 2); ?></span></div></td>
                         <td valign="middle" bgcolor="#CCCCFF"><div align="center"><strong><span id="a3_beza"><?php echo kiraPerubahan($x1, $angkutTahunSebelum->a_3 / $b); ?></span> </strong></div></td>
                     </tr>
+                      */ ?>
+
+<?php /*
                     <tr>
                         <td height="39" align="center" valign="middle">2.</td>
                         <td colspan="2" valign="middle"><?= setstring('mal', 'Luaran', 'en', 'External'); ?></td>
                         <td valign="middle"><div align="center"><strong>
-                                    <input onKeypress="keypress(event)" name="total_b_2" type="text" id="total_b_2"  style="font-weight:bold; text-align:center" value="<?php
+                        */ ?>
+                                    <input onKeypress="keypress(event)" name="total_b_2" type="hidden" id="total_b_2"  style="font-weight:bold; text-align:center" value="<?php
                                        if ($angkut->total_b_1 == 0) {
                                            $angkut->total_b_1 = $angkut->b_1a + $angkut->b_1b + $angkut->b_1c;
                                        }
 
                                        echo number_format($angkut->total_b_1, 2);
                                        ?>" size="20" class="field_active" onchange="kiraan_baru_angkut(this, 'b')" />
-                                </strong></div></td>
+  <?php /*                                   </strong></div></td>
                         <td valign="middle"><div align="center" id="jaga2">
                             <?php $x1 = ($angkut->total_b_1 / $b);
                                        echo number_format($x1, 2); ?></div></td>
@@ -1270,58 +1383,68 @@ if (isset($_GET['pengangkutan'])) {
                                        echo number_format($y1, 2); ?></div></td>
                         <td valign="middle"><div align="center" id="total_baja_beza"><?php echo kiraPerubahan($x1, $angkutTahunSebelum->total_b_1 / $b); ?></div></td>
                     </tr>
+                    */ ?>
 
 
                     <tr>
-                        <td height="42" align="center" valign="top">&nbsp;</td>
-                        <td colspan="2" valign="middle" bgcolor="#FFFFCC">i. <?= setstring('mal', 'Kos pengangkutan BTS dari platform atau ramp ke kilang', 'en', 'FFB transportation cost from platform or ramp to the mill'); ?></td>
-                        <td valign="middle" bgcolor="#FFFFCC"><div align="center">
+                        <td height="42" align="center" valign="middle" bgcolor="99FF99">1.</td>
+                        <td colspan="2" valign="middle" bgcolor="#99FF99"><?= setstring('mal', 'Pengangkutan BTS dari platform/pusat pengumpulan/ramp ke kilang', 'en', 'FFB transportation cost from platform or ramp to the mill'); ?></td>
+                        <td valign="middle" bgcolor="#99FF99"><div align="center">
                                 <input onKeypress="keypress(event)" name="b_1a" type="text" class="field_active" id="b_1a" onchange="kiraan_baru_angkut(this, 'anak');" value="<?= number_format($angkut->b_1a, 2); ?>" size="15" />
                             </div></td>
-                        <td valign="middle" bgcolor="#FFFFCC"><div align="center"><span id="a4">
+                        <td valign="middle" bgcolor="#99FF99"><div align="center"><span id="a4">
     <?php $x1 = ($angkut->b_1a / $b);
     echo number_format($x1, 2); ?>
                                 </span></div></td>
-                        <td valign="middle" bgcolor="#FFFFCC"><div align="center"><span id="a4_tan"><?php $y1 = ($x1 / $tan_ha);
+                        <td valign="middle" bgcolor="#99FF99"><div align="center"><span id="a4_tan"><?php $y1 = ($x1 / $tan_ha);
     echo number_format($y1, 2); ?></span></div></td>
-                        <td valign="middle" bgcolor="#FFFFCC"><div align="center"><strong><span id="a4_beza"><?php echo kiraPerubahan($x1, $angkutTahunSebelum->b_1a / $b); ?></span> </strong></div></td>
+                        <td valign="middle" bgcolor="#99FF99"><div align="center"><strong><span id="a4_beza"><?php echo kiraPerubahan($x1, $angkutTahunSebelum->b_1a / $b); ?></span> </strong></div></td>
                     </tr>
                     <tr>
-                        <td height="43" align="center" valign="middle">&nbsp;</td>
-                        <td colspan="2" valign="middle" bgcolor="#FFFFCC">ii. <?= setstring('mal', 'Penjagaan lori, treler, traktor dsb', 'en', 'Upkeep of tractor & trailer, lorry, etc'); ?></td>
-                        <td valign="middle" bgcolor="#FFFFCC"><div align="center">
+                        <td height="43" align="center" valign="middle">2</td>
+                        <td colspan="2" valign="middle" bgcolor="#FFFFFF"><?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Upkeep of tractor & trailer, lorry, etc'); ?></td>
+                        <td valign="middle" bgcolor="#FFFFFF"><div align="center">
                                 <input onKeypress="keypress(event)" name="b_1b" type="text" class="field_active" id="b_1b" onchange="kiraan_baru_angkut(this, 'anak');"  value="<?= number_format($angkut->b_1b, 2); ?>" size="15"/>
                             </div></td>
-                        <td valign="middle" bgcolor="#FFFFCC"><div align="center"><span id="a5"><?php $x1 = ($angkut->b_1b / $b);
+                        <td valign="middle" bgcolor="#FFFFFF"><div align="center"><span id="a5"><?php $x1 = ($angkut->b_1b / $b);
     echo number_format($x1, 2); ?></span></div></td>
-                        <td valign="middle" bgcolor="#FFFFCC"><div align="center"><span id="a5_tan"><?php $y1 = ($x1 / $tan_ha);
+                        <td valign="middle" bgcolor="#FFFFFF"><div align="center"><span id="a5_tan"><?php $y1 = ($x1 / $tan_ha);
                                     echo number_format($y1, 2); ?></span></div></td>
-                        <td valign="middle" bgcolor="#FFFFCC"><div align="center"><strong><span id="a5_beza"><?php echo kiraPerubahan($x1, $angkutTahunSebelum->b_1b / $b); ?></span> </strong></div></td>
+                        <td valign="middle" bgcolor="#FFFFFF"><div align="center"><strong><span id="a5_beza"><?php echo kiraPerubahan($x1, $angkutTahunSebelum->b_1b / $b); ?></span> </strong></div></td>
                     </tr>
+
+  <?php /*
                     <tr>
                         <td height="43" align="center" valign="middle">&nbsp;</td>
                         <td colspan="2" valign="middle" bgcolor="#FFFFCC">iii. <?= setstring('mal', 'Pengangkutan sungai', 'en', 'River transport'); ?></td>
                         <td valign="middle" bgcolor="#FFFFCC"><div align="center">
-                                <input onKeypress="keypress(event)" name="b_1c" type="text" class="field_active" id="b_1c" onchange="kiraan_baru_angkut(this, 'anak');" value="<?= number_format($angkut->b_1c, 2); ?>" size="15"/>
-                            </div></td>
+                        */ ?>
+
+                                <input onKeypress="keypress(event)" name="b_1c" type="hidden" class="field_active" id="b_1c" onchange="kiraan_baru_angkut(this, 'anak');" value="<?= number_format($angkut->b_1c, 2); ?>" size="15"/>
+  <?php /*                               </div></td>
                         <td valign="middle" bgcolor="#FFFFCC"><div align="center"><span id="a6"><?php $x1 = ($angkut->b_1c / $b);
                                     echo number_format($x1, 2); ?></span></div></td>
                         <td valign="middle" bgcolor="#FFFFCC"><div align="center"><span id="a6_tan"><?php $y1 = ($x1 / $tan_ha);
                                     echo number_format($y1, 2); ?></span></div></td>
                         <td valign="middle" bgcolor="#FFFFCC"><div align="center"><strong><span id="a6_beza"><?php echo kiraPerubahan($x1, $angkutTahunSebelum->b_1c / $b); ?></span> </strong></div></td>
                     </tr>
+                    */ ?>
+
+<?php /*
                     <tr>
                         <td height="43" align="center" valign="middle" bgcolor="#AEFFAE">3.</td>
                         <td colspan="2" valign="middle" bgcolor="#AEFFAE"><?= setstring('mal', 'Perbelanjaan lain', 'en', 'Other Expenditure'); ?></td>
                         <td valign="middle" bgcolor="#AEFFAE"><div align="center">
-                                <input onKeypress="keypress(event)" name="total_b_3" type="text" class="field_active" id="total_b_3" onchange="kiraan_baru_angkut(this, '')" onclick="field_click(this)" value="<?= number_format($angkut->total_b_2, 2); ?>" size="20"/>
-                            </div></td>
+                        */ ?>
+                                <input onKeypress="keypress(event)" name="total_b_3" type="hidden" class="field_active" id="total_b_3" onchange="kiraan_baru_angkut(this, '')" onclick="field_click(this)" value="<?= number_format($angkut->total_b_2, 2); ?>" size="20"/>
+<?php /*                              </div></td>
                         <td valign="middle" bgcolor="#AEFFAE"><div align="center"><span id="jaga3"><?php $x1 = ($angkut->total_b_2 / $b);
                                     echo number_format($x1, 2); ?></span></div></td>
                         <td valign="middle" bgcolor="#AEFFAE"><div align="center"><span id="s3_tan"><?php $y1 = ($x1 / $tan_ha);
                             echo number_format($y1, 2); ?></span></div></td>
                         <td valign="middle" bgcolor="#AEFFAE"><div align="center"><strong><span id="a7_beza"><?php echo kiraPerubahan($x1, $angkutTahunSebelum->total_b_2 / $b); ?></span> </strong></div></td>
                     </tr>
+                    */ ?>
                     <tr>
                         <td height="17" align="center" valign="middle">&nbsp;</td>
                         <td colspan="2" valign="middle">&nbsp;</td>
@@ -1425,4 +1548,3 @@ if (isset($_GET['pengangkutan'])) {
 </tr>
 </table>
 </table>
-

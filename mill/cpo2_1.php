@@ -192,8 +192,16 @@ var pitmid = false;
       <td colspan="4">&nbsp;</td>
     </tr>
     <tr>
-      <td width="426" height="26" bgcolor="#FFCCFF"><strong><?=setstring ( 'mal', 'Jumlah BTS diproses pada tahun lepas ', 'en', 'Total of Processed FFB on Last Year'); ?>
+      <td width="426" height="26" bgcolor="#FFCCFF"><strong><?=setstring ( 'mal', 'Jumlah BTS diproses pada tahun  ', 'en', 'Total of Processed FFB on Year'); ?>
+	<?php  /* <td width="426" height="26" bgcolor="#FFCCFF"><strong><?=setstring ( 'mal', 'Jumlah BTS diproses pada tahun lepas ', 'en', 'Total of Processed FFB on Last Year'); ?> */ ?>
+
+	<span class="style2">
+	<?php
+	$tahun = $_SESSION['tahun'];
+	echo $tahun_sebelum = $tahun - 1;
+	?>
 </strong></td>
+
       <td colspan="3" bgcolor="#FFCCFF"><label><strong>
 <?php $d =$bts->fbb_proses; echo number_format($d,2);
 ?>

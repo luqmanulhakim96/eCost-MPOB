@@ -2,6 +2,7 @@
 include ('../Connections/connection.class.php');
 include('baju_merah.php');
 $con = connect();
+error_reporting(0);
 extract($_REQUEST);
 ?>
 <link rel="stylesheet" href="../text_style.css" type="text/css" />
@@ -35,7 +36,7 @@ function median($numbers=array())
 
 	rsort($numbers);
 	$mid = (count($numbers) / 2);
-	return ($mid % 2 != 0) ? $numbers{$mid-1} : (($numbers{$mid-1}) + $numbers{$mid}) / 2;
+	return ($mid % 2 != 0) ? $numbers[$mid-1] : (($numbers[$mid-1]) + $numbers[$mid]) / 2;
 }
 
 function pertama($tahun, $nama, $status,$negeri,$daerah){
@@ -85,7 +86,11 @@ function pertama($tahun, $nama, $status,$negeri,$daerah){
 	$roer = mysqli_query($con, $qoer);
 	$rowoer = mysqli_fetch_array($roer);
 
+
+if ($rowoer['FFB_PROSES'] != 0 && $rowoer['FFB_PROSES'] != NULL )	{	// DIVISION BY ZERO
 	$oer = round($rowoer['PENGELUARAN_CPO']/$rowoer['FFB_PROSES'] *100,2);
+}
+
 
 	//-----------------------------------------------------------------------------------------
 		$qavg = "SELECT AVG(y) as purata FROM graf_mill where sessionid='$nama' and tahun ='$tahun' and (status='$status' or status='9') ";
@@ -106,12 +111,20 @@ function pertama($tahun, $nama, $status,$negeri,$daerah){
 		$ravg = mysqli_query($con, $qavg);
 		$rrow = mysqli_fetch_array($ravg);
 
-
+$test_data=0;
 			$var[0] = median($test_data);
 			$var[1] = $rrow['purata'];
 
+$oer=0;
+
+			$tan_cpo=0;
+			if ($oer != 0 && $oer != NULL )		// DIVISION BY ZERO
+
 			$tan_cpo = round($rrow['purata']/$oer*100,2);
 			$var[2]= $tan_cpo;
+
+			$tan_cpo_median=0;
+			if ($oer != 0 && $oer != NULL )		// DIVISION BY ZERO
 
 			$tan_cpo_median = round($var[0]/$oer*100,2);
 			$var[3]= $tan_cpo_median;
@@ -153,7 +166,7 @@ function pertama($tahun, $nama, $status,$negeri,$daerah){
 
 
 <div align="center" class="style6">Cost of FFB Processing and Sales in
-   <?php echo $rowstate['nama'];?>
+   <?php echo isset($rowstate['nama']);?>
    <?php
 
    if($area==""){echo "MALAYSIA";}
@@ -212,6 +225,7 @@ function pertama($tahun, $nama, $status,$negeri,$daerah){
   $jl=0;
   $js=0;
   $ms=0;
+	$gg=0;
 
    while($rows=mysqli_fetch_array($rs)){
   ?>
@@ -228,16 +242,42 @@ function pertama($tahun, $nama, $status,$negeri,$daerah){
 		$a1 = cop ( $rows['name'],  "Processing", $year, $state, $district, $_COOKIE['tahun_report']);
 	}
 	if($_COOKIE['tahun_report']!=2010){
+		 $district="";
 		$a1 = pertama ($dua, $rows['name'], '0',$state, $district);
 	}
+	$jch=0;
+	$jla=0;
+	$jsa=0;
+	$msa=0;
+	$jcha=0;
 	 echo number_format($a1[1],2);$jl = $jl+$a1[1]; ?></div></td>
     <td><div align="right"><?php $a= pertama ($satu,  $rows['name'], '0',$state, $district); echo number_format($a[1],2); $js = $js+$a[1]; ?></div></td>
     <td><div align="right"><?php echo number_format($a[0],2); $ms = $ms+$a[0]; ?></div></td>
-    <td><div align="right"><?php $ch = (($a[1]-$a1[1])/$a1[1])*100; echo number_format($ch,2);$jch+=$ch; ?></div></td>
+    <td><div align="right"><?php
+
+
+		$ch=0;
+		if ($a1[1]= 0 && $a1[1] != NULL )	{	// DIVISION BY ZERO
+
+		$ch = (($a[1]-$a1[1])/$a1[1])*100; echo number_format($ch,2);$jch+=$ch;
+	}
+		else {
+			echo "0.00";
+		}
+
+		?></div></td>
     <td><div align="right"><?php  echo number_format($a1[2],2);$jla = $jla+$a1[2];?></div></td>
     <td><div align="right"><?php echo number_format($a[2],2); $jsa = $jsa+$a[2];?></div></td>
     <td><div align="right"><?php echo number_format($a[3],2); $msa = $msa+$a[3];?></div></td>
-    <td><div align="right"><?php $cha = (($a[2]-$a1[1])/$a1[1])*100; echo number_format($cha,2);$jcha+=$cha; ?></div></td>
+    <td><div align="right"><?php
+		$cha=0;
+		if ($a1[1]= 0 && $a1[1] != NULL )	{	// DIVISION BY ZERO
+		$cha = (($a[2]-$a1[1])/$a1[1])*100; echo number_format($cha,2);$jcha+=$cha;
+	}
+		else {
+			echo "0.00";
+		}
+		?></div></td>
   </tr>
 <?php } ?>
 
@@ -250,7 +290,15 @@ function pertama($tahun, $nama, $status,$negeri,$daerah){
     <td bgcolor="#FF9966"><div align="right"><?php echo number_format($jla,2);?></div></td>
     <td bgcolor="#FF9966"><div align="right"><?php echo number_format($jsa,2);?></div></td>
     <td bgcolor="#FF9966"><div align="right"><?php echo number_format($msa,2);?></div></td>
-    <td bgcolor="#FF9966"><div align="right"><?php echo number_format((($jsa-$jla)/$jla)*100,2);//echo number_format($jcha,2);?></div></td>
+    <td bgcolor="#FF9966"><div align="right"><?php
+		if ($jla!= 0 && $jla != NULL )	{	// DIVISION BY ZERO
+
+		echo number_format((($jsa-$jla)/$jla)*100,2);//echo number_format($jcha,2);
+	}
+else {
+	echo "0.00";
+}
+		?></div></td>
   </tr>
   <!--
   <tr bgcolor="#FF9966">

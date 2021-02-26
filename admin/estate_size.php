@@ -4,7 +4,7 @@
 <table width="100%" border="0">
   <tr>
     <td width="48%"><br />
-<b>&nbsp;&nbsp;Type of Estates Ownership</b><br />
+<b>&nbsp;&nbsp;Type of Estates Oaaawnership</b><br />
 <br />
   <script type="text/javascript" src="../js/swfobject.js"></script>
 	<div id="flashcontent" align="center">
@@ -12,12 +12,12 @@
 	</div>
 
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("../xml/ampie.swf", "ampie", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "ampie/");
 		so.addVariable("settings_file", encodeURIComponent("../xml/settings_estate_size1.xml"));                // you can set two or more different settings files here (separated by commas)
 		so.addVariable("data_file", encodeURIComponent("../xml/estate_size.php"));
-    		
+
 //	so.addVariable("chart_data", encodeURIComponent("<settings>...</settings>"));                   // you can pass chart data as a string directly from this file
 //	so.addVariable("chart_settings", encodeURIComponent("data in CSV or XML format"));              // you can pass chart settings as a string directly from this file
 //	so.addVariable("additional_chart_settings", encodeURIComponent("<settings>...</settings>"));    // you can append some chart settings to the loaded ones
@@ -34,16 +34,16 @@
 <br />
   <script type="text/javascript" src="../js/swfobject.js"></script>
 	<div id="flashcontent1" align="center">
-		<strong>You need to upgrade your Flash Player</strong>
+		<strong>You need to upgrade your Flash Playersss</strong>
 	</div>
 
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("../xml/ampie.swf", "ampie", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "ampie/");
 		so.addVariable("settings_file", encodeURIComponent("../xml/settings_estate_size1.xml"));                // you can set two or more different settings files here (separated by commas)
 		so.addVariable("data_file", encodeURIComponent("../xml/estate_size.php"));
-    		
+
 //	so.addVariable("chart_data", encodeURIComponent("<settings>...</settings>"));                   // you can pass chart data as a string directly from this file
 //	so.addVariable("chart_settings", encodeURIComponent("data in CSV or XML format"));              // you can pass chart settings as a string directly from this file
 //	so.addVariable("additional_chart_settings", encodeURIComponent("<settings>...</settings>"));    // you can append some chart settings to the loaded ones

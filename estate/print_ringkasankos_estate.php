@@ -1364,6 +1364,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td><div align="center"><span id="kosha2"><?php $x2 = ($nilai->a_2 / $data);
     echo number_format($x2, 2); ?></span></div></td>
                             </tr>
+  <?php /*
                             <tr bgcolor="#99FF99">
                                 <td height="43" align="right">3.</td>
                                 <td><?= setstring('mal', 'Pembinaan jalan', 'en', 'Road construction') ?></td>
@@ -1371,6 +1372,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td><div align="center"><span id="kosha3"><?php $x3 = ($nilai->a_3 / $data);
     echo number_format($x3, 2); ?></span></div></td>
                             </tr>
+
                             <tr>
                                 <td height="34" align="right">4.</td>
                                 <td><?= setstring('mal', 'Pembinaan parit', 'en', 'Drain construction') ?> &nbsp;</td>
@@ -1399,34 +1401,57 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td><div align="center"><span id="kosha7"><?php $x7 = ($nilai->a_7 / $data);
                                     echo number_format($x7, 2); ?></span></div></td>
                             </tr>
-                            <tr>
-                                <td height="34" align="right">8.</td>
+                              */?>
+                            <tr bgcolor="#99FF99">
+                                <td height="34" align="right">3.</td>
                                 <td><?= setstring('mal', 'Pembajaan awal', 'en', 'Basal fertiliser') ?> &nbsp;</td>
                                 <td><div align="center"><?= number_format($nilai->a_8, 2); ?></div></td>
                                 <td><div align="center"><span id="kosha8"><?php $x8 = ($nilai->a_8 / $data);
                                     echo number_format($x8, 2); ?></span></div></td>
                             </tr>
-                            <tr bgcolor="#99FF99">
-                                <td height="32" align="right">9.</td>
-                                <td><?= setstring('mal', 'Bahan tanaman', 'en', 'Planting material') ?>&nbsp;</td>
+                            <tr bgcolor="#FFFFFF">
+                                <td height="32" align="right">4.</td>
+                                <td><?= setstring('mal', 'Anak Pokok Sawit', 'en', 'Palm seedlings') ?>&nbsp;</td>
                                 <td><div align="center"><?= number_format($nilai->a_9, 2); ?></div></td>
                                 <td><div align="center"><span id="kosha9"><?php $x9 = ($nilai->a_9 / $data);
                                     echo number_format($x9, 2); ?></span></div></td>
                             </tr>
-                            <tr>
-                                <td height="32" align="right">10.</td>
+                            <tr bgcolor="#99FF99">
+                                <td height="32" align="right">5.</td>
                                 <td><?= setstring('mal', 'Tanaman penutup bumi', 'en', 'Cover crops') ?>&nbsp;</td>
                                 <td><div align="center"><?= number_format($nilai->a_10, 2); ?></div></td>
                                 <td><div align="center"><span id="kosha10"><?php $x10 = ($nilai->a_10 / $data);
                                     echo number_format($x10, 2); ?></span></div></td>
                             </tr>
-                            <tr bgcolor="#99FF99">
-                                <td height="32" align="right">11.</td>
+                            <tr bgcolor="#FFFFFF">
+                                <td height="32" align="right">6.</td>
                                 <td><?= setstring('mal', 'Perbelanjaan-perbelanjaan lain', 'en', 'Other expenditures'); ?>&nbsp;</td>
                                 <td><div align="center"><?= number_format($nilai->a_11, 2); ?></div></td>
                                 <td><div align="center"><span id="kosha11"><?php $x11 = ($nilai->a_11 / $data);
                                     echo number_format($x11, 2); ?></span></div></td>
                             </tr>
+
+
+                            <tr bgcolor="#99FF99">
+                                <td height="32" align="right">7.</td>
+                                <td><?= setstring('mal', 'Penyediaan jalan, parit, ban, pintu air dan sebagainya ', 'en', 'Provision of roads, ditches, ban, sluices and so on'); ?>&nbsp;</td>
+                                <?php /*
+                                <td><div align="center"><?= number_format($nilai->a_11, 2); ?></div></td>
+                                <td><div align="center"><span id="kosha11"><?php $x11 = ($nilai->a_11 / $data);
+                                    echo number_format($x11, 2); ?></span></div></td>
+                                    */?>
+                            </tr>
+
+                            <tr bgcolor="#FFFFFF">
+                                <td height="32" align="right">8.</td>
+                                <td><?= setstring('mal', 'Membaris, melubang dan menanam', 'en', 'Lining, perforate and planting'); ?>&nbsp;</td>
+                                <?php /*
+                                <td><div align="center"><?= number_format($nilai->a_11, 2); ?></div></td>
+                                <td><div align="center"><span id="kosha11"><?php $x11 = ($nilai->a_11 / $data);
+                                    echo number_format($x11, 2); ?></span></div></td>
+                                    */?>
+                            </tr>
+
                             <tr>
                                 <td align="right">&nbsp;</td>
                                 <td>&nbsp;</td>
@@ -1548,6 +1573,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#FFFFCC"><div align="center"><span id="j7"><?php $sy1c = ($nilai->b_3c / $data);
     echo number_format($sy1c, 2); ?></span></div></td>
                             </tr>
+<?php /*
                             <tr>
                                 <td height="39" align="right">&nbsp;</td>
                                 <td bgcolor="#FFFFCC">iv. <?= setstring('mal', 'Analisis tanah dan daun', 'en', 'Soil and foliar analysis'); ?></td>
@@ -1589,50 +1615,67 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_8, 2); ?></div></td>
                                 <td bgcolor="#99FF99"><div align="center"><span id="jaga8"><?php $y8 = ($nilai->total_b_8 / $data);
         echo number_format($y8, 2); ?></span></div></td>
-                            </tr>
+                            </tr> */?>
                             <tr>
-                                <td height="35" align="right" bgcolor="#FFFFFF">9.</td>
-                                <td bgcolor="#FFFFFF"><?= setstring('mal', 'Tanaman penutup bumi', 'en', 'Cover crops'); ?></td>
-                                <td bgcolor="#FFFFFF"><div align="center"><?= number_format($nilai->total_b_9, 2); ?></div></td>
-                                <td bgcolor="#FFFFFF"><div align="center"><span id="jaga9"><?php $y9 = ($nilai->total_b_9 / $data);
+                                <td height="35" align="right" bgcolor="#99FF99">4.</td>
+                                <td bgcolor="#99FF99"><?= setstring('mal', 'Tanaman penutup bumi', 'en', 'Cover crops'); ?></td>
+                                <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_9, 2); ?></div></td>
+                                <td bgcolor="#99FF99"><div align="center"><span id="jaga9"><?php $y9 = ($nilai->total_b_9 / $data);
         echo number_format($y9, 2); ?></span></div></td>
                             </tr>
                             <tr>
-                                <td height="38" align="right" bgcolor="#99FF99">10.</td>
-                                <td bgcolor="#99FF99"><?= setstring('mal', 'Kawalan serangga dan penyakit', 'en', 'Pest and diseases control'); ?></td>
-                                <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_10, 2); ?></div></td>
-                                <td bgcolor="#99FF99"><div align="center"><span id="jaga10"><?php $y10 = ($nilai->total_b_10 / $data);
+                                <td height="38" align="right" bgcolor="#FFFFFF">5.</td>
+                                <td bgcolor="#FFFFFF"><?= setstring('mal', 'Kawalan serangga dan penyakit', 'en', 'Pest and diseases control'); ?></td>
+                                <td bgcolor="#FFFFFF"><div align="center"><?= number_format($nilai->total_b_10, 2); ?></div></td>
+                                <td bgcolor="#FFFFFF"><div align="center"><span id="jaga10"><?php $y10 = ($nilai->total_b_10 / $data);
         echo number_format($y10, 2); ?></span></div></td>
                             </tr>
                             <tr>
-                                <td height="34" align="right" bgcolor="#FFFFFF">11.</td>
-                                <td bgcolor="#FFFFFF"><?= setstring('mal', 'Memangkas dan membersihkan pokok', 'en', 'Pruning and palm sanitation'); ?></td>
-                                <td bgcolor="#FFFFFF"><div align="center"><?= number_format($nilai->total_b_11, 2); ?></div></td>
-                                <td bgcolor="#FFFFFF"><div align="center"><span id="jaga11"><?php $y11 = ($nilai->total_b_11 / $data);
+                                <td height="34" align="right" bgcolor="#99FF99">6.</td>
+                                <td bgcolor="#99FF99"><?= setstring('mal', 'Memangkas dan membersihkan pokok', 'en', 'Pruning and palm sanitation'); ?></td>
+                                <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_11, 2); ?></div></td>
+                                <td bgcolor="#99FF99"><div align="center"><span id="jaga11"><?php $y11 = ($nilai->total_b_11 / $data);
         echo number_format($y11, 2); ?></span></div></td>
                             </tr>
                             <tr>
-                                <td height="35" align="right" bgcolor="#99FF99">12.</td>
-                                <td bgcolor="#99FF99"><?= setstring('mal', 'Banci / sulaman', 'en', 'Census / supplies'); ?></td>
-                                <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_12, 2); ?></div></td>
-                                <td bgcolor="#99FF99"><div align="center"><span id="jaga12"><?php $y12 = ($nilai->total_b_12 / $data);
+                                <td height="35" align="right" bgcolor="#FFFFFF">7.</td>
+                                <td bgcolor="#FFFFFF"><?= setstring('mal', 'Banci / sulaman', 'en', 'Census / supplies'); ?></td>
+                                <td bgcolor="#FFFFFF"><div align="center"><?= number_format($nilai->total_b_12, 2); ?></div></td>
+                                <td bgcolor="#FFFFFF"><div align="center"><span id="jaga12"><?php $y12 = ($nilai->total_b_12 / $data);
                         echo number_format($y12, 2); ?></span></div></td>
                             </tr>
+<?php /*
                             <tr>
                                 <td height="38" align="right">13.</td>
                                 <td align="right"><div align="left"><?= setstring('mal', 'Pengkasian', 'en', 'Castration'); ?></div></td>
                                 <td><div align="center"><?= number_format($nilai->total_b_13, 2); ?></div></td>
                                 <td><div align="center"><span id="jaga13"><?php $y13 = ($nilai->total_b_13 / $data);
                         echo number_format($y13, 2); ?></span></div></td>
-                            </tr>
+                            </tr> */?>
 
                             <tr bgcolor="#99FF99">
-                                <td height="36" align="right">14.</td>
+                                <td height="36" align="right">8.</td>
                                 <td align="right"><div align="left"><?= setstring('mal', 'Perbelanjaan pelbagai', 'en', 'Other Expenditures'); ?></div></td>
                                 <td><div align="center"><?= number_format($nilai->total_b_14, 2); ?></div></td>
                                 <td><div align="center"><span id="jaga14"><?php $y14 = ($nilai->total_b_14 / $data);
                         echo number_format($y14, 2); ?></span></div></td>
                             </tr>
+
+                            <tr bgcolor="#FFFFFF">
+                                <td height="36" align="right">9.</td>
+                                <td align="right"><div align="left"><?= setstring('mal', 'Penjagaan jalan, parit, ban, pintu air dan sebagainya', 'en', 'Maintenance of roads, ditches, ban, sluices and so on'); ?></div></td>
+                  <?php /*                  <td><div align="center"><?= number_format($nilai->total_b_14, 2); ?></div></td>
+                                <td><div align="center"><span id="jaga14"><?php $y14 = ($nilai->total_b_14 / $data);
+                        echo number_format($y14, 2); ?></span></div></td>
+                            </tr> */?>
+
+                            <tr bgcolor="#99FF99">
+                                <td height="36" align="right">10.</td>
+                                <td align="right"><div align="left"><?= setstring('mal', 'Analisis tanah dan daun', 'en', 'Soil and foliar analysis'); ?></div></td>
+              <?php /*                  <td><div align="center"><?= number_format($nilai->total_b_14, 2); ?></div></td>
+                                <td><div align="center"><span id="jaga14"><?php $y14 = ($nilai->total_b_14 / $data);
+                        echo number_format($y14, 2); ?></span></div></td>
+                            </tr> */?>
                             <tr>
                                 <td colspan="2" align="right">&nbsp;</td>
                                 <td><div align="center"></div></td>
@@ -1845,6 +1888,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#FFFFCC"><div align="center"><span id="j7"><?php $y1 = ($nilai->b_3c / $data);
                             echo number_format($y1, 2); ?></span></div></td>
                             </tr>
+<?php /*
                             <tr>
                                 <td height="39" align="right">&nbsp;</td>
                                 <td bgcolor="#FFFFCC">iv. <?= setstring('mal', 'Analisis tanah dan daun', 'en', 'Soil and foliar analysis'); ?></td>
@@ -1885,51 +1929,69 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#99FF99"><?= setstring('mal', 'Persempadanan dan survei', 'en', 'Boundaries and survey'); ?></td>
                                 <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_8, 2); ?></div></td>
                                 <td bgcolor="#99FF99"><div align="center"><span id="jaga8"><?php $y1 = ($nilai->total_b_8 / $data);
-        echo number_format($y1, 2); ?></span></div></td>
+        echo number_format($y1, 2); ?></span></div></td> */?>
                             </tr>
                             <tr>
-                                <td height="35" align="right" bgcolor="#FFFFFF">9.</td>
-                                <td bgcolor="#FFFFFF"><?= setstring('mal', 'Tanaman penutup bumi', 'en', 'Cover crops'); ?></td>
-                                <td bgcolor="#FFFFFF"><div align="center"><?= number_format($nilai->total_b_9, 2); ?></div></td>
-                                <td bgcolor="#FFFFFF"><div align="center"><span id="jaga9"><?php $y1 = ($nilai->total_b_9 / $data);
+                                <td height="35" align="right" bgcolor="#99FF99">4.</td>
+                                <td bgcolor="#99FF99"><?= setstring('mal', 'Tanaman penutup bumi', 'en', 'Cover crops'); ?></td>
+                                <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_9, 2); ?></div></td>
+                                <td bgcolor="#99FF99"><div align="center"><span id="jaga9"><?php $y1 = ($nilai->total_b_9 / $data);
                         echo number_format($y1, 2); ?></span></div></td>
                             </tr>
                             <tr>
-                                <td height="38" align="right" bgcolor="#99FF99">10.</td>
-                                <td bgcolor="#99FF99"><?= setstring('mal', 'Kawalan serangga dan penyakit', 'en', 'Pest and diseases control'); ?></td>
-                                <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_10, 2); ?></div></td>
-                                <td bgcolor="#99FF99"><div align="center"><span id="jaga10"><?php $y1 = ($nilai->total_b_10 / $data);
+                                <td height="38" align="right" bgcolor="#FFFFFF">5.</td>
+                                <td bgcolor="#FFFFFF"><?= setstring('mal', 'Kawalan serangga dan penyakit', 'en', 'Pest and diseases control'); ?></td>
+                                <td bgcolor="#FFFFFF"><div align="center"><?= number_format($nilai->total_b_10, 2); ?></div></td>
+                                <td bgcolor="#FFFFFF"><div align="center"><span id="jaga10"><?php $y1 = ($nilai->total_b_10 / $data);
                         echo number_format($y1, 2); ?></span></div></td>
                             </tr>
                             <tr>
-                                <td height="34" align="right" bgcolor="#FFFFFF">11.</td>
-                                <td bgcolor="#FFFFFF"><?= setstring('mal', 'Memangkas dan membersihkan pokok', 'en', 'Pruning and palm sanitation'); ?></td>
-                                <td bgcolor="#FFFFFF"><div align="center"><?= number_format($nilai->total_b_11, 2); ?></div></td>
-                                <td bgcolor="#FFFFFF"><div align="center"><span id="jaga11"><?php $y1 = ($nilai->total_b_11 / $data);
+                                <td height="34" align="right" bgcolor="#99FF99">6.</td>
+                                <td bgcolor="#99FF99"><?= setstring('mal', 'Memangkas dan membersihkan pokok', 'en', 'Pruning and palm sanitation'); ?></td>
+                                <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_11, 2); ?></div></td>
+                                <td bgcolor="#99FF99"><div align="center"><span id="jaga11"><?php $y1 = ($nilai->total_b_11 / $data);
                         echo number_format($y1, 2); ?></span></div></td>
                             </tr>
                             <tr>
-                                <td height="35" align="right" bgcolor="#99FF99">12.</td>
-                                <td bgcolor="#99FF99"><?= setstring('mal', 'Banci / sulaman', 'en', 'Census / supplies'); ?></td>
-                                <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_12, 2); ?></div></td>
-                                <td bgcolor="#99FF99"><div align="center"><span id="jaga12"><?php $y1 = ($nilai->total_b_12 / $data);
+                                <td height="35" align="right" bgcolor="#FFFFFF">7.</td>
+                                <td bgcolor="#FFFFFF"><?= setstring('mal', 'Banci / sulaman', 'en', 'Census / supplies'); ?></td>
+                                <td bgcolor="#FFFFFF"><div align="center"><?= number_format($nilai->total_b_12, 2); ?></div></td>
+                                <td bgcolor="#FFFFFF"><div align="center"><span id="jaga12"><?php $y1 = ($nilai->total_b_12 / $data);
                         echo number_format($y1, 2); ?></span></div></td>
                             </tr>
+<?php /*
                             <tr>
                                 <td height="38" align="right">13.</td>
                                 <td align="right"><div align="left"><?= setstring('mal', 'Pengkasian', 'en', 'Castration'); ?></div></td>
                                 <td><div align="center"><?= number_format($nilai->total_b_13, 2); ?></div></td>
                                 <td><div align="center"><span id="jaga13"><?php $y1 = ($nilai->total_b_13 / $data);
                         echo number_format($y1, 2); ?></span></div></td>
-                            </tr>
+                            </tr> */?>
 
                             <tr bgcolor="#99FF99">
-                                <td height="36" align="right">14.</td>
+                                <td height="36" align="right">8.</td>
                                 <td align="right"><div align="left"><?= setstring('mal', 'Perbelanjaan pelbagai', 'en', 'Other Expenditures'); ?></div></td>
                                 <td><div align="center"><?= number_format($nilai->total_b_14, 2); ?></div></td>
                                 <td><div align="center"><span id="jaga14"><?php $y1 = ($nilai->total_b_14 / $data);
                         echo number_format($y1, 2); ?></span></div></td>
                             </tr>
+
+                            <tr bgcolor="#FFFFFF">
+                                <td height="36" align="right">9.</td>
+                                <td align="right"><div align="left"><?= setstring('mal', 'Penjagaan jalan, parit, ban, pintu air dan sebagainya', 'en', 'Maintenance of roads, ditches, ban, sluices and so on'); ?></div></td>
+<?php /*                                <td><div align="center"><?= number_format($nilai->total_b_14, 2); ?></div></td>
+                                <td><div align="center"><span id="jaga14"><?php $y1 = ($nilai->total_b_14 / $data);
+                        echo number_format($y1, 2); ?></span></div></td>
+                            </tr> */?>
+
+                            <tr bgcolor="#99FF99">
+                                <td height="36" align="right">10.</td>
+                                <td align="right"><div align="left"><?= setstring('mal', 'Analisis tanah dan daun', 'en', 'Soil and foliar analysis'); ?></div></td>
+  <?php /*                              <td><div align="center"><?= number_format($nilai->total_b_14, 2); ?></div></td>
+                                <td><div align="center"><span id="jaga14"><?php $y1 = ($nilai->total_b_14 / $data);
+                        echo number_format($y1, 2); ?></span></div></td>
+                            </tr> */?>
+
                             <tr>
                                 <td colspan="2" align="right">&nbsp;</td>
                                 <td><div align="center"></div></td>
@@ -2142,6 +2204,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#FFFFCC"><div align="center"><span id="j7"><?php $y1 = ($nilai->b_3c / $data);
         echo number_format($y1, 2); ?></span></div></td>
                             </tr>
+<?php /*
                             <tr>
                                 <td height="39" align="right">&nbsp;</td>
                                 <td bgcolor="#FFFFCC">iv. <?= setstring('mal', 'Analisis tanah dan daun', 'en', 'Soil and foliar analysis'); ?></td>
@@ -2183,50 +2246,69 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_8, 2); ?></div></td>
                                 <td bgcolor="#99FF99"><div align="center"><span id="jaga8"><?php $y1 = ($nilai->total_b_8 / $data);
                         echo number_format($y1, 2); ?></span></div></td>
-                            </tr>
+                            </tr>  */?>
                             <tr>
-                                <td height="35" align="right" bgcolor="#FFFFFF">9.</td>
-                                <td bgcolor="#FFFFFF"><?= setstring('mal', 'Tanaman penutup bumi', 'en', 'Cover crops'); ?></td>
-                                <td bgcolor="#FFFFFF"><div align="center"><?= number_format($nilai->total_b_9, 2); ?></div></td>
-                                <td bgcolor="#FFFFFF"><div align="center"><span id="jaga9"><?php $y1 = ($nilai->total_b_9 / $data);
+                                <td height="35" align="right" bgcolor="#99FF99">4.</td>
+                                <td bgcolor="#99FF99"><?= setstring('mal', 'Tanaman penutup bumi', 'en', 'Cover crops'); ?></td>
+                                <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_9, 2); ?></div></td>
+                                <td bgcolor="#99FF99"><div align="center"><span id="jaga9"><?php $y1 = ($nilai->total_b_9 / $data);
             echo number_format($y1, 2); ?></span></div></td>
                             </tr>
                             <tr>
-                                <td height="38" align="right" bgcolor="#99FF99">10.</td>
-                                <td bgcolor="#99FF99"><?= setstring('mal', 'Kawalan serangga dan penyakit', 'en', 'Pest and diseases control'); ?></td>
-                                <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_10, 2); ?></div></td>
-                                <td bgcolor="#99FF99"><div align="center"><span id="jaga10"><?php $y1 = ($nilai->total_b_10 / $data);
+                                <td height="38" align="right" bgcolor="#FFFFFF">5.</td>
+                                <td bgcolor="#FFFFFF"><?= setstring('mal', 'Kawalan serangga dan penyakit', 'en', 'Pest and diseases control'); ?></td>
+                                <td bgcolor="#FFFFFF"><div align="center"><?= number_format($nilai->total_b_10, 2); ?></div></td>
+                                <td bgcolor="#FFFFFF"><div align="center"><span id="jaga10"><?php $y1 = ($nilai->total_b_10 / $data);
             echo number_format($y1, 2); ?></span></div></td>
                             </tr>
                             <tr>
-                                <td height="34" align="right" bgcolor="#FFFFFF">11.</td>
-                                <td bgcolor="#FFFFFF"><?= setstring('mal', 'Memangkas dan membersihkan pokok', 'en', 'Pruning and palm sanitation'); ?></td>
-                                <td bgcolor="#FFFFFF"><div align="center"><?= number_format($nilai->total_b_11, 2); ?></div></td>
-                                <td bgcolor="#FFFFFF"><div align="center"><span id="jaga11"><?php $y1 = ($nilai->total_b_11 / $data);
+                                <td height="34" align="right" bgcolor="#99FF99">6.</td>
+                                <td bgcolor="#99FF99"><?= setstring('mal', 'Memangkas dan membersihkan pokok', 'en', 'Pruning and palm sanitation'); ?></td>
+                                <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_11, 2); ?></div></td>
+                                <td bgcolor="#99FF99"><div align="center"><span id="jaga11"><?php $y1 = ($nilai->total_b_11 / $data);
             echo number_format($y1, 2); ?></span></div></td>
                             </tr>
                             <tr>
-                                <td height="35" align="right" bgcolor="#99FF99">12.</td>
-                                <td bgcolor="#99FF99"><?= setstring('mal', 'Banci / sulaman', 'en', 'Census / supplies'); ?></td>
-                                <td bgcolor="#99FF99"><div align="center"><?= number_format($nilai->total_b_12, 2); ?></div></td>
-                                <td bgcolor="#99FF99"><div align="center"><span id="jaga12"><?php $y1 = ($nilai->total_b_12 / $data);
+                                <td height="35" align="right" bgcolor="#FFFFFF">7.</td>
+                                <td bgcolor="#FFFFFF"><?= setstring('mal', 'Banci / sulaman', 'en', 'Census / supplies'); ?></td>
+                                <td bgcolor="#FFFFFF"><div align="center"><?= number_format($nilai->total_b_12, 2); ?></div></td>
+                                <td bgcolor="#FFFFFF"><div align="center"><span id="jaga12"><?php $y1 = ($nilai->total_b_12 / $data);
             echo number_format($y1, 2); ?></span></div></td>
                             </tr>
+<?php /*
                             <tr>
                                 <td height="38" align="right">13.</td>
                                 <td align="right"><div align="left"><?= setstring('mal', 'Pengkasian', 'en', 'Castration'); ?></div></td>
                                 <td><div align="center"><?= number_format($nilai->total_b_13, 2); ?></div></td>
                                 <td><div align="center"><span id="jaga13"><?php $y1 = ($nilai->total_b_13 / $data);
             echo number_format($y1, 2); ?></span></div></td>
-                            </tr>
+                            </tr> */?>
 
                             <tr bgcolor="#99FF99">
-                                <td height="36" align="right">14.</td>
+                                <td height="36" align="right">8.</td>
                                 <td align="right"><div align="left"><?= setstring('mal', 'Perbelanjaan pelbagai', 'en', 'Other Expenditures'); ?></div></td>
                                 <td><div align="center"><?= number_format($nilai->total_b_14, 2); ?></div></td>
                                 <td><div align="center"><span id="jaga14"><?php $y1 = ($nilai->total_b_14 / $data);
             echo number_format($y1, 2); ?></span></div></td>
                             </tr>
+
+                            <tr bgcolor="#FFFFFF">
+                                <td height="36" align="right">9.</td>
+                                <td align="right"><div align="left"><?= setstring('mal', 'Penjagaan jalan, parit, ban, pintu air dan sebagainya', 'en', 'Maintenance of roads, ditches, ban, sluices and so on'); ?></div></td>
+<?php /*                                <td><div align="center"><?= number_format($nilai->total_b_14, 2); ?></div></td>
+                                <td><div align="center"><span id="jaga14"><?php $y1 = ($nilai->total_b_14 / $data);
+            echo number_format($y1, 2); ?></span></div></td>
+                            </tr> */?>
+
+                            <tr bgcolor="#99FF99">
+                                <td height="36" align="right">10.</td>
+                                <td align="right"><div align="left"><?= setstring('mal', 'Analisis tanah dan daun', 'en', 'Soil and foliar analysis'); ?></div></td>
+<?php /*                                <td><div align="center"><?= number_format($nilai->total_b_14, 2); ?></div></td>
+                                <td><div align="center"><span id="jaga14"><?php $y1 = ($nilai->total_b_14 / $data);
+            echo number_format($y1, 2); ?></span></div></td>
+                            </tr> */?>
+
+
                             <tr>
                                 <td colspan="2" align="right">&nbsp;</td>
                                 <td><div align="center"></div></td>
@@ -3283,7 +3365,14 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
 
             <tr>
                 <td colspan="5"><span class="style56">
-                                            <?= setstring('mal', 'Keluasan kawasan matang pada tahun lepas (terakhir dari e-sub)', 'en', 'Matured area on last year (Final from e-sub)'); ?>
+                                            <?php /* setstring('mal', 'Keluasan kawasan matang pada tahun lepas (terakhir dari e-sub)', 'en', 'Matured area on last year (Final from e-sub)'); */?>
+                                            <?= setstring('mal', 'Keluasan kawasan matang pada tahun', 'en', 'Matured area on year '); ?>
+
+                                            <span class="style2">
+                                            <?php
+                                            $tahun = $_SESSION['tahun'];
+                                            echo $tahun_sebelum = $tahun - 1;
+                                            ?>
                     </span>
                 </td>
             </tr>
@@ -3550,6 +3639,7 @@ echo number_format($y1, 2);
 ?></span></div></td>
                             <td bgcolor="#FFFFCC"><div align="center"><span id="s8_beza">0</span></div></td>
                         </tr>
+                        <?php /*
                         <tr>
                             <td height="39" align="center">&nbsp;</td>
                             <td bgcolor="#FFFFCC">iv. <?= setstring('mal', 'Analisis tanah dan daun', 'en', 'Soil and foliar analysis'); ?></td>
@@ -3564,6 +3654,7 @@ echo number_format($y1, 2);
 ?></span></div></td>
                             <td bgcolor="#FFFFCC"><div align="center"><span id="s9_beza">0</span></div></td>
                         </tr>
+
                         <tr bgcolor="#AEFFAE">
                             <td height="39" align="center">4.</td>
                             <td><?= setstring('mal', 'Pemuliharan tanah dan air', 'en', 'Soil and water conservation'); ?>&nbsp;</td>
@@ -3620,8 +3711,10 @@ echo number_format($y1, 2);
 ?></span></div></td>
                             <td bgcolor="#FFFFFF"><div align="center"><span id="s13_beza">0</span></div></td>
                         </tr>
+
+                        */?>
                         <tr bgcolor="#AEFFAE">
-                            <td height="37" align="center">8.</td>
+                            <td height="37" align="center">4.</td>
                             <td><?= setstring('mal', 'Kawalan serangga dan penyakit', 'en', 'Pests and diseases control'); ?> </td>
                             <td bgcolor="#AEFFAE"><div align="center">
                                         <?= number_format($jaga->total_b_8, 2); ?>
@@ -3635,7 +3728,7 @@ echo number_format($y1, 2);
                             <td bgcolor="#AEFFAE"><div align="center"><span id="s14_beza">0</span></div></td>
                         </tr>
                         <tr>
-                            <td height="35" align="center">9.</td>
+                            <td height="35" align="center">5.</td>
                             <td><?= setstring('mal', 'Memangkas dan membersihkan pokok', 'en', 'Pruning and palm sanitation') ?> </td>
                             <td bgcolor="#FFFFFF"><div align="center">
                                         <?= number_format($jaga->total_b_9, 2); ?>
@@ -3649,7 +3742,7 @@ echo number_format($y1, 2);
                             <td bgcolor="#FFFFFF"><div align="center"><span id="s15_beza">0</span></div></td>
                         </tr>
                         <tr bgcolor="#AEFFAE">
-                            <td height="36" align="center">10.</td>
+                            <td height="36" align="center">6.</td>
                             <td><?= setstring('mal', 'Banci / sulaman', 'en', 'Census / supplies') ?> </td>
                             <td bgcolor="#AEFFAE"><div align="center">
                                         <?= number_format($jaga->total_b_10, 2); ?>
@@ -3663,7 +3756,7 @@ echo number_format($y1, 2);
                             <td bgcolor="#AEFFAE"><div align="center"><span id="s16_beza">0</span></div></td>
                         </tr>
                         <tr>
-                            <td height="34" align="center">11.</td>
+                            <td height="34" align="center">7.</td>
                             <td><?= setstring('mal', 'Upah mandur dan kos penyeliaan estet', 'en', 'Mandore wages/ direct field supervision costs') ?> </td>
                             <td bgcolor="#FFFFFF"><div align="center">
                                         <?= number_format($jaga->total_b_11, 2); ?>
@@ -3677,7 +3770,7 @@ echo number_format($y1, 2);
                             <td bgcolor="#FFFFFF"><div align="center"><span id="s17_beza">0</span></div></td>
                         </tr>
                         <tr bgcolor="#AEFFAE">
-                            <td height="36" align="center">12.</td>
+                            <td height="36" align="center">8.</td>
                             <td><?= setstring('mal', 'Perbelanjaan pelbagai', 'en', 'Other expenditure') ?> &nbsp;</td>
                             <td bgcolor="#AEFFAE"><div align="center">
                                         <?= number_format($jaga->total_b_12, 2); ?>
@@ -3728,6 +3821,8 @@ echo number_format($x1a, 2);
             <tr>
                 <td colspan="5">
                     <table width="100%" cellpadding="0" cellspacing="0"  frame="box" class="subTable" aria-describedby="ringkasan28">
+
+
                         <tr>
                             <td height="52" align="center" background="../images/tb_BG.gif"><div align="center"><strong>b.</strong></div></td>
                             <td height="52" align="center" background="../images/tb_BG.gif"><div align="left"><strong><?= setstring('mal', 'Penuaian', 'en', 'Harvesting'); ?>
@@ -3741,50 +3836,24 @@ echo number_format($x1a, 2);
                             <td background="../images/tb_BG.gif" class="tableCss"><div align="center"><strong><?= setstring('mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?>
                                     </strong></div><div align="center"><strong>(%)</strong></div></td>
                         </tr>
+
                         <tr>
-                            <td width="16" height="44" align="center" bgcolor="#AEFFAE">1.</td>
-                            <td width="284" bgcolor="#AEFFAE"><?= setstring('mal', 'Peralatan menuai', 'en', 'Harvesting tools'); ?></td>
-                            <td width="141" bgcolor="#AEFFAE"><div align="center">
-                                    <?= number_format($tuai->a_1, 2); ?>
-                                </div></td>
-                            <td width="119" bgcolor="#AEFFAE"><div align="center"><span id="t1"><?php $x1 = ($tuai->a_1 / $b);
-                                    echo number_format($x1, 2);
-                                    ?></span></div></td>
-                            <td width="116" bgcolor="#AEFFAE"><div align="center"><span id="t1_tan"><?php $y1 = ($x1 / $tan_ha);
-                                            echo number_format($y1, 2);
-                                    ?></span></div></td>
-                            <td width="186" bgcolor="#AEFFAE"><div align="center"><strong><span id="t1_beza">0</span> </strong></div></td>
-                        </tr>
-                        <tr>
-                            <td height="43" align="center">2.</td>
-                            <td><?= setstring('mal', 'Menuai, memungut BTS dan buah relai', 'en', 'Harvesting and collection of FFB and loose fruit'); ?></td>
-                            <td><div align="center">
+                            <td height="43" align="center" bgcolor="#AEFFAE">1.</td>
+                            <td bgcolor="#AEFFAE"><?= setstring('mal', 'Upah Menuai, memungut BTS dan buah relai', 'en', 'Harvesting and collection of FFB and loose fruit'); ?></td>
+                            <td bgcolor="#AEFFAE"><div align="center">
 <?= number_format($tuai->a_2, 2); ?>
                                 </div></td>
-                            <td><div align="center"><span id="t2"><?php $x1 = ($tuai->a_2 / $b);
+                            <td bgcolor="#AEFFAE"><div align="center"><span id="t2"><?php $x1 = ($tuai->a_2 / $b);
 echo number_format($x1, 2);
 ?></span></div></td>
-                            <td><div align="center"><span id="t2_tan"><?php $y1 = ($x1 / $tan_ha);
+                            <td bgcolor="#AEFFAE"><div align="center"><span id="t2_tan"><?php $y1 = ($x1 / $tan_ha);
 echo number_format($y1, 2);
 ?></span></div></td>
-                            <td><div align="center"><strong><span id="t2_beza">0</span> </strong></div></td>
+                            <td bgcolor="#AEFFAE"><div align="center"><strong><span id="t2_beza">0</span> </strong></div></td>
                         </tr>
+
                         <tr>
-                            <td height="43" align="center" bgcolor="#AEFFAE">3.</td>
-                            <td bgcolor="#AEFFAE"><?= setstring('mal', 'Upah mandur dan kos penyeliaan estet', 'en', 'Mandore wages/ direct field supervision costs'); ?></td>
-                            <td bgcolor="#AEFFAE"><div align="center">
-<?= number_format($tuai->a_3, 2); ?>
-                                </div></td>
-                            <td bgcolor="#AEFFAE"><div align="center"><span id="t3"><?php $x1 = ($tuai->a_3 / $b);
-echo number_format($x1, 2);
-?></span></div></td>
-                            <td bgcolor="#AEFFAE"><div align="center"><span id="t3_tan"><?php $y1 = ($x1 / $tan_ha);
-echo number_format($y1, 2);
-?></span></div></td>
-                            <td bgcolor="#AEFFAE"><div align="center"><strong><span id="t3_beza">0</span> </strong></div></td>
-                        </tr>
-                        <tr>
-                            <td height="38" align="center">4.</td>
+                            <td height="38" align="center" bgcolor="#FFFFFF">2.</td>
                             <td><?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance') ?> </td>
                             <td><div align="center">
 <?= number_format($tuai->a_4, 2); ?>
@@ -3797,6 +3866,37 @@ echo number_format($y1, 2);
 ?></span></div></td>
                             <td><div align="center"><strong><span id="t4_beza">0</span> </strong></div></td>
                         </tr>
+
+                        <tr>
+                            <td width="16" height="44" align="center" bgcolor="#AEFFAE">3.</td>
+                            <td width="284" bgcolor="#AEFFAE"><?= setstring('mal', 'Pembelian peralatan menuai', 'en', 'Harvesting tools'); ?></td>
+                            <td width="141" bgcolor="#AEFFAE"><div align="center">
+                                    <?= number_format($tuai->a_1, 2); ?>
+                                </div></td>
+                            <td width="119" bgcolor="#AEFFAE"><div align="center"><span id="t1"><?php $x1 = ($tuai->a_1 / $b);
+                                    echo number_format($x1, 2);
+                                    ?></span></div></td>
+                            <td width="116" bgcolor="#AEFFAE"><div align="center"><span id="t1_tan"><?php $y1 = ($x1 / $tan_ha);
+                                            echo number_format($y1, 2);
+                                    ?></span></div></td>
+                            <td width="186" bgcolor="#AEFFAE"><div align="center"><strong><span id="t1_beza">0</span> </strong></div></td>
+                        </tr>
+
+                        <tr>
+                            <td height="43" align="center" bgcolor="#FFFFFF">4.</td>
+                            <td bgcolor="#FFFFFF"><?= setstring('mal', 'Upah Mandur Penuai', 'en', 'Mandore wages/ direct field supervision costs'); ?></td>
+                            <td bgcolor="#FFFFFF"><div align="center">
+<?= number_format($tuai->a_3, 2); ?>
+                                </div></td>
+                            <td bgcolor="#FFFFFF"><div align="center"><span id="t3"><?php $x1 = ($tuai->a_3 / $b);
+echo number_format($x1, 2);
+?></span></div></td>
+                            <td bgcolor="#FFFFFF"><div align="center"><span id="t3_tan"><?php $y1 = ($x1 / $tan_ha);
+echo number_format($y1, 2);
+?></span></div></td>
+                            <td bgcolor="#FFFFFF"><div align="center"><strong><span id="t3_beza">0</span> </strong></div></td>
+                        </tr>
+
                         <tr>
                             <td height="15" align="center">&nbsp;</td>
                             <td>&nbsp;</td>
@@ -3842,6 +3942,7 @@ echo number_format($y1, 2);
                             <td width="154" valign="middle" background="../images/tb_BG.gif"><div align="center"><strong><?= setstring('mal', 'Perubahan Kos Per Hektar dengan Tahun Lepas', 'en', 'Cost Different with Last year'); ?>
                                     </strong></div><div align="center"><strong> (%)</strong></div></td>
                         </tr>
+<?php /*
                         <tr>
                             <td height="37" align="center" valign="middle" bgcolor="#AEFFAE">1.</td>
                             <td colspan="2" valign="middle" bgcolor="#AEFFAE"><?= setstring('mal', 'Dalaman', 'en', 'Internal'); ?></td>
@@ -3861,6 +3962,8 @@ echo number_format($y1, 2);
 ?></span></div></td>
                             <td valign="middle" bgcolor="#AEFFAE"><div align="center"><span id="total_racun_beza">0</span></div></td>
                         </tr>
+
+
                         <tr>
                             <td width="15" height="37" align="center" valign="middle">&nbsp;</td>
                             <td colspan="6" valign="middle" bgcolor="#CCCCFF">i. <?= setstring('mal', 'Pemunggahan BTS ke', 'en', 'Loading of FFB to'); ?>:</td>
@@ -3929,36 +4032,38 @@ echo number_format($y1, 2);
                                 ?></div></td>
                             <td valign="middle"><div align="center" id="total_baja_beza">0</div></td>
                         </tr>
+                        */?>
                         <tr>
-                            <td height="42" align="center" valign="top">&nbsp;</td>
-                            <td colspan="2" valign="middle" bgcolor="#FFFFCC">i. <?= setstring('mal', 'Kos pengangkutan BTS dari platform atau ramp ke kilang', 'en', 'FFB transportation cost from platform or ramp to the mill'); ?></td>
-                            <td valign="middle" bgcolor="#FFFFCC"><div align="center">
+                            <td height="42" align="center" valign="center" bgcolor="#AEFFAE">1.</td>
+                            <td colspan="2" valign="middle" bgcolor="#AEFFAE"><?= setstring('mal', 'Kos pengangkutan BTS dari platform atau ramp ke kilang', 'en', 'FFB transportation cost from platform or ramp to the mill'); ?></td>
+                            <td valign="middle" bgcolor="#AEFFAE"><div align="center">
 <?= number_format($angkut->b_1a, 2); ?>
                                 </div></td>
-                            <td valign="middle" bgcolor="#FFFFCC"><div align="center"><span id="a4">
+                            <td valign="middle" bgcolor="#AEFFAE"><div align="center"><span id="a4">
                                 <?php $x1 = ($angkut->b_1a / $b);
                                 echo number_format($x1, 2);
                                 ?>
                                     </span></div></td>
-                            <td valign="middle" bgcolor="#FFFFCC"><div align="center"><span id="a4_tan"><?php $y1 = ($x1 / $tan_ha);
+                            <td valign="middle" bgcolor="#AEFFAE"><div align="center"><span id="a4_tan"><?php $y1 = ($x1 / $tan_ha);
                                 echo number_format($y1, 2);
                                 ?></span></div></td>
-                            <td valign="middle" bgcolor="#FFFFCC"><div align="center"><strong><span id="a4_beza">0</span> </strong></div></td>
+                            <td valign="middle" bgcolor="#AEFFAE"><div align="center"><strong><span id="a4_beza">0</span> </strong></div></td>
                         </tr>
                         <tr>
-                            <td height="43" align="center" valign="middle">&nbsp;</td>
-                            <td colspan="2" valign="middle" bgcolor="#FFFFCC">ii. <?= setstring('mal', 'Penjagaan lori, treler, traktor dsb', 'en', 'Upkeep of tractor & trailer, lorry, etc'); ?></td>
-                            <td valign="middle" bgcolor="#FFFFCC"><div align="center">
+                            <td height="43" align="center" valign="center">2.</td>
+                            <td colspan="2" valign="middle" bgcolor="#FFFFFF"><?= setstring('mal', 'Penjagaan lori, treler, traktor dsb', 'en', 'Upkeep of tractor & trailer, lorry, etc'); ?></td>
+                            <td valign="middle" bgcolor="#FFFFFF"><div align="center">
                                 <?= number_format($angkut->b_1b, 2); ?>
                                 </div></td>
-                            <td valign="middle" bgcolor="#FFFFCC"><div align="center"><span id="a5"><?php $x1 = ($angkut->b_1b / $b);
+                            <td valign="middle" bgcolor="#FFFFFF"><div align="center"><span id="a5"><?php $x1 = ($angkut->b_1b / $b);
                                 echo number_format($x1, 2);
                                 ?></span></div></td>
-                            <td valign="middle" bgcolor="#FFFFCC"><div align="center"><span id="a5_tan"><?php $y1 = ($x1 / $tan_ha);
+                            <td valign="middle" bgcolor="#FFFFFF"><div align="center"><span id="a5_tan"><?php $y1 = ($x1 / $tan_ha);
                                 echo number_format($y1, 2);
                                 ?></span></div></td>
-                            <td valign="middle" bgcolor="#FFFFCC"><div align="center"><strong><span id="a5_beza">0</span> </strong></div></td>
+                            <td valign="middle" bgcolor="#FFFFFF"><div align="center"><strong><span id="a5_beza">0</span> </strong></div></td>
                         </tr>
+<?php /*
                         <tr>
                             <td height="43" align="center" valign="middle">&nbsp;</td>
                             <td colspan="2" valign="middle" bgcolor="#FFFFCC">iii. <?= setstring('mal', 'Pengangkutan sungai', 'en', 'River transport'); ?></td>
@@ -3987,6 +4092,7 @@ echo number_format($y1, 2);
                                 ?></span></div></td>
                             <td valign="middle" bgcolor="#AEFFAE"><div align="center"><strong><span id="a7_beza">0</span> </strong></div></td>
                         </tr>
+                        */?>
                         <tr>
                             <td height="17" align="center" valign="middle">&nbsp;</td>
                             <td colspan="2" valign="middle">&nbsp;</td>
@@ -4078,7 +4184,7 @@ echo number_format($y1, 2);
                     <tr valign="top">
                         <td width="24" height="37" align="center" bgcolor="#AEFFAE">1.</td>
                         <td width="296" bgcolor="#AEFFAE"> <span class="style4">
-                                <?= setstring('mal', 'Emolumen untuk eksekutif dan bukan eksekutif', 'en', 'Executive and non-executive emoluments '); ?>
+                                <?= setstring('mal', 'Pembayaran gaji dan elaun untuk eksekutif dan bukan eksekutif serta kebajikan kepada buruh', 'en', 'Executive and non-executive emoluments '); ?>
                             </span>          <br />
                             <span class="kecil">(
 <?= setstring('mal', 'Gaji dan elaun', 'en', 'Emoluments and allowances'); ?>
@@ -4119,6 +4225,8 @@ echo number_format($y1, 2);
                                 0.00
                             </div></td>
                     </tr>
+
+<?php /*
                     <tr valign="top">
                         <td height="33" align="center">2.</td>
                         <td><span class="style4">
@@ -4147,10 +4255,12 @@ echo number_format($y1, 2);
                                 0.00
                             </div></td>
                     </tr>
+
+                    */?>
                     <tr valign="top">
-                        <td height="32" align="center" bgcolor="#AEFFAE">3.</td>
-                        <td bgcolor="#AEFFAE"  ><span class="style4">
-<?= setstring('mal', 'Kos agensi dan yuran professional', 'en', 'Agency cost and professional fees'); ?>
+                        <td height="32" align="center" bgcolor="#FFFFFF">2.</td>
+                        <td bgcolor="#FFFFFF"  ><span class="style4">
+<?= setstring('mal', 'Yuran professional dan khidmat nasihat', 'en', 'Agency cost and professional fees'); ?>
                             </span>
                             <br />
                             <span class="kecil">(
@@ -4168,20 +4278,22 @@ echo number_format($y1, 2);
                                 ,
                                 <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
                                 )        </span></td>
-                        <td bgcolor="#AEFFAE"><div align="center">
+                        <td bgcolor="#FFFFFF"><div align="center">
                                 <?= number_format($belanja->kos_agensi, 2); ?>
                             </div></td>
-                        <td bgcolor="#AEFFAE"><div align="center" id="kos_agensi_per_ha"><?php $per_ha3 = $belanja->kos_agensi / $hektar;
+                        <td bgcolor="#FFFFFF"><div align="center" id="kos_agensi_per_ha"><?php $per_ha3 = $belanja->kos_agensi / $hektar;
                                 echo number_format($per_ha3, 2);
                                 ?></div></td>
-                        <td bgcolor="#AEFFAE"><div align="center" id="kos_agensi_per_bts"> <?php $per_bts3 = $per_ha3 / $bts;
+                        <td bgcolor="#FFFFFF"><div align="center" id="kos_agensi_per_bts"> <?php $per_bts3 = $per_ha3 / $bts;
                                 echo number_format($per_bts3, 2);
                                 ?></div></td>
-                        <td bgcolor="#AEFFAE">
+                        <td bgcolor="#FFFFFF">
                             <div align="center">
 <?= number_format(($d / $luas), 2) ?>
                             </div></td>
                     </tr>
+
+<?php /*
                     <tr valign="top">
                         <td height="36" align="center">4.</td>
                         <td><span class="style4">
@@ -4212,10 +4324,11 @@ echo number_format($per_bts4, 2);
 <?= number_format(($d / $luas), 2) ?>
                             </div></td>
                     </tr>
+                    */?>
                     <tr valign="top" bgcolor="#AEFFAE">
-                        <td height="36" align="center">5.</td>
+                        <td height="36" align="center">3.</td>
                         <td><span class="style4">
-                                <?= setstring('mal', 'Sewa, TOL dan insuran', 'en', 'Rent, TOL and insurance'); ?>
+                                <?= setstring('mal', 'Cukai, pemilikan tanah sementara (TOL) dan insuran', 'en', 'Rent, TOL and insurance'); ?>
                             </span>
                             <br />
                             <span class="kecil">(
@@ -4246,6 +4359,7 @@ echo number_format($per_bts4, 2);
 <?= number_format(($d / $luas), 2) ?>
                             </div></td>
                     </tr>
+<?php /*
                     <tr valign="top">
                         <td height="35" align="center">6.</td>
                         <td><span class="style4">
@@ -4300,10 +4414,11 @@ echo number_format($per_ha6, 2);
         <?= number_format(($d / $luas), 2) ?>
                             </div></td>
                     </tr>
+                    */?>
                     <tr valign="top">
-                        <td height="33" align="center">8.</td>
+                        <td height="33" align="center">4.</td>
                         <td><span class="style4">
-        <?= setstring('mal', 'Penyelenggaraan bangunan', 'en', 'Building maintenance'); ?>
+        <?= setstring('mal', 'Penjagaan, pemuliharaan dan penyelenggaraan bangunan', 'en', 'Building maintenance'); ?>
                             </span><br />
                             <span class="kecil">(
         <?= setstring('mal', 'Pembaikan dan pengecatan', 'en', 'Painting and repair'); ?>
@@ -4328,6 +4443,7 @@ echo number_format($per_ha6, 2);
         <?= number_format(($d / $luas), 2) ?>
                             </div></td>
                     </tr>
+<?php /*
                     <tr valign="top" bgcolor="#AEFFAE">
                         <td height="34" align="center">9.</td>
                         <td><span class="style4">
@@ -4387,8 +4503,9 @@ echo number_format($per_ha6, 2);
         <?= number_format(($d / $luas), 2) ?>
                             </div></td>
                     </tr>
+                    */?>
                     <tr valign="top" bgcolor="#AEFFAE">
-                        <td height="33" align="center">11.</td>
+                        <td height="33" align="center">5.</td>
                         <td><span class="style4">
         <?= setstring('mal', 'Kawalan keselamatan', 'en', 'Security Control'); ?>
                             </span><br />
@@ -4420,6 +4537,7 @@ echo number_format($per_ha6, 2);
         <?= number_format(($d / $luas), 2) ?>
                             </div></td>
                     </tr>
+<?php /*
                     <tr valign="top">
                         <td height="30" align="center">12.</td>
                         <td><span class="style4">
@@ -4453,10 +4571,11 @@ echo number_format($per_ha12, 2);
         ?>        </div></td>
                         <td><div align="center">0.00</div></td>
                     </tr>
-                    <tr valign="top" bgcolor="#AEFFAE">
-                        <td height="31" align="center">13.</td>
+                    */?>
+                    <tr valign="top" bgcolor="#FFFFFF">
+                        <td height="31" align="center">6.</td>
                         <td><span class="style4">
-<?= setstring('mal', 'Perbelanjaan pejabat', 'en', 'Office expenses'); ?>
+<?= setstring('mal', 'Perbelanjaan pejabat dan utilit', 'en', 'Office expenses'); ?>
                             </span> <br />
                             <span class="kecil">(
 <?= setstring('mal', 'Telefon/fax/telegram', 'en', 'Telephone/fax/telegram fees'); ?>
@@ -4493,8 +4612,8 @@ echo number_format($per_ha12, 2);
                         ?>        </div></td>
                         <td><div align="center">0.00</div></td>
                     </tr>
-                    <tr valign="top">
-                        <td height="31" align="center">14.</td>
+                    <tr valign="top" bgcolor="#AEFFAE">
+                        <td height="31" align="center">7.</td>
                         <td><span class="style4">
                         <?= setstring('mal', 'Susutnilai', 'en', 'Value depreciation'); ?>
                             </span><br />
@@ -4516,8 +4635,9 @@ echo number_format($per_ha12, 2);
                             </div></td>
                         <td><div align="center">0.00</div></td>
                     </tr>
-                    <tr valign="top" bgcolor="#AEFFAE">
-                        <td height="31" align="center">15.</td>
+
+                    <tr valign="top" bgcolor="#FFFFFF">
+                        <td height="31" align="center">8.</td>
                         <td><span class="style4">
                         <?= setstring('mal', 'Perbelanjaan lain', 'en', 'Other expenses'); ?>
                             </span><br />
@@ -4546,6 +4666,75 @@ echo number_format($per_bts15, 2);
 ?>        </div></td>
                         <td><div align="center">0.00</div></td>
                     </tr>
+
+
+                    <tr valign="top" bgcolor="#AEFFAE">
+                        <td height="31" align="center">9.</td>
+                        <td><span class="style4">
+                        <?= setstring('mal', 'Pembelian mesin/jentera dan juga bin untuk kegunaan di ladang', 'en', 'Other expenses'); ?>
+                            </span><br />
+                            <span class="kecil">(
+                        <?= setstring('mal', 'Keraian pelawat', 'en', 'Entertain visitors'); ?>
+                                ,
+                        <?= setstring('mal', 'Penerbitan pertanian', 'en', 'Agricultural publication'); ?>
+                                ,
+                    <?= setstring('mal', 'Yuran/bayaran seminar/persidangan', 'en', 'Seminar/conference fees'); ?>
+                                ,
+                        <?= setstring('mal', 'Pembaikan notis/papan tanda', 'en', 'Repairs to Notices/signboard'); ?>
+                                ,
+                        <?= setstring('mal', 'Derma/sumbangan', 'en', 'Sundry charitable donation'); ?>
+                                ,
+                        <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
+                                )        </span></td>
+
+<?php /*
+                        <td><div align="center">
+                        <?= number_format($belanja->perbelanjaan_lain, 2); ?>
+                            </div></td>
+                        <td><div align="center" id="perbelanjaan_lain_per_ha"><?php $per_ha15 = $belanja->perbelanjaan_lain / $hektar;
+                        echo number_format($per_ha15, 2);
+                        ?></div></td>
+                        <td><div align="center" id="perbelanjaan_lain_per_bts">
+                    <?php $per_bts15 = $per_ha15 / $bts;
+                    echo number_format($per_bts15, 2);
+                    ?>        </div></td>
+                        <td><div align="center">0.00</div></td>
+                    </tr>
+                    */?>
+
+                    <tr valign="top" bgcolor="#FFFFFF">
+                        <td height="31" align="center">10.</td>
+                        <td><span class="style4">
+                        <?= setstring('mal', 'Pembelian aset untuk kegunaan pejabat dan bangunan lain di ladang', 'en', 'Other expenses'); ?>
+                            </span><br />
+                            <span class="kecil">(
+                        <?= setstring('mal', 'Keraian pelawat', 'en', 'Entertain visitors'); ?>
+                                ,
+                        <?= setstring('mal', 'Penerbitan pertanian', 'en', 'Agricultural publication'); ?>
+                                ,
+                    <?= setstring('mal', 'Yuran/bayaran seminar/persidangan', 'en', 'Seminar/conference fees'); ?>
+                                ,
+                        <?= setstring('mal', 'Pembaikan notis/papan tanda', 'en', 'Repairs to Notices/signboard'); ?>
+                                ,
+                        <?= setstring('mal', 'Derma/sumbangan', 'en', 'Sundry charitable donation'); ?>
+                                ,
+                        <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
+                                )        </span></td>
+<?php /*
+                        <td><div align="center">
+                        <?= number_format($belanja->perbelanjaan_lain, 2); ?>
+                            </div></td>
+                        <td><div align="center" id="perbelanjaan_lain_per_ha"><?php $per_ha15 = $belanja->perbelanjaan_lain / $hektar;
+                        echo number_format($per_ha15, 2);
+                        ?></div></td>
+                        <td><div align="center" id="perbelanjaan_lain_per_bts">
+                    <?php $per_bts15 = $per_ha15 / $bts;
+                    echo number_format($per_bts15, 2);
+                    ?>        </div></td>
+                        <td><div align="center">0.00</div></td>
+                    </tr>
+                    */?>
+
                     <tr>
                         <td height="17" align="center"> </td>
                         <td> </td>

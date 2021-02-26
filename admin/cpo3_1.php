@@ -1,5 +1,5 @@
 <table align="left" class="tableCss">
-  
+
   <tr>
     <td width="51"><strong>3.1</strong></td>
     <td colspan="2"><b>KOS-KOS LAIN&nbsp;[<em>OTHER COSTS</em>]</b></td>
@@ -12,7 +12,7 @@
     <td></td>
     <td colspan="2">[<i>Cost must be adjusted to the January - December 2008 financial year</i>] </td>
   </tr>
-  
+
   <tr>
     <td height="10px"></td>
   </tr>
@@ -54,10 +54,10 @@
         <td>Pebelanjaan lain&nbsp;[<i>Other expenditures</i>]</td>
         <td><input type="text" name="txtCa5"  class="textBox"/></td>
       </tr>
-      
+
     </table></td>
   </tr>
-  
+
   <tr>
     <td></td>
     <td colspan="2"><input type="submit" name="button" id="button" value="Save">

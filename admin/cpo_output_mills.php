@@ -1,46 +1,70 @@
-<style type="text/css">
-<!--
-.style1 {font-size: 14px}
--->
-</style>
+<?php
+
+  include('amcolumn_data.php');
+  $q = "select * from negeri";
+  $r = mysqli_query($con, $q);
+
+?>
 <table width="100%">
   <tr>
     <td><h2 align="center">Total CPO Output Distribution of Mills
-    
-        <script type="text/javascript" src="../js/bar/swfobject.js"></script>
     </h2></td>
   </tr>
   <tr>
     <td><div align="center">
-      <div id="flashcontent" align="center"> <strong>You need to upgrade your Flash Player</strong> </div>
+      <div id="piechart" style="width: 1000px; height: 500px;"></div>
     </div></td>
   </tr>
 </table>
-<!--<div id="graph" style="height:550px;"><strong>Please upgrade you flash</strong></div>
 
+<!-- initialize Google Chart -->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
-	// <![CDATA[		
-	var so = new SWFObject("../estate/amcolumn/amcolumn.swf", "amcolumn", "520", "400", "8", "#FFFFFF");
-	so.addVariable("settings_file", encodeURIComponent("amcolumn/output_settings.xml"));
-	so.addVariable("data_file", encodeURIComponent("amcolumn/amcolumn_data.xml"));
-	so.write("graph");
-	// ]]>
-</script>-->
-<script type="text/javascript">
-		// <![CDATA[		
-		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "720", "600", "8", "#FFFFFF");
-		so.addVariable("path", "amcolumn/");
-		so.addVariable("settings_file", encodeURIComponent("amcolumn/amcolumn_settings.xml"));        // you can set two or more different settings files here (separated by commas)
-		so.addVariable("data_file", encodeURIComponent("amcolumn/amcolumn_data.php"));		
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-//	so.addVariable("chart_data", encodeURIComponent("data in CSV or XML format"));                // you can pass chart data as a string directly from this file
-//	so.addVariable("chart_settings", encodeURIComponent("<settings>...</settings>"));             // you can pass chart settings as a string directly from this file
-//	so.addVariable("additional_chart_settings", encodeURIComponent("<settings>...</settings>"));  // you can append some chart settings to the loaded ones
-//  so.addVariable("loading_settings", "LOADING SETTINGS");                                       // you can set custom "loading settings" text here
-//  so.addVariable("loading_data", "LOADING DATA");                                               // you can set custom "loading data" text here
-//  so.addVariable("preloader_color", "#000000");	
-		so.write("flashcontent");
-		// ]]>
-	</script><br />
-<br />
+      function drawChart() {
+
+        var data = new google.visualization.arrayToDataTable([
+           ['Negeri', 'Pengeluaran CPO'],
+           <?php
+               while($row=mysqli_fetch_assoc($r)){
+                   $tahun_lepas = $_COOKIE['tahun_report']-1;
+                   $queryw = "select sum(PENGELUARAN_CPO) as PENGELUARAN_CPO from ekilang ek , login_mill lm where lm.lesen = ek.no_lesen
+                     and lm.success !='0000-00-00 00:00:00' and firsttime !='1' and ek.negeri='".$row['nama']."'
+                     and ek.tahun = '".$tahun_lepas."'
+                     ";
+                   $resw = mysqli_query($con, $queryw);
+                   $roww = mysqli_fetch_array($resw);
+
+                   if ($roww['PENGELUARAN_CPO']==NULL) {
+
+                   }
+                   else {
+                     echo "['".$row['nama']."', ".round($roww['PENGELUARAN_CPO'],2)."],";
+
+                   }
+
+
+                 }
+
+           ?>
+       ]);
+
+        var options = {
+          title: '',
+          pieSliceText: '',
+          sliceVisibilityThreshold :0,
+          fontSize: 12,
+          legend: {
+            position: 'labeled',
+            textStyle: { color: 'black' }
+          },
+        };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+      }
+</script>

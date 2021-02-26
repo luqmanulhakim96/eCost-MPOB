@@ -1,25 +1,86 @@
-<script type="text/javascript">
-		$(function() {
-		$("#sw-simpan").hide();
-		$("#sw-simpan").click(function() {
-			$("#borang").hide();
-			$("#borang").html(html);
-			$("#borang").show();
-			$("#sw-sunting").show();
-			$("#sw-simpan").hide();
-		});
-		$("#sw-sunting").click(function() {
-			$("#sw-sunting").hide();
-			$("#sw-simpan").show();
-			$("#borang").hide();
-			html = $("#borang").html();
-			$.post("po1_1.php?r=1","",function(out) {
-				$("#borang").html(out);
-				$("#borang").show("slow");
-			});
-		});
-		});
-		var html = null;
+
+
+		<script type="text/javascript">
+				$(function() {
+				$("#sw-simpan").hide();
+				$("#sw-simpan").click(function() {
+					$("#borang").hide();
+					$("#borang").html(html);
+					$("#borang").show();
+					$("#sw-sunting").show();
+					$("#sw-simpan").hide();
+				});
+				$("#sw-sunting").click(function() {
+					$("#sw-sunting").hide();
+					$("#sw-simpan").show();
+					$("#borang").hide();
+					html = $("#borang").html();
+					$.post("po1_1.php?r=1","",function(out) {
+						$("#borang").html(out);
+						$("#borang").show("slow");
+					});
+				});
+				});
+				var html = null;
+
+
+
+
+		var total_ha =  <?= $pengguna->jumlahluas; ?>;
+		function field_blur(obj,obj_id) {
+			if(number_only(obj)) {
+				val = obj.value * 1;
+				percentage = val/total_ha;
+				percentage = percentage * 100.0;
+				percentage = bulatkan(percentage);
+				$("#" + obj_id).html(percentage + " %");
+				if(percentage > 100.0) {
+					$("#" + obj_id).addClass("static_txt_error");
+				}
+				else {
+					$("#" + obj_id).removeClass("static_txt_error");
+				}
+			}
+			else {
+				$("#" + obj_id).html("0 %");
+
+			}
+		}
+
+		function field_click(obj) {
+			$(obj).removeClass("field_edited");
+			$(obj).addClass("field_active");
+		}
+
+
+		function kiraan (e){
+			var jumlah = 0;
+			var a = $("#percentrata").val();
+			var b = $("#percentalun").val();
+			var c = $("#percentbukit").val();
+			var d = $("#percentcerun").val();
+
+			var f = e.value;
+			if(f>100){
+				alert('<?php echo setstring ( 'mal', 'Jumlah Peratusan melebihi had 100 %', 'en', 'Total Percentage is more than 100%'); ?>');
+			e.value = "0.00";}
+
+
+			jum = parseInt(a)+parseInt(b)+parseInt(c)+parseInt(d);
+			//alert(jum);
+			if(jum>100){
+				alert('<?php echo setstring ( 'mal', 'Jumlah Peratusan melebihi had 100 %', 'en', 'Total Percentage is more than 100%'); ?>');
+			e.value = "0.00";
+			}
+			else{
+			$('#jp').html(jum);
+			}
+			$("#jp").format({format:"#,###.00", locale:"us"});
+
+		}
+
+
+
 	</script>
 <style type="text/css">
 <!--
@@ -38,6 +99,9 @@ body {
 }
 -->
 </style>
+
+<form action="update_profil.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
+
 <script type="text/javascript">
 			$(document).ready(function(){
 				//Examples of how to assign the ColorBox event to elements
@@ -54,6 +118,8 @@ body {
 
 			});
 		</script>
+
+
 <strong>
 <?php echo setstring ( 'mal', 'PROFIL PENGGUNA', 'en', 'USER PROFILE'); ?>
 </strong><br>
@@ -74,82 +140,117 @@ body {
           <td width="38%"><?php echo  $pengguna->namaestet; ?></td>
           <td width="38%" rowspan="3"></td>
         </tr>
+
+				<?php /*
         <tr>
           <td><strong>
-            <?php echo setstring ( 'mal', 'No Lesen (Lama)', 'en', 'License No (Old)'); ?>
+            <?php //echo setstring ( 'mal', 'No Lesen (Lama)', 'en', 'License No (Old)'); ?>
             </strong></td>
-          <td><strong>:</strong></td>
-          <td><?php echo $pengguna->nolesenlama; ?></td>
+          <td><strong></strong></td>
+          <td><?php //echo $pengguna->nolesenlama; ?></td>
         </tr>
+				*/ ?>
+
+
         <tr>
           <td><strong>
-            <?php echo setstring ( 'mal', 'No Lesen (Baru)', 'en', 'License No (New)'); ?>
+            <?php echo setstring ( 'mal', 'No Lesen', 'en', 'License No'); ?>
             </strong></td>
           <td><strong>:</strong></td>
           <td><?php echo  $pengguna->nolesen; ?></td>
         </tr>
-        <tr>
-          <td><strong>
-            <?php echo setstring ( 'mal', 'Alamat Surat Menyurat', 'en', 'Mailing Address'); ?>
-            </strong></td>
-          <td><strong>:</strong></td>
-          <td colspan="2"><?php echo  $pengguna->alamat1; ?>
-            <?php echo  $pengguna->alamat2; ?>
-            <?php echo  $pengguna->poskod; ?>
-            <?php echo  $pengguna->bandar; ?>
-            <?php echo  $pengguna->negeri; ?></td>
-        </tr>
-        <tr>
-          <td><strong>
-            <?php echo setstring ( 'mal', 'Poskod', 'en', 'Postcode'); ?>
-            </strong></td>
-          <td><strong>:</strong></td>
-          <td colspan="2"><?= $pengguna->poskod; ?></td>
-        </tr>
-        <tr>
-          <td><strong>
-            <?php echo setstring ( 'mal', 'Daerah', 'en', 'District'); ?>
-            </strong></td>
-          <td><strong>:</strong></td>
-          <td colspan="2"><?php $pb = $pengguna->bandar; echo str_replace(",","",$pb); ?></td>
-        </tr>
-        <tr>
-          <td><strong>
-            <?php echo setstring ( 'mal', 'Negeri', 'en', 'State'); ?>
-            </strong></td>
-          <td><strong>:</strong></td>
-          <td colspan="2"><?php echo  $pengguna->negeri; ?></td>
-        </tr>
-        <tr>
 
+			<?php	/*
+        <tr>
+          <td><strong>
+            <?php //echo setstring ( 'mal', 'Alamat Surat Menyurat', 'en', 'Mailing Address'); ?>
+            </strong></td>
+          <td><strong></strong></td>
+          <td colspan="2"><?php //echo  $pengguna->alamat1; ?>
+            <?php //echo  $pengguna->alamat2; ?>
+            <?php //echo  $pengguna->poskod; ?>
+            <?php //echo  $pengguna->bandar; ?>
+            <?php //echo  $pengguna->negeri; ?></td>
+        </tr>
+							*/ ?>
+
+			<?php /*
+        <tr>
+          <td><strong>
+            <?php //echo setstring ( 'mal', 'Poskod', 'en', 'Postcode'); ?>
+            </strong></td>
+          <td><strong></strong></td>
+          <td colspan="2"><?php //echo $pengguna->poskod; ?></td>
+        </tr>
+					*/ ?>
+	<?php /*
+        <tr>
+          <td><strong>
+            <?php //echo setstring ( 'mal', 'Daerah', 'en', 'District'); ?>
+            </strong></td>
+          <td><strong></strong></td>
+          <td colspan="2"><?php //$pb = $pengguna->bandar; echo str_replace(",","",$pb); ?></td>
+        </tr>
+				*/ ?>
+
+	<?php /*
+        <tr>
+          <td><strong>
+            <?php //echo setstring ( 'mal', 'Negeri', 'en', 'State'); ?>
+            </strong></td>
+          <td><strong></strong></td>
+          <td colspan="2"><?php //echo  $pengguna->negeri; ?></td>
+        </tr>
+				*/ ?>
+
+        <tr>
           <td><strong>
             <?php echo setstring ( 'mal', 'No. Telefon', 'en', 'Contact No'); ?>
             </strong></td>
           <td><strong>:</strong></td>
-          <td colspan="2"><?php echo  $pengguna->notelefon; ?></td>
-					
+					<?php /*
+          <td colspan="2"><?php //echo  $pengguna->notelefon; ?></td>
+					*/ ?>
+					<td colspan="2"> <input name="notelefon" type="text" id="notelefon" value="<?= $pengguna->notelefon; ?>" size="50" class="telefon" /></td>
         </tr>
-        <tr>
 
+        <tr>
           <td><strong>
             <?php echo setstring ( 'mal', 'No. Faks', 'en', 'Fax No'); ?>
             </strong></td>
           <td><strong>:</strong></td>
-          <td colspan="2"><?php echo  $pengguna->nofax; ?></td>
+						<?php /*
+          <td colspan="2"><?php //echo  $pengguna->nofax; ?></td>
+					*/ ?>
+					<td colspan="2"> <input name="nofax" type="text" id="nofax" value="<?= $pengguna->nofax; ?>" size="50" class="telefon" /></td>
+
         </tr>
+
+
         <tr>
           <td><strong>
             <?php echo setstring ( 'mal', 'Emel', 'en', 'Email'); ?>
             </strong></td>
           <td><strong>:</strong></td>
-          <td colspan="2"><?php echo  $pengguna->email; ?></td>
+					<?php /*
+          <td colspan="2"><?php //echo  $pengguna->email; ?></td>
+					*/ ?>
+					<td colspan="2"> <input name="email" type="text" id="email" value="<?= $pengguna->email; ?>" size="50" /></td>
+
         </tr>
+
+
         <tr>
           <td><strong>
             <?php echo setstring ( 'mal', 'Pegawai Melapor', 'en', 'Reporting Officer'); ?>
             </strong></td>
           <td><strong>:</strong></td>
-          <td colspan="2"><?php echo  $pengguna->pegawai; ?></td>
+					<?php /*
+          <td colspan="2"><?php //echo  $pengguna->pegawai; ?></td>
+					*/ ?>
+					<td colspan="2"> <input name="pegawai" type="text" id="pegawai" value="<?= $pengguna->pegawai; ?>" size="50" /></td>
+
+
         </tr>
         <tr>
           <td><strong>
@@ -174,15 +275,26 @@ body {
         </tr>
         <tr>
           <td></td>
-          <td> </td>
+          <td>
+				  <td colspan="2">	<input type="submit" name="Submit" value="<?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>" />
+					</a>  <a href="password.php" class="facebox" style="text-decoration:none">
+					<input type="button" value="<?php echo setstring ( 'mal', 'Tukar kata laluan', 'en', 'Change Password'); ?>" />
+
+				</form>
+
+					 </td>
+					<?php /*
           <td colspan="2"><a href="profil.php" class="facebox1" style="text-decoration:none">
             <input type="button" value="<?php echo setstring ( 'mal', 'Ubah Profil Estate ', 'en', 'Change Estate Profile'); ?>" />
-            </a>  <a href="password.php" class="facebox" style="text-decoration:none">
-            <input type="button" value="<?php echo setstring ( 'mal', 'Tukar kata laluan', 'en', 'Change Password'); ?>" />
-</a> 
+							*/?>
 
-              <input type="submit" name="sw-sunting" id="sw-simpan" value=<?php echo setstring ( 'mal', '"Kembali"', 'en', '"Back"'); ?> />
-              <input type="submit" name="button" id="sw-sunting" value=<?php echo setstring ( 'mal', '"Edit Maklumat Am"', 'en', 'Edit General Information'); ?> />
+							<?php /*
+            </a>  <a href="password.php" class="facebox" style="text-decoration:none">
+            <input type="button" value="<?php echo setstring ( 'mal', 'Tukar kata laluan', 'en', 'Change Password'); ?>" /> </a> 
+						*/?>
+
+            <td colspan="2">  <input type="submit" name="sw-sunting" id="sw-simpan" value=<?php echo setstring ( 'mal', '"Kembali"', 'en', '"Back"'); ?> />
+              <td colspan="2"><input type="button" name="button" id="sw-sunting" value=<?php echo setstring ( 'mal', '"Edit Maklumat Am"', 'en', 'Edit General Information'); ?> />
             </td>
         </tr>
 
@@ -192,17 +304,22 @@ body {
     <td></td>
   </tr>
   <tr>
-    <td><div id="borang">
+    <td><div id="borang1">
         <table width="100%" align="center" class="tableCss" style="border:#333333 solid 1px;">
           <tr>
             <td colspan="3" align="left" valign="top" bgcolor="#999999"><span class="style1">
               <?php echo setstring ( 'mal', 'MAKLUMAT AM', 'en', 'GENERAL INFORMATION'); ?>
               </span></td>
           </tr>
-          <tr>
+
+<form action="update_profil.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
+					<tr>
             <td width="201" align="left" valign="top"><b>
               <?php echo setstring ( 'mal', 'Jenis Syarikat', 'en', 'Company Type'); ?>
               </b></td>
+							<td colspan="2"> <input name="syarikat" type="text" id="syarikat" value="<?= $pengguna->jenissyarikat; ?>" size="50" /></td>
+
+							<?php /*
             <td width="7"><div align="center"><strong>:</strong></div></td>
             <td width="674"><?php function company($x){
 			$con =connect();
@@ -237,27 +354,28 @@ body {
 		?>
               <?php echo company($pengguna->jenissyarikat); ?></td>
           </tr>
+
+					*/?>
           <tr>
             <td width="201" align="left" valign="top"><strong>
               <?php echo setstring ( 'mal', 'Keahlian dalam Persatuan', 'en', 'Membership in Union'); ?>
               </b></strong></td>
+							<td colspan="2"> <input name="keahlian" type="text" id="keahlian" value="<?= $pengguna->keahlian; ?>" size="50" /></td>
+
+							<?php /*
             <td><div align="center"><strong>:</strong></div></td>
             <td><?php echo keahlian($pengguna->keahlian); ?></td>
+						*/?>
+
           </tr>
-          <tr>
-            <td width="201" align="left" valign="top"><strong>
-              <?php echo setstring ( 'mal', 'Integrasi dengan Kilang Buah Sawit', 'en', 'Integration with Palm Factory'); ?>
-              </strong></td>
-            <td><div align="center"><strong>:</strong></div></td>
-            <td><?php $ig = $pengguna->integrasi;
-		if ($ig=='Y'){?>
-              <?php echo setstring ( 'mal', 'Ya', 'en', 'Yes'); ?>
-              <?php }
-		if ($ig=='N'){?>
-              <?php echo setstring ( 'mal', 'Tidak', 'en', 'No'); ?>
-              <?php } ?>
-            </td>
-          </tr>
+					<tr>
+
+				    <td ><strong><?php echo setstring ( 'mal', 'Integrasi dengan kilang buah sawit', 'en', 'Integration with Palm Factory'); ?></strong></td>
+				    <td><input type="radio" name="integrasi" id="radio" value="Y" <?php if($pengguna->integrasi=='Y'){?>checked="checked"<?php } ?> />
+				<?php echo setstring ( 'mal', 'Ya', 'en', 'Yes'); ?>
+				    <input type="radio" name="integrasi" id="radio2" value="N" <?php if($pengguna->integrasi=='N'){?>checked="checked"<?php } ?> />
+				<?php echo setstring ( 'mal', 'Tidak', 'en', 'No'); ?></td>
+				  </tr>
           <!--<tr>
         <td width="201" align="left" valign="top"><strong>Integrasi dengan Kilang</strong></td>
         <td><div align="center"><strong>:</strong></div></td>
@@ -313,16 +431,24 @@ body {
 		}
 		?>
 		// ]]>
+
 	           </script>
                     </div></td>
                 </tr>
               </table></td>
+
           </tr>
           <tr>
             <td colspan="3" align="left" valign="top"> </td>
           </tr>
+					<td colspan="2">	<input type="submit" name="Submit" value="<?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>" />
+
         </table>
+
       </div>
+
+
+
       <table width="100%">
         <tr>
           <td colspan="3" align="left" valign="top"></td>
@@ -330,7 +456,82 @@ body {
       </table></td>
   </tr>
 </table>
-<br />
-<div align="center"> </div>
-<br />
-<br />
+</form>
+
+
+
+
+
+
+
+
+
+<div id="borang">
+<form id="form1" name="form1" method="post" action="save_profile.php">
+<table width="100%" align="center" cellspacing="0" class="tableCss" style="border:1px #333333 solid; padding:2px;">
+
+<tr>
+	<td height="24" bgcolor="#99FF99">&nbsp;</td>
+	<td colspan="2" bgcolor="#99FF99"> <strong><?php echo setstring ( 'mal', 'Keluasan mengikut jenis tanah:', 'en', 'Area respective to soil type:'); ?></strong></td>
+	<td colspan="4" bgcolor="#99FF99"><div align="center"><span class="style2">
+		<?php echo setstring ( 'mal', 'Jumlah Keluasan', 'en', 'Total all area'); ?>
+	</span> : <span class="style2">
+		<?php echo number_format($jumlah_semua,2);?> <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?>
+	</span></div>      <div align="center"></div></td>
+	</tr>
+
+
+	<tr>
+		<td height="35"></td>
+		<td colspan="2" bgcolor="#CCFFFF"><div align="left"><?php echo setstring ( 'mal', 'a. Tanah Lanar', 'en', 'a. Alluvial Soil'); ?></div></td>
+		<td bgcolor="#CCFFFF"><div align="center">
+			<input name="lanar" type="text" class="field_active" id="lanar" onblur="field_blur(this,'s1')" onclick="field_click(this)" value="<?php echo  $pengguna->lanar; ?>" size="3" />
+			<?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div></td>
+		<td bgcolor="#CCFFFF">
+			<div align="center">
+				<span id="s1"><?php $a = round($pengguna->lanar/$jumlah_semua*100,2);echo number_format($a,2); ?> %</span></div>    </td>
+		<td bgcolor="#CCFFFF">&nbsp;</td>
+		<td width="42" bgcolor="#CCFFFF">&nbsp;</td>
+	</tr>
+
+
+	<tr>
+		<td height="35"></td>
+		<td colspan="2" bgcolor="#FFCCCC"><div align="left"><?php echo setstring ( 'mal', 'b. Tanah Pedalaman', 'en', 'b. Rural Land'); ?></div></td>
+		<td bgcolor="#FFCCCC">
+			<div align="center">
+<input name="pedalaman" type="text" class="field_active" id="pedalaman" onblur="field_blur(this,'s2')" onclick="field_click(this)" value="<?php echo  $pengguna->pedalaman; ?>" size="3" />
+<?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div>
+
+			<div align="center"></div></td>
+		<td bgcolor="#FFCCCC">
+			<div align="center">
+				<span id="s2">
+				<?php $a = round($pengguna->pedalaman/$jumlah_semua*100,2);echo number_format($a,2); ?>
+ %</span></div>    </td>
+		<td bgcolor="#FFCCCC">&nbsp;</td>
+		<td bgcolor="#FFCCCC">&nbsp;</td>
+	</tr>
+
+	<tr>
+    <td height="34"></td>
+    <td colspan="2" bgcolor="#FFFFCC"><div align="left"><?php echo setstring ( 'mal', 'c. Tanah Gambut : ', 'en', 'c. Peat Soil:'); ?></div></td>
+    <td bgcolor="#FFFFCC"><div align="center"><span class="style1"><?php echo $tg = $pengguna->gambutcetek+ $pengguna->gambutdalam; ?>  <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></span></div></td>
+    <td bgcolor="#FFFFCC"><div align="center"><span class="style1">
+    </span></div>      <span class="style1">
+        <div align="center">
+          <?php $a = round($tg/$jumlah_semua*100,2);echo number_format($a,2); ?>
+ %</div>
+
+    </span></td>
+    <td bgcolor="#FFFFCC">&nbsp;</td>
+    <td bgcolor="#FFFFCC">&nbsp;</td>
+  </tr>
+
+
+
+
+
+
+
+</div>

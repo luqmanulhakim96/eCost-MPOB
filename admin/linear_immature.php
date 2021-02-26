@@ -98,7 +98,7 @@ function openScript(url, width, height) {
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Boundaries and survey" width="320px" height="280px" style="border:none"></iframe></td>
   </tr>
   <tr>
-    <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Cover crop','','')" class="grey-button pcb"> <span>Cover 
+    <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Cover crop','','')" class="grey-button pcb"> <span>Cover
 		crop</span> </a> </div>
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Cover crop" width="320px" height="280px" style="border:none"></iframe></td>
     <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Pest and diseases control','','')" class="grey-button pcb"> <span>Pest and diseases control</span> </a> </div>
@@ -114,10 +114,10 @@ function openScript(url, width, height) {
     <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Others Expenditure','','')" class="grey-button pcb"> <span>Other Expenditures</span> </a> </div>
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Others Expenditure" width="320px" height="280px" style="border:none"></iframe></td>
   </tr>
-  <?php 
-  
+  <?php
+
   }
-  
+
   ?>
   <?php if($tahun!='1'){?>
   <tr>

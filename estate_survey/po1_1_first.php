@@ -17,8 +17,8 @@ $esub = new user('esub',$_SESSION['lesen']);
 		$("#darjahrata").hide();
 		$("#darjahalun").hide();
 	});
-	
-	
+
+
 
 </script>
 <script type="text/javascript" src="../text_js.js"></script>
@@ -28,14 +28,14 @@ $esub = new user('esub',$_SESSION['lesen']);
 
 <script type="text/javascript">
 	function berbukit(val) {
-	
+
 	if (val=="")
 	{
 		$("#darjahrata").hide();
 		$("#darjahalun").hide();
 		$("#darjahbukit").hide();
 	}
-	
+
 		if(val == "bukit") {
 			$("#darjahbukit").show('slow');
 		}
@@ -43,7 +43,7 @@ $esub = new user('esub',$_SESSION['lesen']);
 			$("#darjahrata").hide();
 			$("#darjahalun").hide();
 		}
-		
+
 		if(val == "rata") {
 			$("#darjahrata").show('slow');
 		}
@@ -51,7 +51,7 @@ $esub = new user('esub',$_SESSION['lesen']);
 			$("#darjahbukit").hide();
 			$("#darjahalun").hide();
 		}
-		
+
 		if(val == "alun") {
 			$("#darjahalun").show('slow');
 		}
@@ -60,7 +60,7 @@ $esub = new user('esub',$_SESSION['lesen']);
 			$("#darjahbukit").hide();
 		}
 	}
-	
+
 
 </script>
 <link rel="stylesheet" href="../text_style.css" type="text/css" />
@@ -124,10 +124,10 @@ function add_byr(no_me)
 		}
 		else {
 			$("#" + obj_id).html("0 %");
-			
+
 		}
 	}
-	
+
 	function field_click(obj) {
 		$(obj).removeClass("field_edited");
 		$(obj).addClass("field_active");
@@ -147,17 +147,17 @@ function kira(obj,peratus){
 
 
 	function semaksama(){
-	
+
 	var a = document.getElementById("katalaluan1").value;
 	var b = document.getElementById("katalaluan2").value;
-	
-	
+
+
 	if(a!=b){
 	alert("<?=setstring ( 'mal', 'Katalaluan tidak sama', 'en', 'Password is not match'); ?>");
 	}
-	
+
 	}
-	
+
 </script>
 
 <form action="save_first.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
@@ -169,50 +169,50 @@ function kira(obj,peratus){
     </strong>      </td>
     <td colspan="4" bgcolor="#99FF99">
       <input name="pegawai" style="text-align:left; font-weight:normal;text-transform:uppercase;" size="50" width="50" type="text" autocomplete="off" id="pegawai"  />
-      
+
       <script language="javascript">
       var f1 = new LiveValidation('pegawai');
 f1.add( Validate.Presence );
       </script>
-      
+
       <input name="no_lesen" type="hidden" id="no_lesen" value="<?= $_SESSION['lesen'];?>" /></td>
     </tr>
-  
+
   <tr>
     <td height="37">&nbsp;</td>
     <td colspan="2"><strong>
       <?=setstring ( 'mal', 'Katalaluan', 'en', 'Password'); ?>
     </strong></td>
     <td colspan="4"><input name="katalaluan1" type="password" id="katalaluan1" value="123456" />
-    
-    
-    
+
+
+
       <em><br />
       **
       <?=setstring ( 'mal', 'Sila masukkan kata laluan yang baru', 'en', 'Please insert your new password.'); ?>
       <br /> <?=setstring ( 'mal', 'Kata laluan asal adalah 123456', 'en', 'Default password is 123456 '); ?> </em>
-     			
+
     </td>
   </tr>
   <tr bgcolor="#99FF99">
     <td height="37">&nbsp;</td>
     <td colspan="2"><strong>
-    
+
       <?=setstring ( 'mal', 'Taip semula kata laluan', 'en', 'Re-type Password'); ?>
-     			
-    
+
+
     </strong></td>
     <td colspan="4"><input name="katalaluan2" type="password" id="katalaluan2" value="123456"  />
     <script language="javascript">
     	var f19 = new LiveValidation('katalaluan2');
 		f19.add( Validate.Confirmation, { match: 'katalaluan1' } );
     </script>
-    
-     
+
+
       <em><br />
       **
-      
-      
+
+
             <?=setstring ( 'mal', 'Sila sahkan semula kata laluan yang baru', 'en', 'Please re-type your new password'); ?>
 
       </em></td>
@@ -225,14 +225,14 @@ f1.add( Validate.Presence );
     <td colspan="4">
       <select name="syarikat" id="syarikat" style="width:330px">
         <option>-<?=setstring ( 'mal', 'Pilih', 'en', 'Select'); ?>-</option>
-		<?php 
+		<?php
 		//$company = new syarikat('syarikat','');
 		for ($i=0; $i<$company->total; $i++){ ?>
         <option value="<?= $company->comp_name[$i];?>"><?= $company->comp_name[$i]; ?></option>
         <?php } ?>
       </select>   </td>
     </tr>
-  
+
   <tr>
     <td height="32" bgcolor="#99FF99">&nbsp;</td>
     <td colspan="2" bgcolor="#99FF99"><strong>
@@ -246,7 +246,7 @@ f1.add( Validate.Presence );
 		<?php } ?>
       </select>    </td>
     </tr>
-  
+
   <tr>
     <td height="31">&nbsp;</td>
     <td colspan="2"><strong>
@@ -277,7 +277,7 @@ f1.add( Validate.Presence );
     <td colspan="2" bgcolor="#CCFFFF"><div align="left">a. <?=setstring ( 'mal', 'Tanah Lanar', 'en', 'Alluvial soil'); ?></div></td>
     <td bgcolor="#CCFFFF"><div align="center">
       <input name="lanar" type="text" autocomplete="off" class="field_active" id="lanar" onchange="field_blur(this,'s1')" value="0" size="3" />
-      
+
       <?=setstring ( 'mal', 'Hektar', 'en', 'Hectare'); ?>
       </div></td>
     <td bgcolor="#CCFFFF">
@@ -291,14 +291,14 @@ f1.add( Validate.Presence );
   ?>
   <tr>
     <td height="35"></td>
-    <td colspan="2" bgcolor="#FFCCCC"><div align="left">b. 
+    <td colspan="2" bgcolor="#FFCCCC"><div align="left">b.
     <?=setstring ( 'mal', 'Tanah Pedalaman', 'en', 'Inland Soil'); ?>
     </div></td>
     <td bgcolor="#FFCCCC">
       <div align="center">
-<input name="pedalaman" type="text" autocomplete="off" class="field_active" id="pedalaman" onblur="field_blur(this,'s2')" onclick="field_click(this)" value="0" size="3" />        
+<input name="pedalaman" type="text" autocomplete="off" class="field_active" id="pedalaman" onblur="field_blur(this,'s2')" onclick="field_click(this)" value="0" size="3" />
 <?=setstring ( 'mal', 'Hektar', 'en', 'Hectare'); ?></div>
-    
+
       <div align="center"></div></td>
     <td bgcolor="#FFCCCC">
       <div align="center">
@@ -308,7 +308,7 @@ f1.add( Validate.Presence );
   </tr>
   <tr>
     <td height="34"></td>
-    <td colspan="2" bgcolor="#FFFFCC"><div align="left">c. 
+    <td colspan="2" bgcolor="#FFFFCC"><div align="left">c.
     <?=setstring ( 'mal', 'Tanah Gambut', 'en', 'Peat Soil'); ?>
      : </div></td>
     <td bgcolor="#FFFFCC"><div align="center"><span class="style1" id="total_luas"> </span></div></td>
@@ -349,8 +349,8 @@ f1.add( Validate.Presence );
     <td colspan="2" bgcolor="#CACAFF">d. <?=setstring ( 'mal', 'Lain-lain Jenis Tanah', 'en', 'Others'); ?>:</td>
     <td bgcolor="#CACAFF"><div align="center" class="style1" id="total_luas2"></div></td>
     <td bgcolor="#CACAFF"><span class="style1">
-            
-    </span>          
+
+    </span>
     <div align="center" class="style1" id="percent_luas2"></div>    </td>
     <td bgcolor="#CACAFF">&nbsp;</td>
     <td bgcolor="#CACAFF">&nbsp;</td>
@@ -360,7 +360,7 @@ f1.add( Validate.Presence );
     <td bgcolor="#CACAFF"><div align="right"> i)</div></td>
     <td bgcolor="#CACAFF"> <?=setstring ( 'mal', 'Laterit ', 'en', 'Lateritic'); ?></td>
     <td bgcolor="#CACAFF"><div align="center">
-          <input name="laterit" type="text" autocomplete="off" class="field_active" id="laterit" onblur="field_blur(this,'s5')" onclick="field_click(this)" value="0" size="3" /> 
+          <input name="laterit" type="text" autocomplete="off" class="field_active" id="laterit" onblur="field_blur(this,'s5')" onclick="field_click(this)" value="0" size="3" />
       <?=setstring ( 'mal', 'Hektar', 'en', 'Hectare'); ?></div></td>
     <td bgcolor="#CACAFF"><div align="center">
           <span id="s5">0 %</span>
@@ -373,7 +373,7 @@ f1.add( Validate.Presence );
     <td bgcolor="#CACAFF"><div align="right">ii) </div></td>
     <td bgcolor="#CACAFF"> <?=setstring ( 'mal', 'Asid Sulfat', 'en', 'Acid Sulphate '); ?> </td>
     <td bgcolor="#CACAFF"><div align="center">
-          <input name="asidsulfat" type="text" autocomplete="off" class="field_active" id="asidsulfat" onblur="field_blur(this,'s6')" onclick="field_click(this)" value="0" size="3" /> 
+          <input name="asidsulfat" type="text" autocomplete="off" class="field_active" id="asidsulfat" onblur="field_blur(this,'s6')" onclick="field_click(this)" value="0" size="3" />
       <?=setstring ( 'mal', 'Hektar', 'en', 'Hectare'); ?></div></td>
    <td bgcolor="#CACAFF"><div align="center">
      <span id="s6">0 %</span></div></td>
@@ -392,7 +392,7 @@ f1.add( Validate.Presence );
     <td bgcolor="#CACAFF">&nbsp;</td>
     <td bgcolor="#CACAFF">&nbsp;</td>
   </tr>
-  
+
   <tr>
     <td height="34" bgcolor="#99FF99">&nbsp;</td>
     <td colspan="2" bgcolor="#99FF99"><strong><?=setstring ( 'mal', 'Bentuk mukabumi estet', 'en', 'Estate topography'); ?></b></strong></td>
@@ -418,7 +418,7 @@ f1.add( Validate.Presence );
     <tr valign="top">
       <td height="65">&nbsp;</td>
       <td colspan="6">
-        <table width="100%" border="0" cellspacing="0" class="hide" id="rata"> 
+        <table width="100%" border="0" cellspacing="0" class="hide" id="rata">
           <tr>
             <td width="3%" height="30" bgcolor="#CCFF99">&nbsp;</td>
             <td width="39%" bgcolor="#CCFF99"><strong>
@@ -438,8 +438,8 @@ f1.add( Validate.Presence );
             %</td>
             <td width="29%" bgcolor="#CCFF99">&nbsp;</td>
           </tr>
-        </table>        
-        
+        </table>
+
         <table width="100%" border="0" cellspacing="0" class="hide" id="bukit">
           <tr>
             <td width="3%" height="30" bgcolor="#CCFF99">&nbsp;</td>
@@ -463,13 +463,13 @@ f1.add( Validate.Presence );
     <tr>
       <td height="17" colspan="7"><div align="center">
         <p>
-		
+
           <input type="submit" name="button" id="button" value="  <?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>  " />
-          
+
           		  <button type="button" onclick="window.location.href='../logout.php'"><?=setstring ( 'mal', 'Batal', 'en', 'Cancel'); ?></button>
         </p>
         <p>&nbsp;  </p>
       </div></td>
     </tr>
 </table>
-</form> 
+</form>

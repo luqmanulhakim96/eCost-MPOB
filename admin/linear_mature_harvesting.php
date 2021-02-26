@@ -10,6 +10,8 @@ function openScript(url, width, height) {
 
 </script>
 
+
+
 <style type="text/css">
 <!--
 .style1 {color: #FFFFFF}
@@ -52,5 +54,3 @@ function openScript(url, width, height) {
     <td></td>
   </tr>
 </table>
-
-

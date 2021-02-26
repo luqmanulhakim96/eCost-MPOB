@@ -101,19 +101,42 @@ $tahun_lepas = $tahun-1;
 $_SESSION['kernel_malaysia']=$b[0]/$a[0]*100;
 $_SESSION['kernel_sabah']=$c[0]/$a[0]*100;
 $_SESSION['kernel_sarawak']=$d[0]/$a[0]*100;
+print_r($_SESSION['kernel_malaysia']=$b[0],2);
+print_r($_SESSION['kernel_sabah']=$c[0],2);
+print_r($_SESSION['kernel_sarawak']=$d[0],2);
+
 ?>
 <div align="center">
-      <div id="graph" style="height:450px;"><strong>Please upgrade you flash</strong></div>
+      <div id="piechart" style="height:450px;"><strong>Please upgrade you flash</strong></div>
     </div>
-<script type="text/javascript" src="../js/bar/swfobject.js"></script>
-<script type="text/javascript">
-		// <![CDATA[
-		var so = new SWFObject("ampie/ampie.swf", "amline", "100%", "100%", "8", "#FFFFFF");
-		so.addVariable("settings_file", encodeURIComponent("../xml/settings_estate_size1.xml"));
-		so.addVariable("data_file", encodeURIComponent("kernel_data.php"));
-		so.write("graph");
-		// ]]>
-	</script>
-<br />
-<br />
-<br />
+		<!-- initialize Google Chart -->
+		<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+		<script type="text/javascript">
+		      google.charts.load('current', {'packages':['corechart']});
+		      google.charts.setOnLoadCallback(drawChart);
+
+		      function drawChart() {
+
+						var data = google.visualization.arrayToDataTable([
+		          ['Negeri', 'KERNEL'],
+		          ['Peninsular Malaysia',     <?php echo $_SESSION['kernel_malaysia']; ?>],
+		          ['Sabah',      <?php echo $_SESSION['kernel_sabah']; ?>],
+		          ['Sarawak',  <?php echo $_SESSION['kernel_sarawak']; ?>],
+		        ]);
+
+		        var options = {
+		          title: '',
+				
+							slices: {
+									 0 : {offset: 0.3},
+							},
+		        };
+
+		        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+		        chart.draw(data, options);
+		      }
+		</script>
+		<br />
+		<br />

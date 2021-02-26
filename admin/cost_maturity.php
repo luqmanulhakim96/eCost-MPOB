@@ -14,12 +14,12 @@
 </style>
 <table width="80%" align="center" class="baju">
 
-  
-  
+
+
   <tr height="17">
     <td height="17" colspan="5"><div align="center" class="style6">Cost of Maturity, 2007 (RM per hectare) </div></td>
   </tr>
-  
+
   <tr bgcolor="#8A1602" height="18">
     <td width="258" height="18" bgcolor="#8A1602">&nbsp;</td>
     <td width="68" bgcolor="#8A1602"><div align="left"></div></td>
@@ -211,7 +211,7 @@
 </table>
 <script type="text/javascript" src="amcolumn/swfobject.js"></script>
 <script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "380", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mc_all_setting.xml"));
@@ -222,7 +222,7 @@
 	</script>
 <script type="text/javascript" src="../amline/swfobject.js"></script>
 <script type="text/javascript">
-// <![CDATA[		
+// <![CDATA[
 		var so1 = new SWFObject("../amline/amline.swf", "amline", "520", "380", "8", "#FFFFFF");
 		so1.addVariable("path", "../amline/");
 		so1.addVariable("settings_file", encodeURIComponent("amline_settings.xml"));

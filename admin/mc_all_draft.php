@@ -3,6 +3,8 @@ include ('../Connections/connection.class.php');
 
 include('baju_merah.php');
 $con = connect();
+error_reporting(0);
+
 extract($_REQUEST);
 
 $_SESSION['ru'] = '';
@@ -15,7 +17,7 @@ function median($numbers = array()) {
 
     rsort($numbers);
     $mid = (count($numbers) / 2);
-    return ($mid % 2 != 0) ? $numbers{$mid - 1} : (($numbers{$mid - 1}) + $numbers{$mid}) / 2;
+    return ($mid % 2 != 0) ? $numbers[$mid - 1] : (($numbers[$mid - 1]) + $numbers[$mid]) / 2;
 }
 
 function pertama($tahun, $nama, $status, $negeri, $daerah) {
@@ -214,7 +216,9 @@ while ($rows = mysqli_fetch_array($rs)) {
         if ($year == "") {
             $year = 1;
         }
+      
 
+        // print_r($year);
         if ($rows['isChild'] == 'N' && strlen($rows['sub_type']) > 0) {
             if ($rows['sub_type'] == "weeding") {
                 $total1 = pertama($satu, "i. Purchase of weedicide", '0', $state, $district);
@@ -225,7 +229,7 @@ while ($rows = mysqli_fetch_array($rs)) {
                 $total5 = pertama($dua, "ii. Labour cost for weeding", '0', $state, $district);
                 $total6 = pertama($dua, "iii. Machinery use and maintenances", '0', $state, $district);
                 ?>
-                    <td width="68"><div align="right"><?php $totalAll1 = $total4[0] + $total5[0] + $total6[0];
+                      <td width="68"><div align="right"><?php $totalAll1 = $total4[0] + $total5[0] + $total6[0];
             echo number_format($totalAll1, 2); ?></div></td>
                     <td width="68"><div align="right"><?php $totalAll2 = $total1[0] + $total2[0] + $total3[0];
             echo number_format($totalAll2, 2); ?></div></td>

@@ -412,69 +412,78 @@ var pitmid = false;
           <span id="kosha2"><?php $x2 =($nilai->a_2/$data); echo number_format($x2,2); ?></span>
         </div></td>
         </tr>
+
+				<?php /*
       <tr bgcolor="#99FF99">
         <td height="43" align="right">3.</td>
         <td><?=setstring ('mal', 'Pembinaan jalan', 'en', 'Road construction')?></td>
-        <td><div align="center">
-          <input name="a_3" type="text" class="field_active" id="a_3" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_3,2); ?>" onKeypress="keypress(event)" size="15"/>
-        </div></td>
+        <td><div align="center"> */ ?>
+          <input name="a_3" type="hidden" class="field_active" id="a_3" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_3,2); ?>" onKeypress="keypress(event)" size="15"/>
+<?php /*        </div></td>
         <td><div align="center">
           <span id="kosha3"><?php $x3 =($nilai->a_3/$data); echo number_format($x3,2); ?></span>
         </div></td>
-        </tr>
+        </tr> */?>
+
+
+<?php /*
       <tr>
         <td height="34" align="right">4.</td>
         <td><?=setstring ('mal', 'Pembinaan parit', 'en', 'Drain construction')?> &nbsp;</td>
-        <td><div align="center">
-          <input name="a_4" type="text" class="field_active" id="a_4" onchange="kiraan_baru(this,'')"onclick="field_click(this)" value="<?= number_format($nilai->a_4,2); ?>" onKeypress="keypress(event)" size="15"/>
-        </div></td>
+        <td><div align="center"> */?>
+          <input name="a_4" type="hidden" class="field_active" id="a_4" onchange="kiraan_baru(this,'')"onclick="field_click(this)" value="<?= number_format($nilai->a_4,2); ?>" onKeypress="keypress(event)" size="15"/>
+<?php /*        </div></td>
         <td><div align="center">
           <span id="kosha4"><?php $x4 =($nilai->a_4/$data); echo number_format($x4,2); ?></span>
         </div></td>
-        </tr>
+        </tr> */?>
+
+<?php /*
       <tr bgcolor="#99FF99">
         <td height="38" align="right">5.</td>
         <td><?=setstring ('mal', 'Pembinaan ban dan pintu air', 'en', 'Bund and watergate construction')?> </td>
-        <td><div align="center">
-          <input name="a_5" type="text" class="field_active" id="a_5" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_5,2); ?>" onKeypress="keypress(event)" size="15"/>
-        </div></td>
-        <td><div align="center">
+        <td><div align="center"> */?>
+          <input name="a_5" type="hidden" class="field_active" id="a_5" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_5,2); ?>" onKeypress="keypress(event)" size="15"/>
+<?php /*         <td><div align="center">
           <span id="kosha5"><?php $x5 =($nilai->a_5/$data); echo number_format($x5,2); ?></span>
         </div></td>
-        </tr>
+        </tr> */?>
+
+<?php /*
       <tr>
         <td height="31" align="right">6.</td>
         <td><?=setstring ('mal','Membaris', 'en', 'Lining') ?> &nbsp;</td>
-        <td><div align="center">
-          <input name="a_6" type="text" class="field_active" id="a_6" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_6,2); ?>" onKeypress="keypress(event)" size="15"/>
-        </div></td>
+        <td><div align="center"> */?>
+          <input name="a_6" type="hidden" class="field_active" id="a_6" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_6,2); ?>" onKeypress="keypress(event)" size="15"/>
+<?php /*        </div></td>
         <td><div align="center">
           <span id="kosha6"><?php $x6 =($nilai->a_6/$data); echo number_format($x6,2); ?></span>
         </div></td>
-        </tr>
+        </tr> */?>
+<?php /*
       <tr bgcolor="#99FF99">
         <td height="31" align="right">7.</td>
         <td><?=setstring ('mal','Melubang dan menanam', 'en', 'Holing and planting' ) ?> &nbsp;</td>
-        <td><div align="center">
-          <input name="a_7" type="text" class="field_active" id="a_7" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_7,2); ?>" onKeypress="keypress(event)" size="15"/>
-        </div></td>
+        <td><div align="center"> */?>
+          <input name="a_7" type="hidden" class="field_active" id="a_7" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_7,2); ?>" onKeypress="keypress(event)" size="15"/>
+<?php /*        </div></td>
         <td><div align="center">
           <span id="kosha7"><?php $x7 =($nilai->a_7/$data); echo number_format($x7,2); ?></span>
         </div></td>
-        </tr>
+        </tr> */?>
       <tr>
-        <td height="34" align="right">8.</td>
-        <td><?=setstring ('mal', 'Pembajaan awal', 'en', 'Basal fertiliser') ?> &nbsp;</td>
-        <td><div align="center">
+        <td height="34" align="right" bgcolor="#99FF99">3.</td>
+        <td bgcolor="#99FF99"><?=setstring ('mal', 'Pembajaan awal', 'en', 'Basal fertiliser') ?> &nbsp;</td>
+        <td bgcolor="#99FF99"><div align="center">
           <input name="a_8" type="text" class="field_active" id="a_8" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_8,2); ?>" onKeypress="keypress(event)" size="15"/>
         </div></td>
-        <td><div align="center">
+        <td bgcolor="#99FF99"><div align="center">
           <span id="kosha8"><?php $x8 =($nilai->a_8/$data); echo number_format($x8,2); ?></span>
         </div></td>
         </tr>
-      <tr bgcolor="#99FF99">
-        <td height="32" align="right">9.</td>
-        <td><?=setstring ('mal','Bahan tanaman' , 'en', 'Planting material') ?>&nbsp;</td>
+      <tr bgcolor="#FFFFFF">
+        <td height="32" align="right">4.</td>
+        <td><?=setstring ('mal','Anak Pokok Sawit' , 'en', 'Palm seedlings') ?>&nbsp;</td>
         <td><div align="center">
           <input name="a_9" type="text" class="field_active" id="a_9" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_9,2); ?>" onKeypress="keypress(event)" size="15"/>
         </div></td>
@@ -483,17 +492,17 @@ var pitmid = false;
         </div></td>
         </tr>
       <tr>
-        <td height="32" align="right">10.</td>
-        <td><?=setstring ('mal','Tanaman penutup bumi', 'en', 'Cover crops')?>&nbsp;</td>
-        <td><div align="center">
+        <td height="32" align="right" bgcolor="#99FF99">5.</td>
+        <td bgcolor="#99FF99" ><?=setstring ('mal','Tanaman penutup bumi', 'en', 'Cover crops')?>&nbsp;</td>
+        <td bgcolor="#99FF99" ><div align="center">
           <input name="a_10" type="text" class="field_active" id="a_10" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_10,2); ?>" onKeypress="keypress(event)" size="15"/>
         </div></td>
-        <td><div align="center">
+        <td bgcolor="#99FF99"><div align="center">
           <span id="kosha10"><?php $x10 =($nilai->a_10/$data); echo number_format($x10,2); ?></span>
         </div></td>
         </tr>
-      <tr bgcolor="#99FF99">
-        <td height="32" align="right">11.</td>
+      <tr bgcolor="#FFFFFF">
+        <td height="32" align="right">6.</td>
         <td><?=setstring ( 'mal', 'Perbelanjaan-perbelanjaan lain', 'en', 'Other expenditures'); ?>&nbsp;</td>
         <td><div align="center">
           <input name="a_11" type="text" class="field_active" id="a_11" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_11,2); ?>" onKeypress="keypress(event)" size="15"/>
@@ -502,6 +511,30 @@ var pitmid = false;
           <span id="kosha11"><?php $x11 =($nilai->a_11/$data); echo number_format($x11,2); ?></span>
         </div></td>
         </tr>
+
+
+				<tr>
+	        <td height="32" align="right" bgcolor="#99FF99">7.</td>
+	        <td bgcolor="#99FF99" ><?=setstring ('mal','Penyediaan jalan, parit, ban, pintu air dan sebagainya', 'en', 'Provision of roads, ditches, ban, sluices and so on')?>&nbsp;</td>
+	        <td bgcolor="#99FF99"><div align="center">
+<?php /*  	          <input name="a_10" type="text" class="field_active" id="a_10" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_10,2); ?>" onKeypress="keypress(event)" size="15"/>
+	        </div></td>
+	      <td bgcolor="#99FF99"><div align="center">
+	          <span id="kosha10"><?php $x10 =($nilai->a_10/$data); echo number_format($x10,2); ?></span>
+	        </div></td>
+	        </tr> */?>
+	      <tr bgcolor="#FFFFFF">
+	        <td height="32" align="right">8.</td>
+	        <td><?=setstring ( 'mal', 'Membaris, melubang dan menanam', 'en', 'Lining up, perforate and planting'); ?>&nbsp;</td>
+	        <td><div align="center">
+	  <?php /*        <input name="a_11" type="text" class="field_active" id="a_11" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->a_11,2); ?>" onKeypress="keypress(event)" size="15"/>
+	        </div></td>
+	        <td><div align="center">
+	          <span id="kosha11"><?php $x11 =($nilai->a_11/$data); echo number_format($x11,2); ?></span>
+	        </div></td>
+	        </tr> */?>
+
+
       <tr>
         <td align="right">&nbsp;</td>
         <td>&nbsp;</td>
@@ -636,117 +669,125 @@ var pitmid = false;
         </div></td>
         <td bgcolor="#FFFFCC"><div align="center"><span id="j7"><?php $sy1c =($nilai->b_3c/$data); echo number_format($sy1c,2); ?></span></div></td>
       </tr>
+<?php /*
       <tr>
         <td height="39" align="right">&nbsp;</td>
         <td bgcolor="#FFFFCC">iv. <?=setstring ( 'mal', 'Analisis tanah dan daun', 'en', 'Soil and foliar analysis'); ?></td>
-        <td bgcolor="#FFFFCC"><div align="center">
-          <input name="b_3d" type="text" class="field_active" id="b_3d"  onchange="kiraan_baru(this,'anak')" onblur="$('#total_b_3').attr('disabled','disabled')" onfocus="$('#total_b_3').attr('disabled','disabled')" value="<?= number_format($nilai->b_3d,2); ?>" onKeypress="keypress(event)" size="15" />
-        </div></td>
+        <td bgcolor="#FFFFCC"><div align="center"> */?>
+          <input name="b_3d" type="hidden" class="field_active" id="b_3d"  onchange="kiraan_baru(this,'anak')" onblur="$('#total_b_3').attr('disabled','disabled')" onfocus="$('#total_b_3').attr('disabled','disabled')" value="<?= number_format($nilai->b_3d,2); ?>" onKeypress="keypress(event)" size="15" />
+<?php /*      </div></td>
         <td bgcolor="#FFFFCC"><div align="center"><span id="j8"><?php $sy1d =($nilai->b_3d/$data); echo number_format($sy1d,2); ?></span></div></td>
-      </tr>
+      </tr> */?>
+
+<?php /*
       <tr>
         <td height="39" align="right" bgcolor="#99FF99">4.</td>
         <td bgcolor="#99FF99"><?=setstring ( 'mal', 'Pemuliharaan tanah dan air', 'en', 'Soil and water conservation'); ?></td>
-        <td bgcolor="#99FF99"><div align="center">
-          <input name="total_b_4" type="text" class="field_active" id="total_b_4" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_4,2); ?>" onKeypress="keypress(event)" size="15"/>
-        </div></td>
+        <td bgcolor="#99FF99"><div align="center"> */?>
+          <input name="total_b_4" type="hidden" class="field_active" id="total_b_4" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_4,2); ?>" onKeypress="keypress(event)" size="15"/>
+<?php /*        </div></td>
         <td bgcolor="#99FF99"><div align="center">
           <span id="jaga4"><?php $y4 =($nilai->total_b_4/$data); echo number_format($y4,2); ?></span>
         </div></td>
-        </tr>
+        </tr> */?>
+<?php /*
       <tr>
         <td height="34" align="right" bgcolor="#FFFFFF">5.</td>
         <td bgcolor="#FFFFFF"><?=setstring ( 'mal', 'Penjagaan jalan, jambatan, lorong dan sebagainya', 'en', 'Upkeep of roads, bridges, paths and etc.'); ?> </td>
-        <td bgcolor="#FFFFFF"><div align="center">
-          <input name="total_b_5" type="text" class="field_active" id="total_b_5"  onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_5,2); ?>" onKeypress="keypress(event)" size="15"/>
-        </div></td>
+        <td bgcolor="#FFFFFF"><div align="center"> */?>
+          <input name="total_b_5" type="hidden" class="field_active" id="total_b_5"  onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_5,2); ?>" onKeypress="keypress(event)" size="15"/>
+<?php /*         </div></td>
         <td bgcolor="#FFFFFF"><div align="center">
         <span id="jaga5"><?php $y5 =($nilai->total_b_5/$data); echo number_format($y5,2); ?></span>
         </div></td>
-        </tr>
+        </tr> */?>
+<?php /*
       <tr>
         <td height="40" align="right" bgcolor="#99FF99">6.</td>
         <td bgcolor="#99FF99"><?=setstring ( 'mal', 'Penjagaan parit', 'en', 'Upkeep of drain'); ?></td>
-        <td bgcolor="#99FF99"><div align="center">
-          <input name="total_b_6" type="text" class="field_active" id="total_b_6" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_6,2); ?>" onKeypress="keypress(event)" size="15"/>
-        </div></td>
+        <td bgcolor="#99FF99"><div align="center"> */?>
+          <input name="total_b_6" type="hidden" class="field_active" id="total_b_6" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_6,2); ?>" onKeypress="keypress(event)" size="15"/>
+<?php /*        </div></td>
         <td bgcolor="#99FF99"><div align="center">
         <span id="jaga6"><?php $y6 =($nilai->total_b_6/$data); echo number_format($y6,2); ?></span>
         </div></td>
-        </tr>
+        </tr> */?>
+<?php /*
       <tr>
         <td height="38" align="right">7.</td>
         <td><?=setstring ( 'mal', 'Penjagaan ban dan pintu air', 'en', 'Upkeep of bunds and watergate'); ?></td>
-        <td><div align="center">
-          <input name="total_b_7" type="text" class="field_active" id="total_b_7" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_7,2); ?>" onKeypress="keypress(event)" size="15"/>
-        </div></td>
+        <td><div align="center"> */?>
+          <input name="total_b_7" type="hidden" class="field_active" id="total_b_7" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_7,2); ?>" onKeypress="keypress(event)" size="15"/>
+<?php /*        </div></td>
         <td><div align="center">
          <span id="jaga7"><?php $y7 =($nilai->total_b_7/$data); echo number_format($y7,2); ?></span>
         </div></td>
-        </tr>
+        </tr> */?>
+<?php /*
       <tr>
         <td height="37" align="right" bgcolor="#99FF99">8.</td>
         <td bgcolor="#99FF99"><?=setstring ( 'mal', 'Persempadanan dan survei', 'en', 'Boundaries and survey'); ?></td>
-        <td bgcolor="#99FF99"><div align="center">
-          <input name="total_b_8" type="text" class="field_active" id="total_b_8" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_8,2); ?>" onKeypress="keypress(event)" size="15"/>
-        </div></td>
+        <td bgcolor="#99FF99"><div align="center"> */?>
+          <input name="total_b_8" type="hidden" class="field_active" id="total_b_8" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_8,2); ?>" onKeypress="keypress(event)" size="15"/>
+<?php /*        </div></td>
         <td bgcolor="#99FF99"><div align="center">
           <span id="jaga8"><?php $y8 =($nilai->total_b_8/$data); echo number_format($y8,2); ?></span>
         </div></td>
-        </tr>
+        </tr> */?>
       <tr>
-        <td height="35" align="right" bgcolor="#FFFFFF">9.</td>
-        <td bgcolor="#FFFFFF"><?=setstring ( 'mal', 'Tanaman penutup bumi', 'en', 'Cover crops'); ?></td>
-        <td bgcolor="#FFFFFF"><div align="center">
+        <td height="35" align="right" bgcolor="#99FF99">4.</td>
+        <td bgcolor="#99FF99"><?=setstring ( 'mal', 'Tanaman penutup bumi', 'en', 'Cover crops'); ?></td>
+        <td bgcolor="#99FF99"><div align="center">
          <input name="total_b_9" type="text" class="field_active" id="total_b_9" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_9,2); ?>" onKeypress="keypress(event)" size="15"/>
         </div></td>
-        <td bgcolor="#FFFFFF"><div align="center">
+        <td bgcolor="#99FF99"><div align="center">
           <span id="jaga9"><?php $y9 =($nilai->total_b_9/$data); echo number_format($y9,2); ?></span>
         </div></td>
         </tr>
       <tr>
-        <td height="38" align="right" bgcolor="#99FF99">10.</td>
-        <td bgcolor="#99FF99"><?=setstring ( 'mal', 'Kawalan serangga dan penyakit', 'en', 'Pest and diseases control'); ?></td>
-        <td bgcolor="#99FF99"><div align="center">
+        <td height="38" align="right" bgcolor="#FFFFFF">5.</td>
+        <td bgcolor="#FFFFFF"><?=setstring ( 'mal', 'Kawalan serangga dan penyakit', 'en', 'Pest and diseases control'); ?></td>
+        <td bgcolor="#FFFFFF"><div align="center">
           <input name="total_b_10" type="text" class="field_active" id="total_b_10" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_10,2); ?>" onKeypress="keypress(event)" size="15"/>
         </div></td>
-        <td bgcolor="#99FF99"><div align="center">
+        <td bgcolor="#FFFFFF"><div align="center">
          <span id="jaga10"><?php $y10 =($nilai->total_b_10/$data); echo number_format($y10,2); ?></span>
         </div></td>
         </tr>
       <tr>
-        <td height="34" align="right" bgcolor="#FFFFFF">11.</td>
-        <td bgcolor="#FFFFFF"><?=setstring ( 'mal', 'Memangkas dan membersihkan pokok', 'en', 'Pruning and palm sanitation'); ?></td>
-        <td bgcolor="#FFFFFF"><div align="center">
+        <td height="34" align="right" bgcolor="#99FF99">6.</td>
+        <td bgcolor="#99FF99"><?=setstring ( 'mal', 'Memangkas dan membersihkan pokok', 'en', 'Pruning and palm sanitation'); ?></td>
+        <td bgcolor="#99FF99"><div align="center">
           <input name="total_b_11" type="text" class="field_active" id="total_b_11" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_11,2); ?>" onKeypress="keypress(event)" size="15" tabindex="1" />
         </div></td>
-        <td bgcolor="#FFFFFF"><div align="center">
+        <td bgcolor="#99FF99"><div align="center">
           <span id="jaga11"><?php $y11 =($nilai->total_b_11/$data); echo number_format($y11,2); ?></span>
         </div></td>
         </tr>
       <tr>
-        <td height="35" align="right" bgcolor="#99FF99">12.</td>
-        <td bgcolor="#99FF99"><?=setstring ( 'mal', 'Banci / sulaman', 'en', 'Census / supplies'); ?></td>
-        <td bgcolor="#99FF99"><div align="center">
+        <td height="35" align="right" bgcolor="#FFFFFF">7.</td>
+        <td bgcolor="#FFFFFF"><?=setstring ( 'mal', 'Banci / sulaman', 'en', 'Census / supplies'); ?></td>
+        <td bgcolor="#FFFFFF"><div align="center">
           <input name="total_b_12" type="text" class="field_active" id="total_b_12" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_12,2); ?>" onKeypress="keypress(event)" size="15" tabindex="2" />
         </div></td>
-        <td bgcolor="#99FF99"><div align="center">
+        <td bgcolor="#FFFFFF"><div align="center">
           <span id="jaga12"><?php $y12 =($nilai->total_b_12/$data); echo number_format($y12,2); ?></span>
         </div></td>
         </tr>
+<?php /*
       <tr>
         <td height="38" align="right">13.</td>
         <td align="right"><div align="left"><?=setstring ( 'mal', 'Pengkasian', 'en', 'Castration'); ?></div></td>
-        <td><div align="center">
-          <input name="total_b_13" type="text" class="field_active" id="total_b_13" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_13,2); ?>" onKeypress="keypress(event)" size="15" tabindex="3" />
-        </div></td>
+        <td><div align="center"> */?>
+          <input name="total_b_13" type="hidden" class="field_active" id="total_b_13" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_13,2); ?>" onKeypress="keypress(event)" size="15" tabindex="3" />
+<?php /*        </div></td>
         <td><div align="center">
           <span id="jaga13"><?php $y13 =($nilai->total_b_13/$data); echo number_format($y13,2); ?></span>
         </div></td>
-      </tr>
+      </tr> */?>
 
       <tr bgcolor="#99FF99">
-        <td height="36" align="right">14.</td>
+        <td height="36" align="right">8.</td>
         <td align="right"><div align="left"><?=setstring ( 'mal', 'Perbelanjaan pelbagai', 'en', 'Other Expenditures'); ?></div></td>
         <td><div align="center">
           <input name="total_b_14" type="text" class="field_active" id="total_b_14" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_14,2); ?>" onKeypress="keypress(event)" size="15" tabindex="4" />
@@ -755,6 +796,30 @@ var pitmid = false;
           <span id="jaga14"><?php $y14 =($nilai->total_b_14/$data); echo number_format($y14,2); ?></span>
         </div></td>
       </tr>
+
+			<tr bgcolor="#FFFFFF">
+				<td height="36" align="right">9.</td>
+				<td align="right"><div align="left"><?=setstring ( 'mal', 'Penjagaan jalan, parit, ban, pintu air dan sebagainya', 'en', 'Maintenance of roads, ditches, ban, sluices and so on'); ?></div></td>
+				<td><div align="center">
+<?php /*					<input name="total_b_14" type="text" class="field_active" id="total_b_14" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_14,2); ?>" onKeypress="keypress(event)" size="15" tabindex="4" />
+				</div></td>
+				<td><div align="center">
+					<span id="jaga14"><?php $y14 =($nilai->total_b_14/$data); echo number_format($y14,2); ?></span>
+				</div></td>
+			</tr> */?>
+
+			<tr bgcolor="#99FF99">
+				<td height="36" align="right">10.</td>
+				<td align="right"><div align="left"><?=setstring ( 'mal', 'Analisis tanah dan daun', 'en', 'Soil and foliar analysis'); ?></div></td>
+				<td><div align="center">
+	<?php /*				<input name="total_b_14" type="text" class="field_active" id="total_b_14" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_14,2); ?>" onKeypress="keypress(event)" size="15" tabindex="4" />
+				</div></td>
+				<td><div align="center">
+					<span id="jaga14"><?php $y14 =($nilai->total_b_14/$data); echo number_format($y14,2); ?></span>
+				</div></td>
+			</tr> */?>
+
+
       <tr>
         <td colspan="2" align="right">&nbsp;</td>
         <td><div align="center"></div></td>

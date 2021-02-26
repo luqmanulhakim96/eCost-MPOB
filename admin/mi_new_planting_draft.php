@@ -3,6 +3,8 @@ include ('../Connections/connection.class.php');
 
 include('baju_merah.php');
 $con = connect();
+error_reporting(0);
+
 $_SESSION['ru'] = '';
 $ru = explode('/', $_SERVER['REQUEST_URI']);
 $_SESSION['ru'] = end($ru);
