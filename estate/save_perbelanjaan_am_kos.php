@@ -22,7 +22,10 @@ $air_tenaga = str_replace(",", '', $air_tenaga);
 $perbelanjaan_pejabat = str_replace(",", '', $perbelanjaan_pejabat);
 $susut_nilai = str_replace(",", '', $susut_nilai);
 $perbelanjaan_lain = str_replace(",", '', $perbelanjaan_lain);
+$pembelian_mesin = str_replace(",", '', $pembelian_mesin);
+$pembelian_aset= str_replace(",", '', $pembelian_aset);
 $total_perbelanjaan = str_replace(",", '', $total_perbelanjaan);
+
 
 
 $con = connect();
@@ -43,6 +46,8 @@ perbelanjaan_pejabat ='$perbelanjaan_pejabat',
 susut_nilai ='$susut_nilai',
 perbelanjaan_lain ='$perbelanjaan_lain',
 total_perbelanjaan='$total_perbelanjaan',
+pembelian_mesin='$pembelian_mesin',
+pembelian_aset='$pembelian_aset',
 status = '$status'
 where lesen = '" . $_SESSION['lesen'] . "' and thisyear = '$tahun'
 ";

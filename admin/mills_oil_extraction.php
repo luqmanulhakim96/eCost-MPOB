@@ -68,19 +68,19 @@ function openScript(url, width, height) {
 }
 
 </script>
-<div align="center" class="style3">
+<div align="center" class="style3" >
   <h2>Oil Extraction Rate (OER) and CPO Yield, by Region, <?php echo $t2=$_COOKIE['tahun_report']-2;?>-<?php echo $t1=$_COOKIE['tahun_report']-1;?> <br />
   </h2>
 </div>
 <table width="64%" border="0" align="center" cellpadding="0" cellspacing="0" class="baju">
   <tr>
     <td height="37" colspan="2" rowspan="2" bgcolor="#480000">&nbsp;</td>
-    <td colspan="3" bgcolor="#480000" style="border-bottom:solid 1px #fff"><div align="center"><strong class="style2">OER</strong></div></td>
+    <td colspan="3" bgcolor="#480000" style="border-bottom:solid 1px #fff"><div align="center"><strong class="style2" style="color:white">OER</strong></div></td>
   </tr>
   <tr>
-    <td width="18%" bgcolor="#480000" class="style2"><div align="right"><?php echo $t2; ?></div></td>
-    <td width="25%" bgcolor="#480000" class="style2"><div align="right"><?php echo $t1; ?></div></td>
-    <td width="26%" bgcolor="#480000" class="style2"><div align="right">% Change </div></td>
+    <td width="18%" bgcolor="#480000" class="style2" style="color:white"><div align="right"><?php echo $t2; ?></div></td>
+    <td width="25%" bgcolor="#480000" class="style2" style="color:white"><div align="right"><?php echo $t1; ?></div></td>
+    <td width="26%" bgcolor="#480000" class="style2" style="color:white"><div align="right">% Change </div></td>
   </tr>
   <tr>
     <td height="22" colspan="2"><div align="right"><strong>Cost of Production Survey : </strong>

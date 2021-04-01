@@ -10,14 +10,14 @@
 					$("#sw-sunting").show();
 					$("#sw-simpan").hide();
 				});
-				$("#sw-sunting").click(function() {
+				$("#sw-sunting").ready(function() {
 					$("#sw-sunting").hide();
 					$("#sw-simpan").show();
 					$("#borang").hide();
 					html = $("#borang").html();
 					$.post("po1_1.php?r=1","",function(out) {
 						$("#borang").html(out);
-						$("#borang").show("slow");
+						$("#borang").show();
 					});
 				});
 				});
@@ -159,7 +159,7 @@ body {
           <td><strong>:</strong></td>
           <td><?php echo  $pengguna->nolesen; ?></td>
         </tr>
-
+				<input name="nolesen" type="hidden" id="nolesen" value="<?= $pengguna->nolesen; ?>"/>
 			<?php	/*
         <tr>
           <td><strong>
@@ -277,8 +277,9 @@ body {
           <td></td>
           <td>
 				  <td colspan="2">	<input type="submit" name="Submit" value="<?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>" />
-					</a>  <a href="password.php" class="facebox" style="text-decoration:none">
+          </a>  <a href="password.php" class="facebox" style="text-decoration:none">
 					<input type="button" value="<?php echo setstring ( 'mal', 'Tukar kata laluan', 'en', 'Change Password'); ?>" />
+
 
 				</form>
 
@@ -291,9 +292,9 @@ body {
 							<?php /*
             </a>  <a href="password.php" class="facebox" style="text-decoration:none">
             <input type="button" value="<?php echo setstring ( 'mal', 'Tukar kata laluan', 'en', 'Change Password'); ?>" /> </a> 
-						*/?>
 
-            <td colspan="2">  <input type="submit" name="sw-sunting" id="sw-simpan" value=<?php echo setstring ( 'mal', '"Kembali"', 'en', '"Back"'); ?> />
+
+            <td colspan="2">  <input type="submit" name="sw-sunting" id="sw-simpan" value=<?php echo setstring ( 'mal', '"Kembali"', 'en', '"Back"');  /> 	*/?>
               <td colspan="2"><input type="button" name="button" id="sw-sunting" value=<?php echo setstring ( 'mal', '"Edit Maklumat Am"', 'en', 'Edit General Information'); ?> />
             </td>
         </tr>
@@ -318,7 +319,8 @@ body {
               <?php echo setstring ( 'mal', 'Jenis Syarikat', 'en', 'Company Type'); ?>
               </b></td>
 							<td colspan="2"> <input name="syarikat" type="text" id="syarikat" value="<?= $pengguna->jenissyarikat; ?>" size="50" /></td>
-
+							<input name="nolesen" type="hidden" id="nolesen" value="<?= $pengguna->nolesen; ?>"/>
+							
 							<?php /*
             <td width="7"><div align="center"><strong>:</strong></div></td>
             <td width="674"><?php function company($x){
@@ -356,6 +358,7 @@ body {
           </tr>
 
 					*/?>
+
           <tr>
             <td width="201" align="left" valign="top"><strong>
               <?php echo setstring ( 'mal', 'Keahlian dalam Persatuan', 'en', 'Membership in Union'); ?>
@@ -384,55 +387,169 @@ body {
           <tr>
             <td colspan="3" align="left" valign="top"> </td>
           </tr>
+					<td colspan="2">	<input type="submit" name="Submit" value="<?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>" /></td>
+					<tr>
+						<td colspan="3" align="left" valign="top"> </td>
+					</tr>
+
+
+
+
+
+
+
+
+
+
+					<?php session_start();
+					header("Content-type:application/xml");
+					include('../../Connections/connection.class.php');
+					include('../../setstring.inc');
+					$con = connect();
+					$q ="select * from estate_info where lesen = '".$_SESSION['lesen']."'";
+					$r= mysqli_query($con, $q);
+					$row = mysqli_fetch_array($r);
+
+					$a=$row['lanar'];
+					$b=$row['gambutcetek'];
+					$c=$row['gambutdalam'];
+					$d=$row['pedalaman'];
+					$e=$row['laterit'];
+					$f=$row['asidsulfat'];
+					$g=$row['tanahpasir'];
+
+					$tanahlanar = $a;
+					$tanahgambut= $b+$c;
+					$tanahpedalaman= $d;
+					$lainlaintanah= $e+$f+$g;
+
+					//pull_out="true";
+					?>
           <tr>
-            <td colspan="3" align="left" valign="top"></td>
-          </tr>
-          <tr>
-            <td colspan="3" align="left" valign="top"><table width="100%">
+            <td colspan="3" align="center" valign="top"><table align="center" width="100%">
+						<td align="center" id="borang" colspan="2"> </td>
+						<?php /*
+						<form id="form1" name="form1" method="post" action="save_profile.php"> </form> */ ?>
+						<table width="100"" align="center" cellspacing="0" class="tableCss" style="border:1px #333333 solid; padding:2px;">
+
                 <tr>
+
                   <td><div id="percent_soil" ></div>
                     <div align="center"><br />
                       <strong>
                       <?php echo setstring ( 'mal', 'Peratusan Jenis Tanah', 'en', 'Percentage of Soil Composition'); ?>
                       </strong>
-                      <script type="text/javascript" src="ampie/swfobject.js"></script>
-                      <script type="text/javascript">
-		// <![CDATA[
-		var so = new SWFObject("ampie/ampie.swf", "ampie", "520", "400", "8", "#FFFFFF");
-		so.addVariable("path", "ampie/");
-		so.addVariable("settings_file", encodeURIComponent("ampie/settings.xml"));
-		so.addVariable("data_file", encodeURIComponent("ampie/data.php"));
-		<?php
-		if(!isset($_GET['logging'])) {
-		?>
-		so.write("percent_soil");
-		<?php
-		}
-		?>
-		// ]]>
-	            </script>
+
+											<div id="piechart" style="width: 600px; height: 300px;"></div>
+										<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+										 <script type="text/javascript">
+											 google.charts.load("current", {packages:["corechart"]});
+											 google.charts.setOnLoadCallback(drawChart);
+											 function drawChart() {
+												 var data = google.visualization.arrayToDataTable([
+													 ['Area', ''],
+													 ['Tanah Lanar', <?php echo $tanahlanar; ?> ],
+													 ['Tanah Pedalaman', <?php echo $tanahpedalaman; ?>],
+													 ['Tanah Gambut', <?php echo $tanahgambut; ?> ],
+													 ['Lain-lain Tanah', <?php echo $lainlaintanah; ?>],
+
+
+												 ]);
+
+												 var options = {
+													 title: '',
+													 legend: 'none',
+													 pieSliceText: 'label',
+													 slices: {  0: {offset: 0.2},
+																		 1: {offset: 0.2},
+																		 2: {offset: 0.2},
+																		 3: {offset: 0.2},
+																		 4: {offset: 0.2},
+
+													 },
+												 };
+
+												 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+												 chart.draw(data, options);
+											 }
+										 </script>
+
+
+
+
+
+										 <?php session_start();
+										 header("Content-type:application/xml");
+										 include('../../Connections/connection.class.php');
+										 include('../../setstring.inc');
+										 $con = connect();
+										 $q ="select * from estate_info where lesen = '".$_SESSION['lesen']."'";
+										 $r= mysqli_query($con, $q);
+										 $row = mysqli_fetch_array($r);
+
+										 $a=$row['percentrata'];
+										 $b=$row['percentcerun'];
+										 $c=$row['percentbukit'];
+										 $d=$row['percentalun'];
+
+
+										 $tanahlanar = $a;
+										 $tanahgambut= $b;
+										 $tanahpedalaman= $c;
+										 $lainlaintanah= $d;
+
+										 //pull_out="true";
+										 ?>
+
+
                     </div></td>
                   <td><div id="percent_mukabumi"></div>
                     <div align="center"><br />
                       <strong>
                       <?php echo setstring ( 'mal', 'Peratusan Jenis Mukabumi', 'en', 'Percentage of Terrain Type'); ?>
                       </strong>
-                      <script type="text/javascript">
-		// <![CDATA[
-		var so = new SWFObject("ampie/ampie.swf", "ampie", "520", "400", "8", "#FFFFFF");
-		so.addVariable("path", "ampie/");
-		so.addVariable("settings_file", encodeURIComponent("ampie/settingsmukabumi.xml"));
-		so.addVariable("data_file", encodeURIComponent("ampie/datamukabumi.php"));
-		<?php
-		if(!isset($_GET['logging'])) {
-		?>
-		so.write("percent_mukabumi");
-		<?php
-		}
-		?>
-		// ]]>
 
-	           </script>
+
+											<div id="piechart2" style="width: 600px; height: 300px;"></div>
+										<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+										 <script type="text/javascript">
+											 google.charts.load("current", {'packages':["corechart"]});
+											 google.charts.setOnLoadCallback(drawChart);
+											 function drawChart() {
+
+
+												 var data = google.visualization.arrayToDataTable([
+													 ['Area', ''],
+													 ['Rata/Landai', <?php echo $tanahlanar; ?> ],
+													 ['Berbukit (Cerun > 25 darjah)', <?php echo $tanahpedalaman; ?>],
+													 ['Berbukit', <?php echo $tanahgambut; ?> ],
+													 ['Beralun', <?php echo $lainlaintanah; ?>],
+
+
+												 ]);
+
+												 var options = {
+													 title: '',
+													 legend: 'none',
+													 pieSliceText: 'label',
+													 slices: {  0: {offset: 0.2},
+																		 1: {offset: 0.2},
+																		 2: {offset: 0.2},
+																		 3: {offset: 0.2},
+																		 4: {offset: 0.2},
+
+													 },
+												 };
+
+
+												 var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+												 chart.draw(data, options);
+											 }
+										 </script>
+
+
+
+
                     </div></td>
                 </tr>
               </table></td>
@@ -441,7 +558,7 @@ body {
           <tr>
             <td colspan="3" align="left" valign="top"> </td>
           </tr>
-					<td colspan="2">	<input type="submit" name="Submit" value="<?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>" />
+
 
         </table>
 
@@ -466,67 +583,8 @@ body {
 
 
 
-<div id="borang">
-<form id="form1" name="form1" method="post" action="save_profile.php">
-<table width="100%" align="center" cellspacing="0" class="tableCss" style="border:1px #333333 solid; padding:2px;">
-
-<tr>
-	<td height="24" bgcolor="#99FF99">&nbsp;</td>
-	<td colspan="2" bgcolor="#99FF99"> <strong><?php echo setstring ( 'mal', 'Keluasan mengikut jenis tanah:', 'en', 'Area respective to soil type:'); ?></strong></td>
-	<td colspan="4" bgcolor="#99FF99"><div align="center"><span class="style2">
-		<?php echo setstring ( 'mal', 'Jumlah Keluasan', 'en', 'Total all area'); ?>
-	</span> : <span class="style2">
-		<?php echo number_format($jumlah_semua,2);?> <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?>
-	</span></div>      <div align="center"></div></td>
-	</tr>
 
 
-	<tr>
-		<td height="35"></td>
-		<td colspan="2" bgcolor="#CCFFFF"><div align="left"><?php echo setstring ( 'mal', 'a. Tanah Lanar', 'en', 'a. Alluvial Soil'); ?></div></td>
-		<td bgcolor="#CCFFFF"><div align="center">
-			<input name="lanar" type="text" class="field_active" id="lanar" onblur="field_blur(this,'s1')" onclick="field_click(this)" value="<?php echo  $pengguna->lanar; ?>" size="3" />
-			<?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div></td>
-		<td bgcolor="#CCFFFF">
-			<div align="center">
-				<span id="s1"><?php $a = round($pengguna->lanar/$jumlah_semua*100,2);echo number_format($a,2); ?> %</span></div>    </td>
-		<td bgcolor="#CCFFFF">&nbsp;</td>
-		<td width="42" bgcolor="#CCFFFF">&nbsp;</td>
-	</tr>
-
-
-	<tr>
-		<td height="35"></td>
-		<td colspan="2" bgcolor="#FFCCCC"><div align="left"><?php echo setstring ( 'mal', 'b. Tanah Pedalaman', 'en', 'b. Rural Land'); ?></div></td>
-		<td bgcolor="#FFCCCC">
-			<div align="center">
-<input name="pedalaman" type="text" class="field_active" id="pedalaman" onblur="field_blur(this,'s2')" onclick="field_click(this)" value="<?php echo  $pengguna->pedalaman; ?>" size="3" />
-<?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div>
-
-			<div align="center"></div></td>
-		<td bgcolor="#FFCCCC">
-			<div align="center">
-				<span id="s2">
-				<?php $a = round($pengguna->pedalaman/$jumlah_semua*100,2);echo number_format($a,2); ?>
- %</span></div>    </td>
-		<td bgcolor="#FFCCCC">&nbsp;</td>
-		<td bgcolor="#FFCCCC">&nbsp;</td>
-	</tr>
-
-	<tr>
-    <td height="34"></td>
-    <td colspan="2" bgcolor="#FFFFCC"><div align="left"><?php echo setstring ( 'mal', 'c. Tanah Gambut : ', 'en', 'c. Peat Soil:'); ?></div></td>
-    <td bgcolor="#FFFFCC"><div align="center"><span class="style1"><?php echo $tg = $pengguna->gambutcetek+ $pengguna->gambutdalam; ?>  <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></span></div></td>
-    <td bgcolor="#FFFFCC"><div align="center"><span class="style1">
-    </span></div>      <span class="style1">
-        <div align="center">
-          <?php $a = round($tg/$jumlah_semua*100,2);echo number_format($a,2); ?>
- %</div>
-
-    </span></td>
-    <td bgcolor="#FFFFCC">&nbsp;</td>
-    <td bgcolor="#FFFFCC">&nbsp;</td>
-  </tr>
 
 
 

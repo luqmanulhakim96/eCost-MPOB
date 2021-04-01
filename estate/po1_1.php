@@ -181,8 +181,10 @@ $pengguna->jumlahakhir;
   </tr>
 */?>
 
+<tr>   <input name="nolesen" type="hidden" id="nolesen" value="<?php echo  $_SESSION['lesen'];?>" />  </tr>
   <tr>
-    <td height="24" bgcolor="#99FF99">&nbsp;</td>
+
+
     <td colspan="2" bgcolor="#99FF99"> <strong><?php echo setstring ( 'mal', 'Keluasan mengikut jenis tanah:', 'en', 'Area respective to soil type:'); ?></strong></td>
     <td colspan="4" bgcolor="#99FF99"><div align="center"><span class="style2">
       <?php echo setstring ( 'mal', 'Jumlah Keluasan', 'en', 'Total all area'); ?>
@@ -194,7 +196,7 @@ $pengguna->jumlahakhir;
   	if(!isset($_GET['print'])) {
   ?>
   <tr>
-    <td height="35"></td>
+
     <td colspan="2" bgcolor="#CCFFFF"><div align="left"><?php echo setstring ( 'mal', 'a. Tanah Lanar', 'en', 'a. Alluvial Soil'); ?></div></td>
     <td bgcolor="#CCFFFF"><div align="center">
       <input name="lanar" type="text" class="field_active" id="lanar" onblur="field_blur(this,'s1')" onclick="field_click(this)" value="<?php echo  $pengguna->lanar; ?>" size="3" />
@@ -209,7 +211,7 @@ $pengguna->jumlahakhir;
   }
   ?>
   <tr>
-    <td height="35"></td>
+
     <td colspan="2" bgcolor="#FFCCCC"><div align="left"><?php echo setstring ( 'mal', 'b. Tanah Pedalaman', 'en', 'b. Rural Land'); ?></div></td>
     <td bgcolor="#FFCCCC">
       <div align="center">
@@ -226,7 +228,7 @@ $pengguna->jumlahakhir;
     <td bgcolor="#FFCCCC">&nbsp;</td>
   </tr>
   <tr>
-    <td height="34"></td>
+
     <td colspan="2" bgcolor="#FFFFCC"><div align="left"><?php echo setstring ( 'mal', 'c. Tanah Gambut : ', 'en', 'c. Peat Soil:'); ?></div></td>
     <td bgcolor="#FFFFCC"><div align="center"><span class="style1"><?php echo $tg = $pengguna->gambutcetek+ $pengguna->gambutdalam; ?>  <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></span></div></td>
     <td bgcolor="#FFFFCC"><div align="center"><span class="style1">
@@ -240,7 +242,7 @@ $pengguna->jumlahakhir;
     <td bgcolor="#FFFFCC">&nbsp;</td>
   </tr>
   <tr>
-    <td height="37"></td>
+
     <td width="96" bgcolor="#FFFFCC"><div align="right">i) </div></td>
     <td width="151" bgcolor="#FFFFCC"><?php echo setstring ( 'mal', 'Gambut Cetek', 'en', 'Shallow Peat Soil'); ?></td>
     <td width="216" bgcolor="#FFFFCC">
@@ -256,7 +258,7 @@ $pengguna->jumlahakhir;
     <td bgcolor="#FFFFCC">&nbsp;</td>
   </tr>
   <tr>
-    <td height="34"></td>
+
     <td bgcolor="#FFFFCC"><div align="right">ii) </div></td>
     <td bgcolor="#FFFFCC"> <?php echo setstring ( 'mal', 'Gambut Dalam', 'en', 'Deep Peat Soil'); ?></td>
     <td bgcolor="#FFFFCC"><div align="center">
@@ -271,7 +273,7 @@ $pengguna->jumlahakhir;
       <td bgcolor="#FFFFCC">&nbsp;</td>
   </tr>
   <tr>
-    <td height="27"></td>
+
     <td colspan="2" bgcolor="#CACAFF"><?php echo setstring ( 'mal', 'd. Lain-lain Jenis Tanah :', 'en', 'Other Soil Type:'); ?></td>
     <td bgcolor="#CACAFF"><div align="center" class="style1"><?php echo $lt = $pengguna->laterit+$pengguna->asidsulfat+$pengguna->tanahpasir; ?> <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div></td>
     <td bgcolor="#CACAFF"><span class="style1">
@@ -286,7 +288,7 @@ $pengguna->jumlahakhir;
     <td bgcolor="#CACAFF">&nbsp;</td>
   </tr>
   <tr>
-    <td height="37"></td>
+
     <td bgcolor="#CACAFF"><div align="right"> i)</div></td>
     <td bgcolor="#CACAFF"> <?php echo setstring ( 'mal', 'laterit', 'en', 'Laterite'); ?></td>
     <td bgcolor="#CACAFF"><div align="center">
@@ -301,7 +303,7 @@ $pengguna->jumlahakhir;
     <td bgcolor="#CACAFF">&nbsp;</td>
   </tr>
   <tr>
-    <td height="42"></td>
+
     <td bgcolor="#CACAFF"><div align="right">ii) </div></td>
     <td bgcolor="#CACAFF"><?php echo setstring ( 'mal', 'Asid Sulfat', 'en', 'Sulphate Acid'); ?> </td>
     <td bgcolor="#CACAFF"><div align="center">
@@ -315,7 +317,7 @@ $pengguna->jumlahakhir;
     <td bgcolor="#CACAFF">&nbsp;</td>
   </tr>
   <tr>
-    <td height="26"></td>
+
     <td bgcolor="#CACAFF"><div align="right">iii)</div></td>
     <td bgcolor="#CACAFF"> <?php echo setstring ( 'mal', 'Tanah berpasir', 'en', 'Sandy Soil'); ?> </td>
     <td bgcolor="#CACAFF"><div align="center">
@@ -352,7 +354,7 @@ $pengguna->jumlahakhir;
 }
   ?>
     <tr valign="top">
-      <td height="65">&nbsp;</td>
+
       <td colspan="6">
         <table width="100%" border="0" cellspacing="0" class="hide" id="rata">
           <tr>
@@ -425,7 +427,7 @@ $pengguna->jumlahakhir;
           <input type="submit" name="button" id="button" value="<?php echo setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>" />
           <input type="submit" name="button2" id="button2" value=" <?php echo setstring ( 'mal', 'Cetak', 'en', 'Print'); ?>" />
         </p>
-        <p>&nbsp;  </p>
+
       </div></td>
     </tr>
 </table>

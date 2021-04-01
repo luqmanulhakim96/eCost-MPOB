@@ -6,6 +6,7 @@ $belanjaAmTahunSebelum = new user("belanja_am", $valuebelanjaAmTahunSebelum);
 $umur = new user('age_profile', $session_lesen);
 $umur2 = new user('esub', $session_lesen);
 
+
 function kiraPerubahan($valueBaru, $valueLama) {
     $result = (($valueBaru - $valueLama) / $valueLama) * 100;
     return number_format($result, 2);
@@ -33,7 +34,11 @@ air_tenaga ,
 perbelanjaan_pejabat ,
 susut_nilai ,
 perbelanjaan_lain ,
+-- pembelian_mesin,
+-- pembelian_aset,
 total_perbelanjaan,status
+
+
 )
 VALUES (
 '" . $_SESSION['tahun'] . "', '" . $_SESSION['lesen'] . "', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0','0'
@@ -269,11 +274,54 @@ if (($bts * 1) == 0) {
         var o_tan = $("#perbelanjaan_lain_per_bts").html();
         o_tan = o_tan.replace(",", "");
 
-        var total = myParse(a) + myParse(b) + myParse(c) + myParse(d) + myParse(e) + myParse(f) + myParse(g) + myParse(h) + myParse(i) + myParse(j) + myParse(k) + myParse(l) + myParse(m) + myParse(n) + myParse(o);
-        //alert(myParse(a_ha));
-        var total_ha = myParse(a_ha) + myParse(b_ha) + myParse(c_ha) + myParse(d_ha) + myParse(e_ha) + myParse(f_ha) + myParse(g_ha) + myParse(h_ha) + myParse(i_ha) + myParse(j_ha) + myParse(k_ha) + myParse(l_ha) + myParse(m_ha) + myParse(n_ha) + myParse(o_ha);
+        // var p = $("#pembelian_mesin").val();
+        // p = p.replace(",", "");
+        // var p_ha = $("#pembelian_mesin_per_ha").html();
+        // // p_ha = p_ha.replace(",", "");
+        // var p_tan = $("#pembelian_mesin_per_bts").html();
+        // // p_tan = p_tan.replace(",", "");
+        //
+        // var q = $("#$pembelian_aset").val();
+        // q = q.replace(",", "");
+        // var q_ha = $("#$pembelian_aset_per_ha").html();
+        // // q_ha = q_ha.replace(",", "");
+        // var q_tan = $("#$pembelian_aset_per_bts").html();
+        // // q_tan = q_tan.replace(",", "");
 
-        var total_tan = myParse(a_tan) + myParse(b_tan) + myParse(c_tan) + myParse(d_tan) + myParse(e_tan) + myParse(f_tan) + myParse(g_tan) + myParse(h_tan) + myParse(i_tan) + myParse(j_tan) + myParse(k_tan) + myParse(l_tan) + myParse(m_tan) + myParse(n_tan) + myParse(o_tan);
+        var total = myParse(a) + myParse(b) + myParse(c) + myParse(d) + myParse(e) + myParse(f) + myParse(g) + myParse(h) + myParse(i) + myParse(j) + myParse(k) + myParse(l) + myParse(m) + myParse(n) + myParse(o);
+        // var total = myParse(a) + myParse(b) + myParse(c) + myParse(d) + myParse(e) + myParse(f) + myParse(g) + myParse(h) + myParse(i) + myParse(j) + myParse(k) + myParse(l) + myParse(m) + myParse(n) + myParse(o) + myParse(p) + myParse(q); // for new questions
+
+        //alert(myParse(a_ha));
+        console.log(myParse(a_ha));
+        console.log("b_ha",myParse(b_ha));
+        console.log("c_ha",myParse(c_ha));
+        console.log("d_ha",myParse(d_ha));
+        console.log("e_ha",myParse(e_ha));
+        console.log("f_ha",myParse(f_ha));
+        console.log("g_ha",myParse(g_ha));
+        console.log("h_ha",myParse(h_ha));
+        console.log("i_ha",myParse(i_ha));
+        console.log("j_ha",myParse(j_ha));
+        console.log("k_ha",myParse(k_ha));
+        console.log("l_ha",myParse(l_ha));
+        console.log("m_ha",myParse(m_ha));
+        console.log("n_ha",myParse(n_ha));
+        console.log("o_ha",myParse(o_ha));
+
+        // var total_ha = myParse(a_ha) + myParse(b_ha) + myParse(c_ha) + myParse(d_ha) + myParse(e_ha) + myParse(f_ha) + myParse(g_ha) + myParse(h_ha) + myParse(i_ha) + myParse(j_ha) + myParse(k_ha) + myParse(l_ha) + myParse(m_ha) + myParse(n_ha) + myParse(o_ha) ; //original
+
+        var total_ha = myParse(a_ha) + myParse(c_ha)  + myParse(e_ha) + myParse(h_ha) + myParse(k_ha)  + myParse(m_ha) + myParse(n_ha) + myParse(o_ha) ; //remove hidden questions
+
+
+        // var total_ha = myParse(a_ha) + myParse(b_ha) + myParse(c_ha) + myParse(d_ha) + myParse(e_ha) + myParse(f_ha) + myParse(g_ha) + myParse(h_ha) + myParse(i_ha) + myParse(j_ha) + myParse(k_ha) + myParse(l_ha) + myParse(m_ha) + myParse(n_ha) + myParse(o_ha) + myParse(p_ha) + myParse(q_ha); // for new questions
+
+
+        // var total_tan = myParse(a_tan) + myParse(b_tan) + myParse(c_tan) + myParse(d_tan) + myParse(e_tan) + myParse(f_tan) + myParse(g_tan) + myParse(h_tan) + myParse(i_tan) + myParse(j_tan) + myParse(k_tan) + myParse(l_tan) + myParse(m_tan) + myParse(n_tan) + myParse(o_tan) ; //original
+
+        var total_tan = myParse(a_tan)  + myParse(c_tan) + myParse(e_tan)  + myParse(h_tan)  + myParse(k_tan)  + myParse(m_tan) + myParse(n_tan) + myParse(o_tan);  //removed hidden questions
+
+
+        // var total_tan = myParse(a_tan) + myParse(b_tan) + myParse(c_tan) + myParse(d_tan) + myParse(e_tan) + myParse(f_tan) + myParse(g_tan) + myParse(h_tan) + myParse(i_tan) + myParse(j_tan) + myParse(k_tan) + myParse(l_tan) + myParse(m_tan) + myParse(n_tan) + myParse(o_tan) + myParse(p_tan) + myParse(q_tan); // for new questions
 
         $("#total_perbelanjaan").val(total);
         $("#total_perbelanjaan").format({format: "#,###.00", locale: "us"});
@@ -473,30 +521,13 @@ if (($bts * 1) == 0) {
                 </tr>
 
                 <tr valign="top">
-                    <td width="24" height="37" align="center" bgcolor="#AEFFAE">1.</td>
+                    <td width="24" height="35" align="center" bgcolor="#AEFFAE">1.</td>
                     <td width="296" bgcolor="#AEFFAE"> <span class="style4">
-                            <?= setstring('mal', 'Pembayaran gaji dan elaun untuk eksekutif dan bukan eksekutif serta kebajikan kepada buruh', 'en', 'Payment of salaries and allowances for executives and non-executives as well as welfare to labor'); ?>
+                            <?= setstring('mal', 'Pembayaran gaji dan elaun untuk eksekutif dan bukan eksekutif serta kebajikan kepada buruh', 'en', 'Payment of salaries and allowances for executive and non-executive as well as welfare to labour'); ?>
                         </span>          <br />
                         <span class="kecil">(
-                            <?= setstring('mal', 'Gaji dan elaun', 'en', 'Emoluments and allowances'); ?>
-                            ,
-                            <?= setstring('mal', 'Kerja lebih masa', 'en', 'Overtime'); ?>
-                            ,
-                            <?= setstring('mal', 'Perubatan', 'en', 'Medical'); ?>
-                            ,
-                            <?= setstring('mal', 'Perjalanan', 'en', 'Travelling'); ?>
-                            ,
-                            <?= setstring('mal', 'Bonus', 'en', 'Bonuses'); ?>
-                            ,
-                            <?= setstring('mal', 'Insuran peribadi', 'en', 'Personal Insurance'); ?>
-                            ,
-                            <?= setstring('mal', 'Insentif', 'en', 'Incentive'); ?>
-                            ,
-                            <?= setstring('mal', 'KWSP', 'en', 'EPF'); ?>
-                            ,
-                            <?= setstring('mal', 'PERKESO', 'en', 'SOCSO'); ?>
-                            ,
-                            <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
+                            <?= setstring('mal', 'Merujuk kepada pembayaran gaji, KWSP, PERKESO, elaun, elaun lebih masa, bonus, insuran hayat, caj perubatan dan ubat-ubatan,insentif dan lain-lain', 'en', 'Refer to salaries, EPF, SOCSO, allowances, overtime charges, life insurance, medical charges, bonus, incentive and etc'); ?>
+
                             )        </span></td>
                     <td width="158" bgcolor="#AEFFAE"><div align="center">
                             <input onKeypress="keypress(event)" name="emolumen" type="text" onchange="kiraanbaru('emolumen')"  autocomplete="off" class="active_field" onclick="field_click(this)"  id="emolumen" value="<?= number_format($belanja->emolumen, 2); ?>" />
@@ -536,20 +567,20 @@ if (($bts * 1) == 0) {
                             )        </span></td>
                     <td><div align="center">
                     */?>
-                            <input onKeypress="keypress(event)" name="kos_ibupejabat" type="hidden" onchange="kiraanbaru('kos_ibupejabat')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="kos_ibupejabat" value="<?= number_format($belanja->kos_ibupejabat, 2); ?>" />
+                            <input onKeypress="keypress(event)" name="kos_ibupejabat" type="hidden" onchange="kiraanbaru('kos_ibupejabat')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="kos_ibupejabat" value="<?= number_format(0, 2); ?>" />
                           </div></td>
                     <td><div align="center" id="kos_ibupejabat_per_ha"><?php
                             $per_ha2 = $belanja->kos_ibupejabat / $hektar;
-                            $per_ha2 = round($per_ha2, 2);
+                            $per_ha2 = round(0, 2);
                             // echo number_format($per_ha2, 2);
-                             number_format($per_ha2, 2);
+                             number_format(0, 2);
 
                             ?></div></td>
                     <td><div align="center" id="kos_ibupejabat_per_bts">
                             <?php
                             $per_bts2 = $per_ha2 / $bts;
                             // echo number_format($per_bts2, 2);
-                             number_format($per_bts2, 2);
+                             number_format(0, 2);
 
                             ?>        </div></td>
                     <td>
@@ -563,23 +594,13 @@ if (($bts * 1) == 0) {
                 <tr valign="top">
                     <td height="32" align="center" bgcolor="#FFFFFF">2.</td>
                     <td bgcolor="#FFFFFF"  ><span class="style4">
-                            <?= setstring('mal', 'Yuran professional dan khidmat nasihat', 'en', 'Agency cost and professional fees'); ?>
+                            <?= setstring('mal', 'Yuran professional dan khidmat nasihat', 'en', 'Professional fee and advisory services '); ?>
                         </span>
                         <br />
                         <span class="kecil">(
-                            <?= setstring('mal', 'Perbelanjaan lawatan agen', 'en', 'Visiting agent fees'); ?>
-                            ,
-                            <?= setstring('mal', 'Perbelanjaan perundangan dan lain-lain profesional', 'en', 'Legal and others professional fees'); ?>
-                            ,
-                            <?= setstring('mal', 'Yuran/bayaran khidmat nasihat lawatan/penanaman', 'en', 'Visiting/planting consultation fees'); ?>
-                            ,
-                            <?= setstring('mal', 'Yuran/bayaran ahli agromoni', 'en', 'Agronomist fees'); ?>
-                            ,
-                            <?= setstring('mal', 'Yuran/bayaran audit', 'en', 'Audit fees'); ?>
-                            ,
-                            <?= setstring('mal', 'Yuran/bayaran sokongan sistem komputer estet', 'en', 'Estate\'s computer system support'); ?>
-                            ,
-                            <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
+                            <?= setstring('mal', 'Yuran yang dibayar kepada agensi atau ahli agronomi, juru audit dan lain-lain bagi tujuan perundangan, khidmat nasihat, audit dan sebagainnya', 'en', 'Fee paid to agencies, agronomist, auditors and others for advisory services and etc'); ?>
+
+
                             )        </span></td>
                     <td bgcolor="#FFFFFF"><div align="center">
                             <input onKeypress="keypress(event)" name="kos_agensi" type="text" onchange="kiraanbaru('kos_agensi')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="kos_agensi" value="<?= number_format($belanja->kos_agensi, 2); ?>" />
@@ -619,19 +640,19 @@ if (($bts * 1) == 0) {
                             )</span></td>
                     <td><div align="center">
                     */ ?>
-                            <input onKeypress="keypress(event)" name="kebajikan" type="hidden" onchange="kiraanbaru('kebajikan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="kebajikan" value="<?= number_format($belanja->kebajikan, 2); ?>"  />
+                            <input onKeypress="keypress(event)" name="kebajikan" type="hidden" onchange="kiraanbaru('kebajikan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="kebajikan" value="<?= number_format(0, 2); ?>"  />
                         </div></td>
                     <td><div align="center" id="kebajikan_per_ha"><?php
                             $per_ha4 = $belanja->kebajikan / $hektar;
-                            $per_ha4 = round($per_ha4, 2);
+                            $per_ha4 = round(0, 2);
                             // echo number_format($per_ha4, 2);
-                             number_format($per_ha4, 2);
+                             number_format(0, 2);
 
                             ?></div></td>
                     <td><div align="center" id="kebajikan_per_bts"> <?php
                             $per_bts4 = $per_ha4 / $bts;
                             // echo number_format($per_bts4, 2);
-                             number_format($per_bts4, 2);
+                             number_format(0, 2);
 
                             ?>
                         </div></td>
@@ -645,21 +666,12 @@ if (($bts * 1) == 0) {
                 <tr valign="top" bgcolor="#AEFFAE">
                     <td height="36" align="center">3.</td>
                     <td><span class="style4">
-                            <?= setstring('mal', 'Cukai, pemilikan tanah sementara (TOL) dan insuran', 'en', 'Rent, TOL and insurance'); ?>
+                            <?= setstring('mal', 'Cukai, pemilikan tanah sementara (TOL) dan insuran', 'en', 'Taxes, Temporary Ownership Land (TOL) and insurance'); ?>
                         </span>
                         <br />
                         <span class="kecil">(
-                            <?= setstring('mal', 'Cukai tanah', 'en', 'Quit rent'); ?>
-                            ,
-                            <?= setstring('mal', 'Yuran/bayaran TOL', 'en', 'TOL fees'); ?>
-                            ,
-                            <?= setstring('mal', 'Insurans kebakaran/kecurian', 'en', 'Fire Insurance'); ?>
-                            ,
-                            <?= setstring('mal', 'Insuran', 'en', 'Insurances'); ?>
-                            ,
-                            <?= setstring('mal', 'Penghantaran', 'en', 'Delivery'); ?>
-                            ,
-                            <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
+                            <?= setstring('mal', 'Cukai tanah, cukai ke atas tanah berstatus TOL, insuran untuk bangunan & kenderaan dan Lain-lain', 'en', 'Quit rent, quit rent for TOL status land, fire insurance, motor insurance, etc'); ?>
+
                             )        </span></td>
                     <td><div align="center">
                             <input onKeypress="keypress(event)" name="sewa_tol" type="text" onchange="kiraanbaru('sewa_tol')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="sewa_tol" value="<?= number_format($belanja->sewa_tol, 2); ?>"  />
@@ -691,19 +703,19 @@ if (($bts * 1) == 0) {
                             )        </span></td>
                     <td><div align="center">
                     */?>
-                            <input onKeypress="keypress(event)" name="penyelidikan" type="hidden" onchange="kiraanbaru('penyelidikan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="penyelidikan" value="<?= number_format($belanja->penyelidikan, 2); ?>"  />
+                            <input onKeypress="keypress(event)" name="penyelidikan" type="hidden" onchange="kiraanbaru('penyelidikan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="penyelidikan" value="<?= number_format(0, 2); ?>"  />
                          </div></td>
                     <td><div align="center" id="penyelidikan_per_ha"><?php
                             $per_ha6 = $belanja->penyelidikan / $hektar;
-                            $per_ha6 = round($per_ha6, 2);
+                            $per_ha6 = round(0, 2);
                             // echo number_format($per_ha6, 2);
-                             number_format($per_ha6, 2);
+                             number_format(0, 2);
 
                             ?></div></td>
                     <td><div align="center" id="penyelidikan_per_bts"> <?php
                             $per_bts6 = $per_ha6 / $bts;
                             // echo number_format($per_bts6, 2);
-                             number_format($per_bts6, 2);
+                             number_format(0, 2);
 
                             ?>
                         </div></td>
@@ -734,19 +746,19 @@ if (($bts * 1) == 0) {
                             )        </span></td>
                     <td><div align="center">
                     */?>
-                            <input onKeypress="keypress(event)" name="perubatan" type="hidden" onchange="kiraanbaru('perubatan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="perubatan" value="<?= number_format($belanja->perubatan, 2); ?>"/>
+                            <input onKeypress="keypress(event)" name="perubatan" type="hidden" onchange="kiraanbaru('perubatan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="perubatan" value="<?= number_format(0, 2); ?>"/>
                         </div></td>
                     <td><div align="center" id="perubatan_per_ha"><?php
                             $per_ha7 = $belanja->perubatan / $hektar;
-                            $per_ha7 = round($per_ha7, 2);
+                            $per_ha7 = round(0, 2);
                             // echo number_format($per_ha7, 2);
-                             number_format($per_ha7, 2);
+                             number_format(0, 2);
 
                             ?></div></td>
                     <td><div align="center" id="perubatan_per_bts" > <?php
                             $per_bts7 = $per_ha7 / $bts;
                             // echo number_format($per_bts7, 2);
-                             number_format($per_bts7, 2);
+                             number_format(0, 2);
 
                             ?>
                         </div></td>
@@ -762,14 +774,11 @@ if (($bts * 1) == 0) {
                 <tr valign="top" bgcolor="#FFFFFF">
                     <td height="33" align="center">4.</td>
                     <td><span class="style4">
-                            <?= setstring('mal', 'Penjagaan, pemuliharaan  dan penyelenggaraan bangunan', 'en', 'Maintenance, conservation and maintenance of buildings'); ?>
+                            <?= setstring('mal', 'Penjagaan, pemuliharaan  dan penyelenggaraan bangunan', 'en', 'Upkeep, conversation and maintenance of building '); ?>
                         </span><br />
                         <span class="kecil">(
-                            <?= setstring('mal', 'Pembaikan dan pengecatan', 'en', 'Painting and repair'); ?>
-                            ,
-                            <?= setstring('mal', 'Perabut dan <em>fitting</em> untuk banglow/kuaters/rumah kedai/bengkel', 'en', 'Fitting for bungalow/quarters/shophouse/workshop'); ?>
-                            ,
-                            <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
+                            <?= setstring('mal', 'Pembersihan kawasan, baik pulih kerosakan dan penyelenggaraan pejabat, banglow, kuarters, rumah ibadah, klinik, rumah kedai, bengkel dan lain-lain ', 'en', 'Cleaning, repair of vehicle, maintenance of office, home amenities, mosque, temple, church, clinics, shop and etc'); ?>
+
                             )        </span></td>
                     <td><div align="center">
                             <input onKeypress="keypress(event)" name="penyelenggaraan" type="text" onchange="kiraanbaru('penyelenggaraan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="penyelenggaraan" value="<?= number_format($belanja->penyelenggaraan, 2); ?>" />
@@ -802,20 +811,20 @@ if (($bts * 1) == 0) {
                             )</span></td>
                     <td><div align="center">
                     */?>
-                            <input onKeypress="keypress(event)" name="cukai_keuntungan" type="hidden" onchange="kiraanbaru('cukai_keuntungan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="cukai_keuntungan" value="<?= number_format($belanja->cukai_keuntungan, 2); ?>" />
+                            <input onKeypress="keypress(event)" name="cukai_keuntungan" type="hidden" onchange="kiraanbaru('cukai_keuntungan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="cukai_keuntungan" value="<?= number_format(0, 2); ?>" />
                          </div></td>
                     <td><div align="center" id="cukai_keuntungan_per_ha"><?php
                             $per_ha9 = $belanja->cukai_keuntungan / $hektar;
-                            $per_ha9 = round($per_ha9, 2);
+                            $per_ha9 = round(0, 2);
                             // echo number_format($per_ha9, 2);
-                             number_format($per_ha9, 2);
+                             number_format(0, 2);
 
                             ?></div></td>
                     <td><div align="center" id="cukai_keuntungan_per_bts">
                             <?php
                             $per_bts9 = $per_ha9 / $bts;
                             // echo number_format($per_bts9, 2);
-                             number_format($per_bts9, 2);
+                             number_format(0, 2);
 
                             ?>        </div></td>
                     <td>
@@ -849,19 +858,19 @@ if (($bts * 1) == 0) {
                             )</span></td>
                     <td><div align="center">
                     */?>
-                            <input onKeypress="keypress(event)" name="penjagaan" type="hidden" onchange="kiraanbaru('penjagaan')" autocomplete="off" onclick="field_click(this)" class="active_field" id="penjagaan" value="<?= number_format($belanja->penjagaan, 2); ?>" />
+                            <input onKeypress="keypress(event)" name="penjagaan" type="hidden" onchange="kiraanbaru('penjagaan')" autocomplete="off" onclick="field_click(this)" class="active_field" id="penjagaan" value="<?= number_format(0, 2); ?>" />
                      <td><div align="center" id="penjagaan_per_ha"><?php
                             $per_ha10 = $belanja->penjagaan / $hektar;
-                            $per_ha10 = round($per_ha10, 2);
+                            $per_ha10 = round(0, 2);
 
                             // echo number_format($per_ha10, 2);
-                             number_format($per_ha10, 2);
+                             number_format(0, 2);
 
                             ?></div></td>
                     <td><div align="center" id="penjagaan_per_bts"> <?php
                             $per_bts10 = $per_ha10 / $bts;
                             // echo number_format($per_bts10, 2);
-                             number_format($per_bts10, 2);
+                             number_format(0, 2);
 
                             ?>
 
@@ -881,17 +890,8 @@ if (($bts * 1) == 0) {
                             <?= setstring('mal', 'Kawalan keselamatan', 'en', 'Security Control'); ?>
                         </span><br />
                         <span class="kecil">(
-                            <?= setstring('mal', 'Gaji pegawai keselamatan', 'en', 'Auxillary police/watchman salary'); ?>
-                            ,
-                            <?= setstring('mal', 'Penjagaan pos keselamatan dan pagar ', 'en', 'Routine upkeep of security post and fences'); ?>
-                            ,
-                            <?= setstring('mal', 'Yuran/bayaran lesen senjata', 'en', 'Guns license fees'); ?>
-                            ,
-                            <?= setstring('mal', 'Pembaikan senjata dan peluru', 'en', 'Guns and repair'); ?>
-                            ,
-                            <?= setstring('mal', 'Yuran/bayaran penghantaran wang gaji', 'en', 'Securicor/payroll collect fees'); ?>
-                            ,
-                            <?= setstring('mal', 'Tiket jambatan timbang dan <em>seals</em>', 'en', 'Seals and Weighbrigde Ticket'); ?>
+                            <?= setstring('mal', 'Bayaran kepada pegawai keselamatan, penjagaan pos keselamatan dan lain-lain', 'en', '(Payments to guard, maintenance of guard house, and etc'); ?>
+
                             )</span></td>
                     <td><div align="center">
                             <input onKeypress="keypress(event)" name="kawalan" type="text" onchange="kiraanbaru('kawalan')" autocomplete="off" onclick="field_click(this)" class="active_field" id="kawalan" value="<?= number_format($belanja->kawalan, 2); ?>" />
@@ -937,21 +937,21 @@ if (($bts * 1) == 0) {
                             )</span></td>
                     <td><div align="center">
                       */?>
-                            <input onKeypress="keypress(event)" name="air_tenaga" type="hidden" onchange="kiraanbaru('air_tenaga')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="air_tenaga" value="<?= number_format($belanja->air_tenaga, 2); ?>" />
+                            <input onKeypress="keypress(event)" name="air_tenaga" type="hidden" onchange="kiraanbaru('air_tenaga')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="air_tenaga" value="<?= number_format(0, 2); ?>" />
                       </div></td>
                     <td><div align="center" id="air_tenaga_per_ha"><?php
                             $per_ha12 = $belanja->air_tenaga / $hektar;
-                            $per_ha12 = round($per_ha12, 2);
+                            $per_ha12 = round(0, 2);
 
                             // echo number_format($per_ha12, 2);
-                             number_format($per_ha12, 2);
+                             number_format(0, 2);
 
                             ?></div></td>
                     <td><div align="center" id="air_tenaga_per_bts">
                             <?php
                             $per_bts12 = $per_ha12 / $bts;
                             // echo number_format($per_bts12, 2);
-                             number_format($per_bts12, 2);
+                             number_format(0, 2);
 
                             ?>        </div></td>
                     <td><div align="center"><?php //echo kiraPerubahan($per_ha12, $belanjaAmTahunSebelum->air_tenaga / $hektar);
@@ -963,30 +963,10 @@ if (($bts * 1) == 0) {
                 <tr valign="top" bgcolor="#FFFFFF">
                     <td height="31" align="center">6.</td>
                     <td><span class="style4">
-                            <?= setstring('mal', 'Perbelanjaan pejabat dan utiliti', 'en', 'Office expenses'); ?>
+                            <?= setstring('mal', 'Perbelanjaan pejabat dan utiliti', 'en', 'Office expenses and utilities'); ?>
                         </span> <br />
                         <span class="kecil">(
-                            <?= setstring('mal', 'Telefon/fax/telegram', 'en', 'Telephone/fax/telegram fees'); ?>
-                            ,
-                            <?= setstring('mal', 'Yuran/bayaran post/kurier', 'en', 'Postage and parcel freight fees'); ?>
-                            ,
-                            <?= setstring('mal', 'Alatan pelbagai', 'en', 'Miscellanous'); ?>
-                            ,
-                            <?= setstring('mal', 'Alatan komputer', 'en', 'Computer stationaries and supplies'); ?>
-                            ,
-                            <?= setstring('mal', 'Majalah dan suratkhabar', 'en', 'Magazine and newspaper'); ?>
-                            ,
-                            <?= setstring('mal', 'Buku cek', 'en', 'Cheque book'); ?>
-                            ,
-                            <?= setstring('mal', 'Caj bank', 'en', 'Bank charges'); ?>
-                            ,
-                            <?= setstring('mal', 'Servis komputer/peralatan pejabat', 'en', 'Computer/office equipment services'); ?>
-                            ,
-                            <?= setstring('mal', 'Pembersih pejabat ', 'en', 'Office cleaners'); ?>
-                            ,
-                            <?= setstring('mal', 'Pelbagai barang pejabat', 'en', 'Misc. office equipments'); ?>
-                            ,
-                            <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
+                            <?= setstring('mal', 'Pembelian alat tulis, sewa mesin fotostat, bayaran bil elektrik, bil air, bil telefon, servis peralatan pejabat dan pembelian barangan yang tidak dikategorikan sebagai aset', 'en', 'Purchase of stationery, rental of photostat machine, utilities & telephone bill, service of office equipment and purchase of goods not categorized as an asset'); ?>
                             )</span></td>
                     <td><div align="center">
                             <input onKeypress="keypress(event)" name="perbelanjaan_pejabat" type="text" onchange="kiraanbaru('perbelanjaan_pejabat')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="perbelanjaan_pejabat" value="<?= number_format($belanja->perbelanjaan_pejabat, 2); ?>"/>
@@ -1007,12 +987,10 @@ if (($bts * 1) == 0) {
                 <tr valign="top" bgcolor="#AEFFAE">
                     <td height="31" align="center" >7.</td>
                     <td><span class="style4">
-                            <?= setstring('mal', 'Susutnilai', 'en', 'Value depreciation'); ?>
+                            <?= setstring('mal', 'Susutnilai', 'en', 'Depreciation'); ?>
                         </span><br />
                         <span class="kecil">(
-                            <?= setstring('mal', 'Pelunasan tanah pajakan', 'en', 'Statutory Payment cess'); ?>
-                            ,
-                            <?= setstring('mal', 'Susutnilai bangunan/mesin/kenderaan/ peralatan pejabat', 'en', 'Depreciation of building/machine/transport/office equipment'); ?>
+                            <?= setstring('mal', 'Susutnilai bangunan, mesin, kenderaan dan peralatan pejabat', 'en', 'Depreciation of building, machineries, vehicle and office equipment'); ?>
                             )</span></td>
                     <td><div align="center">
                             <input onKeypress="keypress(event)" name="susut_nilai" type="text" onchange="kiraanbaru('susut_nilai')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="susut_nilai" value="<?= number_format($belanja->susut_nilai, 2); ?>" />
@@ -1037,17 +1015,8 @@ if (($bts * 1) == 0) {
                             <?= setstring('mal', 'Perbelanjaan lain', 'en', 'Other expenses'); ?>
                         </span><br />
                         <span class="kecil">(
-                            <?= setstring('mal', 'Keraian pelawat', 'en', 'Entertain visitors'); ?>
-                            ,
-                            <?= setstring('mal', 'Penerbitan pertanian', 'en', 'Agricultural publication'); ?>
-                            ,
-                            <?= setstring('mal', 'Yuran/bayaran seminar/persidangan', 'en', 'Seminar/conference fees'); ?>
-                            ,
-                            <?= setstring('mal', 'Pembaikan notis/papan tanda', 'en', 'Repairs to Notices/signboard'); ?>
-                            ,
-                            <?= setstring('mal', 'Derma/sumbangan', 'en', 'Sundry charitable donation'); ?>
-                            ,
-                            <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
+                            <?= setstring('mal', 'Lain-lain perbelanjaan yang tidak termasuk dalam perbelanjaan 1-7 di atas', 'en', 'Other expenses not included in 1-7'); ?>
+
                             )        </span></td>
                     <td><div align="center">
                             <input onKeypress="keypress(event)" name="perbelanjaan_lain" type="text" onchange="kiraanbaru('perbelanjaan_lain')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="perbelanjaan_lain" value="<?= number_format($belanja->perbelanjaan_lain, 2); ?>"/>
@@ -1067,102 +1036,14 @@ if (($bts * 1) == 0) {
                 </tr>
 
 
-
-                <tr valign="top" bgcolor="#AEFFAE">
-                    <td height="31" align="center">9.</td>
-                    <td><span class="style4">
-                            <?= setstring('mal', 'Pembelian mesin/jentera dan juga bin untuk kegunaan di ladang ', 'en', 'Purchase of machinery and bin for farm use'); ?>
-                        </span><br />
-                        <span class="kecil">(
-                            <?= setstring('mal', 'Keraian pelawat', 'en', 'Entertain visitors'); ?>
-                            ,
-                            <?= setstring('mal', 'Penerbitan pertanian', 'en', 'Agricultural publication'); ?>
-                            ,
-                            <?= setstring('mal', 'Yuran/bayaran seminar/persidangan', 'en', 'Seminar/conference fees'); ?>
-                            ,
-                            <?= setstring('mal', 'Pembaikan notis/papan tanda', 'en', 'Repairs to Notices/signboard'); ?>
-                            ,
-                            <?= setstring('mal', 'Derma/sumbangan', 'en', 'Sundry charitable donation'); ?>
-                            ,
-                            <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
-                            )        </span></td>
-                    <td><div align="center">
-                    <?php  /*
-                            <input onKeypress="keypress(event)" name="perbelanjaan_lain" type="text" onchange="kiraanbaru('perbelanjaan_lain')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="perbelanjaan_lain" value="<?= number_format($belanja->perbelanjaan_lain, 2); ?>"/>
-                        </div></td>
-                    <td><div align="center" id="perbelanjaan_lain_per_ha"><?php
-                            $per_ha15 = $belanja->perbelanjaan_lain / $hektar;
-                            $per_ha15 = round($per_ha15,2);
-
-                            echo number_format($per_ha15, 2);
-                            ?></div></td>
-                    <td><div align="center" id="perbelanjaan_lain_per_bts">
-                            <?php
-                            $per_bts15 = $per_ha15 / $bts;
-                            echo number_format($per_bts15, 2);
-                            ?>        </div></td>
-                    <td><div align="center"><?php echo kiraPerubahan($per_ha15, $belanjaAmTahunSebelum->perbelanjaan_lain / $hektar); ?></div></td>
-                    */?>
-                </tr>
-
-
-                <tr valign="top" bgcolor="#FFFFFF">
-                    <td height="31" align="center">10.</td>
-                    <td><span class="style4">
-                            <?= setstring('mal', 'Pembelian aset untuk kegunaan pejabat dan bangunan lain di ladang', 'en', 'Purchase of assets for the use of offices and other buildings on the farm'); ?>
-                        </span><br />
-                        <span class="kecil">(
-                            <?= setstring('mal', 'Keraian pelawat', 'en', 'Entertain visitors'); ?>
-                            ,
-                            <?= setstring('mal', 'Penerbitan pertanian', 'en', 'Agricultural publication'); ?>
-                            ,
-                            <?= setstring('mal', 'Yuran/bayaran seminar/persidangan', 'en', 'Seminar/conference fees'); ?>
-                            ,
-                            <?= setstring('mal', 'Pembaikan notis/papan tanda', 'en', 'Repairs to Notices/signboard'); ?>
-                            ,
-                            <?= setstring('mal', 'Derma/sumbangan', 'en', 'Sundry charitable donation'); ?>
-                            ,
-                            <?= setstring('mal', 'Lain-lain', 'en', 'Others'); ?>
-                            )        </span></td>
-                    <td><div align="center">
-                      <?php  /*
-                            <input onKeypress="keypress(event)" name="perbelanjaan_lain" type="text" onchange="kiraanbaru('perbelanjaan_lain')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="perbelanjaan_lain" value="<?= number_format($belanja->perbelanjaan_lain, 2); ?>"/>
-                        </div></td>
-                    <td><div align="center" id="perbelanjaan_lain_per_ha"><?php
-                            $per_ha15 = $belanja->perbelanjaan_lain / $hektar;
-                            $per_ha15 = round($per_ha15,2);
-
-                            echo number_format($per_ha15, 2);
-                            ?></div></td>
-                    <td><div align="center" id="perbelanjaan_lain_per_bts">
-                            <?php
-                            $per_bts15 = $per_ha15 / $bts;
-                            echo number_format($per_bts15, 2);
-                            ?>        </div></td>
-                    <td><div align="center"><?php echo kiraPerubahan($per_ha15, $belanjaAmTahunSebelum->perbelanjaan_lain / $hektar); ?></div></td>
-                    */?>
-                </tr>
-
-
-
-
-
-                <tr>
-                    <td height="17" align="center"> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                    <td> </td>
-                </tr>
                 <tr>
                     <td height="31" align="center"> </td>
                     <td><div align="right"><strong><?= setstring('mal', 'Jumlah :', 'en', 'Total'); ?> </strong></div></td>
                     <td bgcolor="#FFCC66"><div align="center">
-                            <?php $total_belanja_all = $belanja->emolumen + $belanja->kos_ibupejabat + $belanja->kos_agensi + $belanja->kebajikan + $belanja->sewa_tol + $belanja->penyelidikan + $belanja->perubatan + $belanja->penyelenggaraan + $belanja->cukai_keuntungan + $belanja->penjagaan + $belanja->kawalan + $belanja->air_tenaga + $belanja->perbelanjaan_pejabat + $belanja->susut_nilai + $belanja->perbelanjaan_lain; ?>
+                            <?php $total_belanja_all = $belanja->emolumen + $belanja->kos_ibupejabat + $belanja->kos_agensi + $belanja->kebajikan + $belanja->sewa_tol + $belanja->penyelidikan + $belanja->perubatan + $belanja->penyelenggaraan + $belanja->cukai_keuntungan + $belanja->penjagaan + $belanja->kawalan + $belanja->air_tenaga + $belanja->perbelanjaan_pejabat + $belanja->susut_nilai + $belanja->perbelanjaan_lain ; ?>
                             <input onKeypress="keypress(event)" name="total_perbelanjaan" type="text"  autocomplete="off" id="total_perbelanjaan"  style="font-weight:bold; text-align:center" value="<?php
                             echo number_format($total_belanja_all, 2);
-                            ?>" size="15"  />
+                            ?>" size="20"  />
                         </div></td>
                     <td bgcolor="#FFCC66"><div align="center" id="total_kos_hektar">
                             <?php
@@ -1177,7 +1058,8 @@ if (($bts * 1) == 0) {
                     </td>
                     <td bgcolor="#FFCC66"><div align="center" id="total_bts_all">
                             <?php
-                            $total_bts_all = $per_bts1 + $per_bts2 + $per_bts3 + $per_bts4 + $per_bts5 + $per_bts6 + $per_bts7 + $per_bts8 + $per_bts9 + $per_bts10 + $per_bts11 + $per_bts12 + $per_bts13 + $per_bts14 + $per_bts15;
+                            // $total_bts_all = $per_bts1 + $per_bts2 + $per_bts3 + $per_bts4 + $per_bts5 + $per_bts6 + $per_bts7 + $per_bts8 + $per_bts9 + $per_bts10 + $per_bts11 + $per_bts12 + $per_bts13 + $per_bts14 + $per_bts15 + $per_bts16 + $per_bts17;
+                            $total_bts_all = $per_bts1 + $per_bts2 + $per_bts3 + $per_bts4 + $per_bts5 + $per_bts6 + $per_bts7 + $per_bts8 + $per_bts9 + $per_bts10 + $per_bts11 + $per_bts12 + $per_bts13 + $per_bts14 + $per_bts15 ;
                             echo number_format($total_bts_all, 2);
                             ?>        </div></td>
                     <td bgcolor="#FFCC66">
@@ -1185,6 +1067,83 @@ if (($bts * 1) == 0) {
                                 <?php echo kiraPerubahan($total_kos_hektar, $belanjaAmTahunSebelum->total_perbelanjaan / $hektar); ?>
                             </strong></div></td>
                 </tr>
+
+                <tr>
+                    <td height="5" align="center"> </td>
+
+                </tr>
+
+                <tr valign="top" bgcolor="#AEFFAE">
+                    <td height="20" align="center" bgcolor="#AEFFAE"> </td>
+                    <td bgcolor="#AEFFAE"><b><u><?= setstring('mal', 'Lain-lain Kos', 'en', 'Other Cost'); ?> </u></b></td>
+                    <td bgcolor="#AEFFAE"><div align="center">
+                    <td bgcolor="#AEFFAE"><div align="center">
+                    <td bgcolor="#AEFFAE"><div align="center">
+                    <td bgcolor="#AEFFAE"><div align="center">
+                </tr>
+
+
+                <tr valign="top" bgcolor="#FFFFFF">
+                    <td height="35" align="center">1.</td>
+                    <td><span class="style4">
+                            <?= setstring('mal', 'Pembelian mesin/jentera dan juga bin untuk kegunaan di ladang ', 'en', 'Purchase of machineries and bin for estates’ use '); ?>
+                        </span><br />
+                        <span class="kecil">(
+                            <?= setstring('mal', 'Pembelian mesin/jentara untuk aktiviti meracun, membaja, menuai, memunggah dan mengangkut BTS', 'en', 'Purchase of machineries for weeding, fertilizing, harvesting and FFB collection'); ?>
+                            )        </span></td>
+                    <td><div align="center">
+
+                            <input onKeypress="keypress(event)" name="pembelian_mesin" type="text" onchange="kiraanbaru('pembelian_mesin')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="pembelian_mesin" value="<?= number_format($belanja->pembelian_mesin, 2); ?>"/>
+                        </div></td>
+                <td><div align="center" id="pembelian_mesin_per_ha"><?php
+                            $per_ha16 = $belanja->pembelian_mesin / $hektar;
+                            $per_ha16 = round($per_ha16,2);
+
+                            echo number_format($per_ha16, 2);
+                            ?></div></td>
+                    <td><div align="center" id="pembelian_mesin_per_bts">
+                            <?php
+                            $per_bts16 = $per_ha16 / $bts;
+                            echo number_format($per_bts16, 2);
+                            ?>        </div></td>
+                    <td><div align="center"><?php echo kiraPerubahan($per_ha16, $belanjaAmTahunSebelum->pembelian_mesin / $hektar); ?></div></td>
+
+                </tr>
+
+
+                <tr valign="top" bgcolor="#AEFFAE">
+                    <td height="25" align="center">2.</td>
+                    <td><span class="style4">
+                            <?= setstring('mal', 'Pembelian aset untuk kegunaan pejabat dan bangunan lain di ladang', 'en', 'Purchase of asset for office use and other buildings in estate'); ?>
+                        </span><br />
+                        <span class="kecil">(
+                            <?= setstring('mal', 'Pembelian kenderaan, perabot, komputer, generator dan lain-lain peralatan pejabat yang dikategorikan sebagai aset', 'en', 'Purchase of furniture, vehicles, computers, generators and other office equipment categorized as an asset'); ?>
+                            )        </span></td>
+                    <td><div align="center">
+
+                            <input onKeypress="keypress(event)" name="pembelian_aset" type="text" onchange="kiraanbaru('pembelian_aset')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="pembelian_aset" value="<?= number_format($belanja->pembelian_aset, 2); ?>"/>
+                        </div></td>
+
+
+                       <td><div align="center" id="pembelian_aset_per_ha"><?php
+                            $per_ha17 = $belanja->pembelian_aset / $hektar;
+                            $per_ha17 = round($per_ha17,2);
+
+                            echo number_format($per_ha17, 2);
+                            ?></div></td>
+                    <td><div align="center" id="pembelian_aset_per_bts">
+                            <?php
+                            $per_bts17 = $per_ha17 / $bts;
+                            echo number_format($per_bts17, 2);
+                            ?>        </div></td>
+                    <td><div align="center"><?php echo kiraPerubahan($per_ha17, $belanjaAmTahunSebelum->pembelian_aset / $hektar); ?></div></td>
+
+                </tr>
+
+
+
+
+
                 <tr>
                     <td height="17" align="center"> </td>
                     <td> </td>
@@ -1193,6 +1152,8 @@ if (($bts * 1) == 0) {
                     <td> </td>
                     <td> </td>
                 </tr>
+
+
 
 
             </table></td>

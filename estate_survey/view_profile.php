@@ -13,11 +13,11 @@ $session_lesen = $_SESSION['lesen'];?>
 <table width='95%' border='0' align='center'>
 	<tr>
     	<td><table width='100%' border='0' align='center' cellpadding='1' cellspacing='1' style='border:1px #333333 solid'>
-          
+
           <tr>
             <td colspan='4' bgcolor='#999999'><span class='style1'>PROFIL ESTET</span></td>
           </tr>
-          
+
           <tr>
             <td width='23%'><strong>Estet</strong></td>
             <td width='1%'><strong>:</strong></td>
@@ -35,7 +35,7 @@ $session_lesen = $_SESSION['lesen'];?>
             <td>
             <?php echo $pengguna->nolesen; ?></td>
           </tr>
-          
+
           <tr>
             <td><strong>Alamat Surat Menyurat </strong></td>
             <td><strong>:</strong></td>
@@ -120,7 +120,7 @@ $session_lesen = $_SESSION['lesen'];?>
       <tr>
         <td colspan='3' align='left' valign='top' bgcolor='#999999'><span class='style1'>MAKLUMAT AM </span></td>
         </tr>
-      
+
       <tr>
         <td width='201' align='left' valign='top'><b>Jenis Syarikat</b></td>
         <td width='7'><div align='center'><strong>:</strong></div></td>
@@ -135,10 +135,10 @@ $session_lesen = $_SESSION['lesen'];?>
         <td width='201' align='left' valign='top'><strong>Integrasi dengan Kilang Buah Sawit</strong></td>
         <td><div align='center'><strong>:</strong></div></td>
         <td>
-		<?php $ig = $pengguna->integrasi; 
+		<?php $ig = $pengguna->integrasi;
 		if ($ig=='Y'){?>
 		 Ya
-		<?php } 
+		<?php }
 		if ($ig=='N'){?>
 		 Tidak
 		<?php } ?>		</td>
@@ -148,10 +148,10 @@ $session_lesen = $_SESSION['lesen'];?>
       </tr>
       <tr>
         <td colspan='3' align='left' valign='top'>
-       
+
         </td>
       </tr>
-      
+
       <tr>
         <td colspan='3' align='left' valign='top'><table width='100%'>
           <tr>
@@ -161,7 +161,7 @@ $session_lesen = $_SESSION['lesen'];?>
                     </strong>
                 <script type='text/javascript' src='ampie/swfobject.js'></script>
                             <script type='text/javascript'>
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject('ampie/ampie.swf', 'ampie', '520', '400', '8', '#FFFFFF');
 		so.addVariable('path', 'ampie/');
 		so.addVariable('settings_file', encodeURIComponent('ampie/settings.xml'));
@@ -176,14 +176,14 @@ $session_lesen = $_SESSION['lesen'];?>
 		// ]]>
 	            </script>
               </div></td>
-            <td>  
-            
+            <td>
+
              <div id='percent_mukabumi'></div>
              <div align='center'><br />
                  <strong>Peratusan Jenis Mukabumi
-                   </strong>        
+                   </strong>
                           <script type='text/javascript'>
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject('ampie/ampie.swf', 'ampie', '520', '400', '8', '#FFFFFF');
 		so.addVariable('path', 'ampie/');
 		so.addVariable('settings_file', encodeURIComponent('ampie/settingsmukabumi.xml'));
@@ -205,7 +205,7 @@ $session_lesen = $_SESSION['lesen'];?>
         <td colspan='3' align='left' valign='top'>&nbsp;</td>
       </tr>
 </table>
-    	
+
     	</div><table width='100%'>
           <tr>
             <td colspan='3' align='left' valign='top'>&nbsp;</td>
@@ -216,15 +216,15 @@ $session_lesen = $_SESSION['lesen'];?>
 <br />
 <div align='center'>
 
-    
+
 
 	</div>
 	<br />
 	<br />
-<?php 
+<?php
 
 $htmlcontent = ob_get_contents();
-ob_clean(); 
+ob_clean();
 
 require_once('../print/mypdf.class.php');
 

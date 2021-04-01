@@ -320,16 +320,7 @@ if ($_COOKIE["lang"] == "mal") {
             <tr>
                 <td align="left"><a href="index1.php"><img src="logo.png" width="179" height="61" border="0" /></a></td>
                 <td align="left"><div align="right">
-                        <script type="text/javascript">
-            AC_FL_RunContent('codebase', 'http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0', 'width', '118', 'height', '87', 'src', 'logo', 'quality', 'high', 'pluginspage', 'http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash', 'movie', 'logo'); //end AC code
-                        </script>
-                        <noscript>
-                            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="118" height="87">
-                                <param name="movie" value="logo.swf" />
-                                <param name="quality" value="high" />
-                                <embed src="logo.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="118" height="87"></embed>
-                            </object>
-                        </noscript>
+                        <img src="https://seeklogo.com/images/M/malaysian-palm-oil-board-logo-9E214818A4-seeklogo.com.png" alt="https://seeklogo.com/images/M/malaysian-palm-oil-board-logo-9E214818A4-seeklogo.com.png" width="118" height="87">
                     </div></td>
             </tr>
 

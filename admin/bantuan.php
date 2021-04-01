@@ -135,7 +135,7 @@ function deletedata(x)
       </tr>
     </table></td>
     </tr>
-  <tr>
+<?php /*  <tr>
     <td colspan="2"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,0,0" width="600" height="450" id="FLVPlayer">
       <param name="movie" value="FLVPlayer_Progressive.swf" />
       <param name="salign" value="lt" />
@@ -146,6 +146,7 @@ function deletedata(x)
       <embed src="FLVPlayer_Progressive.swf" flashvars="&MM_ComponentVersion=1&skinName=Clear_Skin_1&streamName=<?= $video->path; ?>&autoPlay=false&autoRewind=false" quality="high" scale="noscale" wmode="transparent" width="600" height="450" name="FLVPlayer" salign="LT" type="application/x-shockwave-flash" pluginspage="http://www.macromedia.com/go/getflashplayer" />
 </object></td>
   </tr>
+  */?>
 </table>
 </form>
 

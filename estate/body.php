@@ -33,6 +33,7 @@ $con = connect();
 
 $username = addslashes(strip_tags($username));
 $katalaluan = addslashes(strip_tags($katalaluan));
+// $katalaluan = password_hash($katalaluan, PASSWORD_BCRYPT);
 
 function getEstateInfo($username) {
     $con = connect();
@@ -51,10 +52,13 @@ function getESub($username, $table) {
 
 if (!isset($retrieveButton)) {
     if ($mill != "true") {
-        $qLogin = "select * from login_estate where lesen = '$username' and password = '$katalaluan'";
+        // $qLogin = "select * from login_estate where lesen = '$username' and password = '$katalaluan'";
+        $qLogin = "select * from login_estate where lesen = '$username' ";
+
     }
     if ($mill == "true") {
-        $qLogin = "select * from login_mill where lesen = '$username' and password = '$katalaluan'";
+        // $qLogin = "select * from login_mill where lesen = '$username' and password = '$katalaluan'";
+        $qLogin = "select * from login_mill where lesen = '$username' ";
     }
 } else {
     if ($mill != "true") {
@@ -79,19 +83,33 @@ if (isset($retrieveButton) && ($total == 0)) {
     echo "<script>alert('" . $stringAlert . "'); </script>";
     echo "<script>window.location.href='../index1.php?fail=true';</script>";
 }
-elseif ($total == 0) {  // jika login gagal
-    $stringAlert = setstring('mal', 'Log masuk GAGAL!!!, sila cuba semula.', 'en', 'Login FAILED!!!. Please try again.');
-    echo "<script>alert('" . $stringAlert . "'); </script>";
-    echo "<script>window.location.href='../index1.php?fail=true';</script>";
+// elseif ($total == 0) {  // jika login gagal
+//     $stringAlert = setstring('mal', 'Log masuk GAGAL!!!, sila cuba semula.', 'en', 'Login FAILED!!!. Please try again.');
+//     echo "<script>alert('" . $stringAlert . "'); </script>";
+//     echo "<script>window.location.href='../index1.php?fail=true';</script>";
+// }
+if (!password_verify($katalaluan, $row['password'])) { //if password entered does not matched with encrypted password
+  $stringAlert = setstring('mal', 'Log masuk GAGAL!!!, sila cuba semula.', 'en', 'Login FAILED!!!. Please try again.');
+  echo "<script>alert('" . $stringAlert . "'); </script>";
+  echo "<script>window.location.href='../index1.php?fail=true';</script>";
+}
+else {
+  $firsttime = $row['firsttime'];
+  $lesen = $row['lesen'];
+  $password = $row['password'];
+
+  echo $_SESSION['lesen'];
+  $_SESSION['lesen'] = $lesen;
+  $_SESSION['password'] = $password;
 }
 
-$firsttime = $row['firsttime'];
-$lesen = $row['lesen'];
-$password = $row['password'];
-
-echo $_SESSION['lesen'];
-$_SESSION['lesen'] = $lesen;
-$_SESSION['password'] = $password;
+// $firsttime = $row['firsttime'];
+// $lesen = $row['lesen'];
+// $password = $row['password'];
+//
+// echo $_SESSION['lesen'];
+// $_SESSION['lesen'] = $lesen;
+// $_SESSION['password'] = $password;
 
 $var = $lesen;
 
@@ -190,7 +208,7 @@ if ($total != 0 && $mill != "true") {
 
     /* if retrieve password */
     if (isset($retrieveButton)) {
-        $q = "update login_estate set success= NOW(), password='" . substr($rowLogin['No_Lesen_Baru'], 0, 6) . "' where lesen = '$username'";
+        $q = "update login_estate set success= NOW(), password='" . password_hash(substr($rowLogin['No_Lesen_Baru'], 0, 6),PASSWORD_BCRYPT) . "' where lesen = '$username'";
         $r = mysqli_query($con, $q);
 
         $title = 'e-COST - Password Recovery (Estate)';

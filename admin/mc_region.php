@@ -22,9 +22,9 @@ $title = $_SESSION['title'];
     <td><table width="100%" cellpadding="4" cellspacing="4">
       <tr>
         <td colspan="2">
-		<?php 
+		<?php
 		if ($region !=NULL){?>
-		
+
 
 		<?php
 			if ($region==1)
@@ -314,7 +314,7 @@ $title = $_SESSION['title'];
           </tr>
           <tr bgcolor="#FFCC66">
             <td><strong>Total Immature Cost </strong></td>
-            <td colspan="3" bgcolor="#FFCC66"><div align="center"><strong>9436.39</strong></div>              
+            <td colspan="3" bgcolor="#FFCC66"><div align="center"><strong>9436.39</strong></div>
               <div align="center"></div>              <div align="center"></div></td>
             </tr>
           <tr>
@@ -526,7 +526,7 @@ $title = $_SESSION['title'];
           </tr>
           <tr bgcolor="#FFCC66">
             <td><strong>Total Immature Cost </strong></td>
-            <td colspan="3" bgcolor="#FFCC66"><div align="center"><strong>8802.75</strong></div>              
+            <td colspan="3" bgcolor="#FFCC66"><div align="center"><strong>8802.75</strong></div>
               <div align="center"></div>              <div align="center"></div></td>
             </tr>
           <tr>
@@ -540,7 +540,7 @@ $title = $_SESSION['title'];
 
 		<?php } ?>		</td>
         </tr>
-      
+
     </table></td>
   </tr>
 </table>
@@ -556,7 +556,7 @@ $title = $_SESSION['title'];
 
 		<script type="text/javascript" src="amcolumn/swfobject.js"></script>
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mie_region_setting.xml"));
@@ -565,9 +565,9 @@ $title = $_SESSION['title'];
 		so.write("mi_region1");
 		// ]]>
 	</script>
-	
+
 		<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mie_region_setting2.xml"));
@@ -576,9 +576,9 @@ $title = $_SESSION['title'];
 		so.write("mi_region2");
 		// ]]>
 	</script>
-	
+
 		<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mie_region_setting3.xml"));

@@ -216,12 +216,10 @@ function kos_belum_matang($lesen, $tahun, $type, $tahun_tanam, $keluasan, $neger
         $sub[17] = round($row['b_3a'] / $keluasan, 2); //Purchase of fertilizer
         $sub[18] = round($row['b_3b'] / $keluasan, 2); //Labour cost to apply fertilizers
         $sub[19] = round($row['b_3c'] / $keluasan, 2); //Machinery use and maintenance
-        // $sub[20] = round($row['b_3d'] / $keluasan, 2); //Soil and foliar analysis
+        $sub[20] = round($row['b_3d'] / $keluasan, 2); //Soil and foliar analysis
 
         if ($row['total_b_3'] == 0) {
-            // $total_b_3 = $row['b_3a'] + $row['b_3b'] + $row['b_3c'] + $row['b_3d'];
-            $total_b_3 = $row['b_3a'] + $row['b_3b'] + $row['b_3c'] ;
-
+            $total_b_3 = $row['b_3a'] + $row['b_3b'] + $row['b_3c'] + $row['b_3d'];
         } else {
             $total_b_3 = $row['total_b_3'];
         }
@@ -238,7 +236,7 @@ function kos_belum_matang($lesen, $tahun, $type, $tahun_tanam, $keluasan, $neger
         $sub[30] = round($row['total_b_12'] / $keluasan, 2); //Census / supplies
         $sub[31] = round($row['total_b_13'] / $keluasan, 2); //Castration
         $sub[32] = round($row['total_b_14'] / $keluasan, 2); //Other Expenditures
-        $sub[36] = round($row['total_b_15'] / $keluasan, 2); //Maintenance of road, drain, bund watergate and etc --baru
+        $sub[36] = round($row['total_b_15'] / $keluasan, 2); //Construction of road, drain, bund watergate and etc --baru
         $sub[37] = round($row['total_b_16'] / $keluasan, 2); //Soil and foliar analysis --baru
         $sub[33] = round($row['total_b'] / $keluasan, 2);
     } else {
@@ -293,7 +291,7 @@ function kos_belum_matang($lesen, $tahun, $type, $tahun_tanam, $keluasan, $neger
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Planting material", $sub[8]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Cover crops", $sub[9]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Other expenditures", $sub[10]);
-    add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Construction of road, drain, bund watergate and etc", $sub[34]);     //soalan baru
+    add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Construction of road, drain, bund watergate and etc ", $sub[34]);     //soalan baru
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Lining, holing and planting ", $sub[35]);     //soalan baru
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Total Non-Recurrent Expenditures", $sub[11]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Purchase of weedicides", $sub[12]);
@@ -304,7 +302,7 @@ function kos_belum_matang($lesen, $tahun, $type, $tahun_tanam, $keluasan, $neger
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Purchase of fertilizer", $sub[17]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Labour cost to apply fertilizers", $sub[18]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Machinery use and maintenances", $sub[19]);
-    // add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Soil and foliar analysis", $sub[20]);
+    add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Soil and foliar analysis", $sub[20]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Fertilizing", $sub[21]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Soil and water conservation", $sub[22]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Upkeep of roads, bridges, paths and etc", $sub[23]);
@@ -317,7 +315,7 @@ function kos_belum_matang($lesen, $tahun, $type, $tahun_tanam, $keluasan, $neger
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Census / supplies", $sub[30]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Castration", $sub[31]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Others Expenditure", $sub[32]);
-    add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Maintenance of road, drain, bund watergate and etc", $sub[36]);   //soalan baru
+    add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Construction of road, drain, bund watergate and etc", $sub[36]);   //soalan baru
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Soil and foliar analysis", $sub[37]);   //soalan baru
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Total Upkeep", $sub[33]);
 
@@ -396,7 +394,7 @@ function kos_matang_penjagaan($lesen, $tahun, $jum_tanam, $jum_bts, $negeri, $da
         $sub[5] = round($row['b_3a'] / $jum_tanam, 2); //purchase of fertilizer
         $sub[6] = round($row['b_3b'] / $jum_tanam, 2); //labour cost to apply fertilizer
         $sub[7] = round($row['b_3c'] / $jum_tanam, 2); //machiney use and maintenance
-        // $sub[8] = round($row['b_3d'] / $jum_tanam, 2); //soil and foliar analysis
+        $sub[8] = round($row['b_3d'] / $jum_tanam, 2); //soil and foliar analysis
         $sub[9] = round($row['total_b_3'] / $jum_tanam, 2); //fertilizing
         $sub[10] = round($row['total_b_4'] / $jum_tanam, 2); //soil and water conservation
         $sub[11] = round($row['total_b_5'] / $jum_tanam, 2); //upkeep of roads, bridges and path etc
@@ -492,7 +490,7 @@ function kos_matang_penjagaan($lesen, $tahun, $jum_tanam, $jum_bts, $negeri, $da
     add_kmp($lesen, $tahun, $negeri, $daerah, $sub[5], $sub[25], "i. Purchase of fertilizer");
     add_kmp($lesen, $tahun, $negeri, $daerah, $sub[6], $sub[26], "ii.Labour cost to apply fertilizers");
     add_kmp($lesen, $tahun, $negeri, $daerah, $sub[7], $sub[27], "iii. Machinery use and maintenance");
-    // add_kmp($lesen, $tahun, $negeri, $daerah, $sub[8], $sub[28], "iv. Soil and foliar analysis");
+    add_kmp($lesen, $tahun, $negeri, $daerah, $sub[8], $sub[28], "iv. Soil and foliar analysis");
     add_kmp($lesen, $tahun, $negeri, $daerah, $sub[9], $sub[29], "Fertilizing");
     add_kmp($lesen, $tahun, $negeri, $daerah, $sub[10], $sub[30], "Soil / water conservation ");
     add_kmp($lesen, $tahun, $negeri, $daerah, $sub[11], $sub[31], "Upkeep of roads, bridges, paths etc.");
@@ -501,10 +499,10 @@ function kos_matang_penjagaan($lesen, $tahun, $jum_tanam, $jum_bts, $negeri, $da
     add_kmp($lesen, $tahun, $negeri, $daerah, $sub[14], $sub[34], "Pests and diseases control");
     add_kmp($lesen, $tahun, $negeri, $daerah, $sub[15], $sub[35], "Pruning and palm sanitation");
     add_kmp($lesen, $tahun, $negeri, $daerah, $sub[16], $sub[36], "Census / supplies ");
-    add_kmp($lesen, $tahun, $negeri, $daerah, $sub[17], $sub[37], "Mandore wages/ direct field supervision costs");
+    add_kmp($lesen, $tahun, $negeri, $daerah, $sub[17], $sub[37], "Mandore wages/ direct field supervision costs ");
     add_kmp($lesen, $tahun, $negeri, $daerah, $sub[18], $sub[38], "Other expenditure");
     add_kmp($lesen, $tahun, $negeri, $daerah, $sub[40], $sub[42], "Soil and foliar analysis");      //km baru
-    add_kmp($lesen, $tahun, $negeri, $daerah, $sub[41], $sub[43], "Maintenance of road, drain, bund watergate and etc");   //km baru
+    add_kmp($lesen, $tahun, $negeri, $daerah, $sub[41], $sub[43], "Construction of road, drain, bund watergate and etc");   //km baru
     add_kmp($lesen, $tahun, $negeri, $daerah, $sub[19], $sub[39], "Total Upkeep");
 
     $qdelete = "delete from "
@@ -567,10 +565,10 @@ function kos_matang_penuaian($lesen, $tahun, $jum_tanam, $jum_bts, $negeri, $dae
         $sub[9] = 0;
     }
 
-    add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[0], $sub[5], "Purchases of harvesting tools");               // start here new translation 22 march 21
-    add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[1], $sub[6], "Wages for harvesters, FFB and loose fruit collecters");
-    add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[2], $sub[7], "Wages for harvesting mandore");
-    add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[3], $sub[8], "Machinery use and maintenance");
+    add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[0], $sub[5], "Harvesting tools ");               // start here new translation 22 march 2021
+    add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[1], $sub[6], "Harvesting and collection of FFB and loose fruit");
+    add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[2], $sub[7], "Mandore wages/ direct field supervision costs");
+    add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[3], $sub[8], "Machinery use and maintenance ");
     add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[4], $sub[9], "Total Harvesting");
 
     $qdelete = "delete from analysis_kos_matang_penuaian  where kos_per_hektar=0 and kos_per_tan=0";
@@ -651,23 +649,12 @@ function kos_matang_pengangkutan($lesen, $tahun, $jum_tanam, $jum_bts, $negeri, 
     }
 
 
-    // add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[0], $sub[10], "a) Platform");
-    // add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[1], $sub[11], "b) Ramp");
-    // add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[2], $sub[12], "ii. Ramp upkeep");
-    // add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[3], $sub[13], "Internal");
-    // add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[4], $sub[14], "i. Meanline transportation cost from platform to loading centre or mill"); //old
-    // add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[5], $sub[15], "ii. Upkeep of tractor and trailer, lorry, etc");
-    // add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[6], $sub[16], "iii. River transport");
-    // add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[7], $sub[17], "External");
-    // add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[8], $sub[18], "Other expenditures");
-    // add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[9], $sub[19], "Total Transportation");
-
     add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[0], $sub[10], "a) Platform");
     add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[1], $sub[11], "b) Ramp");
     add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[2], $sub[12], "ii. Ramp upkeep");
     add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[3], $sub[13], "Internal");
-    add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[4], $sub[14], "Mainline transportation cost from platform/FFB collection centre/ramp to mill");//soalan baru
-    add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[5], $sub[15], "Machinery use and maintenance");                                                // soalan baru
+    add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[4], $sub[14], "i. Meanline transportation cost from platform to loading centre or mill");
+    add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[5], $sub[15], "ii. Upkeep of tractor and trailer, lorry, etc");
     add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[6], $sub[16], "iii. River transport");
     add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[7], $sub[17], "External");
     add_kmpangkut($lesen, $tahun, $negeri, $daerah, $sub[8], $sub[18], "Other expenditures");
@@ -720,8 +707,6 @@ function kos_belanja_am($lesen, $tahun, $hektar, $bts, $negeri, $daerah) {
         $sub[13] = round($row['susut_nilai'] / $hektar, 2);
         $sub[14] = round($row['perbelanjaan_lain'] / $hektar, 2);
         $sub[15] = round($row['total_perbelanjaan'] / $hektar, 2);
-        $sub[32] = round($row['pembelian_mesin'] / $hektar, 2);
-        $sub[33] = round($row['pembelian_aset'] / $hektar, 2);
     } else {
         $sub[0] = 0;
         $sub[1] = 0;
@@ -739,8 +724,6 @@ function kos_belanja_am($lesen, $tahun, $hektar, $bts, $negeri, $daerah) {
         $sub[13] = 0;
         $sub[14] = 0;
         $sub[15] = 0;
-        $sub[32] = 0;
-        $sub[33] = 0;
     }
 
     if ($bts > 0) {
@@ -760,8 +743,6 @@ function kos_belanja_am($lesen, $tahun, $hektar, $bts, $negeri, $daerah) {
         $sub[29] = round($sub[13] / $bts, 2);
         $sub[30] = round($sub[14] / $bts, 2);
         $sub[31] = round($sub[15] / $bts, 2);
-        $sub[34] = round($sub[32] / $bts, 2);
-        $sub[35] = round($sub[33] / $bts, 2);
     } else {
         $sub[16] = 0;
         $sub[17] = 0;
@@ -779,46 +760,24 @@ function kos_belanja_am($lesen, $tahun, $hektar, $bts, $negeri, $daerah) {
         $sub[29] = 0;
         $sub[30] = 0;
         $sub[31] = 0;
-        $sub[34] = 0;
-        $sub[35] = 0;
     }
 
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[0], $sub[16], "Executive and non-executive emoluments");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[1], $sub[17], "Headquarters Cost");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[2], $sub[18], "Agency cost and professional fees");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[3], $sub[19], "Unpaid welfare to labour");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[4], $sub[20], "Rent, TOL and insurance");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[5], $sub[21], "Research and development");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[6], $sub[22], "Medical");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[7], $sub[23], "Building maintenance");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[8], $sub[24], "Extraordinary profit tax");           //old
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[9], $sub[25], "Upkeep and conservation");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[10], $sub[26], "Security Control");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[11], $sub[27], "Water and power");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[12], $sub[28], "Office expenses");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[13], $sub[29], "Value depreciation");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[14], $sub[30], "Other expenses");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[32], $sub[34], "pembelian mesin");
-    // add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[33], $sub[35], "pembelian aset");
-    //add_belanja_am($lesen,$tahun, $negeri,$daerah, $sub[15], $sub[31], "Total General Chargers");
-
-    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[0], $sub[16], "Payment of salaries and allowances");              //29 march 2021
+    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[0], $sub[16], "Executive and non-executive emoluments");
     add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[1], $sub[17], "Headquarters Cost");
-    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[2], $sub[18], "Professional fee and advisory services");
+    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[2], $sub[18], "Agency cost and professional fees");
     add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[3], $sub[19], "Unpaid welfare to labour");
-    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[4], $sub[20], "Taxes, Temporary Ownership Land (TOL) and insurance");
+    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[4], $sub[20], "Rent, TOL and insurance");
     add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[5], $sub[21], "Research and development");
     add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[6], $sub[22], "Medical");
-    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[7], $sub[23], "Upkeep, conversation and maintenance of building");
+    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[7], $sub[23], "Building maintenance");
     add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[8], $sub[24], "Extraordinary profit tax");
     add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[9], $sub[25], "Upkeep and conservation");
     add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[10], $sub[26], "Security Control");
     add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[11], $sub[27], "Water and power");
-    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[12], $sub[28], "Office expenses and utilities");
-    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[13], $sub[29], "Depreciation");
+    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[12], $sub[28], "Office expenses");
+    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[13], $sub[29], "Value depreciation");
     add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[14], $sub[30], "Other expenses");
-    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[32], $sub[34], "Purchase of machineries");
-    add_belanja_am($lesen, $tahun, $negeri, $daerah, $sub[33], $sub[35], "Purchase of asset");
+    //add_belanja_am($lesen,$tahun, $negeri,$daerah, $sub[15], $sub[31], "Total General Chargers");
 
     $qdelete = "delete from analysis_belanja_am_kos where kos_per_hektar=0 and kos_per_tan=0";
     $rdelete = mysqli_query($con, $qdelete);

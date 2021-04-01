@@ -270,7 +270,7 @@ include ("baju.php");
           <td>&nbsp;</td>
           <td><input name="idp[]" type="checkbox" id="idp[]" value="<?php echo $row['email']; ?>" />
           <?php echo $row['email']; ?></td>
-          <td><input type="password" value="<?php echo $row['password']; ?>" disabled="disabled" /></td>
+          <td><input type="password" value="<?php echo password_hash($row['password'], PASSWORD_BCRYPT);  ?>" disabled="disabled" /></td>
           <td><?php if($row['level']=="1") {echo "SUPER ADMIN";} if($row['level']=="2") {echo "USER";}?></td>
           <td><?php echo $row['success']; ?></td>
           <td><?php echo $row['fail']; ?></td>

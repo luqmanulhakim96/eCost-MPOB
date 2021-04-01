@@ -168,6 +168,9 @@ if (isset($_POST["submit"])) {
         $rsql = mysqli_query($con, $sql);
 
 		$defaultpassword = substr($No_Lesen_Baru,0,6);
+    $defaultpassword = password_hash($password, PASSWORD_BCRYPT);
+
+
 		 $sql2 = "INSERT INTO login_estate "
                 . "(lesen, "
                 . "`password`, "
@@ -175,6 +178,7 @@ if (isset($_POST["submit"])) {
                 . "VALUES "
                 . "('$No_Lesen_Baru', "
                 . "'$defaultpassword', "
+
                 . "'1'"
                 . ")";
         //echo $sql . "<br><br>";

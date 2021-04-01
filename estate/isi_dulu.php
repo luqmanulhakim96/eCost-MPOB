@@ -32,7 +32,7 @@
     <?=setstring ( 'mal', 'Sila Kemaskini Maklumat Anda', 'en', 'Please update your information'); ?>
     </h3>
     <p>
-    	
+
         <?=setstring ( 'mal', 'Selamat Datang Ke Sistem E-COST! Sila Kemaskini Maklumat Anda Sebelum Menggunakan Sistem.', 'en', 'Welcome to E-COST System! Please update your details information before proceed'); ?>
     </p>
     </div>
