@@ -38,25 +38,21 @@
                    $resw = mysqli_query($con, $queryw);
                    $roww = mysqli_fetch_array($resw);
 
-                   if ($roww['PENGELUARAN_CPO']==NULL) {
+                   if ($roww['PENGELUARAN_CPO']==NULL){
 
                    }
                    else {
                      echo "['".$row['nama']."', ".round($roww['PENGELUARAN_CPO'],2)."],";
-
                    }
-
-
                  }
-
            ?>
        ]);
 
         var options = {
           title: '',
-          pieSliceText: '',
+          pieSliceText: 'value',
           sliceVisibilityThreshold :0,
-          fontSize: 12,
+          fontSize: 15,
           legend: {
             position: 'labeled',
             textStyle: { color: 'black' }

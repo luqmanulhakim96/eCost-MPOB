@@ -46,17 +46,14 @@ function openScript(url, width, height) {
 <?php
 	   }
 ?>
+<?php if ($rows['name'] != "Executive and non-executive emolument"){ ?>
     <td>
-    <div id="grey-button">
-    <a class="grey-button pcb" href="javascript:openScript('linear_gc_graph_view.php?table=analysis_belanja_am_kos&tahun=<?php echo $tahun; ?>&amp;field=<?php echo $rows['name'];?>&type=<?php echo $type; ?>','','')"><span><?php echo $rows['name'];?></span></a>
-    </div>
-
-
-
-      <iframe src="linear_gc_graph.php?table=analysis_belanja_am_kos&tahun=<?php echo $tahun; ?>&amp;field=<?php echo $rows['name'];?>&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe>
-
-<!--      <img src="linear_gc_graph.php?table=analysis_belanja_am_kos&tahun=<?php echo $tahun; ?>&amp;field=<?php echo $rows['name'];?>&type=<?php echo $type; ?>" />-->
-      </td>
+			  <div id="grey-button">
+			  	<a class="grey-button pcb" href="javascript:openScript('linear_gc_graph_view.php?table=analysis_belanja_am_kos&tahun=<?php echo $tahun; ?>&amp;field=<?php echo $rows['name'];?>&type=<?php echo $type; ?>','','')"><span><?php echo $rows['name'];?></span></a>
+			  </div>
+			  <iframe src="linear_gc_graph.php?table=analysis_belanja_am_kos&tahun=<?php echo $tahun; ?>&amp;field=<?php echo $rows['name'];?>&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe>
+    </td>
+<?php } ?>
 <?php
 	if($countColumn == 2){
 ?>

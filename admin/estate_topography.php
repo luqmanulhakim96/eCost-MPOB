@@ -57,7 +57,7 @@ $beralun = $row['beralun'];
          var data = google.visualization.arrayToDataTable([
            ['Area', ''],
            ['Flat Area', <?php echo $rata; ?> ],
-           ['Area more than 25', <?php echo $bukit25; ?>],
+           ['Area more than 25\u00B0steep', <?php echo $bukit25; ?>],
            ['Hilly Area', <?php echo $bukit; ?> ],
            ['Undulating Terrain', <?php echo $beralun; ?>],
 
@@ -68,11 +68,13 @@ $beralun = $row['beralun'];
            title: '',
            legend: 'none',
            pieSliceText: 'label',
+
            slices: {  0: {offset: 0.2},
                      1: {offset: 0.2},
                      2: {offset: 0.2},
                      3: {offset: 0.2},
                      4: {offset: 0.2},
+
 
            },
          };

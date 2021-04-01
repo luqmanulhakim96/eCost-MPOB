@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 include('../Connections/connection.class.php');
 if ($_SESSION['type'] <> "admin")
     header("location:../logout.php");

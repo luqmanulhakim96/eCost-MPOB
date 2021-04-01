@@ -4,7 +4,10 @@ extract($_POST);
 extract($_GET);
 $con= connect();
 
+
 if(isset($tambah)){
+    $password_hashed = password_hash($password, PASSWORD_BCRYPT);
+
  		$query="INSERT INTO `login_admin` (
 		`email` ,
 		`password` ,
@@ -13,11 +16,12 @@ if(isset($tambah)){
 		`fail` ,
 		`level`
 		)
-		VALUES (
-		'$email', '$password', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '$level'
-		);";
-		$res=mysqli_query($con, $query);
 
+		VALUES (
+		'$email', '$password_hashed', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '$level'
+		);" ;
+		$res=mysqli_query($con, $query) or die(mysqli_error($con));
+    print_r($res);
  		$query = "INSERT INTO user (
 		u_type, u_fullname, u_email, u_image, u_DOB, u_question, u_answer, u_thumb) VALUES
 		('1', '$fullname', '$email', 'images/user_portrait.gif', '00-00-0000', '', '', '')";
@@ -30,7 +34,10 @@ if(isset($tambah)){
 	echo "<script>window.location.href='home.php?id=config&sub=user';</script>";
 }
 else if(isset($ubah)){
-	$query="UPDATE login_admin SET email='$email',password='$password',level='$level'
+
+  $password_hashed = password_hash($password, PASSWORD_BCRYPT);
+  
+	$query="UPDATE login_admin SET email='$email',password='$password_hashed',level='$level'
 	WHERE email='$idp'";
 	$res=mysqli_query($con, $query);
 

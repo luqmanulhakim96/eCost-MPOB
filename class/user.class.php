@@ -230,6 +230,8 @@ class user {
             $this->a_9 = $row['a_9'];
             $this->a_10 = $row['a_10'];
             $this->a_11 = $row['a_11'];
+            $this->a_12 = $row['a_12'];   //kos belum matang new question (perbelanjaan tidak berulang)
+            $this->a_13 = $row['a_13'];   //kos belum matang new question (perbelanjaan tidak berulang)
             $this->total_a = $row['total_a'];
             $this->b_1a = $row['b_1a'];
             $this->b_1b = $row['b_1b'];
@@ -252,6 +254,8 @@ class user {
             $this->total_b_12 = $row['total_b_12'];
             $this->total_b_13 = $row['total_b_13'];
             $this->total_b_14 = $row['total_b_14'];
+            $this->total_b_15 = $row['total_b_15']; //kos belum matang new question
+            $this->total_b_16 = $row['total_b_16']; //kos belum matang new question
             $this->total_b = $row['total_b'];
             $this->status = $row['status'];
 
@@ -322,6 +326,8 @@ class user {
             $this->total_b_10 = $row['total_b_10'];
             $this->total_b_11 = $row['total_b_11'];
             $this->total_b_12 = $row['total_b_12'];
+            $this->total_b_13 = $row['total_b_13']; //kos matang new question
+            $this->total_b_14 = $row['total_b_14']; //kos matang new question
             $this->total_b = $row['total_b'];
             $this->status = $row['status'];
             $i++;
@@ -406,6 +412,8 @@ class user {
             $this->perbelanjaan_pejabat = $row['perbelanjaan_pejabat'];
             $this->susut_nilai = $row['susut_nilai'];
             $this->perbelanjaan_lain = $row['perbelanjaan_lain'];
+            $this->pembelian_mesin = $row['pembelian_mesin'];       // important to insert and retrieve data
+            $this->pembelian_aset = $row['pembelian_aset'];          //important to insert and retrieve data
             $this->total_perbelanjaan = $row['total_perbelanjaan'];
 
             $total_all = $row['emolumen'] +

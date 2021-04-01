@@ -607,7 +607,7 @@ var pitmid = false;
 <?php } ?>
           </div>          </td>
         <td bgcolor="#FFCC66"><div align="center"><strong>
-          <span id="total_kos_per_ha_a"><?php $total_x = $x1+$x2+$x3+$x4+$x5+$x6+$x7+$x8+$x9+$x10+$x11; echo number_format($total_x,2);?></span>
+          <span id="total_kos_per_ha_a"><?php $total_x = $x1+$x2+$x3+$x4+$x5+$x6+$x7+$x8+$x9+$x10+$x11+$x12+$x13; echo number_format($total_x,2);?></span>
         </strong>
 
         </div></td>

@@ -11,7 +11,6 @@ $_SESSION['ru'] = end($ru);
 
 $bilTahun = array('First', 'Second', 'Third');
 extract($_REQUEST);
-
 $district = $_SESSION['district'];
 
 function median($numbers = array()) {
@@ -69,6 +68,8 @@ function pertama($tahun, $nama, $status, $negeri, $daerah, $type, $tahuntanam) {
         $var[0] = median($test_data);
     }
     $var[1] = $rrow['purata'];
+    echo $var[1]."<br>";
+
     return $var;
 }
 

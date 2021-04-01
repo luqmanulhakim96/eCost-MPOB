@@ -199,7 +199,7 @@ opacity:1;
 <table width="100%">
   <tr>
     <td><div align="center"><u><strong>Cost of Oil Palm New Planting by State (
-      <?php 
+      <?php
 	  if ($state=="SRWK")
 	  {
 	  	echo "SARAWAK";
@@ -412,7 +412,7 @@ opacity:1;
 				echo " - SEGAMAT";
 			}
 	  }
-	  
+
 	  ?>
     ) (RM per hectare) </strong></u></div></td>
   </tr>
@@ -425,7 +425,7 @@ opacity:1;
 <br />
 
 <table width="85%" align="center" cellpadding="1" style="border-collapse:collapse">
-  
+
   <tr bgcolor="#8A1602">
     <td width="34%" rowspan="2"><span class="style5">Cost Items </span></td>
     <td bgcolor="#8A1602"><div align="center" class="style5">2008</div></td>
@@ -646,7 +646,7 @@ opacity:1;
     <td bgcolor="#FF9966"><div align="center"><strong>3479.36</strong></div></td>
     <td bgcolor="#FF9966"><div align="center">23.39</div></td>
   </tr>
-  
+
   <tr>
     <td>&nbsp;</td>
     <td><div align="center"></div></td>
@@ -660,12 +660,12 @@ opacity:1;
 
   <script type="text/javascript" src="ampie/swfobject.js"></script>
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("ampie/ampie.swf", "ampie", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "ampie/");
 		so.addVariable("settings_file", encodeURIComponent("ampie/mi_state_settings.xml"));                // you can set two or more different settings files here (separated by commas)
 		so.addVariable("data_file", encodeURIComponent("ampie/mi_state.xml"));
-    		
+
 //	so.addVariable("chart_data", encodeURIComponent("<settings>...</settings>"));                   // you can pass chart data as a string directly from this file
 //	so.addVariable("chart_settings", encodeURIComponent("data in CSV or XML format"));              // you can pass chart settings as a string directly from this file
 //	so.addVariable("additional_chart_settings", encodeURIComponent("<settings>...</settings>"));    // you can append some chart settings to the loaded ones

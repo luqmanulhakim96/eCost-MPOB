@@ -4,6 +4,8 @@ error_reporting(0);
 session_start();
 extract($_POST);
 extract($_GET);
+
+
 include ('../Connections/connection.class.php');
 $con = connect();
 if ($type == "penjagaan") {
@@ -17,6 +19,7 @@ if ($type == "penjagaan") {
 $q = "select * from $table where pb_thisyear='$thisyear' and lesen ='" . $_SESSION['lesen'] . "'";
 $r = mysqli_query($con, $q);
 $total = mysqli_num_rows($r);
+
 
 
 $a_1 = str_replace(",", '', $a_1);
@@ -79,7 +82,9 @@ if ($total == 0 and $type == "penjagaan") {
 	'$total_b_9',
 	'$total_b_10',
 	'$total_b_11',
-	'$total_b_12',
+  '$total_b_12',
+  '$total_b_13',
+	'$total_b_14',
 	'$total_a',
 	'$status'
 )";
@@ -107,6 +112,8 @@ if ($total == 1 and $type == "penjagaan") {
 	total_b_10='$total_b_10',
 	total_b_11='$total_b_11',
 	total_b_12='$total_b_12',
+  total_b_13='$total_b_13',
+  total_b_14='$total_b_14',
 	total_b='$total_a',
 	status = '$status'
 	where pb_thisyear='$thisyear' and lesen ='" . $_SESSION['lesen'] . "'";

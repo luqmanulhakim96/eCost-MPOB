@@ -57,35 +57,46 @@ function openScript(url, width, height) {
       <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=iii. Machinery use and maintenance&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
   </tr>
   <tr>
+	<?php /*
     <td><div id="grey-button"><a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=iv. Soil and foliar analysis&type=<?php echo $type; ?>','','')"><span>iv. Soil and foliar analysis</span></a> </div>
       <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=iv. Soil and foliar analysis&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
-    <td><div id="grey-button"> <a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Soil / water conservation&type=<?php echo $type; ?>','','')"><span>Soil / water conservation</span></a> </div>
-      <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Soil / water conservation&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
-    <td><div id="grey-button"> <a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Upkeep of roads, bridges, paths etc.&type=<?php echo $type; ?>','','')"><span>Upkeep of roads, bridges, paths and etc</span></a> </div>
-      <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Upkeep of roads, bridges, paths etc.&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
-  </tr>
+			*/?>
+	  <td><div id="grey-button"> <a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Soil and foliar analysis &type=<?php echo $type; ?>','','')"><span>Soil and foliar analysis  </span></a> </div>
+      <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Soil and foliar analysis  &type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
+
+    <td><div id="grey-button"> <a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Maintenance of road, drain, bund watergate and etc&type=<?php echo $type; ?>','','')"><span>Maintenance of road, drain, bund watergate and etc</span></a> </div>
+      <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Maintenance of road, drain, bund watergate and etc &type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
+
+			<td><div id="grey-button"><a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Pests and diseases control&type=<?php echo $type; ?>','','')"><span>Pests and diseases control</span></a> </div>
+				<iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Pests and diseases control&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
+	</tr>
   <tr>
+	<td><div id="grey-button"><a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Pruning and palm sanitation&type=<?php echo $type; ?>','','')"><span>Pruning and palm sanitation</span></a> </div>
+		<iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Pruning and palm sanitation&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
+		<td><div id="grey-button"> <a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Census / supplies&type=<?php echo $type; ?>','','')"><span>Census / supplies</span></a> </div>
+			<iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Census / supplies&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
+			<td><div id="grey-button"><a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Mandore wages/ direct field supervision costs&type=<?php echo $type; ?>','','')"><span>Mandore wages/ direct field supervision costs</span></a> </div>
+	      <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Mandore wages/ direct field supervision costs&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
+		<?php /*
     <td><div id="grey-button"><a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Upkeep drains&amp;type=<?php echo $type; ?>','','')"><span>Upkeep drains</span></a> </div>
       <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Upkeep drains&amp;type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
     <td><div id="grey-button"><a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Upkeeps of bunds, boundaries and Watergates&type=<?php echo $type; ?>','','')"><span>Upkeeps of bunds boundaries and Watergates</span></a> </div>
 
       <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Upkeeps of bunds, boundaries and Watergates&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
-    <td><div id="grey-button"><a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Pests and diseases control&type=<?php echo $type; ?>','','')"><span>Pests and diseases control</span></a> </div>
-      <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Pests and diseases control&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
+			*/?>
   </tr>
   <tr>
-    <td><div id="grey-button"><a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Pruning and palm sanitation&type=<?php echo $type; ?>','','')"><span>Pruning and palm sanitation</span></a> </div>
-      <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Pruning and palm sanitation&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
-    <td><div id="grey-button"> <a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Census / supplies&type=<?php echo $type; ?>','','')"><span>Census / supplies</span></a> </div>
-      <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Census / supplies&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
-    <td><div id="grey-button"><a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Mandore wages/ direct field supervision costs&type=<?php echo $type; ?>','','')"><span>Mandore wages/ direct field supervision costs</span></a> </div>
-      <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Mandore wages/ direct field supervision costs&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
+
+
+
   </tr>
   <tr>
     <td><div id="grey-button"> <a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Other expenditure&type=<?php echo $type; ?>','','')"><span>Other expenditure</span></a> </div>
       <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Other expenditure&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
+<?php /*
 	<td><div id="grey-button"> <a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Total Upkeep&type=<?php echo $type; ?>','','')"><span>Total Upkeep</span></a> </div>
       <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Total Upkeep&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
+*/?>
 	<td></td>
   </tr>
 </table>

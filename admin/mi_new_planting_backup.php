@@ -226,11 +226,11 @@ while ($rows = mysqli_fetch_array($rs)) {
             if ($_COOKIE['tahun_report'] == 2010) {
                 $total1 = cop($rows['name'], "Penanaman Baru", $year, $state, $district, $_COOKIE['tahun_report']);
             } else {
-                $total1 = pertama($dua, "Purchase of weedicides", '0', $state, $district, "Penanaman Baru", $year);
+                $total1 = pertama($dua, "Purchase of weedicidesss", '0', $state, $district, "Penanaman Baru", $year);
                 $total2 = pertama($dua, "Labour cost for weeding", '0', $state, $district, "Penanaman Baru", $year);
                 $total3 = pertama($dua, "Machinery use and maintenance", '0', $state, $district, "Penanaman Baru", $year);
             }
-            $total4 = pertama($satu, "Purchase of weedicides", '0', $state, $district, "Penanaman Baru", $year);
+            $total4 = pertama($satu, "Purchase of weedicidesss", '0', $state, $district, "Penanaman Baru", $year);
             $total5 = pertama($satu, "Labour cost for weeding", '0', $state, $district, "Penanaman Baru", $year);
             $total6 = pertama($satu, "Machinery use and maintenance", '0', $state, $district, "Penanaman Baru", $year);
             ?>
@@ -282,8 +282,7 @@ while ($rows = mysqli_fetch_array($rs)) {
             <td width="68"><div align="right">
                     <?php
                     $jl = $jl + $a1[1];
-                    echo number_format($a[1], 2);
-
+                    echo number_format($a1[1], 2);
                     ?>
                 </div></td>
             <td width="68"><div align="right">

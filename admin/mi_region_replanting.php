@@ -18,9 +18,9 @@
     <td><table width="100%">
       <tr>
         <td colspan="2">
-		<?php 
+		<?php
 		if ($region !=NULL){?>
-		
+
 
 		<?php
 			if ($region==1)
@@ -235,7 +235,7 @@
           </tr>
         </table>
 			<?php } ?>
-			
+
 			<?php if($region==2){?>
 			<div id="mi_region2" align="center"></div><br />
 
@@ -436,7 +436,7 @@
           </tr>
           <tr bgcolor="#FFCC66">
             <td><strong>Total Immature Cost </strong></td>
-            <td colspan="3" bgcolor="#FFCC66"><div align="center"><strong>9436.39</strong></div>              
+            <td colspan="3" bgcolor="#FFCC66"><div align="center"><strong>9436.39</strong></div>
               <div align="center"></div>              <div align="center"></div></td>
             </tr>
           <tr>
@@ -647,7 +647,7 @@
           </tr>
           <tr bgcolor="#FFCC66">
             <td><strong>Total Immature Cost </strong></td>
-            <td colspan="3" bgcolor="#FFCC66"><div align="center"><strong>8802.75</strong></div>              
+            <td colspan="3" bgcolor="#FFCC66"><div align="center"><strong>8802.75</strong></div>
               <div align="center"></div>              <div align="center"></div></td>
             </tr>
           <tr>
@@ -661,7 +661,7 @@
 
 		<?php } ?>		</td>
         </tr>
-      
+
     </table></td>
   </tr>
 </table>
@@ -677,7 +677,7 @@
 
 		<script type="text/javascript" src="amcolumn/swfobject.js"></script>
 	<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mie_region_setting_replanting.xml"));
@@ -686,9 +686,9 @@
 		so.write("mi_region1");
 		// ]]>
 	</script>
-	
+
 		<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mie_region_setting2_replanting.xml"));
@@ -697,9 +697,9 @@
 		so.write("mi_region2");
 		// ]]>
 	</script>
-	
+
 		<script type="text/javascript">
-		// <![CDATA[		
+		// <![CDATA[
 		var so = new SWFObject("amcolumn/amcolumn.swf", "amcolumn", "520", "400", "8", "#FFFFFF");
 		so.addVariable("path", "amcolumn/");
 		so.addVariable("settings_file", encodeURIComponent("mie_region_setting3_replanting.xml"));

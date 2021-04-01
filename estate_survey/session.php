@@ -19,7 +19,7 @@ else
      <form id="form_report" name="form_report" method="post" action="">
        <table width="100%" border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td width="99%"><div align="right" style="margin-right:20px"> 
+    <td width="99%"><div align="right" style="margin-right:20px">
       <table width="45%" border="0" cellpadding="0" cellspacing="0">
         <tr style="border-bottom:#333333 solid 1px;">
           <td width="22%" align="center" valign="middle" style="border-bottom:#333333 solid 1px;"><div align="center"><a href="#" onclick="window.print()"><img src="../images/Print.png" alt="Cetak" width="16" height="16" border="0" /></a> <a href="#" onclick="window.print()"><?=setstring ( 'mal', 'Cetak', 'en', 'Print'); ?></a></div></td>
@@ -29,29 +29,29 @@ else
         </tr>
         <tr>
           <td colspan="4" align="center" valign="middle"><div align="right"><strong>
-          
+
           	</strong>
-         
-           
+
+
               <strong>
-	<?php 
+	<?php
 	echo $_COOKIE['tahun_report'];
-	
+
 	if($_COOKIE['tahun_report']==''){?>
 	<script type="text/javascript">
 		$(function() {
-		
+
 	document.cookie="tahun_report"+ "=" +<?php echo $tahun;?>;
 	document.form_report.action="<?php echo $_SERVER['REQUEST_URI']; ?>";
   	document.form_report.submit();
-		
+
 		});
 		</script>
        <?php } ?>
-          
-         <img src="../images/Client.png" alt="Orang" width="16" height="16" /> 
-          <?= $pengguna->namaestet; ?> 
-		  
+
+         <img src="../images/Client.png" alt="Orang" width="16" height="16" />
+          <?= $pengguna->namaestet; ?>
+
 		      </strong></div></td>
           </tr>
       </table>
@@ -62,5 +62,4 @@ else
 <?php
 	}
 }
-?>   
-
+?>

@@ -19,6 +19,8 @@ $total = mysqli_num_rows($r);
 	$a_9=str_replace(",",'',$a_9);
 	$a_10=str_replace(",",'',$a_10);
 	$a_11=str_replace(",",'',$a_11);
+	$a_12=str_replace(",",'',$a_12);
+	$a_13=str_replace(",",'',$a_13);
 	$total_kos_a =str_replace(",",'',$total_kos_a);
 	$b_1a =str_replace(",",'',$b_1a);
 	$b_1b =str_replace(",",'',$b_1b);
@@ -41,6 +43,8 @@ $total = mysqli_num_rows($r);
 	$total_b_12 =str_replace(",",'',$total_b_12);
 	$total_b_13 =str_replace(",",'',$total_b_13);
 	$total_b_14 =str_replace(",",'',$total_b_14);
+	$total_b_15 =str_replace(",",'',$total_b_15);
+	$total_b_16 =str_replace(",",'',$total_b_16);
 	$total_kos_b=str_replace(",",'',$total_kos_b);
 
 
@@ -59,6 +63,8 @@ if($total==0)
 	'$a_9',
 	'$a_10',
 	'$a_11',
+	'$a_12',
+	'$a_13',
 	'$total_kos_a',
 	'$b_1a',
 	'$b_1b',
@@ -81,6 +87,8 @@ if($total==0)
 	'$total_b_12',
 	'$total_b_13',
 	'$total_b_14',
+	'$total_b_15',
+	'$total_b_16',
 	'$total_kos_b',
 	'$status'
 )";
@@ -100,6 +108,8 @@ if ($total!=0)
 	a_9 = '$a_9',
 	a_10 = '$a_10',
 	a_11 = '$a_11',
+	a_12 = '$a_12',
+	a_13 = '$a_13',
 	total_a='$total_kos_a',
 	b_1a='$b_1a',
 	b_1b='$b_1b',
@@ -122,6 +132,8 @@ if ($total!=0)
 	total_b_12='$total_b_12',
 	total_b_13='$total_b_13',
 	total_b_14='$total_b_14',
+	total_b_15='$total_b_15',
+	total_b_16='$total_b_16',
 	total_b='$total_kos_b',
 	status = '$status'
 	WHERE pb_tahun = '$year' AND pb_thisyear='$thisyear' AND lesen ='".$_SESSION['lesen']."' AND pb_type =  '$type'";
