@@ -494,7 +494,7 @@ var tanambaru = <?php echo $data;?>;
 
 				<tr bgcolor="#FFFFFF">
 					<td height="36" align="right">5.</td>
-					<td align="right"><div align="left"><?=setstring ( 'mal', 'Penjagaan jalan, parit, ban & pintu air dan sebagainya', 'en', 'Construction of road, drain, bund watergate and etc'); ?></div></td>
+					<td align="right"><div align="left"><?=setstring ( 'mal', 'Penjagaan jalan, parit, ban & pintu air dan sebagainya', 'en', 'Maintenance of road, drain, bund watergate and etc'); ?></div></td>
 					<td><div align="center">
 						<input name="total_b_15" type="text" class="field_active" id="total_b_15" onchange="kiraan_baru(this,'')" onclick="field_click(this)" value="<?= number_format($nilai->total_b_15,2); ?>" onKeypress="keypress(event)" size="15"/>
 					</div></td>

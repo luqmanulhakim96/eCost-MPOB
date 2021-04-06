@@ -12,27 +12,34 @@ if(date('Y') == $_SESSION['tahun']){
 
 if (isset($notelefon)) {
     $q ="update  ".$table." set  no_telepon = '$notelefon', no_fax ='$nofax', emel = '$email' where no_lesen_baru = '$nolesen'";
-    print_r($q);
+
     $r = mysqli_query($con, $q);
     $t = "update  estate_info set pegawai='$pegawai' where lesen = '$nolesen' ";
     $u = mysqli_query($con, $t);
+
 
     if (!$r) {
       echo("Error description: " . mysqli_error($con));
     }
   }
+
+
   else {
       $p ="update estate_info set syarikat ='$syarikat',integrasi = '$integrasi', keahlian='$keahlian' where lesen = '$nolesen'";
-      print_r($p);
+
         $s = mysqli_query($con, $p);
         if (!$s) {
           echo("Error description: " . mysqli_error($con));
         }
   }
 
+    if($Submit2){
+      echo "<script>window.location.href='home.php?id=integration'</script>";
+    }else {
+      echo "<script>parent.$.fn.colorbox.close(); </script>";
+      echo "<script>window.location.href='home.php?id=profile'</script>";
+    }
 
-    echo "<script>parent.$.fn.colorbox.close(); </script>";
-    echo "<script>window.location.href='home.php?id=profile'</script>";
 
 exit;
 ?>

@@ -132,8 +132,9 @@ function openScript(url, width, height) {
 			*/?>
 		<td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Others Expenditure','','')" class="grey-button pcb"> <span>Other Expenditures</span> </a> </div>
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Others Expenditure" width="320px" height="280px" style="border:none"></iframe></td>
-			<td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;Construction of road, drain, bund watergate and etc','','')" class="grey-button pcb"> <span>Construction of road, drain, bund watergate and etc</span> </a> </div>
-	      <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Construction of road, drain, bund watergate and etc" width="320px" height="280px" style="border:none"></iframe></td>
+
+			<td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Maintenance of road, drain, bund watergate and etc','','')" class="grey-button pcb"> <span>Maintenance of road, drain, bund watergate and etc</span> </a> </div>
+	      <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Maintenance of road, drain, bund watergate and etc" width="320px" height="280px" style="border:none"></iframe></td>
   </tr>
 
 <tr>
@@ -170,7 +171,7 @@ function openScript(url, width, height) {
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Purchase of fertilizer" width="320px" height="280px" style="border:none"></iframe></td>
     <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Labour cost to apply fertilizers','','')" class="grey-button pcb"> <span>ii. Labour cost to apply fertilizers</span> </a> </div>
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Labour cost to apply fertilizers" width="320px" height="280px" style="border:none"></iframe></td>
-    <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Machinery use and maintenances','','')" class="grey-button pcb"> <span>iii. Machinery use and maintenance</span> </a> </div>
+    <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Machinery use and maintenance','','')" class="grey-button pcb"> <span>iii. Machinery use and maintenance</span> </a> </div>
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Machinery use and maintenances" width="320px" height="280px" style="border:none"></iframe></td>
   </tr>
 

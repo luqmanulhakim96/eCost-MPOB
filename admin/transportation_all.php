@@ -221,7 +221,7 @@ function openScript(url, width, height) {
 
   ?>
  <?php
-  $qs="select * from q_km where type='$sub'";
+  $qs="select * from q_km where type='$sub' ORDER BY arrangement";
   $rs = mysqli_query($con, $qs);
 
   $jl=0;

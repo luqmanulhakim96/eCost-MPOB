@@ -195,7 +195,7 @@ function kos_belum_matang($lesen, $tahun, $type, $tahun_tanam, $keluasan, $neger
         $sub[5] = round($row['a_6'] / $keluasan, 2); //Lining
         $sub[6] = round($row['a_7'] / $keluasan, 2); //Holing and planting
         $sub[7] = round($row['a_8'] / $keluasan, 2); //Basal fertiliser
-        $sub[8] = round($row['a_9'] / $keluasan, 2); //Planting material
+        $sub[8] = round($row['a_9'] / $keluasan, 2); //Planting material == Seedling
         $sub[9] = round($row['a_10'] / $keluasan, 2); //Cover crops
         $sub[10] = round($row['a_11'] / $keluasan, 2); //Other expenditures
         $sub[34] = round($row['a_12'] / $keluasan, 2); //Pembinaan jalan, parit, ban & pintu air dan sebagainya --baru
