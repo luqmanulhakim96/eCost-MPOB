@@ -200,7 +200,7 @@ if ($year == "" || $year == '1') {
 
 
 if ($year == "" || $year == '1') {
-    $qs = " select * from q_kbm";
+    $qs = " select * from q_kbm ORDER BY arrangement ASC";
 } else {
     $qs = " select * from q_kbm where tahun!='0'";
 }

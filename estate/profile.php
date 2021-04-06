@@ -461,7 +461,7 @@ body {
 						<form id="form1" name="form1" method="post" action="save_profile.php"> </form> */ ?>
 						<table width="100"" align="center" cellspacing="0" class="tableCss" style="border:1px #333333 solid; padding:2px;">
 
-							<?php /*
+
                 <tr>
 
                   <td><div id="percent_soil" ></div>
@@ -503,7 +503,7 @@ body {
 												 chart.draw(data, options);
 											 }
 										 </script>
-										 */?>
+						
 
 
 
