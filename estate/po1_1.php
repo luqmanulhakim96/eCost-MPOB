@@ -195,8 +195,10 @@ $pengguna->jumlahakhir;
     <?php
   	if(!isset($_GET['print'])) {
   ?>
+
   <tr>
 
+<?php /*
     <td colspan="2" bgcolor="#CCFFFF"><div align="left"><?php echo setstring ( 'mal', 'a. Tanah Lanar', 'en', 'a. Alluvial Soil'); ?></div></td>
     <td bgcolor="#CCFFFF"><div align="center">
       <input name="lanar" type="text" class="field_active" id="lanar" onblur="field_blur(this,'s1')" onclick="field_click(this)" value="<?php echo  $pengguna->lanar; ?>" size="3" />
@@ -207,9 +209,14 @@ $pengguna->jumlahakhir;
     <td bgcolor="#CCFFFF">&nbsp;</td>
     <td width="42" bgcolor="#CCFFFF">&nbsp;</td>
   </tr>
+  */?>
+
   <?php
   }
   ?>
+
+<?php /*
+
   <tr>
 
     <td colspan="2" bgcolor="#FFCCCC"><div align="left"><?php echo setstring ( 'mal', 'b. Tanah Pedalaman', 'en', 'b. Rural Land'); ?></div></td>
@@ -227,51 +234,56 @@ $pengguna->jumlahakhir;
     <td bgcolor="#FFCCCC">&nbsp;</td>
     <td bgcolor="#FFCCCC">&nbsp;</td>
   </tr>
+  */?>
+
   <tr>
 
-    <td colspan="2" bgcolor="#FFFFCC"><div align="left"><?php echo setstring ( 'mal', 'c. Tanah Gambut : ', 'en', 'c. Peat Soil:'); ?></div></td>
-    <td bgcolor="#FFFFCC"><div align="center"><span class="style1"><?php echo $tg = $pengguna->gambutcetek+ $pengguna->gambutdalam; ?>  <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></span></div></td>
-    <td bgcolor="#FFFFCC"><div align="center"><span class="style1">
+    <td colspan="2" bgcolor="#CACAFF"><div align="left"><?php echo setstring ( 'mal', 'c. Tanah Gambut : ', 'en', 'c. Peat Soil:'); ?></div></td>
+    <td bgcolor="#CACAFF"><div align="center"><span class="style1"><?php echo $tg = $pengguna->gambutcetek+ $pengguna->gambutdalam; ?>  <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></span></div></td>
+    <td bgcolor="#CACAFF"><div align="center"><span class="style1">
     </span></div>      <span class="style1">
         <div align="center">
           <?php $a = round($tg/$jumlah_semua*100,2);echo number_format($a,2); ?>
  %</div>
 
     </span></td>
-    <td bgcolor="#FFFFCC">&nbsp;</td>
-    <td bgcolor="#FFFFCC">&nbsp;</td>
+    <td bgcolor="#CACAFF">&nbsp;</td>
+    <td bgcolor="#CACAFF">&nbsp;</td>
   </tr>
   <tr>
 
-    <td width="96" bgcolor="#FFFFCC"><div align="right">i) </div></td>
-    <td width="151" bgcolor="#FFFFCC"><?php echo setstring ( 'mal', 'Gambut Cetek', 'en', 'Shallow Peat Soil'); ?></td>
-    <td width="216" bgcolor="#FFFFCC">
+    <td width="96" bgcolor="#CACAFF"><div align="right">i) </div></td>
+    <td width="151" bgcolor="#CACAFF"><?php echo setstring ( 'mal', 'Gambut Cetek', 'en', 'Shallow Peat Soil'); ?></td>
+    <td width="216" bgcolor="#CACAFF">
       <div align="center">
         <input name="gambutcetek" type="text" class="field_active" id="gambutcetek" onblur="field_blur(this,'s3')" onclick="field_click(this)" value="<?php echo  $pengguna->gambutcetek; ?>" size="3" />
       <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?> </div></td>
-    <td width="139" bgcolor="#FFFFCC">
+    <td width="139" bgcolor="#CACAFF">
       <div align="center">
         <span id="s3">
         <?php $a = round($pengguna->gambutcetek/$jumlah_semua*100,2);echo number_format($a,2); ?>
  %</span></div>    </td>
-    <td width="54" bgcolor="#FFFFCC">&nbsp;</td>
-    <td bgcolor="#FFFFCC">&nbsp;</td>
+    <td width="54" bgcolor="#CACAFF">&nbsp;</td>
+    <td bgcolor="#CACAFF">&nbsp;</td>
   </tr>
   <tr>
 
-    <td bgcolor="#FFFFCC"><div align="right">ii) </div></td>
-    <td bgcolor="#FFFFCC"> <?php echo setstring ( 'mal', 'Gambut Dalam', 'en', 'Deep Peat Soil'); ?></td>
-    <td bgcolor="#FFFFCC"><div align="center">
+    <td bgcolor="#CACAFF"><div align="right">ii) </div></td>
+    <td bgcolor="#CACAFF"> <?php echo setstring ( 'mal', 'Gambut Dalam', 'en', 'Deep Peat Soil'); ?></td>
+    <td bgcolor="#CACAFF"><div align="center">
       <input name="gambutdalam" type="text" class="field_active" id="gambutdalam" onblur="field_blur(this,'s4')" onclick="field_click(this)" value="<?php echo  $pengguna->gambutdalam; ?>" size="3"  />
       <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div></td>
-    <td bgcolor="#FFFFCC">
+    <td bgcolor="#CACAFF">
       <div align="center">
         <span id="s4">
         <?php $a = round($pengguna->gambutdalam/$jumlah_semua*100,2);echo number_format($a,2); ?>
  %</span></div></td>
-      <td width="54" bgcolor="#FFFFCC">&nbsp;</td>
-      <td bgcolor="#FFFFCC">&nbsp;</td>
+      <td width="54" bgcolor="#CACAFF">&nbsp;</td>
+      <td bgcolor="#CACAFF">&nbsp;</td>
   </tr>
+
+
+<?php /*
   <tr>
 
     <td colspan="2" bgcolor="#CACAFF"><?php echo setstring ( 'mal', 'd. Lain-lain Jenis Tanah :', 'en', 'Other Soil Type:'); ?></td>
@@ -330,6 +342,10 @@ $pengguna->jumlahakhir;
     <td bgcolor="#CACAFF">&nbsp;</td>
     <td bgcolor="#CACAFF">&nbsp;</td>
   </tr>
+ */?>
+
+
+
 
   <!--<tr>
     <td height="34" bgcolor="#99FF99">&nbsp;</td>
@@ -425,6 +441,8 @@ $pengguna->jumlahakhir;
       <td height="17" colspan="7"><div align="center">
         <p>
           <input type="submit" name="button" id="button" value="<?php echo setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>" />
+          <input type="submit" name="Submit2"  value=<?=setstring ( 'mal', '"Simpan & Seterusnya"', 'en', '"Save &amp; Next"'); ?> " />
+          
           <input type="submit" name="button2" id="button2" value=" <?php echo setstring ( 'mal', 'Cetak', 'en', 'Print'); ?>" />
         </p>
 

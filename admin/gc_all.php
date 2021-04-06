@@ -220,8 +220,9 @@ function openScript(url, width, height) {
 
   ?>
  <?php
-  $qs="select * from q_km where type='gc'";
+  $qs="select * from q_km where type='gc' ORDER BY arrangement";
   $rs = mysqli_query($con, $qs);
+  print_r($dua);
 
   $jl=0;
   $js=0;

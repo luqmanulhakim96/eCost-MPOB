@@ -497,7 +497,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#CCCCFF"><span onmouseover="tunjuk_bantu('')">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?></span>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span>
                                 </td>
@@ -550,7 +550,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#FFFFCC">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span>
                                 </td>
@@ -808,7 +808,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#CCCCFF"><span onmouseover="tunjuk_bantu('')">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?></span>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span>
                                 </td>
@@ -859,7 +859,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#FFFFCC">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span>
                                 </td>
@@ -1115,7 +1115,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#CCCCFF"><span onmouseover="tunjuk_bantu('')">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?></span>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span></td>
                                 <td bgcolor="#CCCCFF"><div align="center"><?= number_format($nilai->b_1c, 2); ?></div></td>
@@ -1167,7 +1167,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#FFFFCC">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span></td>
                                 <td bgcolor="#FFFFCC"><div align="center"><?= number_format($nilai->b_3c, 2); ?></div></td>
@@ -1354,7 +1354,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                     <td height="31" colspan="4"><strong><?= setstring('mal', 'Keluasan ', 'en', 'Area'); ?></strong></td>
                 </tr>
                 <tr>
-                    <td colspan="4"><span style="color:#0000CC; font-weight:bold;" ><?php echo number_format($keluasan_sub, 2); ?></span> &nbsp;<?= setstring('mal', 'Hektar', 'en', 'Hectares'); ?></td>
+                    <td colspan="4"><span style="color:#0000CC; font-weight:bold;" ><?php echo number_format($data, 2); ?></span> &nbsp;<?= setstring('mal', 'Hektar', 'en', 'Hectares'); ?></td>
                 </tr>
                 <tr>
                     <td colspan="4">&nbsp;</td>
@@ -1465,7 +1465,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                             </tr>
                             <tr bgcolor="#FFFFFF">
                                 <td height="32" align="right">6.</td>
-                                <td><?= setstring('mal', 'Anak Pokok Sawit', 'en', 'Palm seedlings') ?>&nbsp;</td>
+                                <td><?= setstring('mal', 'Anak Pokok Sawit', 'en', 'Seedlings') ?>&nbsp;</td>
                                 <td><div align="center"><?= number_format($nilai->a_9, 2); ?></div></td>
                                 <td><div align="center"><span id="kosha9"><?php $x9 = ($nilai->a_9 / $data);
                                     echo number_format($x9, 2); ?></span></div></td>
@@ -1560,7 +1560,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#CCCCFF"><span onmouseover="tunjuk_bantu('')">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?></span>
                                   <br>
                           				<span class="kecil">(
-                          					<?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                          					<?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                           						)        </span>
                                 </td>
@@ -1613,7 +1613,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#FFFFCC">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
                                   <br>
                                   <span class="kecil">(
-                                    <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                    <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span>
                                 </td>
@@ -1673,7 +1673,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                             </tr>
                             <tr bgcolor="#FFFFFF">
                                 <td height="36" align="right">5.</td>
-                                <td align="right"><div align="left"><?= setstring('mal', 'Penjagaan jalan, parit, ban & pintu air dan sebagainya', 'en', 'Construction of road, drain, bund watergate and etc'); ?></div></td>
+                                <td align="right"><div align="left"><?= setstring('mal', 'Penjagaan jalan, parit, ban & pintu air dan sebagainya', 'en', 'Maintenance of road, drain, bund watergate and etc'); ?></div></td>
                                  <td><div align="center"><?= number_format($nilai->total_b_15, 2); ?></div></td>
                                 <td><div align="center"><span id="jaga15"><?php $y15 = ($nilai->total_b_15 / $data);
                         echo number_format($y15, 2); ?></span></div></td>
@@ -1888,7 +1888,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#CCCCFF"><span onmouseover="tunjuk_bantu('')">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span></span></td>
                                 <td bgcolor="#CCCCFF"><div align="center"><?= number_format($nilai->b_1c, 2); ?></div></td>
@@ -1938,7 +1938,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#FFFFCC">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span></td>
                                 <td bgcolor="#FFFFCC"><div align="center"><?= number_format($nilai->b_3c, 2); ?></div></td>
@@ -1998,7 +1998,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
 
                             <tr bgcolor="#FFFFFF">
                                 <td height="36" align="right">5.</td>
-                                <td align="right"><div align="left"><?= setstring('mal', 'Penjagaan jalan, parit, ban & pintu air dan sebagainya', 'en', 'Construction of road, drain, bund watergate and etc'); ?></div></td>
+                                <td align="right"><div align="left"><?= setstring('mal', 'Penjagaan jalan, parit, ban & pintu air dan sebagainya', 'en', 'Maintenance of road, drain, bund watergate and etc'); ?></div></td>
                             <td><div align="center"><?= number_format($nilai->total_b_15, 2); ?></div></td>
                                 <td><div align="center"><span id="jaga15"><?php $y1 = ($nilai->total_b_15 / $data);
                         echo number_format($y1, 2); ?></span></div></td>
@@ -2219,7 +2219,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#CCCCFF"><span onmouseover="tunjuk_bantu('')">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?></span>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span>
                                 </td>
@@ -2272,7 +2272,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#FFFFCC">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span></td>
                                 <td bgcolor="#FFFFCC"><div align="center"><?= number_format($nilai->b_3c, 2); ?></div></td>
@@ -2331,7 +2331,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                             </tr>
                             <tr bgcolor="#FFFFFF">
                                 <td height="36" align="right">5.</td>
-                                <td align="right"><div align="left"><?= setstring('mal', 'Penjagaan jalan, parit, ban & pintu air dan sebagainya', 'en', 'Construction of road, drain, bund watergate and etc'); ?></div></td>
+                                <td align="right"><div align="left"><?= setstring('mal', 'Penjagaan jalan, parit, ban & pintu air dan sebagainya', 'en', 'Maintenance of road, drain, bund watergate and etc'); ?></div></td>
 <td><div align="center"><?= number_format($nilai->total_b_15, 2); ?></div></td>
                                 <td><div align="center"><span id="jaga15"><?php $y1 = ($nilai->total_b_15 / $data);
             echo number_format($y1, 2); ?></span></div></td>
@@ -2660,7 +2660,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#CCCCFF"><span onmouseover="tunjuk_bantu('')">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?></span>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span></td>
                                 <td bgcolor="#CCCCFF"><div align="center"><?= number_format($nilai->b_1c, 2); ?></div></td>
@@ -2712,7 +2712,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#FFFFCC">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span></td>
                                 <td bgcolor="#FFFFCC"><div align="center"><?= number_format($nilai->b_3c, 2); ?></div></td>
@@ -2969,7 +2969,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#CCCCFF"><span onmouseover="tunjuk_bantu('')">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?></span>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span></td>
                                 <td bgcolor="#CCCCFF"><div align="center"><?= number_format($nilai->b_1c, 2); ?></div></td>
@@ -3019,7 +3019,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#FFFFCC">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span></td>
                                 <td bgcolor="#FFFFCC"><div align="center"><?= number_format($nilai->b_3c, 2); ?></div></td>
@@ -3274,7 +3274,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#CCCCFF"><span onmouseover="tunjuk_bantu('')">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span></span></td>
                                 <td bgcolor="#CCCCFF"><div align="center"><?= number_format($nilai->b_1c, 2); ?></div></td>
@@ -3326,7 +3326,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                                 <td bgcolor="#FFFFCC">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
                                   <br>
                                   <span class="kecil">(
-                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                      <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                       )        </span></td>
                                 <td bgcolor="#FFFFCC"><div align="center"><?= number_format($nilai->b_3c, 2); ?></div></td>
@@ -3660,7 +3660,7 @@ echo number_format($y1, 2);
                             <td height="32" align="center">&nbsp;</td>
                             <td bgcolor="#CCCCFF">iii.  <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>  <br>
                               <span class="kecil">(
-                                <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                   )        </span></td>
                             <td bgcolor="#CCCCFF"><div align="center">
@@ -3741,7 +3741,7 @@ echo number_format($y1, 2);
                             <td bgcolor="#FFFFCC">iii. <?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
                               <br>
                               <span class="kecil">(
-                                  <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                  <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                   )        </span></td>
                             <td bgcolor="#FFFFCC"><div align="center">
@@ -3847,7 +3847,7 @@ echo number_format($y1, 2);
 
                         <tr bgcolor="#FFFFFF">
                             <td height="37" align="center">5.</td>
-                            <td><?= setstring('mal',  'Penjagaan jalan, parit, ban & pintu air dan sebagainya', 'en', 'Construction of road, drain, bund watergate and etc'); ?> </td>
+                            <td><?= setstring('mal',  'Penjagaan jalan, parit, ban & pintu air dan sebagainya', 'en', 'Maintenance of road, drain, bund watergate and etc'); ?> </td>
                             <td bgcolor="#FFFFFF"><div align="center">
                                     <?= number_format($jaga->total_b_14, 2); ?>
                                 </div></td>
@@ -3904,7 +3904,7 @@ echo number_format($y1, 2);
                         </tr>
                         <tr>
                             <td height="34" align="center">9.</td>
-                            <td><?= setstring('mal', 'Upah Mandur Am', 'en', 'Mandore wages/ direct field supervision costs') ?> </td>
+                            <td><?= setstring('mal', 'Upah mandur am', 'en', 'Mandore wages/ direct field supervision costs') ?> </td>
                             <td bgcolor="#FFFFFF"><div align="center">
                                         <?= number_format($jaga->total_b_11, 2); ?>
                                 </div></td>
@@ -3986,10 +3986,10 @@ echo number_format($x1a, 2);
 
                         <tr>
                             <td height="43" align="center" bgcolor="#AEFFAE">1.</td>
-                            <td bgcolor="#AEFFAE"><?= setstring('mal', 'Upah Menuai, memunggah BTS dan memungut buah relai', 'en', 'Harvesting and collection of FFB and loose fruit'); ?>
+                            <td bgcolor="#AEFFAE"><?= setstring('mal', 'Upah Menuai, memunggah BTS dan memungut buah relai', 'en', 'Wages for harvesters, FFB and loose fruit collecters'); ?>
                               <br>
                               <span class="kecil">(
-                                  <?= setstring('mal', 'Pemunggahan BTS dari pokok ke platform/pusat pengumpulan / ramp', 'en', 'Unloading of FFB from tree to platform / collection center / ramp');?>
+                                  <?= setstring('mal', 'Pemunggahan BTS dari pokok ke platform/pusat pengumpulan / ramp', 'en', 'Loading/evacuation of FFB to platform, FFB collection center or ramp');?>
                                   )
                                           </span></td>
                             <td bgcolor="#AEFFAE"><div align="center">
@@ -4009,7 +4009,7 @@ echo number_format($y1, 2);
                             <td><?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance') ?>
                               <br>
                               <span class="kecil">(
-                                  <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                  <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and other maintenance cost '); ?>
 
                                   )        </span></td>
                             <td><div align="center">
@@ -4026,10 +4026,10 @@ echo number_format($y1, 2);
 
                         <tr>
                             <td width="16" height="44" align="center" bgcolor="#AEFFAE">3.</td>
-                            <td width="284" bgcolor="#AEFFAE"><?= setstring('mal', 'Pembelian peralatan menuai', 'en', 'Harvesting tools'); ?>
+                            <td width="284" bgcolor="#AEFFAE"><?= setstring('mal', 'Pembelian peralatan menuai', 'en', 'Purchases of harvesting tools'); ?>
                               <br>
                               <span class="kecil">(
-                                <?= setstring('mal', 'Sabit, galah, kereta sorong dan lain-lain tidak termasuk peralatan bermotor', 'en', 'Others'); ?>
+                                <?= setstring('mal', 'Sabit, galah, kereta sorong dan lain-lain tidak termasuk peralatan bermotor', 'en', 'Sickle, pole, wheelbarrow, etc, not inclusive motorized tools'); ?>
                                   )        </span></td>
                             <td width="141" bgcolor="#AEFFAE"><div align="center">
                                     <?= number_format($tuai->a_1, 2); ?>
@@ -4045,7 +4045,7 @@ echo number_format($y1, 2);
 
                         <tr>
                             <td height="43" align="center" bgcolor="#FFFFFF">4.</td>
-                            <td bgcolor="#FFFFFF"><?= setstring('mal', 'Upah Mandur Penuai', 'en', 'Mandore wages/ direct field supervision costs'); ?></td>
+                            <td bgcolor="#FFFFFF"><?= setstring('mal', 'Upah mandur penuai', 'en', 'Wages for harvesting mandore'); ?></td>
                             <td bgcolor="#FFFFFF"><div align="center">
 <?= number_format($tuai->a_3, 2); ?>
                                 </div></td>
@@ -4196,7 +4196,7 @@ echo number_format($y1, 2);
                         */?>
                         <tr>
                             <td height="42" align="center" valign="center" bgcolor="#AEFFAE">1.</td>
-                            <td colspan="2" valign="middle" bgcolor="#AEFFAE"><?= setstring('mal', 'Pengangkutan BTS dari platform/pusat pengumpulan/ramp ke kilang', 'en', 'FFB transportation cost from platform or ramp to the mill'); ?></td>
+                            <td colspan="2" valign="middle" bgcolor="#AEFFAE"><?= setstring('mal', 'Pengangkutan BTS dari platform/pusat pengumpulan/ramp ke kilang', 'en', '	Mainline transportation cost from platform/FFB collection centre/ramp to mill'); ?></td>
                             <td valign="middle" bgcolor="#AEFFAE"><div align="center">
 <?= number_format($angkut->b_1a, 2); ?>
                                 </div></td>
@@ -4212,10 +4212,10 @@ echo number_format($y1, 2);
                         </tr>
                         <tr>
                             <td height="43" align="center" valign="center">2.</td>
-                            <td colspan="2" valign="middle" bgcolor="#FFFFFF"><?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Upkeep of tractor & trailer, lorry, etc'); ?>
+                            <td colspan="2" valign="middle" bgcolor="#FFFFFF"><?= setstring('mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
                               <br>
                               <span class="kecil">(
-                                  <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+                                  <?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam dan lain-lain serta baik pulih jentera', 'en', 'Fuel, tires, battery, lubricant and repair the machinery'); ?>
 
                                   )        </span></td>
                             <td valign="middle" bgcolor="#FFFFFF"><div align="center">
@@ -4350,11 +4350,11 @@ echo number_format($y1, 2);
                     <tr valign="top">
                         <td width="24" height="37" align="center" bgcolor="#AEFFAE">1.</td>
                         <td width="296" bgcolor="#AEFFAE"> <span class="style4">
-                                <?= setstring('mal', 'Pembayaran gaji dan elaun untuk eksekutif dan bukan eksekutif serta kebajikan kepada buruh', 'en', 'Executive and non-executive emoluments '); ?>
+                                <?= setstring('mal', 'Pembayaran gaji dan elaun untuk eksekutif dan bukan eksekutif serta kebajikan kepada buruh', 'en', 'Payment of salaries and allowances for executive and non-executive as well as welfare to labour '); ?>
                             </span>          <br />
                             <span class="kecil">(
 
-                                <?= setstring('mal', 'Merujuk kepada pembayaran gaji, KWSP, PERKESO, elaun, elaun lebih masa, bonus, insuran hayat, caj perubatan dan ubat-ubatan,insentif dan Lain-lain', 'en', 'Overtime'); ?>
+                                <?= setstring('mal', 'Merujuk kepada pembayaran gaji, KWSP, PERKESO, elaun, elaun lebih masa, bonus, insuran hayat, caj perubatan dan ubat-ubatan,insentif dan Lain-lain', 'en', 'Refer to salaries, EPF, SOCSO, allowances, overtime charges, life insurance, medical charges, bonus, incentive and etc'); ?>
 
                                 )        </span></td>
                         <td width="158" bgcolor="#AEFFAE"><div align="center">
@@ -4410,11 +4410,11 @@ echo number_format($y1, 2);
                     <tr valign="top">
                         <td height="32" align="center" bgcolor="#FFFFFF">2.</td>
                         <td bgcolor="#FFFFFF"  ><span class="style4">
-<?= setstring('mal', 'Yuran professional dan khidmat nasihat', 'en', 'Agency cost and professional fees'); ?>
+<?= setstring('mal', 'Yuran professional dan khidmat nasihat', 'en', 'Professional fee and advisory services'); ?>
                             </span>
                             <br />
                             <span class="kecil">(
-                                <?= setstring('mal', 'Yuran yang dibayar kepada agensi atau ahli agronomi, juru audit dan lain-lain bagi tujuan perundangan, khidmat nasihat, audit dan sebagainnya', 'en', 'Visiting agent fees'); ?>
+                                <?= setstring('mal', 'Yuran yang dibayar kepada agensi atau ahli agronomi, juru audit dan lain-lain bagi tujuan perundangan, khidmat nasihat, audit dan sebagainnya', 'en', 'Fee paid to agencies, agronomist, auditors and others for advisory services and etc'); ?>
 
                                 )        </span></td>
                         <td bgcolor="#FFFFFF"><div align="center">
@@ -4467,11 +4467,11 @@ echo number_format($per_bts4, 2);
                     <tr valign="top" bgcolor="#AEFFAE">
                         <td height="36" align="center">3.</td>
                         <td><span class="style4">
-                                <?= setstring('mal', 'Cukai, pemilikan tanah sementara (TOL) dan insuran', 'en', 'Rent, TOL and insurance'); ?>
+                                <?= setstring('mal', 'Cukai, pemilikan tanah sementara (TOL) dan insuran', 'en', 'Taxes, Temporary Ownership Land (TOL) and insurance'); ?>
                             </span>
                             <br />
                             <span class="kecil">(
-                                <?= setstring('mal', 'Cukai tanah, cukai ke atas tanah berstatus TOL, insuran untuk bangunan & kenderaan dan Lain-lain', 'en', 'Quit rent'); ?>
+                                <?= setstring('mal', 'Cukai tanah, cukai ke atas tanah berstatus TOL, insuran untuk bangunan & kenderaan dan Lain-lain', 'en', 'Quit rent, quit rent for TOL status land, fire insurance, motor insurance, etc'); ?>
 
                                 )        </span></td>
                         <td><div align="center">
@@ -4548,10 +4548,10 @@ echo number_format($per_ha6, 2);
                     <tr valign="top">
                         <td height="33" align="center">4.</td>
                         <td><span class="style4">
-        <?= setstring('mal', 'Penjagaan, pemuliharaan dan penyelenggaraan bangunan', 'en', 'Building maintenance'); ?>
+        <?= setstring('mal', 'Penjagaan, pemuliharaan dan penyelenggaraan bangunan', 'en', 'Upkeep, conversation and maintenance of building'); ?>
                             </span><br />
                             <span class="kecil">(
-        <?= setstring('mal', 'Pembersihan kawasan, baik pulih kerosakan dan penyelenggaraan pejabat, banglow, kuarters, rumah ibadah, klinik, rumah kedai, bengkel dan lain-lain ', 'en', 'Painting and repair'); ?>
+        <?= setstring('mal', 'Pembersihan kawasan, baik pulih kerosakan dan penyelenggaraan pejabat, banglow, kuarters, rumah ibadah, klinik, rumah kedai, bengkel dan lain-lain ', 'en', 'Cleaning, repair of vehicle, maintenance of office, home amenities, mosque, temple, church, clinics, shop and etc'); ?>
 
                                 )        </span></td>
                         <td><div align="center">
@@ -4637,7 +4637,7 @@ echo number_format($per_ha6, 2);
         <?= setstring('mal', 'Kawalan keselamatan', 'en', 'Security Control'); ?>
                             </span><br />
                             <span class="kecil">(
-        <?= setstring('mal', 'Bayaran kepada pegawai keselamatan, penjagaan pos keselamatan dan lain-lain', 'en', 'Auxillary police/watchman salary'); ?>
+        <?= setstring('mal', 'Bayaran kepada pegawai keselamatan, penjagaan pos keselamatan dan lain-lain', 'en', 'Payments to guard, maintenance of guard house, and etc'); ?>
 
                                 )</span></td>
                         <td><div align="center">
@@ -4693,10 +4693,10 @@ echo number_format($per_ha12, 2);
                     <tr valign="top" bgcolor="#FFFFFF">
                         <td height="31" align="center">6.</td>
                         <td><span class="style4">
-<?= setstring('mal', 'Perbelanjaan pejabat dan utiliti', 'en', 'Office expenses'); ?>
+<?= setstring('mal', 'Perbelanjaan pejabat dan utiliti', 'en', 'Office expenses and utilities'); ?>
                             </span> <br />
                             <span class="kecil">(
-<?= setstring('mal', 'Pembelian alat tulis, sewa mesin fotostat, bayaran bil elektrik, bil air, bil telefon, servis peralatan pejabat dan pembelian barangan yang tidak dikategorikan sebagai aset', 'en', 'Telephone/fax/telegram fees'); ?>
+<?= setstring('mal', 'Pembelian alat tulis, sewa mesin fotostat, bayaran bil elektrik, bil air, bil telefon, servis peralatan pejabat dan pembelian barangan yang tidak dikategorikan sebagai aset', 'en', 'Purchase of stationery, rental of photostat machine, utilities & telephone bill, service of office equipment and purchase of goods not categorized as an asset'); ?>
 
                                 )</span></td>
                         <td><div align="center">
@@ -4714,10 +4714,10 @@ echo number_format($per_ha12, 2);
                     <tr valign="top" bgcolor="#AEFFAE">
                         <td height="31" align="center">7.</td>
                         <td><span class="style4">
-                        <?= setstring('mal', 'Susutnilai', 'en', 'Value depreciation'); ?>
+                        <?= setstring('mal', 'Susutnilai', 'en', 'Depreciation'); ?>
                             </span><br />
                             <span class="kecil">(
-                        <?= setstring('mal', 'Susutnilai bagunan, mesin, kenderaan dan peralatan pejabat', 'en', 'Statutory Payment cess'); ?>
+                        <?= setstring('mal', 'Susutnilai bagunan, mesin, kenderaan dan peralatan pejabat', 'en', 'Depreciation of building, machineries, vehicle and office equipment'); ?>
                                 )</span></td>
                         <td><div align="center">
                         <?= number_format($belanja->susut_nilai, 2); ?>
@@ -4739,7 +4739,7 @@ echo number_format($per_ha12, 2);
                         <?= setstring('mal', 'Perbelanjaan lain', 'en', 'Other expenses'); ?>
                             </span><br />
                             <span class="kecil">(
-                        <?= setstring('mal', ' Lain-lain perbelanjaan yang tidak termasuk dalam perbelanjaan 1-7 di atas', 'en', 'Entertain visitors'); ?>
+                        <?= setstring('mal', ' Lain-lain perbelanjaan yang tidak termasuk dalam perbelanjaan 1-7 di atas', 'en', 'Other expenses not included in 1-7'); ?>
                                 )        </span></td>
                         <td><div align="center">
                         <?= number_format($belanja->perbelanjaan_lain, 2); ?>
@@ -4798,12 +4798,12 @@ echo number_format($per_ha12, 2);
                     </tr>
 
                     <tr valign="top" bgcolor="#FFFFFF">
-                        <td height="31" align="center">9.</td>
+                        <td height="31" align="center">1.</td>
                         <td><span class="style4">
-                        <?= setstring('mal', 'Pembelian mesin/jentera dan juga bin untuk kegunaan di ladang', 'en', 'Other expenses'); ?>
+                        <?= setstring('mal', 'Pembelian mesin/jentera dan juga bin untuk kegunaan di ladang', 'en', 'Purchase of machineries and bin for estates’ use'); ?>
                             </span><br />
                             <span class="kecil">(
-                        <?= setstring('mal', 'Pembelian mesin/jentara untuk aktiviti meracun, membaja, menuai, memunggah dan mengangkut BTS', 'en', 'Entertain visitors'); ?>
+                        <?= setstring('mal', 'Pembelian mesin/jentara untuk aktiviti meracun, membaja, menuai, memunggah dan mengangkut BTS', 'en', 'Purchase of machineries for weeding, fertilizing, harvesting and FFB collection'); ?>
                                 )        </span></td>
                                 <td><div align="center">
                                 <?= number_format($belanja->pembelian_mesin, 2); ?>
@@ -4822,10 +4822,10 @@ echo number_format($per_ha12, 2);
                     <tr valign="top" bgcolor="#AEFFAE">
                         <td height="31" align="center">10.</td>
                         <td><span class="style4">
-                        <?= setstring('mal', 'Pembelian aset untuk kegunaan pejabat dan bangunan lain di ladang', 'en', 'Other expenses'); ?>
+                        <?= setstring('mal', 'Pembelian aset untuk kegunaan pejabat dan bangunan lain di ladang', 'en', 'Purchase of asset for office use and other buildings in estate'); ?>
                             </span><br />
                             <span class="kecil">(
-                        <?= setstring('mal', 'Pembelian kenderaan, perabot, komputer, generator dan lain-lain peralatan pejabat yang dikategorikan sebagai aset', 'en', 'Entertain visitors'); ?>
+                        <?= setstring('mal', 'Pembelian kenderaan, perabot, komputer, generator dan lain-lain peralatan pejabat yang dikategorikan sebagai aset', 'en', 'Purchase of furniture, vehicles, computers, generators and other office equipment categorized as an asset'); ?>
                                 )        </span></td>
 
                         <td><div align="center">

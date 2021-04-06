@@ -981,7 +981,7 @@ if (isset($_GET['penjagaan'])) {
 
                         <tr>
                             <td height="34" align="center">5.</td>
-                            <td><?= setstring('mal', 'Penjagaan jalan, parit, ban & pintu air dan sebagainya', 'en', 'Construction of road, drain, bund watergate and etc') ?> </td>
+                            <td><?= setstring('mal', 'Penjagaan jalan, parit, ban & pintu air dan sebagainya', 'en', 'Maintenance of road, drain, bund watergate and etc') ?> </td>
                             <td bgcolor="#FFFFFF"><div align="center">
 
                                     <input onKeypress="keypress(event)" name="total_b_14" type="text" class="field_active" id="total_b_14" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_14, 2); ?>" size="20" />
@@ -1034,7 +1034,7 @@ if (isset($_GET['penjagaan'])) {
 
                         <tr>
                             <td height="34" align="center">9.</td>
-                            <td><?= setstring('mal', 'Upah Mandur Am', 'en', 'Mandore Wages') ?> </td>
+                            <td><?= setstring('mal', 'Upah mandur am', 'en', 'Mandore wages/ direct field supervision costs') ?> </td>
                             <td bgcolor="#FFFFFF"><div align="center">
                                     <input onKeypress="keypress(event)" name="total_b_11" type="text" class="field_active" id="total_b_11" onchange="kiraan_baru(this, '')" onclick="field_click(this)" value="<?= number_format($jaga->total_b_11, 2); ?>" size="20" />
                                 </div></td>
@@ -1166,7 +1166,7 @@ if (isset($_GET['penuaian'])) {
 
                     <tr>
                         <td height="43" align="center" bgcolor="#AEFFAE">1.</td>
-                        <td bgcolor="#AEFFAE"><?= setstring('mal', 'Upah Menuai, memunggah BTS dan memungut buah relai', 'en', 'Wages for harvesters, FFB and loose fruit collecters '); ?>
+                        <td bgcolor="#AEFFAE"><?= setstring('mal', 'Upah menuai, memunggah BTS dan memungut buah relai', 'en', 'Wages for harvesters, FFB and loose fruit collecters '); ?>
                         <br>
                         <span class="kecil">(
                             <?= setstring('mal', 'Pemunggahan BTS dari pokok ke platform/pusat pengumpulan/ramp', 'en', 'Loading/evacuation of FFB to platform, FFB collection center or ramp');?>
@@ -1220,7 +1220,7 @@ if (isset($_GET['penuaian'])) {
 
                     <tr>
                         <td height="43" align="center" bgcolor="#FFFFFF">4.</td>
-                        <td bgcolor="#FFFFFF"><?= setstring('mal', 'Upah Mandur Penuai', 'en', 'Wages for harvesting mandore'); ?></td>
+                        <td bgcolor="#FFFFFF"><?= setstring('mal', 'Upah mandur penuai', 'en', 'Wages for harvesting mandore'); ?></td>
                         <td bgcolor="#FFFFFF"><div align="center">
                                 <input onKeypress="keypress(event)" name="a_3" type="text" class="field_active" id="a_3"  onchange="kiraan_baru_tuai(this)" onclick="field_click(this)" value="<?= number_format($tuai->a_3, 2); ?>" size="20"/>
                             </div></td>

@@ -276,14 +276,14 @@ body {
         <tr>
           <td></td>
           <td>
-				  <td colspan="2">	<input type="submit" name="Submit" value="<?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>" />
-          </a>  <a href="password.php" class="facebox" style="text-decoration:none">
+				  <td colspan="2">	<input type="submit" name="Submit" value="<?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?> " />
+					<input type="submit" name="Submit2"  value=<?=setstring ( 'mal', '"Simpan & Seterusnya"', 'en', '"Save &amp; Next"'); ?> " />
+
+			    </a>  <a href="password.php" class="facebox" style="text-decoration:none">
 					<input type="button" value="<?php echo setstring ( 'mal', 'Tukar kata laluan', 'en', 'Change Password'); ?>" />
 
-
 				</form>
-
-					 </td>
+				</td>
 					<?php /*
           <td colspan="2"><a href="profil.php" class="facebox1" style="text-decoration:none">
             <input type="button" value="<?php echo setstring ( 'mal', 'Ubah Profil Estate ', 'en', 'Change Estate Profile'); ?>" />
@@ -316,11 +316,25 @@ body {
 <form action="update_profil.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
 					<tr>
             <td width="201" align="left" valign="top"><b>
-              <?php echo setstring ( 'mal', 'Jenis Syarikat', 'en', 'Company Type'); ?>
+              <?php echo setstring ( 'mal', 'Jenis Syarikat', 'en', 'Company Type');
+							 ?>
               </b></td>
-							<td colspan="2"> <input name="syarikat" type="text" id="syarikat" value="<?= $pengguna->jenissyarikat; ?>" size="50" /></td>
+							<td colspan="2">
+							<select name="syarikat" id="syarikat" name="syarikat"  id="syarikat">
+							<?php $syarikat = $pengguna->jenissyarikat; ?>
+							<option value="agensi" <?php if($syarikat== "agensi") echo 'selected="selected"'; ?>><?php echo setstring ( 'mal', 'Agensi', 'en', 'Agencies'); ?></option>
+							<option value="sdnbhd" <?php if($syarikat== "sdnbhd") echo 'selected="selected"'; ?>><?php echo setstring ( 'mal', 'Sdn Bhd', 'en', 'Sdn Bhd'); ?></option>
+							<option value="perkongsian" <?php if($syarikat== "perkongsian") echo 'selected="selected"'; ?>><?php echo setstring ( 'mal', 'Perkongsian', 'en', 'Partnership'); ?></option>
+							<option value="koperasi"  <?php if($syarikat== "koperasi") echo 'selected="selected"'; ?>><?php echo setstring ( 'mal', 'Koperasi', 'en', 'Co operative'); ?></option>
+							<option value="berhad" <?php if($syarikat== "berhad") echo 'selected="selected"'; ?>><?php echo setstring ( 'mal', 'Berhad', 'en', 'Berhad'); ?></option>
+							<option value="perseorangan" <?php if($syarikat== "perseorangan") echo 'selected="selected"'; ?>><?php echo setstring ( 'mal', 'Perseorangan', 'en', 'Sole proprietorship'); ?></option>
+							</select>
+
+
+
+							</td>
 							<input name="nolesen" type="hidden" id="nolesen" value="<?= $pengguna->nolesen; ?>"/>
-							
+
 							<?php /*
             <td width="7"><div align="center"><strong>:</strong></div></td>
             <td width="674"><?php function company($x){
@@ -363,7 +377,18 @@ body {
             <td width="201" align="left" valign="top"><strong>
               <?php echo setstring ( 'mal', 'Keahlian dalam Persatuan', 'en', 'Membership in Union'); ?>
               </b></strong></td>
-							<td colspan="2"> <input name="keahlian" type="text" id="keahlian" value="<?= $pengguna->keahlian; ?>" size="50" /></td>
+							<td colspan="2"> <select name="keahlian" id="keahlian"  name="keahlian" id="keahlian"  >
+							<?php $keahlian = $pengguna->keahlian; ?>
+							<option value="MAPA"  <?php if($keahlian== "MAPA") echo 'selected="selected"'; ?>> <?php echo setstring ( 'mal', 'Persatuan Pengeluar Pertanian Malaysia (MAPA)', 'en', 'Malayan Agricultural Producers Association (MAPA)'); ?></option>
+							<option value="EMPA"  <?php if($keahlian== "EMPA") echo 'selected="selected"'; ?>> <?php echo setstring ( 'mal', 'Persatuan Pengeluar Malaysia Timur (EMPA)', 'en', 'East Malaysia Planters Association (EMPA)'); ?></option>
+							<option value="bukanahli"  <?php if($keahlian== "bukanahli") echo 'selected="selected"'; ?>> <?php echo setstring ( 'mal', 'Bukan Ahli', 'en', 'Non Member'); ?></option>
+
+							</select>
+
+
+							</td>
+
+
 
 							<?php /*
             <td><div align="center"><strong>:</strong></div></td>
@@ -387,7 +412,11 @@ body {
           <tr>
             <td colspan="3" align="left" valign="top"> </td>
           </tr>
-					<td colspan="2">	<input type="submit" name="Submit" value="<?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>" /></td>
+					<td colspan="2">	<input type="submit" name="Submit" value="<?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>" />
+					<input type="submit" name="Submit2"  value=<?=setstring ( 'mal', '"Simpan & Seterusnya"', 'en', '"Save &amp; Next"'); ?> " />
+					
+
+					</td>
 					<tr>
 						<td colspan="3" align="left" valign="top"> </td>
 					</tr>
@@ -432,6 +461,7 @@ body {
 						<form id="form1" name="form1" method="post" action="save_profile.php"> </form> */ ?>
 						<table width="100"" align="center" cellspacing="0" class="tableCss" style="border:1px #333333 solid; padding:2px;">
 
+							<?php /*
                 <tr>
 
                   <td><div id="percent_soil" ></div>
@@ -448,10 +478,10 @@ body {
 											 function drawChart() {
 												 var data = google.visualization.arrayToDataTable([
 													 ['Area', ''],
-													 ['Tanah Lanar', <?php echo $tanahlanar; ?> ],
-													 ['Tanah Pedalaman', <?php echo $tanahpedalaman; ?>],
+
+
 													 ['Tanah Gambut', <?php echo $tanahgambut; ?> ],
-													 ['Lain-lain Tanah', <?php echo $lainlaintanah; ?>],
+
 
 
 												 ]);
@@ -473,6 +503,7 @@ body {
 												 chart.draw(data, options);
 											 }
 										 </script>
+										 */?>
 
 
 
@@ -506,7 +537,7 @@ body {
                   <td><div id="percent_mukabumi"></div>
                     <div align="center"><br />
                       <strong>
-                      <?php echo setstring ( 'mal', 'Peratusan Jenis Mukabumi', 'en', 'Percentage of Terrain Type'); ?>
+                      <?php echo setstring ( 'mal', 'Bentuk mukabumi estet', 'en', 'Percentage of Terrain Type'); ?>
                       </strong>
 
 

@@ -207,10 +207,10 @@ function openScript(url, width, height) {
   }
   */
   if($year=="" || $year=='1'){
-  $qs =" select * from q_kbm";
+  $qs =" select * from q_kbm ORDER by arrangement ASC";
   }
   else {
-  $qs = " select * from q_kbm where tahun!='0'";
+  $qs = " select * from q_kbm where tahun!='0' ORDER by arrangement ASC ";
   }
   $rs = mysqli_query($con, $qs);
 
