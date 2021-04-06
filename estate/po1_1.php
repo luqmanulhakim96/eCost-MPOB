@@ -238,7 +238,7 @@ $pengguna->jumlahakhir;
 
   <tr>
 
-    <td colspan="2" bgcolor="#CACAFF"><div align="left"><?php echo setstring ( 'mal', 'c. Tanah Gambut : ', 'en', 'c. Peat Soil:'); ?></div></td>
+    <td colspan="2" bgcolor="#CACAFF"><div align="left"><?php echo setstring ( 'mal', ' Peratusan keluasan tanah gambut (sekiranya ada) : ', 'en', 'Percentage of peatland area (if any):'); ?></div></td>
     <td bgcolor="#CACAFF"><div align="center"><span class="style1"><?php echo $tg = $pengguna->gambutcetek+ $pengguna->gambutdalam; ?>  <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></span></div></td>
     <td bgcolor="#CACAFF"><div align="center"><span class="style1">
     </span></div>      <span class="style1">
@@ -442,7 +442,7 @@ $pengguna->jumlahakhir;
         <p>
           <input type="submit" name="button" id="button" value="<?php echo setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>" />
           <input type="submit" name="Submit2"  value=<?=setstring ( 'mal', '"Simpan & Seterusnya"', 'en', '"Save &amp; Next"'); ?> " />
-          
+
           <input type="submit" name="button2" id="button2" value=" <?php echo setstring ( 'mal', 'Cetak', 'en', 'Print'); ?>" />
         </p>
 
