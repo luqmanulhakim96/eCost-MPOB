@@ -347,7 +347,7 @@ var tanambaru = <?php echo $data;?>;
         <td bgcolor="#CCCCFF"><span onmouseover="tunjuk_bantu('')">iii. <?=setstring ( 'mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?></span>
 					<br>
 					<span class="kecil">(
-						<?= setstring('mal', 'Kos bahan api , tayar , bateri , minyak hitam , baik pulih jentera , lain-lain', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+						<?= setstring('mal', 'Kos bahan api, tayar, bateri, minyak hitam, baik pulih jentera, lain-lain', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
 
 							)        </span></td>
 
@@ -406,7 +406,7 @@ var tanambaru = <?php echo $data;?>;
         <td bgcolor="#FFFFCC">iii. <?=setstring ( 'mal', 'Penggunaan dan penyelenggaraan jentera', 'en', 'Machinery use and maintenance'); ?>
 					<br>
 					<span class="kecil">(
-						<?= setstring('mal', 'Kos bahan api , tayar , bateri , minyak hitam , baik pulih jentera , lain-lain', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
+						<?= setstring('mal', 'Kos bahan api , tayar, bateri, minyak hitam, baik pulih jentera, lain-lain', 'en', 'Cost of fuel, tires, batteries, black oil etc. as well as machinery overhauls'); ?>
 
 							)        </span></td>
 
