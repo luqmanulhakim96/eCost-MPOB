@@ -36,7 +36,7 @@
 
 //------------------------------------------------------------------------
 // define('CACHE_DIR','/tmp/jpgraph_cache/');
-define('TTF_DIR','/usr/share/fonts/TrueType/dejavu');
+define('TTF_DIR','/usr/share/fonts/TrueType/dejavu/');
 // define('MBTTF_DIR','/usr/share/fonts/TrueType/');
 
 //-------------------------------------------------------------------------
