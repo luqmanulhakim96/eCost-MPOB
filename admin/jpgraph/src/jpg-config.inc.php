@@ -33,10 +33,10 @@
 //   CACHE_DIR $SERVER_TEMP/jpgraph_cache/
 //   TTF_DIR   $SERVER_SYSTEMROOT/fonts/
 //   MBTTF_DIR $SERVER_SYSTEMROOT/fonts/
-//
+
 //------------------------------------------------------------------------
 // define('CACHE_DIR','/tmp/jpgraph_cache/');
-// define('TTF_DIR','/usr/share/fonts/TrueType/');
+define('TTF_DIR','/usr/share/fonts/TrueType/dejavu');
 // define('MBTTF_DIR','/usr/share/fonts/TrueType/');
 
 //-------------------------------------------------------------------------
