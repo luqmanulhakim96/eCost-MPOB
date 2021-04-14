@@ -1,5 +1,5 @@
 <?php session_start();
-
+error_reporting(0);
 include ('../Connections/connection.class.php');
 extract($_POST);
 extract($_GET);
@@ -42,6 +42,7 @@ status='$status'
 WHERE lesen = '$lesen' AND tahun =$tahun
 ";
 $r = mysqli_query($con, $q);
+// print_r($q);
 
 if ($status==2){
 	$id = "kos_proses";

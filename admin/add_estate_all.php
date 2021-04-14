@@ -1,5 +1,6 @@
 <?php include('../Connections/connection.class.php');?>
 <?php extract($_REQUEST);?>
+<?php error_reporting(0); ?>
 
 
 <script src="../js/live/livevalidation_standalone.js" type="text/javascript"></script>
@@ -107,11 +108,13 @@ if(isset($simpan)){
 		$totalselect = mysqli_num_rows($rselect);
 
 		if($totalselect == 0){
+			$password= 'ecost'.$tahunEsub;
+			$password = password_hash($password,PASSWORD_BCRYPT);
 
 			$qadd ="insert into $table (no_lesen_baru, nama_estet, no_lesen) values('$nolesen', ucase('$nama_estate'), '0')";
 			$radd = mysqli_query($con, $qadd);
 			// "<br>";
-		 	$qadd1 ="insert into login_estate (lesen, password, firsttime) values('$nolesen','ecost$tahunEsub', '1')";
+		 	$qadd1 ="insert into login_estate (lesen, password, firsttime) values('$nolesen','$password', '1')";
 			$radd1 = mysqli_query($con, $qadd1);
 			// "<br>";
 			echo "<script>window.location.href='view_estate_all.php?nolesen=$nolesen';</script>";

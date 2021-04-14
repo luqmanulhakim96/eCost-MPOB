@@ -156,6 +156,9 @@ if ($id == "estate") {
     else if ($sub == "gc")
         $open_detail = "gc_all.php";
 
+        else if ($sub == "gc_kos_lain")
+            $open_detail = "gc_kos_lain.php";
+
     else if ($sub == "cost_maturity")
         $open_detail = "cost_maturity.php";
 

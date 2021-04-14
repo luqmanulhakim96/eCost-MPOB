@@ -176,12 +176,12 @@ if (($bts * 1) == 0) {
         var a_tan = $("#emolumen_per_bts").html();
         a_tan = a_tan.replace(",", "");
 
-        // var b = $("#kos_ibupejabat").val();
-        // b = b.replace(",", "");
-        // var b_ha = $("#kos_ibupejabat_per_ha").html();
-        // b_ha = b_ha.replace(",", "");
-        // var b_tan = $("#kos_ibupejabat_per_bts").html();
-        // b_tan = b_tan.replace(",", "");
+        var b = $("#kos_ibupejabat").val();
+        b = b.replace(",", "");
+        var b_ha = $("#kos_ibupejabat_per_ha").html();
+        b_ha = b_ha.replace(",", "");
+        var b_tan = $("#kos_ibupejabat_per_bts").html();
+        b_tan = b_tan.replace(",", "");
 
         var c = $("#kos_agensi").val();
         c = c.replace(",", "");
@@ -190,12 +190,12 @@ if (($bts * 1) == 0) {
         var c_tan = $("#kos_agensi_per_bts").html();
         c_tan = c_tan.replace(",", "");
 
-        // var d = $("#kebajikan").val();
-        // d = d.replace(",", "");
-        // var d_ha = $("#kebajikan_per_ha").html();
-        // d_ha = d_ha.replace(",", "");
-        // var d_tan = $("#kebajikan_per_bts").html();
-        // d_tan = d_tan.replace(",", "");
+        var d = $("#kebajikan").val();
+        d = d.replace(",", "");
+        var d_ha = $("#kebajikan_per_ha").html();
+        d_ha = d_ha.replace(",", "");
+        var d_tan = $("#kebajikan_per_bts").html();
+        d_tan = d_tan.replace(",", "");
 
         var e = $("#sewa_tol").val();
         e = e.replace(",", "");
@@ -204,19 +204,19 @@ if (($bts * 1) == 0) {
         var e_tan = $("#sewa_tol_per_bts").html();
         e_tan = e_tan.replace(",", "");
 
-        // var f = $("#penyelidikan").val();
-        // f = f.replace(",", "");
-        // var f_ha = $("#penyelidikan_per_ha").html();
-        // f_ha = f_ha.replace(",", "");
-        // var f_tan = $("#penyelidikan_per_bts").html();
-        // f_tan = f_tan.replace(",", "");
-        //
-        // var g = $("#perubatan").val();
-        // g = g.replace(",", "");
-        // var g_ha = $("#perubatan_per_ha").html();
-        // g_ha = g_ha.replace(",", "");
-        // var g_tan = $("#perubatan_per_bts").html();
-        // g_tan = g_tan.replace(",", "");
+        var f = $("#penyelidikan").val();
+        f = f.replace(",", "");
+        var f_ha = $("#penyelidikan_per_ha").html();
+        f_ha = f_ha.replace(",", "");
+        var f_tan = $("#penyelidikan_per_bts").html();
+        f_tan = f_tan.replace(",", "");
+
+        var g = $("#perubatan").val();
+        g = g.replace(",", "");
+        var g_ha = $("#perubatan_per_ha").html();
+        g_ha = g_ha.replace(",", "");
+        var g_tan = $("#perubatan_per_bts").html();
+        g_tan = g_tan.replace(",", "");
 
         var h = $("#penyelenggaraan").val();
         h = h.replace(",", "");
@@ -225,19 +225,19 @@ if (($bts * 1) == 0) {
         var h_tan = $("#penyelenggaraan_per_bts").html();
         h_tan = h_tan.replace(",", "");
 
-        // var i = $("#cukai_keuntungan").val();
-        // i = i.replace(",", "");
-        // var i_ha = $("#cukai_keuntungan_per_ha").html();
-        // i_ha = i_ha.replace(",", "");
-        // var i_tan = $("#cukai_keuntungan_per_bts").html();
-        // i_tan = i_tan.replace(",", "");
-        //
-        // var j = $("#penjagaan").val();
-        // j = j.replace(",", "");
-        // var j_ha = $("#penjagaan_per_ha").html();
-        // j_ha = j_ha.replace(",", "");
-        // var j_tan = $("#penjagaan_per_bts").html();
-        // j_tan = j_tan.replace(",", "");
+        var i = $("#cukai_keuntungan").val();
+        i = i.replace(",", "");
+        var i_ha = $("#cukai_keuntungan_per_ha").html();
+        i_ha = i_ha.replace(",", "");
+        var i_tan = $("#cukai_keuntungan_per_bts").html();
+        i_tan = i_tan.replace(",", "");
+
+        var j = $("#penjagaan").val();
+        j = j.replace(",", "");
+        var j_ha = $("#penjagaan_per_ha").html();
+        j_ha = j_ha.replace(",", "");
+        var j_tan = $("#penjagaan_per_bts").html();
+        j_tan = j_tan.replace(",", "");
 
         var k = $("#kawalan").val();
         k = k.replace(",", "");
@@ -246,12 +246,12 @@ if (($bts * 1) == 0) {
         var k_tan = $("#kawalan_per_bts").html();
         k_tan = k_tan.replace(",", "");
 
-        // var l = $("#air_tenaga").val();
-        // l = l.replace(",", "");
-        // var l_ha = $("#air_tenaga_per_ha").html();
-        // l_ha = l_ha.replace(",", "");
-        // var l_tan = $("#air_tenaga_per_bts").html();
-        // l_tan = l_tan.replace(",", "");
+        var l = $("#air_tenaga").val();
+        l = l.replace(",", "");
+        var l_ha = $("#air_tenaga_per_ha").html();
+        l_ha = l_ha.replace(",", "");
+        var l_tan = $("#air_tenaga_per_bts").html();
+        l_tan = l_tan.replace(",", "");
 
         var m = $("#perbelanjaan_pejabat").val();
         m = m.replace(",", "");
@@ -288,23 +288,22 @@ if (($bts * 1) == 0) {
         // var q_tan = $("#$pembelian_aset_per_bts").html();
         // // q_tan = q_tan.replace(",", "");
 
-        // var total = myParse(a) + myParse(b) + myParse(c) + myParse(d) + myParse(e) + myParse(f) + myParse(g) + myParse(h) + myParse(i) + myParse(j) + myParse(k) + myParse(l) + myParse(m) + myParse(n) + myParse(o);
-        var total = myParse(a)  + myParse(c) + myParse(e)+ myParse(h) + myParse(k) + myParse(m) + myParse(n) + myParse(o);
+        var total = myParse(a) + myParse(b) + myParse(c) + myParse(d) + myParse(e) + myParse(f) + myParse(g) + myParse(h) + myParse(i) + myParse(j) + myParse(k) + myParse(l) + myParse(m) + myParse(n) + myParse(o);
         // var total = myParse(a) + myParse(b) + myParse(c) + myParse(d) + myParse(e) + myParse(f) + myParse(g) + myParse(h) + myParse(i) + myParse(j) + myParse(k) + myParse(l) + myParse(m) + myParse(n) + myParse(o) + myParse(p) + myParse(q); // for new questions
 
         //alert(myParse(a_ha));
         console.log(myParse(a_ha));
-        // console.log("b_ha",myParse(b_ha));
+        console.log("b_ha",myParse(b_ha));
         console.log("c_ha",myParse(c_ha));
-        // console.log("d_ha",myParse(d_ha));
+        console.log("d_ha",myParse(d_ha));
         console.log("e_ha",myParse(e_ha));
-        // console.log("f_ha",myParse(f_ha));
-        // console.log("g_ha",myParse(g_ha));
+        console.log("f_ha",myParse(f_ha));
+        console.log("g_ha",myParse(g_ha));
         console.log("h_ha",myParse(h_ha));
-        // console.log("i_ha",myParse(i_ha));
-        // console.log("j_ha",myParse(j_ha));
+        console.log("i_ha",myParse(i_ha));
+        console.log("j_ha",myParse(j_ha));
         console.log("k_ha",myParse(k_ha));
-        // console.log("l_ha",myParse(l_ha));
+        console.log("l_ha",myParse(l_ha));
         console.log("m_ha",myParse(m_ha));
         console.log("n_ha",myParse(n_ha));
         console.log("o_ha",myParse(o_ha));

@@ -17,11 +17,13 @@ kl_5 ,
 total_kl,status
 )
 VALUES (
-'".$_SESSION['lesen']."', '".$_SESSION['tahun']."', '', '', '', '', '', '','0'
+'".$_SESSION['lesen']."', '".$_SESSION['tahun']."', null, null, null, null, null, null,'0'
 )
 ";
 	$r=mysqli_query($con, $q);
 }
+
+print_r($q);
 
 $pu[0] = $_SESSION['lesen'];
 $pu[1]= $_SESSION['tahun']-1;
@@ -52,7 +54,7 @@ var pitmid = false;
 <script type="text/javascript">
  <?php //echo $bts->bts;?>
 var bts_lepas = 0;
-var tan_lepas = <?php echo $bts->fbb_proses; ?>;
+var tan_lepas = <?php echo $bts->fbb_proses ?? 0; ?>;
 
 	function field_blur(obj, bts_tan, bts_beza, nilai,nilai_asal, total_nilai,total_bts_tan, total_bts_beza) {
 		if(number_only(obj)) {
@@ -153,8 +155,7 @@ function hantar(x)
 
 
 
-<style type="text/css">
-<!--
+<!-- <style type="text/css">
 .style1 {
 	font-size: 14px;
 	font-weight: bold;
@@ -163,8 +164,7 @@ function hantar(x)
 	color: #330066;
 	font-weight: bold;
 }
--->
-</style>
+</style> -->
 <form id="form1" name="form1" method="post" action="">
   <table width="90%" align="center" class="tableCss">
     <tr>
@@ -278,7 +278,7 @@ function hantar(x)
             <input name="isirung" type="text" class="field_active" id="isirung" onchange="tukarnombor(this)"  onkeypress="keypress(event)" value="<?php echo number_format($rowisi['isirung'],2); ?>"  autocomplete="off"/>
 
 
-            
+
 
 
             </td>

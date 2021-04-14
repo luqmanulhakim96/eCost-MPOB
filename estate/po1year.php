@@ -31,7 +31,7 @@ total_b_2 ,
 b_3a ,
 b_3b ,
 b_3c ,
-b_3d ,
+
 total_b_3 ,
 total_b_4 ,
 total_b_5 ,
@@ -50,10 +50,11 @@ total_b ,
 status
 )
 VALUES (
-'$year', '".$_SESSION['tahun']."', '".$_SESSION['lesen']."', '".$t."', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0'
+'$year', '".$_SESSION['tahun']."', '".$_SESSION['lesen']."', '".$t."', null, null,null,null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,  '0'
 );
 ";
 $r=mysqli_query($con, $q);
+// print($q);
 }
 	// Check lesen exist in table tanam_semula, tanam_baru or tanam_tukar
 

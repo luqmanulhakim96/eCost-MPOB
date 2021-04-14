@@ -2,13 +2,13 @@
 	<link rel="stylesheet" href="../text_style.css" type="text/css" />
     <link rel="stylesheet" href="../css/jquery.treeview.css" />
 	<link rel="stylesheet" href="../css/screen.css" />
-	
+
     <link rel="stylesheet" type="text/css" media="screen" href="css/main.css" />
     <script src="menu_estate.js" type="text/javascript"></script>
-    
+
 	<script src="../js/jquery.cookie.js" type="text/javascript"></script>
 	<script src="../js/jquery.treeview.js" type="text/javascript"></script>
-	
+
 	<script type="text/javascript">
 		$(function() {
 			$("#browser").treeview({
@@ -26,23 +26,23 @@
     <ul id="browser" class="filetree">
 		<li id="home"><img src="../nav/file.gif" /> <strong><a href="home.php?id=estate">Response Rate</a></strong></li>
 	  <li id="ageprofile"><img src="../nav/file.gif" /> <strong><a href="home.php?id=estate&sub=age_profile">Age Profile</a></strong></li>
-        
+
         <li><img src="../nav/folder.gif" alt="folder" /> <strong>Survey Response</strong>
               <ul>
                 <li><img src="../nav/file.gif" alt="d" /> <a href="home.php?id=estate&sub=owner">Types Ownership</a></li>
                 <li><img src="../nav/file.gif" alt="d" /> <a href="home.php?id=estate&sub=size_estate">Size of Estates According To Ownership Types</a></li>
                <li><img src="../nav/file.gif" alt="d" /> <a href="home.php?id=estate&sub=size_percentage">Distributions of Oil Palm Estate</a></li><li><img src="../nav/file.gif" alt="d" /> <a href="home.php?id=estate&sub=topography">Estate Topography</a></li>
-                <li><img src="../nav/file.gif" alt="d" /> <a href="home.php?id=estate&sub=yield_fbb">Yield of FFB</a></li>                
+                <li><img src="../nav/file.gif" alt="d" /> <a href="home.php?id=estate&sub=yield_fbb">Yield of FFB</a></li>
                 <li><img src="../nav/file.gif" alt="d" /> <a href="home.php?id=estate&sub=yield_distribution">Yield Distribution</a></li>
 
               </ul>
 
-	
-        
-        
+
+
+
      		<li><img src="../nav/folder.gif" /> <strong>Immature Cost
            <!-- <a href="home.php?id=estate&sub=imm">Immature Cost</a>-->
-            </strong>        
+            </strong>
      		  <ul>
      		    <li><img src="../nav/folder.gif" alt="d" /> New Planting
      		      <ul>
@@ -115,13 +115,13 @@
      		    </li>
      		    <!--<li><img src="../nav/file.gif" alt="d" /> <a href="home.php?id=estate&sub=summary">Summary</a></li>-->
      		  </ul>
-     		</li>   
+     		</li>
 <li><img src="../nav/folder.gif" alt="folder" /> <strong>Mature Cost
 <!--<a href="home.php?id=estate&sub=sum_upkeep">Mature Cost</a>-->
 </strong>
 <ul>
                 <li><img src="../nav/folder.gif" /> Upkeep
-                  
+
                   <ul>
                     <li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=upk">Malaysia</a></li>
                     <li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=upk&state=pm">Peninsular Malaysia
@@ -189,7 +189,7 @@
                   </ul>
 		        </li>
         <li><img src="../nav/folder.gif" /> Transportation
-                  
+
   <ul>
                     <li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=transportation_all">Malaysia</a></li>
                     <li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=transportation_all&state=pm">Peninsular Malaysia</a>
@@ -222,22 +222,24 @@
                     </li>
                   </ul>
                 </li>
-                
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
+
                 <!--<li><img src="../nav/file.gif" /> <a href="home.php?id=estate&sub=mature_summary">Summary</a></li>-->
       </ul>
       </li>
-      
-      
+
+
       <li><img src="../nav/folder.gif" alt="folder" /> <strong>General Charges</strong>
               <ul>
-          
+
                     <li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=gc">Malaysia</a></li>
+										<li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=gc_kos_lain">Other cost</a></li>
+
                     <li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=gc&state=pm">Peninsular Malaysia
                       </a>
                       <ul>
@@ -271,7 +273,7 @@
               <!--
         <li><img src="../nav/folder.gif" alt="folder" /><strong>FFB Production</strong>
         	<ul>
-          
+
                     <li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=gc">Malaysia</a></li>
                     <li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=gc&state=pm">Peninsular Malaysia
                       </a>
@@ -292,18 +294,18 @@
                     </li>
                     <li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=gc&state=sbh">Sabah</a></li>
                     <li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=gc&state=swk">Sarawak</a></li>
-                   
+
               </ul></li>-->
-      
-<li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=soiltype">Soil Type</a></li>	  
+
+<li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=soiltype">Soil Type</a></li>
 <li><img src="../nav/folder.gif" alt="folder" /> <strong>Summary</strong>
               <ul>
-                
-                
-                
-                
+
+
+
+
                 <li><img src="../nav/file.gif" alt="d" /> <a href="home.php?id=estate&sub=summary">Cost to Maturity</a></li>
-                
+
                 <li><img src="../nav/folder.gif" /> <strong>Cost of FFB Production
                   </strong>
                   <ul>
@@ -329,10 +331,10 @@
                     <li><img src="../nav/file.gif" alt="d" /><a href="home.php?id=estate&sub=mature_summary&state=swk">Sarawak</a></li>
                   </ul>
                 </li>
-                
-                
+
+
       </ul>
             </li>
             </ul>
-		
+
 </div>

@@ -1,5 +1,8 @@
 <?php include('../Connections/connection.class.php');?>
-<?php extract($_REQUEST);?>
+<?php
+error_reporting(0);
+extract($_REQUEST);?>
+
 
 
 <script src="../js/live/livevalidation_standalone.js" type="text/javascript"></script>
@@ -113,7 +116,9 @@ if(isset($simpan)){
 			$radd = mysqli_query($con,$qadd);
 			}//loop 12month
 			// "<br>";
-		 	$qadd1 ="insert into login_mill (lesen, password, firsttime) values('$nolesen','ecost$tahunEkilang', '1')";
+			$password = 'ecost'.$tahunEkilang;
+			$password = password_hash($password,PASSWORD_BCRYPT);
+		 	$qadd1 ="insert into login_mill (lesen, password, firsttime) values('$nolesen','$password', '1')";
 			$radd1 = mysqli_query($con, $qadd1);
 			// "<br>";
 				$tahun = $tahun+1;

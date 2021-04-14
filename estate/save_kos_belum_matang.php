@@ -27,9 +27,26 @@ $a_11 = str_replace(",", '', $a_11);
 $a_12 = str_replace(",", '', $a_12);
 $a_13 = str_replace(",", '', $a_13);
 $total_kos_a = str_replace(",", '', $total_kos_a);
-$b_1a = str_replace(",", '', $b_1a);
-$b_1b = str_replace(",", '', $b_1b);
-$b_1c = str_replace(",", '', $b_1c);
+
+if(isset($b_1a)){ //if variable exist in request
+  $b_1a = str_replace(",", '', $b_1a);
+}else {
+  $b_1a = 0;
+}
+
+if(isset($b_1b)){ //if variable exist in request
+  $b_1b = str_replace(",", '', $b_1b);
+}else {
+  $b_1b = 0;
+}
+
+if(isset($b_1c)){ //if variable exist in request
+  $b_1c = str_replace(",", '', $b_1c);
+}else {
+  $b_1c = 0;
+}
+
+
 // $total_racun = str_replace(",", '', $total_b_1);
 if($total_b_1){
   $total_racun = str_replace(",", '', $total_b_1);
@@ -40,17 +57,34 @@ else {
 }
 
 $total_b_2 = str_replace(",", '', $total_b_2);
-$b_3a = str_replace(",", '', $b_3a);
-$b_3b = str_replace(",", '', $b_3b);
-$b_3c = str_replace(",", '', $b_3c);
-$b_3d = str_replace(",", '', $b_3d);
-// $total_baja = str_replace(",", '', $total_b_3);
+
+if(isset($b_3a)){ //if variable exist in request
+  $b_3a = str_replace(",", '', $b_3a);
+}else {
+  $b_3a = 0;
+}
+
+if(isset($b_3b)){ //if variable exist in request
+  $b_3b = str_replace(",", '', $b_3b);
+}else {
+  $b_3b = 0;
+}
+
+if(isset($b_3c)){ //if variable exist in request
+  $b_3c = str_replace(",", '', $b_3c);
+}else {
+  $b_3c = 0;
+}
+
+
+
+$total_baja = str_replace(",", '', $total_b_3);
 
 if($total_baja){
   $total_baja = str_replace(",", '', $total_b_3);
 }
 else {
-  $total_baja = $b_3a + $b_3b + $b_3c + $b_3d;
+  $total_baja = $b_3a + $b_3b + $b_3c ;
 }
 
 $total_b_4 = str_replace(",", '', $total_b_4);
@@ -95,7 +129,7 @@ if ($total == 0) {
 	'$b_3a',
 	'$b_3b',
 	'$b_3c',
-	'$b_3d',
+
 	'$total_baja',
 	'$total_b_4',
 	'$total_b_5',
@@ -140,7 +174,7 @@ if($form_year == 'po1year'){
         b_3a='$b_3a',
         b_3b='$b_3b',
         b_3c='$b_3c',
-        b_3d='$b_3d',
+
         total_b_3= '$total_baja',
         total_b_4='$total_b_4',
         total_b_5='$total_b_5',
@@ -170,7 +204,7 @@ elseif ($form_year == 'po2year') {
         b_3a='$b_3a',
         b_3b='$b_3b',
         b_3c='$b_3c',
-        b_3d='$b_3d',
+
         total_b_3= '$total_baja',
         total_b_4='$total_b_4',
         total_b_5='$total_b_5',
@@ -188,7 +222,9 @@ elseif ($form_year == 'po2year') {
         total_b='$total_kos_b',
         status = '$status'
         WHERE pb_tahun = '$year' AND pb_thisyear='$thisyear' AND lesen ='" . $_SESSION['lesen'] . "' AND pb_type =  '$type'";
-          $r = mysqli_query($con,$q);
+        // $r = mysqli_query($con,$q)  or die(mysqli_error($con));
+          $r = mysqli_query($con,$q)  ;
+          // print($q);
 }
 
 else {
@@ -201,7 +237,7 @@ else {
         b_3a='$b_3a',
         b_3b='$b_3b',
         b_3c='$b_3c',
-        b_3d='$b_3d',
+
         total_b_3= '$total_baja',
         total_b_4='$total_b_4',
         total_b_5='$total_b_5',
@@ -246,7 +282,7 @@ if ($total != 0) {
         	b_3a='$b_3a',
         	b_3b='$b_3b',
         	b_3c='$b_3c',
-        	b_3d='$b_3d',
+
         	total_b_3= '$total_baja',
         	total_b_4='$total_b_4',
         	total_b_5='$total_b_5',

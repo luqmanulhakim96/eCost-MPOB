@@ -1,7 +1,7 @@
 <!--
- Created by Hafez Hamid <fezcodework@gmail.my>  at Apr 18, 2020 10:28:21 AM 
+ Created by Hafez Hamid <fezcodework@gmail.my>  at Apr 18, 2020 10:28:21 AM
  Copyright (c) 2020 Gates IT Solution Sdn Bhd
- 
+
 -->
 <script type="text/javascript">
     $(function () {
