@@ -1,4 +1,6 @@
 <?php include('../Connections/connection.class.php'); ?>
+<?php error_reporting(0); ?>
+
 <?php
 
 extract($_REQUEST);
@@ -209,6 +211,6 @@ if ($type == "delete") {
     $q_esub = "update $tableesub set Belum_Berhasil ='$belum_berhasil', Jumlah ='$jumlah' where no_lesen_baru='$lesen'";
     $r_esub = mysqli_query($con, $q_esub);
 
-    echo "<script>window.location.href='view_estate_all.php?nolesen=$lesen'</script>";
+    // echo "<script>window.location.href='view_estate_all.php?nolesen=$lesen'</script>";
 }
 ?>

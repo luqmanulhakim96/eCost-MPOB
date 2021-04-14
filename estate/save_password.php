@@ -7,6 +7,7 @@ extract($_POST);
 if ($password==$repassword)
 {
 $con = connect();
+		$password = password_hash($password,PASSWORD_BCRYPT);
 $q ="update login_estate set password='$password' where lesen = '".$_SESSION['lesen']."'";
 $r = mysqli_query($con, $q);
 }

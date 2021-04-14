@@ -192,7 +192,7 @@ if ($state != "" && $state != "publicagencies" && $state != "cooperatives" && $s
     $dua = $_COOKIE['tahun_report'] - 1;
     ?>
     <?php
-    $qs = "select * from q_km where type='gc' AND name != 'Purchase of asset' AND name !='Purchase of machineries' ORDER BY arrangement ";
+    $qs = "select * from q_km where type='gc' AND name != 'Purchase of asset' AND name != 'Payment of salaries and allowances' AND name !='Professional fee and advisory services' AND name !='Taxes, Temporary Ownership Land (TOL) and insurance' AND name !='Upkeep, conversation and maintenance of building' AND name !='Security Control' AND name !='Office expenses and utilities' AND name !='Depreciation' AND name !='Other expenses' ORDER BY arrangement  ";
     $rs = mysqli_query($con, $qs);
 
     $jl = 0;

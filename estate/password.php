@@ -17,7 +17,7 @@ body,td,th {
     <tr>
       <td colspan="2" style="font-size:14px"><u><b><?=setstring ( 'mal', 'Tukar kata laluan', 'en', 'Change Password'); ?></b></u></td>
     </tr>
-    
+
     <tr>
       <td width="27%" height="39"><?=setstring ( 'mal', 'Nama Pengguna', 'en', 'User Name'); ?></td>
       <td width="73%">:
@@ -33,7 +33,7 @@ body,td,th {
       <td height="41"><?=setstring ( 'mal', 'Kata laluan baru(masuk semula)', 'en', 'Re-enter password'); ?></td>
       <td>:
       <input name="repassword" type="password" style="background: #B4E7E9" id="repassword" value="<?= $pengguna->password; ?>" size="40" />
-	  
+
 	  </td>
     </tr>
     <tr>

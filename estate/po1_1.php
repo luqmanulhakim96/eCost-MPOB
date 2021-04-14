@@ -443,7 +443,7 @@ $pengguna->jumlahakhir;
           <input type="submit" name="button" id="button" value="<?php echo setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>" />
           <input type="submit" name="Submit2"  value=<?=setstring ( 'mal', '"Simpan & Seterusnya"', 'en', '"Save &amp; Next"'); ?> " />
 
-          <input type="submit" name="button2" id="button2" value=" <?php echo setstring ( 'mal', 'Cetak', 'en', 'Print'); ?>" />
+          <input type="button" name="button2"  value="<?php echo setstring  ( 'mal', 'Cetak', 'en', 'Print'); ?>" <a href="#" onclick="window.print()">
         </p>
 
       </div></td>

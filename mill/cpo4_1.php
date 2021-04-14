@@ -134,6 +134,7 @@ document.form1.submit();
       <p>
         <input type="submit" value=<?=setstring ( 'mal', '"Hantar ke MPOB" ', 'en', '"Send to MPOB"'); ?> onclick="pitmid = true; return confirm(<?=setstring ( 'mal', '\'Anda pasti untuk simpan dan sahkan?\'', 'en', '\'Ready for save and approval?\'')?>)" />
         <input name="selesai" type="hidden" id="selesai" value="1" />
+				
         <input name="cetak" type="button" value=<?=setstring ( 'mal', '"Cetak"', 'en', '"Print"'); ?> onclick="print('<?php echo $_SESSION['tahun']; ?>');" />
       </p>
       <table width="100%">

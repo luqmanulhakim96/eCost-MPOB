@@ -31,6 +31,7 @@ function openScript(url, width, height) {
     $qs="select * from q_km where type='gc'";
   $rs = mysqli_query($con, $qs);
 
+
   $jl=0;
   $js=0;
   $ml=0;

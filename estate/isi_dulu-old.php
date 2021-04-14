@@ -14,7 +14,7 @@
 				modal:true,
 				title:"<?=setstring ( 'mal', 'Login ke E-COST Estet', 'en', 'Login to E-COST Estate'); ?>",
 				close:function() {
-					window.location.href = "home.php?id=home&secondtime";
+					window.location.href = "home.php?id=";
 				},
 				buttons:{
 					"OK":function() {

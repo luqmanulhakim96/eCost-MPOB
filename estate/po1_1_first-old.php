@@ -128,18 +128,15 @@ $jumlah_semua = 	$pengguna->luastuai + $pb1+$pb2+$pb3 + $ps1+$ps2+$ps3 + $pt1+$p
 </style>
 <form id="form1" name="form1" method="post" action="save_first.php">
 <table width="100%" align="center" cellspacing="0" class="tableCss" style="border:1px #333333 solid; padding:2px;">
-<?php /*
   <tr>
     <td height="29" bgcolor="#99FF99">&nbsp;</td>
     <td colspan="2" bgcolor="#99FF99"><strong><?=setstring ( 'mal', 'Nama pegawai melapor', 'en', 'Name of Reporting Officer'); ?></strong>      </td>
     <td colspan="4" bgcolor="#99FF99"><input name="pegawai" type="text" id="pegawai" style="text-align:left; font-weight:normal;" value="<?= $pengguna->pegawai; ?>" size="50" width="50" />
       <input name="nolesen" type="hidden" id="nolesen" value="<?= $_SESSION['lesen'];?>" />    </td>
   </tr>
-*/?>
-  <tr>
 
+  <tr>
     <td width="14" height="37">&nbsp;</td>
-		<?php /*
     <td colspan="2"><b><?=setstring ( 'mal', 'Jenis syarikat', 'en', 'Company Type'); ?></b></td>
     <td colspan="4"><select name="syarikat" id="syarikat" style="width:330px">
       <option>-<?=setstring ( 'mal', 'Pilih', 'en', 'Select'); ?>-</option>
@@ -150,12 +147,10 @@ $jumlah_semua = 	$pengguna->luastuai + $pb1+$pb2+$pb3 + $ps1+$ps2+$ps3 + $pt1+$p
         </option>
       <?php } ?>
     </select></td>
-		*/?>
   </tr>
 
   <tr>
-    <td> </td>
-		<?php /*
+    <td height="32" bgcolor="#99FF99">&nbsp;</td>
     <td colspan="2" bgcolor="#99FF99"><strong><?=setstring ( 'mal', 'Keahlian dalam persatuan', 'en', 'Membership in Union'); ?></b></strong></td>
     <td colspan="4" bgcolor="#99FF99"><select name="keahlian" id="keahlian" style="width:330px">
       <option>-<?=setstring ( 'mal', 'Pilih', 'en', 'Select'); ?>-</option>
@@ -165,10 +160,8 @@ $jumlah_semua = 	$pengguna->luastuai + $pb1+$pb2+$pb3 + $ps1+$ps2+$ps3 + $pt1+$p
         </option>
       <?php } ?>
     </select></td>
-		*/?>
   </tr>
 
-<?php /*
   <tr>
     <td height="31">&nbsp;</td>
     <td colspan="2"><strong><?=setstring ( 'mal', 'Integrasi dengan kilang buah sawit', 'en', 'Integration with Palm Factory'); ?></strong></td>
@@ -177,7 +170,6 @@ $jumlah_semua = 	$pengguna->luastuai + $pb1+$pb2+$pb3 + $ps1+$ps2+$ps3 + $pt1+$p
     <td colspan="3"><input type="radio" name="integrasi" id="radio2" value="N" <?php if($pengguna->integrasi=='N'){?>checked="checked"<?php } ?> />
 <?=setstring ( 'mal', 'Tidak', 'en', 'No'); ?></td>
   </tr>
-	*/?>
   <tr>
     <td height="24" bgcolor="#99FF99">&nbsp;</td>
     <td colspan="2" bgcolor="#99FF99"> <strong><?=setstring ( 'mal', 'Keluasan mengikut jenis tanah:', 'en', 'Area respective to soil type:'); ?></strong></td>
@@ -190,35 +182,29 @@ $jumlah_semua = 	$pengguna->luastuai + $pb1+$pb2+$pb3 + $ps1+$ps2+$ps3 + $pt1+$p
     <?php
   	if(!isset($_GET['print'])) {
   ?>
-	<?php /*
   <tr>
     <td height="35"></td>
     <td colspan="2" bgcolor="#CCFFFF"><div align="left"><?=setstring ( 'mal', 'a. Tanah Lanar', 'en', 'a. Alluvial Soil'); ?></div></td>
     <td bgcolor="#CCFFFF"><div align="center">
-		*/?>
-      <input name="lanar" type="hidden" class="field_active" id="lanar" onblur="field_blur(this,'s1')" onclick="field_click(this)" value="<?= $pengguna->lanar ?? 0; ?>" size="3" />
+      <input name="lanar" type="text" class="field_active" id="lanar" onblur="field_blur(this,'s1')" onclick="field_click(this)" value="<?= $pengguna->lanar; ?>" size="3" />
       <?=setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div></td>
-	<?php /*
-	  <td bgcolor="#CCFFFF">
+    <td bgcolor="#CCFFFF">
       <div align="center">
         <span id="s1"><?php $a = round($pengguna->lanar/$jumlah_semua*100,2);echo number_format($a,2); ?> %</span></div>    </td>
     <td bgcolor="#CCFFFF">&nbsp;</td>
     <td width="42" bgcolor="#CCFFFF">&nbsp;</td>
   </tr>
-		*/?>
   <?php
   }
   ?>
-	<?php /*
   <tr>
     <td height="35"></td>
     <td colspan="2" bgcolor="#FFCCCC"><div align="left"><?=setstring ( 'mal', 'b. Tanah Pedalaman', 'en', 'b. Rural Land'); ?></div></td>
     <td bgcolor="#FFCCCC">
       <div align="center">
-				*/?>
-<input name="pedalaman" type="hidden" class="field_active" id="pedalaman" onblur="field_blur(this,'s2')" onclick="field_click(this)" value="<?= $pengguna->pedalaman ?? 0; ?>" size="3" />
+<input name="pedalaman" type="text" class="field_active" id="pedalaman" onblur="field_blur(this,'s2')" onclick="field_click(this)" value="<?= $pengguna->pedalaman; ?>" size="3" />
 <?=setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div>
-<?php /*
+
       <div align="center"></div></td>
     <td bgcolor="#FFCCCC">
       <div align="center">
@@ -228,7 +214,6 @@ $jumlah_semua = 	$pengguna->luastuai + $pb1+$pb2+$pb3 + $ps1+$ps2+$ps3 + $pt1+$p
     <td bgcolor="#FFCCCC">&nbsp;</td>
     <td bgcolor="#FFCCCC">&nbsp;</td>
   </tr>
-	*/?>
   <tr>
     <td height="34"></td>
     <td colspan="2" bgcolor="#FFFFCC"><div align="left"><?=setstring ( 'mal', 'c. Tanah Gambut : ', 'en', 'c. Peat Soil:'); ?></div></td>
@@ -274,8 +259,6 @@ $jumlah_semua = 	$pengguna->luastuai + $pb1+$pb2+$pb3 + $ps1+$ps2+$ps3 + $pt1+$p
       <td width="54" bgcolor="#FFFFCC">&nbsp;</td>
       <td bgcolor="#FFFFCC">&nbsp;</td>
   </tr>
-
-	<?php /*
   <tr>
     <td height="27"></td>
     <td colspan="2" bgcolor="#CACAFF"><?=setstring ( 'mal', 'd. Lain-lain Jenis Tanah :', 'en', 'Other Soil Type:'); ?></td>
@@ -291,18 +274,14 @@ $jumlah_semua = 	$pengguna->luastuai + $pb1+$pb2+$pb3 + $ps1+$ps2+$ps3 + $pt1+$p
     <td bgcolor="#CACAFF">&nbsp;</td>
     <td bgcolor="#CACAFF">&nbsp;</td>
   </tr>
-	*/?>
-		<?php /*
   <tr>
     <td height="37"></td>
     <td bgcolor="#CACAFF"><div align="right"> i)</div></td>
     <td bgcolor="#CACAFF"> <?=setstring ( 'mal', 'laterit', 'en', 'Laterite'); ?></td>
     <td bgcolor="#CACAFF"><div align="center">
-		*/?>
-          <input name="laterit" type="hidden" class="field_active" id="laterit" onblur="field_blur(this,'s5')" onclick="field_click(this)" value="<?= $pengguna->laterit ?? 0; ?>" size="3" />
+          <input name="laterit" type="text" class="field_active" id="laterit" onblur="field_blur(this,'s5')" onclick="field_click(this)" value="<?= $pengguna->laterit; ?>" size="3" />
       <?=setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div></td>
-	<?php /*
-		<td bgcolor="#CACAFF"><div align="center">
+    <td bgcolor="#CACAFF"><div align="center">
           <span id="s5">
           <?php $a = round($pengguna->laterit/$jumlah_semua*100,2);echo number_format($a,2); ?>
  %</span>
@@ -310,17 +289,13 @@ $jumlah_semua = 	$pengguna->luastuai + $pb1+$pb2+$pb3 + $ps1+$ps2+$ps3 + $pt1+$p
     <td bgcolor="#CACAFF">&nbsp;</td>
     <td bgcolor="#CACAFF">&nbsp;</td>
   </tr>
-		*/?>
-		<?php /*
   <tr>
     <td height="42"></td>
     <td bgcolor="#CACAFF"><div align="right">ii) </div></td>
     <td bgcolor="#CACAFF"><?=setstring ( 'mal', 'Asid Sulfat', 'en', 'Sulphate Acid'); ?> </td>
     <td bgcolor="#CACAFF"><div align="center">
-			*/?>
-          <input name="asidsulfat" type="hidden" class="field_active" id="asidsulfat" onblur="field_blur(this,'s6')" onclick="field_click(this)" value="<?= $pengguna->asidsulfat ?? 0; ?>" size="3" />
+          <input name="asidsulfat" type="text" class="field_active" id="asidsulfat" onblur="field_blur(this,'s6')" onclick="field_click(this)" value="<?= $pengguna->asidsulfat; ?>" size="3" />
       <?=setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div></td>
-		<?php /*
    <td bgcolor="#CACAFF"><div align="center">
      <span id="s6">
      <?php $a = round($pengguna->asidsulfat/$jumlah_semua*100,2);echo number_format($a,2); ?>
@@ -328,25 +303,20 @@ $jumlah_semua = 	$pengguna->luastuai + $pb1+$pb2+$pb3 + $ps1+$ps2+$ps3 + $pt1+$p
     <td bgcolor="#CACAFF">&nbsp;</td>
     <td bgcolor="#CACAFF">&nbsp;</td>
   </tr>
-		*/?>
-		<?php /*
   <tr>
     <td height="26"></td>
     <td bgcolor="#CACAFF"><div align="right">iii)</div></td>
     <td bgcolor="#CACAFF"> <?=setstring ( 'mal', 'Tanah berpasir', 'en', 'Sandy Soil'); ?> </td>
     <td bgcolor="#CACAFF"><div align="center">
-		*/?>
-      <input name="tanahpasir" type="hidden" class="field_active" id="tanahpasir" onblur="field_blur(this,'s7')" onclick="field_click(this)" value="<?= $pengguna->tanahpasir ?? 0; ?>" size="3" />
+      <input name="tanahpasir" type="text" class="field_active" id="tanahpasir" onblur="field_blur(this,'s7')" onclick="field_click(this)" value="<?= $pengguna->tanahpasir; ?>" size="3" />
       <?=setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div></td>
-	<?php /*
-		<td bgcolor="#CACAFF"><div align="center"><strong>
+    <td bgcolor="#CACAFF"><div align="center"><strong>
       <span id="s7">
       <?php $a = round($pengguna->tanahpasir/$jumlah_semua*100,2);echo number_format($a,2); ?>
  %</span></strong></div></td>
     <td bgcolor="#CACAFF">&nbsp;</td>
     <td bgcolor="#CACAFF">&nbsp;</td>
   </tr>
-			*/?>
 
   <!--<tr>
     <td height="34" bgcolor="#99FF99">&nbsp;</td>

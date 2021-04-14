@@ -18,8 +18,6 @@ a_8 ,
 a_9 ,
 a_10 ,
 a_11 ,
-
-
 total_a ,
 b_1a ,
 b_1b ,
@@ -46,10 +44,11 @@ total_b ,
 status
 )
 VALUES (
-'$year', '".$_SESSION['tahun']."', '".$_SESSION['lesen']."', '".$t."', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0'
+'$year', '".$_SESSION['tahun']."', '".$_SESSION['lesen']."', '".$t."', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0'
 );
 ";
 $r=mysqli_query($con, $q);
+// print($q);
 }
 
 if($t=="Penanaman Semula"){$table="tanam_semula";$data="tanaman_semula";}

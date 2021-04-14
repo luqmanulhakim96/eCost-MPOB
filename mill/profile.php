@@ -8,18 +8,18 @@
       <tr>
         <td width="90%" valign="top">
         <?php
-	
+
     if(isset($_GET['utama'])) {
 ?>
           <p><strong>Selamat Datang</strong></p>
-          <p>Login terakhir anda pada 
+          <p>Login terakhir anda pada
           <?= date("d-m-Y h:i",strtotime("200911301150")) ?></p>
           <?php
 		}
 		else {
 	?>
         <table width="82%" border="0" align="center" cellpadding="1" cellspacing="1" id="box-table-a">
-       
+
           <tr>
             <td height="27" colspan="4"><h2><strong><?=setstring ( 'mal', 'Maklumat Am', 'en', 'General Information'); ?>
 </strong></h2></td>
@@ -42,8 +42,8 @@
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->lesenlama; ?></td>
           </tr>
-          
-       
+
+
           <tr>
             <td height="31" colspan="4"><h2><strong><?=setstring ( 'mal', 'Alamat Hubungan', 'en', 'Contact Address'); ?>
 </strong></h2></td>
@@ -54,14 +54,14 @@
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->alamatsurat1; ?></td>
           </tr>
-          
+
           <tr>
             <td><strong><?=setstring ( 'mal', 'Poskod', 'en', 'Postcode'); ?>
 </strong></td>
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->alamatsurat2; ?></td>
           </tr>
-          
+
           <tr>
             <td><strong><?=setstring ( 'mal', 'Negeri', 'en', 'State'); ?>
 </strong></td>
@@ -86,21 +86,21 @@
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->email; ?></td>
           </tr>
-          
+
           <tr>
             <td><strong><?=setstring ( 'mal', 'Pegawai Melapor', 'en', 'Reporting Officer'); ?>
 </strong></td>
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->pegawai; ?></td>
           </tr>
-          
+
           <tr valign="top">
             <td><strong><?=setstring ( 'mal', 'Syarikat Induk', 'en', 'Headquarters'); ?>
 </strong></td>
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->syarikatinduk; ?></td>
           </tr>
-          
+
           <tr>
             <td><strong><?=setstring ( 'mal', 'Daerah Premis ', 'en', 'Premist District'); ?>
 </strong></td>
@@ -137,13 +137,13 @@
             <td><strong>:</strong></td>
             <td colspan="2"><?= $pengguna->teknologi; ?></td>
           </tr>
-          
+
           <tr>
             <td><strong><?=setstring ( 'mal', 'Integrasi dengan Estet', 'en', 'Integration with Estate'); ?>
 </strong></td>
             <td><strong>:</strong></td>
             <td colspan="2"><?php if($pengguna->integrasi=='Y'){?>
-			
+
 			<?php echo "YA"; }else{?>
 			<?php echo "TIDAK";
 			?>
@@ -154,10 +154,10 @@
             <td><strong><?=setstring ( 'mal', 'Tahun Kilang Mula Beroperasi', 'en', 'Years of Mill Starts Operate'); ?>
 </strong></td>
             <td><strong>:</strong></td>
-            <td colspan="2"><?= $pengguna->tahun_operasi; ?> 
+            <td colspan="2"><?= $pengguna->tahun_operasi; ?>
             (<?php $ts = $_SESSION['tahun']; $to = $ts-$pengguna->tahun_operasi; echo $to; ?> Tahun)</td>
           </tr>
-          
+
           <tr>
             <td> </td>
             <td></td>
@@ -173,7 +173,7 @@
         <?php
 			}
 		?>
-        
+
           <div align="left"><br />
           </div>
           <br /></td>
