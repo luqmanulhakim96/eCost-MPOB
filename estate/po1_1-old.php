@@ -126,12 +126,15 @@ $pengguna->jumlahakhir;
 
 
 <style type="text/css">
-
+<!--
+.style1 {font-weight: bold}
+.style2 {font-weight: bold}
+-->
 </style>
 <form id="form1" name="form1" method="post" action="save_profile.php">
 <table width="100%" align="center" cellspacing="0" class="tableCss" style="border:1px #333333 solid; padding:2px;">
 
-
+<?php /*
   <tr>
     <td height="29" bgcolor="#99FF99">&nbsp;</td>
     <td colspan="2" bgcolor="#99FF99"><strong><?php echo setstring ( 'mal', 'Nama pegawai melapor', 'en', 'Name of Reporting Officer'); ?></strong>      </td>
@@ -176,7 +179,7 @@ $pengguna->jumlahakhir;
     <td colspan="3"><input type="radio" name="integrasi" id="radio2" value="N" <?php if($pengguna->integrasi=='N'){?>checked="checked"<?php } ?> />
 <?php echo setstring ( 'mal', 'Tidak', 'en', 'No'); ?></td>
   </tr>
-
+*/?>
 
 <tr>   <input name="nolesen" type="hidden" id="nolesen" value="<?php echo  $_SESSION['lesen'];?>" />  </tr>
   <tr>
@@ -236,23 +239,48 @@ $pengguna->jumlahakhir;
   <tr>
 
     <td colspan="2" bgcolor="#CACAFF"><div align="left"><?php echo setstring ( 'mal', ' Peratusan keluasan tanah gambut (sekiranya ada) : ', 'en', 'Percentage of peatland area (if any):'); ?></div></td>
-
-
-      <td width="216" bgcolor="#CACAFF">
-      <div align="left">
-        <input name="gambut" type="text" class="field_active" id="gambut" onblur="field_blur(this,'s3')" onclick="field_click(this)" value="<?php echo  $pengguna->gambut; ?>" size="3" />
-      <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?> </div>
-      </td>
-
-      <td width="139" bgcolor="#CACAFF">
+    <td bgcolor="#CACAFF"><div align="center"><span class="style1"><?php echo $tg = $pengguna->gambutcetek+ $pengguna->gambutdalam; ?>  <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></span></div></td>
+    <td bgcolor="#CACAFF"><div align="center"><span class="style1">
+    </span></div>      <span class="style1">
         <div align="center">
-          <span id="s3">
-          <?php $a = round($pengguna->gambut/$jumlah_semua*100,2);echo number_format($a,2); ?>
-   %</span></div>    </td>
-</tr>
+          <?php $a = round($tg/$jumlah_semua*100,2);echo number_format($a,2); ?>
+ %</div>
 
+    </span></td>
+    <td bgcolor="#CACAFF">&nbsp;</td>
+    <td bgcolor="#CACAFF">&nbsp;</td>
+  </tr>
+  <tr>
 
+    <td width="96" bgcolor="#CACAFF"><div align="right">i) </div></td>
+    <td width="151" bgcolor="#CACAFF"><?php echo setstring ( 'mal', 'Gambut Cetek', 'en', 'Shallow Peat Soil'); ?></td>
+    <td width="216" bgcolor="#CACAFF">
+      <div align="center">
+        <input name="gambutcetek" type="text" class="field_active" id="gambutcetek" onblur="field_blur(this,'s3')" onclick="field_click(this)" value="<?php echo  $pengguna->gambutcetek; ?>" size="3" />
+      <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?> </div></td>
+    <td width="139" bgcolor="#CACAFF">
+      <div align="center">
+        <span id="s3">
+        <?php $a = round($pengguna->gambutcetek/$jumlah_semua*100,2);echo number_format($a,2); ?>
+ %</span></div>    </td>
+    <td width="54" bgcolor="#CACAFF">&nbsp;</td>
+    <td bgcolor="#CACAFF">&nbsp;</td>
+  </tr>
+  <tr>
 
+    <td bgcolor="#CACAFF"><div align="right">ii) </div></td>
+    <td bgcolor="#CACAFF"> <?php echo setstring ( 'mal', 'Gambut Dalam', 'en', 'Deep Peat Soil'); ?></td>
+    <td bgcolor="#CACAFF"><div align="center">
+      <input name="gambutdalam" type="text" class="field_active" id="gambutdalam" onblur="field_blur(this,'s4')" onclick="field_click(this)" value="<?php echo  $pengguna->gambutdalam; ?>" size="3"  />
+      <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?></div></td>
+    <td bgcolor="#CACAFF">
+      <div align="center">
+        <span id="s4">
+        <?php $a = round($pengguna->gambutdalam/$jumlah_semua*100,2);echo number_format($a,2); ?>
+ %</span></div></td>
+      <td width="54" bgcolor="#CACAFF">&nbsp;</td>
+      <td bgcolor="#CACAFF">&nbsp;</td>
+  </tr>
 
 
 <?php /*

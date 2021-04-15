@@ -82,7 +82,8 @@ class user {
 	le.password , ei.pegawai, ei.syarikat, ei.integrasi, ei.keahlian,
 	 	ei.lanar,
 		ei.pedalaman ,
-		ei.gambutcetek ,
+    ei.gambutcetek ,
+		ei.gambut ,     
 		ei.gambutdalam ,
 		ei.laterit ,
 		ei.asidsulfat ,
@@ -130,6 +131,7 @@ class user {
             $this->lanar = $row['lanar'];
             $this->pedalaman = $row['pedalaman'];
             $this->gambutcetek = $row['gambutcetek'];
+            $this->gambut = $row['gambut'];       //baru
             $this->gambutdalam = $row['gambutdalam'];
             $this->laterit = $row['laterit'];
             $this->asidsulfat = $row['asidsulfat'];

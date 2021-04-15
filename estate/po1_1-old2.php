@@ -131,7 +131,7 @@ $pengguna->jumlahakhir;
 <form id="form1" name="form1" method="post" action="save_profile.php">
 <table width="100%" align="center" cellspacing="0" class="tableCss" style="border:1px #333333 solid; padding:2px;">
 
-
+<?php /*
   <tr>
     <td height="29" bgcolor="#99FF99">&nbsp;</td>
     <td colspan="2" bgcolor="#99FF99"><strong><?php echo setstring ( 'mal', 'Nama pegawai melapor', 'en', 'Name of Reporting Officer'); ?></strong>      </td>
@@ -176,7 +176,7 @@ $pengguna->jumlahakhir;
     <td colspan="3"><input type="radio" name="integrasi" id="radio2" value="N" <?php if($pengguna->integrasi=='N'){?>checked="checked"<?php } ?> />
 <?php echo setstring ( 'mal', 'Tidak', 'en', 'No'); ?></td>
   </tr>
-
+*/?>
 
 <tr>   <input name="nolesen" type="hidden" id="nolesen" value="<?php echo  $_SESSION['lesen'];?>" />  </tr>
   <tr>

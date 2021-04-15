@@ -167,7 +167,7 @@ function openScript(url, width, height) {
 
 <table width="85%" align="center" class="baju">
 <tr>
-<td colspan="5"><h2><strong>Cost in the <?=$bilTahun[$year-1]?> Year of Oil Palm New Conversion (RM per hectare)</strong></h2></td>
+<td colspan="5"><h2><strong>Cost in the <?=$bilTahun[$year-1]?> Year of Oil Palm Conversion (RM per hectare)</strong></h2></td>
 </tr>
 <tr >
     <th width="34%" rowspan="2"><span class="style5">Cost Items</span></th>

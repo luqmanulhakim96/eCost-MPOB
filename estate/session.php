@@ -33,11 +33,11 @@ if (($_SESSION['lesen'] <> NULL))
 
             // Countdown timer for redirecting to another URL after several seconds
 
-            var seconds = 7; // seconds for HTML
+            var seconds = 999; // seconds for HTML
             var foo; // variable for clearInterval() function
 
             function redirect() {
-                document.location.href = 'home.php?id=home&secondtime';
+                document.location.href = 'home.php?id=profile';
             }
 
             function updateSecs() {

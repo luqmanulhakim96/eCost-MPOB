@@ -82,7 +82,23 @@
 
 
 	</script>
-
+<style type="text/css">
+<!--
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	text-transform: none;
+}
+-->
+</style>
+<style type="text/css">
+<!--
+.style1 {
+	color: #FFFFFF;
+	font-weight: bold;
+}
+-->
+</style>
 
 <form action="update_profil.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
 
@@ -297,6 +313,113 @@
               </span></td>
           </tr>
 
+<form action="update_profil.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
+					<tr>
+            <td width="201" align="left" valign="top"><b>
+              <?php echo setstring ( 'mal', 'Jenis Syarikat', 'en', 'Company Type');
+							 ?>
+              </b></td>
+							<td colspan="2">
+							<select name="syarikat" id="syarikat" name="syarikat"  id="syarikat">
+							<?php $syarikat = $pengguna->jenissyarikat; ?>
+							<option value="agensi" <?php if($syarikat== "agensi") echo 'selected="selected"'; ?>><?php echo setstring ( 'mal', 'Agensi', 'en', 'Agencies'); ?></option>
+							<option value="sdnbhd" <?php if($syarikat== "sdnbhd") echo 'selected="selected"'; ?>><?php echo setstring ( 'mal', 'Sdn Bhd', 'en', 'Sdn Bhd'); ?></option>
+							<option value="perkongsian" <?php if($syarikat== "perkongsian") echo 'selected="selected"'; ?>><?php echo setstring ( 'mal', 'Perkongsian', 'en', 'Partnership'); ?></option>
+							<option value="koperasi"  <?php if($syarikat== "koperasi") echo 'selected="selected"'; ?>><?php echo setstring ( 'mal', 'Koperasi', 'en', 'Co operative'); ?></option>
+							<option value="berhad" <?php if($syarikat== "berhad") echo 'selected="selected"'; ?>><?php echo setstring ( 'mal', 'Berhad', 'en', 'Berhad'); ?></option>
+							<option value="perseorangan" <?php if($syarikat== "perseorangan") echo 'selected="selected"'; ?>><?php echo setstring ( 'mal', 'Perseorangan', 'en', 'Sole proprietorship'); ?></option>
+							</select>
+
+
+
+							</td>
+							<input name="nolesen" type="hidden" id="nolesen" value="<?= $pengguna->nolesen; ?>"/>
+
+							<?php /*
+            <td width="7"><div align="center"><strong>:</strong></div></td>
+            <td width="674"><?php function company($x){
+			$con =connect();
+			$query = "select * from company where comp_name = '$x' ";
+			$res = mysqli_query($con, $query);
+			$row = mysqli_fetch_array($res);
+			if($_COOKIE['lang']=='mal'){
+			$data = $row['comp_name'];
+			}
+			else{
+			$data = $row['comp_name_english'];
+			}
+			return $data;
+		}
+
+
+		function keahlian($x){
+			$con =connect();
+			$query = "select * from keahlian where ahli_name = '$x' ";
+			$res = mysqli_query($con, $query);
+			$row = mysqli_fetch_array($res);
+			if($_COOKIE['lang']=='mal'){
+			$data = $row['ahli_name'];
+			}
+			else{
+			$data = $row['ahli_name_english'];
+			}
+			return $data;
+		}
+
+
+		?>
+              <?php echo company($pengguna->jenissyarikat); ?></td>
+          </tr>
+
+					*/?>
+
+          <tr>
+            <td width="201" align="left" valign="top"><strong>
+              <?php echo setstring ( 'mal', 'Keahlian dalam Persatuan', 'en', 'Membership in Union'); ?>
+              </b></strong></td>
+							<td colspan="2"> <select name="keahlian" id="keahlian"  name="keahlian" id="keahlian"  >
+							<?php $keahlian = $pengguna->keahlian; ?>
+							<option value="MAPA"  <?php if($keahlian== "MAPA") echo 'selected="selected"'; ?>> <?php echo setstring ( 'mal', 'Persatuan Pengeluar Pertanian Malaysia (MAPA)', 'en', 'Malayan Agricultural Producers Association (MAPA)'); ?></option>
+							<option value="EMPA"  <?php if($keahlian== "EMPA") echo 'selected="selected"'; ?>> <?php echo setstring ( 'mal', 'Persatuan Pengeluar Malaysia Timur (EMPA)', 'en', 'East Malaysia Planters Association (EMPA)'); ?></option>
+							<option value="bukanahli"  <?php if($keahlian== "bukanahli") echo 'selected="selected"'; ?>> <?php echo setstring ( 'mal', 'Bukan Ahli', 'en', 'Non Member'); ?></option>
+
+							</select>
+
+
+							</td>
+
+
+
+							<?php /*
+            <td><div align="center"><strong>:</strong></div></td>
+            <td><?php echo keahlian($pengguna->keahlian); ?></td>
+						*/?>
+
+          </tr>
+					<tr>
+
+				    <td ><strong><?php echo setstring ( 'mal', 'Integrasi dengan kilang buah sawit', 'en', 'Integration with Palm Factory'); ?></strong></td>
+				    <td><input type="radio" name="integrasi" id="radio" value="Y" <?php if($pengguna->integrasi=='Y'){?>checked="checked"<?php } ?> />
+				<?php echo setstring ( 'mal', 'Ya', 'en', 'Yes'); ?>
+				    <input type="radio" name="integrasi" id="radio2" value="N" <?php if($pengguna->integrasi=='N'){?>checked="checked"<?php } ?> />
+				<?php echo setstring ( 'mal', 'Tidak', 'en', 'No'); ?></td>
+				  </tr>
+          <!--<tr>
+        <td width="201" align="left" valign="top"><strong>Integrasi dengan Kilang</strong></td>
+        <td><div align="center"><strong>:</strong></div></td>
+        <td><img src="../images/accepted_48.png" width="16" height="16" /> Ya</td>
+      </tr>-->
+          <tr>
+            <td colspan="3" align="left" valign="top"> </td>
+          </tr>
+					<td colspan="2">	<input type="submit" name="Submit" value="<?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?>" />
+					<input type="submit" name="Submit2"  value=<?=setstring ( 'mal', '"Simpan & Seterusnya"', 'en', '"Save &amp; Next"'); ?> " />
+
+
+					</td>
+					<tr>
+						<td colspan="3" align="left" valign="top"> </td>
+					</tr>
 
 
 
@@ -339,7 +462,47 @@
 						<table width="100"" align="center" cellspacing="0" class="tableCss" style="border:1px #333333 solid; padding:2px;">
 
 
+                <tr>
 
+                  <td><div id="percent_soil" ></div>
+                    <div align="center"><br />
+                      <strong>
+                      <?php echo setstring ( 'mal', 'Peratusan Jenis Tanah', 'en', 'Percentage of Soil Composition'); ?>
+                      </strong>
+
+											<div id="piechart" style="width: 600px; height: 300px;"></div>
+										<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+										 <script type="text/javascript">
+											 google.charts.load("current", {packages:["corechart"]});
+											 google.charts.setOnLoadCallback(drawChart);
+											 function drawChart() {
+												 var data = google.visualization.arrayToDataTable([
+													 ['Area', ''],
+
+
+													 ['Tanah Gambut', <?php echo $tanahgambut; ?> ],
+
+
+
+												 ]);
+
+												 var options = {
+													 title: '',
+													 legend: 'none',
+													 pieSliceText: 'label',
+													 slices: {  0: {offset: 0.2},
+																		 1: {offset: 0.2},
+																		 2: {offset: 0.2},
+																		 3: {offset: 0.2},
+																		 4: {offset: 0.2},
+
+													 },
+												 };
+
+												 var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+												 chart.draw(data, options);
+											 }
+										 </script>
 
 
 

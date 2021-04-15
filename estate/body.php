@@ -327,7 +327,7 @@ if ($total == 0 && $mill == "true") {
         $qadd = "INSERT INTO `alamat_ekilang` (`lesen`, `nama`, `alamat1`, `alamat2`, `alamat3`, `alamatsurat1`, `alamatsurat2`, `alamatsurat3`, `notel`, `nofax`, `email`, `pegawai`, `jpg`, `kategori`) VALUES ('" . $row1['NO_LESEN'] . "', '" . $row1['NAMA_KILANG'] . "', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
         $radd = mysqli_query($con, $qadd);
 
-        echo "<script>location.href='../mill/home.php?id=home&firsttime';</script>";
+        echo "<script>location.href='../mill/home.php?id=profile&logging=true&tahun=$tahun';</script>";
     }
 
     $q = "update login_mill set fail= NOW() where lesen = '$username'";
@@ -445,9 +445,14 @@ if (isset($lesen)) {
         <?php
     }
     if ($firsttime == '1' && $mill != "true") {
+      $qinfo="INSERT INTO estate_info (lesen ,gambut, percentrata ,percentalun ,percentbukit ,percentcerun)
+     VALUES (
+     '".$lesen."',  '0', '0', '0', '0', '0')";
+     $rinfo = mysqli_query($con, $qinfo);
+     
         ?>
         <script language="javascript">
-            document.form1.action = "home.php?id=home&firsttime";
+            document.form1.action = "home.php?id=profile";
             document.form1.target = "_parent";
             document.form1.submit();
         </script>
@@ -465,7 +470,7 @@ if (isset($lesen)) {
     if ($firsttime == '1' && $mill == "true") {
         ?>
         <script language="javascript">
-            document.form1.action = "../mill/home.php?id=home&firsttime";
+            document.form1.action = "../mill/home.php?id=profile&logging=true&tahun=$tahun";
             document.form1.target = "_parent";
             document.form1.submit();
         </script>
