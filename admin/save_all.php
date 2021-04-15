@@ -89,6 +89,7 @@ if ($type != "delete") {
     $q_estatedetail = "update  estate_info set pegawai='$pegawai', syarikat ='$syarikat',integrasi = '$integrasi', keahlian='$keahlian'"
             . " where lesen = '$nolesen'";
     $r_estatedetail = mysqli_query($con, $q_estatedetail);
+    // print_r($q_estatedetail);
 
     $qUpdateImmature = "select CONVERT(SUM(qr.val), DECIMAL(18,9)) as totalImmature from(
 								select qry1.lesen, qry1.tanaman_baru as val from(

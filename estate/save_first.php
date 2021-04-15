@@ -6,14 +6,14 @@ $con = connect();
 $q="update login_estate set firsttime ='2' where lesen = '".$_SESSION['lesen']."'";
 $r = mysqli_query($con, $q);
 
- $qinfo="INSERT INTO estate_info (lesen ,pegawai ,syarikat ,integrasi,keahlian ,lanar,pedalaman ,gambutcetek ,gambutdalam ,laterit ,asidsulfat ,tanahpasir ,percentrata ,percentalun ,percentbukit ,percentcerun)
+ $qinfo="INSERT INTO estate_info (lesen ,gambut, percentrata ,percentalun ,percentbukit ,percentcerun)
 VALUES (
-'".$_SESSION['lesen']."', upper('$pegawai'), '$syarikat', '$integrasi', '$keahlian','$lanar', '$pedalaman', '$gambutcetek', '$gambutdalam', '$laterit', '$asidsulfat', '$tanahpasir', '$percentrata', '$percentalun', '$percentbukit', '$percentcerun')";
+'".$_SESSION['lesen']."',  '0', '0', '0', '0', '0')";
 $rinfo = mysqli_query($con, $qinfo);
 
-
-
+// print_r($qinfo);
 
 $URL = "home.php?id=profile";
 header("Location:".$URL);
+
 ?>

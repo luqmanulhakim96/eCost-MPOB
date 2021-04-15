@@ -14,12 +14,7 @@ $negeri = new daerah('negeri','');
 <script type="text/javascript">
 	$('.telefon').numeric({allow:"-"});
 </script><style type="text/css">
-<!--
-body,td,th {
-	font-family: Geneva, Arial, Helvetica, sans-serif;
-	font-size: 12px;
-}
--->
+
 </style>
 <form action="update_profil.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
   <table width="100%" border="0" align="center" cellpadding="1" cellspacing="1" style="border:1px #333333 solid">

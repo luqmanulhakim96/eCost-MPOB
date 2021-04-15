@@ -1,4 +1,4 @@
-<?php 
+<?php
 session_start();
 include('../Connections/connection.class.php');
 include('../class/user.class.php');
@@ -7,11 +7,11 @@ include('../setstring.inc');
 $pengguna = new user('estate',$_SESSION['lesen']);
 $negeri = new daerah('negeri','');
 ?>
-<script type="text/javascript"> 
+<script type="text/javascript">
 	$('.poskod').numeric();
 </script>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
 	$('.telefon').numeric({allow:"-"});
 </script>
 <form action="update_profil.php" method="post" enctype="multipart/form-data" name="form1" id="form1">
@@ -19,7 +19,7 @@ $negeri = new daerah('negeri','');
 
     <tr>
       <td width="1%" height="33">&nbsp;</td>
-      <td width="15%"><strong><?=setstring ( 'mal', 'Alamat 1', 'en', 'Address 1'); ?> </strong></td>
+      <td width="15%"><strong><?=setstring ( 'mal', 'Alamat 1', 'en', 'Address 1');ss ?> </strong></td>
       <td width="3%"><strong>:</strong></td>
       <td width="81%" colspan="2">
         <input name="alamat1" type="text" id="alamat1" value="<?= $pengguna->alamat1; ?>" size="50" />
@@ -78,11 +78,11 @@ $negeri = new daerah('negeri','');
       <td colspan="2">
       <input name="email" type="text" id="email" value="<?= $pengguna->email; ?>" size="50" /></td>
     </tr>
-    
-    
-    
-    
-    
+
+
+
+
+
     <tr>
       <td colspan="5">
           <div align="center"><br />

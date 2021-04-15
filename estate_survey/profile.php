@@ -261,7 +261,7 @@ jQuery(document).ready(function($) {
 
                 <div align="left">
                   <input type="submit" name="sw-sunting" id="sw-simpan" value=<?=setstring ( 'mal', '"Kembali"', 'en', '"Back"'); ?> />
-                  <input type="submit" name="button" id="sw-sunting" value=<?=setstring ( 'mal', '"Edit Maklumat Am"', 'en', 'Edit General Information'); ?> />
+                  <input type="submit" name="button" id="sw-sunting" value=<?=setstring ( 'mal', '"Edit Maklumat Assm"', 'en', 'Edit General Information'); ?> />
 
                 </div>
                 <?php } ?>
