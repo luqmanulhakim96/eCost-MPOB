@@ -4,13 +4,13 @@ class cost
 	function __construct()
 	{
 		// $host = "localhost";
-		// $user = "root";
+		// $user = "artanis";
 		// $pass = "root";
 		// $db_n = "ecost_db";
 
 		$host = "localhost";
-		$user = "root";
-		$pass = "";
+		$user = "artanis";
+		$pass = "M@xis123";
 		$db_n = "mpob";
 
 		mysqli_connect($host,$user,$pass) or die(mysqli_error());

@@ -3,8 +3,8 @@
 function connect($alternate=1, $custom=false)
     {
         $host = "localhost";
-        $user = "root";
-        $pass = "";
+        $user = "artanis";
+        $pass = "M@xis123";
         $db_n = "mpob";
 
         $con = mysqli_connect($host,$user,$pass);
