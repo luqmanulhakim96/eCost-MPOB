@@ -234,8 +234,8 @@
 					*/ ?>
 					<td colspan="2"> <input name="pegawai" type="text" id="pegawai" value="<?= $pengguna->pegawai; ?>" size="50" /></td>
 
-
         </tr>
+
         <tr>
           <td><strong>
             <?=setstring ( 'mal', 'Syarikat Induk', 'en', 'Headquarters'); ?>
@@ -389,7 +389,7 @@
 												 var data = google.visualization.arrayToDataTable([
 													 ['Area', ''],
 													 ['Rata/Landai', <?php echo $tanahlanar; ?> ],
-													 ['Berbukit (Cerun > 25 darjah)', <?php echo $tanahpedalaman; ?>],
+													 ['Cerun (>25 darjah)', <?php echo $tanahpedalaman; ?>],
 													 ['Berbukit', <?php echo $tanahgambut; ?> ],
 													 ['Beralun', <?php echo $lainlaintanah; ?>],
 

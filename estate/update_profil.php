@@ -34,7 +34,7 @@ if (isset($notelefon)) {
   }
 
     if($Submit2){
-      echo "<script>window.location.href='home.php?id=integration'</script>";
+      echo "<script>window.location.href='home.php?id=profile'</script>";
     }else {
       echo "<script>parent.$.fn.colorbox.close(); </script>";
       echo "<script>window.location.href='home.php?id=profile'</script>";
