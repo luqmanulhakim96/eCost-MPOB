@@ -165,7 +165,13 @@ $pengguna->jumlahakhir;
 
   <tr>
     <td height="31">&nbsp;</td>
-    <td colspan="2"><strong><?php echo setstring ( 'mal', 'Integrasi dengan kilang buah sawit', 'en', 'Integration with Palm Factory'); ?></strong></td>
+    <td colspan="2"><strong><?php echo setstring ( 'mal', 'Integrasi dengan kilang buah sawit', 'en', 'Integration with Palm Factory'); ?></strong>
+      <br>
+      <span class="kecil">(
+          <?= setstring('mal', 'BTS dihantar ke kilang sendiri', 'en', 'FFB processed by own mill'); ?>
+
+          )        </span>
+    </td>
     <td><input type="radio" name="integrasi" id="radio" value="Y" <?php if($pengguna->integrasi=='Y'){?>checked="checked"<?php } ?> />
 <?php echo setstring ( 'mal', 'Ya', 'en', 'Yes'); ?></td>
     <td colspan="3"><input type="radio" name="integrasi" id="radio2" value="N" <?php if($pengguna->integrasi=='N'){?>checked="checked"<?php } ?> />
@@ -176,28 +182,31 @@ $pengguna->jumlahakhir;
     <td height="31" bgcolor="#99FF99">&nbsp;</td>
     <td colspan="2" bgcolor="#99FF99"><strong><?php echo setstring ( 'mal', 'Peratusan keluasan tanah gambut (sekiranya ada)', 'en', 'Percentage of peatland area (if any):'); ?></strong></td>
     <td bgcolor="#99FF99"><input name="gambut" type="text" class="field_active" id="gambut" onblur="field_blur(this,'s3')" onclick="field_click(this)" value="<?php echo  $pengguna->gambut; ?>" size="3" />
+
 <?php echo setstring ( 'mal', '%', 'en', '%'); ?></td>
     <td colspan="3" bgcolor="#99FF99"><?php //$a = round($pengguna->gambut/$jumlah_semua,2);echo number_format($a,2); ?></td>
   </tr>
 
+
+
   <tr>   <input name="nolesen" type="hidden" id="nolesen" value="<?php echo  $_SESSION['lesen'];?>" />  </tr>
 
-  <tr height="30">
-    <td colspan="100"></td>
+
   </tr>
 
 
 
-
+<?php /*
   <tr>
     <td height="31" bgcolor="#99FF99">&nbsp;</td>
     <td colspan="2" bgcolor="#99FF99"> <strong><?php //echo setstring ( 'mal', 'Keluasan mengikut jenis tanah:', 'en', 'Area respective to soil type:'); ?></strong></td>
     <td colspan="4" bgcolor="#99FF99"><div align="center"><span class="style2">
-      <?php echo setstring ( 'mal', 'Jumlah Keluasan', 'en', 'Total all area'); ?>
-    </span> : <span class="style2">
-      <?php echo number_format($jumlah_semua,2);?> <?php echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?>
+      <?php //echo setstring ( 'mal', 'Jumlah Keluasan', 'en', 'Total all area'); ?>
+    </span>  <span class="style2">
+      <?php //echo number_format($jumlah_semua,2);?> <?php //echo setstring ( 'mal', 'Hektar', 'en', 'Hectares'); ?>
     </span></div>      <div align="center"></div></td>
     </tr>
+    */?>
     <?php
   	if(!isset($_GET['print'])) {
   ?>
