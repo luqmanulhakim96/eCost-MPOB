@@ -93,10 +93,10 @@ function openScript(url, width, height) {
   <tr>
     <td><div id="grey-button"> <a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Other expenditure&type=<?php echo $type; ?>','','')"><span>Other expenditure</span></a> </div>
       <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Other expenditure&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
-<?php /*
+
 	<td><div id="grey-button"> <a  class="grey-button pcb"  href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Total Upkeep&type=<?php echo $type; ?>','','')"><span>Total Upkeep</span></a> </div>
       <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penjagaan&tahun=<?php echo $tahun; ?>&amp;field=Total Upkeep&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe></td>
-*/?>
+
 	<td></td>
   </tr>
 </table>

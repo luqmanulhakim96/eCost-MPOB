@@ -10,8 +10,8 @@ class labour
 	function __construct()
 	{
 		$host = "localhost";
-		$user = "artanis";
-		$pass = "M@xis123";
+		$user = "root";
+		$pass = "";
 		$db_n = "mpob";
 
 		mysqli_connect($host,$user,$pass) or die(mysqli_error());

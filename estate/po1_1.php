@@ -187,11 +187,11 @@ $pengguna->jumlahakhir;
   </tr>
 
 
-  
+
 
   <tr>
     <td height="31" bgcolor="#99FF99">&nbsp;</td>
-    <td colspan="2" bgcolor="#99FF99"> <strong><?php echo setstring ( 'mal', 'Keluasan mengikut jenis tanah:', 'en', 'Area respective to soil type:'); ?></strong></td>
+    <td colspan="2" bgcolor="#99FF99"> <strong><?php //echo setstring ( 'mal', 'Keluasan mengikut jenis tanah:', 'en', 'Area respective to soil type:'); ?></strong></td>
     <td colspan="4" bgcolor="#99FF99"><div align="center"><span class="style2">
       <?php echo setstring ( 'mal', 'Jumlah Keluasan', 'en', 'Total all area'); ?>
     </span> : <span class="style2">
