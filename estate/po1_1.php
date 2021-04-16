@@ -132,12 +132,7 @@ $pengguna->jumlahakhir;
 <table width="100%" align="center" cellspacing="0" class="tableCss" style="border:1px #333333 solid; padding:2px;">
 
 
-  <tr>
-    <td height="29" bgcolor="#99FF99">&nbsp;</td>
-    <td colspan="2" bgcolor="#99FF99"><strong><?php echo setstring ( 'mal', 'Nama pegawai melapor', 'en', 'Name of Reporting Officer'); ?></strong>      </td>
-    <td colspan="4" bgcolor="#99FF99"><input name="pegawai" type="text" id="pegawai" style="text-align:left; font-weight:normal;" value="<?php echo $pengguna->pegawai; ?>" size="50" width="50" />
-      <input name="nolesen" type="hidden" id="nolesen" value="<?php echo  $_SESSION['lesen'];?>" />    </td>
-  </tr>
+
 
   <tr>
     <td width="14" height="37">&nbsp;</td>
@@ -190,6 +185,9 @@ $pengguna->jumlahakhir;
   <tr height="30">
     <td colspan="100"></td>
   </tr>
+
+
+  
 
   <tr>
     <td height="31" bgcolor="#99FF99">&nbsp;</td>
@@ -378,7 +376,7 @@ $pengguna->jumlahakhir;
           </tr>
           <tr>
             <td height="33" bgcolor="#CCFF99">&nbsp;</td>
-            <td height="33" bgcolor="#CCFF99">              <?php echo setstring ( 'mal', 'Curam', 'en', 'Steep'); ?>            (&gt;25  <?=setstring ( 'mal', 'darjah', 'en', 'degree'); ?> )</td>
+            <td height="33" bgcolor="#CCFF99">              <?php echo setstring ( 'mal', 'Cerun', 'en', 'Steep'); ?>            (&gt;25  <?=setstring ( 'mal', 'darjah', 'en', 'degree'); ?> )</td>
             <td bgcolor="#CCFF99"><input name="percentcerun" type="text" onclick="field_click(this)" class="field_active" id="percentcerun" value="<?php echo $pengguna->percentcerun; ?>" size="3"   onchange="kiraan(this)"  />
             % </td>
             <td bgcolor="#CCFF99">&nbsp;</td>
