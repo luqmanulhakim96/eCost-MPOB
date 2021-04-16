@@ -445,11 +445,15 @@ if (isset($lesen)) {
         <?php
     }
     if ($firsttime == '1' && $mill != "true") {
+
+      $q="update login_estate set firsttime ='2' where lesen = '".$_SESSION['lesen']."'";
+      $r = mysqli_query($con, $q);
+      
       $qinfo="INSERT INTO estate_info (lesen ,gambut, percentrata ,percentalun ,percentbukit ,percentcerun)
      VALUES (
      '".$lesen."',  '0', '0', '0', '0', '0')";
      $rinfo = mysqli_query($con, $qinfo);
-     
+
         ?>
         <script language="javascript">
             document.form1.action = "home.php?id=profile";
