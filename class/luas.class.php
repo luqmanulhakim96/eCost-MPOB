@@ -4,9 +4,9 @@ class luas
 	function __construct()
 	{
 		$host = "localhost";
-		$user = "root";
-		//$pass = "";
-		$pass = "";
+		$user = "artanis";
+		//$pass = "M@xis123";
+		$pass = "M@xis123";
 		$db_n = "mpob";
 
 		mysqli_connect($host,$user,$pass) or die(mysqli_error());

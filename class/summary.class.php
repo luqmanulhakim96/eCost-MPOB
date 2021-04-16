@@ -4,9 +4,9 @@ class Summary
 /*	function __construct()
 	{
 		$host = "localhost";
-		$user = "root";
+		$user = "artanis";
 		$pass = "mysqliecop";
-		//$pass = "";
+		//$pass = "M@xis123";
 		$db_n = "ecost_db";
 
 		mysqli_connect($host,$user,$pass) or die(mysqli_error());
