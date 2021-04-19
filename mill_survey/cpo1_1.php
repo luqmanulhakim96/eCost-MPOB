@@ -9,17 +9,17 @@ include('../setstring.inc');
 
 <script language="javascript">
 function semaksama(){
-	
+
 	var a = document.getElementById("katalaluan1").value;
 	var b = document.getElementById("katalaluan2").value;
-	
-	
+
+
 	if(a!=b){
 	alert("<?=setstring ( 'mal', 'Katalaluan tidak sama', 'en', 'Password is not match'); ?>");
 	}
-	
+
 	}
-	
+
 
 </script>
 <script src="../js/live/livevalidation_standalone.js" type="text/javascript"></script>
@@ -36,12 +36,12 @@ function semaksama(){
       </strong></td>
       <td colspan="2" bgcolor="#99FF99"><input name="katalaluan1" type="password" id="katalaluan1" value="123456" />
         <br />
-      
+
        <script language="javascript">
       var f1 = new LiveValidation('katalaluan1');
 f1.add( Validate.Presence );
       </script>
-      
+
        <em>**
        <?=setstring ( 'mal', 'Sila masukkan kata laluan yang baru', 'en', 'Please insert your new password.'); ?>
        <br />
@@ -57,7 +57,7 @@ f1.add( Validate.Presence );
         <?=setstring ( 'mal', 'Taip semula kata laluan', 'en', 'Re-type Password'); ?>
       </strong></td>
       <td colspan="2" bgcolor="#99FF99"><input name="katalaluan" type="password" id="katalaluan" value="123456"   />
-      
+
        <script language="javascript">
     	var f19 = new LiveValidation('katalaluan');
 		f19.add( Validate.Confirmation, { match: 'katalaluan1' } );
@@ -76,11 +76,11 @@ f1.add( Validate.Presence );
       <td width="14" height="37" bgcolor="#99FF99">&nbsp;</td>
       <td width="218" bgcolor="#99FF99"><strong>
       <?=setstring ( 'mal', 'Jenis Syarikat', 'en', 'Company Type'); ?>
-      
+
       </strong></td>
       <td colspan="2" bgcolor="#99FF99"><select name="syarikat" id="syarikat" style="width:330px">
           <option>-<?=setstring ( 'mal', 'Pilih', 'en', 'Select'); ?>-</option>
-          <?php 
+          <?php
 		//$company = new syarikat('syarikat','');
 		for ($i=0; $i<$company->total; $i++){ ?>
           <option value="<?= $company->comp_name[$i];?>">
@@ -92,8 +92,8 @@ f1.add( Validate.Presence );
     <tr>
       <td height="15" colspan="4">&nbsp;</td>
     </tr>
-    
-    
+
+
     <tr>
       <td height="33" bgcolor="#99FF99">&nbsp;</td>
       <td bgcolor="#99FF99"><strong>

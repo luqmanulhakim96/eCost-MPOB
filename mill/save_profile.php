@@ -10,6 +10,7 @@ $qInsertSelect = "SELECT lesen FROM alamat_ekilang WHERE  lesen ='" . $_SESSION[
 $rInsertSelect = mysqli_query($con, $qInsertSelect);
 $res_total = mysqli_num_rows($rInsertSelect);
 /* if no data in alamat_ekilang, insert first */
+print_r($res_total);
 
 
 if ($res_total == 0) {
@@ -21,9 +22,15 @@ if ($res_total == 0) {
 if ($katalaluan1 != $katalaluan2) {
     echo "<script>alert('Sila masukkan katalaluan yang sah');history.go(-1);</script>";
 } else {
-    $q = "update login_mill set password = '$katalaluan2' where lesen = '" . $_SESSION['lesen'] . "'";
+
+    $password = $katalaluan2;
+    $password = password_hash($password,PASSWORD_BCRYPT);
+    $q = "update login_mill set password = '$password' where lesen = '" . $_SESSION['lesen'] . "'";
     $r = mysqli_query($con, $q);
 }
+
+$test = "INSERT INTO mill_info (lesen) VALUES ('" . $_SESSION['lesen'] . "')";
+$test1 = mysqli_query($con, $test);
 
 $q = "UPDATE mill_info SET
 syarikat='$syarikat', integrasi ='$integrasi', teknologi = '$teknologi', tahun_operasi ='$tahun_operasi',
@@ -45,5 +52,5 @@ email = '$email',
 pegawai = upper('$pegawai') WHERE lesen = '" . $_SESSION['lesen'] . "'";
 $r = mysqli_query($con, $q);
 
-echo "<script>window.location.href='home.php?id=profile'</script>";
+// echo "<script>window.location.href='home.php?id=profile'</script>";
 ?>

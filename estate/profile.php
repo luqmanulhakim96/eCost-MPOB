@@ -257,17 +257,17 @@
           <td><strong>:</strong></td>
           <td colspan="2"><?php echo  $pengguna->negeripremis; ?></td>
         </tr>
-        <tr>
-          <td></td>
-          <td>
-				  <td colspan="2">	<input type="submit" name="Submit" value="<?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?> " />
-					<input type="submit" name="Submit2"  value=<?=setstring ( 'mal', '"Simpan & Seterusnya"', 'en', '"Save &amp; Next"'); ?> " />
 
+        <tr>
+      
+				  <td  height="17" colspan="7"><div align="center">	<input type="submit" name="Submit" value="<?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?> " />
 			    </a>  <a href="password.php" class="facebox" style="text-decoration:none">
 					<input type="button" value="<?php echo setstring ( 'mal', 'Tukar kata laluan', 'en', 'Change Password'); ?>" />
 
 				</form>
 				</td>
+				</tr>
+				    <tr>
 					<?php /*
           <td colspan="2"><a href="profil.php" class="facebox1" style="text-decoration:none">
             <input type="button" value="<?php echo setstring ( 'mal', 'Ubah Profil Estate ', 'en', 'Change Estate Profile'); ?>" />

@@ -1,4 +1,4 @@
-<?php 
+<?php
 include('../class/syarikat.class.php');
 $company= new syarikat('syarikat','');
 $teknologi = new syarikat('steril','');
@@ -17,7 +17,7 @@ $teknologi = new syarikat('steril','');
   <table width="82%" border="0" align="center" cellpadding="3" cellspacing="0">
     <tr>
       <td width="90%" valign="top"><?php
-	
+
     if(isset($_GET['utama'])) {
 ?>
           <p><strong>Selamat Datang TSEN MILL SDN BHD</strong></p>
@@ -49,7 +49,7 @@ $teknologi = new syarikat('steril','');
               <td colspan="2">
               <input name="lesenlama" type="text" autocomplete="off" id="lesenlama" value="<?= $pengguna->lesenlama; ?>" size="50" /></td>
             </tr>
-            
+
             <tr>
               <th height="36" colspan="4"><strong><?=setstring ( 'mal', 'Alamat Hubungan', 'en', 'Contact Address'); ?></strong></th>
             </tr>
@@ -130,7 +130,7 @@ $teknologi = new syarikat('steril','');
               <td><strong>:</strong></td>
               <td colspan="2">
                 <select name="syarikat" id="syarikat" style="width:330px">
-                  <?php 
+                  <?php
 		//$company = new syarikat('syarikat','');
 		for ($i=0; $i<$company->total; $i++){ ?>
                   <option value="<?= $company->comp_name[$i];?>" <?php if($pengguna->syarikat==$company->comp_name[$i]){?>selected="selected"<?php  } ?>>
@@ -156,7 +156,7 @@ $teknologi = new syarikat('steril','');
               <td><strong>:</strong></td>
               <td colspan="2">
                 <input type="radio" name="integrasi" id="integrasi"  value="Y"  <?php if($pengguna->integrasi=='Y'){?>checked="checked"<?php } ?>/>
-                <label for="radioIntegrasi1">Ya</label> 
+                <label for="radioIntegrasi1">Ya</label>
                 <input type="radio" name="integrasi" id="integrasi" value="N" <?php if($pengguna->integrasi=='N'){?>checked="checked"<?php } ?>/>
                 <label for="radioIntegrasi2">Tidak</label></td>
             </tr>
@@ -171,7 +171,7 @@ $teknologi = new syarikat('steril','');
               <td> </td>
               <td colspan="2"> </td>
             </tr>
-            
+
             <tr>
               <th colspan="4"><strong><?=setstring ( 'mal', 'Kata Laluan', 'en', 'Password'); ?>
 </strong></th>
@@ -186,8 +186,8 @@ $teknologi = new syarikat('steril','');
               <td><strong>:</strong></td>
               <td colspan="2"><input name="katalaluan2" type="password" id="katalaluan2" value="<?= $pengguna->password; ?>" size="50" /></td>
             </tr>
-            
-            
+
+
             <tr>
               <td> </td>
               <td> </td>
