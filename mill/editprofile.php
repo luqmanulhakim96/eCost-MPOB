@@ -11,6 +11,7 @@ if (!isset($_GET['utama'])) {
     <strong><?= setstring('mal', 'PROFIL PENGGUNA', 'en', 'USER PROFILE'); ?>
     </strong><br>
     <?php
+
 }
 ?>
 <br>
@@ -157,7 +158,7 @@ if (!isset($_GET['utama'])) {
                             <td><strong>:</strong></td>
                             <td colspan="2">
                                 <input type="radio" name="integrasi" id="integrasi"  value="Y"  <?php if ($pengguna->integrasi == 'Y') { ?>checked="checked"<?php } ?>/>
-                                <label for="radioIntegrasi1">Ya</label> 
+                                <label for="radioIntegrasi1">Ya</label>
                                 <input type="radio" name="integrasi" id="integrasi" value="N" <?php if ($pengguna->integrasi == 'N') { ?>checked="checked"<?php } ?>/>
                                 <label for="radioIntegrasi2">Tidak</label></td>
                         </tr>

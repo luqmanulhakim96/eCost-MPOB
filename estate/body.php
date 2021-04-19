@@ -345,8 +345,8 @@ if ($total != 0 && $mill == "true") {
         $rLogin = mysqli_query($con, $qLogin);
         $rowLogin = mysqli_fetch_array($rLogin);
 
-
-        $qedit = "update login_mill set success= NOW(), password='" . substr($rowLogin['lesen'], 0, 6) . "' where lesen = '$username'";
+        $password= password_hash(substr($rowLogin['lesen'], 0, 6), PASSWORD_BCRYPT);
+        $qedit = "update login_mill set success= NOW(), password= $password where lesen = '$username'";
         $redit = mysqli_query($con, $qedit);
 
         $title = 'e-COST - Password Recovery (Mill)';
@@ -448,7 +448,7 @@ if (isset($lesen)) {
 
       $q="update login_estate set firsttime ='2' where lesen = '".$_SESSION['lesen']."'";
       $r = mysqli_query($con, $q);
-      
+
       $qinfo="INSERT INTO estate_info (lesen ,gambut, percentrata ,percentalun ,percentbukit ,percentcerun)
      VALUES (
      '".$lesen."',  '0', '0', '0', '0', '0')";
