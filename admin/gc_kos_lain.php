@@ -194,7 +194,7 @@ function openScript(url, width, height) {
   </tr>
   <?php } else { ?>
   <tr height="17">
-    <td height="17" colspan="7"><div align="center" class="style6">General Chargers in <?php echo $_COOKIE['tahun_report'];?></div></td>
+    <td height="17" colspan="7"><div align="center" class="style6">Other cost in <?php echo $_COOKIE['tahun_report'];?></div></td>
   </tr>
   <?php } ?>
   <tr height="17">
