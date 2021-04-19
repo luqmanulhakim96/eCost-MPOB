@@ -1041,7 +1041,9 @@ if (($bts * 1) == 0) {
                     <td height="31" align="center"> </td>
                     <td><div align="right"><strong><?= setstring('mal', 'Jumlah :', 'en', 'Total'); ?> </strong></div></td>
                     <td bgcolor="#FFCC66"><div align="center">
-                            <?php $total_belanja_all = $belanja->emolumen + $belanja->kos_ibupejabat + $belanja->kos_agensi + $belanja->kebajikan + $belanja->sewa_tol + $belanja->penyelidikan + $belanja->perubatan + $belanja->penyelenggaraan + $belanja->cukai_keuntungan + $belanja->penjagaan + $belanja->kawalan + $belanja->air_tenaga + $belanja->perbelanjaan_pejabat + $belanja->susut_nilai + $belanja->perbelanjaan_lain ; ?>
+                            <?php $total_belanja_all = $belanja->emolumen + $belanja->kos_ibupejabat + $belanja->kos_agensi + $belanja->kebajikan +
+                            $belanja->sewa_tol + $belanja->penyelidikan + $belanja->perubatan + $belanja->penyelenggaraan + $belanja->cukai_keuntungan +
+                            $belanja->penjagaan + $belanja->kawalan + $belanja->air_tenaga + $belanja->perbelanjaan_pejabat + $belanja->susut_nilai + $belanja->perbelanjaan_lain ; ?>
                             <input onKeypress="keypress(event)" name="total_perbelanjaan" type="text"  autocomplete="off" id="total_perbelanjaan"  style="font-weight:bold; text-align:center" value="<?php
                             echo number_format($total_belanja_all, 2);
                             ?>" size="20"  />
@@ -1050,7 +1052,7 @@ if (($bts * 1) == 0) {
                             <?php
                             //echo $per_ha1 ."+". $per_ha2 ."+". $per_ha3 ."+". $per_ha4 ."+". $per_ha5 ."+". $per_ha6 ."+". $per_ha7 ."+". $per_ha8 ."+". $per_ha9 ."+". $per_ha10 ."+". $per_ha11 ."+". $per_ha12 ."+". $per_ha13 ."+". $per_ha14 ."+". $per_ha15."<br>";
                             //$total_kos_hektar = $per_ha1 + $per_ha2 + $per_ha3 + $per_ha4 + $per_ha5 + $per_ha6 + $per_ha7 + $per_ha8 + $per_ha9 + $per_ha10 + $per_ha11 + $per_ha12 + $per_ha13 + $per_ha14 + $per_ha15;
-                            $total_kos_hektar =round($total_belanja_all/$jumlah_semua,2);
+                            $total_kos_hektar =$total_belanja_all/$jumlah_semua;
                             echo number_format($total_kos_hektar, 2);
                             //$total_kos_hektar = round($total_kos_hektar, 2, PHP_ROUND_HALF_UP);
                             ?>
@@ -1060,7 +1062,8 @@ if (($bts * 1) == 0) {
                     <td bgcolor="#FFCC66"><div align="center" id="total_bts_all">
                             <?php
                             // $total_bts_all = $per_bts1 + $per_bts2 + $per_bts3 + $per_bts4 + $per_bts5 + $per_bts6 + $per_bts7 + $per_bts8 + $per_bts9 + $per_bts10 + $per_bts11 + $per_bts12 + $per_bts13 + $per_bts14 + $per_bts15 + $per_bts16 + $per_bts17;
-                            $total_bts_all = $per_bts1 + $per_bts2 + $per_bts3 + $per_bts4 + $per_bts5 + $per_bts6 + $per_bts7 + $per_bts8 + $per_bts9 + $per_bts10 + $per_bts11 + $per_bts12 + $per_bts13 + $per_bts14 + $per_bts15 ;
+                            $total_bts_all = round($per_bts1,2) + round($per_bts2,2) + round($per_bts3,2) + round($per_bts4,2) + round($per_bts5,2) + round($per_bts6,2) + round($per_bts7,2) + round($per_bts8,2) + round($per_bts9,2)
+                            + round($per_bts10,2) + round($per_bts11,2) + round($per_bts12,2) + round($per_bts13,2) + round($per_bts14,2) + round($per_bts15,2) ;
                             echo number_format($total_bts_all, 2);
                             ?>        </div></td>
                     <td bgcolor="#FFCC66">
