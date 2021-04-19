@@ -1051,8 +1051,8 @@ if (($bts * 1) == 0) {
                     <td bgcolor="#FFCC66"><div align="center" id="total_kos_hektar">
                             <?php
                             //echo $per_ha1 ."+". $per_ha2 ."+". $per_ha3 ."+". $per_ha4 ."+". $per_ha5 ."+". $per_ha6 ."+". $per_ha7 ."+". $per_ha8 ."+". $per_ha9 ."+". $per_ha10 ."+". $per_ha11 ."+". $per_ha12 ."+". $per_ha13 ."+". $per_ha14 ."+". $per_ha15."<br>";
-                            //$total_kos_hektar = $per_ha1 + $per_ha2 + $per_ha3 + $per_ha4 + $per_ha5 + $per_ha6 + $per_ha7 + $per_ha8 + $per_ha9 + $per_ha10 + $per_ha11 + $per_ha12 + $per_ha13 + $per_ha14 + $per_ha15;
-                            $total_kos_hektar =$total_belanja_all/$jumlah_semua;
+                            $total_kos_hektar = $per_ha1 + $per_ha2 + $per_ha3 + $per_ha4 + $per_ha5 + $per_ha6 + $per_ha7 + $per_ha8 + $per_ha9 + $per_ha10 + $per_ha11 + $per_ha12 + $per_ha13 + $per_ha14 + $per_ha15;
+                            // $total_kos_hektar = $total_belanja_all/$jumlah_semua;
                             echo number_format($total_kos_hektar, 2);
                             //$total_kos_hektar = round($total_kos_hektar, 2, PHP_ROUND_HALF_UP);
                             ?>
