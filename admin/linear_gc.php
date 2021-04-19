@@ -28,7 +28,7 @@ function openScript(url, width, height) {
   <?php
 
   $con=connect();
-    $qs="select * from q_km where type='gc'";
+    $qs="select * from q_km where type='gc'  AND name != 'Purchase of asset' AND name !='Purchase of machineries'";
   $rs = mysqli_query($con, $qs);
 
 
@@ -68,19 +68,11 @@ function openScript(url, width, height) {
 	}
 ?>
   <?php } ?>
-  <tr>
-    <td>
-    <div id="grey-button">
-    <a class="grey-button pcb" href="javascript:openScript('linear_gc_graph_view.php?table=analysis_belanja_am_kos&tahun=<?php echo $tahun; ?>&amp;field=Cost Per Hectare&type=<?php echo $type; ?>','','')"><span>Total General Charges</span></a>
-    </div>
-
-
-
-      <iframe src="linear_gc_graph.php?table=analysis_belanja_am_kos&tahun=<?php echo $tahun; ?>&amp;field=Cost Per Hectare&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe>
-
-      </td>
-	<td></td>
-	<td></td>
-  </tr>
+	<td>
+	<div id="grey-button">
+	<a class="grey-button pcb" href="javascript:openScript('linear_gc_graph_view.php?table=analysis_belanja_am_kos&tahun=<?php echo $tahun; ?>&amp;field=Cost Per Hectare&type=<?php echo $type; ?>','','')"><span>Total General Charges</span></a>
+	</div>
+		<iframe src="linear_gc_graph.php?table=analysis_belanja_am_kos&tahun=<?php echo $tahun; ?>&amp;field=Cost Per Hectare&type=<?php echo $type; ?>" width="320px" height="280px" style="border:none"></iframe>
+		</td>
 
 </table>
