@@ -259,7 +259,7 @@
         </tr>
 
         <tr>
-      
+
 				  <td  height="17" colspan="7"><div align="center">	<input type="submit" name="Submit" value="<?=setstring ( 'mal', 'Simpan', 'en', 'Save'); ?> " />
 			    </a>  <a href="password.php" class="facebox" style="text-decoration:none">
 					<input type="button" value="<?php echo setstring ( 'mal', 'Tukar kata laluan', 'en', 'Change Password'); ?>" />
@@ -338,14 +338,6 @@
 						<form id="form1" name="form1" method="post" action="save_profile.php"> </form> */ ?>
 						<table width="100"" align="center" cellspacing="0" class="tableCss" style="border:1px #333333 solid; padding:2px;">
 
-
-
-
-
-
-
-
-
 										 <?php session_start();
 										 header("Content-type:application/xml");
 										 include('../../Connections/connection.class.php');
@@ -389,8 +381,8 @@
 												 var data = google.visualization.arrayToDataTable([
 													 ['Area', ''],
 													 ['Rata/Landai', <?php echo $tanahlanar; ?> ],
-													 ['Cerun (>25 darjah)', <?php echo $tanahpedalaman; ?>],
-													 ['Berbukit', <?php echo $tanahgambut; ?> ],
+													 ['Cerun (>25 darjah)', <?php echo $tanahgambut; ?>],
+													 ['Berbukit', <?php echo $tanahpedalaman; ?> ],
 													 ['Beralun', <?php echo $lainlaintanah; ?>],
 
 
@@ -398,6 +390,7 @@
 
 												 var options = {
 													 title: '',
+													 tooltip: { text: 'percentage' },
 													 legend: 'none',
 													 pieSliceText: 'label',
 													 slices: {  0: {offset: 0.2},

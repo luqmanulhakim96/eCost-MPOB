@@ -6,7 +6,6 @@ extract($_GET);
 $tahun = $_SESSION['tahun'];
 include ('../Connections/connection.class.php');
 
-
 $emolumen = str_replace(",", '', $emolumen);
 $kos_ibupejabat = str_replace(",", '', $kos_ibupejabat);
 $kos_agensi = str_replace(",", '', $kos_agensi);

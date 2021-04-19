@@ -40,8 +40,10 @@ if ($hold == "yes")
 $q = "select $medan as nilai ,km_nama, negeri, daerah, lesen   from $table where km_nama not like '%Total%'
 and km_nama ='$field' and pb_thisyear = '$tahun' and $medan > 0 order by $medan ";
 if ($field == "Cost Per Hectare") {
-	$q = "select a.* from (select SUM($medan) as nilai , 'Cost Per Hectare' AS km_nama, negeri, daerah, lesen   from $table where km_nama not like '%Total%'
-and pb_thisyear = '$tahun' and $medan > 0 GROUP BY negeri, daerah, lesen) AS a order by a.nilai";
+	$q = "SELECT a.* from (select SUM($medan) as nilai , 'Cost Per Hectare' AS km_nama, negeri, daerah, lesen   from $table where km_nama not like '%Total%'
+    AND km_nama not like '%Purchase of machineries%'
+    AND km_nama not like '%Purchase of asset%'
+    and pb_thisyear = '$tahun' and $medan > 0 GROUP BY negeri, daerah, lesen) AS a order by a.nilai";
 }
 $r = mysqli_query($con, $q);
 $total = mysqli_num_rows($r);

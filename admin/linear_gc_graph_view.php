@@ -25,7 +25,6 @@ error_reporting(0);
 <link rel="shortcut icon" href="../images/icon.ico" />
 <title>View Graph for <?php echo $field; ?></title>
 <style type="text/css">
-    <!--
     body, td, th {
         font-family: Arial, Helvetica, sans-serif;
         font-size: 12px;
@@ -33,7 +32,6 @@ error_reporting(0);
         color: #FF0000;
         font-style: italic;
     }
-    -->
 </style>
 <script type="text/javascript" src="../jquery-1.3.2.js"></script>
 

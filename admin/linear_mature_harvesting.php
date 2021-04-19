@@ -40,10 +40,10 @@ function openScript(url, width, height) {
 	<div id="grey-button"> <a class="grey-button pcb"   href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penuaian&tahun=<?php echo $tahun; ?>&amp;field=Wages for harvesting mandore&type=<?php echo $type; ?>','','')"><span>Wages for harvesting mandore</span></a> </div>
 	<iframe src="linear_mature_graph.php?table=analysis_kos_matang_penuaian&tahun=<?php echo $tahun; ?>&type=<?php echo $type; ?>&field=Wages for harvesting mandore" width="320px" height="280px" style="border:none"></iframe></td>
 
-<?php /*
+
 		<td><div id="grey-button"> <a class="grey-button pcb"   href="javascript:openScript('linear_mature_graph_view.php?table=analysis_kos_matang_penuaian&tahun=<?php echo $tahun; ?>&amp;field=Total Harvesting&type=<?php echo $type; ?>','','')"><span>Total Harvesting</span></a> </div>
    <iframe src="linear_mature_graph.php?table=analysis_kos_matang_penuaian&tahun=<?php echo $tahun; ?>&type=<?php echo $type; ?>&field=Total Harvesting" width="320px" height="280px" style="border:none"></iframe></td>
-	 */?>
+	
 		<td></td>
   </tr>
 </table>
