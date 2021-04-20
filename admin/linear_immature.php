@@ -93,8 +93,8 @@ function openScript(url, width, height) {
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Purchase of fertilizer" width="320px" height="280px" style="border:none"></iframe></td>
     <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Labour cost to apply fertilizers','','')" class="grey-button pcb"> <span>ii. Labour cost to apply fertilizers</span> </a> </div>
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Labour cost to apply fertilizers" width="320px" height="280px" style="border:none"></iframe></td>
-    <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Machinery use and maintenances','','')" class="grey-button pcb"> <span>iii. Machinery use and maintenance</span> </a> </div>
-      <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Machinery use and maintenances" width="320px" height="280px" style="border:none"></iframe></td>
+    <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Machinery use and maintenances (new)','','')" class="grey-button pcb"> <span>iii. Machinery use and maintenances (new)</span> </a> </div>
+      <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Machinery use and maintenances (new)" width="320px" height="280px" style="border:none"></iframe></td>
   </tr>
   <tr>
   <?php /*  <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Soil and foliar analysis','','')" class="grey-button pcb"> <span>iv. Soil and foliar analysis</span> </a> </div>
@@ -180,8 +180,8 @@ function openScript(url, width, height) {
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Purchase of fertilizer" width="320px" height="280px" style="border:none"></iframe></td>
     <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Labour cost to apply fertilizers','','')" class="grey-button pcb"> <span>ii. Labour cost to apply fertilizers</span> </a> </div>
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Labour cost to apply fertilizers" width="320px" height="280px" style="border:none"></iframe></td>
-    <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Machinery use and maintenance','','')" class="grey-button pcb"> <span>iii. Machinery use and maintenance</span> </a> </div>
-      <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Machinery use and maintenances" width="320px" height="280px" style="border:none"></iframe></td>
+    <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Machinery use and maintenances (new)','','')" class="grey-button pcb"> <span>iii. Machinery use and maintenances (new)</span> </a> </div>
+      <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Machinery use and maintenances (new)" width="320px" height="280px" style="border:none"></iframe></td>
   </tr>
 
   <tr>
