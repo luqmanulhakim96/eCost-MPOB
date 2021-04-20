@@ -115,31 +115,40 @@ function openScript(url, width, height) {
   </tr>
 	*/?>
   <tr>
+
+	<td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Soil and foliar analysis','','')" class="grey-button pcb"> <span>Soil and foliar analysis</span> </a> </div>
+	<iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Soil and foliar analysis" width="320px" height="280px" style="border:none"></iframe></td>
+
+	<td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Maintenance of road, drain, bund watergate and etc','','')" class="grey-button pcb"> <span>Maintenance of road, drain, bund watergate and etc</span> </a> </div>
+		<iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Maintenance of road, drain, bund watergate and etc" width="320px" height="280px" style="border:none"></iframe></td>
+
     <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Cover crop','','')" class="grey-button pcb"> <span>Cover
 		crop</span> </a> </div>
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Cover crop" width="320px" height="280px" style="border:none"></iframe></td>
-    <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Pest and diseases control','','')" class="grey-button pcb"> <span>Pest and diseases control</span> </a> </div>
-      <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Pest and diseases control" width="320px" height="280px" style="border:none"></iframe></td>
-    <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Pruning and palm sanitation','','')" class="grey-button pcb"> <span>Pruning and palm sanitation</span> </a> </div>
-      <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Pruning and palm sanitation" width="320px" height="280px" style="border:none"></iframe></td>
   </tr>
+
+
   <tr>
+	<td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Pest and diseases control','','')" class="grey-button pcb"> <span>Pest and diseases control</span> </a> </div>
+		<iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Pest and diseases control" width="320px" height="280px" style="border:none"></iframe></td>
+
+<td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Pruning and palm sanitation','','')" class="grey-button pcb"> <span>Pruning and palm sanitation</span> </a> </div>
+		<iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Pruning and palm sanitation" width="320px" height="280px" style="border:none"></iframe></td>
+
     <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Census / supplies','','')" class="grey-button pcb"> <span>Census / supplies</span> </a> </div>
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Census / supplies" width="320px" height="280px" style="border:none"></iframe></td>
 
   <?php /*  <td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Castration','','')" class="grey-button pcb"> <span>Castration</span> </a> </div>
       <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Castration" width="320px" height="280px" style="border:none"></iframe></td>
 			*/?>
-		<td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Others Expenditure','','')" class="grey-button pcb"> <span>Other Expenditures</span> </a> </div>
-      <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Others Expenditure" width="320px" height="280px" style="border:none"></iframe></td>
 
-			<td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Maintenance of road, drain, bund watergate and etc','','')" class="grey-button pcb"> <span>Maintenance of road, drain, bund watergate and etc</span> </a> </div>
-	      <iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Maintenance of road, drain, bund watergate and etc" width="320px" height="280px" style="border:none"></iframe></td>
+
+
   </tr>
 
 <tr>
-				<td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Soil and foliar analysis','','')" class="grey-button pcb"> <span>Soil and foliar analysis</span> </a> </div>
-				<iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Soil and foliar analysis" width="320px" height="280px" style="border:none"></iframe></td>
+<td><div id="grey-button"> <a href="javascript:openScript('linear_immature_graph_view.php?tahun=<?php echo $tahun; ?>&amp;type=<?php echo $type;?>&amp;field=Others Expenditure','','')" class="grey-button pcb"> <span>Other Expenditures</span> </a> </div>
+	<iframe src="linear_immature_graph.php?type=<?php echo $type; ?>&tahun=<?php echo $tahun; ?>&field=Others Expenditure" width="320px" height="280px" style="border:none"></iframe></td>
 		</tr>
   <?php
 
