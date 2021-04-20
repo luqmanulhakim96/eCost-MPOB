@@ -303,7 +303,7 @@ function kos_belum_matang($lesen, $tahun, $type, $tahun_tanam, $keluasan, $neger
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Lalang control", $sub[16]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Purchase of fertilizer", $sub[17]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Labour cost to apply fertilizers", $sub[18]);
-    add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Machinery use and maintenances", $sub[19]);
+    add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Machinery use and maintenances (new)", $sub[19]);
     // add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Soil and foliar analysis", $sub[20]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Fertilizing", $sub[21]);
     add_kbm($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Soil and water conservation", $sub[22]);
