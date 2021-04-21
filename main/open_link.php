@@ -339,20 +339,76 @@ else if ($id == "analysis") {
 
     else if ($sub == "analysis_mill")
         $open_detail = "data_survey_mill_analysis.php";
-    else if ($sub == "linear_immature")
-        $open_detail = "linear_immature.php";
 
-    else if ($sub == "linear_mature_upkeep")
-        $open_detail = "linear_mature.php";
-    else if ($sub == "linear_mature_harvesting")
+
+    else if ($sub == "linear_immature"){
+
+      $tahun = $_COOKIE['tahun_report'];
+      if ($tahun <= 2020) { // old soalan
+      $open_detail = "linear_immature_old.php";
+      }else {
+            $open_detail = "linear_immature.php";
+      }
+    }
+
+    else if ($sub == "linear_mature_upkeep"){
+
+    $tahun = $_COOKIE['tahun_report'];
+    if ($tahun <= 2020) { // old soalan
+    $open_detail = "linear_mature_old.php";
+    }else {
+          $open_detail = "linear_mature.php";
+    }
+  }
+
+
+    else if ($sub == "linear_mature_harvesting"){
+
+      $tahun = $_COOKIE['tahun_report'];
+      if ($tahun <= 2020) { // old soalan
+      $open_detail = "linear_mature_harvesting_old.php";
+      }else {
         $open_detail = "linear_mature_harvesting.php";
-    else if ($sub == "linear_mature_transportation")
-        $open_detail = "linear_mature_transportation.php";
-	else if ($sub == "linear_mature_allcost")
-        $open_detail = "linear_mature_allcost.php";
+      }
+    }
+
+
+  else if ($sub == "linear_mature_transportation"){
+
+  $tahun = $_COOKIE['tahun_report'];
+  if ($tahun <= 2020) { // old soalan
+  $open_detail = "linear_mature_transportation_old.php";
+  }else {
+    $open_detail = "linear_mature_transportation.php";
+
+  }
+}
+	else if ($sub == "linear_mature_allcost"){
+
+    $tahun = $_COOKIE['tahun_report'];
+    if ($tahun <= 2020) { // old soalan
+    $open_detail = "linear_mature_allcost_old.php";
+    }else {
+      $open_detail = "linear_mature_allcost.php";
+
+    }
+  }
 
     else if ($sub == "linear_gc")
-        $open_detail = "linear_gc.php";
+    {
+
+      $tahun = $_COOKIE['tahun_report'];
+      if ($tahun <= 2020) { // old soalan
+      $open_detail = "linear_gc_old.php";
+    
+      }else {
+          $open_detail = "linear_gc.php";
+
+
+      }
+    }
+
+
 
     else if ($sub == "linear_mill_process")
         $open_detail = "linear_mill_process.php";
@@ -387,8 +443,16 @@ else if ($id == "matang") {
 else if ($id == "umum") {
     if (($_SESSION['type'] <> "estate") && ($_SESSION['type'] <> "admin"))
         header("location:../logout.php");
-    $open = "po4_1.php"; //done
-}
+
+        if ($_SESSION['tahun'] <= 2021) { // old soalan
+        $open = "po4_1_old.php";
+
+        }else {
+        $open = "po4_1.php";
+        }
+      }
+
+
 else if ($id == "buruh") {
     if ($_SESSION['type'] <> "estate")
         header("location:../logout.php");
@@ -455,8 +519,8 @@ else if ($id == "po") {
     $open = "palmoil.php";
     $open_detail = "po1_2.php";
 } else if ($id == "po1year") {
-    $open = "palmoil.php";
-    $open_detail = "po1year.php";
+    // $open = "palmoil.php";
+    // $open_detail = "po1year.php";
 } else if ($id == "po2year") {
     $open = "palmoil.php";
     $open_detail = "po2year.php";

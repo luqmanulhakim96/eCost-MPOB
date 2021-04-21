@@ -4,7 +4,7 @@ error_reporting(0);
 session_start();
 extract($_POST);
 extract($_GET);
-
+// var_dump($_POST);
 
 include ('../Connections/connection.class.php');
 $con = connect();
@@ -19,8 +19,6 @@ if ($type == "penjagaan") {
 $q = "select * from $table where pb_thisyear='$thisyear' and lesen ='" . $_SESSION['lesen'] . "'";
 $r = mysqli_query($con, $q);
 $total = mysqli_num_rows($r);
-
-
 
 $a_1 = str_replace(",", '', $a_1);
 $a_2 = str_replace(",", '', $a_2);
@@ -55,8 +53,19 @@ $total_b_9 = str_replace(",", '', $total_b_9);
 $total_b_10 = str_replace(",", '', $total_b_10);
 $total_b_11 = str_replace(",", '', $total_b_11);
 $total_b_12 = str_replace(",", '', $total_b_12);
-$total_b_13 = str_replace(",", '', $total_b_13);
-$total_b_14 = str_replace(",", '', $total_b_14);
+
+if(isset($total_b_13)){ //if variable exist in request
+  $total_b_13  = str_replace(",", '', $total_b_13);
+}else {
+  $total_b_13 = 0;
+}
+if(isset($total_b_14)){ //if variable exist in request
+  $total_b_14 = str_replace(",", '', $total_b_14);
+}else {
+  $total_b_14 = 0;
+}
+
+
 $total_b = str_replace(",", '', $total_b);
 
 $total_a = str_replace(",", '', $total_a);
@@ -117,7 +126,10 @@ if ($total == 1 and $type == "penjagaan") {
 	total_b='$total_a',
 	status = '$status'
 	where pb_thisyear='$thisyear' and lesen ='" . $_SESSION['lesen'] . "'";
-    $r = mysqli_query($con, $q) or die(mysqli_error());
+  // print($q);
+  // exit;
+
+  $r = mysqli_query($con, $q) or die(mysqli_error($con));
 }
 //------------------------------ kos matang (penuaian) -----------------------------------
 if ($total == 0 and $type == "penuaian") {

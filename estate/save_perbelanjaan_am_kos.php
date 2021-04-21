@@ -21,8 +21,19 @@ $air_tenaga = str_replace(",", '', $air_tenaga);
 $perbelanjaan_pejabat = str_replace(",", '', $perbelanjaan_pejabat);
 $susut_nilai = str_replace(",", '', $susut_nilai);
 $perbelanjaan_lain = str_replace(",", '', $perbelanjaan_lain);
-$pembelian_mesin = str_replace(",", '', $pembelian_mesin);
-$pembelian_aset= str_replace(",", '', $pembelian_aset);
+
+if(isset($pembelian_mesin)){ //if variable exist in request
+  $pembelian_mesin = str_replace(",", '', $pembelian_mesin);
+}else {
+  $pembelian_mesin = 0;
+}
+
+if(isset($pembelian_aset)){ //if variable exist in request
+  $pembelian_aset= str_replace(",", '', $pembelian_aset);
+}else {
+  $pembelian_aset = 0;
+}
+
 $total_perbelanjaan = str_replace(",", '', $total_perbelanjaan);
 
 
@@ -51,6 +62,7 @@ status = '$status'
 where lesen = '" . $_SESSION['lesen'] . "' and thisyear = '$tahun'
 ";
 $r = mysqli_query($con, $q);
+
 //echo $q;
 if ($status == '1') {
     echo "<script>window.location.href='home.php?id=ringkasan'</script>";
