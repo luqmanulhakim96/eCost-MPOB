@@ -207,12 +207,25 @@ function openScript(url, width, height) {
   $qs.=" where tahun ='0'";
   }
   */
-  if($year=="" || $year=='1'){
-  $qs =" select * from q_kbm ORDER BY arrangement ASC";
-  }
-  else {
-  $qs = " select * from q_kbm where tahun!='0'";
-  }
+	$tahun = $_COOKIE['tahun_report'];				// new question and old question
+	if ($tahun <= '2020') {
+	  if ($year = "" || $year == '1') {
+	      $qs = " select * from q_kbm ";
+	    }
+
+	  else {
+	      $qs = " select * from q_kbm where tahun!='0'";
+	  }
+	} else {
+	  if ($year = "" || $year == '1') {
+	      $qs = " select * from q_kbmv2 ORDER by arrangement ASC";
+	    }
+
+	  else {
+	      $qs = " select * from q_kbmv2 ORDER by arrangement ASC where tahun!='0'";
+	  }
+	}
+
   $rs = mysqli_query($con, $qs);
 
   $jl=0;

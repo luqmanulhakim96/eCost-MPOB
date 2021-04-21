@@ -10,8 +10,8 @@ $con = connect();
 $q = "SELECT * FROM kos_belum_matang WHERE pb_tahun = '" . $year . "' AND pb_thisyear='" . $thisyear . "' AND lesen ='" . $_SESSION['lesen'] . "' AND pb_type =  '" . $type . "'";
 $r = mysqli_query($con,$q);
 $total = mysqli_num_rows($r);
-// print_r($_REQUEST);
 // print_r("<br>");
+
 
 $a_1 = str_replace(",", '', $a_1);
 $a_2 = str_replace(",", '', $a_2);
@@ -24,8 +24,19 @@ $a_8 = str_replace(",", '', $a_8);
 $a_9 = str_replace(",", '', $a_9);
 $a_10 = str_replace(",", '', $a_10);
 $a_11 = str_replace(",", '', $a_11);
-$a_12 = str_replace(",", '', $a_12);
-$a_13 = str_replace(",", '', $a_13);
+
+if(isset($a_12)){ //if variable exist in request
+  $a_12  = str_replace(",", '', $a_12);
+}else {
+  $a_12 = 0;
+}
+
+if(isset($a_13)){ //if variable exist in request
+  $a_13  = str_replace(",", '', $a_13);
+}else {
+  $a_13 = 0;
+}
+
 $total_kos_a = str_replace(",", '', $total_kos_a);
 
 if(isset($b_1a)){ //if variable exist in request
@@ -45,7 +56,6 @@ if(isset($b_1c)){ //if variable exist in request
 }else {
   $b_1c = 0;
 }
-
 
 // $total_racun = str_replace(",", '', $total_b_1);
 if($total_b_1){
@@ -76,6 +86,11 @@ if(isset($b_3c)){ //if variable exist in request
   $b_3c = 0;
 }
 
+if(isset($b_3d)){ //if variable exist in request
+  $b_3d = str_replace(",", '', $b_3d);
+}else {
+  $b_3d = 0;
+}
 
 
 $total_baja = str_replace(",", '', $total_b_3);
@@ -84,7 +99,7 @@ if($total_baja){
   $total_baja = str_replace(",", '', $total_b_3);
 }
 else {
-  $total_baja = $b_3a + $b_3b + $b_3c ;
+  $total_baja = $b_3a + $b_3b + $b_3c + $b_3d;
 }
 
 $total_b_4 = str_replace(",", '', $total_b_4);
@@ -98,8 +113,19 @@ $total_b_11 = str_replace(",", '', $total_b_11);
 $total_b_12 = str_replace(",", '', $total_b_12);
 $total_b_13 = str_replace(",", '', $total_b_13);
 $total_b_14 = str_replace(",", '', $total_b_14);
-$total_b_15 = str_replace(",", '', $total_b_15);
-$total_b_16 = str_replace(",", '', $total_b_16);
+
+if(isset($total_b_15)){ //if variable exist in request
+  $total_b_15 = str_replace(",", '', $total_b_15);
+}else {
+  $total_b_15 = 0;
+}
+
+if(isset($total_b_16)){ //if variable exist in request
+  $total_b_16 = str_replace(",", '', $total_b_16);
+}else {
+  $total_b_16 = 0;
+}
+
 $total_kos_b = str_replace(",", '', $total_kos_b);
 //$total_b_kos_per_hektar = str_replace(",", '', $total_b_kos_per_hektar);
 
@@ -129,6 +155,8 @@ if ($total == 0) {
 	'$b_3a',
 	'$b_3b',
 	'$b_3c',
+  '$b_3d',
+
 
 	'$total_baja',
 	'$total_b_4',
@@ -174,6 +202,8 @@ if($form_year == 'po1year'){
         b_3a='$b_3a',
         b_3b='$b_3b',
         b_3c='$b_3c',
+        b_3d='$b_3d',
+
 
         total_b_3= '$total_baja',
         total_b_4='$total_b_4',
@@ -204,6 +234,8 @@ elseif ($form_year == 'po2year') {
         b_3a='$b_3a',
         b_3b='$b_3b',
         b_3c='$b_3c',
+        b_3d='$b_3d',
+
 
         total_b_3= '$total_baja',
         total_b_4='$total_b_4',
@@ -237,6 +269,8 @@ else {
         b_3a='$b_3a',
         b_3b='$b_3b',
         b_3c='$b_3c',
+        b_3d='$b_3d',
+
 
         total_b_3= '$total_baja',
         total_b_4='$total_b_4',
@@ -282,6 +316,8 @@ if ($total != 0) {
         	b_3a='$b_3a',
         	b_3b='$b_3b',
         	b_3c='$b_3c',
+          b_3d='$b_3d',
+
 
         	total_b_3= '$total_baja',
         	total_b_4='$total_b_4',
@@ -303,6 +339,8 @@ if ($total != 0) {
             $r = mysqli_query($con,$q);
 }
 // echo $q;
+print_r($q);
+exit();
 
 $lesen = $_SESSION['lesen'];
 $tahuntrim = substr($_SESSION['tahun'], -2);

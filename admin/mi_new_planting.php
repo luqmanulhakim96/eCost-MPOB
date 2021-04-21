@@ -27,6 +27,7 @@ function pertama($tahun, $nama, $status, $negeri, $daerah, $type, $tahuntanam) {
 		and (status='$status')
 		and pb_type = '$type'
 		and pb_tahun = '$tahuntanam'";
+    print_r($tahun);
     if ($negeri != "" & $negeri != "pm") {
         $sql.=" and negeri = '$negeri'";
     }
@@ -64,6 +65,7 @@ function pertama($tahun, $nama, $status, $negeri, $daerah, $type, $tahuntanam) {
     $var[1] = $rrow['purata'];
     return $var;
 
+
 }
 
 ///--------------------cop----------------
@@ -81,11 +83,6 @@ function cop($name, $type, $year, $state, $district, $tahun_r) {
 }
 ?>
 <link rel="stylesheet" href="../text_style.css" type="text/css" />
-<style type="text/css">
-    <!--
-    .style5 {color: #FFFFFF; font-weight: bold; }
-    -->
-</style>
 
 <link rel="stylesheet" href="../js/colorbox/colorbox.css" type="text/css" />
 <script type="text/javascript" src="../js/colorbox/colorbox/jquery.colorbox.js"></script>
@@ -105,7 +102,7 @@ function cop($name, $type, $year, $state, $district, $tahun_r) {
         if (restore)
             selObj.selectedIndex = 0;
     }
-//-->
+-->
 </script>
 <script type="text/javascript" src="script.js"></script>
 
@@ -197,15 +194,27 @@ if ($year == "" || $year == '1') {
     <?php
 }// for data in Non-Recurrent Costs
 
+$tahun = $_COOKIE['tahun_report'];        // new question and old question
 
+if ($tahun <= '2020') {
+  if ($year = "" || $year == '1') {
+      $qs = " select * from q_kbm ";
+    }
 
-if ($year == "" || $year == '1') {
-    $qs = " select * from q_kbm ";
+  else {
+      $qs = " select * from q_kbm where tahun!='0'";
   }
-  
-else {
-    $qs = " select * from q_kbm where tahun!='0'";
+} else {
+  if ($year = "" || $year == '1') {
+      $qs = " select * from q_kbmv2 ORDER by arrangement ASC";
+    }
+
+  else {
+      $qs = " select * from q_kbmv2 ORDER by arrangement ASC where tahun!='0'";
+  }
 }
+
+
 
 $rs = mysqli_query($con, $qs);
 
