@@ -5,7 +5,7 @@
 		include('menu_belum_matang.php'); // menu treeview yang perlu hide if first year
 		if(isset($_GET['year'])){
 
-      if ($_SESSION['tahun'] <= 2021) { // old soalan
+      if ($_SESSION['tahun'] <= 2020) { // old soalan
         $open_detail = "po".$_GET['year']."year_old.php";
 
       }else {
@@ -13,7 +13,7 @@
       }
     }
 		else{
-      if ($_SESSION['tahun'] <= 2021) { // old soalan
+      if ($_SESSION['tahun'] <= 2020) { // old soalan
         $open_detail = "po1year_old.php";
       }else {
         $open_detail = "po1year.php";
@@ -22,12 +22,12 @@
 	}
 	else if($id == "matang") {
 		include('menu_matang.php');
-    if ($_SESSION['tahun'] <= 2021) { // old soalan
+    if ($_SESSION['tahun'] <= 2020) { // old soalan
       $open_detail = "po3_2_old.php";
     }else {
       $open_detail = "po3_2.php";
     }
-	
+
     // print_r($open_detail);
 	}
 	else{

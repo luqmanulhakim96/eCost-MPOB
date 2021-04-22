@@ -204,7 +204,16 @@ $qstate ="select * from negeri where id like '$state'";
 
   ?>
  <?php
-  $qs="select * from q_km where type='$sub'";
+ $tahun = $_COOKIE['tahun_report'];			// new question and old question
+
+ if ($tahun <= '2020') {
+ $qs="select * from q_km where type='$sub' ";
+
+ }
+
+ else {
+		 $qs = " select * from q_kmv2 where type='$sub' ORDER BY arrangement ";
+ }
   $rs = mysqli_query($con, $qs);
 
   $jl=0;

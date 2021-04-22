@@ -222,7 +222,18 @@ function openScript(url, width, height) {
 
   ?>
  <?php
-  $qs="select * from q_km where type='gc' AND name != 'Payment of salaries and allowances' AND name !='Professional fee and advisory services' AND name !='Taxes, Temporary Ownership Land (TOL) and insurance' AND name !='Upkeep, conversation and maintenance of building' AND name !='Security Control' AND name !='Office expenses and utilities' AND name !='Depreciation' AND name !='Other expenses' ORDER BY arrangement ";
+
+  $tahun = $_COOKIE['tahun_report'];			// new question and old question
+
+  if ($tahun <= '2020') {
+       echo"NO DATA";
+
+  }
+
+  else {
+    $qs="select * from q_kmv2 where type='gc' AND name != 'Payment of salaries and allowances' AND name !='Professional fee and advisory services' AND name !='Taxes, Temporary Ownership Land (TOL) and insurance' AND name !='Upkeep, conversation and maintenance of building' AND name !='Security Control' AND name !='Office expenses and utilities' AND name !='Depreciation' AND name !='Other expenses' ORDER BY arrangement ";
+
+  }
   $rs = mysqli_query($con, $qs);
   // print_r($dua);
 
