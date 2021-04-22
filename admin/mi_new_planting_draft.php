@@ -68,7 +68,7 @@ function pertama($tahun, $nama, $status, $negeri, $daerah, $type, $tahuntanam) {
         $var[0] = median($test_data);
     }
     $var[1] = $rrow['purata'];
-    echo $var[1]."<br>";
+    
 
     return $var;
 }
@@ -169,10 +169,24 @@ if ($year == "" || $year == '1') {
 
 
 
-if ($year == "" || $year == '1') {
-    $qs = " select * from q_kbm";
+$tahun = $_COOKIE['tahun_report'];        // new question and old question
+
+if ($tahun <= '2020') {
+  if ($year = "" || $year == '1') {
+      $qs = " select * from q_kbm ";
+    }
+
+  else {
+      $qs = " select * from q_kbm where tahun!='0'";
+  }
 } else {
-    $qs = " select * from q_kbm where tahun!='0'";
+  if ($year = "" || $year == '1') {
+      $qs = " select * from q_kbmv2 ORDER by arrangement ASC";
+    }
+
+  else {
+      $qs = " select * from q_kbmv2 ORDER by arrangement ASC where tahun!='0'";
+  }
 }
 
 $rs = mysqli_query($con, $qs);

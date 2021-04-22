@@ -400,7 +400,7 @@ else if ($id == "analysis") {
       $tahun = $_COOKIE['tahun_report'];
       if ($tahun <= 2020) { // old soalan
       $open_detail = "linear_gc_old.php";
-    
+
       }else {
           $open_detail = "linear_gc.php";
 
@@ -444,7 +444,7 @@ else if ($id == "umum") {
     if (($_SESSION['type'] <> "estate") && ($_SESSION['type'] <> "admin"))
         header("location:../logout.php");
 
-        if ($_SESSION['tahun'] <= 2021) { // old soalan
+        if ($_SESSION['tahun'] <= 2020) { // old soalan
         $open = "po4_1_old.php";
 
         }else {

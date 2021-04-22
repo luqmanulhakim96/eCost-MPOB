@@ -42,16 +42,7 @@ $rdeletedata = mysqli_query($con, $qdeletedata);
 ?>
 <h2>Analysis Data Survey Estate for <?php echo $tahun;?></h2>
 
-<style>
-body {
-	font-family:Tahoma ;
-	font-size: 12px;
 
-}td,th {
-	font-size: 12px;
-}
-
-</style>
 
 
 <?php
@@ -103,42 +94,30 @@ function kos_belum_matang($lesen,$tahun,$type,$tahun_tanam,$keluasan,$negeri,$da
 	if($keluasan > 0){
 		$sub[0]=round($row['a_1']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Felling and land clearing",$sub[0]);
 		$sub[1]=round($row['a_2']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Terracing and platform",$sub[1]);
-		$sub[2]=round($row['a_3']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Road construction",$sub[2]);
-		$sub[3]=round($row['a_4']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Drain construction",$sub[3]);
-		$sub[4]=round($row['a_5']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Bund and watergate construction",$sub[4]);
-		$sub[5]=round($row['a_6']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Lining",$sub[5]);
-		$sub[6]=round($row['a_7']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Holing and planting",$sub[6]);
-		$sub[7]=round($row['a_8']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Basal fertiliser",$sub[7]);
-		$sub[8]=round($row['a_9']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Planting material",$sub[8]);
-		$sub[9]=round($row['a_10']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Cover crops",$sub[9]);
-		$sub[10]=round($row['a_11']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Other expenditures",$sub[10]);
-		$sub[40]=round($row['a_12']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Construction of road, drain, bund watergate and etc",$sub[40]);
-		$sub[41]=round($row['a_13']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Lining, holing and planting",$sub[41]);
-		$sub[11]=round($row['total_a']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Total Non-Recurrent Expenditures",$sub[11]);
-		$sub[12]=round($row['b_1a']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Purchase of weedicides",$sub[12]);
-		$sub[13]=round($row['b_1b']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Labour cost for weeding",$sub[13]);
-		$sub[14]=round($row['b_1c']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Machinery use and maintenance",$sub[14]);
-		$sub[15]=round($row['total_b_1']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Weeding",$sub[15]);
-		$sub[16]=round($row['total_b_2']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Lalang control",$sub[16]);
-		$sub[17]=round($row['b_3a']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Purchase of fertilizer",$sub[17]);
-		$sub[18]=round($row['b_3b']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Labour cost to apply fertilizers",$sub[18]);
-		$sub[19]=round($row['b_3c']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Machinery use and maintenances",$sub[19]);
-		$sub[20]=round($row['b_3d']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Soil and foliar analysis",$sub[20]);
-		$sub[21]=round($row['total_b_3']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Fertilizing",$sub[21]);
-		$sub[22]=round($row['total_b_4']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Soil and water conservation",$sub[22]);
-		$sub[23]=round($row['total_b_5']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Upkeep of roads, bridges, paths and etc",$sub[23]);
-		$sub[24]=round($row['total_b_6']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Upkeep of drain",$sub[24]);
-		$sub[25]=round($row['total_b_7']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Upkeep of bunds and watergate",$sub[25]);
-		$sub[26]=round($row['total_b_8']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Boundaries and survey",$sub[26]);
-		$sub[27]=round($row['total_b_9']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Cover crops",$sub[27]);
-		$sub[28]=round($row['total_b_10']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Pest and diseases control",$sub[28]);
-		$sub[29]=round($row['total_b_11']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Pruning and palm sanitation",$sub[29]);
-		$sub[30]=round($row['total_b_12']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Census / supplies",$sub[30]);
-		$sub[31]=round($row['total_b_13']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Castration",$sub[31]);
-		$sub[32]=round($row['total_b_14']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Others Expenditure",$sub[32]);
-		$sub[42]=round($row['total_b_15']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Construction of road, drain, bund watergate and etc",$sub[42]);
-		$sub[43]=round($row['total_b_16']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Soil and foliar analysis",$sub[43]);
-		$sub[33]=round($row['total_b']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Total Upkeep",$sub[33]);
+		$sub[2]=round($row['a_13']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Lining, holing and planting",$sub[2]);
+		$sub[3]=round($row['a_12']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Construction of road, drain, bund watergate and etc",$sub[3]);
+		$sub[4]=round($row['a_8']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Basal fertiliser",$sub[4]);
+		$sub[5]=round($row['a_9']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Seedlings",$sub[5]);
+		$sub[6]=round($row['a_10']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Cover crops",$sub[6]);
+		$sub[7]=round($row['a_11']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Other expenditures",$sub[7]);
+		$sub[8]=round($row['total_a']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Total Non-Recurrent Expenditures",$sub[8]);
+		$sub[9]=round($row['b_1a']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Purchase of weedicides",$sub[9]);
+		$sub[10]=round($row['b_1b']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Labour cost for weeding",$sub[10]);
+		$sub[11]=round($row['b_1c']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Machinery use and maintenance",$sub[11]);
+		$sub[12]=round($row['total_b_1']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Weeding",$sub[12]);
+		$sub[13]=round($row['total_b_2']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Lalang control",$sub[13]);
+		$sub[14]=round($row['b_3a']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Purchase of fertilizer",$sub[14]);
+		$sub[15]=round($row['b_3b']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Labour cost to apply fertilizers",$sub[15]);
+		$sub[16]=round($row['b_3c']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Machinery use and maintenances",$sub[16]);
+		$sub[17]=round($row['total_b_3']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Fertilizing",$sub[17]);
+		$sub[18]=round($row['total_b_16']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Soil and foliar analysis",$sub[18]);			//soalan baru
+		$sub[19]=round($row['total_b_15']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Construction of road, drain, bund watergate and etc",$sub[19]);	//soalan baru
+		$sub[20]=round($row['total_b_9']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Cover crops",$sub[20]);
+		$sub[21]=round($row['total_b_10']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Pest and diseases control",$sub[21]);
+		$sub[22]=round($row['total_b_11']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Pruning and palm sanitation",$sub[22]);
+		$sub[23]=round($row['total_b_12']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Census / supplies",$sub[23]);
+		$sub[24]=round($row['total_b_14']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Others Expenditure",$sub[24]);
+		$sub[25]=round($row['total_b']/$keluasan,2);add_kbm ($tahun_tanam, $tahun, $lesen, $type, $negeri, $daerah, "Total Upkeep",$sub[25]);
 	}
 
 	return $sub;
@@ -427,257 +406,215 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="2%">PB1_Luas</th>
     <th width="2%">PB1_a_1</th>
     <th width="2%">PB1_a_2</th>
-    <th width="2%">PB1_a_3</th>
-    <th width="2%">PB1_a_4</th>
-    <th width="2%">PB1_a_5</th>
-    <th width="2%">PB1_a_6</th>
-    <th width="2%">PB1_a_7</th>
+		<th width="3%">PB1_a_13</th>	<!--soalan baru kos belum matang-->
+		<th width="3%">PB1_a_12</th>	<!--soalan baru kos belum matang-->
     <th width="3%">PB1_a_8</th>
     <th width="3%">PB1_a_9</th>
     <th width="3%">PB1_a_10</th>
 		<th width="3%">PB1_a_11</th>
-		<th width="3%">PB1_a_12</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PB1_a_13</th>	<!--soalan baru kos belum matang-->
     <th width="3%">PB1_total_a</th>
     <th width="2%">PB1_b_1a</th>
     <th width="2%">PB1_b_1b</th>
-    <th width="2%">PB1_b_1c</th>
+    <th width="2%">PB1_b_1c</th>															<!--PENANAMAN BARU-->
     <th width="2%">PB1_total_b_1</th>
     <th width="2%">PB1_total_b_2</th>
     <th width="2%">PB1_b_3a</th>
     <th width="2%">PB1_b_3b</th>
     <th width="3%">PB1_b_3c</th>
-    <th width="3%">PB1_b_3d</th>
     <th width="3%">PB1_total_b_3</th>
-    <th width="3%">PB1_total_b_4</th>
-    <th width="3%">PB1_total_b_5</th>
-    <th width="3%">PB1_total_b_6</th>
-    <th width="3%">PB1_total_b_7</th>
-    <th width="3%">PB1_total_b_8</th>
-    <th width="3%">PB1_total_b_9</th>
-    <th width="3%">PB1_total_b_10</th>
-    <th width="3%">PB1_total_b_11</th>
-    <th width="3%">PB1_total_b_12</th>
-    <th width="3%">PB1_total_b_13</th>
-    <th width="3%">PB1_total_b_14</th>
-		<th width="3%">PB1_total_b_15</th> <!--soalan baru kos belum matang-->
 		<th width="3%">PB1_total_b_16</th> <!--soalan baru kos belum matang-->
-    <th width="3%">PB1_total_a</th>
-    <th width="2%">PB1_b_1a</th>
-    <th width="2%">PB1_b_1b</th>
-    <th width="2%">PB1_b_1c</th>
-    <th width="2%">PB1_total_b_1</th>
-    <th width="2%">PB1_total_b_2</th>
-    <th width="2%">PB1_b_3a</th>
-    <th width="2%">PB1_b_3b</th>
-    <th width="3%">PB1_b_3c</th>
-    <th width="3%">PB1_b_3d</th>
-    <th width="3%">PB1_total_b_3</th>
-    <th width="3%">PB1_total_b_4</th>
-    <th width="3%">PB1_total_b_5</th>
-    <th width="3%">PB1_total_b_6</th>
-    <th width="3%">PB1_total_b_7</th>
-    <th width="3%">PB1_total_b_8</th>
+		<th width="3%">PB1_total_b_15</th> <!--soalan baru kos belum matang-->
     <th width="3%">PB1_total_b_9</th>
     <th width="3%">PB1_total_b_10</th>
     <th width="3%">PB1_total_b_11</th>
     <th width="3%">PB1_total_b_12</th>
-    <th width="3%">PB1_total_b_13</th>
-    <th width="3%">PB1_total_b_14</th>
-		<th width="3%">PB1_total_b_15</th> 	<!--soalan baru kos belum matang-->
-		<th width="3%">PB1_total_b_16</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PB1_total_a</th>
+    <th width="3%">PB1_total_b_14</th>				<!--form a and form b-->
+    <th width="3%">PB1_total_a</th>						<!--total tahun 1-->
+		<th> </th>
 
-    <th width="2%">PB2_Luas</th>
-    <th width="2%">PB2_b_1a</th>
+		<th width="2%">PB2_Luas</th>
+		<th width="2%">PB2_total_b_1</th>
+		<th width="2%">PB2_b_1a</th>
     <th width="2%">PB2_b_1b</th>
     <th width="2%">PB2_b_1c</th>
-    <th width="2%">PB2_total_b_1</th>
     <th width="2%">PB2_total_b_2</th>
+		<th width="3%">PB2_total_b_3</th>									<!--PENANAMAN BARU-->
     <th width="2%">PB2_b_3a</th>
     <th width="2%">PB2_b_3b</th>
     <th width="3%">PB2_b_3c</th>
-    <th width="3%">PB2_b_3d</th>
-    <th width="3%">PB2_total_b_3</th>
-    <th width="3%">PB2_total_b_4</th>
-    <th width="3%">PB2_total_b_5</th>
-    <th width="3%">PB2_total_b_6</th>
-    <th width="3%">PB2_total_b_7</th>
-    <th width="3%">PB2_total_b_8</th>
+		<th width="3%">PB2_total_b_16</th> <!--soalan baru kos belum matang-->
+		<th width="3%">PB2_total_b_15</th> <!--soalan baru kos belum matang-->
     <th width="3%">PB2_total_b_9</th>
     <th width="3%">PB2_total_b_10</th>
     <th width="3%">PB2_total_b_11</th>
     <th width="3%">PB2_total_b_12</th>
-    <th width="3%">PB2_total_b_13</th>
-		<th width="3%">PB2_total_b_14</th>
-		<th width="3%">PB2_total_b_15</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PB2_total_b_16</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PB2_total_a</th>
+    <th width="3%">PB2_total_b_14</th>				<!--form b-->
+    <th width="3%">PB2_total_a</th>						<!--total tahun 2-->
+		<th> </th>
 
 
-    <th width="2%">PB3_Luas</th>
-    <th width="2%">PB3_b_1a</th>
+		<th width="2%">PB3_Luas</th>
+		<th width="2%">PB3_total_b_1</th>
+		<th width="2%">PB3_b_1a</th>
     <th width="2%">PB3_b_1b</th>
     <th width="2%">PB3_b_1c</th>
-    <th width="2%">PB3_total_b_1</th>
     <th width="2%">PB3_total_b_2</th>
+		<th width="3%">PB3_total_b_3</th>
     <th width="2%">PB3_b_3a</th>
-    <th width="2%">PB3_b_3b</th>
+    <th width="2%">PB3_b_3b</th>										<!--PENANAMAN BARU-->
     <th width="3%">PB3_b_3c</th>
-    <th width="3%">PB3_b_3d</th>
-    <th width="3%">PB3_total_b_3</th>
-    <th width="3%">PB3_total_b_4</th>
-    <th width="3%">PB3_total_b_5</th>
-    <th width="3%">PB3_total_b_6</th>
-    <th width="3%">PB3_total_b_7</th>
-    <th width="3%">PB3_total_b_8</th>
+		<th width="3%">PB3_total_b_16</th> <!--soalan baru kos belum matang-->
+		<th width="3%">PB3_total_b_15</th> <!--soalan baru kos belum matang-->
     <th width="3%">PB3_total_b_9</th>
     <th width="3%">PB3_total_b_10</th>
     <th width="3%">PB3_total_b_11</th>
     <th width="3%">PB3_total_b_12</th>
-    <th width="3%">PB3_total_b_13</th>
-		<th width="3%">PB3_total_b_14</th>
-		<th width="3%">PB3_total_b_15</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PB3_total_b_16</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PB3_total_a</th>
+    <th width="3%">PB3_total_b_14</th>				<!--form b-->
+    <th width="3%">PB3_total_a</th>						<!--total tahun 3-->
+		<th> </th>
+
+
+
 
     <th width="2%">PS1_Luas</th>
-    <th width="2%">PS1_a_1</th>
-    <th width="2%">PS1_a_2</th>
-    <th width="2%">PS1_a_3</th>
-    <th width="2%">PS1_a_4</th>
-    <th width="2%">PS1_a_5</th>
-    <th width="2%">PS1_a_6</th>
-    <th width="2%">PS1_a_7</th>
-    <th width="3%">PS1_a_8</th>
-    <th width="3%">PS1_a_9</th>
-    <th width="3%">PS1_a_10</th>
-		<th width="3%">PS1_a_11</th>
+		<th width="2%">PS1_a_1</th>
+		<th width="2%">PS1_a_2</th>
+		<th width="3%">PS1_a_13</th>	<!--soalan baru kos belum matang-->
 		<th width="3%">PS1_a_12</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PS1_a_13</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PS1_total_a</th>
+		<th width="3%">PS1_a_8</th>
+		<th width="3%">PS1_a_9</th>
+		<th width="3%">PS1_a_10</th>
+		<th width="3%">PS1_a_11</th>
+		<th width="3%">PS1_total_a</th>
+		<th width="2%">PS1_b_1a</th>
+		<th width="2%">PS1_b_1b</th>
+		<th width="2%">PS1_b_1c</th>															<!--PENANAMAN SEMULA-->
+		<th width="2%">PS1_total_b_1</th>
+		<th width="2%">PS1_total_b_2</th>
+		<th width="2%">PS1_b_3a</th>
+		<th width="2%">PS1_b_3b</th>
+		<th width="3%">PS1_b_3c</th>
+		<th width="3%">PS1_total_b_3</th>
+		<th width="3%">PS1_total_b_16</th> <!--soalan baru kos belum matang-->
+		<th width="3%">PS1_total_b_15</th> <!--soalan baru kos belum matang-->
+		<th width="3%">PS1_total_b_9</th>
+		<th width="3%">PS1_total_b_10</th>
+		<th width="3%">PS1_total_b_11</th>
+		<th width="3%">PS1_total_b_12</th>
+		<th width="3%">PS1_total_b_14</th>				<!--form a and form b-->
+		<th width="3%">PS1_total_a</th>						<!--total tahun 1-->
+		<th> </th>
 
     <th width="2%">PS2_Luas</th>
-    <th width="2%">PS2_b_1a</th>
+		<th width="2%">PS2_total_b_1</th>
+		<th width="2%">PS2_b_1a</th>
     <th width="2%">PS2_b_1b</th>
     <th width="2%">PS2_b_1c</th>
-    <th width="2%">PS2_total_b_1</th>
     <th width="2%">PS2_total_b_2</th>
+		<th width="3%">PS2_total_b_3</th>									<!--PENANAMAN SEMULA-->
     <th width="2%">PS2_b_3a</th>
     <th width="2%">PS2_b_3b</th>
     <th width="3%">PS2_b_3c</th>
-    <th width="3%">PS2_b_3d</th>
-    <th width="3%">PS2_total_b_3</th>
-    <th width="3%">PS2_total_b_4</th>
-    <th width="3%">PS2_total_b_5</th>
-    <th width="3%">PS2_total_b_6</th>
-    <th width="3%">PS2_total_b_7</th>
-    <th width="3%">PS2_total_b_8</th>
+		<th width="3%">PS2_total_b_16</th> <!--soalan baru kos belum matang-->
+		<th width="3%">PS2_total_b_15</th> <!--soalan baru kos belum matang-->
     <th width="3%">PS2_total_b_9</th>
     <th width="3%">PS2_total_b_10</th>
     <th width="3%">PS2_total_b_11</th>
     <th width="3%">PS2_total_b_12</th>
-    <th width="3%">PS2_total_b_13</th>
-		<th width="3%">PS2_total_b_14</th>
-		<th width="3%">PS2_total_b_15</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PS2_total_b_16</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PS2_total_a</th>
+    <th width="3%">PS2_total_b_14</th>				<!--form b-->
+    <th width="3%">PS2_total_a</th>						<!--total tahun 2-->
+		<th> </th>
 
 
     <th width="2%">PS3_Luas</th>
-    <th width="2%">PS3_b_1a</th>
+		<th width="2%">PS3_total_b_1</th>
+		<th width="2%">PS3_b_1a</th>
     <th width="2%">PS3_b_1b</th>
     <th width="2%">PS3_b_1c</th>
-    <th width="2%">PS3_total_b_1</th>
     <th width="2%">PS3_total_b_2</th>
+		<th width="3%">PS3_total_b_3</th>									<!--PENANAMAN SEMULA-->
     <th width="2%">PS3_b_3a</th>
     <th width="2%">PS3_b_3b</th>
     <th width="3%">PS3_b_3c</th>
-    <th width="3%">PS3_b_3d</th>
-    <th width="3%">PS3_total_b_3</th>
-    <th width="3%">PS3_total_b_4</th>
-    <th width="3%">PS3_total_b_5</th>
-    <th width="3%">PS3_total_b_6</th>
-    <th width="3%">PS3_total_b_7</th>
-    <th width="3%">PS3_total_b_8</th>
+		<th width="3%">PS3_total_b_16</th> <!--soalan baru kos belum matang-->
+		<th width="3%">PS3_total_b_15</th> <!--soalan baru kos belum matang-->
     <th width="3%">PS3_total_b_9</th>
     <th width="3%">PS3_total_b_10</th>
     <th width="3%">PS3_total_b_11</th>
     <th width="3%">PS3_total_b_12</th>
-    <th width="3%">PS3_total_b_13</th>
-		<th width="3%">PS3_total_b_14</th>
-		<th width="3%">PS3_total_b_15</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PS3_total_b_16</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PS3_total_a</th>
+    <th width="3%">PS3_total_b_14</th>				<!--form b-->
+    <th width="3%">PS3_total_a</th>						<!--total tahun 3-->
+		<th> </th>
 
     <th width="2%">PT1_Luas</th>
-    <th width="2%">PT1_a_1</th>
-    <th width="2%">PT1_a_2</th>
-    <th width="2%">PT1_a_3</th>
-    <th width="2%">PT1_a_4</th>
-    <th width="2%">PT1_a_5</th>
-    <th width="2%">PT1_a_6</th>
-    <th width="2%">PT1_a_7</th>
-    <th width="3%">PT1_a_8</th>
-    <th width="3%">PT1_a_9</th>
-    <th width="3%">PT1_a_10</th>
-		<th width="3%">PT1_a_11</th>
+		<th width="2%">PT1_a_1</th>
+		<th width="2%">PT1_a_2</th>
+		<th width="3%">PT1_a_13</th>	<!--soalan baru kos belum matang-->
 		<th width="3%">PT1_a_12</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PT1_a_13</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PT1_total_a</th>
+		<th width="3%">PT1_a_8</th>
+		<th width="3%">PT1_a_9</th>
+		<th width="3%">PT1_a_10</th>
+		<th width="3%">PT1_a_11</th>
+		<th width="3%">PT1_total_a</th>
+		<th width="2%">PT1_b_1a</th>
+		<th width="2%">PT1_b_1b</th>
+		<th width="2%">PT1_b_1c</th>															<!--PENUKARAN-->
+		<th width="2%">PT1_total_b_1</th>
+		<th width="2%">PT1_total_b_2</th>
+		<th width="2%">PT1_b_3a</th>
+		<th width="2%">PT1_b_3b</th>
+		<th width="3%">PT1_b_3c</th>
+		<th width="3%">PT1_total_b_3</th>
+		<th width="3%">PT1_total_b_16</th> <!--soalan baru kos belum matang-->
+		<th width="3%">PT1_total_b_15</th> <!--soalan baru kos belum matang-->
+		<th width="3%">PT1_total_b_9</th>
+		<th width="3%">PT1_total_b_10</th>
+		<th width="3%">PT1_total_b_11</th>
+		<th width="3%">PT1_total_b_12</th>
+		<th width="3%">PT1_total_b_14</th>				<!--form a and form b-->
+		<th width="3%">PT1_total_a</th>						<!--total tahun 1-->
+		<th> </th>
 
     <th width="2%">PT2_Luas</th>
-    <th width="2%">PT2_b_1a</th>
+		<th width="2%">PT2_total_b_1</th>
+		<th width="2%">PT2_b_1a</th>
     <th width="2%">PT2_b_1b</th>
     <th width="2%">PT2_b_1c</th>
-    <th width="2%">PT2_total_b_1</th>
     <th width="2%">PT2_total_b_2</th>
+		<th width="3%">PT2_total_b_3</th>											<!--PENUKARAN-->
     <th width="2%">PT2_b_3a</th>
     <th width="2%">PT2_b_3b</th>
     <th width="3%">PT2_b_3c</th>
-    <th width="3%">PT2_b_3d</th>
-    <th width="3%">PT2_total_b_3</th>
-    <th width="3%">PT2_total_b_4</th>
-    <th width="3%">PT2_total_b_5</th>
-    <th width="3%">PT2_total_b_6</th>
-    <th width="3%">PT2_total_b_7</th>
-    <th width="3%">PT2_total_b_8</th>
+		<th width="3%">PT2_total_b_16</th> <!--soalan baru kos belum matang-->
+		<th width="3%">PT2_total_b_15</th> <!--soalan baru kos belum matang-->
     <th width="3%">PT2_total_b_9</th>
     <th width="3%">PT2_total_b_10</th>
     <th width="3%">PT2_total_b_11</th>
     <th width="3%">PT2_total_b_12</th>
-    <th width="3%">PT2_total_b_13</th>
-		<th width="3%">PT2_total_b_14</th>
-		<th width="3%">PT2_total_b_15</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PT2_total_b_16</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PT2_total_a</th>
+    <th width="3%">PT2_total_b_14</th>				<!--form b-->
+    <th width="3%">PT2_total_a</th>						<!--total tahun 2-->
+		<th> </th>
 
 
     <th width="2%">PT3_Luas</th>
-    <th width="2%">PT3_b_1a</th>
+		<th width="2%">PT3_total_b_1</th>
+		<th width="2%">PT3_b_1a</th>
     <th width="2%">PT3_b_1b</th>
     <th width="2%">PT3_b_1c</th>
-    <th width="2%">PT3_total_b_1</th>
     <th width="2%">PT3_total_b_2</th>
+		<th width="3%">PT3_total_b_3</th>										<!--PENUKARAN-->
     <th width="2%">PT3_b_3a</th>
     <th width="2%">PT3_b_3b</th>
     <th width="3%">PT3_b_3c</th>
-    <th width="3%">PT3_b_3d</th>
-    <th width="3%">PT3_total_b_3</th>
-    <th width="3%">PT3_total_b_4</th>
-    <th width="3%">PT3_total_b_5</th>
-    <th width="3%">PT3_total_b_6</th>
-    <th width="3%">PT3_total_b_7</th>
-    <th width="3%">PT3_total_b_8</th>
+		<th width="3%">PT3_total_b_16</th> <!--soalan baru kos belum matang-->
+		<th width="3%">PT3_total_b_15</th> <!--soalan baru kos belum matang-->
     <th width="3%">PT3_total_b_9</th>
     <th width="3%">PT3_total_b_10</th>
     <th width="3%">PT3_total_b_11</th>
     <th width="3%">PT3_total_b_12</th>
-    <th width="3%">PT3_total_b_13</th>
-		<th width="3%">PT3_total_b_14</th>
-		<th width="3%">PT3_total_b_15</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PT3_total_b_16</th>	<!--soalan baru kos belum matang-->
-    <th width="3%">PT3_total_a</th>
+    <th width="3%">PT3_total_b_14</th>				<!--form b-->
+    <th width="3%">PT3_total_a</th>						<!--total tahun 3-->
+		<th> </th>
 
     <th width="3%">KJ_Berhasil</th>
     <th width="3%">KJ_BTS</th>
@@ -686,97 +623,46 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <th width="3%">KJ_b_1c</th>
     <th width="3%">KJ_total_b_1</th>
     <th width="3%">KJ_total_b_2</th>
-    <th width="3%">KJ_b_3a</th>
-    <th width="3%">KJ_b_3b</th>
+    <th width="3%">KJ_b_3a</th>								<!--KOS MATANG-->
+    <th width="3%">KJ_b_3b</th>								<!--PENJAGAAN/UPKEEP-->
     <th width="3%">KJ_b_3c</th>
-    <th width="3%">KJ_b_3d</th>
     <th width="3%">KJ_total_b_3</th>
-    <th width="3%">KJ_total_b_4</th>
-    <th width="3%">KJ_total_b_5</th>
-    <th width="3%">KJ_total_b_6</th>
-    <th width="3%">KJ_total_b_7</th>
+		<th width="3%">KJ_total_b_13</th>		<!--soalan baru kos matang-->
+		<th width="3%">KJ_total_b_14</th>		<!--soalan baru kos matang-->
     <th width="3%">KJ_total_b_8</th>
     <th width="3%">KJ_total_b_9</th>
     <th width="3%">KJ_total_b_10</th>
     <th width="3%">KJ_total_b_11</th>
 		<th width="3%">KJ_total_b_12</th>
-		<th width="3%">KJ_total_b_13</th>		<!--soalan baru kos matang-->
-    <th width="3%">KJ_total_b_14</th>		<!--soalan baru kos matang-->
     <th width="3%">KJ_total_b</th>
+		<th> </th>
 
-    <th width="3%">KJB_b_1a</th>
-    <th width="3%">KJB_b_1b</th>
-    <th width="3%">KJB_b_1c</th>
-    <th width="3%">KJB_total_b_1</th>
-    <th width="3%">KJB_total_b_2</th>
-    <th width="3%">KJB_b_3a</th>
-    <th width="3%">KJB_b_3b</th>
-    <th width="3%">KJB_b_3c</th>
-    <th width="3%">KJB_b_3d</th>
-    <th width="3%">KJB_total_b_3</th>
-    <th width="3%">KJB_total_b_4</th>
-    <th width="3%">KJB_total_b_5</th>
-    <th width="3%">KJB_total_b_6</th>
-    <th width="3%">KJB_total_b_7</th>
-    <th width="3%">KJB_total_b_8</th>
-    <th width="3%">KJB_total_b_9</th>
-    <th width="3%">KJB_total_b_10</th>
-    <th width="3%">KJB_total_b_11</th>
-		<th width="3%">KJB_total_b_12</th>
-	<!--	<th width="3%">KJB_total_b_13</th>	soalan baru kos matang-->
-  <!--  <th width="3%">KJB_total_b_14</th>	soalan baru kos matang-->
-    <th width="3%">KJB_total_b</th>
+
     <th width="3%">KP_a_1</th>
     <th width="3%">KP_a_2</th>
-    <th width="3%">KP_a_3</th>
-    <th width="3%">KP_a_4</th>
+    <th width="3%">KP_a_3</th>													<!--KOS MATANG-->
+    <th width="3%">KJ_b_3b</th>								<!--PENUAIAN BTS/FFB HARVESTING-->
     <th width="3%">KP_total_b</th>
-    <th width="3%">KPB_a_1</th>
-    <th width="3%">KPB_a_2</th>
-    <th width="3%">KPB_a_3</th>
-    <th width="3%">KPB_a_4</th>
-    <th width="3%">KPB_total_b</th>
+		<th> </th>
 
     <th width="3%">KA_a_1</th>
-    <th width="3%">KA_a_2</th>
-    <th width="3%">KA_a_3</th>
-    <th width="3%">KA_total_a</th>
-    <th width="3%">KA_b_1a</th>
-    <th width="3%">KA_b_1b</th>
-    <th width="3%">KA_b_1c</th>
-    <th width="3%">KA_total_b_1</th>
-    <th width="3%">KA_total_b_2</th>
-    <th width="3%">KA_total_b</th>
+    <th width="3%">KA_a_2</th>														<!--KOS MATANG-->
+    <th width="3%">KA_total_b</th>						<!--PENGANGKUTAN BTS/ FFB TRANSPORTATION-->
+		<th> </th>
 
-    <th width="3%">KAB_a_1</th>
-    <th width="3%">KAB_a_2</th>
-    <th width="3%">KAB_a_3</th>
-    <th width="3%">KAB_total_a</th>
-    <th width="3%">KAB_b_1a</th>
-    <th width="3%">KAB_b_1b</th>
-    <th width="3%">KAB_b_1c</th>
-    <th width="3%">KAB_total_b_1</th>
-    <th width="3%">KAB_total_b_2</th>
-    <th width="3%">KAB_total_b</th>
 
     <th width="3%">KBA_emolumen</th>
-    <th width="3%">KBA_kos_ibupejabat</th>
     <th width="3%">KBA_kos_agensi</th>
-    <th width="3%">KBA_kebajikan</th>
     <th width="3%">KBA_sewa_tol</th>
-    <th width="3%">KBA_penyelidikan</th>
-    <th width="3%">KBA_perubatan</th>
     <th width="3%">KBA_penyelenggaraan</th>
-    <th width="3%">KBA_cukai_keuntungan</th>
-    <th width="3%">KBA_penjagaan</th>
-    <th width="3%">KBA_kawalan</th>
-    <th width="3%">KBA_air_tenaga</th>
-    <th width="3%">KBA_perbelanjaan_pejabat</th>
+    <th width="3%">KBA_kawalan</th>															<!--PERBELANJAAN AM-->
+    <th width="3%">KBA_perbelanjaan_pejabat</th>										<!--HEKTAR-->
     <th width="3%">KBA_susut_nilai</th>
 		<th width="3%">KBA_perbelanjaan_lain</th>
     <th width="3%">KBA_total_perbelanjaan</th>
 		<th width="3%">KBA_pembelian_mesin</th>		<!--soalan baru perbelanjaan am -pembelian_mesin-->
 		<th width="3%">KBA_pembelian_aset</th>		<!--soalan baru perbelanjaan am - pembelian_aset-->
+		<th> </th>
 
     <th width="3%">KBAB_emolumen</th>
     <th width="3%">KBAB_kos_ibupejabat</th>
@@ -866,17 +752,15 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kbm[5];?></td>
     <td><?php echo $kbm[6];?></td>
     <td><?php echo $kbm[7];?></td>
-    <td><?php echo $kbm[8];?></td>
+    <td><?php echo $kbm[8];?></td>														<!--Part echo data dalam excel-->
     <td><?php echo $kbm[9];?></td>
 		<td><?php echo $kbm[10];?></td>
-		<td><?php echo $kbm[40];?></td>	<!--a_12-->
-    <td><?php echo $kbm[41];?></td>	<!--a_13-->
-    <td><?php echo $kbm[11];?></td>
-    <td><?php echo $kbm[12];?></td>
-    <td><?php echo $kbm[13];?></td>
-    <td><?php echo $kbm[14];?></td>
-    <td><?php echo $kbm[15];?></td>
-    <td><?php echo $kbm[16];?></td>
+		<td><?php echo $kbm[11];?></td>
+		<td><?php echo $kbm[12];?></td>
+		<td><?php echo $kbm[13];?></td>
+    <td><?php echo $kbm[14];?></td>																		<!--PENANAMAN BARU-->
+    <td><?php echo $kbm[15];?></td>																			<!--for year 1 -->
+    <td><?php echo $kbm[16];?></td>								<!--echo table a.Non-Recurrent Expenditures and table b.Upkeep -->
     <td><?php echo $kbm[17];?></td>
     <td><?php echo $kbm[18];?></td>
     <td><?php echo $kbm[19];?></td>
@@ -886,329 +770,240 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kbm[23];?></td>
     <td><?php echo $kbm[24];?></td>
     <td><?php echo $kbm[25];?></td>
-    <td><?php echo $kbm[26];?></td>
-    <td><?php echo $kbm[27];?></td>
-    <td><?php echo $kbm[28];?></td>
-    <td><?php echo $kbm[29];?></td>
-    <td><?php echo $kbm[30];?></td>
-    <td><?php echo $kbm[31];?></td>
-		<td><?php echo $kbm[32];?></td>
-		<td><?php echo $kbm[42];?></td>	<!--b_15-->
-    <td><?php echo $kbm[43];?></td>	<!--b_16-->
-    <td><?php echo $kbm[33];?></td>
+		<td></td>
 
-    <td><?php echo $kbm[12];?></td>
-    <td><?php echo $kbm[13];?></td>
-    <td><?php echo $kbm[14];?></td>
-    <td><?php echo $kbm[15];?></td>
-    <td><?php echo $kbm[16];?></td>
-    <td><?php echo $kbm[17];?></td>
-    <td><?php echo $kbm[18];?></td>
-    <td><?php echo $kbm[19];?></td>
-    <td><?php echo $kbm[20];?></td>
-    <td><?php echo $kbm[21];?></td>
-    <td><?php echo $kbm[22];?></td>
-    <td><?php echo $kbm[23];?></td>
-    <td><?php echo $kbm[24];?></td>
-    <td><?php echo $kbm[25];?></td>
-    <td><?php echo $kbm[26];?></td>
-    <td><?php echo $kbm[27];?></td>
-    <td><?php echo $kbm[28];?></td>
-    <td><?php echo $kbm[29];?></td>
-    <td><?php echo $kbm[30];?></td>
-    <td><?php echo $kbm[31];?></td>
-    <td><?php echo $kbm[32];?></td>
-		<td><?php echo $kbm[42];?></td>	<!--b_15-->
-		<td><?php echo $kbm[43];?></td>	<!--b_16-->
-    <td><?php echo $kbm[33];?></td>
+
+
 
 
     <td><?php $luas = luas($row['lesen'],"tanam_baru".$two,'tanaman_baru'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Baru','2',$luas[0],$nl[1],$nl[2]); echo $kbm[12];?></td>
-    <td><?php echo $kbm[13];?></td>
-    <td><?php echo $kbm[14];?></td>
-    <td><?php echo $kbm[15];?></td>
-    <td><?php echo $kbm[16];?></td>
-    <td><?php echo $kbm[17];?></td>
-    <td><?php echo $kbm[18];?></td>
-    <td><?php echo $kbm[19];?></td>
-    <td><?php echo $kbm[20];?></td>
-    <td><?php echo $kbm[21];?></td>
-    <td><?php echo $kbm[22];?></td>
-    <td><?php echo $kbm[23];?></td>
-    <td><?php echo $kbm[24];?></td>
-    <td><?php echo $kbm[25];?></td>
-    <td><?php echo $kbm[26];?></td>
-    <td><?php echo $kbm[27];?></td>
-    <td><?php echo $kbm[28];?></td>
-    <td><?php echo $kbm[29];?></td>
-    <td><?php echo $kbm[30];?></td>
-    <td><?php echo $kbm[31];?></td>
-    <td><?php echo $kbm[32];?></td>
-		<td><?php echo $kbm[42];?></td>	<!--b_15-->
-		<td><?php echo $kbm[43];?></td>	<!--b_16-->
-    <td><?php echo $kbm[33];?>    </td>
-
+		<td><?php echo $kbm[9];?></td>
+		<td><?php echo $kbm[10];?></td>
+		<td><?php echo $kbm[11];?></td>
+		<td><?php echo $kbm[13];?></td>
+		<td><?php echo $kbm[17];?></td>
+		<td><?php echo $kbm[14];?></td>
+		<td><?php echo $kbm[15];?></td>									<!--PENANAMAN BARU-->
+		<td><?php echo $kbm[16];?></td>									<!--for year 2 -->
+		<td><?php echo $kbm[18];?></td>							<!--echo table b.Upkeep -->
+		<td><?php echo $kbm[19];?></td>
+		<td><?php echo $kbm[20];?></td>
+		<td><?php echo $kbm[21];?></td>
+		<td><?php echo $kbm[22];?></td>
+		<td><?php echo $kbm[23];?></td>
+		<td><?php echo $kbm[24];?></td>
+		<td><?php echo $kbm[25];?></td>
+		<td></td>
 
     <td><?php $luas = luas($row['lesen'],"tanam_baru".$three,'tanaman_baru'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Baru','3',$luas[0],$nl[1],$nl[2]); echo $kbm[12];?></td>
-    <td><?php echo $kbm[13];?></td>
-    <td><?php echo $kbm[14];?></td>
-    <td><?php echo $kbm[15];?></td>
-    <td><?php echo $kbm[16];?></td>
-    <td><?php echo $kbm[17];?></td>
-    <td><?php echo $kbm[18];?></td>
-    <td><?php echo $kbm[19];?></td>
-    <td><?php echo $kbm[20];?></td>
-    <td><?php echo $kbm[21];?></td>
-    <td><?php echo $kbm[22];?></td>
-    <td><?php echo $kbm[23];?></td>
-    <td><?php echo $kbm[24];?></td>
-    <td><?php echo $kbm[25];?></td>
-    <td><?php echo $kbm[26];?></td>
-    <td><?php echo $kbm[27];?></td>
-    <td><?php echo $kbm[28];?></td>
-    <td><?php echo $kbm[29];?></td>
-    <td><?php echo $kbm[30];?></td>
-    <td><?php echo $kbm[31];?></td>
-    <td><?php echo $kbm[32];?></td>
-		<td><?php echo $kbm[42];?></td>	<!--b_15-->
-		<td><?php echo $kbm[43];?></td>	<!--b_16-->
-    <td><?php echo $kbm[33];?></td>
+		<td><?php echo $kbm[9];?></td>
+		<td><?php echo $kbm[10];?></td>
+		<td><?php echo $kbm[11];?></td>
+		<td><?php echo $kbm[13];?></td>
+		<td><?php echo $kbm[17];?></td>
+		<td><?php echo $kbm[14];?></td>
+		<td><?php echo $kbm[15];?></td>								<!--PENANAMAN BARU-->
+		<td><?php echo $kbm[16];?></td>									<!--for year 3 -->
+		<td><?php echo $kbm[18];?></td>							<!--echo table b.Upkeep -->
+		<td><?php echo $kbm[19];?></td>
+		<td><?php echo $kbm[20];?></td>
+		<td><?php echo $kbm[21];?></td>
+		<td><?php echo $kbm[22];?></td>
+		<td><?php echo $kbm[23];?></td>
+		<td><?php echo $kbm[24];?></td>
+		<td><?php echo $kbm[25];?></td>
+		<td></td>
+
 
     <td><?php $luas = luas($row['lesen'],"tanam_semula".$one,'tanaman_semula'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Semula','1',$luas[0],$nl[1],$nl[2]); echo $kbm[0];?></td>  <!--penjagaan-->
-    <td><?php echo $kbm[1];?></td>
+		<td><?php echo $kbm[1];?></td>
     <td><?php echo $kbm[2];?></td>
     <td><?php echo $kbm[3];?></td>
     <td><?php echo $kbm[4];?></td>
     <td><?php echo $kbm[5];?></td>
     <td><?php echo $kbm[6];?></td>
     <td><?php echo $kbm[7];?></td>
-    <td><?php echo $kbm[8];?></td>
+    <td><?php echo $kbm[8];?></td>														<!--Part echo data dalam excel-->
     <td><?php echo $kbm[9];?></td>
-    <td><?php echo $kbm[10];?></td>
-		<td><?php echo $kbm[40];?></td>	<!--a_12-->
-		<td><?php echo $kbm[41];?></td>	<!--a_13-->
-    <td><?php echo $kbm[11];?></td>
+		<td><?php echo $kbm[10];?></td>
+		<td><?php echo $kbm[11];?></td>
+		<td><?php echo $kbm[12];?></td>
+		<td><?php echo $kbm[13];?></td>
+    <td><?php echo $kbm[14];?></td>																		<!--PENANAMAN Semula-->
+    <td><?php echo $kbm[15];?></td>																			<!--for year 1 -->
+    <td><?php echo $kbm[16];?></td>								<!--echo table a.Non-Recurrent Expenditures and table b.Upkeep -->
+    <td><?php echo $kbm[17];?></td>
+    <td><?php echo $kbm[18];?></td>
+    <td><?php echo $kbm[19];?></td>
+    <td><?php echo $kbm[20];?></td>
+    <td><?php echo $kbm[21];?></td>
+    <td><?php echo $kbm[22];?></td>
+    <td><?php echo $kbm[23];?></td>
+    <td><?php echo $kbm[24];?></td>
+    <td><?php echo $kbm[25];?></td>
+		<td></td>
 
     <td><?php $luas = luas($row['lesen'],"tanam_semula".$two,'tanaman_semula'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Semula','2',$luas[0],$nl[1],$nl[2]); echo $kbm[12];?></td>
-    <td><?php echo $kbm[13];?></td>
-    <td><?php echo $kbm[14];?></td>
-    <td><?php echo $kbm[15];?></td>
-    <td><?php echo $kbm[16];?></td>
-    <td><?php echo $kbm[17];?></td>
-    <td><?php echo $kbm[18];?></td>
-    <td><?php echo $kbm[19];?></td>
-    <td><?php echo $kbm[20];?></td>
-    <td><?php echo $kbm[21];?></td>
-    <td><?php echo $kbm[22];?></td>
-    <td><?php echo $kbm[23];?></td>
-    <td><?php echo $kbm[24];?></td>
-    <td><?php echo $kbm[25];?></td>
-    <td><?php echo $kbm[26];?></td>
-    <td><?php echo $kbm[27];?></td>
-    <td><?php echo $kbm[28];?></td>
-    <td><?php echo $kbm[29];?></td>
-    <td><?php echo $kbm[30];?></td>
-    <td><?php echo $kbm[31];?></td>
-    <td><?php echo $kbm[32];?></td>
-		<td><?php echo $kbm[42];?></td>	<!--b_15-->
-		<td><?php echo $kbm[43];?></td>	<!--b_16-->
-    <td><?php echo $kbm[33];?></td>
-
+		<td><?php echo $kbm[9];?></td>
+		<td><?php echo $kbm[10];?></td>
+		<td><?php echo $kbm[11];?></td>
+		<td><?php echo $kbm[13];?></td>
+		<td><?php echo $kbm[17];?></td>
+		<td><?php echo $kbm[14];?></td>
+		<td><?php echo $kbm[15];?></td>									<!--PENANAMAN SEMULA-->
+		<td><?php echo $kbm[16];?></td>									<!--for year 2 -->
+		<td><?php echo $kbm[18];?></td>							<!--echo table b.Upkeep -->
+		<td><?php echo $kbm[19];?></td>
+		<td><?php echo $kbm[20];?></td>
+		<td><?php echo $kbm[21];?></td>
+		<td><?php echo $kbm[22];?></td>
+		<td><?php echo $kbm[23];?></td>
+		<td><?php echo $kbm[24];?></td>
+		<td><?php echo $kbm[25];?></td>
+		<td></td>
 
     <td><?php $luas = luas($row['lesen'],"tanam_semula".$three,'tanaman_semula'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penanaman Semula','3',$luas[0],$nl[1],$nl[2]); echo $kbm[12];?></td>
-    <td><?php echo $kbm[13];?></td>
-    <td><?php echo $kbm[14];?></td>
-    <td><?php echo $kbm[15];?></td>
-    <td><?php echo $kbm[16];?></td>
-    <td><?php echo $kbm[17];?></td>
-    <td><?php echo $kbm[18];?></td>
-    <td><?php echo $kbm[19];?></td>
-    <td><?php echo $kbm[20];?></td>
-    <td><?php echo $kbm[21];?></td>
-    <td><?php echo $kbm[22];?></td>
-    <td><?php echo $kbm[23];?></td>
-    <td><?php echo $kbm[24];?></td>
-    <td><?php echo $kbm[25];?></td>
-    <td><?php echo $kbm[26];?></td>
-    <td><?php echo $kbm[27];?></td>
-    <td><?php echo $kbm[28];?></td>
-    <td><?php echo $kbm[29];?></td>
-    <td><?php echo $kbm[30];?></td>
-    <td><?php echo $kbm[31];?></td>
-    <td><?php echo $kbm[32];?></td>
-		<td><?php echo $kbm[42];?></td>	<!--b_15-->
-		<td><?php echo $kbm[43];?></td>	<!--b_16-->
-    <td><?php echo $kbm[33];?></td>
+		<td><?php echo $kbm[9];?></td>
+		<td><?php echo $kbm[10];?></td>
+		<td><?php echo $kbm[11];?></td>
+		<td><?php echo $kbm[13];?></td>
+		<td><?php echo $kbm[17];?></td>
+		<td><?php echo $kbm[14];?></td>
+		<td><?php echo $kbm[15];?></td>									<!--PENANAMAN SEMULA-->
+		<td><?php echo $kbm[16];?></td>									<!--for year 3 -->
+		<td><?php echo $kbm[18];?></td>							<!--echo table b.Upkeep -->
+		<td><?php echo $kbm[19];?></td>
+		<td><?php echo $kbm[20];?></td>
+		<td><?php echo $kbm[21];?></td>
+		<td><?php echo $kbm[22];?></td>
+		<td><?php echo $kbm[23];?></td>
+		<td><?php echo $kbm[24];?></td>
+		<td><?php echo $kbm[25];?></td>
+		<td></td>
 
-    <!-- --- ------ ------ --- - - -- - - -- - -   -- -- - --->
+
     <td><?php $luas = luas($row['lesen'],"tanam_tukar".$one,'tanaman_tukar'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penukaran','1',$luas[0],$nl[1],$nl[2]); echo $kbm[0];?></td> <!--penjagaan-->
-    <td><?php echo $kbm[1];?></td>
+		<td><?php echo $kbm[1];?></td>
     <td><?php echo $kbm[2];?></td>
     <td><?php echo $kbm[3];?></td>
     <td><?php echo $kbm[4];?></td>
     <td><?php echo $kbm[5];?></td>
     <td><?php echo $kbm[6];?></td>
     <td><?php echo $kbm[7];?></td>
-    <td><?php echo $kbm[8];?></td>
+    <td><?php echo $kbm[8];?></td>														<!--Part echo data dalam excel-->
     <td><?php echo $kbm[9];?></td>
-    <td><?php echo $kbm[10];?></td>
-		<td><?php echo $kbm[40];?></td>	<!--a_12-->
-		<td><?php echo $kbm[41];?></td>	<!--a_13-->
-    <td><?php echo $kbm[11];?></td>
+		<td><?php echo $kbm[10];?></td>
+		<td><?php echo $kbm[11];?></td>
+		<td><?php echo $kbm[12];?></td>
+		<td><?php echo $kbm[13];?></td>
+    <td><?php echo $kbm[14];?></td>																		<!--PENUKARAN-->
+    <td><?php echo $kbm[15];?></td>																			<!--for year 1 -->
+    <td><?php echo $kbm[16];?></td>								<!--echo table a.Non-Recurrent Expenditures and table b.Upkeep -->
+    <td><?php echo $kbm[17];?></td>
+    <td><?php echo $kbm[18];?></td>
+    <td><?php echo $kbm[19];?></td>
+    <td><?php echo $kbm[20];?></td>
+    <td><?php echo $kbm[21];?></td>
+    <td><?php echo $kbm[22];?></td>
+    <td><?php echo $kbm[23];?></td>
+    <td><?php echo $kbm[24];?></td>
+    <td><?php echo $kbm[25];?></td>
+		<td></td>
 
     <td><?php $luas = luas($row['lesen'],"tanam_tukar".$two,'tanaman_tukar'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penukaran','2',$luas[0],$nl[1],$nl[2]); echo $kbm[12];?></td>
-    <td><?php echo $kbm[13];?></td>
-    <td><?php echo $kbm[14];?></td>
-    <td><?php echo $kbm[15];?></td>
-    <td><?php echo $kbm[16];?></td>
-    <td><?php echo $kbm[17];?></td>
-    <td><?php echo $kbm[18];?></td>
-    <td><?php echo $kbm[19];?></td>
-    <td><?php echo $kbm[20];?></td>
-    <td><?php echo $kbm[21];?></td>
-    <td><?php echo $kbm[22];?></td>
-    <td><?php echo $kbm[23];?></td>
-    <td><?php echo $kbm[24];?></td>
-    <td><?php echo $kbm[25];?></td>
-    <td><?php echo $kbm[26];?></td>
-    <td><?php echo $kbm[27];?></td>
-    <td><?php echo $kbm[28];?></td>
-    <td><?php echo $kbm[29];?></td>
-    <td><?php echo $kbm[30];?></td>
-    <td><?php echo $kbm[31];?></td>
-    <td><?php echo $kbm[32];?></td>
-		<td><?php echo $kbm[42];?></td>	<!--b_15-->
-		<td><?php echo $kbm[43];?></td>	<!--b_16-->
-    <td><?php echo $kbm[33];?></td>
+		<td><?php echo $kbm[9];?></td>
+		<td><?php echo $kbm[10];?></td>
+		<td><?php echo $kbm[11];?></td>
+		<td><?php echo $kbm[13];?></td>
+		<td><?php echo $kbm[17];?></td>
+		<td><?php echo $kbm[14];?></td>
+		<td><?php echo $kbm[15];?></td>									<!--PENUKARAN-->
+		<td><?php echo $kbm[16];?></td>									<!--for year 2 -->
+		<td><?php echo $kbm[18];?></td>							<!--echo table b.Upkeep -->
+		<td><?php echo $kbm[19];?></td>
+		<td><?php echo $kbm[20];?></td>
+		<td><?php echo $kbm[21];?></td>
+		<td><?php echo $kbm[22];?></td>
+		<td><?php echo $kbm[23];?></td>
+		<td><?php echo $kbm[24];?></td>
+		<td><?php echo $kbm[25];?></td>
+		<td></td>
+
     <td><?php $luas = luas($row['lesen'],"tanam_tukar".$three,'tanaman_tukar'); echo $luas[0];?></td>
     <td><?php $kbm= kos_belum_matang($row['lesen'],$tahun,'Penukaran','3',$luas[0],$nl[1],$nl[2]); echo $kbm[12];?></td>
-    <td><?php echo $kbm[13];?></td>
-    <td><?php echo $kbm[14];?></td>
-    <td><?php echo $kbm[15];?></td>
-    <td><?php echo $kbm[16];?></td>
-    <td><?php echo $kbm[17];?></td>
-    <td><?php echo $kbm[18];?></td>
-    <td><?php echo $kbm[19];?></td>
-    <td><?php echo $kbm[20];?></td>
-    <td><?php echo $kbm[21];?></td>
-    <td><?php echo $kbm[22];?></td>
-    <td><?php echo $kbm[23];?></td>
-    <td><?php echo $kbm[24];?></td>
-    <td><?php echo $kbm[25];?></td>
-    <td><?php echo $kbm[26];?></td>
-    <td><?php echo $kbm[27];?></td>
-    <td><?php echo $kbm[28];?></td>
-    <td><?php echo $kbm[29];?></td>
-    <td><?php echo $kbm[30];?></td>
-    <td><?php echo $kbm[31];?></td>
-    <td><?php echo $kbm[32];?></td>
-		<td><?php echo $kbm[42];?></td>	<!--b_15-->
-		<td><?php echo $kbm[43];?></td>	<!--b_16-->
-    <td><?php echo $kbm[33];?></td>
+		<td><?php echo $kbm[9];?></td>
+		<td><?php echo $kbm[10];?></td>
+		<td><?php echo $kbm[11];?></td>
+		<td><?php echo $kbm[13];?></td>
+		<td><?php echo $kbm[17];?></td>
+		<td><?php echo $kbm[14];?></td>
+		<td><?php echo $kbm[15];?></td>									<!--PENUKARAN-->
+		<td><?php echo $kbm[16];?></td>									<!--for year 3 -->
+		<td><?php echo $kbm[18];?></td>							<!--echo table b.Upkeep -->
+		<td><?php echo $kbm[19];?></td>
+		<td><?php echo $kbm[20];?></td>
+		<td><?php echo $kbm[21];?></td>
+		<td><?php echo $kbm[22];?></td>
+		<td><?php echo $kbm[23];?></td>
+		<td><?php echo $kbm[24];?></td>
+		<td><?php echo $kbm[25];?></td>
+		<td></td>
 
-    <td><?php echo $nl[4];?></td>
+    <td><?php echo $nl[4];?></td>								<!-- KOS MATANG LAND SIZE-->
     <td><?php $bts=bts($row['lesen'], $tahun); echo $bts[0];?></td>
     <td><?php $jaga = kos_matang_penjagaan($row['lesen'],$tahun,$nl[4],$bts[0],$nl[1],$nl[2]); echo $jaga[0];?></td>
     <td><?php echo $jaga[1];?></td>
     <td><?php echo $jaga[2];?></td>
     <td><?php echo $jaga[3];?></td>
     <td><?php echo $jaga[4];?></td>
-    <td><?php echo $jaga[5];?></td>
-    <td><?php echo $jaga[6];?></td>
+    <td><?php echo $jaga[5];?></td>										<!-- KOS MATANG-->
+    <td><?php echo $jaga[6];?></td>									<!--PENJAGAAN/UPKEEP-->
     <td><?php echo $jaga[7];?></td>
-    <td><?php echo $jaga[8];?></td>
     <td><?php echo $jaga[9];?></td>
-    <td><?php echo $jaga[10];?></td>
-    <td><?php echo $jaga[11];?></td>
-    <td><?php echo $jaga[12];?></td>
-    <td><?php echo $jaga[13];?></td>
+		<td><?php echo $jaga[40];?></td>	<!--b_13 kos matang-->
+		<td><?php echo $jaga[41];?></td>	<!--b_14 kos matang-->
     <td><?php echo $jaga[14];?></td>
     <td><?php echo $jaga[15];?></td>
     <td><?php echo $jaga[16];?></td>
     <td><?php echo $jaga[17];?></td>
 		<td><?php echo $jaga[18];?></td>
-		<td><?php echo $jaga[40];?></td>	<!--b_13 kos matang-->
-    <td><?php echo $jaga[41];?></td>	<!--b_14 kos matang-->
     <td><?php echo $jaga[19];?></td>
+		<td></td>
 
-    <td><?php echo $jaga[20];?></td>
-    <td><?php echo $jaga[21];?></td>
-    <td><?php echo $jaga[22];?></td>
-    <td><?php echo $jaga[23];?></td>
-    <td><?php echo $jaga[24];?></td>
-    <td><?php echo $jaga[25];?></td>
-    <td><?php echo $jaga[26];?></td>
-    <td><?php echo $jaga[27];?></td>
-    <td><?php echo $jaga[28];?></td>
-    <td><?php echo $jaga[29];?></td>
-    <td><?php echo $jaga[30];?></td>
-    <td><?php echo $jaga[31];?></td>
-    <td><?php echo $jaga[32];?></td>
-    <td><?php echo $jaga[33];?></td>
-    <td><?php echo $jaga[34];?></td>
-    <td><?php echo $jaga[35];?></td>
-    <td><?php echo $jaga[36];?></td>
-    <td><?php echo $jaga[37];?></td>
-    <td><?php echo $jaga[38];?></td>
-    <td><?php echo $jaga[39];?></td>
 
-    <td><?php $kt = kos_matang_penuaian($row['lesen'],$tahun,$nl[4],$bts[0], $nl[1],$nl[2]); echo $kt[0];?></td>
-    <td><?php echo $kt[1];?></td>
-    <td><?php echo $kt[2];?></td>
-    <td><?php echo $kt[3];?></td>
+    <td><?php $kt = kos_matang_penuaian($row['lesen'],$tahun,$nl[4],$bts[0], $nl[1],$nl[2]); echo $kt[1];?></td>
+		<td><?php echo $kt[3];?></td>
+		<td><?php echo $kt[0];?></td>						<!-- KOS MATANG-->
+    <td><?php echo $kt[2];?></td>					<!--PENUAIAN BTS/FFB HARVESTING-->
     <td><?php echo $kt[4];?></td>
-    <td><?php echo $kt[5];?></td>
-    <td><?php echo $kt[6];?></td>
-    <td><?php echo $kt[7];?></td>
-    <td><?php echo $kt[8];?></td>
-    <td><?php echo $kt[9];?></td>
+		<td></td>
 
-    <td><?php $ka = kos_matang_pengangkutan($row['lesen'],$tahun,$nl[4],$bts[0],$nl[1],$nl[2]); echo $ka[0];?></td>
-    <td><?php echo $ka[1];?></td>
-    <td><?php echo $ka[2];?></td>
-    <td><?php echo $ka[3];?></td>
-    <td><?php echo $ka[4];?></td>
-    <td><?php echo $ka[5];?></td>
-    <td><?php echo $ka[6];?></td>
-    <td><?php echo $ka[7];?></td>
-    <td><?php echo $ka[8];?></td>
-    <td><?php echo $ka[9];?></td>
-    <td><?php echo $ka[10];?></td>
-    <td><?php echo $ka[11];?></td>
-    <td><?php echo $ka[12];?></td>
-    <td><?php echo $ka[13];?></td>
-    <td><?php echo $ka[14];?></td>
-    <td><?php echo $ka[15];?></td>
-    <td><?php echo $ka[16];?></td>
-    <td><?php echo $ka[17];?></td>
-    <td><?php echo $ka[18];?></td>
-    <td><?php echo $ka[19];?></td>
 
-    <td><?php $kba = kos_belanja_am($row['lesen'],$tahun,$nl[4],$bts[0]+$jumlah_semua, $nl[1],$nl[2]); echo $kba[0]; ?></td>
-    <td><?php echo $kba[1]; ?></td>
+    <td><?php $ka = kos_matang_pengangkutan($row['lesen'],$tahun,$nl[4],$bts[0],$nl[1],$nl[2]); echo $ka[4];?></td>
+    <td><?php echo $ka[5];?></td>													<!-- KOS MATANG-->
+    <td><?php echo $ka[9];?></td>								<!--PENGANGKUTAN BTS/ FFB TRANSPORTATION-->
+		<td></td>
+
+
+    <td><?php $kba = kos_belanja_am($row['lesen'],$tahun,$nl[6],$bts[0]+$jumlah_semua, $nl[1],$nl[2]); echo $kba[0]; ?></td>
     <td><?php echo $kba[2]; ?></td>
-    <td><?php echo $kba[3]; ?></td>
     <td><?php echo $kba[4]; ?></td>
-    <td><?php echo $kba[5]; ?></td>
-    <td><?php echo $kba[6]; ?></td>
     <td><?php echo $kba[7]; ?></td>
-    <td><?php echo $kba[8]; ?></td>
-    <td><?php echo $kba[9]; ?></td>
-    <td><?php echo $kba[10]; ?></td>
-    <td><?php echo $kba[11]; ?></td>
-    <td><?php echo $kba[12]; ?></td>
+    <td><?php echo $kba[10]; ?></td>							<!-- PERBELANJAAN AM-->
+    <td><?php echo $kba[12]; ?></td>									<!-- HEKTAR-->
     <td><?php echo $kba[13]; ?></td>
 		<td><?php echo $kba[14]; ?></td>
+		<td><?php echo $kba[15]; ?></td>
 		<td><?php echo $kba[32]; ?></td>	<!--pembelian_mesin-->
     <td><?php echo $kba[33]; ?></td>	<!--pembelian_aset-->
-    <td><?php echo $kba[15]; ?></td>
+		<td></td>
 
     <td><?php echo $kba[16]; ?></td>
     <td><?php echo $kba[17]; ?></td>

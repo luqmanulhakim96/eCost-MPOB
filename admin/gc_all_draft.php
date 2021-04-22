@@ -192,7 +192,19 @@ if ($state != "" && $state != "publicagencies" && $state != "cooperatives" && $s
     $dua = $_COOKIE['tahun_report'] - 1;
     ?>
     <?php
-    $qs = "select * from q_km where type='gc' AND name != 'Purchase of asset' AND name !='Purchase of machineries' ORDER BY arrangement ";
+
+
+    $tahun = $_COOKIE['tahun_report'];			// new question and old question
+
+    if ($tahun <= '2020') {
+   $qs="select * from q_km where type='gc'";
+
+    }
+
+    else {
+        $qs="select * from q_kmv2 where type='gc' AND name != 'Purchase of asset' AND name !='Purchase of machineries' ORDER BY arrangement ";
+    }
+
     $rs = mysqli_query($con, $qs);
 
     $jl = 0;
