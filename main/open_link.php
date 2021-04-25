@@ -745,6 +745,8 @@ else if ($id == "mill") {
         $open_detail = "user.php";
     } else if ($sub == "admin_upload_esub") {
         $open_detail = "admin_upload_esub.php";
+    } else if ($sub == "admin_upload_esub_api") {
+        $open_detail = "api/admin_upload_esub_api.php";
     } else if ($sub == "admin_upload_esub_new_year") {
         $open_detail = "admin_upload_esub_new_year.php";
     }else if ($sub == "admin_upload_ffb_production") {
