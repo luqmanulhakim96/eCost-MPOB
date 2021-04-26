@@ -10,7 +10,7 @@ $qInsertSelect = "SELECT lesen FROM alamat_ekilang WHERE  lesen ='" . $_SESSION[
 $rInsertSelect = mysqli_query($con, $qInsertSelect);
 $res_total = mysqli_num_rows($rInsertSelect);
 /* if no data in alamat_ekilang, insert first */
-print_r($res_total);
+// print_r($res_total);
 
 
 if ($res_total == 0) {

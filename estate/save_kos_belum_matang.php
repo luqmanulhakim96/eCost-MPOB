@@ -339,8 +339,8 @@ if ($total != 0) {
             $r = mysqli_query($con,$q);
 }
 // echo $q;
-print_r($q);
-exit();
+// print_r($q);
+// exit();
 
 $lesen = $_SESSION['lesen'];
 $tahuntrim = substr($_SESSION['tahun'], -2);
