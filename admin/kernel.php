@@ -101,9 +101,9 @@ $tahun_lepas = $tahun-1;
 $_SESSION['kernel_malaysia']=$b[0]/$a[0]*100;
 $_SESSION['kernel_sabah']=$c[0]/$a[0]*100;
 $_SESSION['kernel_sarawak']=$d[0]/$a[0]*100;
-print_r($_SESSION['kernel_malaysia']=$b[0],2);
-print_r($_SESSION['kernel_sabah']=$c[0],2);
-print_r($_SESSION['kernel_sarawak']=$d[0],2);
+// print_r($_SESSION['kernel_malaysia']=$b[0],2);
+// print_r($_SESSION['kernel_sabah']=$c[0],2);
+// print_r($_SESSION['kernel_sarawak']=$d[0],2);
 
 ?>
 <div align="center">
@@ -127,7 +127,7 @@ print_r($_SESSION['kernel_sarawak']=$d[0],2);
 
 		        var options = {
 		          title: '',
-				
+
 							slices: {
 									 0 : {offset: 0.3},
 							},

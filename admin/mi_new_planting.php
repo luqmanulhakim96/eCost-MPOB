@@ -27,7 +27,7 @@ function pertama($tahun, $nama, $status, $negeri, $daerah, $type, $tahuntanam) {
 		and (status='$status')
 		and pb_type = '$type'
 		and pb_tahun = '$tahuntanam'";
-    print_r($tahun);
+    // print_r($tahun);
     if ($negeri != "" & $negeri != "pm") {
         $sql.=" and negeri = '$negeri'";
     }

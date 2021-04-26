@@ -21,7 +21,7 @@ if(isset($tambah)){
 		'$email', '$password_hashed', 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '$level'
 		);" ;
 		$res=mysqli_query($con, $query) or die(mysqli_error($con));
-    print_r($res);
+    // print_r($res);
  		$query = "INSERT INTO user (
 		u_type, u_fullname, u_email, u_image, u_DOB, u_question, u_answer, u_thumb) VALUES
 		('1', '$fullname', '$email', 'images/user_portrait.gif', '00-00-0000', '', '', '')";
@@ -36,7 +36,7 @@ if(isset($tambah)){
 else if(isset($ubah)){
 
   $password_hashed = password_hash($password, PASSWORD_BCRYPT);
-  
+
 	$query="UPDATE login_admin SET email='$email',password='$password_hashed',level='$level'
 	WHERE email='$idp'";
 	$res=mysqli_query($con, $query);
