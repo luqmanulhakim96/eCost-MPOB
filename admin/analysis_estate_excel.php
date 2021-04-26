@@ -3,7 +3,7 @@ include('../Connections/connection.class.php');
 extract($_REQUEST);
 header("Content-type: application");
 header("Content-Disposition: attachment; filename=excel_data_estate_$tahun.xls");
-error_reporting(0);
+error_reporting(1);
 
 //include("baju.php");
 set_time_limit(0);
@@ -14,7 +14,9 @@ $rt1=mysqli_query($con, $qt1);
 $total = mysqli_num_rows($rt1);
 
 if($total ==0){
-	$qa="INSERT INTO `analysis` (`type` ,`year` ,`modifiedby` ,`modified`)VALUES ('".$type[1]."', '$tahun', '".$_SESSION['email']."',NOW() ";
+	$email=$_SESSION['email'];
+	$qa="INSERT INTO analysis (type ,year ,modifiedby ,modified)
+	VALUES ('$type[1]', '$tahun', '$email', NOW())";
 	$ra=mysqli_query($con, $qa);
 }
 if($total>0){
@@ -41,9 +43,6 @@ $qdeletedata ="delete from analysis_belanja_am_kos where pb_thisyear = '$tahun' 
 $rdeletedata = mysqli_query($con, $qdeletedata);
 ?>
 <h2>Analysis Data Survey Estate for <?php echo $tahun;?></h2>
-
-
-
 
 <?php
 function esub($lesen, $tahun){
@@ -84,7 +83,7 @@ function luas($lesen,$table,$field){
 		return 0;
 	}
 }
-//---------------------------------------------------
+
 function kos_belum_matang($lesen,$tahun,$type,$tahun_tanam,$keluasan,$negeri,$daerah){
 	$con=connect();
 	$q="select * from kos_belum_matang where lesen = '$lesen' and pb_thisyear='$tahun' and pb_tahun='$tahun_tanam' and pb_type='$type' limit 1 ";
@@ -134,7 +133,7 @@ function add_kbm ($tahun_tanam ,$tahun ,$lesen ,$type ,$negeri ,$daerah , $bkm_n
 	$qdelete ="delete from analysis_kos_belum_matang where nilai=0";
 	$rdelete = mysqli_query($con, $qdelete);
 }
-//-----------------------------------------
+
 function bts($var, $tahun){
 	if($tahun == date('Y')){
 		$table = "fbb_production";
@@ -143,13 +142,17 @@ function bts($var, $tahun){
 	}
 
 	$con = connect();
-	$vari = substr($var,0,-1);
+	// $vari = substr($var,0,-1);
+	$vari = $var;
+
 	$q ="select * from $table where lesen ='".$vari."'";
 	$r = mysqli_query($con, $q);
 	if(mysqli_num_rows($r) > 0){
 		$row = mysqli_fetch_array($r);
 		$sub[0]=round($row['purata_hasil_buah'],2);
 		return $sub;
+		// return $vari;
+
 	}else{
 		return 0;
 	}
@@ -664,24 +667,18 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
 		<th width="3%">KBA_pembelian_aset</th>		<!--soalan baru perbelanjaan am - pembelian_aset-->
 		<th> </th>
 
-    <th width="3%">KBAB_emolumen</th>
-    <th width="3%">KBAB_kos_ibupejabat</th>
-    <th width="3%">KBAB_kos_agensi</th>
-    <th width="3%">KBAB_kebajikan</th>
-    <th width="3%">KBAB_sewa_tol</th>
-    <th width="3%">KBAB_penyelidikan</th>
-    <th width="3%">KBAB_perubatan</th>
-    <th width="3%">KBAB_penyelenggaraan</th>
-    <th width="3%">KBAB_cukai_keuntungan</th>
-    <th width="3%">KBAB_penjagaan</th>
-    <th width="3%">KBAB_kawalan</th>
-    <th width="3%">KBAB_air_tenaga</th>
-    <th width="3%">KBAB_perbelanjaan_pejabat</th>
-    <th width="3%">KBAB_susut_nilai</th>
-		<th width="3%">KBAB_perbelanjaan_lain</th>
-    <th width="3%">KBAB_total_perbelanjaan</th>
-		<th width="3%">KBAB_pembelian_mesin</th>		<!--soalan baru perbelanjaan am -pembelian_mesin-->
-		<th width="3%">KBAB_pembelian_aset</th>			<!--soalan baru perbelanjaan am - pembelian_aset-->
+		<th width="3%">KBA_emolumen</th>
+    <th width="3%">KBA_kos_agensi</th>
+    <th width="3%">KBA_sewa_tol</th>
+    <th width="3%">KBA_penyelenggaraan</th>
+    <th width="3%">KBA_kawalan</th>															<!--PERBELANJAAN AM-->
+    <th width="3%">KBA_perbelanjaan_pejabat</th>										<!--TAN-->
+    <th width="3%">KBA_susut_nilai</th>
+		<th width="3%">KBA_perbelanjaan_lain</th>
+    <th width="3%">KBA_total_perbelanjaan</th>
+		<th width="3%">KBA_pembelian_mesin</th>		<!--soalan baru perbelanjaan am -pembelian_mesin-->
+		<th width="3%">KBA_pembelian_aset</th>		<!--soalan baru perbelanjaan am - pembelian_aset-->
+		<th> </th>
 
   </tr>
   <?php
@@ -1005,24 +1002,18 @@ function add_belanja_am ($lesen,$tahun, $negeri,$daerah, $nilai_hektar, $nilai_t
     <td><?php echo $kba[33]; ?></td>	<!--pembelian_aset-->
 		<td></td>
 
-    <td><?php echo $kba[16]; ?></td>
-    <td><?php echo $kba[17]; ?></td>
-    <td><?php echo $kba[18]; ?></td>
-    <td><?php echo $kba[19]; ?></td>
+		<td><?php $kba = kos_belanja_am($row['lesen'],$tahun,$nl[6],$bts[0], $nl[1],$nl[2]); echo $kba[16]; ?></td>
+		<td><?php echo $kba[18]; ?></td>
     <td><?php echo $kba[20]; ?></td>
-    <td><?php echo $kba[21]; ?></td>
-    <td><?php echo $kba[22]; ?></td>
     <td><?php echo $kba[23]; ?></td>
-    <td><?php echo $kba[24]; ?></td>
-    <td><?php echo $kba[25]; ?></td>
-    <td><?php echo $kba[26]; ?></td>
-    <td><?php echo $kba[27]; ?></td>
-    <td><?php echo $kba[28]; ?></td>
+    <td><?php echo $kba[26]; ?></td>							<!-- PERBELANJAAN AM-->
+    <td><?php echo $kba[28]; ?></td>									<!-- HEKTAR-->
     <td><?php echo $kba[29]; ?></td>
 		<td><?php echo $kba[30]; ?></td>
-		<td><?php echo $kba[34]; ?></td>	<!--purchase of machinery-->
-    <td><?php echo $kba[35]; ?></td>	<!--Other expenses not included in expenses 1-7-->
-    <td><?php echo $kba[31]; ?></td>
+		<td><?php echo $kba[31]; ?></td>
+		<td><?php echo $kba[34]; ?></td>	<!--pembelian_mesin-->
+    <td><?php echo $kba[35]; ?></td>	<!--pembelian_aset-->
+		<td></td>
 
   </tr>
   <?php

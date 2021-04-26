@@ -3,9 +3,9 @@
 function connect($alternate=1, $custom=false)
     {
         $host = "localhost";
-        $user = "artanis";
-        $pass = "M@xis123";
-        $db_n = "mpob";
+        $user = "ecost";
+        $pass = "ecost2021";
+        $db_n = "ecost2021";
 
         $con = mysqli_connect($host,$user,$pass);
         // mysqli_select_db($db_n,$con);

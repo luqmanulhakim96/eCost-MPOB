@@ -11,9 +11,9 @@ include('setstring.inc');
 include('class/user.class.php');
 
 $host = "localhost";
-$user = "artanis";
-$pass = "M@xis123";
-$db_n = "mpob";
+$user = "ecost";
+$pass = "ecost2021";
+$db_n = "ecost2021";
 
 
 
