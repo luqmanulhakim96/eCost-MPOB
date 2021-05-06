@@ -9,6 +9,16 @@ $umur2 = new user('esub', $session_lesen);
 
 function kiraPerubahan($valueBaru, $valueLama) {
     $result = (($valueBaru - $valueLama) / $valueLama) * 100;
+
+    if(is_nan($result))
+    {
+      return "0.00";
+    }
+
+    if(is_infinite($result))
+    {
+      return "&#8734;";
+    }
     return number_format($result, 2);
 }
 

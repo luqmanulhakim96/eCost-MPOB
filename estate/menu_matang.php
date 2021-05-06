@@ -23,14 +23,25 @@ $angkutTahunSebelum = new user("matang_pengangkutan", $valueTahunSebelum);
 
 function kiraPerubahan($valueBaru, $valueLama){
 	//echo $valueLama."<br>";
+
 	$result = (($valueBaru - $valueLama)/$valueLama) * 100;
+
+	if(is_nan($result))
+	{
+		return "0.00";
+	}
+
+	if(is_infinite($result))
+	{
+		return "&#8734;";
+	}
 	return number_format($result,2);
 }
 ?>
 
 	<link rel="stylesheet" href="../css/jquery.treeview.css" />
 	<link rel="stylesheet" href="../css/screen.css" />
-	
+
 	<script src="../js/jquery.js" type="text/javascript"></script>
 	<script src="../js/jquery.cookie.js" type="text/javascript"></script>
 	<script src="../js/jquery.treeview.js" type="text/javascript"></script>
@@ -49,40 +60,39 @@ function kiraPerubahan($valueBaru, $valueLama){
 <li><img src="../nav/file.gif" />
 	  <a href="home.php?id=matang&amp;penjagaan"><?=setstring ( 'mal', 'Penjagaan', 'en', 'Upkeep'); ?></a>
 	  <?php if ($kos_matang_penjagaan->total==0){?>
-	   <img src="../images/warning_16.png" alt="dah" width="16" height="16" /> 
-	   <?php }  
+	   <img src="../images/warning_16.png" alt="dah" width="16" height="16" />
+	   <?php }
 	   if ($kos_matang_penjagaan->total!=0) { ?>
 	   <img src="../images/accepted_48.png" alt="dah" width="16" height="16" />
 	   <?php } ?>
 	   </li>
-<li><img src="../nav/file.gif" alt="" /> <a href="home.php?id=matang&penuaian"><?=setstring ( 'mal', 'Penuaian BTS', 'en', 'FFB Harvesting'); ?></a> 
-	
+<li><img src="../nav/file.gif" alt="" /> <a href="home.php?id=matang&penuaian"><?=setstring ( 'mal', 'Penuaian BTS', 'en', 'FFB Harvesting'); ?></a>
+
 	<?php if ($kos_matang_penuaian->total==0){?>
-	<img src="../images/warning_16.png" alt="dah" width="16" height="16" /> 
+	<img src="../images/warning_16.png" alt="dah" width="16" height="16" />
 	<?php }
 	if ($kos_matang_penuaian->total!=0)
 	{?>
 	<img src="../images/accepted_48.png" alt="dah" width="16" height="16" />
 	<?php } ?>
-	
+
 	</li>
-    <li><img src="../nav/file.gif" alt="" /> <a href="home.php?id=matang&pengangkutan"><?=setstring ( 'mal', 'Pengangkutan BTS', 'en', 'FFB Transportation'); ?></a> 
+    <li><img src="../nav/file.gif" alt="" /> <a href="home.php?id=matang&pengangkutan"><?=setstring ( 'mal', 'Pengangkutan BTS', 'en', 'FFB Transportation'); ?></a>
 	<?php if ($kos_matang_pengangkutan->total==0){?>
-	<img src="../images/warning_16.png" alt="dah" width="16" height="16" /> 
-	<?php } 
-	if ($kos_matang_pengangkutan->total!=0) 
+	<img src="../images/warning_16.png" alt="dah" width="16" height="16" />
+	<?php }
+	if ($kos_matang_pengangkutan->total!=0)
 	{?>
 	<img src="../images/accepted_48.png" alt="dah" width="16" height="16" />
 	<?php } ?>
-	
+
 	</li>
     </ul>
-    
+
     <br />
 
     <fieldset>
    <em><?=setstring ( 'mal', 'Sila pastikan anda mengisi semua maklumat Penjagaan, Penuaian dan Pengangkutan seperti di atas untuk melengkapkan bahagian Kos Matang', 'en', 'Please make sure you fill all the upkeep, harvesting and transportation as above to complete the cost of Mature'); ?></em>
     </fieldset>
-    
+
     </div>
-	

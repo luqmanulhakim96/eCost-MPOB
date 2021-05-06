@@ -15,16 +15,7 @@ $buruh = new user('buruh',$variable);
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Untitled Document</title>
 <style type="text/css">
-<!--
-.style1 {
-	font-size: 14px;
-	font-weight: bold;
-}
-.style2 {
-	color: #330066;
-	font-weight: bold;
-}
--->
+
 </style>
 </head>
 
@@ -523,6 +514,12 @@ $buruh = new user('buruh',$variable);
 					$risi=mysqli_query($con, $qisi);
 					$rowisi=mysqli_fetch_array($risi);
 					$totalisi = mysqli_num_rows($risi);
+					?>
+					<script>
+					alert('<?php echo $qisi; ?>')
+					</script>
+
+					<?php
 
 					if($totalisi==0){
 							$con =connect();

@@ -474,8 +474,16 @@ else if ($id == "bantuan") {
     $open = "print_all.php";
 }
 	else if ($id == "print_estate") {
-    $open = "print_ringkasankos_estate.php";
-}else if ($id == "login") {
+      $tahun = $_SESSION['tahun'];
+      if ($tahun <= 2020) { // old soalan
+        $open = "print_ringkasankos_estate_old.php";
+      }else {
+        $open = "print_ringkasankos_estate.php";
+      }
+}
+
+
+else if ($id == "login") {
     $open = "";
 } else if ($id == "ringkasan") {
     if (($_SESSION['type'] <> "estate") && ($_SESSION['type'] <> "admin"))
