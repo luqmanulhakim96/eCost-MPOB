@@ -313,7 +313,24 @@ function openScript(url, width, height) {
     </div></td>
     <td width="68"><div align="right">
     <?php
-	$ch = (($a[1]-$a1[1])/$a1[1])*100; echo number_format($ch,2);if(strlen($rows['sub_type']) == 0){$jch+=$ch;}
+	$ch = (($a[1]-$a1[1])/$a1[1])*100;
+
+	if(is_nan($ch))
+	{
+		return "0.00";
+	}
+
+	if(is_infinite($ch))
+	{
+		echo "&#8734;";
+	}else {
+		echo number_format($ch, 2);
+	}
+
+	 if(strlen($rows['sub_type']) == 0)
+	 {$jch+=$ch;}
+
+
 	?>
     </div></td>
     <?php

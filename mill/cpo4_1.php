@@ -52,9 +52,7 @@ document.form1.submit();
 
 
 <style type="text/css">
-<!--
-.style1 {font-style: italic}
--->
+
 </style>
 <form action="mail_ringkasan.php" method="post" name="form1" id="form1">
 <table align="left" class="tableCss">
@@ -134,9 +132,10 @@ document.form1.submit();
       <p>
         <input type="submit" value=<?=setstring ( 'mal', '"Hantar ke MPOB" ', 'en', '"Send to MPOB"'); ?> onclick="pitmid = true; return confirm(<?=setstring ( 'mal', '\'Anda pasti untuk simpan dan sahkan?\'', 'en', '\'Ready for save and approval?\'')?>)" />
         <input name="selesai" type="hidden" id="selesai" value="1" />
-				
+
         <input name="cetak" type="button" value=<?=setstring ( 'mal', '"Cetak"', 'en', '"Print"'); ?> onclick="print('<?php echo $_SESSION['tahun']; ?>');" />
       </p>
+
       <table width="100%">
         <!--<tr>
           <td width="5%"><a href="home.php?id=kos_lain"><img src="images/001_11.gif" alt="" width="24" height="24" border="0" /></a></td>

@@ -95,6 +95,16 @@ $pengguna->jumlahakhir;
 	}
 
 
+  function kiraanGambut (e){
+    var gambut = $("#gambut").val();
+
+
+    var g = e.value;
+    if(g>100){
+      alert('<?php echo setstring ( 'mal', 'Jumlah Peratusan melebihi had 100 %', 'en', 'Total Percentage is more than 100%'); ?>');
+    e.value = "0.00";}
+    }
+
 	function kiraan (e){
 		var jumlah = 0;
 		var a = $("#percentrata").val();
@@ -181,7 +191,7 @@ $pengguna->jumlahakhir;
   <tr>
     <td height="31" bgcolor="#99FF99">&nbsp;</td>
     <td colspan="2" bgcolor="#99FF99"><strong><?php echo setstring ( 'mal', 'Peratusan keluasan tanah gambut (sekiranya ada)', 'en', 'Percentage of peatland area (if any):'); ?></strong></td>
-    <td bgcolor="#99FF99"><input name="gambut" type="text" class="field_active" id="gambut" onblur="field_blur(this,'s3')" onclick="field_click(this)" value="<?php echo  $pengguna->gambut; ?>" size="3" />
+    <td bgcolor="#99FF99"><input name="gambut" type="text" class="field_active" id="gambut" onblur="field_blur(this,'s3')" onclick="field_click(this)" onchange="kiraanGambut(this)" value="<?php echo  $pengguna->gambut ?? 0; ?>" size="3" />
 
 <?php echo setstring ( 'mal', '%', 'en', '%'); ?></td>
     <td colspan="3" bgcolor="#99FF99"><?php //$a = round($pengguna->gambut/$jumlah_semua,2);echo number_format($a,2); ?></td>

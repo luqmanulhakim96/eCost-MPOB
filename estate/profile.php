@@ -391,8 +391,8 @@
 												 var options = {
 													 title: '',
 													 tooltip: { text: 'percentage' },
-													 legend: 'none',
-													 pieSliceText: 'label',
+													 legend: 'true',
+													 pieSliceText: '',
 													 slices: {  0: {offset: 0.2},
 																		 1: {offset: 0.2},
 																		 2: {offset: 0.2},

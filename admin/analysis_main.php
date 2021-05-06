@@ -135,9 +135,16 @@
                         </a>
 
                         <div id="green-button" align="center">
+                          <?php if ($rowt['pb_thisyear'] <= 2020): ?>
+                            <a href="analysis_estate_excel_old.php?tahun=<?php echo $rowt['pb_thisyear']; ?>" class="green-button pcb">
+                                <span>Download</span>
+                            </a>
+                          <?php else : ?>
                             <a href="analysis_estate_excel.php?tahun=<?php echo $rowt['pb_thisyear']; ?>" class="green-button pcb">
                                 <span>Download</span>
                             </a>
+                          <?php endif; ?>
+
 
                         </div>
                     <?php } ?>
