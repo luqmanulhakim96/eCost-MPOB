@@ -317,7 +317,7 @@ function openScript(url, width, height) {
 
 	if(is_nan($ch))
 	{
-		return "0.00";
+		echo "0.00";
 	}
 
 	if(is_infinite($ch))

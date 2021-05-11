@@ -312,18 +312,17 @@ while ($rows = mysqli_fetch_array($rs)) {
             <td width="68"><div align="right">
                     <?php
                     $ch = (($a[1] - $a1[1]) / $a1[1]) * 100;
-                    
-                    if(is_nan($ch))
-                  	{
-                  		return "0.00";
-                  	}
 
-                    if(is_infinite($ch))
-                    {
+                    if(is_nan($ch)){
+                  		echo "0.00";
+                  	}
+                    elseif(is_infinite($ch)){
                       echo "&#8734;";
-                    }else {
+                    }
+                    else {
                       echo number_format($ch, 2);
                     }
+
                     if (strlen($rows['sub_type']) == 0) {
                         $jch+=$ch;
                     }
