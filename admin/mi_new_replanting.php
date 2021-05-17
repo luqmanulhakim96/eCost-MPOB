@@ -222,7 +222,7 @@ function openScript(url, width, height) {
 	    }
 
 	  else {
-	      $qs = " select * from q_kbmv2 ORDER by arrangement ASC where tahun!='0'";
+	      $qs = " select * from q_kbmv2 where tahun!='0'  ORDER by arrangement ASC ";
 	  }
 	}
   $rs = mysqli_query($con, $qs);

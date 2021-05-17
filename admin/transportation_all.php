@@ -302,7 +302,14 @@ function openScript(url, width, height) {
     </div></td>
     <td width="68"><div align="right">
     <?php
-	echo number_format((($b1[0]-$a1[0])/$a1[0])*100,2);
+	$ch3=(($b1[0]-$a1[0])/$a1[0])*100;
+
+	if(is_infinite($ch3))
+	{
+		echo "&#8734;";
+	}else {
+		echo number_format($ch3, 2);
+	}
 	?>
     </div></td>
     <td width="68"><div align="right">
@@ -319,7 +326,14 @@ function openScript(url, width, height) {
     </div></td>
     <td width="68"><div align="right">
     <?php
-	echo number_format((($b1[1]-$a1[1])/$a1[1])*100,2);
+	$ch=(($b1[1]-$a1[1])/$a1[1])*100;
+
+	if(is_infinite($ch))
+	{
+		echo "&#8734;";
+	}else {
+		echo number_format($ch, 2);
+	}
 	?>
     </div></td>
     <?php
@@ -335,7 +349,14 @@ function openScript(url, width, height) {
     <td align="right" ><div align="right"><?php echo number_format((($js-$jl)/$jl)*100,2);?></div></td>
     <td align="right" ><div align="right"><?php echo number_format($ml,2);?></div></td>
     <td align="right" ><div align="right"><?php echo number_format($ms,2);?></div></td>
-    <td align="right" ><div align="right"><?php echo number_format((($ms-$ml)/$ml)*100,2);?></div></td>
+    <td align="right" ><div align="right"><?php $ch2=(($ms-$ml)/$ml)*100;
+		if(is_infinite($ch2))
+		{
+			echo "&#8734;";
+		}else {
+			echo number_format($ch2, 2);
+		}
+		?></div></td>
   </tr>
 </table>
 <br />
