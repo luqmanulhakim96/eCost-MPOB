@@ -296,7 +296,14 @@ $qstate ="select * from negeri where id like '$state'";
     </div></td>
     <td width="68"><div align="right">
     <?php
-	echo number_format((($b1[0]-$a1[0])/$a1[0])*100,2);
+	$ch=(($b1[0]-$a1[0])/$a1[0])*100;
+
+	if(is_infinite($ch))
+	{
+		echo "&#8734;";
+	}else {
+		echo number_format($ch, 2);
+	}
 	?>
     </div></td>
     <td width="68"><div align="right">

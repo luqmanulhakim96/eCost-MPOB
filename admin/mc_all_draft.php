@@ -321,7 +321,13 @@ while ($rows = mysqli_fetch_array($rs)) {
                     </div></td>
                 <td width="68"><div align="right">
         <?php
-        echo number_format((($b1[1] - $a1[1]) / $a1[1]) * 100, 2);
+        $ch=(($b1[1] - $a1[1]) / $a1[1]) * 100;
+        if(is_infinite($ch))
+      	{
+      		echo "&#8734;";
+      	}else {
+      		echo number_format($ch, 2);
+      	}
         ?>
                     </div></td>
                         <?php

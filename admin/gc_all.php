@@ -232,7 +232,7 @@ $qs="select * from q_km where type='gc'";
      $qs="select * from q_kmv2 where type='gc' AND name != 'Purchase of asset' AND name !='Purchase of machineries' ORDER BY arrangement ";
  }
 
-  
+
 
   $rs = mysqli_query($con, $qs);
   // print_r($dua);
@@ -267,10 +267,28 @@ $qs="select * from q_km where type='gc'";
 
 	echo number_format($a1[0],2);$jl = $jl+$a1[0]; ?></div></td>
     <td width="104"><div align="center"><?php echo number_format($b1[0],2); $js =  $js+$b1[0];?></div></td>
-    <td width="68"><div align="center"><?php $ch = (($b1[0]-$a1[0])/$a1[0])*100; echo number_format($ch,2);$jch+=$ch; ?></div></td>
+    <td width="68"><div align="center"><?php $ch = (($b1[0]-$a1[0])/$a1[0])*100;
+
+    if(is_infinite($ch))
+  	{
+  		echo "&#8734;";
+  	}else {
+  		echo number_format($ch, 2);
+  	}
+
+    $jch+=$ch; ?></div></td>
     <td align="right"><div align="center"><?php echo number_format($a1[1],2);$ml = $ml+$a1[1]; ?></div></td>
     <td align="right"><div align="center"><?php echo number_format($b1[1],2); $ms= $ms+$b1[1]; ?></div></td>
-    <td align="right"><div align="center"><?php $ch2 = (($b1[1]-$a1[1])/$a1[1])*100; echo number_format($ch2,2);$jch2+=$ch2; ?></div></td>
+    <td align="right"><div align="center"><?php $ch2 = (($b1[1]-$a1[1])/$a1[1])*100;
+
+    if(is_infinite($ch2))
+  	{
+  		echo "&#8734;";
+  	}else {
+  		echo number_format($ch2, 2);
+  	}
+
+    $jch2+=$ch2; ?></div></td>
   </tr>
   <?php } ?>
 
@@ -281,7 +299,16 @@ $qs="select * from q_km where type='gc'";
     <td align="right" ><div align="center"><?php echo number_format((($js-$jl)/$jl)*100,2);?></div></td>
     <td align="right" ><div align="center"><?php echo number_format($ml,2);?></div></td>
     <td align="right" ><div align="center"><?php echo number_format($ms,2);?></div></td>
-    <td align="right" ><div align="center"><?php echo number_format((($ms-$ml)/$ml)*100,2);?></div></td>
+    <td align="right" ><div align="center"><?php $ch3=(($ms-$ml)/$ml)*100;
+
+    if(is_infinite($ch3))
+  	{
+  		echo "&#8734;";
+  	}else {
+  		echo number_format($ch3, 2);
+  	}
+    
+    ?></div></td>
   </tr>
 </table>
 <br />

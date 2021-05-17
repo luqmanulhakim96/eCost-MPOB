@@ -28,14 +28,14 @@ function kiraPerubahan($valueBaru, $valueLama){
 
 	if(is_nan($result))
 	{
-		return "0.00";
+		echo "0.00";
 	}
 
 	if(is_infinite($result))
 	{
-		return "&#8734;";
+		echo "&#8734;";
 	}
-	return number_format($result,2);
+	echo number_format($result,2);
 }
 ?>
 

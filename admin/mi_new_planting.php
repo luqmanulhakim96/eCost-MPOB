@@ -210,7 +210,7 @@ if ($tahun <= '2020') {
     }
 
   else {
-      $qs = " select * from q_kbmv2 ORDER by arrangement ASC where tahun!='0'";
+      $qs = " select * from q_kbmv2  where tahun!='0' ORDER by arrangement ASC";
   }
 }
 

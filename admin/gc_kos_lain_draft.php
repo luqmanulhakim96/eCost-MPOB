@@ -142,31 +142,31 @@ if ($state != "" && $state != "publicagencies" && $state != "cooperatives" && $s
 <table width="80%" align="center" class="baju">
     <?php if ($state == "publicagencies") { ?>
   <tr height="17">
-    <td height="17" colspan="7"><div align="center" class="style6">General Chargers for Public Agencies</div></td>
+    <td height="17" colspan="7"><div align="center" class="style6">Other Cost for Public Agencies</div></td>
   </tr>
   <?php } else if ($state == "cooperatives") { ?>
   <tr height="17">
-    <td height="17" colspan="7"><div align="center" class="style6">General Chargers for Cooperatives</div></td>
+    <td height="17" colspan="7"><div align="center" class="style6">Other Cost for Cooperatives</div></td>
   </tr>
   <?php } else if ($state == "publiclimitedcompany") { ?>
   <tr height="17">
-    <td height="17" colspan="7"><div align="center" class="style6">General Chargers for Public Limited Company</div></td>
+    <td height="17" colspan="7"><div align="center" class="style6">Other Cost for Public Limited Company</div></td>
   </tr>
   <?php } else if ($state == "partnership") { ?>
   <tr height="17">
-    <td height="17" colspan="7"><div align="center" class="style6">General Chargers for Partnership</div></td>
+    <td height="17" colspan="7"><div align="center" class="style6">Other Cost for Partnership</div></td>
   </tr>
   <?php } else if ($state == "solepropriertorship") { ?>
   <tr height="17">
-    <td height="17" colspan="7"><div align="center" class="style6">General Chargers for Sole Propriertorship</div></td>
+    <td height="17" colspan="7"><div align="center" class="style6">Other Cost for Sole Propriertorship</div></td>
   </tr>
   <?php } else if ($state == "privatelimitedcompany") { ?>
   <tr height="17">
-    <td height="17" colspan="7"><div align="center" class="style6">General Chargers for Private Limited Company</div></td>
+    <td height="17" colspan="7"><div align="center" class="style6">Other Cost for Private Limited Company</div></td>
   </tr>
   <?php } else { ?>
 	<tr height="17">
-        <td height="17" colspan="7"><div align="center" class="style6">General Chargers in <?php echo $_COOKIE['tahun_report']; ?></div></td>
+        <td height="17" colspan="7"><div align="center" class="style6">Other Cost in <?php echo $_COOKIE['tahun_report']; ?></div></td>
     </tr>
   <?php } ?>
     <tr height="17">

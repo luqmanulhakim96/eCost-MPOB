@@ -269,10 +269,37 @@ function openScript(url, width, height) {
 
 	$a01 = number_format($a1[0],2); echo number_format($a01,2);$jl = $jl+$a1[0]; ?></div></td>
     <td width="104"><div align="center"><?php $a02 = number_format($b1[0],2); echo number_format($a02,2); $js =  $js+$b1[0];?></div></td>
-    <td width="68"><div align="center"><?php $ch = (($a02-$a01)/$a01)*100; echo number_format($ch,2);$jch = (($js-$jl)/$jl)*100; ?></div></td>
+    <td width="68"><div align="center"><?php $ch = (($a02-$a01)/$a01)*100;
+
+		if(is_infinite($ch))
+		{
+			echo "&#8734;";
+		}else {
+			echo number_format($ch, 2);
+		}
+
+		$jch = (($js-$jl)/$jl)*100; ?></div></td>
     <td align="right"><div align="center"><?php $a03 = number_format($a1[1],2); echo number_format($a03,2);$ml = number_format($ml+$a1[1],2); ?></div></td>
     <td align="right"><div align="center"><?php $a04 = number_format($b1[1],2); echo number_format($a04,2); $ms= number_format($ms+$b1[1],2); ?></div></td>
-    <td align="right"><div align="center"><?php $ch2 = (($a04-$a03)/$a1[1])*100; echo number_format($ch2,2); $jch2 = (($ms-$ml)/$ml)*100; ?></div></td>
+    <td align="right"><div align="center"><?php
+		$ch2 = (($a04-$a03)/$a1[1])*100;
+
+		if(is_nan($ch2))
+		{
+			echo "0.00";
+		}
+
+		if(is_infinite($ch2))
+		{
+			echo "&#8734;";
+		}else {
+			echo number_format($ch2, 2);
+		}
+
+		$jch2 = (($ms-$ml)/$ml)*100;
+
+
+		?></div></td>
   </tr>
   <?php } ?>
 
@@ -283,7 +310,14 @@ function openScript(url, width, height) {
     <td align="right" ><div align="center"><?php echo number_format($jch,2);?></div></td>
     <td align="right" ><div align="center"><?php echo number_format($ml,2);?></div></td>
     <td align="right" ><div align="center"><?php echo number_format($ms,2);?></div></td>
-    <td align="right" ><div align="center"><?php echo number_format($jch2,2);?></div></td>
+    <td align="right" ><div align="center"><?php
+		if(is_infinite($ch2))
+		{
+			echo "&#8734;";
+		}else {
+			echo number_format($jch2, 2);
+		}
+		?></div></td>
   </tr>
 </table>
 <br />
