@@ -52,7 +52,7 @@ VALUES (
 );
 ";
 $r=mysqli_query($con,$q);
-print($q);
+// print($q);
 }
 
 	// Check lesen exist in table tanam_semula, tanam_baru or tanam_tukar
