@@ -195,7 +195,7 @@ if ($state != "" && $state != "publicagencies" && $state != "cooperatives" && $s
 
     $tahun = $_COOKIE['tahun_report'];			// new question and old question
 
-    if ($tahun <= '2020') {
+    if ($tahun <= '2021') {
          echo"NO DATA";
 
     }

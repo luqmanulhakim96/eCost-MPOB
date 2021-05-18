@@ -344,7 +344,7 @@ else if ($id == "analysis") {
     else if ($sub == "linear_immature"){
 
       $tahun = $_COOKIE['tahun_report'];
-      if ($tahun <= 2020) { // old soalan
+      if ($tahun <= 2021) { // old soalan
       $open_detail = "linear_immature_old.php";
       }else {
             $open_detail = "linear_immature.php";
@@ -354,7 +354,7 @@ else if ($id == "analysis") {
     else if ($sub == "linear_mature_upkeep"){
 
     $tahun = $_COOKIE['tahun_report'];
-    if ($tahun <= 2020) { // old soalan
+    if ($tahun <= 2021) { // old soalan
     $open_detail = "linear_mature_old.php";
     }else {
           $open_detail = "linear_mature.php";
@@ -365,7 +365,7 @@ else if ($id == "analysis") {
     else if ($sub == "linear_mature_harvesting"){
 
       $tahun = $_COOKIE['tahun_report'];
-      if ($tahun <= 2020) { // old soalan
+      if ($tahun <= 2021) { // old soalan
       $open_detail = "linear_mature_harvesting_old.php";
       }else {
         $open_detail = "linear_mature_harvesting.php";
@@ -376,7 +376,7 @@ else if ($id == "analysis") {
   else if ($sub == "linear_mature_transportation"){
 
   $tahun = $_COOKIE['tahun_report'];
-  if ($tahun <= 2020) { // old soalan
+  if ($tahun <= 2021) { // old soalan
   $open_detail = "linear_mature_transportation_old.php";
   }else {
     $open_detail = "linear_mature_transportation.php";
@@ -386,7 +386,7 @@ else if ($id == "analysis") {
 	else if ($sub == "linear_mature_allcost"){
 
     $tahun = $_COOKIE['tahun_report'];
-    if ($tahun <= 2020) { // old soalan
+    if ($tahun <= 2021) { // old soalan
     $open_detail = "linear_mature_allcost_old.php";
     }else {
       $open_detail = "linear_mature_allcost.php";
@@ -398,7 +398,7 @@ else if ($id == "analysis") {
     {
 
       $tahun = $_COOKIE['tahun_report'];
-      if ($tahun <= 2020) { // old soalan
+      if ($tahun <= 2021) { // old soalan
       $open_detail = "linear_gc_old.php";
 
       }else {
@@ -444,7 +444,7 @@ else if ($id == "umum") {
     if (($_SESSION['type'] <> "estate") && ($_SESSION['type'] <> "admin"))
         header("location:../logout.php");
 
-        if ($_SESSION['tahun'] <= 2020) { // old soalan
+        if ($_SESSION['tahun'] <= 2021) { // old soalan
         $open = "po4_1_old.php";
 
         }else {
@@ -475,7 +475,7 @@ else if ($id == "bantuan") {
 }
 	else if ($id == "print_estate") {
       $tahun = $_SESSION['tahun'];
-      if ($tahun <= 2020) { // old soalan
+      if ($tahun <= 2021) { // old soalan
         $open = "print_ringkasankos_estate_old.php";
       }else {
         $open = "print_ringkasankos_estate.php";

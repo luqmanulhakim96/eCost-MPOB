@@ -223,7 +223,7 @@ function openScript(url, width, height) {
 
  $tahun = $_COOKIE['tahun_report'];			// new question and old question
 
- if ($tahun <= '2020') {
+ if ($tahun <= '2021') {
 $qs="select * from q_km where type='gc'";
 
  }
@@ -307,7 +307,7 @@ $qs="select * from q_km where type='gc'";
   	}else {
   		echo number_format($ch3, 2);
   	}
-    
+
     ?></div></td>
   </tr>
 </table>

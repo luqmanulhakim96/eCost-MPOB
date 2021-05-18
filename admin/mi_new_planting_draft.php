@@ -68,7 +68,7 @@ function pertama($tahun, $nama, $status, $negeri, $daerah, $type, $tahuntanam) {
         $var[0] = median($test_data);
     }
     $var[1] = $rrow['purata'];
-    
+
 
     return $var;
 }
@@ -171,7 +171,7 @@ if ($year == "" || $year == '1') {
 
 $tahun = $_COOKIE['tahun_report'];        // new question and old question
 
-if ($tahun <= '2020') {
+if ($tahun <= '2021') {
   if ($year = "" || $year == '1') {
       $qs = " select * from q_kbm ";
     }
