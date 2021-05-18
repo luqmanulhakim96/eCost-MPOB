@@ -181,7 +181,7 @@ function openScript(url, width, height) {
   <?php
 	$tahun = $_COOKIE['tahun_report'];			// new question and old question
 
-	if ($tahun <= '2020') {
+	if ($tahun <= '2021') {
   $qs="select * from q_km where type='$sub' ";
 
 	}
@@ -277,7 +277,7 @@ function openScript(url, width, height) {
 		echo "0.00";
 	}
 
-	if(is_infinite($ci))
+	elseif(is_infinite($ci))
 	{
 		echo "&#8734;";
 	}else {

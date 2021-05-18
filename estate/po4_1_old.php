@@ -8,7 +8,19 @@ $umur2 = new user('esub', $session_lesen);
 
 function kiraPerubahan($valueBaru, $valueLama) {
     $result = (($valueBaru - $valueLama) / $valueLama) * 100;
-    return number_format($result, 2);
+    
+    if(is_nan($result))
+    {
+      return "0.00";
+    }
+
+    elseif(is_infinite($result))
+    {
+      return "&#8734;";
+    }
+    else {
+      return number_format($result, 2);
+    }
 }
 
 $q = "select * from belanja_am_kos where lesen = '" . $_SESSION['lesen'] . "' and thisyear = '" . $_SESSION['tahun'] . "'";

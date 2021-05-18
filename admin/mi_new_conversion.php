@@ -208,7 +208,7 @@ function openScript(url, width, height) {
   }
   */
 	$tahun = $_COOKIE['tahun_report'];				// new question and old question
-	if ($tahun <= '2020') {
+	if ($tahun <= '2021') {
 	  if ($year = "" || $year == '1') {
 	      $qs = " select * from q_kbm ";
 	    }
@@ -321,7 +321,7 @@ function openScript(url, width, height) {
 		echo "0.00";
 	}
 
-	if(is_infinite($ch))
+	elseif(is_infinite($ch))
 	{
 		echo "&#8734;";
 	}else {

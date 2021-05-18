@@ -15,11 +15,14 @@ function kiraPerubahan($valueBaru, $valueLama) {
       return "0.00";
     }
 
-    if(is_infinite($result))
+    elseif(is_infinite($result))
     {
       return "&#8734;";
     }
-    return number_format($result, 2);
+    else {
+      return number_format($result, 2);
+    }
+
 }
 
 $q = "select * from belanja_am_kos where lesen = '" . $_SESSION['lesen'] . "' and thisyear = '" . $_SESSION['tahun'] . "'";

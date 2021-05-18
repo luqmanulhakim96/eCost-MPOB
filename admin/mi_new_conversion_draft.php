@@ -172,7 +172,7 @@ function openScript(url, width, height) {
   */
 	$tahun = $_COOKIE['tahun_report'];        // new question and old question
 
-	if ($tahun <= '2020') {
+	if ($tahun <= '2021') {
 	  if ($year = "" || $year == '1') {
 	      $qs = " select * from q_kbm ";
 	    }

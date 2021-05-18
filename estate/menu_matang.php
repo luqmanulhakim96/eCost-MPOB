@@ -31,11 +31,14 @@ function kiraPerubahan($valueBaru, $valueLama){
 		echo "0.00";
 	}
 
-	if(is_infinite($result))
+	elseif(is_infinite($result))
 	{
 		echo "&#8734;";
 	}
-	echo number_format($result,2);
+	else {
+		echo number_format($result,2);
+	}
+
 }
 ?>
 
