@@ -48,6 +48,7 @@
                     <li><img src="../nav/file.gif" alt="d" /><a href="data_survey_estate_old.php?tahun=<?php echo $rowt['pb_thisyear']; ?>">Estate <?php echo $rowt['pb_thisyear']; ?></a></li>
                           <?php else : ?>
                             <li><img src="../nav/file.gif" alt="d" /><a href="data_survey_estate.php?tahun=<?php echo $rowt['pb_thisyear']; ?>">Estate <?php echo $rowt['pb_thisyear']; ?></a></li>
+                                <?php endif; ?>
                     <li><img src="../nav/file.gif" alt="d" /><a href="data_survey_kilang.php?tahun=<?php echo $rowt['pb_thisyear']; ?>">Kilang <?php echo $rowt['pb_thisyear']; ?></a></li>
 <?php } ?>
 
