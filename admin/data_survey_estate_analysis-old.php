@@ -544,7 +544,7 @@ function kos_matang_penuaian($lesen, $tahun, $jum_tanam, $jum_bts, $negeri, $dae
         $sub[9] = 0;
     }
 
-    add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[0], $sub[5], "Harvesting tools ");
+    add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[0], $sub[5], "Harvesting tools");
     add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[1], $sub[6], "Harvesting and collection of FFB and loose fruit");
     add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[2], $sub[7], "Mandore wages/ direct field supervision costs");
     add_kmptuai($lesen, $tahun, $negeri, $daerah, $sub[3], $sub[8], "Machinery use and maintenance ");
