@@ -329,8 +329,15 @@ else if ($id == "analysis") {
     $sub = $_REQUEST['sub'];
     if (!isset($_REQUEST['sub']))
         $open_detail = "analysis_main.php";
-    else if ($sub == "analysis_estate")
+    else if ($sub == "analysis_estate"){
+      $tahun = $_COOKIE['tahun_report'];
+      if ($tahun <= 2021) { // old soalan
+          $open_detail = "data_survey_estate_analysis-old.php";
+      }else{
         $open_detail = "data_survey_estate_analysis.php";
+
+      }
+    }
     else if ($sub == "analysis_estate_view")
         $open_detail = "analysis_estate_view.php";
 
