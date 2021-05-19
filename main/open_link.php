@@ -515,7 +515,15 @@ else if ($id == "buruh_mill") {
 else if ($id == "po") {
     $open = "select_month.php";
 } else if ($id == "profile") {
-    $open = "profile.php";
+
+  $tahun = $_SESSION['tahun'];
+  if ($tahun <= 2021) { // old soalan
+    $open = "profile2.php";
+  }
+  else {
+      $open = "profile.php";
+  }
+
 } else if ($id == "editprofile") {
     $open = "editprofile.php";
 } else if ($id == "printprofile") {
