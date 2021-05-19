@@ -37,7 +37,7 @@ $pengguna = new user('estate',$_SESSION['lesen']);
 
 		return $jum_data;
 		}
-		
+
 
  $ps1 = luas_data("tanam_semula","tanaman_semula", $_SESSION['tahun']-1);
  $ps2 = luas_data("tanam_semula","tanaman_semula", $_SESSION['tahun']-2);
@@ -131,7 +131,7 @@ $pengguna->jumlahakhir;
 .style2 {font-weight: bold}
 -->
 </style>
-<form id="form1" name="form1" method="post" action="save_profile.php">
+<form id="form1" name="form1" method="post" action="save_profile2.php">
 <table width="100%" align="center" cellspacing="0" class="tableCss" style="border:1px #333333 solid; padding:2px;">
   <tr>
     <td height="29" bgcolor="#99FF99">&nbsp;</td>

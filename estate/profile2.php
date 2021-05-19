@@ -13,7 +13,7 @@
 			$("#sw-simpan").show();
 			$("#borang").hide();
 			html = $("#borang").html();
-			$.post("po1_1.php?r=1","",function(out) {
+			$.post("po1_1_2.php?r=1","",function(out) {
 				$("#borang").html(out);
 				$("#borang").show("slow");
 			});
