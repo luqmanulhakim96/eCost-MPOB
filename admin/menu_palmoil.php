@@ -12,7 +12,7 @@ if ($_SESSION['type'] <> "admin")
 <link type="text/css" media="screen" rel="stylesheet" href="js/colorbox/colorbox.css" />
 <script type="text/javascript" src="js/colorbox/jquery.colorbox.js"></script>
 <script type="text/javascript">
-    $(function () {
+    $(function() {
         $("#browser").treeview({
             animated: "slow",
             collapsed: true,
@@ -42,8 +42,8 @@ if ($_SESSION['type'] <> "admin")
     <ul id="browser" class="filetree treeview">
         <img src="../images/Bcase.png" width="16" height="16" /> <strong> ESTATE DATA</strong>
         <li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=allestate">Active Estate</a></li>
-        <li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=esub_estate">Check List  for Immature Data</a></li>
-		<li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=esub_comparison">Cost Comparison</a></li>
+        <li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=esub_estate">Check List for Immature Data</a></li>
+        <li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=esub_comparison">Cost Comparison</a></li>
         <!--<li class="filetree last"><img src="../nav/file.gif" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=esub_ffb">FFB Production</a></li>-->
     </ul>
     <ul id="browser" class="filetree treeview">
@@ -59,6 +59,8 @@ if ($_SESSION['type'] <> "admin")
         <li class="filetree last"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=admin_upload_esub">e-SUB</a></li>
         <li class="filetree last"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=admin_upload_ffb_production">FFB Production</a></li>
         <li class="filetree last"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=upload_excel_mill">Upload eKilang</a></li>
+
+        <li class="filetree last"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=admin_upload_esub_api"><b>e-SUB & e-Kilang API</b></a></li>
     </ul>
     <!--<ul id="browser" class="filetree treeview"><img src="../images/Bcase.png" width="16" height="16" /> <strong> ACCCESS DATA</strong>
           <li class="filetree last"><img src="../nav/file.gif" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=access_data">Access Data</a></li>
@@ -69,12 +71,12 @@ if ($_SESSION['type'] <> "admin")
           <li class="filetree"><img src="../nav/file.gif" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=edit_generate">Compile Chapters into Book</a></li>
           <li class="filetree"><img src="../nav/file.gif" />&nbsp;&nbsp;<a href="cover_design.php" target="_blank">Cover and Design</a></li>
     -->
-<!--<li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=import_data"><em>Import Data</em></a></li>-->
-<!--<img src="../images/Bcase.png" width="16" height="16" /> <strong> DATA </strong>-->
-<!--<li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="../migration/data_survey_estate.php">Data Survey Estate 2010</a></li>
+    <!--<li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=import_data"><em>Import Data</em></a></li>-->
+    <!--<img src="../images/Bcase.png" width="16" height="16" /> <strong> DATA </strong>-->
+    <!--<li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="../migration/data_survey_estate.php">Data Survey Estate 2010</a></li>
             <li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="../migration/data_survey_mill.php">Data Survey Mill 2010</a></li>-->
-<!--<li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=cop2008">Cost of Production (2008)</a></li>   -->
-<!--        		<li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=variable">Variables</a></li>
+    <!--<li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=cop2008">Cost of Production (2008)</a></li>   -->
+    <!--        		<li class="filetree"><img src="../nav/file.gif" alt="sss" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=variable">Variables</a></li>
     <img src="../images/Bcase.png" width="16" height="16" /> <strong> ANALYSIS RANGE OUTLIERS</strong>
             <li class="filetree"><img src="../nav/file.gif" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=range_outliers">Estate Outliers</a></li>
             <li class="filetree"><img src="../nav/file.gif" />&nbsp;&nbsp;<a href="home.php?id=config&amp;sub=range_outliers_mill">Mill Outliers</a></li>-->

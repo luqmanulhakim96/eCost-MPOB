@@ -88,21 +88,21 @@ if (isset($retrieveButton) && ($total == 0)) {
 //     echo "<script>alert('" . $stringAlert . "'); </script>";
 //     echo "<script>window.location.href='../index1.php?fail=true';</script>";
 // }
-if(!empty($katalaluan)){
-  if (!password_verify($katalaluan, $row['password'])) { //if password entered does not matched with encrypted password
-    $stringAlert = setstring('mal', 'Log masuk GAGAL!!!, sila cuba semula.', 'en', 'Login FAILED!!!. Please try again.');
-    echo "<script>alert('" . $stringAlert . "'); </script>";
-    echo "<script>window.location.href='../index1.php?fail=true';</script>";
-  }
-  else {
-    $firsttime = $row['firsttime'];
-    $lesen = $row['lesen'];
-    $password = $row['password'];
 
-    echo $_SESSION['lesen'];
-    $_SESSION['lesen'] = $lesen;
-    $_SESSION['password'] = $password;
-  }
+if (!empty($katalaluan)) {
+    if (!password_verify($katalaluan, $row['password'])) { //if password entered does not matched with encrypted password
+        $stringAlert = setstring('mal', 'Log masuk GAGAL!!!, sila cuba semula.', 'en', 'Login FAILED!!!. Please try again.');
+        echo "<script>alert('" . $stringAlert . "'); </script>";
+        echo "<script>window.location.href='../index1.php?fail=true';</script>";
+    } else {
+        $firsttime = $row['firsttime'];
+        $lesen = $row['lesen'];
+        $password = $row['password'];
+
+        echo $_SESSION['lesen'];
+        $_SESSION['lesen'] = $lesen;
+        $_SESSION['password'] = $password;
+    }
 }
 
 // $firsttime = $row['firsttime'];
