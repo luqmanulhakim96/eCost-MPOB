@@ -54,9 +54,9 @@ if ($jenis == 'file') {
     if (move_uploaded_file($_FILES['ufile']['tmp_name'], $target)) {
         $q = "insert into file_upload values ('','$target','$title','1', '$addby', now(), '$addfrom');  ";
         $r = mysqli_query($con, $q);
+        echo $q;
     } else {
         echo "<html><script language='javascript'>alert('Upload File Failed!'),history.go(-1)</script></html>";
-        // echo "<html><script language='javascript'>alert('"."Error description: " . mysqli_error($con)."'),history.go(-1)</script></html>";
     }
 }
 //=============================delete file ===============
@@ -74,5 +74,5 @@ function HandleError($message) {
     exit(0);
 }
 
-echo "<script>window.location.href='home.php?id=config&sub=upfile'</script>";
+// echo "<script>window.location.href='home.php?id=config&sub=upfile'</script>";
 ?>
