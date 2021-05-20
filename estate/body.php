@@ -104,7 +104,6 @@ if(!empty($katalaluan)){
     $_SESSION['password'] = $password;
   }
 }
-
 // $firsttime = $row['firsttime'];
 // $lesen = $row['lesen'];
 // $password = $row['password'];
@@ -215,6 +214,8 @@ if ($total != 0 && $mill != "true") {
 
         $title = 'e-COST - Password Recovery (Estate)';
 
+        echo "<script>alert('Sistem Notifikasi MPOB sedang dibaikpulih.'); </script>";
+        echo "<script>window.location.href='../index1.php?fail=true';</script>";
 
 
 		$from = MAIL_USERNAME; //WEBMASTER_EMEL;
