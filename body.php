@@ -10,7 +10,7 @@ include ('../Connections/connection.class.php');
 include('../setstring.inc');
 
 // Turn off all error reporting
-error_reporting(1);
+error_reporting(0);
 extract($_REQUEST);
 
 $_SESSION['tahun'] = $tahun;
