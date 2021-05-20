@@ -60,7 +60,9 @@ if (!isset($retrieveButton)) {
         // $qLogin = "select * from login_mill where lesen = '$username' and password = '$katalaluan'";
         $qLogin = "select * from login_mill where lesen = '$username' ";
     }
-} else {
+} 
+
+else {
     if ($mill != "true") {
         $qLogin = "select * from login_estate
 		INNER JOIN esub ON login_estate.lesen = esub.No_Lesen_Baru
@@ -74,13 +76,15 @@ if (!isset($retrieveButton)) {
 		and alamat_ekilang.email='$email'";
     }
 }
+
 $r = mysqli_query($con, $qLogin);
 $row = mysqli_fetch_array($r);
 $total = mysqli_num_rows($r);
 
 if (isset($retrieveButton) && ($total == 0)) {
-	$stringAlert = setstring('mal', 'Reset kata laluan gagal. Sila pastikan no lesen dan emel anda berdaftar dengan Sistem e-Cost.', 'en', 'Password reset failed. Please make sure your license no. and e-mail are registered with e-Cost system');
+	$stringAlert = setstring('mal', $total, 'en', 'Password reset failed. Please make sure your license no. and e-mail are registered with e-Cost system');
     echo "<script>alert('" . $stringAlert . "'); </script>";
+    // echo "<script>alert('" . print ($qLogin) . "'); </script>";
     echo "<script>window.location.href='../index1.php?fail=true';</script>";
 }
 // elseif ($total == 0) {  // jika login gagal
@@ -88,21 +92,22 @@ if (isset($retrieveButton) && ($total == 0)) {
 //     echo "<script>alert('" . $stringAlert . "'); </script>";
 //     echo "<script>window.location.href='../index1.php?fail=true';</script>";
 // }
-if (!password_verify($katalaluan, $row['password'])) { //if password entered does not matched with encrypted password
-  $stringAlert = setstring('mal', 'Log masuk GAGAL!!!, sila cuba semula.', 'en', 'Login FAILED!!!. Please try again.');
-  echo "<script>alert('" . $stringAlert . "'); </script>";
-  echo "<script>window.location.href='../index1.php?fail=true';</script>";
-}
-else {
-  $firsttime = $row['firsttime'];
-  $lesen = $row['lesen'];
-  $password = $row['password'];
+if(!empty($katalaluan)){
+    if (!password_verify($katalaluan, $row['password'])) { //if password entered does not matched with encrypted password
+        $stringAlert = setstring('mal', 'Log masuk GAGAL!!!, sila cuba semula.', 'en', 'Login FAILED!!!. Please try again.');
+        echo "<script>alert('" . $stringAlert . "'); </script>";
+        echo "<script>window.location.href='../index1.php?fail=true';</script>";
 
-  echo $_SESSION['lesen'];
-  $_SESSION['lesen'] = $lesen;
-  $_SESSION['password'] = $password;
-}
+    } else {
+        $firsttime = $row['firsttime'];
+        $lesen = $row['lesen'];
+        $password = $row['password'];
 
+        echo $_SESSION['lesen'];
+        $_SESSION['lesen'] = $lesen;
+        $_SESSION['password'] = $password;
+    }
+}
 // $firsttime = $row['firsttime'];
 // $lesen = $row['lesen'];
 // $password = $row['password'];
