@@ -209,9 +209,9 @@ if ($total != 0 && $mill != "true") {
 
     /* if retrieve password */
     if (isset($retrieveButton)) {
-      echo "<script>alert('Sistem Notifikasi MPOB sedang dibaikpulih.'); </script>";
-      echo "<script>window.location.href='../index1.php?fail=true';</script>";
-      
+      // echo "<script>alert('Sistem Notifikasi MPOB sedang dibaikpulih.'); </script>";
+      // echo "<script>window.location.href='../index1.php?fail=true';</script>";
+
         $q = "update login_estate set success= NOW(), password='" . password_hash(substr($rowLogin['No_Lesen_Baru'], 0, 6),PASSWORD_BCRYPT) . "' where lesen = '$username'";
         $r = mysqli_query($con, $q);
 
