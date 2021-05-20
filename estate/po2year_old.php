@@ -44,7 +44,7 @@ total_b ,
 status
 )
 VALUES (
-'$year', '".$_SESSION['tahun']."', '".$_SESSION['lesen']."', '".$t."', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '0'
+'$year', '".$_SESSION['tahun']."', '".$_SESSION['lesen']."', '".$t."', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0'
 );
 ";
 $r=mysqli_query($con,$q);
