@@ -52,5 +52,5 @@ email = '$email',
 pegawai = upper('$pegawai') WHERE lesen = '" . $_SESSION['lesen'] . "'";
 $r = mysqli_query($con, $q);
 
-// echo "<script>window.location.href='home.php?id=profile'</script>";
+echo "<script>window.location.href='home.php?id=profile'</script>";
 ?>
