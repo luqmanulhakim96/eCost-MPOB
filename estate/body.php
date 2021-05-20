@@ -17,7 +17,7 @@ $_SESSION['tahun'] = $tahun;
 
 //mail configuration
 define('MAIL_HOST','webmail.mpob.gov.my');        // sets SMTP server
-define('MAIL_PORT','465 ssl');                     // set the SMTP port
+define('MAIL_PORT','587 ssl');                     // set the SMTP port
 define('MAIL_USERNAME','tekno@mpob.gov.my');  // mail username
 define('MAIL_PASSWORD','@webmail99');      // mail password
 
@@ -257,7 +257,7 @@ if ($total != 0 && $mill != "true") {
 					)
 					);
 
-				$mail->SMTPDebug = 0;
+				$mail->SMTPDebug = 1;
 				// 0 = no output, 1 = errors and messages, 2 = messages only.
 
 				$mail->SMTPAuth = true;                // enable SMTP authentication
