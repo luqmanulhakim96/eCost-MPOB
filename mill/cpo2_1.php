@@ -35,7 +35,7 @@ VALUES (
 ";
 	$r=mysqli_query($con, $q);
 }
-print($q);
+// print($q);
 
 $pu[0] = $_SESSION['lesen'];
 $pu[1]= $_SESSION['tahun']-1;
