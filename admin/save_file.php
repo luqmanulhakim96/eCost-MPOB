@@ -52,7 +52,7 @@ if ($jenis == 'file') {
     $addby = $_SESSION['email'];
     $addfrom = $_SERVER['REMOTE_ADDR'];
     if (move_uploaded_file($_FILES['ufile']['tmp_name'], $target)) {
-        $q = "insert into file_upload values ('','$target','$title','1', '$addby', now(), '$addfrom');  ";
+        $q = "insert into file_upload (`path`, `title`, `status`, `addby`, `addtime`, `addfrom`) values ($target','$title','1', '$addby', now(), '$addfrom');";
         $r = mysqli_query($con, $q);
         echo $q;
     } else {
