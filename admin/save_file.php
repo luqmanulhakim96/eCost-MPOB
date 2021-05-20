@@ -32,14 +32,15 @@ if ($jenis == 'file') {
 
     function findexts($filename) {
         $filename = strtolower($filename);
-        $exts = split("[/\\.]", $filename);
-        $n = count($exts) - 1;
-        $exts = $exts[$n];
+        // $exts = preg_split("[/\\.]", $filename);
+        // $n = count($exts) - 1;
+        // $exts = $exts[$n];
+        $exts = pathinfo($filename, PATHINFO_EXTENSION);
         return $exts;
     }
 
     $ext = findexts($_FILES['ufile']['name']);
-//echo $ext;
+    // echo $ext;
     if (!in_array($ext, $whitelist))
         HandleError('Invalid file extension');
     if (in_array($ext, $backlist))
