@@ -10,7 +10,7 @@ include('../Connections/connection.class.php');
 include('../setstring.inc');
 
 // Turn off all error reporting
-error_reporting(0);
+error_reporting(1);
 extract($_REQUEST);
 
 $_SESSION['tahun'] = $tahun;
@@ -56,7 +56,7 @@ if (!isset($retrieveButton)) {
         $qLogin = "select * from login_estate where lesen = '$username' ";
 
     }
-    if ($mill == "true") {
+    elseif ($mill == "true") {
         // $qLogin = "select * from login_mill where lesen = '$username' and password = '$katalaluan'";
         $qLogin = "select * from login_mill where lesen = '$username' ";
     }
@@ -67,7 +67,7 @@ if (!isset($retrieveButton)) {
 		 where lesen = '$username'
 		 and emel='$email'";
     }
-    if ($mill == "true") {
+    elseif ($mill == "true") {
         $qLogin = "select * from login_mill
 		INNER JOIN alamat_ekilang ON login_mill.lesen = alamat_ekilang.lesen
 		where login_mill.lesen = '$username'
@@ -88,6 +88,7 @@ if (isset($retrieveButton) && ($total == 0)) {
 //     echo "<script>alert('" . $stringAlert . "'); </script>";
 //     echo "<script>window.location.href='../index1.php?fail=true';</script>";
 // }
+
 if (!empty($katalaluan)) {
     if (!password_verify($katalaluan, $row['password'])) { //if password entered does not matched with encrypted password
         $stringAlert = setstring('mal', 'Log masuk GAGAL!!!, sila cuba semula.', 'en', 'Login FAILED!!!. Please try again.');
