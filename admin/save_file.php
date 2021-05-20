@@ -55,8 +55,8 @@ if ($jenis == 'file') {
         $q = "insert into file_upload values ('','$target','$title','1', '$addby', now(), '$addfrom');  ";
         $r = mysqli_query($con, $q);
     } else {
-        // echo "<html><script language='javascript'>alert('Upload File Failed!'),history.go(-1)</script></html>";
-        echo "<html><script language='javascript'>alert('"."Error description: " . mysqli_error($con)."'),history.go(-1)</script></html>";
+        echo "<html><script language='javascript'>alert('Upload File Failed!'),history.go(-1)</script></html>";
+        // echo "<html><script language='javascript'>alert('"."Error description: " . mysqli_error($con)."'),history.go(-1)</script></html>";
     }
 }
 //=============================delete file ===============
