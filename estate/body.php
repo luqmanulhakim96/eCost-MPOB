@@ -237,7 +237,7 @@ if ($total != 0 && $mill != "true") {
 
         $header.= "from: tekno@mpob.gov.my";
         $sentmail = mail($to, $subject, $Messages, $header);
-        
+
         if (!$sentmail) {
             echo "<script>alert('Email failed sent to $to... Please contact admin for futher assistance'); "
             . "window.location.href='../index1.php';</script>";
@@ -328,7 +328,7 @@ if ($total != 0 && $mill != "true") {
         //     $errorMessage = $e->getMessage();
         //     echo "<script>alert('$errorMessage'); "
         //     . "window.location.href='../index1.php';</script>";
-        }
+        // }
 
     }
 }
