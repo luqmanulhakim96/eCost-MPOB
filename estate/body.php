@@ -217,7 +217,7 @@ if ($total != 0 && $mill != "true") {
 
         $title = 'e-COST - Password Recovery (Estate)';
 
-		$from = MAIL_USERNAME; //WEBMASTER_EMEL;
+		// $from = MAIL_USERNAME; //WEBMASTER_EMEL;
 		$to = $email;
 		$cc = $from;
 		$subject = $title. "-". $rowLogin['No_Lesen_Baru'];
@@ -299,15 +299,16 @@ if ($total != 0 && $mill != "true") {
         //     $mail->MsgHTML($body);
         //     $mail->AddAddress($to);
 
-        //     if (!$mail->Send()) {
-        //         		 echo "<script>alert('Email failed sent to $to... Please contact admin for futher assistance'); "
-        //         . "window.location.href='../index1.php';</script>";
-        //     } else {
+            // if (!$mail->Send()) {
+            if(!$sentmail) {
+                		 echo "<script>alert('Email failed sent to $to... Please contact admin for futher assistance'); "
+                . "window.location.href='../index1.php';</script>";
+            } else {
 
-        //         // 			  echo "<script>alert('Email successfully sent to $to. Your password has been reset, please check your email'); "
-        //         // . "window.location.href='../logout.php';</script>";
+                			  echo "<script>alert('Email successfully sent to $to. Your password has been reset, please check your email'); "
+                . "window.location.href='../logout.php';</script>";
 
-        //     }
+            }
         // } catch (phpmailerException $e) {
         //     echo $e->errorMessage(); //Pretty error messages from PHPMailer
         //     $errorMessage = $e->getMessage();
