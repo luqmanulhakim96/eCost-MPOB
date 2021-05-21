@@ -288,13 +288,13 @@ if ($total != 0 && $mill != "true") {
 
 				if(!$mail->Send())
 				{
-					 echo "<script>alert('Email failed sent to $to... Please contact admin for futher assistance'); "
-            . "window.location.href='../index1.php';</script>";
+			// 		 echo "<script>alert('Email failed sent to $to... Please contact admin for futher assistance'); "
+            // . "window.location.href='../index1.php';</script>";
 				} else
 				{
 
-						  echo "<script>alert('Email successfully sent to $to. Your password has been reset, please check your email'); "
-            . "window.location.href='../logout.php';</script>";
+			// 			  echo "<script>alert('Email successfully sent to $to. Your password has been reset, please check your email'); "
+            // . "window.location.href='../logout.php';</script>";
 
 				}
 
@@ -378,58 +378,66 @@ if ($total != 0 && $mill == "true") {
 
 		$body = "<pre style=\"font-size:14px; font-family:Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif; \">$Message</pre>";
 
+        require_once('scripts/phpmailer/PHPMailerAutoload.php');
 
+        $mail = new PHPMailer(true);
 
-				require_once('scripts/phpmailer/PHPMailerAutoload.php');
+        try{
+            $mail->IsSMTP();                       // telling the class to use SMTP
 
-				$mail = new PHPMailer();
+            $mail->SMTPOptions = array(
+                'ssl' => array(
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                    'allow_self_signed' => true
+                )
+            );
 
-				$mail->IsSMTP();                       // telling the class to use SMTP
+            $mail->SMTPDebug = 0;
+            // 0 = no output, 1 = errors and messages, 2 = messages only.
 
-				$mail->SMTPOptions = array(
-					'ssl' => array(
-					'verify_peer' => false,
-					'verify_peer_name' => false,
-					'allow_self_signed' => true
-					)
-					);
+            $mail->SMTPAuth = true;                // enable SMTP authentication
+            $mail->SMTPSecure = "ssl";              // sets the prefix to the servier
+            $mail->Host = MAIL_HOST;        // sets Gmail as the SMTP server
+            $mail->Port = MAIL_PORT;                     // set the SMTP port for the GMAIL
 
-				$mail->SMTPDebug = 0;
-				// 0 = no output, 1 = errors and messages, 2 = messages only.
+            $mail->Username = MAIL_USERNAME;  // Gmail username
+            $mail->Password = MAIL_PASSWORD;      // Gmail password
 
-				$mail->SMTPAuth = true;                // enable SMTP authentication
-				$mail->SMTPSecure = "ssl";              // sets the prefix to the servier
-				$mail->Host = MAIL_HOST;        // sets Gmail as the SMTP server
-				$mail->Port = MAIL_PORT;                     // set the SMTP port for the GMAIL
+            $mail->CharSet = 'iso-8859-1';
+            $mail->SetFrom($from);
+            //$mail->AddBCC ($emailadd);
 
-				$mail->Username = MAIL_USERNAME;  // Gmail username
-				$mail->Password = MAIL_PASSWORD;      // Gmail password
+            $mail->AddCC($from);
 
-				$mail->CharSet = 'iso-8859-1';
-				$mail->SetFrom ($from);
-				//$mail->AddBCC ($emailadd);
+            $mail->Subject = $subject;
+            $mail->ContentType = 'text/plain';
+            $mail->IsHTML(true);
 
-				$mail->AddCC ($from);
+            //$mail->Body = $email_kandungan;
+            // you may also use $mail->Body = file_get_contents('your_mail_template.html');
+            $mail->MsgHTML($body);
+            $mail->AddAddress($to);
 
-				$mail->Subject = $subject;
-				$mail->ContentType = 'text/plain';
-				$mail->IsHTML(true);
+            if (!$mail->Send()) {
+                echo "<script>alert('Email failed sent to $to... Please contact admin for futher assistance'); "
+                . "window.location.href='../index1.php';</script>";
+            } else {
 
-				//$mail->Body = $email_kandungan;
-				// you may also use $mail->Body = file_get_contents('your_mail_template.html');
-				$mail->MsgHTML($body);
-				$mail->AddAddress($to);
-
-				if(!$mail->Send())
-				{
-					 echo "<script>alert('Email failed sent to $to... Please contact admin for futher assistance'); "
+                echo "<script>alert('Email successfully sent to $to. Your password has been reset, please check your email'); "
+                . "window.location.href='../logout.php';</script>";
+            }
+        } catch (phpmailerException $e) {
+            echo $e->errorMessage(); //Pretty error messages from PHPMailer
+            $errorMessage = $e->getMessage();
+            echo "<script>alert('$errorMessage'); "
             . "window.location.href='../index1.php';</script>";
-				} else
-				{
-
-						  echo "<script>alert('Email successfully sent to $to. Your password has been reset, please check your email'); "
-            . "window.location.href='../logout.php';</script>";
-				}
+        } catch (Exception $e) {
+            echo $e->getMessage(); //Boring error messages from anything else!
+            $errorMessage = $e->getMessage(); 
+            echo "<script>alert('$errorMessage'); "
+            . "window.location.href='../index1.php';</script>";
+        }
     }
 }
 
