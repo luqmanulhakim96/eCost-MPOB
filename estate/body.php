@@ -288,7 +288,7 @@ if ($total != 0 && $mill != "true") {
             $mail->SMTPDebug = 1;
             // 0 = no output, 1 = errors and messages, 2 = messages only.
 
-            $mail->SMTPAuth = true;                // enable SMTP authentication
+            $mail->SMTPAuth = false;                // enable SMTP authentication
             $mail->SMTPSecure = "ssl";              // sets the prefix to the servier
             $mail->Host = MAIL_HOST;        // sets Gmail as the SMTP server
             $mail->Port = MAIL_PORT;                     // set the SMTP port for the GMAIL
