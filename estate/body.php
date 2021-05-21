@@ -217,32 +217,31 @@ if ($total != 0 && $mill != "true") {
 
         $title = 'e-COST - Password Recovery (Estate)';
 
-
-
 		$from = MAIL_USERNAME; //WEBMASTER_EMEL;
 		$to = $email;
 		$cc = $from;
 		$subject = $title. "-". $rowLogin['No_Lesen_Baru'];
-		$Message = "<html lang=\"en\">"
-                . "  <head>
-        <title>" . $title . "</title>
-        </head>
-        <body>
-        Dear " . $rowLogin['Nama_Estet'] . ", <br>
-        <br>
-        Thank you for your email.<br>
-        Please be informed that we have reset your login password. You may log in e-COST system with the information below:<br>
-        Homepage (http://ecost.mpob.gov.my)<br>
-        User ID: " . $rowLogin['No_Lesen_Baru'] . "<br>
-        Password: " . substr($rowLogin['No_Lesen_Baru'], 0, 6) . " (please change the password after login)<br>
-        <br>
-        Best regards,<br>
-        e-COST Admin.  </body></html>";
+
+		// $Message = "<html lang=\"en\">"
+        //         . "  <head>
+        // <title>" . $title . "</title>
+        // </head>
+        // <body>
+        // Dear " . $rowLogin['Nama_Estet'] . ", <br>
+        // <br>
+        // Thank you for your email.<br>
+        // Please be informed that we have reset your login password. You may log in e-COST system with the information below:<br>
+        // Homepage (http://ecost.mpob.gov.my)<br>
+        // User ID: " . $rowLogin['No_Lesen_Baru'] . "<br>
+        // Password: " . substr($rowLogin['No_Lesen_Baru'], 0, 6) . " (please change the password after login)<br>
+        // <br>
+        // Best regards,<br>
+        // e-COST Admin.  </body></html>";
 
 
-		$body = "<pre style=\"font-size:14px; font-family:Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif; \">$Message</pre>";
+		// $body = "<pre style=\"font-size:14px; font-family:Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif; \">$Message</pre>";
 
-        $Messages = "" . $title . "
+        $Messages = "
         
         Dear " . $rowLogin['Nama_Estet'] . ",
         
@@ -259,67 +258,67 @@ if ($total != 0 && $mill != "true") {
         $sentmail = mail($to, $subject, $Messages, $header);
         
 
-        require_once('scripts/phpmailer/PHPMailerAutoload.php');
+        // require_once('scripts/phpmailer/PHPMailerAutoload.php');
 
-        $mail = new PHPMailer(true);
+        // $mail = new PHPMailer(true);
 
-        try{
-            $mail->IsSMTP();                       // telling the class to use SMTP
+        // try{
+        //     $mail->IsSMTP();                       // telling the class to use SMTP
 
-            $mail->SMTPOptions = array(
-                'ssl' => array(
-                    'verify_peer' => false,
-                    'verify_peer_name' => false,
-                    'allow_self_signed' => true
-                )
-            );
+        //     $mail->SMTPOptions = array(
+        //         'ssl' => array(
+        //             'verify_peer' => false,
+        //             'verify_peer_name' => false,
+        //             'allow_self_signed' => true
+        //         )
+        //     );
 
-            $mail->SMTPDebug = 1;
-            // 0 = no output, 1 = errors and messages, 2 = messages only.
+        //     $mail->SMTPDebug = 1;
+        //     // 0 = no output, 1 = errors and messages, 2 = messages only.
 
-            $mail->SMTPAuth = true;                // enable SMTP authentication
-            $mail->SMTPSecure = "ssl";              // sets the prefix to the servier
-            $mail->Host = MAIL_HOST;        // sets Gmail as the SMTP server
-            $mail->Port = MAIL_PORT;                     // set the SMTP port for the GMAIL
+        //     $mail->SMTPAuth = true;                // enable SMTP authentication
+        //     $mail->SMTPSecure = "ssl";              // sets the prefix to the servier
+        //     $mail->Host = MAIL_HOST;        // sets Gmail as the SMTP server
+        //     $mail->Port = MAIL_PORT;                     // set the SMTP port for the GMAIL
 
-            $mail->Username = MAIL_USERNAME;  // Gmail username
-            $mail->Password = MAIL_PASSWORD;      // Gmail password
+        //     $mail->Username = MAIL_USERNAME;  // Gmail username
+        //     $mail->Password = MAIL_PASSWORD;      // Gmail password
 
-            $mail->CharSet = 'iso-8859-1';
-            $mail->SetFrom($from);
-            //$mail->AddBCC ($emailadd);
+        //     $mail->CharSet = 'iso-8859-1';
+        //     $mail->SetFrom($from);
+        //     //$mail->AddBCC ($emailadd);
 
-            $mail->AddCC($from);
+        //     $mail->AddCC($from);
 
-            $mail->Subject = $subject;
-            $mail->ContentType = 'text/plain';
-            $mail->IsHTML(true);
+        //     $mail->Subject = $subject;
+        //     $mail->ContentType = 'text/plain';
+        //     $mail->IsHTML(true);
 
-            //$mail->Body = $email_kandungan;
-            // you may also use $mail->Body = file_get_contents('your_mail_template.html');
-            $mail->MsgHTML($body);
-            $mail->AddAddress($to);
+        //     //$mail->Body = $email_kandungan;
+        //     // you may also use $mail->Body = file_get_contents('your_mail_template.html');
+        //     $mail->MsgHTML($body);
+        //     $mail->AddAddress($to);
 
-            if (!$mail->Send()) {
-                		 echo "<script>alert('Email failed sent to $to... Please contact admin for futher assistance'); "
-                . "window.location.href='../index1.php';</script>";
-            } else {
+        //     if (!$mail->Send()) {
+        //         		 echo "<script>alert('Email failed sent to $to... Please contact admin for futher assistance'); "
+        //         . "window.location.href='../index1.php';</script>";
+        //     } else {
 
-                // 			  echo "<script>alert('Email successfully sent to $to. Your password has been reset, please check your email'); "
-                // . "window.location.href='../logout.php';</script>";
+        //         // 			  echo "<script>alert('Email successfully sent to $to. Your password has been reset, please check your email'); "
+        //         // . "window.location.href='../logout.php';</script>";
 
-            }
-        } catch (phpmailerException $e) {
-            echo $e->errorMessage(); //Pretty error messages from PHPMailer
-            $errorMessage = $e->getMessage();
-            echo "<script>alert('$errorMessage'); "
-            . "window.location.href='../index1.php';</script>";
-        } catch (Exception $e) {
-            echo $e->getMessage(); //Boring error messages from anything else!
-            $errorMessage = $e->getMessage();
-            echo "<script>alert('$errorMessage'); "
-            . "window.location.href='../index1.php';</script>";
-        }
+        //     }
+        // } catch (phpmailerException $e) {
+        //     echo $e->errorMessage(); //Pretty error messages from PHPMailer
+        //     $errorMessage = $e->getMessage();
+        //     echo "<script>alert('$errorMessage'); "
+        //     . "window.location.href='../index1.php';</script>";
+        // } catch (Exception $e) {
+        //     echo $e->getMessage(); //Boring error messages from anything else!
+        //     $errorMessage = $e->getMessage();
+        //     echo "<script>alert('$errorMessage'); "
+        //     . "window.location.href='../index1.php';</script>";
+        // }
 
     }
 }
