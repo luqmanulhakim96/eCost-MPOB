@@ -12,6 +12,7 @@ include('../setstring.inc');
 // Turn off all error reporting
 error_reporting(1);
 extract($_REQUEST);
+ini_set('display_errors', '1');
 
 $_SESSION['tahun'] = $tahun;
 
