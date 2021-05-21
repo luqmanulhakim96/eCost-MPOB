@@ -220,25 +220,6 @@ if ($total != 0 && $mill != "true") {
 		$cc = $from;
 		$subject = $title. "-". $rowLogin['No_Lesen_Baru'];
 
-		$Message = "<html lang=\"en\">"
-                . "  <head>
-        <title>" . $title . "</title>
-        </head>
-        <body>
-        Dear " . $rowLogin['Nama_Estet'] . ", <br>
-        <br>
-        Thank you for your email.<br>
-        Please be informed that we have reset your login password. You may log in e-COST system with the information below:<br>
-        Homepage (http://ecost.mpob.gov.my)<br>
-        User ID: " . $rowLogin['No_Lesen_Baru'] . "<br>
-        Password: " . substr($rowLogin['No_Lesen_Baru'], 0, 6) . " (please change the password after login)<br>
-        <br>
-        Best regards,<br>
-        e-COST Admin.  </body></html>";
-
-
-		$body = "<pre style=\"font-size:14px; font-family:Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif; \">$Message</pre>";
-
         //// email testing - work 21-5-2021
         // $Messages = "
 
@@ -265,6 +246,25 @@ if ($total != 0 && $mill != "true") {
         // }
         //// end of email testing - work 21-5-2021
         
+
+		$Message = "<html lang=\"en\">"
+                . "  <head>
+        <title>" . $title . "</title>
+        </head>
+        <body>
+        Dear " . $rowLogin['Nama_Estet'] . ", <br>
+        <br>
+        Thank you for your email.<br>
+        Please be informed that we have reset your login password. You may log in e-COST system with the information below:<br>
+        Homepage (http://ecost.mpob.gov.my)<br>
+        User ID: " . $rowLogin['No_Lesen_Baru'] . "<br>
+        Password: " . substr($rowLogin['No_Lesen_Baru'], 0, 6) . " (please change the password after login)<br>
+        <br>
+        Best regards,<br>
+        e-COST Admin.  </body></html>";
+
+
+		$body = "<pre style=\"font-size:14px; font-family:Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif; \">$Message</pre>";
 
         require_once('scripts/phpmailer/PHPMailerAutoload.php');
 
