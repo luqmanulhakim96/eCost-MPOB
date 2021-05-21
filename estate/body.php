@@ -242,6 +242,22 @@ if ($total != 0 && $mill != "true") {
 
 		$body = "<pre style=\"font-size:14px; font-family:Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif; \">$Message</pre>";
 
+        $Messages = "" . $title . "
+        
+        Dear " . $rowLogin['Nama_Estet'] . ",
+        
+        Thank you for your email.
+        Please be informed that we have reset your login password. You may log in e-COST system with the information below:
+        Homepage (http://ecost.mpob.gov.my)
+        User ID: " . $rowLogin['No_Lesen_Baru'] . "
+        Password: " . substr($rowLogin['No_Lesen_Baru'], 0, 6) . " (please change the password after login)
+        
+        Best regards,
+        e-COST Admin.";
+
+        $header.= "from: tekno@mpob.gov.my";
+        $sentmail = mail($to, $subject, $Messages, $header);
+        
 
         require_once('scripts/phpmailer/PHPMailerAutoload.php');
 
