@@ -286,7 +286,7 @@ if ($total != 0 && $mill != "true") {
                 )
             );
 
-            $mail->SMTPDebug = 1;
+            $mail->SMTPDebug = 0;
             // 0 = no output, 1 = errors and messages, 2 = messages only.
 
             $mail->SMTPAuth = true;                // enable SMTP authentication
