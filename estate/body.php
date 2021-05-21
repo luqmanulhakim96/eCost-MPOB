@@ -275,7 +275,7 @@ if ($total != 0 && $mill != "true") {
         $mail = new PHPMailer(true);
 
         try{
-            $mail->IsSMTP();                       // telling the class to use SMTP
+            // $mail->IsSMTP();                       // telling the class to use SMTP
 
             $mail->SMTPOptions = array(
                 'ssl' => array(
