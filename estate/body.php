@@ -301,7 +301,7 @@ if ($total != 0 && $mill != "true") {
             $mail->SetFrom($from);
             //$mail->AddBCC ($emailadd);
 
-            // $mail->AddCC($from);
+            $mail->AddCC($from);
 
             $mail->Subject = $subject;
             $mail->ContentType = 'text/plain';
