@@ -409,7 +409,7 @@ if ($total != 0 && $mill == "true") {
 
 		$body = "<pre style=\"font-size:14px; font-family:Gotham, 'Helvetica Neue', Helvetica, Arial, sans-serif; \">$Message</pre>";
 
-        require_once('scripts/phpmailer/PHPMailerAutoload.php');
+        require_once('Scripts/phpmailer/PHPMailerAutoload.php');
 
         $mail = new PHPMailer(true);
 
