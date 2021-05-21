@@ -84,7 +84,7 @@ $tan_ha = $nilai_bts->purata_hasil_buah;
                 <td width="38%"><?= $pengguna->namaestet; ?></td>
                 <td width="38%" rowspan="3"></td>
             </tr>
-            
+
             <tr>
                 <td><strong>
                         <?= setstring('mal', 'No Lesen (Lama)', 'en', 'License No (Old)'); ?>
@@ -5041,7 +5041,7 @@ $ringkasan = new user('range_kos', $rk);
                 <td bgcolor="#CCFFCC" ><div align="right"><?php
 $con = connect();
 $qjaga = "select total_b_3, b_3a, b_3b, b_3c, b_3d from kos_matang_penjagaan where pb_thisyear ='" . $_SESSION['tahun'] . "' and lesen ='" . $_SESSION['lesen'] . "' ";
-$rjaga = mysqli_query($qjaga, $con);
+$rjaga = mysqli_query($con, $qjaga);
 $rowjaga = mysqli_fetch_array($rjaga);
 $totaljaga = mysqli_num_rows($rjaga);
 
