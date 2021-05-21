@@ -58,8 +58,9 @@ function setstring () {
 	
 	# A newcomer.	
 	if ( !isset ($lang) ) {
-		session_register ('lang');
+		//session_register ('lang');
 		$lang = $defaultlanguage;
+		$_SESSION['lang'] = $lang;
 	}
 	
 	# give $_GET['lang'] the choice to set $lang 
