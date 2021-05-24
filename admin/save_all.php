@@ -152,6 +152,8 @@ if ($type != "delete") {
 										where no_lesen_baru='$nolesen'
 										";
     $r_esub = mysqli_query($con, $q_esub);
+    $s_esub = mysqli_fetch_array($r_esub);
+
     // print_r($q_esub);
 
     echo "<script>window.location.href='view_estate_all.php?nolesen=$nolesen'</script>";
