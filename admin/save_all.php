@@ -52,7 +52,7 @@ if ($type != "delete") {
     $qdelete_all = "delete from tanam_baru$tahun_baru "
             . "where tanaman_baru='' ";
     $rdelete_all = mysqli_query($con, $qdelete_all);
-      print_r($q_baru);
+      // print_r($q_baru);
 
     //echo "<br>";
 
@@ -153,7 +153,7 @@ if ($type != "delete") {
 										";
     $r_esub = mysqli_query($con, $q_esub);
 
-    // echo "<script>window.location.href='view_estate_all.php?nolesen=$nolesen'</script>";
+    echo "<script>window.location.href='view_estate_all.php?nolesen=$nolesen'</script>";
 }
 
 if ($type == "delete") {
@@ -216,6 +216,6 @@ if ($type == "delete") {
     $q_esub = "update $tableesub set Belum_Berhasil ='$belum_berhasil', Jumlah ='$jumlah' where no_lesen_baru='$lesen'";
     $r_esub = mysqli_query($con, $q_esub);
 
-    // echo "<script>window.location.href='view_estate_all.php?nolesen=$lesen'</script>";
+    echo "<script>window.location.href='view_estate_all.php?nolesen=$lesen'</script>";
 }
 ?>
