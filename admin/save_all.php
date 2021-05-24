@@ -23,6 +23,7 @@ if ($type != "delete") {
             . "purata_hasil_buah =upper('$purata_hasil_buah') "
             . "where lesen = '$lesen_singkat'";
     $r_fbb = mysqli_query($con, $q_fbb);
+    // print_r($q_fbb);
 
 
     $q_login = "update login_estate "
@@ -51,6 +52,7 @@ if ($type != "delete") {
     $qdelete_all = "delete from tanam_baru$tahun_baru "
             . "where tanaman_baru='' ";
     $rdelete_all = mysqli_query($con, $qdelete_all);
+      print_r($q_baru);
 
     //echo "<br>";
 
@@ -72,6 +74,7 @@ if ($type != "delete") {
     $qdelete_all = "delete from tanam_tukar$tahun_tukar "
             . "where tanaman_tukar='' ";
     $rdelete_all = mysqli_query($con, $qdelete_all);
+    // print_r($q_tukar);
 
 
     //echo "<br>";
@@ -83,11 +86,12 @@ if ($type != "delete") {
 
     $q_estateinfo = "update  $table set alamat1 = '$alamat1', alamat2 = '$alamat2', poskod ='$poskod', bandar =upper('$daerah'), negeri='$negeri', 		                    no_telepon = '$notelefon', no_fax ='$nofax', emel = '$email' where no_lesen_baru= '$nolesen'";
     $r_estateinfo = mysqli_query($con, $q_estateinfo);
+    // print_r($q_estateinfo);
 
 
 
-    $q_estatedetail = "update  estate_info set pegawai='$pegawai', syarikat ='$syarikat',integrasi = '$integrasi', keahlian='$keahlian'"
-            . " where lesen = '$nolesen'";
+    // $q_estatedetail = "update  estate_info set pegawai='$pegawai', syarikat ='$syarikat',integrasi = '$integrasi', keahlian='$keahlian'"
+    //         . " where lesen = '$nolesen'";
     $r_estatedetail = mysqli_query($con, $q_estatedetail);
     // print_r($q_estatedetail);
 
@@ -149,7 +153,7 @@ if ($type != "delete") {
 										";
     $r_esub = mysqli_query($con, $q_esub);
 
-    echo "<script>window.location.href='view_estate_all.php?nolesen=$nolesen'</script>";
+    // echo "<script>window.location.href='view_estate_all.php?nolesen=$nolesen'</script>";
 }
 
 if ($type == "delete") {
@@ -212,6 +216,6 @@ if ($type == "delete") {
     $q_esub = "update $tableesub set Belum_Berhasil ='$belum_berhasil', Jumlah ='$jumlah' where no_lesen_baru='$lesen'";
     $r_esub = mysqli_query($con, $q_esub);
 
-    echo "<script>window.location.href='view_estate_all.php?nolesen=$lesen'</script>";
+    // echo "<script>window.location.href='view_estate_all.php?nolesen=$lesen'</script>";
 }
 ?>
