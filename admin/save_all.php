@@ -154,9 +154,9 @@ if ($type != "delete") {
     $r_esub = mysqli_query($con, $q_esub);
     $s_esub = mysqli_fetch_array($r_esub);
 
-    // print_r($q_esub);
+    print_r($q_esub);
 
-    echo "<script>window.location.href='view_estate_all.php?nolesen=$nolesen'</script>";
+    // echo "<script>window.location.href='view_estate_all.php?nolesen=$nolesen'</script>";
 }
 
 if ($type == "delete") {
@@ -219,6 +219,6 @@ if ($type == "delete") {
     $q_esub = "update $tableesub set Belum_Berhasil ='$belum_berhasil', Jumlah ='$jumlah' where no_lesen_baru='$lesen'";
     $r_esub = mysqli_query($con, $q_esub);
 
-    echo "<script>window.location.href='view_estate_all.php?nolesen=$lesen'</script>";
+    // echo "<script>window.location.href='view_estate_all.php?nolesen=$lesen'</script>";
 }
 ?>
