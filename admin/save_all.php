@@ -44,10 +44,11 @@ if ($type != "delete") {
             . "values "
             . "('$nama_estet',"
             . "'$nolesen',"
-            . "'$negeri_premis',"
-            . "'$daerah_premis',"
+            . "'null',"
+            . "'null',"
             . " '$bulan_baru',"
             . " '$tanaman_baru')";
+
     $r_baru = mysqli_query($con, $q_baru);
     $qdelete_all = "delete from tanam_baru$tahun_baru "
             . "where tanaman_baru='' ";
