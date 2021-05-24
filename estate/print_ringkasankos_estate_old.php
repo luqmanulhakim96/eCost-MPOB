@@ -4727,11 +4727,11 @@ echo number_format($per_bts15, 2);
                             if ($pu[5] <= 0) {
                                 $con = connect();
                                 $q = "delete from kos_belum_matang where lesen ='" . $pu[0] . "' and pb_thisyear = '" . $pu[1] . "' and pb_tahun='" . $pu[2] . "' and pb_type='" . $pu[3] . "'";
-                                 mysqli_query($q, $con);
+                                 mysqli_query($con,$q);
                             }
 
                             $qe = "select sum(total_a) as jumlah_a, sum(total_b) as jumlah_b from kos_belum_matang where lesen ='" . $pu[0] . "' and pb_thisyear = '" . $pu[1] . "' and pb_tahun='" . $pu[2] . "' and pb_type='" . $pu[3] . "'";
-                            $re = mysqli_query($qe, $con);
+                            $re = mysqli_query($con,$qe);
                             $rowe = mysqli_fetch_array($re);
 
                             $t[0] = $rowe['lesen'];
