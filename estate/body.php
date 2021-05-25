@@ -349,8 +349,9 @@ if ($total != 0 && $mill == "true") {
         $rLogin = mysqli_query($con, $qLogin);
         $rowLogin = mysqli_fetch_array($rLogin);
 
-        $password= password_hash(substr($rowLogin['lesen'], 0, 6), PASSWORD_BCRYPT);
-        $qedit = "update login_mill set success= NOW(), password= $password where lesen = '$username'";
+        // $password= password_hash(substr($rowLogin['lesen'], 0, 6), PASSWORD_BCRYPT);
+        // $qedit = "update login_mill set success= NOW(), password= $password where lesen = '$username'";
+        $qedit = "update login_mill set success= NOW(), password='". password_hash(substr($rowLogin['lesen'], 0, 6), PASSWORD_BCRYPT). "' where lesen = '$username'";
         $redit = mysqli_query($con, $qedit);
 
         $title = 'e-COST - Password Recovery (Mill)';
