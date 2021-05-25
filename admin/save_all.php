@@ -44,8 +44,8 @@ if ($type != "delete") {
             . "values "
             . "('$nama_estet',"
             . "'$nolesen',"
-            . "'null',"
-            . "'null',"
+            . "'$negeri_premis',"
+            . "'$daerah_premis',"
             . " '$bulan_baru',"
             . " '$tanaman_baru')";
 
@@ -129,7 +129,7 @@ if ($type != "delete") {
     $imm_update = mysqli_query($con, $qUpdateImmature);
     $imm_update_row = mysqli_fetch_array($imm_update);
 
-    $belum_berhasil = $imm_update_row['totalImmature'];
+    $belum_berhasil = $imm_update_row['totalImmature'] ?? 0;
     $jumlah = $belum_berhasil + $keluasan;
 
     $q_esub = "update $table set
@@ -155,9 +155,9 @@ if ($type != "delete") {
     $r_esub = mysqli_query($con, $q_esub);
     $s_esub = mysqli_fetch_array($r_esub);
 
-    // print_r($q_esub);
+    print_r($q_esub);
 
-    echo "<script>window.location.href='view_estate_all.php?nolesen=$nolesen'</script>";
+    // echo "<script>window.location.href='view_estate_all.php?nolesen=$nolesen'</script>";
 }
 
 if ($type == "delete") {
@@ -220,6 +220,6 @@ if ($type == "delete") {
     $q_esub = "update $tableesub set Belum_Berhasil ='$belum_berhasil', Jumlah ='$jumlah' where no_lesen_baru='$lesen'";
     $r_esub = mysqli_query($con, $q_esub);
 
-    echo "<script>window.location.href='view_estate_all.php?nolesen=$lesen'</script>";
+    // echo "<script>window.location.href='view_estate_all.php?nolesen=$lesen'</script>";
 }
 ?>
