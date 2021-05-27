@@ -469,8 +469,15 @@ else if ($id == "home") {
     $open = "index.php";
     if (isset($_GET['firsttime']))
         $open = "isi_dulu.php";
-    if (isset($_GET['secondtime']))
-        $open = "isi_dulu2.php";
+    if (isset($_GET['secondtime'])){
+      $tahun = $_SESSION['tahun'];
+
+      if ($tahun <= 2021) { // old soalan
+        $open = "isi_dulu2_old.php";
+      }else {
+      $open = "isi_dulu2.php";
+      }
+    }
     //$open = "palmoil.php";
     //$open_detail = "index.php";
 }
