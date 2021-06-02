@@ -59,7 +59,9 @@ bkLib.onDomLoaded(function() {
     </tr>
   </table>
 </form>
-
+<script type="text/javascript">
+  alert(<?php echo $bi; ?>);
+</script>
 <?php
 if(isset($save)){
 
