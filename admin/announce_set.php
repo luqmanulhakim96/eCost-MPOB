@@ -20,7 +20,7 @@ bkLib.onDomLoaded(function() {
 
 </script>
 <!-- <form id="form1" name="form1" method="post" action="home.php?id=config&amp;sub=announce_set"> -->
-<form id="form1" name="form1" method="post" action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF "]);?>">
+<form id="form1" name="form1" method="post">
   <table width="100%">
     <tr>
       <td colspan="3"><h2>Annoucement Setting</h2></td>
