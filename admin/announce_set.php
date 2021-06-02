@@ -19,7 +19,8 @@ bkLib.onDomLoaded(function() {
 });
 
 </script>
-<form id="form1" name="form1" method="post" action="home.php?id=config&amp;sub=announce_set">
+<!-- <form id="form1" name="form1" method="post" action="home.php?id=config&amp;sub=announce_set"> -->
+<form id="form1" name="form1" method="post" action="<?php echo htmlspecialchars($_SERVER[" PHP_SELF "]);?>">
   <table width="100%">
     <tr>
       <td colspan="3"><h2>Annoucement Setting</h2></td>
@@ -59,16 +60,13 @@ bkLib.onDomLoaded(function() {
     </tr>
   </table>
 </form>
-<script type="text/javascript">
-  alert(<?php echo $bi; ?>);
-</script>
+
 <?php
 if(isset($save)){
+  $con = connect();
+  $q="UPDATE pengumuman SET pengumuman ='$bm', pengumuman_bi ='$bi' WHERE id_pengumuman ='$id_pengumuman'";
+  $r= mysqli_query($con, $q);
 
-$con = connect();
-$q="UPDATE pengumuman SET pengumuman ='$bm', pengumuman_bi ='$bi' WHERE id_pengumuman ='$id_pengumuman'";
-$r= mysqli_query($con, $q);
-
-// echo "<script>window.location.href='home.php?id=config&sub=announce_set';</script>";
+  echo "<script>window.location.href='home.php?id=config&sub=announce_set';</script>";
 }
 ?>
