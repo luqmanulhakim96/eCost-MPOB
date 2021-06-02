@@ -64,9 +64,9 @@ bkLib.onDomLoaded(function() {
 if(isset($save)){
 
 $con = connect();
- $q="update pengumuman set pengumuman ='$bm', pengumuman_bi ='$bi' where id_pengumuman ='$id_pengumuman'";
+$q="UPDATE pengumuman SET pengumuman ='$bm', pengumuman_bi ='$bi' WHERE id_pengumuman ='$id_pengumuman'";
 $r= mysqli_query($con, $q);
 
-echo "<script>window.location.href='home.php?id=config&sub=announce_set';</script>";
+// echo "<script>window.location.href='home.php?id=config&sub=announce_set';</script>";
 }
 ?>
