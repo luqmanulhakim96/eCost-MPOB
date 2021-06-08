@@ -64,18 +64,18 @@ $_SESSION['captcha'] = simple_php_captcha();
     </table>
 </form>
 <?php
-if ($deletemill === "yes") {
-    $qa_delete = "delete FROM ekilang "
-            . " WHERE tahun ='$yeardelete' or tahun =''; ";
-    //echo $qa_delete;
-    $rqa_delete = mysqli_query($con, $qa_delete);
-    if ($rqa_delete) {
-        echo "Your data has successfully deleted.";
-    } else {
-        echo "Sorry! There is some problem.";
-    }
-    echo "<br>";
-}
+// if ($deletemill === "yes") {
+//     $qa_delete = "delete FROM ekilang "
+//             . " WHERE tahun ='$yeardelete' or tahun =''; ";
+//     //echo $qa_delete;
+//     $rqa_delete = mysqli_query($con, $qa_delete);
+//     if ($rqa_delete) {
+//         echo "Your data has successfully deleted.";
+//     } else {
+//         echo "Sorry! There is some problem.";
+//     }
+//     echo "<br>";
+// }
 
 if (isset($_POST["submit"])) {
 
@@ -99,9 +99,9 @@ if (isset($_POST["submit"])) {
     $rqa = mysqli_query($con, $qa);
 
 
-    $qa_delete = "delete FROM ekilang "
-            . " WHERE tahun ='$tahun_ekilang'";
-    $rqa_delete = mysqli_query($con, $qa_delete); //echo $qa_delete;
+    // $qa_delete = "delete FROM ekilang "
+    //         . " WHERE tahun ='$tahun_ekilang'";
+    // $rqa_delete = mysqli_query($con, $qa_delete); //echo $qa_delete;
 
     while (($filesop = fgetcsv($handle, 1000, ",")) !== false) {
         $nolesen = mysqli_real_escape_string($filesop[0]);
@@ -167,8 +167,8 @@ if (isset($_POST["submit"])) {
     }// while reading excel
 
 	    /* clean header after migrate */
-    $sqldelete = "delete from ekilang where NO_LESEN='NO_LESEN';  ";
-    $rsqldelete = mysqli_query($con, $sqldelete);
+    // $sqldelete = "delete from ekilang where NO_LESEN='NO_LESEN';  ";
+    // $rsqldelete = mysqli_query($con, $sqldelete);
     /* end of clean header after migrate */
 
 
