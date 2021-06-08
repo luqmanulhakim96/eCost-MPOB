@@ -64,18 +64,18 @@ $_SESSION['captcha'] = simple_php_captcha();
     </table>
 </form>
 <?php
-// if ($deletemill === "yes") {
-//     $qa_delete = "delete FROM ekilang "
-//             . " WHERE tahun ='$yeardelete' or tahun =''; ";
-//     //echo $qa_delete;
-//     $rqa_delete = mysqli_query($con, $qa_delete);
-//     if ($rqa_delete) {
-//         echo "Your data has successfully deleted.";
-//     } else {
-//         echo "Sorry! There is some problem.";
-//     }
-//     echo "<br>";
-// }
+if ($deletemill === "yes") {
+    $qa_delete = "delete FROM ekilang "
+            . " WHERE tahun ='$yeardelete' or tahun =''; ";
+    //echo $qa_delete;
+    $rqa_delete = mysqli_query($con, $qa_delete);
+    if ($rqa_delete) {
+        echo "Your data has successfully deleted.";
+    } else {
+        echo "Sorry! There is some problem.";
+    }
+    echo "<br>";
+}
 
 if (isset($_POST["submit"])) {
 
