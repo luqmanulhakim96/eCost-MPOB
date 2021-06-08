@@ -1128,7 +1128,7 @@ if (isset($_GET['penuaian'])) {
 
                                     <input onKeypress="keypress(event)" name="total_b" type="text" id="total_b"  style="font-weight:bold; text-align:center" value="<?= number_format($tuai->total_b, 2); ?>" size="20" readonly="true" />
                                 </strong></div></td>
-                        <td bgcolor="#FFCC66"><div align="center"><strong> <span id="total_b_perha"><?php $x1b = ($tuai->total_b / $a);
+                        <td bgcolor="#FFCC66"><div align="center"><strong> <span id="total_b_perha"><?php $x1b = ($tuai->total_b / $b);
                         $x1b = round($x1b, 2, PHP_ROUND_HALF_UP);
                             echo number_format($x1b, 2); ?></span> </strong></div>
                         <input name="total_b_kos_per_hektar" type="hidden" id="total_b_kos_per_hektar" value="<?php echo round($x1b, 2); ?>" />
@@ -1337,7 +1337,7 @@ if (isset($_GET['pengangkutan'])) {
                         <td valign="middle" bgcolor="#FFCC66"><div align="center"><strong>
                                     <input onKeypress="keypress(event)" name="total_a" type="text" id="total_a"  style="font-weight:bold; text-align:center" value="<?= number_format($angkut->total_b, 2); ?>" size="20" readonly="true" />
                                 </strong></div></td>
-                        <td valign="middle" bgcolor="#FFCC66"><div align="center"><strong> <span id="total_a_perha"><?php $x1c = ($angkut->total_b / $a);
+                        <td valign="middle" bgcolor="#FFCC66"><div align="center"><strong> <span id="total_a_perha"><?php $x1c = ($angkut->total_b / $b);
                         $x1c = round($x1c, 2, PHP_ROUND_HALF_UP);
                             echo number_format($x1c, 2); ?></span> </strong></div>
                         <input name="total_b_kos_per_hektar" type="hidden" id="total_b_kos_per_hektar" value="<?php echo round($x1c, 2); ?>" /></td>
