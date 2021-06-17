@@ -69,14 +69,14 @@ include('admin_upload_esub_api_process.php');
                 }
                 ?>
                 <?php if ($warning === "") { ?>
-                    <input style="margin : 7px; margin-left:-1px;" type="submit" name="submit_esub_1" value="eSub API - 1. Get Estates' Info" onclick="return confirm('Are you sure to proceed?');" />
+                    <!-- <input style="margin : 7px; margin-left:-1px;" type="submit" name="submit_esub_1" value="eSub API - 1. Get Estates' Info" onclick="return confirm('Are you sure to proceed?');" />
                     <input style="margin : 7px;" type="submit" name="submit_esub_2" value="eSub API - 2. Get Yield FFB Data" onclick="return confirm('Are you sure to proceed?');" />
                     <input style="margin : 7px;" type="submit" name="submit_esub_3" value="eSub API - 3. Get Immature Data" onclick="return confirm('Are you sure to proceed?');" />
                     <br>
                     <input style="margin : 7px; margin-left:-1px;" type="submit" name="submit_esub_4" value="eSub API - 4. Get Mature Data" onclick="return confirm('Are you sure to proceed?');" />
                     <input style="margin : 7px;" type="submit" name="submit_esub_5" value="eSub API - 5. Get Average Mature Data" onclick="return confirm('Are you sure to proceed?');" />
                     <br>
-                    <input style="margin : 7px; margin-left:-1px;" type="submit" name="submit_ekilang" value="eKilang API" onclick="return confirm('Are you sure to proceed?');" />
+                    <input style="margin : 7px; margin-left:-1px;" type="submit" name="submit_ekilang" value="eKilang API" onclick="return confirm('Are you sure to proceed?');" /> -->
                 <?php } ?>
             </td>
         </tr>
