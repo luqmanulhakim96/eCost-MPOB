@@ -830,23 +830,25 @@ else if ($id == "mill") {
         $open_detail = "../migration/senarai_estet.php";
     } else if ($sub == "user") {
         $open_detail = "user.php";
-    } else if ($sub == "admin_upload_esub") {
-        $open_detail = "admin_upload_esub.php";
-    } else if ($sub == "admin_upload_esub_api") {
-        $open_detail = "api/admin_upload_esub_api.php";
-    } else if ($sub == "admin_upload_esub_new_year") {
-        $open_detail = "admin_upload_esub_new_year.php";
-    }else if ($sub == "admin_upload_ffb_production") {
-        $open_detail = "admin_upload_ffb_production.php";
-    } else if ($sub == "admin_upload_newplanting") {
-        $open_detail = "admin_upload_newplanting.php";
-    } else if ($sub == "admin_upload_replanting") {
-        $open_detail = "admin_upload_replanting.php";
-    } else if ($sub == "admin_upload_conversion") {
-        $open_detail = "admin_upload_conversion.php";
-    } else if ($sub == "upload_excel_mill") {
-        $open_detail = "upload_excel_mill.php";
-    } else if ($sub == "esub_comparison") {
+    } 
+    // else if ($sub == "admin_upload_esub") {
+    //     $open_detail = "admin_upload_esub.php";
+    // } else if ($sub == "admin_upload_esub_api") {
+    //     $open_detail = "api/admin_upload_esub_api.php";
+    // } else if ($sub == "admin_upload_esub_new_year") {
+    //     $open_detail = "admin_upload_esub_new_year.php";
+    // }else if ($sub == "admin_upload_ffb_production") {
+    //     $open_detail = "admin_upload_ffb_production.php";
+    // } else if ($sub == "admin_upload_newplanting") {
+    //     $open_detail = "admin_upload_newplanting.php";
+    // } else if ($sub == "admin_upload_replanting") {
+    //     $open_detail = "admin_upload_replanting.php";
+    // } else if ($sub == "admin_upload_conversion") {
+    //     $open_detail = "admin_upload_conversion.php";
+    // } else if ($sub == "upload_excel_mill") {
+    //     $open_detail = "upload_excel_mill.php";
+    // } 
+    else if ($sub == "esub_comparison") {
         $open_detail = "costcomparison.php";
     }
 } else if ($id == "cpo1_11") {
