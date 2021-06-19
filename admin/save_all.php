@@ -1,5 +1,9 @@
 <?php include('../Connections/connection.class.php'); ?>
-<?php error_reporting(0); ?>
+<?php error_reporting(0);
+session_start();
+
+?>
+
 
 <?php
 
@@ -85,14 +89,14 @@ if ($type != "delete") {
     $rdelete_all = mysqli_query($con, $qdelete_all);
 
 
-    $q_estateinfo = "update  $table set alamat1 = '$alamat1', alamat2 = '$alamat2', poskod ='$poskod', bandar =upper('$daerah'), negeri='$negeri', 		                    no_telepon = '$notelefon', no_fax ='$nofax', emel = '$email' where no_lesen_baru= '$nolesen'";
+    $q_estateinfo = "update  $table set alamat1 = '$alamat1', alamat2 = '$alamat2', poskod ='$poskod', bandar =upper('$daerah'), negeri='$negeri',No_Telepon = '$notelefon', no_fax ='$nofax', emel = '$email' where no_lesen_baru= '$nolesen'";
     $r_estateinfo = mysqli_query($con, $q_estateinfo);
     // print_r($q_estateinfo);
 
 
 
-    // $q_estatedetail = "update  estate_info set pegawai='$pegawai', syarikat ='$syarikat',integrasi = '$integrasi', keahlian='$keahlian'"
-    //         . " where lesen = '$nolesen'";
+    $q_estatedetail = "update  estate_info set pegawai='$pegawai', syarikat ='$syarikat',integrasi = '$integrasi', keahlian='$keahlian'"
+            . " where lesen = '$nolesen'";
     $r_estatedetail = mysqli_query($con, $q_estatedetail);
     // print_r($q_estatedetail);
 
@@ -223,3 +227,4 @@ if ($type == "delete") {
     echo "<script>window.location.href='view_estate_all.php?nolesen=$lesen'</script>";
 }
 ?>
+<?php mysqli_close($con);?>

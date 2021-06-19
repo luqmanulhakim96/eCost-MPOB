@@ -292,7 +292,7 @@ function updateesub($nolesen, $table, $column, $value) {
                 <tr>
                     <td width="15%">NO_TELEPON</td>
                     <td width="1%">:</td>
-                    <td width="84%"><?php echo $rowd['No_Telefon']; ?></td>
+                    <td width="84%"><?php echo $rowd['No_Telepon']; ?></td>
                 </tr>
                 <tr>
                     <td width="15%">NO_FAX</td>
@@ -1318,7 +1318,7 @@ function updateesub($nolesen, $table, $column, $value) {
                         <td width="3%"><strong>:</strong></td>
                         <td width="81%" colspan="2">
 <?= $pengguna->alamat1; ?>
-<?= $nolesen; ?></td>
+
                     </tr>
                     <tr>
                         <td height="35">&nbsp;</td>
@@ -1363,7 +1363,7 @@ function updateesub($nolesen, $table, $column, $value) {
                         <td><strong>No. Telefon</strong></td>
                         <td><strong>:</strong></td>
                         <td colspan="2">
-<?= $pengguna->notelefon; ?>
+<?php echo $pengguna->notelefon; ?>
 
                         </td>
                     </tr>
@@ -1373,7 +1373,7 @@ function updateesub($nolesen, $table, $column, $value) {
                         <td><strong>:</strong></td>
                         <td colspan="2">
 
-<?= $pengguna->nofax; ?></td>
+<?php echo $pengguna->nofax; ?></td>
                     </tr>
                     <tr>
                         <td height="31">&nbsp;</td>
@@ -1449,7 +1449,7 @@ function updateesub($nolesen, $table, $column, $value) {
                         <td><strong>No. Faks</strong></td>
                         <td><strong>:</strong></td>
                         <td colspan="2">
-                            <input name="nofax" type="text" id="nofax" value="<?= $pengguna->nofax; ?>" size="50" class="telefon" /></td>
+                            <input name="nofax" type="text" id="nofax" value="<?= $pengguna->nofax; ?>" size="50" class="nofax" /></td>
                     </tr>
                     <tr>
                         <td height="31">&nbsp;</td>
