@@ -320,7 +320,7 @@ if ($_COOKIE["lang"] == "mal") {
             <tr>
                 <td align="left"><a href="index1.php"><img src="logo.png" width="179" height="61" border="0" /></a></td>
                 <td align="left"><div align="right">
-                        <img src="https://seeklogo.com/images/M/malaysian-palm-oil-board-logo-9E214818A4-seeklogo.com.png" alt="https://seeklogo.com/images/M/malaysian-palm-oil-board-logo-9E214818A4-seeklogo.com.png" width="118" height="87">
+                        <img src="mpoblogo.png" width="118" height="87">
                     </div></td>
             </tr>
 
