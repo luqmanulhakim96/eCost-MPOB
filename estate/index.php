@@ -401,7 +401,7 @@ if ($Show) {
     $jumlah_luas = $jumlah_semua;
     ?>
     <br />
-    <div style="font-weight:bold; text-align: center"><?php echo $_SESSION['lang'] == "mal" ? "Ringkasan Kos Pengeluaran (RM Per Hektar dan RM Per Tan) Bagi Tahun " . ($_SESSION['tahun'] - 1) : "Cost Summary (RM Per Hectare and RM Per Tonne) For Year " . ($_SESSION['tahun'] - 1); ?></div>
+    <div style="font-weight:bold; text-align: center"><?php echo $_SESSION['lang'] == "mal" ? "Ringkasan Kos Pengeluaran (RM Per Hektar dan RM Per Tan) Bagi Tahun " . ($_SESSION['tahun'] - 2) : "Cost Summary (RM Per Hectare and RM Per Tonne) For Year " . ($_SESSION['tahun'] - 1); ?></div>
     <br>
     <div style="float:left;width:100%">
         <table width="70%" border="0" align="center" cellpadding="0" cellspacing="1" style="border:#333333 1px solid;" aria-describedby="indexEstate3">
