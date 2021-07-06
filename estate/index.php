@@ -401,7 +401,7 @@ if ($Show) {
     $jumlah_luas = $jumlah_semua;
     ?>
     <br />
-    <div style="font-weight:bold; text-align: center"><?php echo $_SESSION['lang'] == "mal" ? "Ringkasan Kos Pengeluaran (RM Per Hektar dan RM Per Tan) Bagi Tahun " . ($_SESSION['tahun'] - 2) : "Cost Summary (RM Per Hectare and RM Per Tonne) For Year " . ($_SESSION['tahun'] - 1); ?></div>
+    <div style="font-weight:bold; text-align: center"><?php echo $_SESSION['lang'] == "mal" ? "Ringkasan Kos Pengeluaran (RM Per Hektar dan RM Per Tan) Bagi Tahun " . ($_SESSION['tahun'] - 1) : "Cost Summary (RM Per Hectare and RM Per Tonne) For Year " . ($_SESSION['tahun'] - 1); ?></div>
     <br>
     <div style="float:left;width:100%">
         <table width="70%" border="0" align="center" cellpadding="0" cellspacing="1" style="border:#333333 1px solid;" aria-describedby="indexEstate3">
@@ -424,7 +424,25 @@ if ($Show) {
             </tr>
     <?php
     $bts_sum = new user('bts', $_SESSION['lesen']);
-    $jumlah_bts = $bts_sum->purata_hasil_buah;
+    #query $bts_sum
+    $tahunfbb = $_SESSION['tahun'] - 1;
+    $query_bts = "SELECT * FROM fbb_production$tahunfbb WHERE lesen ='". $_SESSION['lesen']."'";
+    $result_bts = mysqli_query($con,$query_bts);
+    while($row=mysqli_fetch_array($result_bts))
+		{
+			// $this->lesen=$row['lesen'];
+			// $this->bil=$row['bil'];
+			// $this->nama=$row['nama'];
+			// $this->negeri=$row['negeri'];
+			// $this->daerah=$row['daerah'];
+			// $this->jumlah_pengeluaran=$row['jumlah_pengeluaran'];
+			$bts_sum_purata_hasil_buah=$row['purata_hasil_buah'];
+		}
+
+    // $jumlah_bts = $bts_sum->purata_hasil_buah;
+    $jumlah_bts = $bts_sum_purata_hasil_buah;
+    #end of query $bts_sum
+
     $matang = array($_SESSION['lesen'], $_SESSION['tahun'] - 1);
     $jumlah_luas_2 = $penggunaLastYear->jumlahluas;
     $aQuery = "SELECT ID, Item" . ($_SESSION['lang'] == "mal" ? "My" : "En") . " AS Item, Ordering FROM tblasmcostsummaryitem WHERE `Parent` IS NULL ORDER BY Ordering ASC";
@@ -437,28 +455,28 @@ if ($Show) {
         if ($aRow->ID == 1) {
             $jaga = new user('matang_penjagaan', $matang);
             $EstateAmount = ($jaga->total_b / $jumlah_luas_2);
-            $EstateAmount = (null);
-            $EstateAmount2 = $EstateAmount / $jumlah_bts;
+            // $EstateAmount = (null);
+            $EstateAmount2 = $EstateAmount/$jumlah_bts;
             $EstateAmountTotal += $EstateAmount;
             $EstateAmountTotal2 += $EstateAmount2;
         } else if ($aRow->ID == 3) {
             $tuai = new user('matang_penuaian', $matang);
             $EstateAmount = ($tuai->total_b / $jumlah_luas_2);
-            $EstateAmount = (null);
+            // $EstateAmount = (null);
             $EstateAmount2 = $EstateAmount / $jumlah_bts;
             $EstateAmountTotal += $EstateAmount;
             $EstateAmountTotal2 += $EstateAmount2;
         } else if ($aRow->ID == 4) {
             $angkut = new user('matang_pengangkutan', $matang);
             $EstateAmount = ($angkut->total_b / $jumlah_luas_2);
-            $EstateAmount = (null);
+            // $EstateAmount = (null);
             $EstateAmount2 = $EstateAmount / $jumlah_bts;
             $EstateAmountTotal += $EstateAmount;
             $EstateAmountTotal2 += $EstateAmount2;
         } else if ($aRow->ID == 5) {
             $belanja = new user('belanja_am', $matang);
-            $EstateAmount = ($belanja->total_perbelanjaan / $jumlah_luas);
-            $EstateAmount = (null);
+            $EstateAmount = ($belanja->total_perbelanjaan / $jumlah_luas_2);
+            // $EstateAmount = (null);
             $EstateAmount2 = $EstateAmount / $jumlah_bts;
             $EstateAmountTotal += $EstateAmount;
             $EstateAmountTotal2 += $EstateAmount2;
@@ -538,7 +556,7 @@ if ($Show) {
                 $ftotal = $rowjaga['total_b_3'];
             }
             $EstateAmount = ($ftotal / $jumlah_luas_2);
-            $EstateAmount = (null);
+            // $EstateAmount = (null);
             $EstateAmount2 = $EstateAmount / $jumlah_bts;
             $cQuery = "SELECT MalaysiaAmount, PMalaysiaAmount, SabahAmount, SarawakAmount, MalaysiaAmount2, PMalaysiaAmount2, SabahAmount2, SarawakAmount2 FROM tblasmcostsummarydetail WHERE Item = $bRow->ID AND `Year` = '" . ($_SESSION['tahun'] - 1) . "'";
             $cRows = mysqli_query($con, $cQuery);

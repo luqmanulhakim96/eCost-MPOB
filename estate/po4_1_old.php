@@ -8,7 +8,7 @@ $umur2 = new user('esub', $session_lesen);
 
 function kiraPerubahan($valueBaru, $valueLama) {
     $result = (($valueBaru - $valueLama) / $valueLama) * 100;
-    
+
     if(is_nan($result))
     {
       return "0.00";
@@ -456,7 +456,7 @@ if (($bts * 1) == 0) {
         </tr>
         <tr>
             <td width="198"><strong><?= setstring('mal', 'Jumlah Keluasan Tanaman', 'en', 'Total Crop Area'); ?></strong></td>
-            <td width="422"><strong><span class="style3"><?php echo number_format($jumlah_semua, 3); ?></span> <?= setstring('mal', 'Hektar', 'en', 'Hectares'); ?></strong></td>
+            <td width="422"><strong><span class="style3"><?php echo number_format($pengguna->jumlahluas, 2); ?></span> <?= setstring('mal', 'Hektar', 'en', 'Hectares'); ?></strong></td>
             <td> </td>
         </tr>
         <tr>
@@ -515,7 +515,7 @@ if (($bts * 1) == 0) {
                         </div></td>
                     <td width="100" bgcolor="#AEFFAE"><div align="center">
                             <span id="emolumen_per_ha"><?php
-                                $per_ha1 = $belanja->emolumen / $hektar;
+                                $per_ha1 = $belanja->emolumen / $pengguna->jumlahluas;
                                 $per_ha1 = round($per_ha1, 2);
                                 echo number_format($per_ha1, 2);
                                 ?></span>
@@ -528,7 +528,7 @@ if (($bts * 1) == 0) {
                         </div></td>
                     <td width="260" bgcolor="#AEFFAE">
                         <div align="center" id="emolumen_per_kos">
-                            <?php echo kiraPerubahan($per_ha1, $belanjaAmTahunSebelum->emolumen / $hektar); ?>
+                            <?php echo kiraPerubahan($per_ha1, $belanjaAmTahunSebelum->emolumen / $pengguna->jumlahluas); ?>
                         </div></td>
                 </tr>
                 <tr valign="top">
@@ -548,7 +548,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="kos_ibupejabat" type="text" onchange="kiraanbaru('kos_ibupejabat')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="kos_ibupejabat" value="<?= number_format($belanja->kos_ibupejabat, 2); ?>" />
                         </div></td>
                     <td><div align="center" id="kos_ibupejabat_per_ha"><?php
-                            $per_ha2 = $belanja->kos_ibupejabat / $hektar;
+                            $per_ha2 = $belanja->kos_ibupejabat / $pengguna->jumlahluas;
                             $per_ha2 = round($per_ha2, 2);
                             echo number_format($per_ha2, 2);
                             ?></div></td>
@@ -559,7 +559,7 @@ if (($bts * 1) == 0) {
                             ?>        </div></td>
                     <td>
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha2, $belanjaAmTahunSebelum->kos_ibupejabat / $hektar); ?>
+                            <?php echo kiraPerubahan($per_ha2, $belanjaAmTahunSebelum->kos_ibupejabat / $pengguna->jumlahluas); ?>
                         </div></td>
                 </tr>
                 <tr valign="top">
@@ -587,7 +587,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="kos_agensi" type="text" onchange="kiraanbaru('kos_agensi')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="kos_agensi" value="<?= number_format($belanja->kos_agensi, 2); ?>" />
                         </div></td>
                     <td bgcolor="#AEFFAE"><div align="center" id="kos_agensi_per_ha"><?php
-                            $per_ha3 = $belanja->kos_agensi / $hektar;
+                            $per_ha3 = $belanja->kos_agensi / $pengguna->jumlahluas;
                             $per_ha3 = round($per_ha3, 2);
 
                             echo number_format($per_ha3, 2);
@@ -598,7 +598,7 @@ if (($bts * 1) == 0) {
                             ?></div></td>
                     <td bgcolor="#AEFFAE">
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha3, $belanjaAmTahunSebelum->kos_agensi / $hektar); ?>
+                            <?php echo kiraPerubahan($per_ha3, $belanjaAmTahunSebelum->kos_agensi / $pengguna->jumlahluas); ?>
                         </div></td>
                 </tr>
                 <tr valign="top">
@@ -621,7 +621,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="kebajikan" type="text" onchange="kiraanbaru('kebajikan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="kebajikan" value="<?= number_format($belanja->kebajikan, 2); ?>"  />
                         </div></td>
                     <td><div align="center" id="kebajikan_per_ha"><?php
-                            $per_ha4 = $belanja->kebajikan / $hektar;
+                            $per_ha4 = $belanja->kebajikan / $pengguna->jumlahluas;
                             $per_ha4 = round($per_ha4, 2);
                             echo number_format($per_ha4, 2);
                             ?></div></td>
@@ -631,7 +631,7 @@ if (($bts * 1) == 0) {
                             ?>
                         </div></td>
                     <td><div align="center">
-                            <?php echo kiraPerubahan($per_ha4, $belanjaAmTahunSebelum->kebajikan / $hektar); ?>
+                            <?php echo kiraPerubahan($per_ha4, $belanjaAmTahunSebelum->kebajikan / $pengguna->jumlahluas); ?>
                         </div></td>
                 </tr>
                 <tr valign="top" bgcolor="#AEFFAE">
@@ -657,7 +657,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="sewa_tol" type="text" onchange="kiraanbaru('sewa_tol')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="sewa_tol" value="<?= number_format($belanja->sewa_tol, 2); ?>"  />
                         </div></td>
                     <td><div align="center" id="sewa_tol_per_ha"><?php
-                            $per_ha5 = $belanja->sewa_tol / $hektar;
+                            $per_ha5 = $belanja->sewa_tol / $pengguna->jumlahluas;
                             $per_ha5 = round($per_ha5, 2);
                             echo number_format($per_ha5, 2);
                             ?></div></td>
@@ -668,7 +668,7 @@ if (($bts * 1) == 0) {
                         </div></td>
                     <td>
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha5, $belanjaAmTahunSebelum->sewa_tol / $hektar); ?>
+                            <?php echo kiraPerubahan($per_ha5, $belanjaAmTahunSebelum->sewa_tol / $pengguna->jumlahluas); ?>
                         </div></td>
                 </tr>
                 <tr valign="top">
@@ -684,7 +684,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="penyelidikan" type="text" onchange="kiraanbaru('penyelidikan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="penyelidikan" value="<?= number_format($belanja->penyelidikan, 2); ?>"  />
                         </div></td>
                     <td><div align="center" id="penyelidikan_per_ha"><?php
-                            $per_ha6 = $belanja->penyelidikan / $hektar;
+                            $per_ha6 = $belanja->penyelidikan / $pengguna->jumlahluas;
                             $per_ha6 = round($per_ha6, 2);
                             echo number_format($per_ha6, 2);
                             ?></div></td>
@@ -695,7 +695,7 @@ if (($bts * 1) == 0) {
                         </div></td>
                     <td>
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha6, $belanjaAmTahunSebelum->penyelidikan / $hektar); ?>
+                            <?php echo kiraPerubahan($per_ha6, $belanjaAmTahunSebelum->penyelidikan / $pengguna->jumlahluas); ?>
                         </div></td>
                 </tr>
                 <tr valign="top" bgcolor="#AEFFAE">
@@ -717,7 +717,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="perubatan" type="text" onchange="kiraanbaru('perubatan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="perubatan" value="<?= number_format($belanja->perubatan, 2); ?>"/>
                         </div></td>
                     <td><div align="center" id="perubatan_per_ha"><?php
-                            $per_ha7 = $belanja->perubatan / $hektar;
+                            $per_ha7 = $belanja->perubatan / $pengguna->jumlahluas;
                             $per_ha7 = round($per_ha7, 2);
                             echo number_format($per_ha7, 2);
                             ?></div></td>
@@ -728,7 +728,7 @@ if (($bts * 1) == 0) {
                         </div></td>
                     <td>
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha7, $belanjaAmTahunSebelum->perubatan / $hektar); ?>
+                            <?php echo kiraPerubahan($per_ha7, $belanjaAmTahunSebelum->perubatan / $pengguna->jumlahluas); ?>
                         </div></td>
                 </tr>
                 <tr valign="top">
@@ -747,7 +747,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="penyelenggaraan" type="text" onchange="kiraanbaru('penyelenggaraan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="penyelenggaraan" value="<?= number_format($belanja->penyelenggaraan, 2); ?>" />
                         </div></td>
                     <td><div align="center" id="penyelenggaraan_per_ha"><?php
-                            $per_ha8 = $belanja->penyelenggaraan / $hektar;
+                            $per_ha8 = $belanja->penyelenggaraan / $pengguna->jumlahluas;
                             $per_ha8 = round($per_ha8, 2);
                             echo number_format($per_ha8, 2);
                             ?></div></td>
@@ -759,7 +759,7 @@ if (($bts * 1) == 0) {
                         </div></td>
                     <td>
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha8, $belanjaAmTahunSebelum->penyelenggaraan / $hektar); ?>
+                            <?php echo kiraPerubahan($per_ha8, $belanjaAmTahunSebelum->penyelenggaraan / $pengguna->jumlahluas); ?>
                         </div></td>
                 </tr>
                 <tr valign="top" bgcolor="#AEFFAE">
@@ -774,7 +774,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="cukai_keuntungan" type="text" onchange="kiraanbaru('cukai_keuntungan')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="cukai_keuntungan" value="<?= number_format($belanja->cukai_keuntungan, 2); ?>" />
                         </div></td>
                     <td><div align="center" id="cukai_keuntungan_per_ha"><?php
-                            $per_ha9 = $belanja->cukai_keuntungan / $hektar;
+                            $per_ha9 = $belanja->cukai_keuntungan / $pengguna->jumlahluas;
                             $per_ha9 = round($per_ha9, 2);
                             echo number_format($per_ha9, 2);
                             ?></div></td>
@@ -785,7 +785,7 @@ if (($bts * 1) == 0) {
                             ?>        </div></td>
                     <td>
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha9, $belanjaAmTahunSebelum->cukai_keuntungan / $hektar); ?>
+                            <?php echo kiraPerubahan($per_ha9, $belanjaAmTahunSebelum->cukai_keuntungan / $pengguna->jumlahluas); ?>
                         </div></td>
                 </tr>
                 <tr valign="top">
@@ -812,7 +812,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="penjagaan" type="text" onchange="kiraanbaru('penjagaan')" autocomplete="off" onclick="field_click(this)" class="active_field" id="penjagaan" value="<?= number_format($belanja->penjagaan, 2); ?>" />
                         </div></td>
                     <td><div align="center" id="penjagaan_per_ha"><?php
-                            $per_ha10 = $belanja->penjagaan / $hektar;
+                            $per_ha10 = $belanja->penjagaan / $pengguna->jumlahluas;
                             $per_ha10 = round($per_ha10, 2);
 
                             echo number_format($per_ha10, 2);
@@ -825,7 +825,7 @@ if (($bts * 1) == 0) {
                         </div></td>
                     <td>
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha10, $belanjaAmTahunSebelum->penjagaan / $hektar); ?>
+                            <?php echo kiraPerubahan($per_ha10, $belanjaAmTahunSebelum->penjagaan / $pengguna->jumlahluas); ?>
                         </div></td>
                 </tr>
                 <tr valign="top" bgcolor="#AEFFAE">
@@ -850,7 +850,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="kawalan" type="text" onchange="kiraanbaru('kawalan')" autocomplete="off" onclick="field_click(this)" class="active_field" id="kawalan" value="<?= number_format($belanja->kawalan, 2); ?>" />
                         </div></td>
                     <td><div align="center" id="kawalan_per_ha"><?php
-                            $per_ha11 = $belanja->kawalan / $hektar;
+                            $per_ha11 = $belanja->kawalan / $pengguna->jumlahluas;
                             $per_ha11 = round($per_ha11, 2);
 
                             echo number_format($per_ha11, 2);
@@ -862,7 +862,7 @@ if (($bts * 1) == 0) {
                             ?>        </div></td>
                     <td>
                         <div align="center">
-                            <?php echo kiraPerubahan($per_ha11, $belanjaAmTahunSebelum->kawalan / $hektar); ?>
+                            <?php echo kiraPerubahan($per_ha11, $belanjaAmTahunSebelum->kawalan / $pengguna->jumlahluas); ?>
                         </div></td>
                 </tr>
                 <tr valign="top">
@@ -890,7 +890,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="air_tenaga" type="text" onchange="kiraanbaru('air_tenaga')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="air_tenaga" value="<?= number_format($belanja->air_tenaga, 2); ?>" />
                         </div></td>
                     <td><div align="center" id="air_tenaga_per_ha"><?php
-                            $per_ha12 = $belanja->air_tenaga / $hektar;
+                            $per_ha12 = $belanja->air_tenaga / $pengguna->jumlahluas;
                             $per_ha12 = round($per_ha12, 2);
 
                             echo number_format($per_ha12, 2);
@@ -900,7 +900,7 @@ if (($bts * 1) == 0) {
                             $per_bts12 = $per_ha12 / $bts;
                             echo number_format($per_bts12, 2);
                             ?>        </div></td>
-                    <td><div align="center"><?php echo kiraPerubahan($per_ha12, $belanjaAmTahunSebelum->air_tenaga / $hektar); ?></div></td>
+                    <td><div align="center"><?php echo kiraPerubahan($per_ha12, $belanjaAmTahunSebelum->air_tenaga / $pengguna->jumlahluas); ?></div></td>
                 </tr>
                 <tr valign="top" bgcolor="#AEFFAE">
                     <td height="31" align="center">13.</td>
@@ -934,7 +934,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="perbelanjaan_pejabat" type="text" onchange="kiraanbaru('perbelanjaan_pejabat')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="perbelanjaan_pejabat" value="<?= number_format($belanja->perbelanjaan_pejabat, 2); ?>"/>
                         </div></td>
                     <td><div align="center" id="perbelanjaan_pejabat_per_ha"><?php
-                            $per_ha13 = $belanja->perbelanjaan_pejabat / $hektar;
+                            $per_ha13 = $belanja->perbelanjaan_pejabat / $pengguna->jumlahluas;
                             $per_ha13 = round($per_ha13, 2);
 
                             echo number_format($per_ha13, 2);
@@ -944,7 +944,7 @@ if (($bts * 1) == 0) {
                             $per_bts13 = $per_ha13 / $bts;
                             echo number_format($per_bts13, 2);
                             ?>        </div></td>
-                    <td><div align="center"><?php echo kiraPerubahan($per_ha13, $belanjaAmTahunSebelum->perbelanjaan_pejabat / $hektar); ?></div></td>
+                    <td><div align="center"><?php echo kiraPerubahan($per_ha13, $belanjaAmTahunSebelum->perbelanjaan_pejabat / $pengguna->jumlahluas); ?></div></td>
                 </tr>
                 <tr valign="top">
                     <td height="31" align="center">14.</td>
@@ -960,7 +960,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="susut_nilai" type="text" onchange="kiraanbaru('susut_nilai')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="susut_nilai" value="<?= number_format($belanja->susut_nilai, 2); ?>" />
                         </div></td>
                     <td><div align="center" id="susut_nilai_per_ha"><?php
-                            $per_ha14 = $belanja->susut_nilai / $hektar;
+                            $per_ha14 = $belanja->susut_nilai / $pengguna->jumlahluas;
                             $per_ha14 = round($per_ha14, 2);
 
                             echo number_format($per_ha14, 2);
@@ -971,7 +971,7 @@ if (($bts * 1) == 0) {
                             echo number_format($per_bts14, 2);
                             ?>
                         </div></td>
-                    <td><div align="center"><?php echo kiraPerubahan($per_ha14, $belanjaAmTahunSebelum->susut_nilai / $hektar); ?></div></td>
+                    <td><div align="center"><?php echo kiraPerubahan($per_ha14, $belanjaAmTahunSebelum->susut_nilai / $pengguna->jumlahluas); ?></div></td>
                 </tr>
                 <tr valign="top" bgcolor="#AEFFAE">
                     <td height="31" align="center">15.</td>
@@ -995,7 +995,7 @@ if (($bts * 1) == 0) {
                             <input onKeypress="keypress(event)" name="perbelanjaan_lain" type="text" onchange="kiraanbaru('perbelanjaan_lain')"  autocomplete="off" onclick="field_click(this)" class="active_field" id="perbelanjaan_lain" value="<?= number_format($belanja->perbelanjaan_lain, 2); ?>"/>
                         </div></td>
                     <td><div align="center" id="perbelanjaan_lain_per_ha"><?php
-                            $per_ha15 = $belanja->perbelanjaan_lain / $hektar;
+                            $per_ha15 = $belanja->perbelanjaan_lain / $pengguna->jumlahluas;
                             $per_ha15 = round($per_ha15,2);
 
                             echo number_format($per_ha15, 2);
@@ -1005,7 +1005,7 @@ if (($bts * 1) == 0) {
                             $per_bts15 = $per_ha15 / $bts;
                             echo number_format($per_bts15, 2);
                             ?>        </div></td>
-                    <td><div align="center"><?php echo kiraPerubahan($per_ha15, $belanjaAmTahunSebelum->perbelanjaan_lain / $hektar); ?></div></td>
+                    <td><div align="center"><?php echo kiraPerubahan($per_ha15, $belanjaAmTahunSebelum->perbelanjaan_lain / $pengguna->jumlahluas); ?></div></td>
                 </tr>
                 <tr>
                     <td height="17" align="center"> </td>
@@ -1028,7 +1028,7 @@ if (($bts * 1) == 0) {
                             <?php
                             //echo $per_ha1 ."+". $per_ha2 ."+". $per_ha3 ."+". $per_ha4 ."+". $per_ha5 ."+". $per_ha6 ."+". $per_ha7 ."+". $per_ha8 ."+". $per_ha9 ."+". $per_ha10 ."+". $per_ha11 ."+". $per_ha12 ."+". $per_ha13 ."+". $per_ha14 ."+". $per_ha15."<br>";
                             //$total_kos_hektar = $per_ha1 + $per_ha2 + $per_ha3 + $per_ha4 + $per_ha5 + $per_ha6 + $per_ha7 + $per_ha8 + $per_ha9 + $per_ha10 + $per_ha11 + $per_ha12 + $per_ha13 + $per_ha14 + $per_ha15;
-                            $total_kos_hektar =round($total_belanja_all/$jumlah_semua,2);
+                            $total_kos_hektar =round($total_belanja_all/$pengguna->jumlahluas,2);
                             echo number_format($total_kos_hektar, 2);
                             //$total_kos_hektar = round($total_kos_hektar, 2, PHP_ROUND_HALF_UP);
                             ?>
@@ -1037,12 +1037,12 @@ if (($bts * 1) == 0) {
                     </td>
                     <td bgcolor="#FFCC66"><div align="center" id="total_bts_all">
                             <?php
-                            $total_bts_all = $per_bts1 + $per_bts2 + $per_bts3 + $per_bts4 + $per_bts5 + $per_bts6 + $per_bts7 + $per_bts8 + $per_bts9 + $per_bts10 + $per_bts11 + $per_bts12 + $per_bts13 + $per_bts14 + $per_bts15;
+                            $total_bts_all = $per_bts1 + $per_bts2 + $per_bts3 + $per_bts4 + $per_bts5 + $per_bts6 + $per_bts7 + $per_bts8 + $per_bts9 + $per_bts10 + $per_bts11 + $per_bts12 + $per_bts13 + $per_bts14 + $per_bts15 ;
                             echo number_format($total_bts_all, 2);
                             ?>        </div></td>
                     <td bgcolor="#FFCC66">
                         <div align="center"><strong>
-                                <?php echo kiraPerubahan($total_kos_hektar, $belanjaAmTahunSebelum->total_perbelanjaan / $hektar); ?>
+                                <?php echo kiraPerubahan($total_kos_hektar, $belanjaAmTahunSebelum->total_perbelanjaan / $pengguna->jumlahluas); ?>
                             </strong></div></td>
                 </tr>
                 <tr>

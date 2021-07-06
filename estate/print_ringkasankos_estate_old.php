@@ -5144,7 +5144,7 @@ $ringkasan = new user('range_kos', $rk);
                     </a></td>
                 <td><div align="right"><?php
 $belanja = new user('belanja_am', $matang);
-$l = ($belanja->total_perbelanjaan / $jumlah_luas);
+$l = ($belanja->total_perbelanjaan / $pengguna->jumlahluas);
 echo number_format($l, 2);
 ?></td>
                 <td> </td>
