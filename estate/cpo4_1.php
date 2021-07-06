@@ -573,7 +573,7 @@ function viewkos_semasa($pu) {
                         <td><div align="right"><?php
                                 $belanja = new user('belanja_am', $matang);
                                 //echo $belanja->total_perbelanjaan . '<br/>' . $jumlah_luas . '<br/>'
-                                $l = ($belanja->total_perbelanjaan / $jumlah_luas);
+                                $l = ($belanja->total_perbelanjaan / $jumlah_luas_2);
                                 $l = round($l, 2, PHP_ROUND_HALF_UP);
 
                                 echo number_format($l, 2);
