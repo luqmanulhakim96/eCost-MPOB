@@ -314,7 +314,7 @@ if ($Show) {
     if ($EstateAmountTotal == 0 && $EstateAmountTotal2 == 0) {
 
         echo "<br>";
-        echo "<div style=\"float:left;width:100%;padding:0px 0px 5px 0px;font-weight:bold;color:#f00;text-align:center\">" . ($_SESSION['lang'] == "mal" ? "Sila Kemaskini Kos Matang bagi tahun " . ($_SESSION['tahun'] - 2) . ". Untuk mengemaskini Kos Matang, Anda perlu log masuk dengan pilihan tahun eCOST " . ($_SESSION['tahun'] - 1) : "Please Update Mature Cost for year " . ($_SESSION['tahun'] - 2) . ". To update the mature cost, You need to log out and select the year eCOST " . ($_SESSION['tahun'] - 1) . ".") . "</div>\n";
+        echo "<div style=\"float:left;width:100%;padding:0px 0px 5px 0px;font-weight:bold;color:#f00;text-align:center\">" . ($_SESSION['lang'] == "mal" ? "Sila Kemaskini Kos Matang bagi tahun " . ($_SESSION['tahun'] - 1) . ". Untuk mengemaskini Kos Matang, Anda perlu log masuk dengan pilihan tahun eCOST " . ($_SESSION['tahun'] - 1) : "Please Update Mature Cost for year " . ($_SESSION['tahun'] - 1) . ". To update the mature cost, You need to log out and select the year eCOST " . ($_SESSION['tahun'] - 1) . ".") . "</div>\n";
         echo "<br>";
         echo "<br>";
 //$Show = false
@@ -392,6 +392,8 @@ if ($Show) {
     $pt2 = luas_data_new("tanam_tukar", "tanaman_tukar", $_SESSION['tahun'] - 2);
     $pt3 = luas_data_new("tanam_tukar", "tanaman_tukar", $_SESSION['tahun'] - 3);
 
+
+
     $umur2 = new user('esub', $_SESSION['lesen']);
 
     $jumlah_semua = $umur2->jumlahluasterakhir + $pb1 + $pb2 + $pb3 + $ps1 + $ps2 + $ps3 + $pt1 + $pt2 + $pt3;
@@ -399,7 +401,7 @@ if ($Show) {
     $jumlah_luas = $jumlah_semua;
     ?>
     <br />
-    <div style="font-weight:bold; text-align: center"><?php echo $_SESSION['lang'] == "mal" ? "Ringkasan Kos Pengeluaran (RM Per Hektar dan RM Per Tan) Bagi Tahun " . ($_SESSION['tahun'] - 2) : "Cost Summary (RM Per Hectare and RM Per Tonne) For Year " . ($_SESSION['tahun'] - 2); ?></div>
+    <div style="font-weight:bold; text-align: center"><?php echo $_SESSION['lang'] == "mal" ? "Ringkasan Kos Pengeluaran (RM Per Hektar dan RM Per Tan) Bagi Tahun " . ($_SESSION['tahun'] - 1) : "Cost Summary (RM Per Hectare and RM Per Tonne) For Year " . ($_SESSION['tahun'] - 1); ?></div>
     <br>
     <div style="float:left;width:100%">
         <table width="70%" border="0" align="center" cellpadding="0" cellspacing="1" style="border:#333333 1px solid;" aria-describedby="indexEstate3">
@@ -435,24 +437,28 @@ if ($Show) {
         if ($aRow->ID == 1) {
             $jaga = new user('matang_penjagaan', $matang);
             $EstateAmount = ($jaga->total_b / $jumlah_luas_2);
+            $EstateAmount = (null);
             $EstateAmount2 = $EstateAmount / $jumlah_bts;
             $EstateAmountTotal += $EstateAmount;
             $EstateAmountTotal2 += $EstateAmount2;
         } else if ($aRow->ID == 3) {
             $tuai = new user('matang_penuaian', $matang);
             $EstateAmount = ($tuai->total_b / $jumlah_luas_2);
+            $EstateAmount = (null);
             $EstateAmount2 = $EstateAmount / $jumlah_bts;
             $EstateAmountTotal += $EstateAmount;
             $EstateAmountTotal2 += $EstateAmount2;
         } else if ($aRow->ID == 4) {
             $angkut = new user('matang_pengangkutan', $matang);
             $EstateAmount = ($angkut->total_b / $jumlah_luas_2);
+            $EstateAmount = (null);
             $EstateAmount2 = $EstateAmount / $jumlah_bts;
             $EstateAmountTotal += $EstateAmount;
             $EstateAmountTotal2 += $EstateAmount2;
         } else if ($aRow->ID == 5) {
             $belanja = new user('belanja_am', $matang);
             $EstateAmount = ($belanja->total_perbelanjaan / $jumlah_luas);
+            $EstateAmount = (null);
             $EstateAmount2 = $EstateAmount / $jumlah_bts;
             $EstateAmountTotal += $EstateAmount;
             $EstateAmountTotal2 += $EstateAmount2;
@@ -521,7 +527,7 @@ if ($Show) {
         while ($bRow = mysqli_fetch_object($bRows)) {
             echo "<tr>\n";
             echo "<td style=\"padding:3px 3px 3px 15px;font-weight:bold;background-color:#FFE8AE\">- $bRow->Item</td>\n"; //Fertilizing Cost
-            $dQuery = "select total_b_3, b_3a, b_3b, b_3c, b_3d from kos_matang_penjagaan where pb_thisyear ='" . $_SESSION['tahun'] . "' and lesen ='" . $_SESSION['lesen'] . "' ";
+            $dQuery = "select total_b_3, b_3a, b_3b, b_3c, b_3d from kos_matang_penjagaan where pb_thisyear ='" . ($_SESSION['tahun'] - 1) . "' and lesen ='" . $_SESSION['lesen'] . "' ";
             $dRows = mysqli_query($con, $dQuery);
             $rowjaga = mysqli_fetch_array($dRows);
             $totaljaga = mysqli_num_rows($dRows);
@@ -532,6 +538,7 @@ if ($Show) {
                 $ftotal = $rowjaga['total_b_3'];
             }
             $EstateAmount = ($ftotal / $jumlah_luas_2);
+            $EstateAmount = (null);
             $EstateAmount2 = $EstateAmount / $jumlah_bts;
             $cQuery = "SELECT MalaysiaAmount, PMalaysiaAmount, SabahAmount, SarawakAmount, MalaysiaAmount2, PMalaysiaAmount2, SabahAmount2, SarawakAmount2 FROM tblasmcostsummarydetail WHERE Item = $bRow->ID AND `Year` = '" . ($_SESSION['tahun'] - 1) . "'";
             $cRows = mysqli_query($con, $cQuery);
