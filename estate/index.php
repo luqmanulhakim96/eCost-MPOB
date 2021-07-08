@@ -305,16 +305,18 @@ if ($Show) {
             $EstateAmountTotal2 += $EstateAmount2;
         } else if ($aRow->ID == 5) {
             $belanja = new user('belanja_am', $matang);
-            $EstateAmount = ($belanja->total_perbelanjaan / $jumlah_luas);
+            $EstateAmount = ($belanja->total_perbelanjaan / $jumlah_luas) ;
             $EstateAmount2 = $EstateAmount / $jumlah_bts;
             $EstateAmountTotal += $EstateAmount;
             $EstateAmountTotal2 += $EstateAmount2;
         }
     }
-    if ($EstateAmountTotal == 0 && $EstateAmountTotal2 == 0) {
+
+    if(is_nan($EstateAmountTotal) && ($EstateAmountTotal2)){
 
         echo "<br>";
-        echo "<div style=\"float:left;width:100%;padding:0px 0px 5px 0px;font-weight:bold;color:#f00;text-align:center\">" . ($_SESSION['lang'] == "mal" ? "Sila Kemaskini Kos Matang bagi tahun " . ($_SESSION['tahun'] - 1) . ". Untuk mengemaskini Kos Matang, Anda perlu log masuk dengan pilihan tahun eCOST " . ($_SESSION['tahun'] - 1) : "Please Update Mature Cost for year " . ($_SESSION['tahun'] - 1) . ". To update the mature cost, You need to log out and select the year eCOST " . ($_SESSION['tahun'] - 1) . ".") . "</div>\n";
+        echo "<div style=\"float:left;width:100%;padding:0px 0px 5px 0px;font-weight:bold;color:#f00;text-align:center\">" . ($_SESSION['lang'] == "mal" ? "Sila Kemaskini Kos Matang bagi tahun " . ($_SESSION['tahun'] - 2) . ". Untuk mengemaskini Kos Matang, Anda perlu log masuk dengan pilihan tahun eCOST " . ($_SESSION['tahun'] - 1) : "Please Update Mature Cost for year " . ($_SESSION['tahun'] - 1) . ".
+        To update the mature cost, You need to log out and select the year eCOST " . ($_SESSION['tahun'] - 1) . ".") . "</div>\n";
         echo "<br>";
         echo "<br>";
 //$Show = false
@@ -401,7 +403,7 @@ if ($Show) {
     $jumlah_luas = $jumlah_semua;
     ?>
     <br />
-    <div style="font-weight:bold; text-align: center"><?php echo $_SESSION['lang'] == "mal" ? "Ringkasan Kos Pengeluaran (RM Per Hektar dan RM Per Tan) Bagi Tahun " . ($_SESSION['tahun'] - 1) : "Cost Summary (RM Per Hectare and RM Per Tonne) For Year " . ($_SESSION['tahun'] - 1); ?></div>
+    <div style="font-weight:bold; text-align: center"><?php echo $_SESSION['lang'] == "mal" ? "Ringkasan Kos Pengeluaran (RM Per Hektar dan RM Per Tan) Bagi Tahun " . ($_SESSION['tahun'] - 2) : "Cost Summary (RM Per Hectare and RM Per Tonne) For Year " . ($_SESSION['tahun'] - 2); ?></div>
     <br>
     <div style="float:left;width:100%">
         <table width="70%" border="0" align="center" cellpadding="0" cellspacing="1" style="border:#333333 1px solid;" aria-describedby="indexEstate3">
@@ -475,7 +477,8 @@ if ($Show) {
             $EstateAmountTotal2 += $EstateAmount2;
         } else if ($aRow->ID == 5) {
             $belanja = new user('belanja_am', $matang);
-            $EstateAmount = ($belanja->total_perbelanjaan / $jumlah_luas_2);
+            $EstateAmount = ($belanja->total_perbelanjaan / $jumlah_luas_2)  ;
+
             // $EstateAmount = (null);
             $EstateAmount2 = $EstateAmount / $jumlah_bts;
             $EstateAmountTotal += $EstateAmount;
@@ -484,6 +487,8 @@ if ($Show) {
             $EstateAmount = $EstateAmountTotal;
             $EstateAmount2 = $EstateAmountTotal2;
         }
+
+
         $bQuery = "SELECT MalaysiaAmount, PMalaysiaAmount, SabahAmount, SarawakAmount, MalaysiaAmount2, PMalaysiaAmount2, "
                 . "SabahAmount2, SarawakAmount2 "
                 . "FROM tblasmcostsummarydetail WHERE Item = $aRow->ID AND `Year` = '" . ($_SESSION['tahun'] - 1) . "'; ";
@@ -516,7 +521,7 @@ if ($Show) {
             $bRow = mysqli_fetch_object($bRows);
             //$bRow = mysqli_fetch_array($bRows)
             //echo "xx".$bRow->MalaysiaAmount
-            echo "<td style=\"padding:3px;text-align:right;background-color:#FFFF00\">" . number_format($EstateAmount, 2, ".", ",") . "</td>\n";
+            echo "<td style=\"padding:3px;text-align:right;background-color:#FFFF00\">" . number_format( $Display ? 0 :$EstateAmount, 2, ".", ",") . "</td>\n";
             echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format($bRow->MalaysiaAmount, 2) . "</td>\n";
             if ($isPMalaysia == 1) {
                 echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format($bRow->PMalaysiaAmount, 2) . "</td>\n";
@@ -527,7 +532,7 @@ if ($Show) {
             if ($isPMalaysia == 3) {
                 echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format($bRow->SarawakAmount, 2) . "</td>\n";
             }
-            echo "<td style=\"padding:3px;text-align:right;background-color:#FFFF00\">" . number_format($EstateAmount2, 2, ".", ",") . "</td>\n";
+            echo "<td style=\"padding:3px;text-align:right;background-color:#FFFF00\">" . number_format($Display ? 0 :$EstateAmount2, 2, ".", ",") . "</td>\n";
             echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format($bRow->MalaysiaAmount2, 2) . "</td>\n";
             if ($isPMalaysia == 1) {
                 echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format($bRow->PMalaysiaAmount2, 2) . "</td>\n";
@@ -585,7 +590,7 @@ if ($Show) {
                 }
             } else {
                 $cRow = mysqli_fetch_object($cRows);
-                echo "<td style=\"padding:3px;text-align:right;background-color:#FFFF00\">" . number_format($EstateAmount, 2, ".", ",") . "</td>\n";
+                echo "<td style=\"padding:3px;text-align:right;background-color:#FFFF00\">" . number_format( $Display ? 0 :$EstateAmount, 2, ".", ",") . "</td>\n";
                 echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format($Display ? 0 : $cRow->MalaysiaAmount, 2, ".", ",") . "</td>\n";
                 if ($isPMalaysia == 1) {
                     echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format($Display ? 0 : $cRow->PMalaysiaAmount, 2, ".", ",") . "</td>\n";
@@ -596,7 +601,7 @@ if ($Show) {
                 if ($isPMalaysia == 3) {
                     echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format($Display ? 0 : $cRow->SarawakAmount, 2, ".", ",") . "</td>\n";
                 }
-                echo "<td style=\"padding:3px;text-align:right;background-color:#FFFF00\">" . number_format($EstateAmount2, 2, ".", ",") . "</td>\n";
+                echo "<td style=\"padding:3px;text-align:right;background-color:#FFFF00\">" . number_format($Display ? 0 :$EstateAmount2, 2, ".", ",") . "</td>\n";
                 echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format($Display ? 0 : $cRow->MalaysiaAmount2, 2, ".", ",") . "</td>\n";
                 if ($isPMalaysia == 1) {
                     echo "<td style=\"padding:3px;text-align:right;background-color:#D0FBC6\">" . number_format($Display ? 0 : $cRow->PMalaysiaAmount2, 2, ".", ",") . "</td>\n";
