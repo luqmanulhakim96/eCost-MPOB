@@ -445,6 +445,27 @@ if ($Show) {
     $jumlah_bts = $bts_sum_purata_hasil_buah;
     #end of query $bts_sum
 
+
+
+    #query jumlah_luas_lama
+        $tahunesub = $_SESSION['tahun'] - 1;
+        $query_luas = "SELECT * FROM esub_$tahunesub WHERE No_Lesen_Baru ='". $_SESSION['lesen']."'";
+        // print_r($query_luas);
+        $result_luas = mysqli_query($con,$query_luas);
+        while($row=mysqli_fetch_array($result_luas))
+    		{
+    			// $this->lesen=$row['lesen'];
+    			// $this->bil=$row['bil'];
+    			// $this->nama=$row['nama'];
+    			// $this->negeri=$row['negeri'];
+    			// $this->daerah=$row['daerah'];
+    			// $this->jumlah_pengeluaran=$row['jumlah_pengeluaran'];
+    			$luas_kawasan=$row['Jumlah'];
+    		}
+
+        $jumlah_luas_lama = $luas_kawasan;
+        #end of query jumlah_luas_lama
+
     $matang = array($_SESSION['lesen'], $_SESSION['tahun'] - 1);
     $jumlah_luas_2 = $penggunaLastYear->jumlahluas;
     $aQuery = "SELECT ID, Item" . ($_SESSION['lang'] == "mal" ? "My" : "En") . " AS Item, Ordering FROM tblasmcostsummaryitem WHERE `Parent` IS NULL ORDER BY Ordering ASC";
@@ -477,7 +498,7 @@ if ($Show) {
             $EstateAmountTotal2 += $EstateAmount2;
         } else if ($aRow->ID == 5) {
             $belanja = new user('belanja_am', $matang);
-            $EstateAmount = ($belanja->total_perbelanjaan / $jumlah_luas_2)  ;
+            $EstateAmount = ($belanja->total_perbelanjaan / $jumlah_luas_lama)  ;
 
             // $EstateAmount = (null);
             $EstateAmount2 = $EstateAmount / $jumlah_bts;
