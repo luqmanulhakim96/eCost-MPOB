@@ -20,7 +20,7 @@ $_SESSION['tahun'] = $tahun;
 define('MAIL_HOST','webmail.mpob.gov.my');        // sets SMTP server
 define('MAIL_PORT','465');                     // set the SMTP port
 define('MAIL_USERNAME','tekno@mpob.gov.my');  // mail username
-define('MAIL_PASSWORD','@webmail99');      // mail password
+define('MAIL_PASSWORD','ecost@2021');      // mail password
 
 ?>
 <head>
