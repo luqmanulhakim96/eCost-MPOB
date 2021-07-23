@@ -17,8 +17,13 @@ $con = connect();
 // $q ="select * from login_admin where email = '$username' and password = '$password_hashed' ";
 $q ="select * from login_admin where email = '$username'";
 // $r = mysqli_query($q,$con);
-$r = mysqli_query($con,$q) or die( mysqli_error($con));
-$row = mysqli_fetch_array($r);
+// $r = mysqli_query($con,$q) or die(mysqli_error($con));
+
+$r = $con->query($q) or die ($con->error());
+
+// $row = mysqli_fetch_array($r);
+$row = $r->fetch_array();
+
 // print_r($row['password']);
 if (password_verify($password, $row['password'])) { //if password entered matched with encrypted password
 	$firsttime = $row['firsttime'];
@@ -30,7 +35,10 @@ if (password_verify($password, $row['password'])) { //if password entered matche
 	$con = connect();
 	$q1 ="update login_admin set success= now() where email = '$username'";
 	// $r1 = mysqli_query($q1,$con);
-	$r = mysqli_query($con, $q1);
+	// $r = mysqli_query($con, $q1);
+	$r = $con->query($q1);
+
+
 			if(isset($set)){
 	  		setcookie("cookname", $username, time()+60*60*24*100, "/");
 	 		setcookie("cookpass", $password, time()+60*60*24*100, "/");
@@ -48,7 +56,8 @@ if (password_verify($password, $row['password'])) { //if password entered matche
 
 	$q ="update login_admin set fail= NOW() where email = '$username'";
 	// $r = mysqli_query($q,$con);
-	$r = mysqli_query($con, $q);
+	// $r = mysqli_query($con, $q);
+	$r = $con->query($q);
 	// printf($r);
 	echo "<script>window.location.href='../index1.php?fail=true';</script>";
 }

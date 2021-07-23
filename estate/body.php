@@ -39,16 +39,24 @@ $katalaluan = addslashes(strip_tags($katalaluan));
 function getEstateInfo($username) {
     $con = connect();
     $qtest = "SELECT * FROM estate_info WHERE lesen = '$username'";
-    $resultTest = mysqli_query($con, $qtest);
-    return mysqli_num_rows($resultTest);
+    // $resultTest = mysqli_query($con, $qtest);
+    $resultTest = $con->query($qtest);
+
+    // return mysqli_num_rows($resultTest);
+    return $resultTest->num_rows;
+
 }
 
 
 function getESub($username, $table) {
     $con = connect();
     $qtest = "SELECT * FROM $table WHERE No_Lesen_Baru = '$username'";
-    $resultTest = mysqli_query($con, $qtest);
-    return mysqli_num_rows($resultTest);
+    // $resultTest = mysqli_query($con, $qtest);
+    $resultTest = $con->query($qtest);
+
+    // return mysqli_num_rows($resultTest);
+    return $resultTest->num_rows;
+
 }
 
 if (!isset($retrieveButton)) {
@@ -75,9 +83,12 @@ if (!isset($retrieveButton)) {
 		and alamat_ekilang.email='$email'";
     }
 }
-$r = mysqli_query($con, $qLogin);
-$row = mysqli_fetch_array($r);
-$total = mysqli_num_rows($r);
+// $r = mysqli_query($con, $qLogin);
+$r = $con->query($qLogin);
+$row = $r->fetch_array();
+$total = $r->num_rows;
+// $row = mysqli_fetch_array($r);
+// $total = mysqli_num_rows($r);
 
 if (isset($retrieveButton) && ($total == 0)) {
 	$stringAlert = setstring('mal', 'Reset kata laluan gagal. Sila pastikan no lesen dan emel anda berdaftar dengan Sistem e-Cost.', 'en', 'Password reset failed. Please make sure your license no. and e-mail are registered with e-Cost system');
@@ -124,8 +135,12 @@ if ($mill != "true") {
     }
 
     $qtest = "SELECT * FROM $table WHERE no_lesen_baru = '$username'";
-    $resultTest = mysqli_query($con, $qtest);
-    $rowTest = mysqli_num_rows($resultTest);
+    // $resultTest = mysqli_query($con, $qtest);
+    $resultTest = $con->query($qtest);
+
+    // $rowTest = mysqli_num_rows($resultTest);
+    $rowTest = $resultTest->num_rows;
+
 
     if ($rowTest == 0) {
         /* if retrieve password */
@@ -164,10 +179,14 @@ if ($mill != "true") {
 		where es.no_lesen_baru = '$username' and ei.lesen ='$username' and le.lesen='$username'  "
             . "group by es.no_lesen_baru";
     //echo $q;
-    $r = mysqli_query($con, $q);
+    // $r = mysqli_query($con, $q);
+    $r = $con->query($q);
+
     $res_total = 0;
     if ($r) {
-        $res_total = mysqli_num_rows($r);
+        // $res_total = mysqli_num_rows($r);
+        $res_total = $r->num_rows;
+
         /** Bug #11035 : masalah login keluar thn 1970 jadi lg hari ni  */
         $esubExist = getESub($username, $table);
         if($esubExist==0){
@@ -185,17 +204,23 @@ if ($mill != "true") {
 if ($mill != "true") {
     $_SESSION['type'] = "estate";
     $q1 = "update login_estate set success= now() where lesen = '$lesen'";
-    $r1 = mysqli_query($con, $q1);
+    // $r1 = mysqli_query($con, $q1);
+    $r1 = $con->query($q1);
+
 }
 if ($mill == "true") {
     $_SESSION['type'] = "mill";
     $q1 = "update login_mill set success= now() where lesen = '$lesen'";
-    $r1 = mysqli_query($con, $q1);
+    // $r1 = mysqli_query($con, $q1);
+    $r1 = $con->query($q1);
+
 }
 
 if ($total == 0 && $mill != "true") {
     $q = "update login_estate set fail= NOW() where lesen = '$username'";
-    $r = mysqli_query($con, $q);
+    // $r = mysqli_query($con, $q);
+    $r = $con->query($q);
+
     echo "<script>alert('Tiada data kemaskini login estate dijumpai. Mohon berhubung admin untuk tindakan lanjut.'); </script>";
     echo "<script>window.location.href='../index1.php?fail=true';</script>";
 }
@@ -203,10 +228,16 @@ if ($total == 0 && $mill != "true") {
 if ($total != 0 && $mill != "true") {
 
     $q = "update login_estate set succes= NOW() where lesen = '$username'";
-    $r = mysqli_query($con, $q);
+    // $r = mysqli_query($con, $q);
+    $r = $con->query($q);
 
-    $rLogin = mysqli_query($con, $qLogin);
-    $rowLogin = mysqli_fetch_array($rLogin);
+
+    // $rLogin = mysqli_query($con, $qLogin);
+    $rLogin = $con->query($qLogin);
+
+    // $rowLogin = mysqli_fetch_array($rLogin);
+    $rowLogin = $rLogin->fetch_array();
+
 
     /* if retrieve password */
     if (isset($retrieveButton)) {
@@ -214,7 +245,9 @@ if ($total != 0 && $mill != "true") {
       // echo "<script>window.location.href='../index1.php?fail=true';</script>";
 
         $q = "update login_estate set success= NOW(), password='" . password_hash(substr($rowLogin['No_Lesen_Baru'], 0, 6),PASSWORD_BCRYPT) . "' where lesen = '$username'";
-        $r = mysqli_query($con, $q);
+        // $r = mysqli_query($con, $q);
+        $r = $con->query($q);
+
 
         $title = 'e-COST - Password Recovery (Estate)';
 
@@ -337,8 +370,12 @@ if ($total != 0 && $mill != "true") {
 }
 if ($total == 0 && $mill == "true") {
     $qtest = "SELECT * FROM ekilang WHERE no_lesen = '$username' AND tahun='$tahun'";
-    $resultTest = mysqli_query($con, $qtest);
-    $rowTest = mysqli_num_rows($resultTest);
+    // $resultTest = mysqli_query($con, $qtest);
+    $resultTest = $con->query($qtest);
+
+    // $rowTest = mysqli_num_rows($resultTest);
+    $rowTest = $resultTest->num_rows;
+
 
     if ($rowTest == 0) {
         if (isset($retrieveButton)) {
@@ -349,41 +386,60 @@ if ($total == 0 && $mill == "true") {
     }
 
     $q1 = "select * from ekilang where no_lesen ='$username' ";
-    $r1 = mysqli_query($con, $q1);
-    $row1 = mysqli_fetch_array($r1);
-    $total1 = mysqli_num_rows($r1);
+    // $r1 = mysqli_query($con, $q1);
+    $r1 = $con->query($q1);
+
+    // $row1 = mysqli_fetch_array($r1);
+    $row1 = $r1->fetch_array();
+
+    // $total1 = mysqli_num_rows($r1);
+    $total1 = $r1->num_rows;
+
     if ($total1 > 0) {
         $q = "insert into login_mill (lesen, password, firsttime) values('$username', '$katalaluan', '1') ";
-        $r = mysqli_query($con, $q);
+        // $r = mysqli_query($con, $q);
+        $r = $con->query($q);
+
 
         $q = "update login_mill set success= NOW() where lesen = '$username'";
-        $r = mysqli_query($con, $q);
+        // $r = mysqli_query($con, $q);
+        $r = $con->query($q);
+
 
         $qadd = "INSERT INTO `alamat_ekilang` (`lesen`, `nama`, `alamat1`, `alamat2`, `alamat3`, `alamatsurat1`, `alamatsurat2`, `alamatsurat3`, `notel`, `nofax`, `email`, `pegawai`, `jpg`, `kategori`) VALUES ('" . $row1['NO_LESEN'] . "', '" . $row1['NAMA_KILANG'] . "', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);";
-        $radd = mysqli_query($con, $qadd);
+        // $radd = mysqli_query($con, $qadd);
+        $radd = $con->query($qadd);
+
 
         echo "<script>location.href='../mill/home.php?id=profile&logging=true&tahun=$tahun';</script>";
     }
 
     $q = "update login_mill set fail= NOW() where lesen = '$username'";
-    $r = mysqli_query($con, $q);
+    // $r = mysqli_query($con, $q);
+    $r = $con->query($q);
     echo "<script>window.location.href='../index1.php?fail=true';</script>";
 }
 
 if ($total != 0 && $mill == "true") {
 
     $q = "update login_mill set succes= NOW() where lesen = '$username'";
-    $r = mysqli_query($con, $q);
+    // $r = mysqli_query($con, $q);
+    $r = $con->query($q);
 
     /* if retrieve password */
     if (isset($retrieveButton)) {
-        $rLogin = mysqli_query($con, $qLogin);
-        $rowLogin = mysqli_fetch_array($rLogin);
+        // $rLogin = mysqli_query($con, $qLogin);
+        $rLogin = $con->query($qLogin);
+        // $rowLogin = mysqli_fetch_array($rLogin);
+        $rowLogin = $rLogin->fetch_array();
+
 
         // $password= password_hash(substr($rowLogin['lesen'], 0, 6), PASSWORD_BCRYPT);
         // $qedit = "update login_mill set success= NOW(), password= $password where lesen = '$username'";
         $qedit = "update login_mill set success= NOW(), password='". password_hash(substr($rowLogin['lesen'], 0, 6), PASSWORD_BCRYPT). "' where lesen = '$username'";
-        $redit = mysqli_query($con, $qedit);
+        // $redit = mysqli_query($con, $qedit);
+        $redit = $con->query($qedit);
+
 
         $title = 'e-COST - Password Recovery (Mill)';
 
@@ -491,12 +547,18 @@ if (isset($lesen)) {
     if ($firsttime == '1' && $mill != "true") {
 
       $q="update login_estate set firsttime ='2' where lesen = '".$_SESSION['lesen']."'";
-      $r = mysqli_query($con, $q);
+      // $r = mysqli_query($con, $q);
+      $r = $con->query($q);
+
 
       $qinfo="INSERT INTO estate_info (lesen ,gambut, percentrata ,percentalun ,percentbukit ,percentcerun)
      VALUES (
      '".$lesen."',  '0', '0', '0', '0', '0')";
-     $rinfo = mysqli_query($con, $qinfo);
+     // $rinfo = mysqli_query($con, $qinfo);
+     $rinfo = $con->query($qinfo);
+
+
+
 
         ?>
         <script language="javascript">
