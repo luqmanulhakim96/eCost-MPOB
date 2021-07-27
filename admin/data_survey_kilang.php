@@ -11,6 +11,7 @@ header("Content-type: application");
 header("Content-Disposition: attachment; filename=excel_data_kilang_$tahun($tarikh_report).xls");
 include("baju.php");
 $con = connect();
+error_reporting(1);
 ?>
 <style>
     body {
@@ -169,6 +170,7 @@ function mill_buruh($lesen, $tahun) {
 <title>Data Survey Kilang <?php echo $tahun; ?>(<?php echo $tarikh_report; ?>)</title>
 <?php
 //$tahun = "2010";
+
 ?>
 <table width="100%" class="baju">
     <tr>
@@ -232,6 +234,8 @@ function mill_buruh($lesen, $tahun) {
     $con = connect();
     /*$q = "select * from login_mill where success!='0000-00-00 00:00:00' and lesen like '500%'   group by lesen order by lesen ";*/
 
+    $tahunsebelum = $tahun-1;
+
 	$q ="SELECT ekilang.no_lesen as lesen FROM ekilang
       LEFT JOIN mill_info ON ekilang.no_lesen = mill_info.lesen
       LEFT JOIN mill_kos_lain ON ekilang.no_lesen = mill_kos_lain.lesen AND mill_kos_lain.tahun = '$tahun'
@@ -239,7 +243,7 @@ function mill_buruh($lesen, $tahun) {
 	  LEFT JOIN login_mill ON ekilang.no_lesen = login_mill.lesen
 	  LEFT JOIN alamat_ekilang ON ekilang.no_lesen = alamat_ekilang.lesen
 	  WHERE
-	  ekilang.tahun = '$tahun'
+	  ekilang.tahun = '$tahunsebelum'
 	 AND (mill_kos_lain.total_kl > 0 or mill_pemprosesan.total_kp > 0)
 	 GROUP BY ekilang.no_lesen";
 
